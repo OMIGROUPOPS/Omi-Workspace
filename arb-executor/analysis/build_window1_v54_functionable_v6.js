@@ -34,7 +34,7 @@ const ANALYSIS_ROOT = ".claude/window1_second_seat/v11_non_action_mechanism_audi
 const ACTUAL_BELL_PATH = `${ANALYSIS_ROOT}/ACTUAL_BELL_TABLE_804.json`;
 const NAMED_NEIGHBOR_PATH = `${ANALYSIS_ROOT}/NEIGHBOR_SPAN_BELL_CHECK.json`;
 const GROUND_TRUTH_CORRECTIONS_PATH = `${ANALYSIS_ROOT}/W1_GROUND_TRUTH_CORRECTIONS.jsonl`;
-const OUTPUT_LABEL = "V54_REPAIR_ITERATION4_COMPOSITION_PRESENCE";
+const OUTPUT_LABEL = "V54_REPAIR_ITERATION5_DERIVED_DEPTH_PROCESS_FIRST";
 
 function arg(name, fallback = null) {
   const index = process.argv.indexOf(`--${name}`);
@@ -300,6 +300,31 @@ function loadGroundTruth(repo) {
 function targetMeta(row) {
   const legs = [row.legA, row.legB];
   return { event_id: row.event_id, event_date: row.code.slice(0, 7), category: row.category, discovery_epoch: row.recorder_open_epoch, bell_epoch: row.verified_span === "OK" ? row.bell_epoch : null, bell_source: row.bell_source, leg_ids: legs, anchors_cents: { [row.legA]: Math.floor(row.legA_open_postformation_c), [row.legB]: Math.floor(row.legB_open_postformation_c) }, formation_end_epochs: { [row.legA]: row.legA_formation_end_epoch, [row.legB]: row.legB_formation_end_epoch }, truth_closes_cents: { [row.legA]: row.verified_span === "OK" ? row.legA_close_c : null, [row.legB]: row.verified_span === "OK" ? row.legB_close_c : null }, truth_fill_stamps: { [row.legA]: row.legA_us_fill_stamp ?? null, [row.legB]: row.legB_us_fill_stamp ?? null }, correction_receipt: row.correction_receipt ?? null };
+}
+
+function bindCorpusFloorTiming(corpusRows, truthRows) {
+  const truthByEvent = new Map(truthRows.map((row) => [row.event_id, row]));
+  let eventsBound = 0, legsBound = 0;
+  for (const candidate of corpusRows) {
+    const truth = truthByEvent.get(candidate.event_id);
+    if (!truth || truth.verified_span !== "OK" || !Number.isFinite(truth.bell_epoch)) continue;
+    let eventBound = false;
+    for (const leg of candidate.legs ?? []) {
+      const side = truth.legA === leg.leg_id ? "legA" : truth.legB === leg.leg_id ? "legB" : null;
+      if (!side) continue;
+      const formation = truth[`${side}_formation_end_epoch`];
+      const floorEpoch = truth[`${side}_floor_epoch`];
+      const duration = truth.bell_epoch - formation;
+      if (!(Number.isFinite(formation) && Number.isFinite(floorEpoch) && duration > 0)) continue;
+      leg.floor_fraction = Math.max(0, Math.min(1, (floorEpoch - formation) / duration));
+      leg.floor_epoch = floorEpoch;
+      leg.floor_timing_receipt = `${GROUND_TRUTH_COMMIT}:${GROUND_TRUTH_PATH}#${truth.event_id}|${leg.leg_id}`;
+      legsBound += 1;
+      eventBound = true;
+    }
+    if (eventBound) eventsBound += 1;
+  }
+  return { method: "BELL_BOUNDED_MEMBER_FLOOR_FRACTION", truth_commit: GROUND_TRUTH_COMMIT, truth_path: GROUND_TRUTH_PATH, events_bound: eventsBound, legs_bound: legsBound };
 }
 
 function loadTicks(privateRoot, meta) {
@@ -579,7 +604,7 @@ function storySection(result, old, meta) {
     const conclusions = finalStage.derivations.map((row) => `${row.leg_id}: conditional remaining-dip q50 ${row.derivation.neighbor_leg.conditional_remaining_dip_distribution_cents.q50 ?? "UNKNOWN"}¢ from own ${row.derivation.neighbor_leg.own_evidence.basis} evidence, ${row.action.action}${Number.isInteger(row.action.target_cents) ? ` at ${row.action.target_cents}¢` : ""}`).join("; ");
     return `\n\n### DANPRA 59/40 all-day exhibit\n\nAt the bell the tape still showed DAN ${books.DAN?.bid_cents ?? "?"}/${books.DAN?.ask_cents ?? "?"} and PRA ${books.PRA?.bid_cents ?? "?"}/${books.PRA?.ask_cents ?? "?"}, the operator's 59/40 all-day shape. Its final named look-alikes were ${neighborsPlain(finalStage.neighborhood)}. Across those games, the high-side anchors near 56–62¢ usually dipped into 42–58¢ before closing 57–65¢, while the low-side anchors near 38–44¢ dipped into 26–44¢ before closing 38–45¢. The declared similarity and pair arithmetic concluded ${conclusions}. The OS did not chase the displayed 59/40 pair; it stood 51/33 at the bell, and neither rest filled. CITATION-RECEIPTS: ${finalStage.derivations.map((row) => citationsPlain(row)).join(" || ")}.`;
   })() : "";
-  return `## ${meta.event_id}\n\n${story}${danpra}\n\n### Execution appendix — context, not verdict\n\n| ruler | completed | pair cents | delta vs 100 | gradeable | legs / truth closes |\n|---|---:|---:|---:|---:|---|\n| Old V54 | ${old.completed} | ${old.combined_entry_cents ?? "NA"} | ${old.delta_vs_100_cents ?? "NA"} | ${old.gradeable} | ${JSON.stringify(old.legs)} |\n| Repair iteration 4 | ${result.execution.completed} | ${result.execution.combined_entry_cents ?? "NA"} | ${result.execution.delta_vs_100_cents ?? "NA"} | ${result.execution.gradeable} | ${JSON.stringify(result.execution.legs)} |\n| Truth close | — | — | — | ${Number.isFinite(meta.bell_epoch)} | ${closes} |\n`;
+  return `## ${meta.event_id}\n\n${story}${danpra}\n\n### Execution appendix — context, not verdict\n\n| ruler | completed | pair cents | delta vs 100 | gradeable | legs / truth closes |\n|---|---:|---:|---:|---:|---|\n| Old V54 | ${old.completed} | ${old.combined_entry_cents ?? "NA"} | ${old.delta_vs_100_cents ?? "NA"} | ${old.gradeable} | ${JSON.stringify(old.legs)} |\n| Repair iteration 5 | ${result.execution.completed} | ${result.execution.combined_entry_cents ?? "NA"} | ${result.execution.delta_vs_100_cents ?? "NA"} | ${result.execution.gradeable} | ${JSON.stringify(result.execution.legs)} |\n| Truth close | — | — | — | ${Number.isFinite(meta.bell_epoch)} | ${closes} |\n`;
 }
 
 async function main() {
@@ -643,6 +668,7 @@ async function main() {
   }
 
   const groundTruth = loadGroundTruth(repo), truthRows = groundTruth.rows;
+  const corpusFloorTiming = bindCorpusFloorTiming(corpus.rows, truthRows);
   const metas = requestedEventIds.map((eventId) => {
     const truth = truthRows.find((row) => row.event_id === eventId);
     ensure(truth, `NAMED_SUBSET_GUARD named game absent from truth table ${eventId}`);
@@ -681,7 +707,7 @@ async function main() {
     };
     writeJson(path.join(output, "NAMED_SUBSET_EXECUTION_RECEIPT.json"), subsetReceipt);
     writeJson(path.join(output, "FORBIDDEN_ACCESS_RECEIPT.json"), { full_804_run: false, tune_test_population_run: false, sealed_read: false, holdout_read: false, live_mutation: false, orders: false, positions: false, deployment: false, scope: { named_subset_exact_n: requestedEventIds, total_games_executed: execution.total_games_executed, other_games_executed: execution.other_games_executed } });
-    writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, foundation: corpus.foundation, library_bell_bound: corpus.bell_bound_receipt, ground_truth: groundTruth.receipt, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
+    writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, foundation: corpus.foundation, library_bell_bound: corpus.bell_bound_receipt, corpus_floor_timing: corpusFloorTiming, ground_truth: groundTruth.receipt, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
     const files = fs.readdirSync(output).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
     writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: subsetReceipt.label, files: Object.fromEntries(files.map((name) => [name, { ...receipt(path.join(output, name)), path: name }])) });
     process.stdout.write(canonical({ output, named_subset: execution, all_readers_derived: games.every((game) => game.reader_receipt.all_readers_fired), full_804_run: false, sealed: false, live: false }));
@@ -702,27 +728,29 @@ async function main() {
   for (const eventId of TARGETS.stories) {
     const meta = metas.find((row) => row.event_id === eventId), rows = [...loadTicks(privateRoot, meta), ...printLoad.byEvent.get(eventId)].filter((row) => !Number.isFinite(meta.bell_epoch) || row.timestamp_epoch <= meta.bell_epoch);
     const result = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: false }), old = oldOutcome(perGame, eventId, meta);
-    storyResults.push({ event_id: eventId, old, functionable_v6: result.execution, turning_points: result.stage_reads.length, derivations: result.derivations.length });
+    storyResults.push({ event_id: eventId, old, functionable_v6: result.execution, tape_rows_consumed: rows.length, book_rows_consumed: rows.filter((row) => row.kind === "BOOK").length, print_rows_consumed: rows.filter((row) => row.kind === "PRINT").length, turning_points: result.stage_reads.length, derivations: result.derivations.length });
     storySections.push(storySection(result, old, meta));
     storyTraces.push(...result.stage_reads.map((stage) => ({ event_id: eventId, kind: "DECISION_STAGE", ...stage })), ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })));
   }
   const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.functionable_v6.completed || row.functionable_v6.delta_vs_100_cents < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
-  const storiesHeader = `# Four stories — repair iteration 4\n\nLicense: LAW_INDEX @ 521a1613, sha256 41784e6a… · all standing laws.\n\nThe story is the verdict. Every level composes fresh own evidence with the graded absolute-floor distribution without subtraction; every sentence states allocation and relation to the live touch. No sealed, live, or full-804 run was performed.\n\n`;
+  const storiesHeader = `# Four stories — repair iteration 5\n\nLicense: LAW_INDEX @ fd8b9f6c, sha256 c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6 · L0 L6 L8 L10 L11 L16 L17 L18 L20 L21 L22 L23 and the filed weld, pattern, conditional-expectation, windows-on-own-clocks, trade-report, and case-study laws.\n\nThe story is the verdict. Every level derives its distance below the live touch from the conditioned remaining-dip distribution, the leg's own bell-bounded window position, and the current pair state. No sealed, live, or full-804 run was performed.\n\n`;
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
   writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   fs.writeFileSync(path.join(output, "REPAIR_FOUR_GAME_TRACE.jsonl.gz"), zlib.gzipSync(Buffer.from(storyTraces.map((row) => JSON.stringify(row)).join("\n") + "\n"), { level: 9 }));
   const decisionStages = storyTraces.filter((row) => row.kind === "DECISION_STAGE");
   const allDerivations = decisionStages.flatMap((row) => row.derivations.map((derivation) => ({ event_id: row.event_id, trigger: row.trigger, stage_receipt: row.receipt, stage_reads: row.reads, ...derivation })));
-  writeJson(path.join(output, "CONDITIONAL_DIP_RECEIPT.json"), {
-    label: "COMPOSED_OWN_EVIDENCE_AND_GRADED_NEIGHBORS",
+  writeJson(path.join(output, "DERIVED_DEPTH_RECEIPT.json"), {
+    label: "DERIVED_DEPTH_FROM_CONDITIONED_DIP_OWN_WINDOW_PAIR_STATE",
     declaration: os.CONDITIONAL_DIP_DECLARATION,
-    method: "All nearest usable members survive. Their weighted absolute-low distribution conditions the fresh live two-sided book. Remaining dip is emitted as telemetry and is never subtracted from own evidence.",
+    method: "All nearest usable members survive. Each member's remaining dip contributes while its bell-bounded floor time lies ahead of this leg's current own-window fraction, or zero after that corresponding floor time. The weighted q50 is depth below the live best bid; credited-sibling conservation may deepen it.",
     binary_same_state_gate_used: false,
     blanket_ratio_used: false,
-    subtractive_remaining_dip_used: false,
-    derivations: allDerivations.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, own_evidence: row.derivation.neighbor_leg.own_evidence, absolute_floor_distribution_cents: row.derivation.neighbor_leg.conditional_absolute_floor_distribution_cents, remaining_dip_telemetry_cents: row.derivation.neighbor_leg.conditional_remaining_dip_distribution_cents, members: row.derivation.neighbor_leg.rows, excluded: row.derivation.neighbor_leg.excluded, target_authority: row.derivation.target_authority, target_cents: row.derivation.derived_target_cents, touch_relation: row.derivation.touch_relation, joint_depth_license: row.derivation.joint_depth_license, sentence: row.sentence })),
-    every_sentence_states_conditioning: allDerivations.every((row) => row.sentence.includes("absolute-floor q25/q50/q75") && row.sentence.includes("is telemetry and is never subtracted")),
-    every_sentence_names_basis: allDerivations.every((row) => ["TARGET_BASIS=COMPOSED-OWN+NEIGHBORS", "TARGET_BASIS=OWN-EVIDENCE", "TARGET_BASIS=LINEAGE-LAST-RESORT"].some((token) => row.sentence.includes(token))),
+    absolute_floor_target_used: false,
+    lineage_depth_fallback_used: false,
+    placement_constants_or_thresholds: [],
+    derivations: allDerivations.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, live_touch_bid_cents: row.derivation.live_bid_cents, live_ask_cents: row.derivation.live_ask_cents, chosen_depth_cents: row.derivation.chosen_depth_cents, pre_allocation_target_cents: row.derivation.lawful_unallocated_target_cents, final_target_cents: row.action.target_cents, final_depth_below_touch_cents: row.derivation.final_depth_below_touch_cents, raw_remaining_dip_distribution_cents: row.derivation.neighbor_leg.conditional_remaining_dip_distribution_cents, time_conditioned_remaining_dip_distribution_cents: row.derivation.depth_distribution_cents, window_timing: row.derivation.window_timing, pair_state: row.derivation.pair_state, sibling_commitment_cents: row.derivation.sibling_commitment_cents, pair_required_depth_cents: row.derivation.pair_required_depth_cents, own_evidence: row.derivation.neighbor_leg.own_evidence, members: row.derivation.neighbor_leg.rows, excluded: row.derivation.neighbor_leg.excluded, target_authority: row.derivation.target_authority, touch_relation: row.derivation.touch_relation, joint_depth_license: row.derivation.joint_depth_license, allocation: row.derivation.allocation, sentence: row.sentence })),
+    every_sentence_states_required_depth_inputs: allDerivations.every((row) => row.sentence.includes("LIVE_TOUCH_BID=") && row.sentence.includes("CHOSEN_DEPTH_CENTS=") && row.sentence.includes("time-conditioned remaining-dip q25/q50/q75") && row.sentence.includes("OWN_WINDOW=") && row.sentence.includes("PAIR_STATE=")),
+    every_sentence_names_basis: allDerivations.every((row) => ["TARGET_BASIS=DERIVED-DEPTH", "TARGET_BASIS=DEPTH-UNAVAILABLE-CANCEL"].some((token) => row.sentence.includes(token))),
   });
   writeJson(path.join(output, "SPLIT_ALLOCATION_RECEIPT.json"), {
     label: "PER_RECEIPT_GRADED_CONTINUOUS_SPLIT",
@@ -736,12 +764,12 @@ async function main() {
     every_reallocation_shows_from_not_equal_to: allDerivations.filter((row) => row.derivation.allocation?.mode === "GRADED-CONTINUOUS-SPLIT").every((row) => row.derivation.allocation.from_cents !== row.derivation.allocation.to_cents),
   });
   writeJson(path.join(output, "COMPOSITION_PRESENCE_RECEIPT.json"), {
-    label: "COMPOSITION_AND_PRESENCE_LAW",
-    composition: "Own evidence and weighted neighbor absolute-floor distributions condition one another; remaining dip is never subtracted.",
-    presence: "A formed fresh book supplies the reach relation. The composed level is bounded into [best bid, best ask-1]; any depth below the prior bounded traded low carries an explicit joint-evidence license.",
+    label: "DERIVED_DEPTH_AND_PRESENCE_LAW",
+    composition: "Own bounded evidence grades the neighbor distribution; member floor timing and this leg's own window position condition remaining dip into an integer depth below the live touch.",
+    presence: "A formed fresh book supplies the live best-bid touch. Any depth below the prior bounded traded low carries the explicit conditioned-dip + own-window + pair-state joint license.",
     no_placement_constant_added: true,
     stale_prior_path_removed: true,
-    rows: allDerivations.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, receipt: row.receipt, live_bid_cents: row.derivation.live_bid_cents, live_ask_cents: row.derivation.live_ask_cents, own_bounded_traded_low_cents: row.derivation.neighbor_leg.own_evidence.basis === "TRUE_TRADE" ? row.derivation.neighbor_leg.own_evidence.observed_low_cents : null, neighbor_floor_distribution_cents: row.derivation.neighbor_leg.conditional_absolute_floor_distribution_cents, target_cents: row.action.target_cents, touch_relation: row.derivation.touch_relation, joint_depth_license: row.derivation.joint_depth_license, target_basis: row.derivation.target_basis, sentence: row.sentence })),
+    rows: allDerivations.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, receipt: row.receipt, live_bid_cents: row.derivation.live_bid_cents, live_ask_cents: row.derivation.live_ask_cents, own_bounded_traded_low_cents: row.derivation.neighbor_leg.own_evidence.basis === "TRUE_TRADE" ? row.derivation.neighbor_leg.own_evidence.observed_low_cents : null, conditioned_depth_distribution_cents: row.derivation.depth_distribution_cents, chosen_depth_cents: row.derivation.chosen_depth_cents, target_cents: row.action.target_cents, touch_relation: row.derivation.touch_relation, joint_depth_license: row.derivation.joint_depth_license, target_basis: row.derivation.target_basis, sentence: row.sentence })),
     every_target_states_touch_relation: allDerivations.every((row) => row.sentence.includes("TOUCH_RELATION=")),
     every_below_trade_low_target_has_joint_license: allDerivations.every((row) => {
       const own = row.derivation.neighbor_leg.own_evidence;
@@ -815,9 +843,11 @@ async function main() {
   if (allDerivations.some((row) => row.derivation.neighbor_leg.binary_state_gate_used !== false)) lawViolations.push("BINARY_SAME_STATE_GATE_SURVIVED");
   if (allDerivations.some((row) => row.derivation.neighbor_leg.subtractive_remaining_dip_used !== false)) lawViolations.push("SUBTRACTIVE_REMAINING_DIP_SURVIVED");
   if (allDerivations.some((row) => row.derivation.stale_prior_path_used !== false || row.derivation.allocation?.stale_prior_consumed === true)) lawViolations.push("STALE_PRIOR_PATH_SURVIVED");
-  if (allDerivations.some((row) => !["COMPOSED-OWN+NEIGHBORS", "OWN-EVIDENCE", "LINEAGE-LAST-RESORT"].includes(row.derivation.target_basis))) lawViolations.push("UNNAMED_TARGET_BASIS");
+  if (allDerivations.some((row) => !["DERIVED-DEPTH", "DEPTH-UNAVAILABLE-CANCEL"].includes(row.derivation.target_basis))) lawViolations.push("UNNAMED_TARGET_BASIS");
+  if (allDerivations.some((row) => row.derivation.neighbor_leg.absolute_floor_target_used !== false || row.derivation.lineage_depth_fallback_used !== false)) lawViolations.push("DEFAULT_OR_ABSOLUTE_FLOOR_DEPTH_PATH_SURVIVED");
   if (allDerivations.some((row) => !row.sentence.includes("ALLOCATION="))) lawViolations.push("ALLOCATION_REASON_MISSING_FROM_SENTENCE");
   if (allDerivations.some((row) => !row.sentence.includes("TOUCH_RELATION="))) lawViolations.push("TOUCH_RELATION_MISSING_FROM_SENTENCE");
+  if (allDerivations.some((row) => !row.sentence.includes("CHOSEN_DEPTH_CENTS=") || !row.sentence.includes("OWN_WINDOW=") || !row.sentence.includes("PAIR_STATE="))) lawViolations.push("DEPTH_DERIVATION_MISSING_FROM_SENTENCE");
   if (allDerivations.some((row) => {
     const own = row.derivation.neighbor_leg.own_evidence;
     return own.basis === "TRUE_TRADE" && Number.isInteger(row.action.target_cents) && row.action.target_cents < own.observed_low_cents && row.derivation.joint_depth_license?.lawful !== true;
@@ -825,11 +855,44 @@ async function main() {
   if (allDerivations.some((row) => row.derivation.allocation?.mode === "GRADED-CONTINUOUS-SPLIT" && row.derivation.allocation.from_cents === row.derivation.allocation.to_cents)) lawViolations.push("INERT_SPLIT_FROM_EQUALS_TO");
   if (allDerivations.some((row) => row.resources_consulted.includes("FOUNDATION_PER_MINUTE_UNIVERSE") && !row.sentence.includes("MINUTE-grain MACRO/MICRO"))) lawViolations.push("FOUNDATION_CITATION_GRAIN_OR_LAYER_MISSING");
   const baselinePins = storyResults.filter((row) => ["KXATPCHALLENGERMATCH-26JUL14URSPAL", "KXATPCHALLENGERMATCH-26JUL14LAJSVA"].includes(row.event_id)).map((row) => ({ event_id: row.event_id, completed: row.old.completed, delta_vs_100_cents: row.old.delta_vs_100_cents }));
-  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "COMPOSITION_PRESENCE_GATE", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_candidate_floors: SAFETY_FLOORS, candidate_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.functionable_v6.completed, delta_vs_100_cents: row.functionable_v6.delta_vs_100_cents, legs: row.functionable_v6.legs })), safety_floor_pass: floorBreaks.length === 0, law_violations: lawViolations, zero_measured_law_violations: lawViolations.length === 0, sentences_carry_basis_allocation_touch_relation: allDerivations.every((row) => row.sentence.includes("ALLOCATION=") && row.sentence.includes("TARGET_BASIS=") && row.sentence.includes("TOUCH_RELATION=")), sentences_cite_fills: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "GIUBAR_OR_URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
+  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "DERIVED_DEPTH_PROCESS_FIRST_GATE", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_candidate_floors: SAFETY_FLOORS, candidate_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.functionable_v6.completed, delta_vs_100_cents: row.functionable_v6.delta_vs_100_cents, legs: row.functionable_v6.legs })), safety_floor_pass: floorBreaks.length === 0, law_violations: lawViolations, zero_measured_law_violations: lawViolations.length === 0, sentences_carry_basis_allocation_touch_depth_derivation: allDerivations.every((row) => row.sentence.includes("ALLOCATION=") && row.sentence.includes("TARGET_BASIS=") && row.sentence.includes("TOUCH_RELATION=") && row.sentence.includes("CHOSEN_DEPTH_CENTS=") && row.sentence.includes("OWN_WINDOW=") && row.sentence.includes("PAIR_STATE=")), sentences_cite_fills: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "GIUBAR_OR_URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
+  const it4TracePath = path.join(repo, ".claude", "window1_live_v4_replay", "v54_repair_iteration4_composition_presence_20260822", "REPAIR_FOUR_GAME_TRACE.jsonl.gz");
+  const it4Trace = zlib.gunzipSync(fs.readFileSync(it4TracePath)).toString("utf8").trim().split(/\r?\n/).filter(Boolean).map(JSON.parse);
+  const it4LajsvaSentences = it4Trace.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA" && row.kind === "DECISION_STAGE").flatMap((row) => row.derivations.map((derivation) => ({ timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, leg_id: derivation.leg_id, sentence: derivation.sentence })));
+  writeText(path.join(output, "ITERATION4_LAJSVA_DEPTH_SENTENCES_VERBATIM.md"), `# Iteration 4 LAJSVA depth sentences — verbatim\n\nSource: ${path.relative(repo, it4TracePath).replaceAll("\\", "/")} @ sha256:${fileHash(it4TracePath)}\n\n${it4LajsvaSentences.map((row) => `## ${row.timestamp_epoch} · ${row.leg_id}\n\nReceipt: ${row.receipt}\n\n\`\`\`text\n${row.sentence}\n\`\`\``).join("\n\n")}\n`);
+  const lajsvaRows = allDerivations.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA").sort((a, b) => a.timestamp_epoch - b.timestamp_epoch || a.leg_id.localeCompare(b.leg_id));
+  const lastTarget = new Map();
+  const lajsvaTurningPoints = lajsvaRows.filter((row) => {
+    const prior = lastTarget.get(row.leg_id);
+    const current = `${row.action.action}|${row.action.target_cents ?? "NONE"}`;
+    lastTarget.set(row.leg_id, current);
+    return prior !== current;
+  });
+  const storesPulled = {
+    tick_rows_by_game: Object.fromEntries(storyResults.map((row) => [row.event_id, { total: row.tape_rows_consumed, books: row.book_rows_consumed, prints: row.print_rows_consumed }])),
+    corpus: corpus.counts,
+    foundation: { games_served: corpus.foundation.rows, coverage_before: corpus.foundation.coverage_before, coverage_after: corpus.foundation.coverage_after, source_rows: corpus.foundation.index.rows },
+    range_spectrum: { games_served: corpus.counts.range_rows, source: corpus.sources.range },
+    historical_materialization: { games_served: corpus.counts.historical_rows, source: corpus.sources.historical },
+    event_registry: { games_served: corpus.counts.registry_rows, source: corpus.sources.registry },
+    odds: { table_receipt: remote?.odds_backup?.tables?.bookmaker_odds ?? null, per_game: Object.fromEntries(TARGETS.stories.map((eventId) => [eventId, { covered_rows: 0, status: "RESOURCE-GAP", reason: "NO_EVENT_KEYED_BOOKMAKER_ROW_LOADED_FOR_THIS_CASE_GAME" }])) },
+  };
+  const processReceipt = {
+    label: "PROCESS_FIRST_CONFIRM",
+    order: ["STORES_PULLED", "LAJSVA_DERIVATION_STORY", "ACTIONS_WITH_REASONS", "FILLS_AS_CONSEQUENCES", "DELTAS_AND_GATE_LAST"],
+    stores_pulled: storesPulled,
+    lajsva_derivation_story: lajsvaTurningPoints.map((row) => ({ timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, leg_id: row.leg_id, query_fingerprint: row.derivation.reposed_query_fingerprint_sha256 ?? row.neighborhood?.[0]?.query_fingerprint_sha256 ?? null, neighbors: row.neighborhood.map((neighbor) => ({ event_id: neighbor.event_id, similarity_grade: neighbor.score, coverage_grade: neighbor.coverage, citation_receipt_id: neighbor.citation_receipt_id })), own_conditioning: row.derivation.neighbor_leg.own_evidence, depth_distribution_cents: row.derivation.depth_distribution_cents, chosen_depth_cents: row.derivation.chosen_depth_cents, window_timing: row.derivation.window_timing, pair_state: row.derivation.pair_state, allocation: row.derivation.allocation, lineage_target_cents: row.derivation.lineage_target_cents, candidate_action: row.action, sentence_verbatim: row.sentence })),
+    actions_with_reasons: allDerivations.filter((row) => row.action.target_cents !== row.derivation.lineage_target_cents || row.action.action === "CANCEL_REST").map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, lineage_target_cents: row.derivation.lineage_target_cents, candidate_action: row.action, candidate_reason: row.action.reason, allocation: row.derivation.allocation, sentence_verbatim: row.sentence })),
+    fills_as_consequences: fillEvents,
+    deltas_and_gate_last: { results: storyResults, floor_breaks: floorBreaks, law_violations: lawViolations, gate_pass: floorBreaks.length === 0 && lawViolations.length === 0 },
+  };
+  writeJson(path.join(output, "PROCESS_FIRST_CONFIRM_RECEIPT.json"), processReceipt);
+  const processMd = `# Repair iteration 5 — process-first confirmation\n\n## 1. Stores pulled\n\n${Object.entries(storesPulled.tick_rows_by_game).map(([eventId, counts]) => `- ${eventId}: ${counts.total} tape rows (${counts.books} book, ${counts.prints} true-print).`).join("\n")}\n- Foundation: ${corpus.foundation.rows} games served; bounded coverage ${corpus.foundation.coverage_before.bounded_games} → ${corpus.foundation.coverage_after.bounded_games}.\n- Range spectrum: ${corpus.counts.range_rows} rows. Historical materialization: ${corpus.counts.historical_rows} rows. Corpus registry: ${corpus.counts.registry_rows} rows. Union: ${corpus.counts.union_games} games.\n- Odds coverage: ${TARGETS.stories.map((eventId) => `${eventId}=0 event-keyed rows (RESOURCE-GAP)`).join("; ")}.\n\n## 2. LAJSVA derivation story\n\n${lajsvaTurningPoints.map((row) => `### ${row.timestamp_epoch} · ${row.leg_id}\n\nFingerprint: ${row.derivation.reposed_query_fingerprint_sha256 ?? row.neighborhood?.[0]?.query_fingerprint_sha256 ?? "NONE"}.\n\nNeighbors with grades: ${row.neighborhood.map((neighbor) => `${neighbor.event_id} similarity=${neighbor.score.toFixed(6)} coverage=${neighbor.coverage.toFixed(6)} [${neighbor.citation_receipt_id}]`).join("; ")}.\n\nConditioning: own ${row.derivation.neighbor_leg.own_evidence.basis} low ${row.derivation.neighbor_leg.own_evidence.observed_low_cents ?? "UNKNOWN"}; time-conditioned q25/q50/q75 ${row.derivation.depth_distribution_cents.q25 ?? "UNKNOWN"}/${row.derivation.depth_distribution_cents.q50 ?? "UNKNOWN"}/${row.derivation.depth_distribution_cents.q75 ?? "UNKNOWN"}; chosen depth ${row.derivation.chosen_depth_cents ?? "UNKNOWN"}; window ${JSON.stringify(row.derivation.window_timing)}; pair state ${row.derivation.pair_state}; allocation ${JSON.stringify(row.derivation.allocation)}.\n\nSentence verbatim:\n\n\`\`\`text\n${row.sentence}\n\`\`\``).join("\n\n")}\n\n## 3. Actions with reasons\n\n${processReceipt.actions_with_reasons.map((row) => `- ${row.event_id}|${row.leg_id} @ ${row.timestamp_epoch}: lineage context ${row.lineage_target_cents ?? "NONE"}; candidate ${row.candidate_action.action} ${row.candidate_action.target_cents ?? "NONE"}; reason ${row.candidate_reason}; allocation ${row.allocation?.mode ?? "NONE"}.`).join("\n")}\n\n## 4. Fills as consequences\n\n${fillEvents.length ? fillEvents.map((row) => `- ${row.context.event_id}|${row.context.leg_id}: ${row.context.entry_cents}¢ at ${row.context.fill_timestamp_epoch}, receipt ${row.row_refs.join(",")}.`).join("\n") : "- None."}\n\n## 5. Four-game deltas and gate verdict\n\n${storyResults.map((row) => `- ${row.event_id}: ${row.functionable_v6.completed ? `${row.functionable_v6.combined_entry_cents}¢, Δ${row.functionable_v6.delta_vs_100_cents}` : "PARTIAL"}.`).join("\n")}\n\nGate: ${floorBreaks.length === 0 && lawViolations.length === 0 ? "PASS" : `SELF-STOP (${floorBreaks.length ? "ratchet break" : "law violation"})`}.\n`;
+  writeText(path.join(output, "PROCESS_FIRST_CONFIRM.md"), processMd);
   writeText(path.join(output, "ASSUMPTION_GAPS.md"), `# Assumption gaps\n\n- January–March has event-grain historical aggregates but no local intramatch tape. Measurement needed: public historical trades plus timestamped book reconstruction at the same grain as the July recorder.\n- The subsecond store mixes public tape and synthetic book transitions and lacks exchange trade identity on every row. Measurement needed: source-specific identity completeness by named event.\n- The DO archive is connected and the pre-sealed object reader is smoked, but its July object catalog is not a January-present database. Measurement needed: event-level archive coverage joined to corpus_events_v2.\n- The odds backup is connected, but its overlap with each target game is not complete. Measurement needed: immutable per-event bookmaker snapshots with source clock and player mapping.\n- CRIJEA has no verified bell. Measurement needed: an independent official in-play timestamp; until then it grades nothing.\n`);
   writeText(path.join(output, "CC_URSPAL_LATE_BELL.md"), `# CC filing — URSPAL late bell\n\nEvent: KXATPCHALLENGERMATCH-26JUL14URSPAL.\n\nThe L11 truth-table right edge is 1784045100. Tape prints moved PAL 41→30 and URS 61→77 within four minutes after that edge. The tape-inferred bell is at least 48 minutes late for this game. The close remains the truth-table close unless and until CC's standing bell sweep produces a stronger official timestamp.\n\nSource: F-VS-023 @ 3cd59162; W1_GROUND_TRUTH_TABLE.json @ c0056976.\n`);
   writeJson(path.join(output, "FORBIDDEN_ACCESS_RECEIPT.json"), { full_804_run: false, tune_test_population_run: false, sealed_read: false, holdout_read: false, live_mutation: false, orders: false, positions: false, deployment: false, scope: { smoke: TARGETS.smoke, stories: TARGETS.stories } });
-  writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, foundation: corpus.foundation, library_bell_bound: corpus.bell_bound_receipt, ground_truth: groundTruth.receipt, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
+  writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, foundation: corpus.foundation, library_bell_bound: corpus.bell_bound_receipt, corpus_floor_timing: corpusFloorTiming, ground_truth: groundTruth.receipt, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
   const files = fs.readdirSync(output).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
   writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: OUTPUT_LABEL, files: Object.fromEntries(files.map((name) => [name, { ...receipt(path.join(output, name)), path: name }])) });
   process.stdout.write(canonical({ output, functionable: functionality.all_connected, smoke: "PASS_NO_GRADING", stories: storyResults, floor_breaks: floorBreaks, full_804_run: false, sealed: false, live: false }));

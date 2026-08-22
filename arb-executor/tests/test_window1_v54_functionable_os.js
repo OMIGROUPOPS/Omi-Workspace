@@ -42,8 +42,8 @@ assert.equal(reads.half_pair_state.value.legs.AAA.credited, false, "reader recei
 const vector = os.vectorFromReads(state, reads);
 const corpus = [
   { event_id: "TEST-EVENT", event_date: "26JUL01", category: "ATP_MAIN", quality: "SELF", vector, legs: [], source_receipts: [] },
-  { event_id: "NEIGHBOR-1", event_date: "26JUN01", category: "ATP_MAIN", quality: "RANGE", vector: { ...vector, leg0_drift_cents: -3, leg1_drift_cents: 3 }, legs: [{ leg_id: "N1A", anchor_cents: 40, observed_low_cents: 38, low_cents: 35 }, { leg_id: "N1B", anchor_cents: 60, observed_low_cents: 58, low_cents: 55 }], source_receipts: [{ source_id: "RANGE", row_ref: "range.jsonl#row-1" }] },
-  { event_id: "NEIGHBOR-2", event_date: "26MAY01", category: "ATP_CHALL", quality: "HIST", vector: { ...vector, category: "ATP_CHALL", leg0_drift_cents: -10 }, legs: [{ leg_id: "N2A", anchor_cents: 40, observed_low_cents: 36, low_cents: 30 }, { leg_id: "N2B", anchor_cents: 60, observed_low_cents: 56, low_cents: 50 }], source_receipts: [{ source_id: "HIST", row_ref: "historical.csv#line-2" }] },
+  { event_id: "NEIGHBOR-1", event_date: "26JUN01", category: "ATP_MAIN", quality: "RANGE", vector: { ...vector, leg0_drift_cents: -3, leg1_drift_cents: 3 }, legs: [{ leg_id: "N1A", anchor_cents: 40, observed_low_cents: 38, low_cents: 35, floor_fraction: 0.5 }, { leg_id: "N1B", anchor_cents: 60, observed_low_cents: 58, low_cents: 55, floor_fraction: 0.5 }], source_receipts: [{ source_id: "RANGE", row_ref: "range.jsonl#row-1" }] },
+  { event_id: "NEIGHBOR-2", event_date: "26MAY01", category: "ATP_CHALL", quality: "HIST", vector: { ...vector, category: "ATP_CHALL", leg0_drift_cents: -10 }, legs: [{ leg_id: "N2A", anchor_cents: 40, observed_low_cents: 36, low_cents: 30, floor_fraction: 0.75 }, { leg_id: "N2B", anchor_cents: 60, observed_low_cents: 56, low_cents: 50, floor_fraction: 0.75 }], source_receipts: [{ source_id: "HIST", row_ref: "historical.csv#line-2" }] },
 ];
 const neighborhood = os.retrieveNeighborhood(corpus, vector, "TEST-EVENT", 2, state.receipt);
 assert.equal(neighborhood.length, 2);
@@ -60,10 +60,13 @@ assert.match(derivation.sentence, /CR-[0-9a-f]{64}/);
 assert.equal(derivation.pair_conservation.at_or_below_99, true);
 assert.equal(derivation.resources_consulted.length, 0, "connectivity must not be mislabeled as consultation");
 assert.ok(Object.values(derivation.citation_receipts).every((row) => row.captured_at_receipt === state.receipt));
-assert.ok(["COMPOSED-OWN+NEIGHBORS", "OWN-EVIDENCE", "LINEAGE-LAST-RESORT"].includes(derivation.derivation.target_basis));
+assert.equal(derivation.derivation.target_basis, "DERIVED-DEPTH");
 assert.equal(derivation.derivation.stale_prior_path_used, false);
 assert.match(derivation.sentence, /TOUCH_RELATION=/);
-assert.match(derivation.sentence, /remaining-dip .* is telemetry and is never subtracted/);
+assert.match(derivation.sentence, /time-conditioned remaining-dip/);
+assert.match(derivation.sentence, /CHOSEN_DEPTH_CENTS=/);
+assert.match(derivation.sentence, /OWN_WINDOW=/);
+assert.match(derivation.sentence, /PAIR_STATE=/);
 
 const splitState = os.createTapeState(meta);
 splitState.positions.AAA.standing_target_cents = 60;

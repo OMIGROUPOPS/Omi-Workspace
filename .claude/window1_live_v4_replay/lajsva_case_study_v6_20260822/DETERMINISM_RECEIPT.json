@@ -1,0 +1,7 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V6_DETERMINISM_X2",
+  "two_clean_builds": true,
+  "first_manifest_sha256": "bff036d6a635381869eaf447e0261a39a3fe83b8c7155bb49c0e4f46adc1b4ad",
+  "second_manifest_sha256": "bff036d6a635381869eaf447e0261a39a3fe83b8c7155bb49c0e4f46adc1b4ad",
+  "byte_identical": true
+}

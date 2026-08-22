@@ -1,0 +1,51 @@
+{
+  "label": "WORKTREE_CENSUS_LAW_UNTRACKED_OVER_10_MIB",
+  "phase": "REPAIR_ITERATION5_CLOSEOUT",
+  "threshold": {
+    "operator_text": ">10 MB",
+    "implemented_bytes_strictly_greater_than": 10485760
+  },
+  "law": "F-V53-074: every close-out enumerates ALL untracked artifacts >10 MB in the worktree.",
+  "license": {
+    "law_index_read_at": "fd8b9f6c",
+    "law_index_sha256": "c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6",
+    "cited_laws": ["L8", "L18", "L20", "L22"]
+  },
+  "scope": {
+    "four_games_only": true,
+    "full_804_runs_started": 0,
+    "sealed_read": false,
+    "live_mutation": false
+  },
+  "audited_untracked_roots": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_repair_iteration5_derived_depth_process_first_20260822",
+      "files": 30,
+      "bytes": 22885314,
+      "content_identity_sha256": "1771377592be704f1f8dbd536904f7bc4991725d037240258231d22064569c9d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v6_20260822",
+      "files": 9,
+      "bytes": 435774,
+      "content_identity_sha256": "b0fcdfe195dc554bfb0dbbe387b41ab5adfa9af91669fcce168809ab2a7a31b6"
+    }
+  ],
+  "untracked_artifacts_over_threshold": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_repair_iteration5_derived_depth_process_first_20260822",
+      "kind": "DIRECTORY",
+      "files": 30,
+      "bytes": 22885314,
+      "content_identity_sha256": "1771377592be704f1f8dbd536904f7bc4991725d037240258231d22064569c9d"
+    }
+  ],
+  "untracked_regular_files_over_threshold": [],
+  "committed_files_over_50_mb": [],
+  "counts": {
+    "audited_roots": 2,
+    "artifacts_over_10_mib": 1,
+    "regular_files_over_10_mib": 0,
+    "files_over_50_mib": 0
+  }
+}

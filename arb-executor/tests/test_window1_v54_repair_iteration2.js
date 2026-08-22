@@ -3,7 +3,7 @@
 const assert = require("assert");
 const os = require("../analysis/window1_v54_functionable_os.js");
 
-function neighbor(eventId, observedLow, finalLow, score = 1) {
+function neighbor(eventId, observedLow, finalLow, score = 1, floorFraction = 0.5) {
   return {
     event_id: eventId,
     score,
@@ -11,7 +11,7 @@ function neighbor(eventId, observedLow, finalLow, score = 1) {
     quality: "FOUNDATION_MINUTE_BELL_BOUNDED",
     grain: "MINUTE",
     licensed_layers: ["MACRO", "MICRO"],
-    legs: [{ anchor_cents: 41, observed_low_cents: observedLow, low_cents: finalLow, low_basis: "TRUE_TRADE" }],
+    legs: [{ anchor_cents: 41, observed_low_cents: observedLow, low_cents: finalLow, low_basis: "TRUE_TRADE", floor_fraction: floorFraction }],
   };
 }
 
@@ -30,6 +30,14 @@ assert.equal(noDip.derived_floor_cents, 41);
 assert.equal(noDip.binary_state_gate_used, false);
 assert.equal(noDip.legacy_blanket_low_ratio_used, false);
 assert.equal(noDip.subtractive_remaining_dip_used, false);
+
+const timeConditioned = os.conditionalNeighborLeg([
+  neighbor("A", 41, 38, 1, 0.2),
+  neighbor("B", 41, 35, 1, 0.8),
+  neighbor("C", 41, 37, 1, 0.9),
+], 0, { anchor_cents: 41, true_trade_low_cents: null, book_path_low_cents: 41, true_trade_count: 0, formation_end_epoch: 100, window_end_epoch: 1000, elapsed_window_seconds: 450, remaining_window_seconds: 450, window_fraction: 0.5, window_source: "TEST" });
+assert.deepEqual(timeConditioned.time_conditioned_remaining_dip_distribution_cents, { q25: 0, q50: 4, q75: 6 });
+assert.equal(timeConditioned.time_conditioned_members, 3);
 
 const dipped = os.conditionalNeighborLeg([
   neighbor("A", 39, 37),

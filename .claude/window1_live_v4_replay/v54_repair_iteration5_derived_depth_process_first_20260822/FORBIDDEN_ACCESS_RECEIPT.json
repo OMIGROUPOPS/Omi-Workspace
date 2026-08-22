@@ -1,0 +1,21 @@
+{
+  "full_804_run": false,
+  "tune_test_population_run": false,
+  "sealed_read": false,
+  "holdout_read": false,
+  "live_mutation": false,
+  "orders": false,
+  "positions": false,
+  "deployment": false,
+  "scope": {
+    "smoke": [
+      "KXWTAMATCH-26JUL13CRIJEA"
+    ],
+    "stories": [
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "KXATPMATCH-26JUL18DANPRA"
+    ]
+  }
+}

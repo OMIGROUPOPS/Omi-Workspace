@@ -1,0 +1,449 @@
+{
+  "label": "V54_REPAIR_ITERATION5_DERIVED_DEPTH_PROCESS_FIRST",
+  "pass": 1,
+  "passes_executed": 1,
+  "similarity_declaration": {
+    "name": "V54_V6_HAND_AUTHORED_CONTINUOUS_NEIGHBORHOOD",
+    "only_adjustment_lever": true,
+    "formula": "score = covered_weight / total_weight * exp(-sum(weight*abs(query-neighbor)/scale)/covered_weight); missing fields contribute zero coverage and are never imputed",
+    "orientation": "pair legs align by formation-anchor rank, then ticker identity only breaks an exact anchor tie",
+    "weights": {
+      "category": 1.5,
+      "anchor_split_cents": 1.4,
+      "leg0_anchor_cents": 1,
+      "leg1_anchor_cents": 1,
+      "leg0_drift_cents": 1.2,
+      "leg1_drift_cents": 1.2,
+      "leg0_travel_cents": 1,
+      "leg1_travel_cents": 1,
+      "joint_mid_sum_cents": 1.3,
+      "joint_spread_cents": 0.8,
+      "inverse_coherence": 1.1,
+      "volume_log1p": 0.7,
+      "hours_from_discovery": 0.6,
+      "divot_depth_cents": 0.8
+    },
+    "scales": {
+      "anchor_split_cents": 20,
+      "leg0_anchor_cents": 30,
+      "leg1_anchor_cents": 30,
+      "leg0_drift_cents": 20,
+      "leg1_drift_cents": 20,
+      "leg0_travel_cents": 30,
+      "leg1_travel_cents": 30,
+      "joint_mid_sum_cents": 10,
+      "joint_spread_cents": 12,
+      "inverse_coherence": 1,
+      "volume_log1p": 10,
+      "hours_from_discovery": 24,
+      "divot_depth_cents": 20
+    },
+    "neighbor_count": 7,
+    "grades": "Every neighbor retains its continuous score and coverage; grade is rank N1..N7, not a threshold or gate.",
+    "declared": true,
+    "undisclosed_weights": false
+  },
+  "results": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "old": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL12GIUBAR|BAR": {
+            "credited": false,
+            "entry_cents": 21,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "POST_BELL_INVALID (24.6 min after bell)",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001"
+          },
+          "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU": {
+            "credited": true,
+            "entry_cents": 69,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001"
+          }
+        }
+      },
+      "functionable_v6": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "BAR": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          },
+          "GIU": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          }
+        }
+      },
+      "tape_rows_consumed": 5754,
+      "book_rows_consumed": 5732,
+      "print_rows_consumed": 22,
+      "turning_points": 53,
+      "derivations": 106
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "old": {
+        "completed": true,
+        "combined_entry_cents": 97,
+        "delta_vs_100_cents": 3,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL": {
+            "credited": true,
+            "entry_cents": 40,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID (249 s before bell)",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002"
+          },
+          "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS": {
+            "credited": true,
+            "entry_cents": 57,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002"
+          }
+        }
+      },
+      "functionable_v6": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "PAL": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          },
+          "URS": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          }
+        }
+      },
+      "tape_rows_consumed": 42454,
+      "book_rows_consumed": 42413,
+      "print_rows_consumed": 41,
+      "turning_points": 29,
+      "derivations": 58
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "old": {
+        "completed": true,
+        "combined_entry_cents": 94,
+        "delta_vs_100_cents": 6,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": null
+          },
+          "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA": {
+            "credited": true,
+            "entry_cents": 41,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": null
+          }
+        }
+      },
+      "functionable_v6": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "LAJ": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          },
+          "SVA": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          }
+        }
+      },
+      "tape_rows_consumed": 136928,
+      "book_rows_consumed": 136385,
+      "print_rows_consumed": 543,
+      "turning_points": 37,
+      "derivations": 74
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "old": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "gradeable": true,
+        "legs": {
+          "KXATPMATCH-26JUL18DANPRA|DAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "fill_receipt": null,
+            "truth_fill_stamp": null,
+            "correction_receipt": null
+          },
+          "KXATPMATCH-26JUL18DANPRA|PRA": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "fill_receipt": null,
+            "truth_fill_stamp": null,
+            "correction_receipt": null
+          }
+        }
+      },
+      "functionable_v6": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "DAN": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          },
+          "PRA": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          }
+        }
+      },
+      "tape_rows_consumed": 15428,
+      "book_rows_consumed": 15369,
+      "print_rows_consumed": 59,
+      "turning_points": 58,
+      "derivations": 116
+    }
+  ],
+  "safety_floor_breaks": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "old": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL12GIUBAR|BAR": {
+            "credited": false,
+            "entry_cents": 21,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "POST_BELL_INVALID (24.6 min after bell)",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001"
+          },
+          "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU": {
+            "credited": true,
+            "entry_cents": 69,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001"
+          }
+        }
+      },
+      "functionable_v6": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "BAR": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          },
+          "GIU": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          }
+        }
+      },
+      "tape_rows_consumed": 5754,
+      "book_rows_consumed": 5732,
+      "print_rows_consumed": 22,
+      "turning_points": 53,
+      "derivations": 106
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "old": {
+        "completed": true,
+        "combined_entry_cents": 97,
+        "delta_vs_100_cents": 3,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL": {
+            "credited": true,
+            "entry_cents": 40,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID (249 s before bell)",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002"
+          },
+          "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS": {
+            "credited": true,
+            "entry_cents": 57,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002"
+          }
+        }
+      },
+      "functionable_v6": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "PAL": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          },
+          "URS": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          }
+        }
+      },
+      "tape_rows_consumed": 42454,
+      "book_rows_consumed": 42413,
+      "print_rows_consumed": 41,
+      "turning_points": 29,
+      "derivations": 58
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "old": {
+        "completed": true,
+        "combined_entry_cents": 94,
+        "delta_vs_100_cents": 6,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": null
+          },
+          "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA": {
+            "credited": true,
+            "entry_cents": 41,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": null
+          }
+        }
+      },
+      "functionable_v6": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "LAJ": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          },
+          "SVA": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": null,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null
+          }
+        }
+      },
+      "tape_rows_consumed": 136928,
+      "book_rows_consumed": 136385,
+      "print_rows_consumed": 543,
+      "turning_points": 37,
+      "derivations": 74
+    }
+  ],
+  "safety_floor_pass": false,
+  "adjustments_filed": [],
+  "self_stop_triggered": true,
+  "self_stop_reason": "SAFETY_FLOOR_BREAK",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

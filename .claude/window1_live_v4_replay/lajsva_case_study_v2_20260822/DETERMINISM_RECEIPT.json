@@ -1,0 +1,14 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V2_DETERMINISM_X2",
+  "build_count": 2,
+  "compared_file_count": 8,
+  "byte_identical_file_count": 8,
+  "all_byte_identical": true,
+  "pre_receipt_artifact_manifest_sha256": "106a8a19bf3cd7bc01888349f414cb3fa19e24db749da05f1c97273a8981b546",
+  "scope": {
+    "case_study_v2_only": true,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false
+  }
+}

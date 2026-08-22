@@ -119,7 +119,14 @@ function createTapeState(meta) {
     bell_source: meta.bell_source ?? null,
     leg_ids: legIds,
     legs,
-    positions: Object.fromEntries(legIds.map((id) => [id, { credited: false, entry_cents: null, standing_target_cents: null }])),
+    positions: Object.fromEntries(legIds.map((id) => [id, {
+      credited: false,
+      entry_cents: null,
+      standing_target_cents: null,
+      fill_receipt: null,
+      fill_event_receipt: null,
+      fill_timestamp_epoch: null,
+    }])),
     current_epoch: meta.discovery_epoch,
     receipt: `${meta.event_id}|DISCOVERY`,
   };
@@ -163,6 +170,36 @@ function observe(state, legId, row) {
     }
   }
   return state;
+}
+
+function creditPosition(state, legId, row) {
+  const position = state.positions[legId];
+  if (!position) throw new Error(`UNKNOWN_POSITION ${state.event_id}|${legId}`);
+  if (position.credited) throw new Error(`POSITION_ALREADY_CREDITED ${state.event_id}|${legId}`);
+  if (row.kind !== "PRINT" || !cent(row.price_cents) || !row.receipt || !Number.isFinite(row.timestamp_epoch)) {
+    throw new Error(`FILL_EVENT_REQUIRES_PRINT_RECEIPT ${state.event_id}|${legId}`);
+  }
+  const fillEventReceipt = captureReceipt({
+    citationType: "FILL_EVENT",
+    sourceId: `${state.event_id}|${legId}`,
+    capturedAtReceipt: row.receipt,
+    rowRefs: [String(row.receipt)],
+    context: {
+      event_id: state.event_id,
+      leg_id: legId,
+      entry_cents: row.price_cents,
+      fill_timestamp_epoch: row.timestamp_epoch,
+      prior_standing_target_cents: position.standing_target_cents,
+      transition: "OPEN_REST_TO_CREDITED_HALF_PAIR",
+    },
+  });
+  position.credited = true;
+  position.entry_cents = row.price_cents;
+  position.fill_receipt = row.receipt;
+  position.fill_event_receipt = fillEventReceipt;
+  position.fill_timestamp_epoch = row.timestamp_epoch;
+  position.standing_target_cents = null;
+  return fillEventReceipt;
 }
 
 function stamp(state, name, value, receipts, gaps = []) {
@@ -227,6 +264,7 @@ function vectorFromReads(state, reads) {
     travel_cents: reads.lows_travel.value[id].travel_cents,
     low_cents: reads.lows_travel.value[id].low_cents,
   })));
+  const positionByOrientedLeg = oriented.map((row) => reads.half_pair_state.value.legs[row.leg_id]);
   return {
     category: state.category,
     anchor_split_cents: reads.opening_split.value.absolute_split_cents,
@@ -243,6 +281,10 @@ function vectorFromReads(state, reads) {
     hours_from_discovery: reads.time_in_window.value.hours_from_discovery,
     divot_depth_cents: mean(Object.values(reads.divots.value).map((row) => row.mean_depth_cents)),
     oriented_leg_ids: oriented.map((row) => row.leg_id),
+    half_pair_credited_count: reads.half_pair_state.value.credited_count,
+    half_pair_entry_sum_cents: reads.half_pair_state.value.entry_sum_cents,
+    leg0_credited_entry_cents: cent(positionByOrientedLeg[0]?.entry_cents),
+    leg1_credited_entry_cents: cent(positionByOrientedLeg[1]?.entry_cents),
   };
 }
 
@@ -274,7 +316,7 @@ function receiptId(receipt) {
   return `CR-${sha256(JSON.stringify(receipt))}`;
 }
 
-function captureReceipt({ citationType, sourceId, capturedAtReceipt, rowRefs, status = "RECEIPT" }) {
+function captureReceipt({ citationType, sourceId, capturedAtReceipt, rowRefs, status = "RECEIPT", context = null }) {
   const receipt = {
     schema: "CITATION_RECEIPT_V1",
     kind: status === "RESOURCE-GAP" ? "RESOURCE_GAP" : "QUERY_RECEIPT",
@@ -283,6 +325,7 @@ function captureReceipt({ citationType, sourceId, capturedAtReceipt, rowRefs, st
     captured_at_receipt: capturedAtReceipt,
     row_refs: [...new Set((rowRefs ?? []).filter((value) => typeof value === "string" && value.length > 0))].sort(),
   };
+  if (context && typeof context === "object") receipt.context = context;
   receipt.receipt_id = receiptId(receipt);
   return receipt;
 }
@@ -304,6 +347,7 @@ function assertCaptureReceipt(receipt, capturedAtReceipt, citation) {
 
 function retrieveNeighborhood(corpus, query, excludedEventId, count = SIMILARITY_DECLARATION.neighbor_count, capturedAtReceipt = null) {
   if (!capturedAtReceipt) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBORHOOD_QUERY|MISSING_CAPTURE_CLOCK`);
+  const queryFingerprint = sha256(JSON.stringify(query));
   const rows = corpus.filter((row) => row.event_id !== excludedEventId).map((row) => ({ row, match: similarity(query, row.vector) }));
   rows.sort((a, b) => b.match.score - a.match.score || b.match.coverage - a.match.coverage || a.row.event_id.localeCompare(b.row.event_id));
   return rows.slice(0, count).map((entry, index) => {
@@ -315,6 +359,13 @@ function retrieveNeighborhood(corpus, query, excludedEventId, count = SIMILARITY
       capturedAtReceipt,
       rowRefs,
       status: "RECEIPT",
+      context: {
+        query_fingerprint_sha256: queryFingerprint,
+        half_pair_credited_count: query.half_pair_credited_count ?? 0,
+        half_pair_entry_sum_cents: query.half_pair_entry_sum_cents ?? 0,
+        leg0_credited_entry_cents: query.leg0_credited_entry_cents ?? null,
+        leg1_credited_entry_cents: query.leg1_credited_entry_cents ?? null,
+      },
     });
     assertCaptureReceipt(citationReceipt, capturedAtReceipt, `NEIGHBOR:${entry.row.event_id}`);
     return {
@@ -330,6 +381,7 @@ function retrieveNeighborhood(corpus, query, excludedEventId, count = SIMILARITY
       source_receipts: entry.row.source_receipts,
       citation_receipt: citationReceipt,
       citation_receipt_id: citationReceipt.receipt_id,
+      query_fingerprint_sha256: queryFingerprint,
     };
   });
 }
@@ -374,6 +426,23 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   const position = reads.half_pair_state.value.legs[legId];
   const siblingId = state.leg_ids.find((id) => id !== legId);
   const sibling = reads.half_pair_state.value.legs[siblingId];
+  const fillHandoffReceipt = sibling.credited ? captureReceipt({
+    citationType: "FILL_HANDOFF",
+    sourceId: `${state.event_id}|${siblingId}->${legId}`,
+    capturedAtReceipt: state.receipt,
+    rowRefs: [sibling.fill_receipt].filter(Boolean),
+    status: sibling.fill_receipt && sibling.fill_event_receipt?.receipt_id ? "RECEIPT" : "RESOURCE-GAP",
+    context: {
+      credited_sibling_leg_id: siblingId,
+      credited_sibling_entry_cents: sibling.entry_cents,
+      original_fill_receipt: sibling.fill_receipt,
+      original_fill_event_receipt_id: sibling.fill_event_receipt?.receipt_id ?? null,
+      reposed_query_fingerprint_sha256: neighborhood[0]?.query_fingerprint_sha256 ?? sha256(JSON.stringify(vector)),
+      transition: "HALF_PAIR_CREDIT_REPOSES_LIBRARY_AND_REDERIVES_OPEN_SIDE",
+    },
+  }) : null;
+  if (fillHandoffReceipt) assertCaptureReceipt(fillHandoffReceipt, state.receipt, `FILL_HANDOFF:${state.event_id}|${legId}`);
+  if (fillHandoffReceipt) citationReceipts[fillHandoffReceipt.receipt_id] = fillHandoffReceipt;
   const formationProgress = reads.anchor_settle.value.formation_progress[legId];
   let derivedTarget = Number.isFinite(neighborLeg.weighted_low_ratio) && Number.isInteger(anchor) ? Math.round(anchor * neighborLeg.weighted_low_ratio) : null;
   const lineageTarget = cent(lineage?.target_cents);
@@ -394,10 +463,14 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     ? neighborhood.map((row) => `${row.event_id}@${row.score.toFixed(6)}[${row.citation_receipt_id}]`).join(", ")
     : `RESOURCE-GAP[${neighborhoodGapReceipt.receipt_id}]`;
   const lineageStatement = lineageTarget === null ? `RESOURCE-GAP[${lineageReceipt.receipt_id}]` : `${lineageTarget}[${lineageReceipt.receipt_id}]`;
-  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${legId} has anchor ${anchor ?? "UNKNOWN"}, neighborhood low ratio ${neighborLeg.weighted_low_ratio ?? "UNKNOWN"}, lineage target ${lineageStatement}, pair cap ${pairCap}, and post-only cap ${postOnlyCap}. ${actionStatement}`;
+  const fillHandoffStatement = fillHandoffReceipt
+    ? ` The sibling ${siblingId} is credited at ${sibling.entry_cents} from trade receipt ${sibling.fill_receipt ?? "RESOURCE-GAP"}; that half-pair transition re-posed query ${fillHandoffReceipt.context.reposed_query_fingerprint_sha256} and re-derived this open side [${fillHandoffReceipt.receipt_id}].`
+    : "";
+  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${legId} has anchor ${anchor ?? "UNKNOWN"}, neighborhood low ratio ${neighborLeg.weighted_low_ratio ?? "UNKNOWN"}, lineage target ${lineageStatement}, pair cap ${pairCap}, and post-only cap ${postOnlyCap}.${fillHandoffStatement} ${actionStatement}`;
   if (!sentence.includes(actionStatement)) throw new Error(`SENTENCE_ACTION_MISMATCH ${state.event_id}|${legId}|${state.receipt}`);
   for (const row of neighborhood) if (!sentence.includes(`[${row.citation_receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_NOT_WELDED:${row.event_id}|${state.receipt}`);
   if (!sentence.includes(`[${readerReceipt.receipt_id}]`) || !sentence.includes(`[${lineageReceipt.receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION SENTENCE_RECEIPT_NOT_WELDED|${state.receipt}`);
+  if (fillHandoffReceipt && (!sentence.includes(`[${fillHandoffReceipt.receipt_id}]`) || !sentence.includes(String(sibling.fill_receipt)))) throw new Error(`FILL_HANDOFF_NOT_WELDED ${state.event_id}|${legId}|${state.receipt}`);
   return {
     event_id: state.event_id,
     leg_id: legId,
@@ -408,7 +481,7 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     neighborhood,
     resources_consulted: [],
     citation_receipts: citationReceipts,
-    derivation: { oriented_index: orientedIndex, neighbor_leg: neighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, lineage_target_cents: lineageTarget, sibling_commitment_cents: siblingCommitment, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget) },
+    derivation: { oriented_index: orientedIndex, neighbor_leg: neighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, lineage_target_cents: lineageTarget, sibling_commitment_cents: siblingCommitment, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
     action,
     sentence,
     sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },
@@ -425,6 +498,7 @@ module.exports = {
   sha256,
   createTapeState,
   observe,
+  creditPosition,
   readAll,
   vectorFromReads,
   similarity,

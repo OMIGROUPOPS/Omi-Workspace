@@ -76,4 +76,23 @@ assert.equal(blocked.action.action, "HOLD_REST");
 assert.equal(blocked.action.target_cents, null);
 assert.match(blocked.sentence, /ACTION=HOLD_REST; TARGET_CENTS=NONE/);
 
+const handoff = os.createTapeState(meta);
+for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(handoff, leg, { timestamp_epoch: ts, receipt: `handoff-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });
+handoff.positions.AAA.standing_target_cents = 38;
+const fillRow = { timestamp_epoch: 212, receipt: "trade-fill-a", kind: "PRINT", price_cents: 38, size: 5 };
+const fillReceipt = os.creditPosition(handoff, "AAA", fillRow);
+os.observe(handoff, "AAA", fillRow);
+assert.equal(fillReceipt.citation_type, "FILL_EVENT");
+assert.equal(handoff.positions.AAA.entry_cents, 38);
+const handoffReads = os.readAll(handoff), handoffVector = os.vectorFromReads(handoff, handoffReads);
+assert.equal(handoffVector.half_pair_credited_count, 1);
+assert.equal(handoffVector.leg0_credited_entry_cents, 38);
+const handoffNeighbors = os.retrieveNeighborhood(corpus, handoffVector, "TEST-EVENT", 2, handoff.receipt);
+assert.ok(handoffNeighbors.every((row) => row.query_fingerprint_sha256));
+const handoffDerivation = os.deriveAction({ state: handoff, reads: handoffReads, neighborhood: handoffNeighbors, legId: "BBB", lineage: { action: "PLACE_REST", target_cents: 60, receipt: "lineage.jsonl#row-fill" }, resources });
+assert.ok(handoffDerivation.derivation.fill_handoff_receipt_id);
+assert.match(handoffDerivation.sentence, /trade receipt trade-fill-a/);
+assert.match(handoffDerivation.sentence, /re-posed query/);
+assert.ok(handoffDerivation.sentence.includes(handoffDerivation.derivation.fill_handoff_receipt_id));
+
 console.log("window1_v54_functionable_os: PASS");

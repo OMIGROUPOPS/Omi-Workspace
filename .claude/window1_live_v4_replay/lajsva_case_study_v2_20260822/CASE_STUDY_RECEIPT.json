@@ -1,0 +1,74 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V2_CLEAN_DIET_FILL_HANDOFF",
+  "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+  "scope": {
+    "four_known_games_only": true,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false
+  },
+  "sources": {
+    "raw": "ef6f3975:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE.md@sha256:802c590b8b748b9620d4e42362394e6a9976fc2f161275286bda192c18faa869",
+    "trace": ".claude/window1_live_v4_replay/v54_repair_pair_clean_diet_fill_handoff_20260822/REPAIR_FOUR_GAME_TRACE.jsonl.gz@sha256:536c792270146687521bf6ceb295d289e446ad6791419f4d2717a1797aa3aeae",
+    "gate": ".claude/window1_live_v4_replay/v54_repair_pair_clean_diet_fill_handoff_20260822/REPAIR_GATE_RECEIPT.json@sha256:565f65cc886adc029dfdae4f3748adcd5f72d5e2080ba2d7d19124a5b8a8e857",
+    "handoff": ".claude/window1_live_v4_replay/v54_repair_pair_clean_diet_fill_handoff_20260822/FILL_HANDOFF_RECEIPT.json@sha256:1cca88c0d85e6568cc85b70889176a3e685b8085f3248ddb889cd35dde38c494",
+    "library": ".claude/window1_live_v4_replay/v54_repair_pair_clean_diet_fill_handoff_20260822/LIBRARY_BELL_BOUND_RECEIPT.json@sha256:d50e165d9f370d6746156f18105c77d5c82c3a51df905a34dfd5009f14c41979",
+    "v1": "45ddd12bab57cc43ebf15eb288f9e08cc7d4487b:.claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/CASE_STUDY_RECEIPT.json"
+  },
+  "panel_a": {
+    "full_span_rows": 1876,
+    "repaired_action_rows": 35
+  },
+  "panel_b": {
+    "status": "FILL_HANDOFF_WIRED_BUT_SAFETY_GATE_BROKEN",
+    "fill_event_receipt_id": "CR-f74b8e78653995d9f37d1c169cc799b9844a375688d5a5fbedc909156e59c945",
+    "handoff_receipt_id": "CR-4067af0eb718a745f4b372f68100f9b9e8efebdedbd539c597122dd733762761",
+    "reposed_query_fingerprint_sha256": "0fb9d8b9f0f7a4afed39b446b2aacb721a86af744fd69d2580eda9268c590ecf",
+    "open_side_target_cents": 41,
+    "open_side_filled": false
+  },
+  "panel_c": {
+    "reports": 2,
+    "sections_each": 6,
+    "repair_decision_grade": "MIXED",
+    "repair_outcome_grade": "BAD_PARTIAL"
+  },
+  "v1_v2": {
+    "baseline": "COMPLETE_94_DELTA_6",
+    "repair": "PARTIAL_LAJ_54_SVA_UNCREDITED_40",
+    "accepted_repair": false,
+    "self_stop": true
+  },
+  "outputs": [
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v2_20260822/PANEL_A_PAIR_RENDER.html",
+      "bytes": 146901,
+      "sha256": "b72c7ca335ba6a2b37fc6cd70e1f968c8761a6899974e3a14efcdf71263fa49b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v2_20260822/PANEL_B_ENGAGEMENT.html",
+      "bytes": 7430,
+      "sha256": "9bc75775cc84018ab5a3cf418233c0e1ec81c70c13417a7c0b982aaaaf105cab"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v2_20260822/PANEL_C_TRADE_REPORTS.html",
+      "bytes": 9822,
+      "sha256": "ca45480a012d128a0c40738a426ac27052b3864eed52573985b925d572229ec6"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v2_20260822/TRADE_REPORT_BASELINE.md",
+      "bytes": 1543,
+      "sha256": "1e0513540d063060c80adc1080af9649314d4a79c104eb120dea20545c600a9d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v2_20260822/TRADE_REPORT_REPAIR.md",
+      "bytes": 6524,
+      "sha256": "a3fcae6133cf214e1165a10cf43486e52f069c3face6fd047865f96da5b58eae"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v2_20260822/V1_V2_SIDE_BY_SIDE.md",
+      "bytes": 851,
+      "sha256": "ea55cf10675891beacf4e9a97efa4f18a8d8313be8b007145c97b54cd7e6e8c2"
+    }
+  ]
+}

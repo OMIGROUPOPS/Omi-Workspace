@@ -1,0 +1,16 @@
+{
+  "label": "V54_REPAIR_PAIR_DETERMINISM_X2",
+  "build_1": ".claude/window1_live_v4_replay/v54_repair_pair_clean_diet_fill_handoff_20260822",
+  "build_2": "C:/tmp/v54-repair-pair-build2-20260822",
+  "compared_file_count": 17,
+  "byte_identical_file_count": 17,
+  "all_byte_identical": true,
+  "pre_receipt_artifact_manifest_sha256": "090c04d5eabb3d61c5590a1637adac407a2c7163e90f4826168064bb8e4c590c",
+  "scope": {
+    "four_known_games_only": true,
+    "crijea_ungraded_integration_only": true,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false
+  }
+}

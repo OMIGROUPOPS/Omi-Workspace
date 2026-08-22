@@ -1,0 +1,108 @@
+{
+  "label": "CLEAN_DIET_FILL_HANDOFF_GATE",
+  "honest_baseline_pins": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": true,
+      "delta_vs_100_cents": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": true,
+      "delta_vs_100_cents": 6
+    }
+  ],
+  "pins_equal_expected": true,
+  "candidate_safety_floor_breaks": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "PAL": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": 38,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null
+        },
+        "URS": {
+          "credited": true,
+          "entry_cents": 57,
+          "standing_target_cents": null,
+          "fill_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+            "captured_at_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "row_refs": [
+              "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+              "leg_id": "URS",
+              "entry_cents": 57,
+              "fill_timestamp_epoch": 1784032697.6,
+              "prior_standing_target_cents": 57,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-72b1b694a9b3246742f2b2abf270c97a4d7f345fb5f688f1d2674b55368d3542"
+          },
+          "fill_timestamp_epoch": 1784032697.6
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "LAJ": {
+          "credited": true,
+          "entry_cents": 54,
+          "standing_target_cents": null,
+          "fill_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+            "captured_at_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+            "row_refs": [
+              "16abd619-09aa-7b19-502f-1c8dda90dac9"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+              "leg_id": "LAJ",
+              "entry_cents": 54,
+              "fill_timestamp_epoch": 1784050973.062,
+              "prior_standing_target_cents": 54,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-f74b8e78653995d9f37d1c169cc799b9844a375688d5a5fbedc909156e59c945"
+          },
+          "fill_timestamp_epoch": 1784050973.062
+        },
+        "SVA": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": 40,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null
+        }
+      }
+    }
+  ],
+  "safety_floor_pass": false,
+  "law_violations": [],
+  "zero_measured_law_violations": true,
+  "self_stop": true,
+  "stop_reason": "URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

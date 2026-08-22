@@ -7,6 +7,7 @@ const readline = require("readline");
 const crypto = require("crypto");
 const { execFileSync } = require("child_process");
 const os = require("./window1_v54_functionable_os.js");
+const bellLibrary = require("./window1_v54_bell_bound_library.js");
 const subsetGuard = require("./window1_named_subset_guard.js");
 
 let activeExecutionGuard = null;
@@ -22,12 +23,16 @@ const TARGETS = Object.freeze({
 });
 const ALL_TARGETS = [...TARGETS.smoke, ...TARGETS.stories];
 const SAFETY_FLOORS = Object.freeze({
-  KXATPCHALLENGERMATCH_26JUL12GIUBAR: 10,
   KXATPCHALLENGERMATCH_26JUL14URSPAL: 3,
   KXATPCHALLENGERMATCH_26JUL14LAJSVA: 6,
 });
 const GROUND_TRUTH_COMMIT = "c0056976";
 const GROUND_TRUTH_PATH = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json";
+const ANALYSIS_COMMIT = "15955e44faebf24a17c8c99eba6b8fb98a98a294";
+const ANALYSIS_ROOT = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803";
+const ACTUAL_BELL_PATH = `${ANALYSIS_ROOT}/ACTUAL_BELL_TABLE_804.json`;
+const NAMED_NEIGHBOR_PATH = `${ANALYSIS_ROOT}/NEIGHBOR_SPAN_BELL_CHECK.json`;
+const GROUND_TRUTH_CORRECTIONS_PATH = `${ANALYSIS_ROOT}/W1_GROUND_TRUTH_CORRECTIONS.jsonl`;
 const OUTPUT_LABEL = "V54_FUNCTIONABLE_FOUR_STORIES_V6";
 
 function arg(name, fallback = null) {
@@ -80,10 +85,29 @@ async function streamJsonl(file, onRow) {
   return rows;
 }
 
-async function loadCorpus(cacheDir) {
+function loadBellAuthorities(repo, rangePath) {
+  const actualBellBytes = gitShow(repo, ANALYSIS_COMMIT, ACTUAL_BELL_PATH);
+  const namedNeighborBytes = gitShow(repo, ANALYSIS_COMMIT, NAMED_NEIGHBOR_PATH);
+  return bellLibrary.buildAuthorities({
+    actualBellTable: JSON.parse(actualBellBytes),
+    namedNeighborCheck: JSON.parse(namedNeighborBytes),
+    bindings: {
+      analysis_commit: ANALYSIS_COMMIT,
+      actual_bell_path: ACTUAL_BELL_PATH,
+      actual_bell_sha256: shaBytes(actualBellBytes),
+      named_neighbor_path: NAMED_NEIGHBOR_PATH,
+      named_neighbor_sha256: shaBytes(namedNeighborBytes),
+      range_receipt: `${rangePath}@sha256:PENDING_LOCAL_HASH`,
+    },
+  });
+}
+
+async function loadCorpus(cacheDir, repo) {
   const registryPath = path.join(cacheDir, "corpus_events_v2.jsonl");
   const historicalPath = path.join(cacheDir, "historical_events_materialized.csv");
   const rangePath = path.join(cacheDir, "range_spectrum_v1.jsonl");
+  const authorities = loadBellAuthorities(repo, rangePath);
+  authorities.bindings.range_receipt = `${rangePath}@sha256:${fileHash(rangePath)}`;
   const byEvent = new Map();
   const registryCategories = {}, registryEras = {};
   const registryRows = await streamJsonl(registryPath, (row, rowNumber) => {
@@ -103,47 +127,29 @@ async function loadCorpus(cacheDir) {
       { leg_id: row.winner, anchor_cents: number(row.first_price_winner), low_cents: number(row.min_price_winner), high_cents: number(row.max_price_winner), close_cents: number(row.last_price_winner) },
       { leg_id: row.loser, anchor_cents: number(row.first_price_loser), low_cents: number(row.min_price_loser), high_cents: number(row.max_price_loser), close_cents: null },
     ].sort((a, b) => (a.anchor_cents ?? 50) - (b.anchor_cents ?? 50) || a.leg_id.localeCompare(b.leg_id));
-    const drift = rawLegs.map((leg) => Number.isFinite(leg.close_cents) && Number.isFinite(leg.anchor_cents) ? leg.close_cents - leg.anchor_cents : null);
-    const travel = rawLegs.map((leg) => Number.isFinite(leg.high_cents) && Number.isFinite(leg.low_cents) ? leg.high_cents - leg.low_cents : null);
     const existing = byEvent.get(eventId) ?? { event_id: eventId, event_date: dateCode(eventId), category, source_receipts: [] };
-    byEvent.set(eventId, { ...existing, category, quality: "HISTORICAL_EVENT_AGGREGATE", legs: rawLegs, vector: {
+    const bounded = bellLibrary.unboundedAggregate({
+      eventId,
+      eventDate: existing.event_date,
       category,
-      anchor_split_cents: Number.isFinite(rawLegs[0].anchor_cents) && Number.isFinite(rawLegs[1].anchor_cents) ? Math.abs(rawLegs[0].anchor_cents - rawLegs[1].anchor_cents) : null,
-      leg0_anchor_cents: rawLegs[0].anchor_cents, leg1_anchor_cents: rawLegs[1].anchor_cents,
-      leg0_drift_cents: drift[0], leg1_drift_cents: drift[1], leg0_travel_cents: travel[0], leg1_travel_cents: travel[1],
-      joint_mid_sum_cents: Number.isFinite(rawLegs[0].anchor_cents) && Number.isFinite(rawLegs[1].anchor_cents) ? rawLegs[0].anchor_cents + rawLegs[1].anchor_cents : null,
-      joint_spread_cents: null,
-      inverse_coherence: Number.isFinite(drift[0]) && Number.isFinite(drift[1]) ? 1 - Math.abs(drift[0] + drift[1]) / (Math.abs(drift[0]) + Math.abs(drift[1]) + 1) : null,
-      volume_log1p: Math.log1p(number(row.total_trades) ?? 0),
-      hours_from_discovery: number(row.duration_hours),
-      divot_depth_cents: ((number(row.winner_max_dip) ?? 0) + (number(row.loser_max_dip) ?? 0)) / 2,
-    }, source_receipts: [...(existing.source_receipts ?? []), { source_id: "HISTORICAL_EVENTS_MATERIALIZATION", row_ref: `${historicalPath}#line-${historicalIndex + 2}` }] });
+      legs: rawLegs,
+      sourceReceipts: [...(existing.source_receipts ?? []), { source_id: "HISTORICAL_EVENTS_MATERIALIZATION", row_ref: `${historicalPath}#line-${historicalIndex + 2}` }],
+      reason: "EVENT_GRAIN_AGGREGATE_HAS_NO_INTRAMATCH_CLOCK_OR_LAWFUL_RIGHT_EDGE",
+    });
+    byEvent.set(eventId, { ...existing, ...bounded });
   }
   const rangeCategories = {};
   const rangeRows = await streamJsonl(rangePath, (row, rowNumber) => {
     const eventId = row.event, category = row.cat;
     rangeCategories[category] = (rangeCategories[category] || 0) + 1;
-    const rawLegs = Object.entries(row.legs).map(([legId, leg]) => ({ leg_id: legId, anchor_cents: number(leg.anchor), low_cents: number(leg.low), high_cents: Array.isArray(leg.ticks) ? leg.ticks.reduce((maximum, tick) => Number.isFinite(Number(tick[3])) ? Math.max(maximum, Number(tick[3])) : maximum, -Infinity) : null, close_cents: number(leg.close), net_cents: number(leg.net), shape: leg.shape, spread_median_cents: number(leg.spread_med), n_traded_polls: number(leg.n_traded_polls), source: row.tick_src })).map((leg) => ({ ...leg, high_cents: Number.isFinite(leg.high_cents) ? leg.high_cents : null })).sort((a, b) => (a.anchor_cents ?? 50) - (b.anchor_cents ?? 50) || a.leg_id.localeCompare(b.leg_id));
-    if (rawLegs.length !== 2) return;
     const existing = byEvent.get(eventId) ?? { event_id: eventId, event_date: dateCode(eventId), category, source_receipts: [] };
-    const travels = rawLegs.map((leg) => Number.isFinite(leg.high_cents) && Number.isFinite(leg.low_cents) ? leg.high_cents - leg.low_cents : null);
-    const inverse = Number.isFinite(rawLegs[0].net_cents) && Number.isFinite(rawLegs[1].net_cents) ? 1 - Math.abs(rawLegs[0].net_cents + rawLegs[1].net_cents) / (Math.abs(rawLegs[0].net_cents) + Math.abs(rawLegs[1].net_cents) + 1) : null;
-    const firstTick = Object.values(row.legs).reduce((minimum, leg) => Array.isArray(leg.ticks) ? leg.ticks.reduce((inner, tick) => Number.isFinite(Number(tick[0])) ? Math.min(inner, Number(tick[0])) : inner, minimum) : minimum, Infinity);
-    byEvent.set(eventId, { ...existing, category, quality: "RANGE_SPECTRUM_PATH", legs: rawLegs, vector: {
-      category,
-      anchor_split_cents: Number.isFinite(rawLegs[0].anchor_cents) && Number.isFinite(rawLegs[1].anchor_cents) ? Math.abs(rawLegs[0].anchor_cents - rawLegs[1].anchor_cents) : null,
-      leg0_anchor_cents: rawLegs[0].anchor_cents, leg1_anchor_cents: rawLegs[1].anchor_cents,
-      leg0_drift_cents: rawLegs[0].net_cents, leg1_drift_cents: rawLegs[1].net_cents, leg0_travel_cents: travels[0], leg1_travel_cents: travels[1],
-      joint_mid_sum_cents: Number.isFinite(rawLegs[0].anchor_cents) && Number.isFinite(rawLegs[1].anchor_cents) ? rawLegs[0].anchor_cents + rawLegs[1].anchor_cents : null,
-      joint_spread_cents: Number.isFinite(rawLegs[0].spread_median_cents) && Number.isFinite(rawLegs[1].spread_median_cents) ? rawLegs[0].spread_median_cents + rawLegs[1].spread_median_cents : null,
-      inverse_coherence: inverse,
-      volume_log1p: Math.log1p((rawLegs[0].n_traded_polls ?? 0) + (rawLegs[1].n_traded_polls ?? 0)),
-      hours_from_discovery: Number.isFinite(firstTick) && Number.isFinite(row.right_edge) ? (row.right_edge - firstTick) / 3600 : null,
-      divot_depth_cents: (Math.max(0, (rawLegs[0].anchor_cents ?? 0) - (rawLegs[0].low_cents ?? 0)) + Math.max(0, (rawLegs[1].anchor_cents ?? 0) - (rawLegs[1].low_cents ?? 0))) / 2,
-    }, source_receipts: [...(existing.source_receipts ?? []), { source_id: "RANGE_SPECTRUM_V1", row_ref: `${rangePath}#row-${rowNumber}` }] });
+    const bounded = bellLibrary.rematerializeRangeRow(row, authorities, `${rangePath}#row-${rowNumber}`);
+    if (!bounded) return;
+    bounded.source_receipts = [...(existing.source_receipts ?? []), ...(bounded.source_receipts ?? [])];
+    byEvent.set(eventId, { ...existing, ...bounded });
   });
   const rows = [...byEvent.values()].sort((a, b) => a.event_id.localeCompare(b.event_id));
-  return { rows, counts: { registry_rows: registryRows, historical_rows: historicalLines.length, range_rows: rangeRows, union_games: rows.length, by_quality: rows.reduce((acc, row) => (acc[row.quality] = (acc[row.quality] || 0) + 1, acc), {}), registry_categories: registryCategories, historical_categories: historicalCategories, range_categories: rangeCategories, registry_eras: registryEras }, sources: { registry: receipt(registryPath, registryRows), historical: receipt(historicalPath, historicalLines.length), range: receipt(rangePath, rangeRows) } };
+  return { rows, bell_bound_receipt: bellLibrary.buildReceipt(rows, authorities), counts: { registry_rows: registryRows, historical_rows: historicalLines.length, range_rows: rangeRows, union_games: rows.length, by_quality: rows.reduce((acc, row) => (acc[row.quality] = (acc[row.quality] || 0) + 1, acc), {}), registry_categories: registryCategories, historical_categories: historicalCategories, range_categories: rangeCategories, registry_eras: registryEras }, sources: { registry: receipt(registryPath, registryRows), historical: receipt(historicalPath, historicalLines.length), range: receipt(rangePath, rangeRows), actual_bells: authorities.bindings.actual_bell_sha256, named_neighbor_bells: authorities.bindings.named_neighbor_sha256 } };
 }
 
 function remoteProbe() {
@@ -207,10 +213,56 @@ print(json.dumps(out,separators=(",",":")))
   return JSON.parse(stdout.trim());
 }
 
-function loadGroundTruth(repo) { return JSON.parse(gitShow(repo, GROUND_TRUTH_COMMIT, GROUND_TRUTH_PATH)).rows; }
+function loadGroundTruth(repo) {
+  const rows = JSON.parse(gitShow(repo, GROUND_TRUTH_COMMIT, GROUND_TRUTH_PATH)).rows;
+  const correctionsBytes = gitShow(repo, ANALYSIS_COMMIT, GROUND_TRUTH_CORRECTIONS_PATH);
+  const corrections = correctionsBytes.toString("utf8").trim().split(/\r?\n/).filter(Boolean).map(JSON.parse);
+  const byEvent = new Map(rows.map((row) => [row.event_id, { ...row }]));
+  for (const correction of corrections) {
+    const row = byEvent.get(correction.event_id);
+    if (!row) continue;
+    const after = correction.after ?? {};
+    for (const field of ["bell_epoch", "bell_source", "bell_precision", "span_start_epoch", "span_end_epoch", "pair_state", "locked_delta_valid_fills_c"]) {
+      if (after[field] !== undefined) row[field] = after[field];
+    }
+    row.verified_span = Number.isFinite(after.span_end_epoch) ? "OK" : row.verified_span;
+    for (const side of ["legA", "legB"]) {
+      const identity = row[side];
+      const patchKey = Object.keys(after).find((key) => key.startsWith(`${side}_${identity}`));
+      const legPatch = patchKey ? after[patchKey] : null;
+      if (!legPatch) continue;
+      const fieldMap = {
+        open_postformation_c: `${side}_open_postformation_c`,
+        floor_c: `${side}_floor_c`,
+        floor_epoch: `${side}_floor_epoch`,
+        close_c: `${side}_close_c`,
+        close_epoch: `${side}_close_epoch`,
+        contracts: `${side}_contracts`,
+        us_fill_c: `${side}_us_fill_c`,
+        us_fill_epoch: `${side}_us_fill_epoch`,
+        us_fill_stamp: `${side}_us_fill_stamp`,
+      };
+      for (const [source, target] of Object.entries(fieldMap)) if (legPatch[source] !== undefined) row[target] = legPatch[source];
+    }
+    row.correction_receipt = `${ANALYSIS_COMMIT}:${GROUND_TRUTH_CORRECTIONS_PATH}#${correction.correction_id}`;
+    byEvent.set(correction.event_id, row);
+  }
+  return {
+    rows: [...byEvent.values()],
+    receipt: {
+      base_commit: GROUND_TRUTH_COMMIT,
+      base_path: GROUND_TRUTH_PATH,
+      base_sha256: shaBytes(gitShow(repo, GROUND_TRUTH_COMMIT, GROUND_TRUTH_PATH)),
+      corrections_commit: ANALYSIS_COMMIT,
+      corrections_path: GROUND_TRUTH_CORRECTIONS_PATH,
+      corrections_sha256: shaBytes(correctionsBytes),
+      corrections_applied: corrections.map((row) => row.correction_id),
+    },
+  };
+}
 function targetMeta(row) {
   const legs = [row.legA, row.legB];
-  return { event_id: row.event_id, event_date: row.code.slice(0, 7), category: row.category, discovery_epoch: row.recorder_open_epoch, bell_epoch: row.verified_span === "OK" ? row.bell_epoch : null, bell_source: row.bell_source, leg_ids: legs, anchors_cents: { [row.legA]: Math.floor(row.legA_open_postformation_c), [row.legB]: Math.floor(row.legB_open_postformation_c) }, formation_end_epochs: { [row.legA]: row.legA_formation_end_epoch, [row.legB]: row.legB_formation_end_epoch }, truth_closes_cents: { [row.legA]: row.verified_span === "OK" ? row.legA_close_c : null, [row.legB]: row.verified_span === "OK" ? row.legB_close_c : null } };
+  return { event_id: row.event_id, event_date: row.code.slice(0, 7), category: row.category, discovery_epoch: row.recorder_open_epoch, bell_epoch: row.verified_span === "OK" ? row.bell_epoch : null, bell_source: row.bell_source, leg_ids: legs, anchors_cents: { [row.legA]: Math.floor(row.legA_open_postformation_c), [row.legB]: Math.floor(row.legB_open_postformation_c) }, formation_end_epochs: { [row.legA]: row.legA_formation_end_epoch, [row.legB]: row.legB_formation_end_epoch }, truth_closes_cents: { [row.legA]: row.verified_span === "OK" ? row.legA_close_c : null, [row.legB]: row.verified_span === "OK" ? row.legB_close_c : null }, truth_fill_stamps: { [row.legA]: row.legA_us_fill_stamp ?? null, [row.legB]: row.legB_us_fill_stamp ?? null }, correction_receipt: row.correction_receipt ?? null };
 }
 
 function loadTicks(privateRoot, meta) {
@@ -380,25 +432,17 @@ function citationsPlain(derivation) {
 
 function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false }) {
   if (activeExecutionGuard) activeExecutionGuard.record(meta.event_id);
-  const state = os.createTapeState(meta), epochs = turningEpochs(meta, rows), derivations = [], stageReads = [];
+  const state = os.createTapeState(meta), epochs = turningEpochs(meta, rows), derivations = [], stageReads = [], fillEvents = [];
   rows.sort((a, b) => a.timestamp_epoch - b.timestamp_epoch || (a.kind === "BOOK" ? -1 : 1) || String(a.receipt).localeCompare(String(b.receipt)));
-  let cursor = 0;
-  for (const epoch of epochs) {
-    while (cursor < rows.length && rows[cursor].timestamp_epoch <= epoch) {
-      const row = rows[cursor++];
-      const position = state.positions[row.leg_id];
-      if (!smokeOnly && row.kind === "PRINT" && !position.credited && Number.isInteger(position.standing_target_cents) && row.price_cents <= position.standing_target_cents) {
-        position.credited = true; position.entry_cents = row.price_cents; position.fill_receipt = row.receipt; position.fill_timestamp_epoch = row.timestamp_epoch; position.standing_target_cents = null;
-      }
-      os.observe(state, row.leg_id, row);
-    }
-    if (state.leg_ids.some((id) => !state.legs[id].rows.length)) continue;
+  function evaluateStage({ trigger, receipt = null, legIds = null }) {
+    if (state.leg_ids.some((id) => !state.legs[id].rows.length)) return null;
     state.current_epoch = Math.max(...state.leg_ids.map((id) => state.legs[id].rows.at(-1).timestamp_epoch));
-    state.receipt = `${state.event_id}|TURN|${state.current_epoch}`;
+    state.receipt = receipt ?? `${state.event_id}|TURN|${state.current_epoch}`;
     const reads = os.readAll(state), vector = os.vectorFromReads(state, reads), neighborhood = os.retrieveNeighborhood(corpus, vector, state.event_id, os.SIMILARITY_DECLARATION.neighbor_count, state.receipt);
     ensure(neighborhood.every((row) => row.event_id !== state.event_id), `leave-self-out failed ${state.event_id}`);
+    const activeLegIds = legIds ?? (smokeOnly ? state.leg_ids : state.leg_ids.filter((id) => !state.positions[id].credited));
     const perLeg = [];
-    for (const legId of state.leg_ids) {
+    for (const legId of activeLegIds) {
       const derivation = os.deriveAction({ state, reads, neighborhood, legId, lineage: lineageAt(lineage, state.event_id, legId, state.current_epoch), resources });
       ensure(derivation.sentence_action_assertion.equal, `sentence action failed ${state.event_id}|${legId}`);
       ensure(derivation.citation_receipt_assertion.equal, `citation receipt failed ${state.event_id}|${legId}`);
@@ -406,10 +450,29 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
       if (!smokeOnly && !state.positions[legId].credited) state.positions[legId].standing_target_cents = derivation.action.action === "CANCEL_REST" ? null : derivation.action.target_cents;
       perLeg.push(derivation); derivations.push(derivation);
     }
-    stageReads.push({ timestamp_epoch: state.current_epoch, hours_from_discovery: reads.time_in_window.value.hours_from_discovery, reads, neighborhood, derivations: perLeg });
+    const stage = { trigger, receipt: state.receipt, timestamp_epoch: state.current_epoch, hours_from_discovery: reads.time_in_window.value.hours_from_discovery, reads, neighborhood, derivations: perLeg };
+    stageReads.push(stage);
+    return stage;
+  }
+  let cursor = 0;
+  for (const epoch of epochs) {
+    while (cursor < rows.length && rows[cursor].timestamp_epoch <= epoch) {
+      const row = rows[cursor++];
+      const position = state.positions[row.leg_id];
+      if (!smokeOnly && row.kind === "PRINT" && !position.credited && Number.isInteger(position.standing_target_cents) && row.price_cents <= position.standing_target_cents) {
+        const fillEventReceipt = os.creditPosition(state, row.leg_id, row);
+        fillEvents.push(fillEventReceipt);
+        os.observe(state, row.leg_id, row);
+        const openLegs = state.leg_ids.filter((id) => !state.positions[id].credited);
+        if (openLegs.length) evaluateStage({ trigger: "FILL_HANDOFF_SAME_RECEIPT", receipt: row.receipt, legIds: openLegs });
+        continue;
+      }
+      os.observe(state, row.leg_id, row);
+    }
+    evaluateStage({ trigger: "TURNING_POINT" });
   }
   const credited = state.leg_ids.filter((id) => state.positions[id].credited), combined = credited.length === 2 ? credited.reduce((total, id) => total + state.positions[id].entry_cents, 0) : null;
-  return { state, epochs, stage_reads: stageReads, derivations, execution: { gradeable: Number.isFinite(meta.bell_epoch), completed: credited.length === 2, combined_entry_cents: combined, delta_vs_100_cents: Number.isInteger(combined) ? 100 - combined : null, legs: state.positions } };
+  return { state, epochs, stage_reads: stageReads, derivations, fill_events: fillEvents, execution: { gradeable: Number.isFinite(meta.bell_epoch), completed: credited.length === 2, combined_entry_cents: combined, delta_vs_100_cents: Number.isInteger(combined) ? 100 - combined : null, legs: state.positions } };
 }
 
 function readerExecutionReceipt(result) {
@@ -428,7 +491,15 @@ function readerExecutionReceipt(result) {
 
 function oldOutcome(perGame, eventId, meta) {
   const row = perGame.rows.find((item) => item.event_id === eventId), credits = row.L7_CREDIT.why;
-  return { completed: row.L8_OUTCOME.candidate.completed, combined_entry_cents: row.L8_OUTCOME.candidate.combined_entry_cents, delta_vs_100_cents: row.L8_OUTCOME.candidate.completed ? 100 - row.L8_OUTCOME.candidate.combined_entry_cents : null, gradeable: Number.isFinite(meta.bell_epoch), legs: credits };
+  const legs = {};
+  for (const [identity, credit] of Object.entries(credits)) {
+    const legId = identity.split("|").at(-1), stamp = meta.truth_fill_stamps?.[legId] ?? null;
+    const valid = credit.credited && (!stamp || String(stamp).startsWith("PRE_BELL_VALID"));
+    legs[identity] = { ...credit, credited: valid, truth_fill_stamp: stamp, correction_receipt: meta.correction_receipt };
+  }
+  const validCredits = Object.values(legs).filter((leg) => leg.credited), completed = validCredits.length === 2;
+  const combined = completed ? validCredits.reduce((value, leg) => value + leg.entry_cents, 0) : null;
+  return { completed, combined_entry_cents: combined, delta_vs_100_cents: completed ? 100 - combined : null, gradeable: Number.isFinite(meta.bell_epoch), legs };
 }
 
 function smokeMarkdown(result) {
@@ -440,7 +511,8 @@ function smokeMarkdown(result) {
 function storySection(result, old, meta) {
   const story = result.stage_reads.map((stage, index) => {
     const actions = stage.derivations.map((row) => `${row.leg_id}: ${row.action.action}${Number.isInteger(row.action.target_cents) ? ` at ${row.action.target_cents} cents` : ""}`).join("; ");
-    return `At ${stage.hours_from_discovery.toFixed(6)} hours from discovery${index === 0 ? ", the market entered the recorded story" : ", the assembled pattern changed"}. The full sixteen-variable picture was ${readersPlain(stage.reads)}. The named neighborhood was ${neighborsPlain(stage.neighborhood)}. The derivation produced ${actions}. ${stage.derivations.map((row) => row.sentence).join(" ")}\n\nASSUMPTION: the continuously scored, leave-self-out neighborhood is the most relevant recorded comparison available at this point in formation; it informs the action and never gates the game.\n\nCITATION-RECEIPTS: ${stage.derivations.map((row) => citationsPlain(row)).join(" || ")}.`;
+    const derivationSentences = stage.derivations.map((row) => row.sentence).join(" ");
+    return `At ${stage.hours_from_discovery.toFixed(6)} hours from discovery${index === 0 ? ", the market entered the recorded story" : ", the assembled pattern changed"}. The full sixteen-variable picture was ${readersPlain(stage.reads)}. The named neighborhood was ${neighborsPlain(stage.neighborhood)}. The derivation produced ${actions}.${derivationSentences ? ` ${derivationSentences}` : ""}\n\nASSUMPTION: the continuously scored, leave-self-out neighborhood is the most relevant recorded comparison available at this point in formation; it informs the action and never gates the game.\n\nCITATION-RECEIPTS: ${stage.derivations.map((row) => citationsPlain(row)).join(" || ")}.`;
   }).join("\n\n");
   const closes = meta.leg_ids.map((id) => `${id}=${meta.truth_closes_cents[id] ?? "UNKNOWN"}`).join(", ");
   const danpra = meta.event_id === "KXATPMATCH-26JUL18DANPRA" ? (() => {
@@ -458,7 +530,7 @@ async function main() {
   ensure(!(subsetSpec && arg("finalize-existing") === "true"), "NAMED_SUBSET_GUARD finalize-existing is a different lane");
   ensure(!output.toLowerCase().includes("holdout") && !output.toLowerCase().includes("sealed"), "sealed output forbidden");
   fs.mkdirSync(output, { recursive: true });
-  const corpus = await loadCorpus(cacheDir);
+  const corpus = await loadCorpus(cacheDir, repo);
   const remoteReceiptPath = arg("remote-receipt");
   const remote = remoteReceiptPath ? JSON.parse(fs.readFileSync(path.resolve(remoteReceiptPath), "utf8")).remote : remoteProbe();
   const archivePrefixCensusPath = arg("archive-prefix-census");
@@ -471,6 +543,7 @@ async function main() {
   }
   const census = buildCensus(corpus, remote, privateRoot);
   writeJson(path.join(output, "CORPUS_CENSUS.json"), census);
+  writeJson(path.join(output, "LIBRARY_BELL_BOUND_RECEIPT.json"), corpus.bell_bound_receipt);
   const corpusIndex = Buffer.from(corpus.rows.map((row) => JSON.stringify(row)).join("\n") + "\n");
   fs.writeFileSync(path.join(output, "CORPUS_INDEX.jsonl.gz"), zlib.gzipSync(corpusIndex, { level: 9 }));
   const resources = resourcesFrom(census, remote, repo, privateRoot);
@@ -501,12 +574,12 @@ async function main() {
     const gapsFile = path.join(output, "ASSUMPTION_GAPS.md"), gaps = fs.readFileSync(gapsFile, "utf8");
     if (!gaps.includes("LAJSVA safety-floor break")) writeText(gapsFile, `${gaps.trimEnd()}\n- LAJSVA safety-floor break: the functionable-v6 rests at 47/36 did not complete. Measurement needed: identify which continuously scored neighbors caused those levels and whether a declared similarity/corpus adjustment can preserve the story without a placement constant. The dispatch self-stop fired; no adjustment and no second pass ran.\n`);
     const files = fs.readdirSync(output).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
-    writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: OUTPUT_LABEL, files: Object.fromEntries(files.map((name) => [name, receipt(path.join(output, name))])) });
+    writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: OUTPUT_LABEL, files: Object.fromEntries(files.map((name) => [name, { ...receipt(path.join(output, name)), path: name }])) });
     process.stdout.write(canonical({ output, finalized_existing_receipts_only: true, stories_rerun: false, smoke_rerun: false, functionable: functionality.all_connected, floor_breaks: stories.safety_floor_breaks, full_804_run: false, sealed: false, live: false }));
     return;
   }
 
-  const truthRows = loadGroundTruth(repo);
+  const groundTruth = loadGroundTruth(repo), truthRows = groundTruth.rows;
   const metas = requestedEventIds.map((eventId) => {
     const truth = truthRows.find((row) => row.event_id === eventId);
     ensure(truth, `NAMED_SUBSET_GUARD named game absent from truth table ${eventId}`);
@@ -545,9 +618,9 @@ async function main() {
     };
     writeJson(path.join(output, "NAMED_SUBSET_EXECUTION_RECEIPT.json"), subsetReceipt);
     writeJson(path.join(output, "FORBIDDEN_ACCESS_RECEIPT.json"), { full_804_run: false, tune_test_population_run: false, sealed_read: false, holdout_read: false, live_mutation: false, orders: false, positions: false, deployment: false, scope: { named_subset_exact_n: requestedEventIds, total_games_executed: execution.total_games_executed, other_games_executed: execution.other_games_executed } });
-    writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
+    writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, library_bell_bound: corpus.bell_bound_receipt, ground_truth: groundTruth.receipt, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
     const files = fs.readdirSync(output).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
-    writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: subsetReceipt.label, files: Object.fromEntries(files.map((name) => [name, receipt(path.join(output, name))])) });
+    writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: subsetReceipt.label, files: Object.fromEntries(files.map((name) => [name, { ...receipt(path.join(output, name)), path: name }])) });
     process.stdout.write(canonical({ output, named_subset: execution, all_readers_derived: games.every((game) => game.reader_receipt.all_readers_fired), full_804_run: false, sealed: false, live: false }));
     return;
   }
@@ -562,23 +635,36 @@ async function main() {
   writeText(path.join(output, "SMOKE_CRIJEA.md"), smokeMarkdown(smoke));
   writeJson(path.join(output, "SMOKE_CRIJEA_RECEIPT.json"), { label: "CRIJEA_INTEGRATION_SMOKE_NO_GRADING", all_readers_fired: smokeReaderReceipt.all_readers_fired, reader_count: smokeReaderReceipt.reader_count, expected_reader_count: smokeReaderReceipt.expected_reader_count, reader_receipts: smokeReaderReceipt.readers, named_neighbors: [...new Map(smoke.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => [row.citation_receipt_id, { event_id: row.event_id, citation_receipt_id: row.citation_receipt_id, citation_receipt: row.citation_receipt }]))).values()], derivations: smoke.derivations.length, sentence_action_equal: smoke.derivations.every((row) => row.sentence_action_assertion.equal), citation_receipt_equal: smoke.derivations.every((row) => row.citation_receipt_assertion.equal), conservation: smoke.derivations.every((row) => row.pair_conservation.at_or_below_99), grading_performed: false });
 
-  const perGame = JSON.parse(fs.readFileSync(path.join(walkRoot, "PER_GAME_L1_L8.json"), "utf8")), storyResults = [], storySections = [];
+  const perGame = JSON.parse(fs.readFileSync(path.join(walkRoot, "PER_GAME_L1_L8.json"), "utf8")), storyResults = [], storySections = [], storyTraces = [];
   for (const eventId of TARGETS.stories) {
     const meta = metas.find((row) => row.event_id === eventId), rows = [...loadTicks(privateRoot, meta), ...printLoad.byEvent.get(eventId)].filter((row) => !Number.isFinite(meta.bell_epoch) || row.timestamp_epoch <= meta.bell_epoch);
     const result = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: false }), old = oldOutcome(perGame, eventId, meta);
     storyResults.push({ event_id: eventId, old, functionable_v6: result.execution, turning_points: result.stage_reads.length, derivations: result.derivations.length });
     storySections.push(storySection(result, old, meta));
+    storyTraces.push(...result.stage_reads.map((stage) => ({ event_id: eventId, kind: "DECISION_STAGE", ...stage })), ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })));
   }
   const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.functionable_v6.completed || row.functionable_v6.delta_vs_100_cents < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
   const storiesHeader = `# Four stories — functionable OS v6\n\nLicense: LAW_INDEX @ 3cd59162, sha256 41784e6a… · L0 L6 L8 L10 L11 L16 L17 L18 L19a L20 L21 L22 L23.\n\nThe story is the verdict. Executions are appendix context. A store, table, or neighbor is emitted only with its capture-time citation receipt; absence is RESOURCE-GAP. No sealed, live, or full-804 run was performed.\n\n`;
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
   writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: false, sealed_read: false, live_mutation: false });
+  fs.writeFileSync(path.join(output, "REPAIR_FOUR_GAME_TRACE.jsonl.gz"), zlib.gzipSync(Buffer.from(storyTraces.map((row) => JSON.stringify(row)).join("\n") + "\n"), { level: 9 }));
+  const fillEvents = storyTraces.filter((row) => row.kind === "FILL_EVENT").map((row) => row.fill_event_receipt);
+  const fillHandoffs = storyTraces.filter((row) => row.kind === "DECISION_STAGE").flatMap((row) => row.derivations).filter((row) => row.derivation.fill_handoff_receipt_id).map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, trade_receipt: row.citation_receipts[row.derivation.fill_handoff_receipt_id]?.context?.original_fill_receipt, handoff_receipt_id: row.derivation.fill_handoff_receipt_id, query_fingerprint_sha256: row.derivation.reposed_query_fingerprint_sha256, sentence: row.sentence }));
+  writeJson(path.join(output, "FILL_HANDOFF_RECEIPT.json"), { label: "FILL_HANDOFF_RECEIPT", fill_events: fillEvents, post_fill_derivations: fillHandoffs, every_post_fill_sentence_cites_fill_receipt: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt) && row.sentence.includes(row.handoff_receipt_id)) });
+  const lawViolations = [];
+  for (const row of corpus.rows.filter((candidate) => candidate.span?.status === "UNBOUNDED")) {
+    for (const leg of row.legs ?? []) if ([leg.low_cents, leg.high_cents, leg.close_cents, leg.net_cents].some(Number.isFinite)) lawViolations.push(`UNBOUNDED_PATH_VALUE_SERVED:${row.event_id}|${leg.leg_id}`);
+  }
+  if (!fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt) && row.sentence.includes(row.handoff_receipt_id))) lawViolations.push("POST_FILL_SENTENCE_WITHOUT_FILL_RECEIPT");
+  if (storyTraces.filter((row) => row.kind === "DECISION_STAGE").flatMap((row) => row.derivations).some((row) => !row.pair_conservation.at_or_below_99)) lawViolations.push("PAIR_CONSERVATION_BREACH");
+  const baselinePins = storyResults.filter((row) => ["KXATPCHALLENGERMATCH-26JUL14URSPAL", "KXATPCHALLENGERMATCH-26JUL14LAJSVA"].includes(row.event_id)).map((row) => ({ event_id: row.event_id, completed: row.old.completed, delta_vs_100_cents: row.old.delta_vs_100_cents }));
+  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "CLEAN_DIET_FILL_HANDOFF_GATE", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), candidate_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.functionable_v6.completed, delta_vs_100_cents: row.functionable_v6.delta_vs_100_cents, legs: row.functionable_v6.legs })), safety_floor_pass: floorBreaks.length === 0, law_violations: lawViolations, zero_measured_law_violations: lawViolations.length === 0, self_stop: floorBreaks.length > 0, stop_reason: floorBreaks.length ? "URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   writeText(path.join(output, "ASSUMPTION_GAPS.md"), `# Assumption gaps\n\n- January–March has event-grain historical aggregates but no local intramatch tape. Measurement needed: public historical trades plus timestamped book reconstruction at the same grain as the July recorder.\n- The subsecond store mixes public tape and synthetic book transitions and lacks exchange trade identity on every row. Measurement needed: source-specific identity completeness by named event.\n- The DO archive is connected and the pre-sealed object reader is smoked, but its July object catalog is not a January-present database. Measurement needed: event-level archive coverage joined to corpus_events_v2.\n- The odds backup is connected, but its overlap with each target game is not complete. Measurement needed: immutable per-event bookmaker snapshots with source clock and player mapping.\n- CRIJEA has no verified bell. Measurement needed: an independent official in-play timestamp; until then it grades nothing.\n`);
   writeText(path.join(output, "CC_URSPAL_LATE_BELL.md"), `# CC filing — URSPAL late bell\n\nEvent: KXATPCHALLENGERMATCH-26JUL14URSPAL.\n\nThe L11 truth-table right edge is 1784045100. Tape prints moved PAL 41→30 and URS 61→77 within four minutes after that edge. The tape-inferred bell is at least 48 minutes late for this game. The close remains the truth-table close unless and until CC's standing bell sweep produces a stronger official timestamp.\n\nSource: F-VS-023 @ 3cd59162; W1_GROUND_TRUTH_TABLE.json @ c0056976.\n`);
   writeJson(path.join(output, "FORBIDDEN_ACCESS_RECEIPT.json"), { full_804_run: false, tune_test_population_run: false, sealed_read: false, holdout_read: false, live_mutation: false, orders: false, positions: false, deployment: false, scope: { smoke: TARGETS.smoke, stories: TARGETS.stories } });
-  writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
+  writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, library_bell_bound: corpus.bell_bound_receipt, ground_truth: groundTruth.receipt, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
   const files = fs.readdirSync(output).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
-  writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: OUTPUT_LABEL, files: Object.fromEntries(files.map((name) => [name, receipt(path.join(output, name))])) });
+  writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: OUTPUT_LABEL, files: Object.fromEntries(files.map((name) => [name, { ...receipt(path.join(output, name)), path: name }])) });
   process.stdout.write(canonical({ output, functionable: functionality.all_connected, smoke: "PASS_NO_GRADING", stories: storyResults, floor_breaks: floorBreaks, full_804_run: false, sealed: false, live: false }));
 }
 

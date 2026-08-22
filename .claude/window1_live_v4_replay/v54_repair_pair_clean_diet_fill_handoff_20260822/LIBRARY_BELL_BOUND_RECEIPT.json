@@ -1,0 +1,438 @@
+{
+  "label": "LIBRARY_BELL_BOUND_RECEIPT",
+  "law": "F-VS-050_REPAIR",
+  "analysis_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+  "source_bindings": {
+    "analysis_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+    "actual_bell_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/ACTUAL_BELL_TABLE_804.json",
+    "actual_bell_sha256": "0cd74a04f386fb0e0d42f6e15672f094fcd3d52ce3befed2c53b28e6fd1f0af6",
+    "named_neighbor_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json",
+    "named_neighbor_sha256": "bb1a74716b15543bdfc119e408726dcc9c2f210a1243a942a82b544c5acee397",
+    "range_receipt": "C:\\Users\\omigr\\OMI-Workspace\\.corpus-cache-v6\\range_spectrum_v1.jsonl@sha256:1e9891acaaea23a73160aaa26b10b17c87270c1209d9a2a0a23a6a6c56434884"
+  },
+  "corpus_rows": 12509,
+  "spans_by_method": {
+    "UNBOUNDED": 11811,
+    "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050": 13,
+    "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 389,
+    "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 99,
+    "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 197
+  },
+  "spans_by_method_category": {
+    "ATP_CHALL": {
+      "UNBOUNDED": 5888,
+      "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050": 7,
+      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 184,
+      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 44,
+      "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 8
+    },
+    "ATP_MAIN": {
+      "UNBOUNDED": 2340,
+      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 28,
+      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 66,
+      "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 1,
+      "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050": 6
+    },
+    "ITF_M": {
+      "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 95,
+      "UNBOUNDED": 75
+    },
+    "ITF_W": {
+      "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 89,
+      "UNBOUNDED": 55
+    },
+    "WTA_CHALL": {
+      "UNBOUNDED": 1151,
+      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 76,
+      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 12,
+      "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 4
+    },
+    "WTA_MAIN": {
+      "UNBOUNDED": 2302,
+      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 63,
+      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 15
+    }
+  },
+  "named_lajsva_danpra_neighbors_before_after": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26APR25FELKEN",
+      "category": "ATP_CHALL",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1777141831,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-1"
+      },
+      "legs": {
+        "KEN": {
+          "before_low_cents": 34,
+          "after_low_cents": 40,
+          "correction_cents": 6,
+          "expected_after_cents": 40,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "FEL": {
+          "before_low_cents": 34,
+          "after_low_cents": 53,
+          "correction_cents": 19,
+          "expected_after_cents": 53,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL08PIRDZU",
+      "category": "ATP_CHALL",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1783535069,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-2"
+      },
+      "legs": {
+        "DZU": {
+          "before_low_cents": 44,
+          "after_low_cents": 44,
+          "correction_cents": 0,
+          "expected_after_cents": 44,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "PIR": {
+          "before_low_cents": 38,
+          "after_low_cents": 54,
+          "correction_cents": 16,
+          "expected_after_cents": 54,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUN01MIDKOL",
+      "category": "ATP_CHALL",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1780322437,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-3"
+      },
+      "legs": {
+        "MID": {
+          "before_low_cents": 33,
+          "after_low_cents": 36,
+          "correction_cents": 3,
+          "expected_after_cents": 36,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "KOL": {
+          "before_low_cents": 49,
+          "after_low_cents": 61,
+          "correction_cents": 12,
+          "expected_after_cents": 61,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUN18HEICHO",
+      "category": "ATP_CHALL",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1781792880,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-4"
+      },
+      "legs": {
+        "CHO": {
+          "before_low_cents": 26,
+          "after_low_cents": 36,
+          "correction_cents": 10,
+          "expected_after_cents": 36,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "HEI": {
+          "before_low_cents": 56,
+          "after_low_cents": 61,
+          "correction_cents": 5,
+          "expected_after_cents": 61,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUN29GLIMAY",
+      "category": "ATP_CHALL",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1782775573,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-5"
+      },
+      "legs": {
+        "MAY": {
+          "before_low_cents": 37,
+          "after_low_cents": 37,
+          "correction_cents": 0,
+          "expected_after_cents": 37,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "GLI": {
+          "before_low_cents": 52,
+          "after_low_cents": 57,
+          "correction_cents": 5,
+          "expected_after_cents": 57,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26MAY10ROCSAF",
+      "category": "ATP_CHALL",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1778512163,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-6"
+      },
+      "legs": {
+        "ROC": {
+          "before_low_cents": 41,
+          "after_low_cents": 42,
+          "correction_cents": 1,
+          "expected_after_cents": 42,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "SAF": {
+          "before_low_cents": 41,
+          "after_low_cents": 57,
+          "correction_cents": 16,
+          "expected_after_cents": 57,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26MAY15COPBLA",
+      "category": "ATP_CHALL",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1778839949,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-7"
+      },
+      "legs": {
+        "BLA": {
+          "before_low_cents": 33,
+          "after_low_cents": 39,
+          "correction_cents": 6,
+          "expected_after_cents": 39,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "COP": {
+          "before_low_cents": 55,
+          "after_low_cents": 58,
+          "correction_cents": 3,
+          "expected_after_cents": 58,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUN17TIEAUG",
+      "category": "ATP_MAIN",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1781705174,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-8"
+      },
+      "legs": {
+        "TIE": {
+          "before_low_cents": 30,
+          "after_low_cents": 41,
+          "correction_cents": 11,
+          "expected_after_cents": 41,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "AUG": {
+          "before_low_cents": 55,
+          "after_low_cents": 55,
+          "correction_cents": 0,
+          "expected_after_cents": 55,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUN22BROHOL",
+      "category": "ATP_MAIN",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1782139943,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-9"
+      },
+      "legs": {
+        "BRO": {
+          "before_low_cents": 44,
+          "after_low_cents": 44,
+          "correction_cents": 0,
+          "expected_after_cents": 44,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "HOL": {
+          "before_low_cents": 42,
+          "after_low_cents": 42,
+          "correction_cents": 0,
+          "expected_after_cents": 42,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUN29RINTAR",
+      "category": "ATP_MAIN",
+      "span": {
+        "status": "UNBOUNDED",
+        "method": "UNBOUNDED",
+        "right_edge_epoch": null,
+        "inclusive": false,
+        "receipt": "C:\\Users\\omigr\\OMI-Workspace\\.corpus-cache-v6\\range_spectrum_v1.jsonl@sha256:1e9891acaaea23a73160aaa26b10b17c87270c1209d9a2a0a23a6a6c56434884",
+        "reason": "NO_OFFICIAL_ACTUAL_OR_FILED_IN_PLAY_SIGNATURE"
+      },
+      "legs": {
+        "TAR": {
+          "before_low_cents": 38,
+          "after_low_cents": null,
+          "correction_cents": null,
+          "expected_after_cents": 38,
+          "verification": "UNBOUNDED_NOT_SERVED"
+        },
+        "RIN": {
+          "before_low_cents": 58,
+          "after_low_cents": null,
+          "correction_cents": null,
+          "expected_after_cents": 58,
+          "verification": "UNBOUNDED_NOT_SERVED"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26MAY05DELDEJ",
+      "category": "ATP_MAIN",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1777980956,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-11"
+      },
+      "legs": {
+        "DEL": {
+          "before_low_cents": 38,
+          "after_low_cents": 41,
+          "correction_cents": 3,
+          "expected_after_cents": 41,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "DEJ": {
+          "before_low_cents": 53,
+          "after_low_cents": 53,
+          "correction_cents": 0,
+          "expected_after_cents": 53,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26MAY05KYPDRO",
+      "category": "ATP_MAIN",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1777980655,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-12"
+      },
+      "legs": {
+        "KYP": {
+          "before_low_cents": 26,
+          "after_low_cents": 36,
+          "correction_cents": 10,
+          "expected_after_cents": 36,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "DRO": {
+          "before_low_cents": 55,
+          "after_low_cents": 55,
+          "correction_cents": 0,
+          "expected_after_cents": 55,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26MAY06ARNMUN",
+      "category": "ATP_MAIN",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1778075884,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-13"
+      },
+      "legs": {
+        "MUN": {
+          "before_low_cents": 26,
+          "after_low_cents": 41,
+          "correction_cents": 15,
+          "expected_after_cents": 41,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "ARN": {
+          "before_low_cents": 46,
+          "after_low_cents": 57,
+          "correction_cents": 11,
+          "expected_after_cents": 57,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26MAY18SMIGUI",
+      "category": "ATP_MAIN",
+      "span": {
+        "status": "BOUNDED",
+        "method": "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050",
+        "right_edge_epoch": 1779183748,
+        "inclusive": false,
+        "receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/NEIGHBOR_SPAN_BELL_CHECK.json#neighbors-14"
+      },
+      "legs": {
+        "GUI": {
+          "before_low_cents": 32,
+          "after_low_cents": 38,
+          "correction_cents": 6,
+          "expected_after_cents": 38,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        },
+        "SMI": {
+          "before_low_cents": 47,
+          "after_low_cents": 56,
+          "correction_cents": 9,
+          "expected_after_cents": 56,
+          "verification": "MATCHED_FILED_SIGNATURE_LOW"
+        }
+      }
+    }
+  ],
+  "unbounded_policy": "STAMP_RETAINED; PATH LOW/REACH/FLOOR FIELDS NULL; NEVER SILENTLY SERVED"
+}

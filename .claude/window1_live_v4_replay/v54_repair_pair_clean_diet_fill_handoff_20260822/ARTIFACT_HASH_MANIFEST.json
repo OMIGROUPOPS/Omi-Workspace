@@ -1,0 +1,107 @@
+{
+  "label": "V54_FUNCTIONABLE_FOUR_STORIES_V6",
+  "files": {
+    "ASSUMPTION_GAPS.md": {
+      "path": "ASSUMPTION_GAPS.md",
+      "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+      "bytes": 943,
+      "rows": null
+    },
+    "CC_URSPAL_LATE_BELL.md": {
+      "path": "CC_URSPAL_LATE_BELL.md",
+      "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+      "bytes": 464,
+      "rows": null
+    },
+    "CORPUS_CENSUS.json": {
+      "path": "CORPUS_CENSUS.json",
+      "sha256": "33df9e6dbcca364edbc3d2a6f2023d728b9bc5133440646a0880c53473095729",
+      "bytes": 10040,
+      "rows": null
+    },
+    "CORPUS_INDEX.jsonl.gz": {
+      "path": "CORPUS_INDEX.jsonl.gz",
+      "sha256": "fdb4e7fac27074cd97e9a4eb5e946dc828ec271e51cb05f979474536989af03a",
+      "bytes": 642803,
+      "rows": null
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "path": "DETERMINISM_RECEIPT.json",
+      "sha256": "a4e7a6b629d6dba75a17f6bbf7a7ba347bec5efc03d54a39e6307c7706b5503c",
+      "bytes": 582,
+      "rows": null
+    },
+    "FILL_HANDOFF_RECEIPT.json": {
+      "path": "FILL_HANDOFF_RECEIPT.json",
+      "sha256": "1cca88c0d85e6568cc85b70889176a3e685b8085f3248ddb889cd35dde38c494",
+      "bytes": 42138,
+      "rows": null
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+      "bytes": 465,
+      "rows": null
+    },
+    "FOUR_STORIES.md": {
+      "path": "FOUR_STORIES.md",
+      "sha256": "b1005d522a9bd998f952181877e26c791a173c72adb35ce19ee47b348c69a87d",
+      "bytes": 1394591,
+      "rows": null
+    },
+    "FOUR_STORIES_RECEIPT.json": {
+      "path": "FOUR_STORIES_RECEIPT.json",
+      "sha256": "059817d7f907013b9ecbc434762878a3efd804b4bec334569e98526238d5c7ba",
+      "bytes": 17803,
+      "rows": null
+    },
+    "FUNCTIONALITY_RECEIPT.json": {
+      "path": "FUNCTIONALITY_RECEIPT.json",
+      "sha256": "4d7f140ba093ab3306c234998149e69413e175e0a48c5e723f0cccab2f99bc96",
+      "bytes": 19605,
+      "rows": null
+    },
+    "LIBRARY_BELL_BOUND_RECEIPT.json": {
+      "path": "LIBRARY_BELL_BOUND_RECEIPT.json",
+      "sha256": "d50e165d9f370d6746156f18105c77d5c82c3a51df905a34dfd5009f14c41979",
+      "bytes": 15193,
+      "rows": null
+    },
+    "REPAIR_FOUR_GAME_TRACE.jsonl.gz": {
+      "path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "536c792270146687521bf6ceb295d289e446ad6791419f4d2717a1797aa3aeae",
+      "bytes": 296805,
+      "rows": null
+    },
+    "REPAIR_GATE_RECEIPT.json": {
+      "path": "REPAIR_GATE_RECEIPT.json",
+      "sha256": "565f65cc886adc029dfdae4f3748adcd5f72d5e2080ba2d7d19124a5b8a8e857",
+      "bytes": 3580,
+      "rows": null
+    },
+    "SMOKE_CRIJEA.md": {
+      "path": "SMOKE_CRIJEA.md",
+      "sha256": "df2833552acbbb0f378b67631619700e80c9e184333e103426028de81589a3df",
+      "bytes": 554484,
+      "rows": null
+    },
+    "SMOKE_CRIJEA_RECEIPT.json": {
+      "path": "SMOKE_CRIJEA_RECEIPT.json",
+      "sha256": "47e5a663d5d155c705b740773184b3f9c89cb2e3ae241ac88e377ab3232f234e",
+      "bytes": 225946,
+      "rows": null
+    },
+    "SOURCE_RECEIPTS.json": {
+      "path": "SOURCE_RECEIPTS.json",
+      "sha256": "e4ef69f009f0d561605995b34c9c27c536c27e3ec9d1b7cd5fc56621071727c9",
+      "bytes": 41839,
+      "rows": null
+    },
+    "TARGET_PRINTS_5.jsonl.gz": {
+      "path": "TARGET_PRINTS_5.jsonl.gz",
+      "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+      "bytes": 1224927,
+      "rows": null
+    }
+  }
+}

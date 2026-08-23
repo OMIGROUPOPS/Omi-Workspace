@@ -68,6 +68,10 @@
       "sha256": "701ae850aa5175e0b0d57d65545fd9d61b30f0626d22fed58871986ddb75b429",
       "bytes": 12036
     },
+    "PASS2_POISON_CHECK_RECEIPT.json": {
+      "sha256": "467fe8b44c07a5ea9f4034ef6fc675e84b058dc4309e55cf87a05d11084f73d1",
+      "bytes": 2823
+    },
     "PER_GAME_OUTCOME_TABLE.json": {
       "sha256": "c5ff439eebd87640412f51ed58810de87450201ad4ef89111823603bdd561a42",
       "bytes": 433431

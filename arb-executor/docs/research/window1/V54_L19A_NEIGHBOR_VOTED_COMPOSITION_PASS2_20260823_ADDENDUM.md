@@ -13,3 +13,5 @@ The four-game read was GIUBAR 89c / Δ11, URSPAL 98c / Δ2, LAJSVA 97c / Δ3, an
 Case study v10 is emitted as a truthful failed-candidate record. Two clean builds are byte-identical across the specialist table, validation receipt, scorecard, 804 outcomes, tripwires, 30-story draw, case study, and the 61,400-row external sentence archive.
 
 Disposition: `SELF_STOP_HARD_FLOOR_BREAK`; candidate banked, not operative. Sealed, live, and deployment surfaces were untouched.
+
+Rider poison check: the executed 61,400-row trace contains zero `OWN_TAPE_PRESENCE_AT_TOUCH` basis rows at depth 1. Available presence rows use depth 0 (at the evidenced touch); unavailable rows use null. The 1c literal is confined to the explicitly named frozen current-level fallback, not the presence basis. No active fit-error surface or clamp exists. Enrichment records are committed; per-decision vote surfaces are externally custodied and hash-bound. LOST-258 is the primary validation population (5 recovered); GAINED-24 is secondary ruler-side evidence (6 retained). No restart was warranted; the independent hard-floor self-stop remains.

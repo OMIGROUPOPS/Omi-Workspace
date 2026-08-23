@@ -1,0 +1,72 @@
+{
+  "status": "POISON_HYPOTHESIS_FALSIFIED_NO_RESTART",
+  "law_index": {
+    "read_at_commit": "fddf3f47",
+    "dispatch_stated_sha": "41784e6a",
+    "laws_consulted": ["L18", "L20", "L22"]
+  },
+  "source_audit": {
+    "policy_file": "arb-executor/analysis/window1_v54_functionable_os.js",
+    "own_tape_presence_line": 634,
+    "own_tape_presence_expression": "depth_cents: ownTapeAvailable ? 0 : null",
+    "frozen_lineage_fallback_line": 645,
+    "frozen_lineage_fallback_expression": "frozenCurrentLevelDepth = frozenCurrentLevelAvailable ? 1 : null",
+    "fit_error_surface_active": false,
+    "fit_error_clamp_active": false,
+    "remaining_depth_domain_bound": {
+      "file": "arb-executor/analysis/build_window1_v54_l19a_fit_composition.js",
+      "line": 56,
+      "expression": "Math.max(0, observed_low_cents - low_cents)",
+      "declaration": "Physical non-negative remaining-depth domain bound; not a fitted-error clamp and not a placement constant."
+    }
+  },
+  "executed_trace_audit": {
+    "sentence_rows": 61400,
+    "own_tape_presence_basis_rows": 61400,
+    "own_tape_presence_depth_0_rows": 44771,
+    "own_tape_presence_depth_1_rows": 0,
+    "own_tape_presence_unavailable_rows": 16629,
+    "frozen_current_level_no_specialist_vote_rows": 2255,
+    "composition_fit_or_fit_cell_rows": 0,
+    "predicted_absolute_error_field_rows": 0,
+    "fit_error_clamp_rows": 0,
+    "sentence_archive_sha256": "9e796ab73ca05fb3b52b62cc7faea8fe21b1f83a52822717d4449da7531d3d02"
+  },
+  "custody": {
+    "enrichment_records": {
+      "path": "NEIGHBOR_SPECIALIST_RECORDS.json",
+      "committed": true,
+      "rows": 18000,
+      "bytes": 8624183,
+      "sha256": "b520f0b4d327c6556ec9d5d3cafb681d61e952e52286657c2cf2ebec50b6aa65"
+    },
+    "vote_surfaces": {
+      "standalone_surface": false,
+      "representation": "Per-decision specialist votes and normalized basis weights embedded in ALL_SENTENCES_804.jsonl.gz.",
+      "external_custody_manifest": "EXTERNAL_CUSTODY_MANIFEST.json",
+      "rows": 61400,
+      "bytes": 75525710,
+      "sha256": "9e796ab73ca05fb3b52b62cc7faea8fe21b1f83a52822717d4449da7531d3d02"
+    }
+  },
+  "validation_weighting": {
+    "primary": {
+      "population": "PASS1_LOST_258",
+      "recovered": 5,
+      "still_lost": 253
+    },
+    "secondary": {
+      "population": "PASS1_GAINED_24_RULER_SIDE",
+      "retained": 6,
+      "surrendered": 18
+    },
+    "combined_numeric_weighting_used": false,
+    "disposition": "Primary recovery failed independently; secondary set is reported separately and does not override it."
+  },
+  "run_disposition": {
+    "pass_2_already_completed_before_rider": true,
+    "policy_change": false,
+    "restart": false,
+    "reason": "The conditional poison was absent; Pass 2 remains banked under its independent 38<311 hard-floor self-stop."
+  }
+}

@@ -1,0 +1,3161 @@
+{
+ "GIUBAR": {
+  "first_coherence_ts": 1783833752.027,
+  "coherence": {
+   "BAR": {
+    "leg": "BAR",
+    "price": 32,
+    "mtb": 676,
+    "vol": 5.85,
+    "cat": "ATP_CHALL",
+    "store": "ATP_CHALL|29 (V3 map @ac68e3bc)",
+    "n1": "KXATPCHALLENGERMATCH-26MAR01BITGUL@0.791 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE]",
+    "pred": 21,
+    "mtb2": 499,
+    "sentence": "believes BAR at 32¢ at 676min-to-bell with vol_log1p 5.85 in ATP_CHALL, using ATP_CHALL|29 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01BITGUL@0.791 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 21¢ by 499min-to-bell"
+   },
+   "GIU": {
+    "leg": "GIU",
+    "price": 71,
+    "mtb": 676,
+    "vol": 5.85,
+    "cat": "ATP_CHALL",
+    "store": "ATP_CHALL|64 (V3 map @ac68e3bc)",
+    "n1": "KXATPCHALLENGERMATCH-26MAR01BITGUL@0.791 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE]",
+    "pred": 66,
+    "mtb2": 499,
+    "sentence": "believes GIU at 71¢ at 676min-to-bell with vol_log1p 5.85 in ATP_CHALL, using ATP_CHALL|64 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01BITGUL@0.791 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 66¢ by 499min-to-bell"
+   },
+   "spread": 13,
+   "sum": 87
+  },
+  "envelope": {
+   "BAR": {
+    "envelope": [
+     21,
+     32
+    ],
+    "min_print_after_coh": 27,
+    "fillable_in_envelope": true,
+    "tape_fill_level": 27,
+    "floor": 27,
+    "gap_to_own_low": 0,
+    "grade": "GOLD<=4",
+    "rebuild_actual": [
+     "rest",
+     30
+    ]
+   },
+   "GIU": {
+    "envelope": [
+     66,
+     71
+    ],
+    "min_print_after_coh": 66,
+    "fillable_in_envelope": true,
+    "tape_fill_level": 66,
+    "floor": 66,
+    "gap_to_own_low": 0,
+    "grade": "GOLD<=4",
+    "rebuild_actual": [
+     "rest",
+     66
+    ]
+   }
+  },
+  "stages": [
+   {
+    "ts": 1783831340,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 181,
+    "coherent": null
+   },
+   {
+    "ts": 1783831344,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 180,
+    "coherent": null
+   },
+   {
+    "ts": 1783831360,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 179,
+    "coherent": null
+   },
+   {
+    "ts": 1783831362,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 178,
+    "coherent": null
+   },
+   {
+    "ts": 1783831378,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 176,
+    "coherent": null
+   },
+   {
+    "ts": 1783831379,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 175,
+    "coherent": null
+   },
+   {
+    "ts": 1783831390,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 173,
+    "coherent": null
+   },
+   {
+    "ts": 1783831391,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 172,
+    "coherent": null
+   },
+   {
+    "ts": 1783831402,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 171,
+    "coherent": null
+   },
+   {
+    "ts": 1783831404,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 170,
+    "coherent": null
+   },
+   {
+    "ts": 1783831421,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 169,
+    "coherent": null
+   },
+   {
+    "ts": 1783831423,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 168,
+    "coherent": null
+   },
+   {
+    "ts": 1783831434,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 167,
+    "coherent": null
+   },
+   {
+    "ts": 1783831446,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 165,
+    "coherent": null
+   },
+   {
+    "ts": 1783831447,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 164,
+    "coherent": null
+   },
+   {
+    "ts": 1783831458,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 160,
+    "coherent": null
+   },
+   {
+    "ts": 1783831459,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 160,
+    "coherent": null
+   },
+   {
+    "ts": 1783831471,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 158,
+    "coherent": null
+   },
+   {
+    "ts": 1783831483,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 156,
+    "coherent": null
+   },
+   {
+    "ts": 1783831484,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 155,
+    "coherent": null
+   },
+   {
+    "ts": 1783831495,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 154,
+    "coherent": null
+   },
+   {
+    "ts": 1783831508,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 152,
+    "coherent": null
+   },
+   {
+    "ts": 1783831517,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 146,
+    "coherent": null
+   },
+   {
+    "ts": 1783831519,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 146,
+    "coherent": null
+   },
+   {
+    "ts": 1783831521,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 145,
+    "coherent": null
+   },
+   {
+    "ts": 1783831532,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 144,
+    "coherent": null
+   },
+   {
+    "ts": 1783831623,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 79,
+    "coherent": null
+   },
+   {
+    "ts": 1783831624,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 55,
+    "coherent": null
+   },
+   {
+    "ts": 1783831635,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 36,
+    "coherent": null
+   },
+   {
+    "ts": 1783831672,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 34,
+    "coherent": null
+   },
+   {
+    "ts": 1783831683,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 33,
+    "coherent": null
+   },
+   {
+    "ts": 1783831702,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 32,
+    "coherent": null
+   },
+   {
+    "ts": 1783831735,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 28,
+    "coherent": null
+   },
+   {
+    "ts": 1783831748,
+    "writable": {
+     "BAR": "NO:formed_book",
+     "GIU": "NO:formed_book"
+    },
+    "beliefs": {
+     "BAR": null,
+     "GIU": null
+    },
+    "preds": {
+     "BAR": null,
+     "GIU": null
+    },
+    "sum": null,
+    "spread": 27,
+    "coherent": null
+   },
+   {
+    "ts": 1783831858,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 31¢ at 707min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|28 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01BITGUL@0.818 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 23¢ by 43min-to-bell",
+     "GIU": "believes GIU at 69¢ at 707min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|62 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01BITGUL@0.818 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 41¢ by 43min-to-bell"
+    },
+    "preds": {
+     "BAR": 23,
+     "GIU": 41
+    },
+    "sum": 64,
+    "spread": 21,
+    "coherent": false
+   },
+   {
+    "ts": 1783831874,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 32¢ at 707min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|29 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01BITGUL@0.853 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 26¢ by 305min-to-bell",
+     "GIU": "believes GIU at 67¢ at 707min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|63 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01BITGUL@0.853 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 45¢ by 305min-to-bell"
+    },
+    "preds": {
+     "BAR": 26,
+     "GIU": 45
+    },
+    "sum": 71,
+    "spread": 14,
+    "coherent": false
+   },
+   {
+    "ts": 1783833752,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 32¢ at 676min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|29 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01BITGUL@0.858 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 26¢ by 291min-to-bell",
+     "GIU": "believes GIU at 67¢ at 676min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|64 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01BITGUL@0.858 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 45¢ by 291min-to-bell"
+    },
+    "preds": {
+     "BAR": 26,
+     "GIU": 45
+    },
+    "sum": 71,
+    "spread": 13,
+    "coherent": false
+   },
+   {
+    "ts": 1783833752.027,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 32¢ at 676min-to-bell with vol_log1p 5.85 in ATP_CHALL, using ATP_CHALL|29 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01BITGUL@0.791 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 21¢ by 499min-to-bell",
+     "GIU": "believes GIU at 71¢ at 676min-to-bell with vol_log1p 5.85 in ATP_CHALL, using ATP_CHALL|64 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01BITGUL@0.791 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 66¢ by 499min-to-bell"
+    },
+    "preds": {
+     "BAR": 21,
+     "GIU": 66
+    },
+    "sum": 87,
+    "spread": 13,
+    "coherent": true
+   },
+   {
+    "ts": 1783833962,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 31¢ at 672min-to-bell with vol_log1p 5.85 in ATP_CHALL, using ATP_CHALL|29 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.807 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 29¢ by 0min-to-bell",
+     "GIU": "believes GIU at 70¢ at 672min-to-bell with vol_log1p 5.85 in ATP_CHALL, using ATP_CHALL|68 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.807 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 67¢ by 0min-to-bell"
+    },
+    "preds": {
+     "BAR": 29,
+     "GIU": 67
+    },
+    "sum": 96,
+    "spread": 6,
+    "coherent": true
+   },
+   {
+    "ts": 1783834104,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 30¢ at 670min-to-bell with vol_log1p 5.85 in ATP_CHALL, using ATP_CHALL|29 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.826 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 25¢ by 546min-to-bell",
+     "GIU": "believes GIU at 70¢ at 670min-to-bell with vol_log1p 5.85 in ATP_CHALL, using ATP_CHALL|68 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.826 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 52¢ by 546min-to-bell"
+    },
+    "preds": {
+     "BAR": 25,
+     "GIU": 52
+    },
+    "sum": 77,
+    "spread": 4,
+    "coherent": false
+   },
+   {
+    "ts": 1783840908,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 30¢ at 557min-to-bell with vol_log1p 5.85 in ATP_CHALL, using ATP_CHALL|29 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.827 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 25¢ by 454min-to-bell",
+     "GIU": "believes GIU at 70¢ at 557min-to-bell with vol_log1p 5.85 in ATP_CHALL, using ATP_CHALL|68 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.827 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 52¢ by 454min-to-bell"
+    },
+    "preds": {
+     "BAR": 25,
+     "GIU": 52
+    },
+    "sum": 77,
+    "spread": 4,
+    "coherent": false
+   },
+   {
+    "ts": 1783841801,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 27¢ at 542min-to-bell with vol_log1p 6.03 in ATP_CHALL, using ATP_CHALL|25 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR19SHEVAN@0.825 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 21¢ by 0min-to-bell",
+     "GIU": "believes GIU at 69¢ at 542min-to-bell with vol_log1p 6.03 in ATP_CHALL, using ATP_CHALL|68 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR19SHEVAN@0.825 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 69¢ by 0min-to-bell"
+    },
+    "preds": {
+     "BAR": 21,
+     "GIU": 69
+    },
+    "sum": 90,
+    "spread": 6,
+    "coherent": false
+   },
+   {
+    "ts": 1783841801.304,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 27¢ at 542min-to-bell with vol_log1p 6.49 in ATP_CHALL, using ATP_CHALL|25 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR19SHEVAN@0.823 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 12¢ by 0min-to-bell",
+     "GIU": "believes GIU at 69¢ at 542min-to-bell with vol_log1p 6.49 in ATP_CHALL, using ATP_CHALL|68 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR19SHEVAN@0.823 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 69¢ by 0min-to-bell"
+    },
+    "preds": {
+     "BAR": 12,
+     "GIU": 69
+    },
+    "sum": 81,
+    "spread": 6,
+    "coherent": false
+   },
+   {
+    "ts": 1783842032,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 28¢ at 538min-to-bell with vol_log1p 7.29 in ATP_CHALL, using ATP_CHALL|26 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR19SHEVAN@0.827 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 21¢ by 0min-to-bell",
+     "GIU": "believes GIU at 69¢ at 538min-to-bell with vol_log1p 7.29 in ATP_CHALL, using ATP_CHALL|69 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR19SHEVAN@0.827 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 66¢ by 0min-to-bell"
+    },
+    "preds": {
+     "BAR": 21,
+     "GIU": 66
+    },
+    "sum": 87,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1783852936,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 28¢ at 356min-to-bell with vol_log1p 7.51 in ATP_CHALL, using ATP_CHALL|27 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.836 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 22¢ by 0min-to-bell",
+     "GIU": "believes GIU at 70¢ at 356min-to-bell with vol_log1p 7.51 in ATP_CHALL, using ATP_CHALL|69 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.836 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 66¢ by 0min-to-bell"
+    },
+    "preds": {
+     "BAR": 22,
+     "GIU": 66
+    },
+    "sum": 88,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1783855764.797,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 30¢ at 309min-to-bell with vol_log1p 7.51 in ATP_CHALL, using ATP_CHALL|28 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.823 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 21¢ by 0min-to-bell",
+     "GIU": "believes GIU at 70¢ at 309min-to-bell with vol_log1p 7.51 in ATP_CHALL, using ATP_CHALL|69 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.823 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 66¢ by 0min-to-bell"
+    },
+    "preds": {
+     "BAR": 21,
+     "GIU": 66
+    },
+    "sum": 87,
+    "spread": 5,
+    "coherent": false
+   },
+   {
+    "ts": 1783855765,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 28¢ at 309min-to-bell with vol_log1p 7.51 in ATP_CHALL, using ATP_CHALL|28 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.843 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 27¢ by 0min-to-bell",
+     "GIU": "believes GIU at 70¢ at 309min-to-bell with vol_log1p 7.51 in ATP_CHALL, using ATP_CHALL|69 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.843 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 66¢ by 0min-to-bell"
+    },
+    "preds": {
+     "BAR": 27,
+     "GIU": 66
+    },
+    "sum": 93,
+    "spread": 5,
+    "coherent": false
+   },
+   {
+    "ts": 1783863733,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 30¢ at 176min-to-bell with vol_log1p 7.51 in ATP_CHALL, using ATP_CHALL|31 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.808 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 26¢ by 144min-to-bell",
+     "GIU": "believes GIU at 70¢ at 176min-to-bell with vol_log1p 7.51 in ATP_CHALL, using ATP_CHALL|69 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.808 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 51¢ by 144min-to-bell"
+    },
+    "preds": {
+     "BAR": 26,
+     "GIU": 51
+    },
+    "sum": 77,
+    "spread": 2,
+    "coherent": false
+   },
+   {
+    "ts": 1783866958,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 32¢ at 122min-to-bell with vol_log1p 7.66 in ATP_CHALL, using ATP_CHALL|32 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.78 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 26¢ by 67min-to-bell",
+     "GIU": "believes GIU at 69¢ at 122min-to-bell with vol_log1p 7.66 in ATP_CHALL, using ATP_CHALL|67 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.78 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 66¢ by 67min-to-bell"
+    },
+    "preds": {
+     "BAR": 26,
+     "GIU": 66
+    },
+    "sum": 92,
+    "spread": 2,
+    "coherent": false
+   },
+   {
+    "ts": 1783867224,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 32¢ at 118min-to-bell with vol_log1p 7.66 in ATP_CHALL, using ATP_CHALL|32 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.784 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 26¢ by 64min-to-bell",
+     "GIU": "believes GIU at 69¢ at 118min-to-bell with vol_log1p 7.66 in ATP_CHALL, using ATP_CHALL|66 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.784 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 66¢ by 64min-to-bell"
+    },
+    "preds": {
+     "BAR": 26,
+     "GIU": 66
+    },
+    "sum": 92,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1783867786,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 32¢ at 109min-to-bell with vol_log1p 7.67 in ATP_CHALL, using ATP_CHALL|32 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.812 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 23¢ by 0min-to-bell",
+     "GIU": "believes GIU at 67¢ at 109min-to-bell with vol_log1p 7.67 in ATP_CHALL, using ATP_CHALL|65 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.812 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 64¢ by 0min-to-bell"
+    },
+    "preds": {
+     "BAR": 23,
+     "GIU": 64
+    },
+    "sum": 87,
+    "spread": 4,
+    "coherent": false
+   },
+   {
+    "ts": 1783874240,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 32¢ at 1min-to-bell with vol_log1p 7.74 in ATP_CHALL, using ATP_CHALL|30 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.842 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 27¢ by 0min-to-bell",
+     "GIU": "believes GIU at 66¢ at 1min-to-bell with vol_log1p 7.74 in ATP_CHALL, using ATP_CHALL|66 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.842 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 63¢ by 0min-to-bell"
+    },
+    "preds": {
+     "BAR": 27,
+     "GIU": 63
+    },
+    "sum": 90,
+    "spread": 7,
+    "coherent": false
+   },
+   {
+    "ts": 1783874300,
+    "writable": {
+     "BAR": "YES",
+     "GIU": "YES"
+    },
+    "beliefs": {
+     "BAR": "believes BAR at 32¢ at 0min-to-bell with vol_log1p 7.74 in ATP_CHALL, using ATP_CHALL|30 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.842 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 27¢ by 0min-to-bell",
+     "GIU": "believes GIU at 66¢ at 0min-to-bell with vol_log1p 7.74 in ATP_CHALL, using ATP_CHALL|66 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR10WONLAN@0.842 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 63¢ by 0min-to-bell"
+    },
+    "preds": {
+     "BAR": 27,
+     "GIU": 63
+    },
+    "sum": 90,
+    "spread": 7,
+    "coherent": false
+   }
+  ]
+ },
+ "URSPAL": {
+  "first_coherence_ts": null,
+  "coherence": null,
+  "envelope": {},
+  "stages": [
+   {
+    "ts": 1783998959,
+    "writable": {
+     "PAL": "NO:formed_book",
+     "URS": "NO:formed_book"
+    },
+    "beliefs": {
+     "PAL": null,
+     "URS": null
+    },
+    "preds": {
+     "PAL": null,
+     "URS": null
+    },
+    "sum": null,
+    "spread": 182,
+    "coherent": null
+   },
+   {
+    "ts": 1784001495,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 64¢ at 679min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|33 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26JAN18MCKERE@0.62 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 1¢ by 77min-to-bell",
+     "URS": "believes URS at 76¢ at 679min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|57 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26JAN18MCKERE@0.62 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 15¢ by 77min-to-bell"
+    },
+    "preds": {
+     "PAL": 1,
+     "URS": 15
+    },
+    "sum": 16,
+    "spread": 100,
+    "coherent": false
+   },
+   {
+    "ts": 1784004251,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 37¢ at 633min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|33 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB28HERGAS@0.801 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 25¢ by 205min-to-bell",
+     "URS": "believes URS at 62¢ at 633min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|57 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB28HERGAS@0.801 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 48¢ by 205min-to-bell"
+    },
+    "preds": {
+     "PAL": 25,
+     "URS": 48
+    },
+    "sum": 73,
+    "spread": 19,
+    "coherent": false
+   },
+   {
+    "ts": 1784004270,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 38¢ at 633min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|34 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB28HERGAS@0.853 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 25¢ by 29min-to-bell",
+     "URS": "believes URS at 62¢ at 633min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|58 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB28HERGAS@0.853 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 39¢ by 29min-to-bell"
+    },
+    "preds": {
+     "PAL": 25,
+     "URS": 39
+    },
+    "sum": 64,
+    "spread": 17,
+    "coherent": false
+   },
+   {
+    "ts": 1784004782,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 38¢ at 624min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|34 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB28HERGAS@0.862 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 26¢ by 33min-to-bell",
+     "URS": "believes URS at 62¢ at 624min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|59 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB28HERGAS@0.862 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 39¢ by 33min-to-bell"
+    },
+    "preds": {
+     "PAL": 26,
+     "URS": 39
+    },
+    "sum": 65,
+    "spread": 15,
+    "coherent": false
+   },
+   {
+    "ts": 1784004784,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 37¢ at 624min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|34 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB28HERGAS@0.854 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 26¢ by 8min-to-bell",
+     "URS": "believes URS at 63¢ at 624min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB28HERGAS@0.854 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 32¢ by 8min-to-bell"
+    },
+    "preds": {
+     "PAL": 26,
+     "URS": 32
+    },
+    "sum": 58,
+    "spread": 13,
+    "coherent": false
+   },
+   {
+    "ts": 1784005897.194,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 37¢ at 606min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|34 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 21¢ by 72min-to-bell",
+     "URS": "believes URS at 66¢ at 606min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 32¢ by 72min-to-bell"
+    },
+    "preds": {
+     "PAL": 21,
+     "URS": 32
+    },
+    "sum": 53,
+    "spread": 12,
+    "coherent": false
+   },
+   {
+    "ts": 1784006316,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 37¢ at 599min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|34 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.811 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 21¢ by 71min-to-bell",
+     "URS": "believes URS at 66¢ at 599min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.811 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 32¢ by 71min-to-bell"
+    },
+    "preds": {
+     "PAL": 21,
+     "URS": 32
+    },
+    "sum": 53,
+    "spread": 12,
+    "coherent": false
+   },
+   {
+    "ts": 1784006318,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 37¢ at 599min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|35 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.818 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 21¢ by 223min-to-bell",
+     "URS": "believes URS at 66¢ at 599min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.818 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 49¢ by 223min-to-bell"
+    },
+    "preds": {
+     "PAL": 21,
+     "URS": 49
+    },
+    "sum": 70,
+    "spread": 10,
+    "coherent": false
+   },
+   {
+    "ts": 1784006434,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 38¢ at 597min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|36 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.807 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 11¢ by 471min-to-bell",
+     "URS": "believes URS at 66¢ at 597min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|61 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.807 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 32¢ by 471min-to-bell"
+    },
+    "preds": {
+     "PAL": 11,
+     "URS": 32
+    },
+    "sum": 43,
+    "spread": 7,
+    "coherent": false
+   },
+   {
+    "ts": 1784009712,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 37¢ at 542min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|35 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.822 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 27¢ by 202min-to-bell",
+     "URS": "believes URS at 66¢ at 542min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.822 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 49¢ by 202min-to-bell"
+    },
+    "preds": {
+     "PAL": 27,
+     "URS": 49
+    },
+    "sum": 76,
+    "spread": 9,
+    "coherent": false
+   },
+   {
+    "ts": 1784016214,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 38¢ at 434min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|36 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.792 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 21¢ by 60min-to-bell",
+     "URS": "believes URS at 66¢ at 434min-to-bell with vol_log1p 2.4 in ATP_CHALL, using ATP_CHALL|59 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.792 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 49¢ by 60min-to-bell"
+    },
+    "preds": {
+     "PAL": 21,
+     "URS": 49
+    },
+    "sum": 70,
+    "spread": 10,
+    "coherent": false
+   },
+   {
+    "ts": 1784020558,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 37¢ at 361min-to-bell with vol_log1p 3.31 in ATP_CHALL, using ATP_CHALL|35 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.837 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 27¢ by 51min-to-bell",
+     "URS": "believes URS at 64¢ at 361min-to-bell with vol_log1p 3.31 in ATP_CHALL, using ATP_CHALL|61 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.837 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 47¢ by 51min-to-bell"
+    },
+    "preds": {
+     "PAL": 27,
+     "URS": 47
+    },
+    "sum": 74,
+    "spread": 7,
+    "coherent": false
+   },
+   {
+    "ts": 1784021161,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 38¢ at 351min-to-bell with vol_log1p 3.31 in ATP_CHALL, using ATP_CHALL|35 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.809 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 27¢ by 42min-to-bell",
+     "URS": "believes URS at 64¢ at 351min-to-bell with vol_log1p 3.31 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.809 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 52¢ by 42min-to-bell"
+    },
+    "preds": {
+     "PAL": 27,
+     "URS": 52
+    },
+    "sum": 79,
+    "spread": 10,
+    "coherent": false
+   },
+   {
+    "ts": 1784021161.637,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 40¢ at 351min-to-bell with vol_log1p 5.53 in ATP_CHALL, using ATP_CHALL|35 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.795 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 12¢ by 277min-to-bell",
+     "URS": "believes URS at 64¢ at 351min-to-bell with vol_log1p 5.53 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.795 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 47¢ by 277min-to-bell"
+    },
+    "preds": {
+     "PAL": 12,
+     "URS": 47
+    },
+    "sum": 59,
+    "spread": 10,
+    "coherent": false
+   },
+   {
+    "ts": 1784021162,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 43¢ at 351min-to-bell with vol_log1p 5.53 in ATP_CHALL, using ATP_CHALL|35 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.755 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 30¢ by 247min-to-bell",
+     "URS": "believes URS at 64¢ at 351min-to-bell with vol_log1p 5.53 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.755 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 47¢ by 247min-to-bell"
+    },
+    "preds": {
+     "PAL": 30,
+     "URS": 47
+    },
+    "sum": 77,
+    "spread": 11,
+    "coherent": false
+   },
+   {
+    "ts": 1784024261,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 44¢ at 300min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|39 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.746 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 30¢ by 211min-to-bell",
+     "URS": "believes URS at 64¢ at 300min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|56 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.746 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 47¢ by 211min-to-bell"
+    },
+    "preds": {
+     "PAL": 30,
+     "URS": 47
+    },
+    "sum": 77,
+    "spread": 10,
+    "coherent": false
+   },
+   {
+    "ts": 1784024268,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 44¢ at 300min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|39 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.753 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 12¢ by 268min-to-bell",
+     "URS": "believes URS at 64¢ at 300min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|56 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.753 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 52¢ by 268min-to-bell"
+    },
+    "preds": {
+     "PAL": 12,
+     "URS": 52
+    },
+    "sum": 64,
+    "spread": 8,
+    "coherent": false
+   },
+   {
+    "ts": 1784024298,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 44¢ at 299min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|41 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR11IVASWE@0.738 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 26¢ by 60min-to-bell",
+     "URS": "believes URS at 64¢ at 299min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|54 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR11IVASWE@0.738 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 30¢ by 60min-to-bell"
+    },
+    "preds": {
+     "PAL": 26,
+     "URS": 30
+    },
+    "sum": 56,
+    "spread": 14,
+    "coherent": false
+   },
+   {
+    "ts": 1784024401,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 44¢ at 297min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|41 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR11IVASWE@0.742 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 26¢ by 147min-to-bell",
+     "URS": "believes URS at 64¢ at 297min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|52 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR11IVASWE@0.742 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 30¢ by 147min-to-bell"
+    },
+    "preds": {
+     "PAL": 26,
+     "URS": 30
+    },
+    "sum": 56,
+    "spread": 15,
+    "coherent": false
+   },
+   {
+    "ts": 1784024405,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 44¢ at 297min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|41 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR11IVASWE@0.738 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 26¢ by 59min-to-bell",
+     "URS": "believes URS at 64¢ at 297min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|52 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR11IVASWE@0.738 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 30¢ by 59min-to-bell"
+    },
+    "preds": {
+     "PAL": 26,
+     "URS": 30
+    },
+    "sum": 56,
+    "spread": 14,
+    "coherent": false
+   },
+   {
+    "ts": 1784024849,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 44¢ at 290min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|39 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.735 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 74min-to-bell",
+     "URS": "believes URS at 64¢ at 290min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|52 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.735 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 47¢ by 74min-to-bell"
+    },
+    "preds": {
+     "PAL": 24,
+     "URS": 47
+    },
+    "sum": 71,
+    "spread": 13,
+    "coherent": false
+   },
+   {
+    "ts": 1784028256,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 44¢ at 233min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|41 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.737 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 110min-to-bell",
+     "URS": "believes URS at 64¢ at 233min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|54 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.737 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 47¢ by 110min-to-bell"
+    },
+    "preds": {
+     "PAL": 24,
+     "URS": 47
+    },
+    "sum": 71,
+    "spread": 12,
+    "coherent": false
+   },
+   {
+    "ts": 1784031347,
+    "writable": {
+     "PAL": "YES",
+     "URS": "YES"
+    },
+    "beliefs": {
+     "PAL": "believes PAL at 44¢ at 182min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|40 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.825 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 22¢ by 170min-to-bell",
+     "URS": "believes URS at 58¢ at 182min-to-bell with vol_log1p 5.69 in ATP_CHALL, using ATP_CHALL|57 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.825 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 56¢ by 170min-to-bell"
+    },
+    "preds": {
+     "PAL": 22,
+     "URS": 56
+    },
+    "sum": 78,
+    "spread": 6,
+    "coherent": false
+   },
+   {
+    "ts": 1784032697.6,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": [
+     "PAL"
+    ]
+   },
+   {
+    "ts": 1784038360.853,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": [
+     "PAL"
+    ]
+   },
+   {
+    "ts": 1784041639.585,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": [
+     "PAL"
+    ]
+   },
+   {
+    "ts": 1784042108.538,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": []
+   },
+   {
+    "ts": 1784042108.538,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": []
+   },
+   {
+    "ts": 1784042108.538,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": []
+   }
+  ]
+ },
+ "LAJSVA": {
+  "first_coherence_ts": null,
+  "coherence": null,
+  "envelope": {},
+  "stages": [
+   {
+    "ts": 1784007323,
+    "writable": {
+     "LAJ": "NO:formed_book",
+     "SVA": "NO:formed_book"
+    },
+    "beliefs": {
+     "LAJ": null,
+     "SVA": null
+    },
+    "preds": {
+     "LAJ": null,
+     "SVA": null
+    },
+    "sum": null,
+    "spread": 162,
+    "coherent": null
+   },
+   {
+    "ts": 1784007333,
+    "writable": {
+     "LAJ": "NO:formed_book",
+     "SVA": "NO:formed_book"
+    },
+    "beliefs": {
+     "LAJ": null,
+     "SVA": null
+    },
+    "preds": {
+     "LAJ": null,
+     "SVA": null
+    },
+    "sum": null,
+    "spread": 162,
+    "coherent": null
+   },
+   {
+    "ts": 1784007334,
+    "writable": {
+     "LAJ": "NO:formed_book",
+     "SVA": "NO:formed_book"
+    },
+    "beliefs": {
+     "LAJ": null,
+     "SVA": null
+    },
+    "preds": {
+     "LAJ": null,
+     "SVA": null
+    },
+    "sum": null,
+    "spread": 161,
+    "coherent": null
+   },
+   {
+    "ts": 1784007335,
+    "writable": {
+     "LAJ": "NO:formed_book",
+     "SVA": "NO:formed_book"
+    },
+    "beliefs": {
+     "LAJ": null,
+     "SVA": null
+    },
+    "preds": {
+     "LAJ": null,
+     "SVA": null
+    },
+    "sum": null,
+    "spread": 159,
+    "coherent": null
+   },
+   {
+    "ts": 1784007401,
+    "writable": {
+     "LAJ": "NO:formed_book",
+     "SVA": "NO:formed_book"
+    },
+    "beliefs": {
+     "LAJ": null,
+     "SVA": null
+    },
+    "preds": {
+     "LAJ": null,
+     "SVA": null
+    },
+    "sum": null,
+    "spread": 158,
+    "coherent": null
+   },
+   {
+    "ts": 1784007603,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 70¢ at 1180min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|54 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26JAN27BRASVA@0.663 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 18¢ by 36min-to-bell",
+     "SVA": "believes SVA at 61¢ at 1180min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|36 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26JAN27BRASVA@0.663 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 1¢ by 36min-to-bell"
+    },
+    "preds": {
+     "LAJ": 18,
+     "SVA": 1
+    },
+    "sum": 19,
+    "spread": 82,
+    "coherent": false
+   },
+   {
+    "ts": 1784007604,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 59¢ at 1180min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|54 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR24OSOSAL@0.862 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 13¢ by 141min-to-bell",
+     "SVA": "believes SVA at 41¢ at 1180min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|36 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR24OSOSAL@0.862 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 19¢ by 141min-to-bell"
+    },
+    "preds": {
+     "LAJ": 13,
+     "SVA": 19
+    },
+    "sum": 32,
+    "spread": 20,
+    "coherent": false
+   },
+   {
+    "ts": 1784007640,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 59¢ at 1179min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|55 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR06PERKOZ@0.787 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 12¢ by 287min-to-bell",
+     "SVA": "believes SVA at 39¢ at 1179min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|36 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR06PERKOZ@0.787 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 12¢ by 287min-to-bell"
+    },
+    "preds": {
+     "LAJ": 12,
+     "SVA": 12
+    },
+    "sum": 24,
+    "spread": 16,
+    "coherent": false
+   },
+   {
+    "ts": 1784007670,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 59¢ at 1179min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|55 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR06PERKOZ@0.78 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 34¢ by 376min-to-bell",
+     "SVA": "believes SVA at 38¢ at 1179min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|36 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR06PERKOZ@0.78 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 32¢ by 376min-to-bell"
+    },
+    "preds": {
+     "LAJ": 34,
+     "SVA": 32
+    },
+    "sum": 66,
+    "spread": 14,
+    "coherent": false
+   },
+   {
+    "ts": 1784007763,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 59¢ at 1177min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|55 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR06PERKOZ@0.784 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 375min-to-bell",
+     "SVA": "believes SVA at 38¢ at 1177min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|36 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR06PERKOZ@0.784 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 32¢ by 375min-to-bell"
+    },
+    "preds": {
+     "LAJ": 44,
+     "SVA": 32
+    },
+    "sum": 76,
+    "spread": 13,
+    "coherent": false
+   },
+   {
+    "ts": 1784011052,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 1122min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.835 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 54min-to-bell",
+     "SVA": "believes SVA at 38¢ at 1122min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|36 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.835 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 21¢ by 54min-to-bell"
+    },
+    "preds": {
+     "LAJ": 44,
+     "SVA": 21
+    },
+    "sum": 65,
+    "spread": 8,
+    "coherent": false
+   },
+   {
+    "ts": 1784013560,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 60¢ at 1081min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|59 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR06PERKOZ@0.826 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 107min-to-bell",
+     "SVA": "believes SVA at 39¢ at 1081min-to-bell with vol_log1p 0 in ATP_CHALL, using ATP_CHALL|37 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR06PERKOZ@0.826 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 32¢ by 107min-to-bell"
+    },
+    "preds": {
+     "LAJ": 44,
+     "SVA": 32
+    },
+    "sum": 76,
+    "spread": 7,
+    "coherent": false
+   },
+   {
+    "ts": 1784016081.367,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 1039min-to-bell with vol_log1p 1.39 in ATP_CHALL, using ATP_CHALL|59 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.83 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 57min-to-bell",
+     "SVA": "believes SVA at 39¢ at 1039min-to-bell with vol_log1p 1.39 in ATP_CHALL, using ATP_CHALL|37 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.83 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 11¢ by 57min-to-bell"
+    },
+    "preds": {
+     "LAJ": 24,
+     "SVA": 11
+    },
+    "sum": 35,
+    "spread": 7,
+    "coherent": false
+   },
+   {
+    "ts": 1784017359,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 1017min-to-bell with vol_log1p 1.39 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR16BRASAN@0.833 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 56min-to-bell",
+     "SVA": "believes SVA at 39¢ at 1017min-to-bell with vol_log1p 1.39 in ATP_CHALL, using ATP_CHALL|37 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR16BRASAN@0.833 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 11¢ by 56min-to-bell"
+    },
+    "preds": {
+     "LAJ": 24,
+     "SVA": 11
+    },
+    "sum": 35,
+    "spread": 5,
+    "coherent": false
+   },
+   {
+    "ts": 1784018016,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 1006min-to-bell with vol_log1p 1.39 in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR16BRASAN@0.833 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 55min-to-bell",
+     "SVA": "believes SVA at 39¢ at 1006min-to-bell with vol_log1p 1.39 in ATP_CHALL, using ATP_CHALL|37 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR16BRASAN@0.833 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 11¢ by 55min-to-bell"
+    },
+    "preds": {
+     "LAJ": 24,
+     "SVA": 11
+    },
+    "sum": 35,
+    "spread": 5,
+    "coherent": false
+   },
+   {
+    "ts": 1784020167,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 971min-to-bell with vol_log1p 1.39 in ATP_CHALL, using ATP_CHALL|59 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR16BRASAN@0.833 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 53min-to-bell",
+     "SVA": "believes SVA at 39¢ at 971min-to-bell with vol_log1p 1.39 in ATP_CHALL, using ATP_CHALL|38 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR16BRASAN@0.833 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 11¢ by 53min-to-bell"
+    },
+    "preds": {
+     "LAJ": 24,
+     "SVA": 11
+    },
+    "sum": 35,
+    "spread": 5,
+    "coherent": false
+   },
+   {
+    "ts": 1784020196,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 970min-to-bell with vol_log1p 1.39 in ATP_CHALL, using ATP_CHALL|58 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR16BRASAN@0.814 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 354min-to-bell",
+     "SVA": "believes SVA at 40¢ at 970min-to-bell with vol_log1p 1.39 in ATP_CHALL, using ATP_CHALL|40 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR16BRASAN@0.814 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 34¢ by 354min-to-bell"
+    },
+    "preds": {
+     "LAJ": 24,
+     "SVA": 34
+    },
+    "sum": 58,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1784020201.83,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 970min-to-bell with vol_log1p 3.43 in ATP_CHALL, using ATP_CHALL|58 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR26BARVAR@0.792 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 0min-to-bell",
+     "SVA": "believes SVA at 41¢ at 970min-to-bell with vol_log1p 3.43 in ATP_CHALL, using ATP_CHALL|40 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR26BARVAR@0.792 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 6¢ by 0min-to-bell"
+    },
+    "preds": {
+     "LAJ": 24,
+     "SVA": 6
+    },
+    "sum": 30,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1784020205,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 970min-to-bell with vol_log1p 3.43 in ATP_CHALL, using ATP_CHALL|56 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR26BARVAR@0.796 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 28¢ by 0min-to-bell",
+     "SVA": "believes SVA at 41¢ at 970min-to-bell with vol_log1p 3.43 in ATP_CHALL, using ATP_CHALL|40 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR26BARVAR@0.796 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 30¢ by 0min-to-bell"
+    },
+    "preds": {
+     "LAJ": 28,
+     "SVA": 30
+    },
+    "sum": 58,
+    "spread": 4,
+    "coherent": false
+   },
+   {
+    "ts": 1784020210,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 970min-to-bell with vol_log1p 3.85 in ATP_CHALL, using ATP_CHALL|56 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR26BARVAR@0.791 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 0min-to-bell",
+     "SVA": "believes SVA at 41¢ at 970min-to-bell with vol_log1p 3.85 in ATP_CHALL, using ATP_CHALL|41 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR26BARVAR@0.791 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 6¢ by 0min-to-bell"
+    },
+    "preds": {
+     "LAJ": 24,
+     "SVA": 6
+    },
+    "sum": 30,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1784020239,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 969min-to-bell with vol_log1p 4.91 in ATP_CHALL, using ATP_CHALL|55 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.767 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 0min-to-bell",
+     "SVA": "believes SVA at 43¢ at 969min-to-bell with vol_log1p 4.91 in ATP_CHALL, using ATP_CHALL|44 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.767 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 6¢ by 0min-to-bell"
+    },
+    "preds": {
+     "LAJ": 24,
+     "SVA": 6
+    },
+    "sum": 30,
+    "spread": 4,
+    "coherent": false
+   },
+   {
+    "ts": 1784020300,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 968min-to-bell with vol_log1p 4.91 in ATP_CHALL, using ATP_CHALL|54 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.767 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 24¢ by 0min-to-bell",
+     "SVA": "believes SVA at 43¢ at 968min-to-bell with vol_log1p 4.91 in ATP_CHALL, using ATP_CHALL|44 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.767 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 6¢ by 0min-to-bell"
+    },
+    "preds": {
+     "LAJ": 24,
+     "SVA": 6
+    },
+    "sum": 30,
+    "spread": 4,
+    "coherent": false
+   },
+   {
+    "ts": 1784024857,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 892min-to-bell with vol_log1p 4.91 in ATP_CHALL, using ATP_CHALL|53 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.761 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 28¢ by 0min-to-bell",
+     "SVA": "believes SVA at 43¢ at 892min-to-bell with vol_log1p 4.91 in ATP_CHALL, using ATP_CHALL|45 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.761 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 6¢ by 0min-to-bell"
+    },
+    "preds": {
+     "LAJ": 28,
+     "SVA": 6
+    },
+    "sum": 34,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1784028911,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 825min-to-bell with vol_log1p 4.91 in ATP_CHALL, using ATP_CHALL|53 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.756 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 28¢ by 0min-to-bell",
+     "SVA": "believes SVA at 43¢ at 825min-to-bell with vol_log1p 4.91 in ATP_CHALL, using ATP_CHALL|45 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.756 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 6¢ by 0min-to-bell"
+    },
+    "preds": {
+     "LAJ": 28,
+     "SVA": 6
+    },
+    "sum": 34,
+    "spread": 2,
+    "coherent": false
+   },
+   {
+    "ts": 1784036624.369,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 55¢ at 696min-to-bell with vol_log1p 7.79 in ATP_CHALL, using ATP_CHALL|53 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR30WISZAH@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 54¢ by 537min-to-bell",
+     "SVA": "believes SVA at 43¢ at 696min-to-bell with vol_log1p 7.79 in ATP_CHALL, using ATP_CHALL|45 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR30WISZAH@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 38¢ by 537min-to-bell"
+    },
+    "preds": {
+     "LAJ": 54,
+     "SVA": 38
+    },
+    "sum": 92,
+    "spread": 2,
+    "coherent": false
+   },
+   {
+    "ts": 1784036629,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 696min-to-bell with vol_log1p 7.79 in ATP_CHALL, using ATP_CHALL|53 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR04NEUGIL@0.749 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 52¢ by 0min-to-bell",
+     "SVA": "believes SVA at 43¢ at 696min-to-bell with vol_log1p 7.79 in ATP_CHALL, using ATP_CHALL|45 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR04NEUGIL@0.749 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 41¢ by 0min-to-bell"
+    },
+    "preds": {
+     "LAJ": 52,
+     "SVA": 41
+    },
+    "sum": 93,
+    "spread": 2,
+    "coherent": false
+   },
+   {
+    "ts": 1784036642,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 62¢ at 696min-to-bell with vol_log1p 7.79 in ATP_CHALL, using ATP_CHALL|53 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR04NEUGIL@0.749 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 52¢ by 0min-to-bell",
+     "SVA": "believes SVA at 43¢ at 696min-to-bell with vol_log1p 7.79 in ATP_CHALL, using ATP_CHALL|45 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26APR04NEUGIL@0.749 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 41¢ by 0min-to-bell"
+    },
+    "preds": {
+     "LAJ": 52,
+     "SVA": 41
+    },
+    "sum": 93,
+    "spread": 2,
+    "coherent": false
+   },
+   {
+    "ts": 1784039243,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 55¢ at 653min-to-bell with vol_log1p 7.79 in ATP_CHALL, using ATP_CHALL|54 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR30WISZAH@0.813 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 54¢ by 446min-to-bell",
+     "SVA": "believes SVA at 43¢ at 653min-to-bell with vol_log1p 7.79 in ATP_CHALL, using ATP_CHALL|45 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26MAR30WISZAH@0.813 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 30¢ by 446min-to-bell"
+    },
+    "preds": {
+     "LAJ": 54,
+     "SVA": 30
+    },
+    "sum": 84,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1784039714,
+    "writable": {
+     "LAJ": "YES",
+     "SVA": "YES"
+    },
+    "beliefs": {
+     "LAJ": "believes LAJ at 55¢ at 645min-to-bell with vol_log1p 7.79 in ATP_CHALL, using ATP_CHALL|54 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.811 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 342min-to-bell",
+     "SVA": "believes SVA at 46¢ at 645min-to-bell with vol_log1p 7.79 in ATP_CHALL, using ATP_CHALL|45 (V3 map @ac68e3bc) + KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.811 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 32¢ by 342min-to-bell"
+    },
+    "preds": {
+     "LAJ": 44,
+     "SVA": 32
+    },
+    "sum": 76,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1784042394.35,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": [
+     "LAJ"
+    ]
+   },
+   {
+    "ts": 1784050516,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": [
+     "LAJ"
+    ]
+   },
+   {
+    "ts": 1784052714,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": []
+   },
+   {
+    "ts": 1784059613,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": []
+   },
+   {
+    "ts": 1784061309,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": []
+   },
+   {
+    "ts": 1784072103,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": []
+   },
+   {
+    "ts": 1784078361,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": []
+   },
+   {
+    "ts": 1784078361.264,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": []
+   },
+   {
+    "ts": 1784078361.264,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": []
+   }
+  ]
+ },
+ "DANPRA": {
+  "first_coherence_ts": 1784332604,
+  "coherence": {
+   "DAN": {
+    "leg": "DAN",
+    "price": 58,
+    "mtb": 659,
+    "vol": 2.39,
+    "cat": "ATP_MAIN",
+    "store": "ATP_MAIN|56 (V3 map @ac68e3bc)",
+    "n1": "KXATPMATCH-25NOV06SONALT@0.664 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE]",
+    "pred": 49,
+    "mtb2": 0,
+    "sentence": "believes DAN at 58¢ at 659min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|56 (V3 map @ac68e3bc) + KXATPMATCH-25NOV06SONALT@0.664 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 49¢ by 0min-to-bell"
+   },
+   "PRA": {
+    "leg": "PRA",
+    "price": 60,
+    "mtb": 659,
+    "vol": 2.39,
+    "cat": "ATP_MAIN",
+    "store": "ATP_MAIN|40 (V3 map @ac68e3bc)",
+    "n1": "KXATPMATCH-25NOV06SONALT@0.664 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE]",
+    "pred": 44,
+    "mtb2": 0,
+    "sentence": "believes PRA at 60¢ at 659min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|40 (V3 map @ac68e3bc) + KXATPMATCH-25NOV06SONALT@0.664 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 0min-to-bell"
+   },
+   "spread": 9,
+   "sum": 93
+  },
+  "envelope": {
+   "DAN": {
+    "envelope": [
+     49,
+     58
+    ],
+    "min_print_after_coh": 59,
+    "fillable_in_envelope": false,
+    "tape_fill_level": null,
+    "floor": 59,
+    "gap_to_own_low": null,
+    "grade": "NO_FILL",
+    "rebuild_actual": [
+     "rest",
+     58
+    ]
+   },
+   "PRA": {
+    "envelope": [
+     44,
+     60
+    ],
+    "min_print_after_coh": 41,
+    "fillable_in_envelope": true,
+    "tape_fill_level": 44,
+    "floor": 41,
+    "gap_to_own_low": 3,
+    "grade": "GOLD<=4",
+    "rebuild_actual": [
+     1784369249.287,
+     41
+    ]
+   }
+  },
+  "stages": [
+   {
+    "ts": 1784316994,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 176,
+    "coherent": null
+   },
+   {
+    "ts": 1784317958,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 174,
+    "coherent": null
+   },
+   {
+    "ts": 1784318072,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 170,
+    "coherent": null
+   },
+   {
+    "ts": 1784321635,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 169,
+    "coherent": null
+   },
+   {
+    "ts": 1784326474,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 133,
+    "coherent": null
+   },
+   {
+    "ts": 1784327537,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 132,
+    "coherent": null
+   },
+   {
+    "ts": 1784328164,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 133,
+    "coherent": null
+   },
+   {
+    "ts": 1784328164.156,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 133,
+    "coherent": null
+   },
+   {
+    "ts": 1784328299,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 129,
+    "coherent": null
+   },
+   {
+    "ts": 1784328366,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 90,
+    "coherent": null
+   },
+   {
+    "ts": 1784328405,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 83,
+    "coherent": null
+   },
+   {
+    "ts": 1784328637,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 83,
+    "coherent": null
+   },
+   {
+    "ts": 1784328705,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 81,
+    "coherent": null
+   },
+   {
+    "ts": 1784328759,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 80,
+    "coherent": null
+   },
+   {
+    "ts": 1784328930,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 78,
+    "coherent": null
+   },
+   {
+    "ts": 1784329607,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 76,
+    "coherent": null
+   },
+   {
+    "ts": 1784329610,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 75,
+    "coherent": null
+   },
+   {
+    "ts": 1784329677,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 73,
+    "coherent": null
+   },
+   {
+    "ts": 1784329700,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 73,
+    "coherent": null
+   },
+   {
+    "ts": 1784329964,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 72,
+    "coherent": null
+   },
+   {
+    "ts": 1784330020,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 71,
+    "coherent": null
+   },
+   {
+    "ts": 1784330275,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 63,
+    "coherent": null
+   },
+   {
+    "ts": 1784330315,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 59,
+    "coherent": null
+   },
+   {
+    "ts": 1784330319,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 58,
+    "coherent": null
+   },
+   {
+    "ts": 1784330337,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 56,
+    "coherent": null
+   },
+   {
+    "ts": 1784330340,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 56,
+    "coherent": null
+   },
+   {
+    "ts": 1784330414,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 52,
+    "coherent": null
+   },
+   {
+    "ts": 1784330418,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 50,
+    "coherent": null
+   },
+   {
+    "ts": 1784330453,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 48,
+    "coherent": null
+   },
+   {
+    "ts": 1784330468,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 45,
+    "coherent": null
+   },
+   {
+    "ts": 1784330512,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 45,
+    "coherent": null
+   },
+   {
+    "ts": 1784331077,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 44,
+    "coherent": null
+   },
+   {
+    "ts": 1784331165,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 42,
+    "coherent": null
+   },
+   {
+    "ts": 1784331233,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 39,
+    "coherent": null
+   },
+   {
+    "ts": 1784331409,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 39,
+    "coherent": null
+   },
+   {
+    "ts": 1784331418,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 37,
+    "coherent": null
+   },
+   {
+    "ts": 1784331468,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 35,
+    "coherent": null
+   },
+   {
+    "ts": 1784331471,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 35,
+    "coherent": null
+   },
+   {
+    "ts": 1784331480,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 33,
+    "coherent": null
+   },
+   {
+    "ts": 1784331579,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 30,
+    "coherent": null
+   },
+   {
+    "ts": 1784332204,
+    "writable": {
+     "DAN": "NO:formed_book",
+     "PRA": "NO:formed_book"
+    },
+    "beliefs": {
+     "DAN": null,
+     "PRA": null
+    },
+    "preds": {
+     "DAN": null,
+     "PRA": null
+    },
+    "sum": null,
+    "spread": 31,
+    "coherent": null
+   },
+   {
+    "ts": 1784332553,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 58¢ at 660min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|53 (V3 map @ac68e3bc) + KXATPMATCH-26FEB21PRIHEI@0.684 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 33¢ by 109min-to-bell",
+     "PRA": "believes PRA at 60¢ at 660min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|37 (V3 map @ac68e3bc) + KXATPMATCH-26FEB21PRIHEI@0.684 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 109min-to-bell"
+    },
+    "preds": {
+     "DAN": 33,
+     "PRA": 44
+    },
+    "sum": 77,
+    "spread": 18,
+    "coherent": false
+   },
+   {
+    "ts": 1784332558,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 58¢ at 660min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|54 (V3 map @ac68e3bc) + KXATPMATCH-26FEB21PRIHEI@0.68 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 33¢ by 109min-to-bell",
+     "PRA": "believes PRA at 60¢ at 660min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|37 (V3 map @ac68e3bc) + KXATPMATCH-26FEB21PRIHEI@0.68 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 109min-to-bell"
+    },
+    "preds": {
+     "DAN": 33,
+     "PRA": 44
+    },
+    "sum": 77,
+    "spread": 17,
+    "coherent": false
+   },
+   {
+    "ts": 1784332589,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 58¢ at 660min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|55 (V3 map @ac68e3bc) + KXATPMATCH-26FEB21PRIHEI@0.671 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 39¢ by 405min-to-bell",
+     "PRA": "believes PRA at 60¢ at 660min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|38 (V3 map @ac68e3bc) + KXATPMATCH-26FEB21PRIHEI@0.671 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 405min-to-bell"
+    },
+    "preds": {
+     "DAN": 39,
+     "PRA": 44
+    },
+    "sum": 83,
+    "spread": 14,
+    "coherent": false
+   },
+   {
+    "ts": 1784332594,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 58¢ at 659min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|55 (V3 map @ac68e3bc) + KXATPMATCH-26FEB21PRIHEI@0.667 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 39¢ by 527min-to-bell",
+     "PRA": "believes PRA at 60¢ at 659min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|39 (V3 map @ac68e3bc) + KXATPMATCH-26FEB21PRIHEI@0.667 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 527min-to-bell"
+    },
+    "preds": {
+     "DAN": 39,
+     "PRA": 44
+    },
+    "sum": 83,
+    "spread": 13,
+    "coherent": false
+   },
+   {
+    "ts": 1784332604,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 58¢ at 659min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|56 (V3 map @ac68e3bc) + KXATPMATCH-25NOV06SONALT@0.664 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 49¢ by 0min-to-bell",
+     "PRA": "believes PRA at 60¢ at 659min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|40 (V3 map @ac68e3bc) + KXATPMATCH-25NOV06SONALT@0.664 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 0min-to-bell"
+    },
+    "preds": {
+     "DAN": 49,
+     "PRA": 44
+    },
+    "sum": 93,
+    "spread": 9,
+    "coherent": true
+   },
+   {
+    "ts": 1784332608,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 58¢ at 659min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|56 (V3 map @ac68e3bc) + KXATPMATCH-25NOV06SONALT@0.667 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 49¢ by 0min-to-bell",
+     "PRA": "believes PRA at 60¢ at 659min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|40 (V3 map @ac68e3bc) + KXATPMATCH-25NOV06SONALT@0.667 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 0min-to-bell"
+    },
+    "preds": {
+     "DAN": 49,
+     "PRA": 44
+    },
+    "sum": 93,
+    "spread": 8,
+    "coherent": true
+   },
+   {
+    "ts": 1784332609,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 58¢ at 659min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|56 (V3 map @ac68e3bc) + KXATPMATCH-26FEB21PRIHEI@0.661 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 49¢ by 527min-to-bell",
+     "PRA": "believes PRA at 60¢ at 659min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|38 (V3 map @ac68e3bc) + KXATPMATCH-26FEB21PRIHEI@0.661 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 527min-to-bell"
+    },
+    "preds": {
+     "DAN": 49,
+     "PRA": 44
+    },
+    "sum": 93,
+    "spread": 11,
+    "coherent": true
+   },
+   {
+    "ts": 1784332873,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 57¢ at 655min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|57 (V3 map @ac68e3bc) + KXATPMATCH-25NOV06SONALT@0.668 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 49¢ by 650min-to-bell",
+     "PRA": "believes PRA at 60¢ at 655min-to-bell with vol_log1p 2.39 in ATP_MAIN, using ATP_MAIN|42 (V3 map @ac68e3bc) + KXATPMATCH-25NOV06SONALT@0.668 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 44¢ by 650min-to-bell"
+    },
+    "preds": {
+     "DAN": 49,
+     "PRA": 44
+    },
+    "sum": 93,
+    "spread": 2,
+    "coherent": false
+   },
+   {
+    "ts": 1784336963.017,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 58¢ at 587min-to-bell with vol_log1p 2.41 in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc) + KXATPMATCH-26APR04CHOMUL@0.807 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 49¢ by 497min-to-bell",
+     "PRA": "believes PRA at 43¢ at 587min-to-bell with vol_log1p 2.41 in ATP_MAIN, using ATP_MAIN|42 (V3 map @ac68e3bc) + KXATPMATCH-26APR04CHOMUL@0.807 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 36¢ by 497min-to-bell"
+    },
+    "preds": {
+     "DAN": 49,
+     "PRA": 36
+    },
+    "sum": 85,
+    "spread": 2,
+    "coherent": false
+   },
+   {
+    "ts": 1784338460,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 58¢ at 562min-to-bell with vol_log1p 2.41 in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc) + KXATPMATCH-26APR04CHOMUL@0.806 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 49¢ by 475min-to-bell",
+     "PRA": "believes PRA at 43¢ at 562min-to-bell with vol_log1p 2.41 in ATP_MAIN, using ATP_MAIN|42 (V3 map @ac68e3bc) + KXATPMATCH-26APR04CHOMUL@0.806 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 36¢ by 475min-to-bell"
+    },
+    "preds": {
+     "DAN": 49,
+     "PRA": 36
+    },
+    "sum": 85,
+    "spread": 2,
+    "coherent": false
+   },
+   {
+    "ts": 1784339306.774,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 59¢ at 548min-to-bell with vol_log1p 3.93 in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc) + KXATPMATCH-26APR04CHOMUL@0.788 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 52¢ by 537min-to-bell",
+     "PRA": "believes PRA at 43¢ at 548min-to-bell with vol_log1p 3.93 in ATP_MAIN, using ATP_MAIN|42 (V3 map @ac68e3bc) + KXATPMATCH-26APR04CHOMUL@0.788 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 36¢ by 537min-to-bell"
+    },
+    "preds": {
+     "DAN": 52,
+     "PRA": 36
+    },
+    "sum": 88,
+    "spread": 2,
+    "coherent": false
+   },
+   {
+    "ts": 1784341326,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 59¢ at 514min-to-bell with vol_log1p 4.4 in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc) + KXATPMATCH-26APR04CHOMUL@0.793 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 54¢ by 506min-to-bell",
+     "PRA": "believes PRA at 43¢ at 514min-to-bell with vol_log1p 4.4 in ATP_MAIN, using ATP_MAIN|40 (V3 map @ac68e3bc) + KXATPMATCH-26APR04CHOMUL@0.793 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 43¢ by 506min-to-bell"
+    },
+    "preds": {
+     "DAN": 54,
+     "PRA": 43
+    },
+    "sum": 97,
+    "spread": 4,
+    "coherent": true
+   },
+   {
+    "ts": 1784349391,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 60¢ at 379min-to-bell with vol_log1p 6.39 in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc) + KXATPMATCH-25OCT15GIRDAV@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 52¢ by 372min-to-bell",
+     "PRA": "believes PRA at 41¢ at 379min-to-bell with vol_log1p 6.39 in ATP_MAIN, using ATP_MAIN|40 (V3 map @ac68e3bc) + KXATPMATCH-25OCT15GIRDAV@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 34¢ by 372min-to-bell"
+    },
+    "preds": {
+     "DAN": 52,
+     "PRA": 34
+    },
+    "sum": 86,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1784360023,
+    "writable": {
+     "DAN": "YES",
+     "PRA": "YES"
+    },
+    "beliefs": {
+     "DAN": "believes DAN at 60¢ at 202min-to-bell with vol_log1p 6.93 in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc) + KXATPMATCH-25OCT15GIRDAV@0.803 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 47¢ by 0min-to-bell",
+     "PRA": "believes PRA at 41¢ at 202min-to-bell with vol_log1p 6.93 in ATP_MAIN, using ATP_MAIN|41 (V3 map @ac68e3bc) + KXATPMATCH-25OCT15GIRDAV@0.803 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE], SHOULD drift to 41¢ by 0min-to-bell"
+    },
+    "preds": {
+     "DAN": 47,
+     "PRA": 41
+    },
+    "sum": 88,
+    "spread": 3,
+    "coherent": false
+   },
+   {
+    "ts": 1784369249.287,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": [
+     "DAN"
+    ]
+   },
+   {
+    "ts": 1784370685,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": [
+     "DAN"
+    ]
+   },
+   {
+    "ts": 1784373056,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": [
+     "DAN"
+    ]
+   },
+   {
+    "ts": 1784373060,
+    "writable": "ONE_SIDE_ONLY",
+    "legs": [
+     "DAN"
+    ]
+   }
+  ]
+ }
+}

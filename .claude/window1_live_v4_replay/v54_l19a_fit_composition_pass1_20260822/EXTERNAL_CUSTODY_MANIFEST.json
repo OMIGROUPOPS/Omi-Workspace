@@ -1,0 +1,11 @@
+{
+  "files": [
+    {
+      "logical_path": "OMI-Window1-private/stage1/v54_l19a_fit_composition_pass1/ALL_SENTENCES_804.jsonl.gz",
+      "sha256": "800793c66d6824acb67667033d3f9328db16548a40cfdcd071d7866ad5ba4999",
+      "bytes": 67977539,
+      "rows": 61834,
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1\\v54_l19a_fit_composition_pass1\\build1\\ALL_SENTENCES_804.jsonl.gz"
+    }
+  ]
+}

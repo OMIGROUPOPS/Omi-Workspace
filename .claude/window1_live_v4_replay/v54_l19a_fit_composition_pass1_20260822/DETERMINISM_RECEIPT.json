@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "clean_builds": 2,
+  "pass": 1,
+  "policy_and_inputs_identical": true,
+  "artifacts": {
+    "FITTED_WEIGHT_SURFACE.json": "fcfc12f7e01a9a383056309ab3a81d8f90091fdfaf8cf155384202d380f84a22",
+    "SCORECARD.json": "a7831ff48ab5e0fef44bd6763e748343c86607e712d89cf89867af08a79d8497",
+    "PER_GAME_OUTCOME_TABLE.json": "51f3aec98f6bc900175e5a71987cb2a175e9d55936bfe088cbc30a18a0edc2f8",
+    "FOUR_GAME_TRIPWIRE.json": "3a61bb6eaa679e382e22eba490fc9d3eca52c2447237da451372145b579ea239",
+    "CC_DRAWN_STORIES_30.json": "97c76a0382a569d86d36c0199c74059f2778b5040c593e4f73b3a026ee1e32b5",
+    "ALL_SENTENCES_804.jsonl.gz": "800793c66d6824acb67667033d3f9328db16548a40cfdcd071d7866ad5ba4999"
+  },
+  "sentence_rows": 61834,
+  "sentence_bytes": 67977539,
+  "note": "The sentence archive is external under L22; both clean builds produced the same compressed bytes."
+}

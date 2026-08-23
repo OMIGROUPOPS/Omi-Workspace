@@ -1,0 +1,22 @@
+{
+  "operator_word": "PROCEED — authorized in writing",
+  "authorized_pass_cap": 3,
+  "passes_executed": 1,
+  "pass_1": {
+    "valid_completes": 77,
+    "honest_denominator": 680,
+    "locked_cents": 226,
+    "average_game_delta_vs_100_cents": 2.935064935064935,
+    "champion_identity_floor": 311,
+    "identity_retained": 53,
+    "identity_lost": 258,
+    "identity_gained": 24,
+    "hard_floor_pass": false
+  },
+  "self_stop": true,
+  "stop_reason": "Pass 1 valid completes 77 < hard floor 311.",
+  "passes_2_and_3": "NOT_RUN_BY_SELF_STOP_LAW",
+  "filed_adjustments": [],
+  "case_study_v9": "NOT_EMITTED_PASS_NOT_ACCEPTED",
+  "sealed_live_deployment_access": false
+}

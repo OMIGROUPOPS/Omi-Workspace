@@ -1,0 +1,16 @@
+{
+  "status": "BOUNDED_MECHANICAL_REPAIR",
+  "policy_bytes_changed": false,
+  "issue_count": 8,
+  "law": "Only demonstrably truncated terminal CSV fragments are skipped; every other malformed capture row fails loud.",
+  "issues": [
+    {"path":"KXATPCHALLENGERMATCH-26JUL13ARSMAR-ARS.csv.gz","row":85729,"raw":"2026-0"},
+    {"path":"KXATPCHALLENGERMATCH-26JUL13ARSMAR-MAR.csv.gz","row":104012,"raw":"2026-07-13 10:22:45"},
+    {"path":"KXATPCHALLENGERMATCH-26JUL20MARBIT-BIT.csv.gz","row":23014,"raw":"2026-07-20 07:01:32"},
+    {"path":"KXWTACHALLENGERMATCH-26JUL14BARKOL-BAR.csv.gz","row":48079,"raw":"2026-07-14 1"},
+    {"path":"KXWTAMATCH-26JUL14BULPRI-BUL.csv.gz","row":67739,"raw":"2026-07-14 10:44"},
+    {"path":"KXWTAMATCH-26JUL14BULPRI-PRI.csv.gz","row":88033,"raw":"2026-07-14 10:"},
+    {"path":"KXWTAMATCH-26JUL14OLIIPE-OLI.csv.gz","row":84597,"raw":"2026-0"},
+    {"path":"KXWTAMATCH-26JUL20NIEMAL-NIE.csv.gz","row":74894,"raw":"2026-07-20 06:18:30"}
+  ]
+}

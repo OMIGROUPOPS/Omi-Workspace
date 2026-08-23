@@ -1,0 +1,93 @@
+{
+  "report_only_inside_tune": true,
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "completed": true,
+      "combined_entry_cents": 76,
+      "delta_vs_100_cents": 24,
+      "report_only_ratchet_cents": 7,
+      "ratchet_held": true,
+      "legs": {
+        "BAR": {
+          "credited": true,
+          "entry_cents": 30,
+          "fill_timestamp_epoch": 1783874430.204,
+          "terminal_target_cents": null
+        },
+        "GIU": {
+          "credited": true,
+          "entry_cents": 46,
+          "fill_timestamp_epoch": 1783877733.112,
+          "terminal_target_cents": null
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": true,
+      "combined_entry_cents": 98,
+      "delta_vs_100_cents": 2,
+      "report_only_ratchet_cents": 3,
+      "ratchet_held": false,
+      "legs": {
+        "PAL": {
+          "credited": true,
+          "entry_cents": 33,
+          "fill_timestamp_epoch": 1784042247.089,
+          "terminal_target_cents": null
+        },
+        "URS": {
+          "credited": true,
+          "entry_cents": 65,
+          "fill_timestamp_epoch": 1784042719.848,
+          "terminal_target_cents": null
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": true,
+      "combined_entry_cents": 97,
+      "delta_vs_100_cents": 3,
+      "report_only_ratchet_cents": 6,
+      "ratchet_held": false,
+      "legs": {
+        "LAJ": {
+          "credited": true,
+          "entry_cents": 51,
+          "fill_timestamp_epoch": 1784060123.219,
+          "terminal_target_cents": null
+        },
+        "SVA": {
+          "credited": true,
+          "entry_cents": 46,
+          "fill_timestamp_epoch": 1784079176.095,
+          "terminal_target_cents": null
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "completed": true,
+      "combined_entry_cents": 96,
+      "delta_vs_100_cents": 4,
+      "report_only_ratchet_cents": null,
+      "ratchet_held": null,
+      "legs": {
+        "DAN": {
+          "credited": true,
+          "entry_cents": 55,
+          "fill_timestamp_epoch": 1784373326.473,
+          "terminal_target_cents": null
+        },
+        "PRA": {
+          "credited": true,
+          "entry_cents": 41,
+          "fill_timestamp_epoch": 1784369249.287,
+          "terminal_target_cents": null
+        }
+      }
+    }
+  ]
+}

@@ -11,6 +11,7 @@ const bellLibrary = require("./window1_v54_bell_bound_library.js");
 const subsetGuard = require("./window1_named_subset_guard.js");
 
 let activeExecutionGuard = null;
+const LOAD_TICK_ISSUES = [];
 
 const TARGETS = Object.freeze({
   smoke: ["KXWTAMATCH-26JUL13CRIJEA"],
@@ -396,7 +397,14 @@ function loadTicks(privateRoot, meta) {
     const headers = parseCsvLine(lines.shift().replace(/^\uFEFF/, ""));
     lines.forEach((line, index) => {
       const row = objectFromCsv(headers, line);
-      rows.push({ event_id: meta.event_id, leg_id: legId, timestamp_epoch: parseEt(row.ts_et), receipt: `${path.basename(file)}#row-${index + 1}`, kind: "BOOK", bid_cents: number(row.bid_1), ask_cents: number(row.ask_1), last_trade_cents: number(row.last_trade), bid_1_sz: number(row.bid_1_sz), ask_1_sz: number(row.ask_1_sz), bid_depth_5: number(row.bid_depth_5), ask_depth_5: number(row.ask_depth_5), source: "EXTERNAL_CUSTODY_DUAL_BOOK" });
+      let timestampEpoch;
+      try { timestampEpoch = parseEt(row.ts_et); }
+      catch (error) {
+        const issue = { event_id: meta.event_id, leg_id: legId, file, row: index + 1, raw_line: line, ts_et: row.ts_et, reason: "TRUNCATED_OR_MALFORMED_CAPTURE_ROW_SKIPPED" };
+        if (line.length < headers.join(",").length / 4 || String(row.ts_et).length < 20) { LOAD_TICK_ISSUES.push(issue); return; }
+        throw error;
+      }
+      rows.push({ event_id: meta.event_id, leg_id: legId, timestamp_epoch: timestampEpoch, receipt: `${path.basename(file)}#row-${index + 1}`, kind: "BOOK", bid_cents: number(row.bid_1), ask_cents: number(row.ask_1), last_trade_cents: number(row.last_trade), bid_1_sz: number(row.bid_1_sz), ask_1_sz: number(row.ask_1_sz), bid_depth_5: number(row.bid_depth_5), ask_depth_5: number(row.ask_depth_5), source: "EXTERNAL_CUSTODY_DUAL_BOOK" });
     });
   }
   return rows;
@@ -457,7 +465,9 @@ function turningEpochs(meta, rows) {
     steps.forEach((row) => epochs.add(row.timestamp_epoch));
     const firstPrint = legRows.find((row) => row.kind === "PRINT"); if (firstPrint) epochs.add(firstPrint.timestamp_epoch);
   }
-  const max = Number.isFinite(meta.bell_epoch) ? meta.bell_epoch : Math.max(...rows.map((row) => row.timestamp_epoch));
+  let materializedMax = Number.NEGATIVE_INFINITY;
+  if (!Number.isFinite(meta.bell_epoch)) for (const row of rows) if (row.timestamp_epoch > materializedMax) materializedMax = row.timestamp_epoch;
+  const max = Number.isFinite(meta.bell_epoch) ? meta.bell_epoch : materializedMax;
   for (let ts = meta.discovery_epoch + 3 * 3600; ts < max; ts += 3 * 3600) epochs.add(ts);
   return [...epochs].filter(Number.isFinite).sort((a, b) => a - b);
 }
@@ -967,4 +977,22 @@ async function main() {
   process.stdout.write(canonical({ output, functionable: functionality.all_connected, smoke: "PASS_NO_GRADING", stories: storyResults, floor_breaks: floorBreaks, full_804_run: false, sealed: false, live: false }));
 }
 
-main().catch((error) => { process.stderr.write(`${error.stack || error}\n`); process.exitCode = 1; });
+if (require.main === module) main().catch((error) => { process.stderr.write(`${error.stack || error}\n`); process.exitCode = 1; });
+
+module.exports = {
+  GROUND_TRUTH_COMMIT,
+  GROUND_TRUTH_PATH,
+  loadCorpus,
+  loadGroundTruth,
+  targetMeta,
+  bindCorpusFloorTiming,
+  loadTicks,
+  loadTargetPrints,
+  replayEvent,
+  streamJsonl,
+  receipt,
+  fileHash,
+  shaBytes,
+  canonical,
+  LOAD_TICK_ISSUES,
+};

@@ -1,0 +1,19 @@
+{
+  "threshold_bytes": 10485760,
+  "untracked_files_over_threshold": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_l19a_fit_composition_pass1_20260822/CC_DRAWN_STORIES_30.json",
+      "bytes": 12197060,
+      "disposition": "COMMIT_IN_THIS_PASS",
+      "sha256": "97c76a0382a569d86d36c0199c74059f2778b5040c593e4f73b3a026ee1e32b5"
+    }
+  ],
+  "untracked_directories_below_threshold": [
+    {
+      "path": ".foundation-cache/",
+      "disposition": "LOCAL_BUILD_CACHE_NOT_COMMITTED",
+      "note": "The identical tracked Foundation store is bound by SOURCE_RECEIPTS.json."
+    }
+  ],
+  "external_custody": "See EXTERNAL_CUSTODY_MANIFEST.json; external files are not worktree artifacts."
+}

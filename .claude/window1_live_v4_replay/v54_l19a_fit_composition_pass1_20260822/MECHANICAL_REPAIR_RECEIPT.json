@@ -1,0 +1,22 @@
+{
+  "status": "REPAIRED_BEFORE_SCORE_EMISSION",
+  "repairs": [
+    {
+      "issue": "Champion identity initially admitted fills outside each audited W1 span.",
+      "repair": "Require both fill timestamps to lie within the audited span_start_epoch..span_end_epoch.",
+      "result": "Frozen V52l champion identity reproduces exactly 311 games."
+    },
+    {
+      "issue": "UNKNOWN_BELL tape fallback spread a large timestamp array into Math.max and exhausted the JavaScript call stack.",
+      "repair": "Compute the same maximum with a bounded loop.",
+      "result": "Same boundary value, bounded memory."
+    },
+    {
+      "issue": "Eight gzip CSVs contain one demonstrably truncated capture fragment each.",
+      "repair": "Skip only the recorded incomplete fragments and fail loud on all other parse errors.",
+      "result": "804-event input materialization completed; issue identities are sealed in CAPTURE_INPUT_ISSUES.json."
+    }
+  ],
+  "behavioral_or_policy_repairs": 0,
+  "score_rows_emitted_before_repairs": 0
+}

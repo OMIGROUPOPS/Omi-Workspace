@@ -18826,6 +18826,10 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| STORY-DIVE MANDATE — below 50% of offered on any tune pass, next step is individual-game story dives (losses weighted), not another scale pass | 2026-08-22 | F-VS-087 |
+| THE BENCHMARK — success ≈80% of honestly-offered captured on shown logic; avg game delta second ruler; not a gradient target | 2026-08-22 | F-VS-086 |
+| LUCK vs LOGIC — a capture is understood only when its sentence shows the derivation that priced it; underived captures are luck, never a floor | 2026-08-22 | F-VS-085 (retires the 311 floor; F-VS-088) |
+| ONE OS — one OS iteratively improved; candidate/champion vocabulary retired; regression protection targets law and honesty, never identity | 2026-08-22 | F-VS-084 |
 | CONDITIONAL-EXPECTATION — no population ratio sets a level unconditioned; graded against this leg's own tape first; blanket ratio = violation | 2026-08-22 | F-VS-066 (binds F-VS-062) |
 | WINDOWS-ON-OWN-CLOCKS — each side's cheap window hunted while live, priced from its own evidence; sequencing is an outcome, never a decreed order | 2026-08-22 | F-VS-065 (binds F-VS-053/064) |
 | LAYER-FIT RULING — non-subsecond stores inform MACRO, may inform MICRO, never MICRO-MICRO; every citation carries grain + layer | 2026-08-22 | F-VS-060 |
@@ -19567,3 +19571,10 @@ The Foundation catalogued in §l (F-VS-058): 9.33M minute rows, 19,207 tickers, 
 - GIU accept: conditioned distribution EMPTY at the accept; 69 = post-only cap; the 66 came 66 min later, pre-bell (F-VS-069).
 - Conservation residue: 8 of 75 targets bound by the uncredited sibling (SVA 2, PAL 1, DAN 5), SVA's at the floor-print receipt (F-VS-070).
 - Defect named: EMPTY-DISTRIBUTION FALLBACK — caps/lineage decide when the distribution has no members; took GIU, waited SVA (F-VS-071). Measurement only.
+
+## aa. FOUR RULINGS — ONE OS · LUCK vs LOGIC · THE BENCHMARK · STORY-DIVE (appended 2026-08-23; operator relay 2026-08-22)
+
+- ONE OS: iterations are versions of one build, vaulted for record; candidate/champion vocabulary retired; regression protection = law + honesty (F-VS-084).
+- LUCK vs LOGIC: understood = sentence shows the pricing derivation; otherwise luck, counted in denominator context, never a floor (F-VS-085). The reflex's 311: 0 sentence-shown, 15 traced by machine read, 296 ledger-only → luck for floor purposes; logic-backed baseline 77/680 = 11.3% (ATP_CHALL 4.8 · ATP_MAIN 30.4 · WTA_CHALL 2.1 · WTA_MAIN 13.8) (F-VS-088).
+- THE BENCHMARK: ≈80% of honestly-offered on shown logic (≈544/680), avg game delta second; measures the OS working, not a gradient target (F-VS-086).
+- STORY-DIVE MANDATE: below 50% on any tune pass → individual-game story dives, losses weighted, before any scale pass; the LOST_258 rows are the queue (F-VS-087).

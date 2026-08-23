@@ -1,0 +1,191 @@
+{
+  "label": "V54_COMPOSITION_REBUILD_MIND_WINDOWED_TOUCH_PRICED_MAP_LICENSED",
+  "files": {
+    "ASSUMPTION_GAPS.md": {
+      "path": "ASSUMPTION_GAPS.md",
+      "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+      "bytes": 943,
+      "rows": null
+    },
+    "CC_URSPAL_LATE_BELL.md": {
+      "path": "CC_URSPAL_LATE_BELL.md",
+      "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+      "bytes": 464,
+      "rows": null
+    },
+    "COMPOSITION_PRESENCE_RECEIPT.json": {
+      "path": "COMPOSITION_PRESENCE_RECEIPT.json",
+      "sha256": "d2403944d5abd14d3fa64eca58d3a5de5a463683c11d76815f4eb3376add01d3",
+      "bytes": 1187279,
+      "rows": null
+    },
+    "CORPUS_CENSUS.json": {
+      "path": "CORPUS_CENSUS.json",
+      "sha256": "8acedb8c116f2eaaee146f39ff24b04008ba5bd68a0de076f49dacb3e2ab181a",
+      "bytes": 14066,
+      "rows": null
+    },
+    "CORPUS_INDEX.jsonl.gz": {
+      "path": "CORPUS_INDEX.jsonl.gz",
+      "sha256": "0c5aa898c29014fe97bec13ff0d81a2c323d87f739644e62fdc4df2428abf996",
+      "bytes": 2729397,
+      "rows": null
+    },
+    "EVIDENCE_LADDER_RECEIPT.json": {
+      "path": "EVIDENCE_LADDER_RECEIPT.json",
+      "sha256": "b9770c072f7822abbd2247267676847d33d9adb34eb30d203582f7dd9f4a8b81",
+      "bytes": 3957583,
+      "rows": null
+    },
+    "EXTERNAL_CUSTODY_MANIFEST.json": {
+      "path": "EXTERNAL_CUSTODY_MANIFEST.json",
+      "sha256": "9998aebcaa731a6d473cf4cdec3885d3c7c3aa7fc034a61e7b89232da73462fe",
+      "bytes": 689,
+      "rows": null
+    },
+    "FILL_HANDOFF_RECEIPT.json": {
+      "path": "FILL_HANDOFF_RECEIPT.json",
+      "sha256": "91e93a549d19e8c8aefe0a9d539bbb32040bc1f18a060f582a27775a8f4b0dbd",
+      "bytes": 35226,
+      "rows": null
+    },
+    "FLOOR_TIME_BINDING_COVERAGE.json": {
+      "path": "FLOOR_TIME_BINDING_COVERAGE.json",
+      "sha256": "68a7fb7501068cb25d4a1533c1ff195982689466c76dc4d7b02bdd0c79c87811",
+      "bytes": 2345,
+      "rows": null
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+      "bytes": 465,
+      "rows": null
+    },
+    "FOUNDATION_COVERAGE_BEFORE_AFTER.json": {
+      "path": "FOUNDATION_COVERAGE_BEFORE_AFTER.json",
+      "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+      "bytes": 593,
+      "rows": null
+    },
+    "FOUNDATION_LIBRARY.jsonl.gz": {
+      "path": "FOUNDATION_LIBRARY.jsonl.gz",
+      "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+      "bytes": 2159635,
+      "rows": null
+    },
+    "FOUNDATION_LIBRARY_RECEIPT.json": {
+      "path": "FOUNDATION_LIBRARY_RECEIPT.json",
+      "sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5",
+      "bytes": 3558,
+      "rows": null
+    },
+    "FOUNDATION_SERVING_FIX_RECEIPT.json": {
+      "path": "FOUNDATION_SERVING_FIX_RECEIPT.json",
+      "sha256": "d587e34decd6b665d816b4084b06d327dbd4af7c95e0773b024dc257ea1f5eab",
+      "bytes": 2253,
+      "rows": null
+    },
+    "FOUR_STORIES.md": {
+      "path": "FOUR_STORIES.md",
+      "sha256": "2475e4f7cf360c1b9ac68ea8ab999f3b88d2428f41ebe551c29f1bcd58b4a51b",
+      "bytes": 4859669,
+      "rows": null
+    },
+    "FOUR_STORIES_RECEIPT.json": {
+      "path": "FOUR_STORIES_RECEIPT.json",
+      "sha256": "e069f7fe0bb33cc9e6427b5b783c549430e1e1dda7e834dcac86db92ad3a3361",
+      "bytes": 19411,
+      "rows": null
+    },
+    "FUNCTIONALITY_RECEIPT.json": {
+      "path": "FUNCTIONALITY_RECEIPT.json",
+      "sha256": "3e55b7929c076cf0603df3f2ea03182cc00da81d0a9b631c62ceed540fb29a68",
+      "bytes": 24191,
+      "rows": null
+    },
+    "ITERATION4_LAJSVA_DEPTH_SENTENCES_VERBATIM.md": {
+      "path": "ITERATION4_LAJSVA_DEPTH_SENTENCES_VERBATIM.md",
+      "sha256": "cc5e9e45eaafbc3172dc7febd0a1d3af62d7a1ba793cd11512e9d90afac4d71e",
+      "bytes": 135524,
+      "rows": null
+    },
+    "LAJSVA_EARLY_RISER_FORENSICS.json": {
+      "path": "LAJSVA_EARLY_RISER_FORENSICS.json",
+      "sha256": "cbedfad492e2876ea591f876f4f2aee9af06a8dad92871240b694348fd4afaf8",
+      "bytes": 149873,
+      "rows": null
+    },
+    "LIBRARY_BELL_BOUND_RECEIPT.json": {
+      "path": "LIBRARY_BELL_BOUND_RECEIPT.json",
+      "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+      "bytes": 15882,
+      "rows": null
+    },
+    "PROCESS_FIRST_CONFIRM.md": {
+      "path": "PROCESS_FIRST_CONFIRM.md",
+      "sha256": "a2b2646a66383ad9c6a877bf97b0723e293eb682354ae7f06165d973e5448302",
+      "bytes": 178559,
+      "rows": null
+    },
+    "PROCESS_FIRST_CONFIRM_RECEIPT.json": {
+      "path": "PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "sha256": "94c5ff242a52268bec3ec009f3966103419d7f25c6c3b8efdfea7335029b77b0",
+      "bytes": 625417,
+      "rows": null
+    },
+    "REPAIR_FOUR_GAME_TRACE.jsonl.gz": {
+      "path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "94cea81bc51babace679073484653db6f46d0788d73f2fe8fd406abbe5c94bc0",
+      "bytes": 2764956,
+      "rows": null
+    },
+    "REPAIR_GATE_RECEIPT.json": {
+      "path": "REPAIR_GATE_RECEIPT.json",
+      "sha256": "58f57b3dcdf135507e1ad453e8c195057d874a56192e0b0c545b385b9d83691c",
+      "bytes": 3837,
+      "rows": null
+    },
+    "SMOKE_CRIJEA.md": {
+      "path": "SMOKE_CRIJEA.md",
+      "sha256": "aa78dec694d3c2efe23c4715d25a2fea0fb4c5ea9d34d339a9f3db9822b390f8",
+      "bytes": 2108358,
+      "rows": null
+    },
+    "SMOKE_CRIJEA_RECEIPT.json": {
+      "path": "SMOKE_CRIJEA_RECEIPT.json",
+      "sha256": "7aebfe5eda66c29fa072ec5fcd29c185ac7d7caf257622248417b6d38c623f54",
+      "bytes": 776124,
+      "rows": null
+    },
+    "SOURCE_RECEIPTS.json": {
+      "path": "SOURCE_RECEIPTS.json",
+      "sha256": "d44da76c095fff7f994c7f06e95e63e8fceca772808bcc5cc8b2e8b242f2e4f1",
+      "bytes": 57341,
+      "rows": null
+    },
+    "SPLIT_ALLOCATION_RECEIPT.json": {
+      "path": "SPLIT_ALLOCATION_RECEIPT.json",
+      "sha256": "ceae703666c96eacc23d244c4de9fa68aff516bc9b3f8771c0ca243920078731",
+      "bytes": 1967608,
+      "rows": null
+    },
+    "TARGET_PRINTS_5.jsonl.gz": {
+      "path": "TARGET_PRINTS_5.jsonl.gz",
+      "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+      "bytes": 1224927,
+      "rows": null
+    },
+    "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json": {
+      "path": "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json",
+      "sha256": "8075a2d1884cf198b8aa57849a442d13471a4f95df9348ec700c04b3cfe09389",
+      "bytes": 3234,
+      "rows": null
+    },
+    "WORKTREE_LARGE_UNTRACKED_CENSUS.json": {
+      "path": "WORKTREE_LARGE_UNTRACKED_CENSUS.json",
+      "sha256": "17e65b48d24a38480a0747c9520209c451496d76490251393713787ab596cbdc",
+      "bytes": 143,
+      "rows": null
+    }
+  }
+}

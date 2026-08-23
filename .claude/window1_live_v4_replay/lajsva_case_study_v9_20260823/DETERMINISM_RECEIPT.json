@@ -1,0 +1,60 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V9_LAYERED_DUAL_BELIEF_DETERMINISM_X2",
+  "two_clean_builds": true,
+  "byte_identical": true,
+  "compared_artifacts": 7,
+  "comparisons": [
+    {
+      "path": "CASE_STUDY_RECEIPT.json",
+      "first_sha256": "759fa0188ee2a7b9246f0ff070fb64228a2ec0d4fc5844531229edc477417f1e",
+      "second_sha256": "759fa0188ee2a7b9246f0ff070fb64228a2ec0d4fc5844531229edc477417f1e",
+      "bytes": 4458,
+      "byte_identical": true
+    },
+    {
+      "path": "PANEL_A_PAIR_RENDER.html",
+      "first_sha256": "76ba6214bedd3aca2004f6e2ed5ddae8044a9961eb5b8702c4c9d89abd9691f6",
+      "second_sha256": "76ba6214bedd3aca2004f6e2ed5ddae8044a9961eb5b8702c4c9d89abd9691f6",
+      "bytes": 1737,
+      "byte_identical": true
+    },
+    {
+      "path": "PANEL_B_ENGAGEMENT.html",
+      "first_sha256": "4c81ee2fe64f8f719ff3da9349d03a62737cfd553e9e6fb01d3fd105464d7d8d",
+      "second_sha256": "4c81ee2fe64f8f719ff3da9349d03a62737cfd553e9e6fb01d3fd105464d7d8d",
+      "bytes": 1813,
+      "byte_identical": true
+    },
+    {
+      "path": "PANEL_C_TRADE_REPORTS.html",
+      "first_sha256": "8730007263bee717cfe99abf468c0190cfdd1d1efc0a9a46b12e367b16541ad1",
+      "second_sha256": "8730007263bee717cfe99abf468c0190cfdd1d1efc0a9a46b12e367b16541ad1",
+      "bytes": 1086,
+      "byte_identical": true
+    },
+    {
+      "path": "TRADE_REPORT_PATTERN_ENGINE.md",
+      "first_sha256": "6f0ecd1ea39d9e1ecd1e439a07a62d1f1d06f1287b38778d5f944b38c272da92",
+      "second_sha256": "6f0ecd1ea39d9e1ecd1e439a07a62d1f1d06f1287b38778d5f944b38c272da92",
+      "bytes": 468,
+      "byte_identical": true
+    },
+    {
+      "path": "TRADE_REPORT_REFLEX.md",
+      "first_sha256": "e5dab93f7a289f3d9624b2b1720598b78c393c841b9bda3c7223e16006c9e6bf",
+      "second_sha256": "e5dab93f7a289f3d9624b2b1720598b78c393c841b9bda3c7223e16006c9e6bf",
+      "bytes": 166,
+      "byte_identical": true
+    },
+    {
+      "path": "V1_V2_V3_V4_V5_V6_V7_V8_V9_SIDE_BY_SIDE.md",
+      "first_sha256": "9697ae88739c08b93517d4853f52513b126c7147b69dd77cedbeee4cdbd2b47d",
+      "second_sha256": "9697ae88739c08b93517d4853f52513b126c7147b69dd77cedbeee4cdbd2b47d",
+      "bytes": 356,
+      "byte_identical": true
+    }
+  ],
+  "first_build_source": "lajsva-v9-final-a",
+  "second_build_source": "lajsva-v9-final-b",
+  "decision_code_changed_between_builds": false
+}

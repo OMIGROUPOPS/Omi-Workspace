@@ -1,0 +1,200 @@
+{
+  "label": "V54_LAYERED_DUAL_BELIEF_DETERMINISM_X2",
+  "two_clean_builds": true,
+  "byte_identical": true,
+  "compared_artifacts": 27,
+  "comparisons": [
+    {
+      "path": "ASSUMPTION_GAPS.md",
+      "first_sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+      "second_sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+      "bytes": 943,
+      "byte_identical": true
+    },
+    {
+      "path": "CC_URSPAL_LATE_BELL.md",
+      "first_sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+      "second_sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+      "bytes": 464,
+      "byte_identical": true
+    },
+    {
+      "path": "COHERENCE_TIMELINES.json",
+      "first_sha256": "df592e2bdb3e9280f656abac3134596df62d48388b51c81c3c2f25e10837f834",
+      "second_sha256": "df592e2bdb3e9280f656abac3134596df62d48388b51c81c3c2f25e10837f834",
+      "bytes": 351022,
+      "byte_identical": true
+    },
+    {
+      "path": "CORPUS_CENSUS.json",
+      "first_sha256": "8acedb8c116f2eaaee146f39ff24b04008ba5bd68a0de076f49dacb3e2ab181a",
+      "second_sha256": "8acedb8c116f2eaaee146f39ff24b04008ba5bd68a0de076f49dacb3e2ab181a",
+      "bytes": 14066,
+      "byte_identical": true
+    },
+    {
+      "path": "CORPUS_INDEX.jsonl.gz",
+      "first_sha256": "0c5aa898c29014fe97bec13ff0d81a2c323d87f739644e62fdc4df2428abf996",
+      "second_sha256": "0c5aa898c29014fe97bec13ff0d81a2c323d87f739644e62fdc4df2428abf996",
+      "bytes": 2729397,
+      "byte_identical": true
+    },
+    {
+      "path": "EXTERNAL_CUSTODY_MANIFEST.json",
+      "first_sha256": "9998aebcaa731a6d473cf4cdec3885d3c7c3aa7fc034a61e7b89232da73462fe",
+      "second_sha256": "9998aebcaa731a6d473cf4cdec3885d3c7c3aa7fc034a61e7b89232da73462fe",
+      "bytes": 689,
+      "byte_identical": true
+    },
+    {
+      "path": "FILL_HANDOFF_RECEIPT.json",
+      "first_sha256": "6511dedc1867e26e37279473ed09f27d36b2f4e2285589a72b6e30ee26cebdba",
+      "second_sha256": "6511dedc1867e26e37279473ed09f27d36b2f4e2285589a72b6e30ee26cebdba",
+      "bytes": 239311,
+      "byte_identical": true
+    },
+    {
+      "path": "FLOOR_TIME_BINDING_COVERAGE.json",
+      "first_sha256": "68a7fb7501068cb25d4a1533c1ff195982689466c76dc4d7b02bdd0c79c87811",
+      "second_sha256": "68a7fb7501068cb25d4a1533c1ff195982689466c76dc4d7b02bdd0c79c87811",
+      "bytes": 2345,
+      "byte_identical": true
+    },
+    {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "first_sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+      "second_sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+      "bytes": 465,
+      "byte_identical": true
+    },
+    {
+      "path": "FOUNDATION_COVERAGE_BEFORE_AFTER.json",
+      "first_sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+      "second_sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+      "bytes": 593,
+      "byte_identical": true
+    },
+    {
+      "path": "FOUNDATION_LIBRARY.jsonl.gz",
+      "first_sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+      "second_sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+      "bytes": 2159635,
+      "byte_identical": true
+    },
+    {
+      "path": "FOUNDATION_LIBRARY_RECEIPT.json",
+      "first_sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5",
+      "second_sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5",
+      "bytes": 3558,
+      "byte_identical": true
+    },
+    {
+      "path": "FOUR_STORIES.md",
+      "first_sha256": "da2a7235c898e800e87033336410635ad2b2fa27984baa0427a4af9c605b4b07",
+      "second_sha256": "da2a7235c898e800e87033336410635ad2b2fa27984baa0427a4af9c605b4b07",
+      "bytes": 1102207,
+      "byte_identical": true
+    },
+    {
+      "path": "FOUR_STORIES_RECEIPT.json",
+      "first_sha256": "7ab472dd3d3e2e4268664b6fa873b8b720c2bcb98392f3e315002d23e734a7a3",
+      "second_sha256": "7ab472dd3d3e2e4268664b6fa873b8b720c2bcb98392f3e315002d23e734a7a3",
+      "bytes": 22696,
+      "byte_identical": true
+    },
+    {
+      "path": "FUNCTIONALITY_RECEIPT.json",
+      "first_sha256": "3e55b7929c076cf0603df3f2ea03182cc00da81d0a9b631c62ceed540fb29a68",
+      "second_sha256": "3e55b7929c076cf0603df3f2ea03182cc00da81d0a9b631c62ceed540fb29a68",
+      "bytes": 24191,
+      "byte_identical": true
+    },
+    {
+      "path": "LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "first_sha256": "aa75edb9fc4fd0d1b9b5d02c0ffdd0e9359a44807ad0df8fc9d103e47102622d",
+      "second_sha256": "aa75edb9fc4fd0d1b9b5d02c0ffdd0e9359a44807ad0df8fc9d103e47102622d",
+      "bytes": 372500,
+      "byte_identical": true
+    },
+    {
+      "path": "LIBRARY_BELL_BOUND_RECEIPT.json",
+      "first_sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+      "second_sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+      "bytes": 15882,
+      "byte_identical": true
+    },
+    {
+      "path": "PROCESS_FIRST_CONFIRM.md",
+      "first_sha256": "1e456662c6c2c277429134f05dd473e65fc5aea8f86d4138368db3bde7045451",
+      "second_sha256": "1e456662c6c2c277429134f05dd473e65fc5aea8f86d4138368db3bde7045451",
+      "bytes": 50851,
+      "byte_identical": true
+    },
+    {
+      "path": "PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "first_sha256": "0dd67b6642d2342b5808b92034a64fc453f0fb92ed2746c6d2659582266afaee",
+      "second_sha256": "0dd67b6642d2342b5808b92034a64fc453f0fb92ed2746c6d2659582266afaee",
+      "bytes": 524207,
+      "byte_identical": true
+    },
+    {
+      "path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "first_sha256": "d9930e8c6f371ec7878834786c9f399679601ef41cae6f8a4d3d5ca2bacfeb2b",
+      "second_sha256": "d9930e8c6f371ec7878834786c9f399679601ef41cae6f8a4d3d5ca2bacfeb2b",
+      "bytes": 30688450,
+      "byte_identical": true
+    },
+    {
+      "path": "REPAIR_GATE_RECEIPT.json",
+      "first_sha256": "0cf9aef2e1ee6d03960ce0ad17fc7275c819099af057958894fb1715fc8f436f",
+      "second_sha256": "0cf9aef2e1ee6d03960ce0ad17fc7275c819099af057958894fb1715fc8f436f",
+      "bytes": 1289,
+      "byte_identical": true
+    },
+    {
+      "path": "SMOKE_CRIJEA.md",
+      "first_sha256": "9797551a1a4b752dcd0ff5e04d4335cafc39412239ebf32aad5bea965f04b6e7",
+      "second_sha256": "9797551a1a4b752dcd0ff5e04d4335cafc39412239ebf32aad5bea965f04b6e7",
+      "bytes": 8361330,
+      "byte_identical": true
+    },
+    {
+      "path": "SMOKE_CRIJEA_RECEIPT.json",
+      "first_sha256": "add3a529ce500212124521c06da84a0727f2e251c412dc421a23939d7d6d2050",
+      "second_sha256": "add3a529ce500212124521c06da84a0727f2e251c412dc421a23939d7d6d2050",
+      "bytes": 1080000,
+      "byte_identical": true
+    },
+    {
+      "path": "SOURCE_RECEIPTS.json",
+      "first_sha256": "d44da76c095fff7f994c7f06e95e63e8fceca772808bcc5cc8b2e8b242f2e4f1",
+      "second_sha256": "d44da76c095fff7f994c7f06e95e63e8fceca772808bcc5cc8b2e8b242f2e4f1",
+      "bytes": 57341,
+      "byte_identical": true
+    },
+    {
+      "path": "TARGET_PRINTS_5.jsonl.gz",
+      "first_sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+      "second_sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+      "bytes": 1224927,
+      "byte_identical": true
+    },
+    {
+      "path": "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json",
+      "first_sha256": "8075a2d1884cf198b8aa57849a442d13471a4f95df9348ec700c04b3cfe09389",
+      "second_sha256": "8075a2d1884cf198b8aa57849a442d13471a4f95df9348ec700c04b3cfe09389",
+      "bytes": 3234,
+      "byte_identical": true
+    },
+    {
+      "path": "WORKTREE_LARGE_UNTRACKED_CENSUS.json",
+      "first_sha256": "17e65b48d24a38480a0747c9520209c451496d76490251393713787ab596cbdc",
+      "second_sha256": "17e65b48d24a38480a0747c9520209c451496d76490251393713787ab596cbdc",
+      "bytes": 143,
+      "byte_identical": true
+    }
+  ],
+  "first_build_source": "v54-dual-belief-final-a2",
+  "second_build_source": "v54-dual-belief-final-b2",
+  "decision_code_changed_between_builds": false
+}

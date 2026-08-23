@@ -1,0 +1,42 @@
+{
+  "label": "V54_LAYERED_DUAL_BELIEF_GATE",
+  "honest_baseline_pins": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": true,
+      "delta_vs_100_cents": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": true,
+      "delta_vs_100_cents": 6
+    }
+  ],
+  "pins_equal_expected": true,
+  "required_bed_floors": {
+    "KXATPCHALLENGERMATCH_26JUL12GIUBAR": 7,
+    "KXATPCHALLENGERMATCH_26JUL14URSPAL": 3,
+    "KXATPCHALLENGERMATCH_26JUL14LAJSVA": 6
+  },
+  "layered_safety_floor_breaks": [],
+  "safety_floor_pass": true,
+  "law_violations": [],
+  "superseded_composition_scan_signals_not_used_for_verdict": [
+    "UNNAMED_EVIDENCE_LADDER_RUNG",
+    "TOUCH_RELATION_MISSING_FROM_SENTENCE",
+    "DEPTH_DERIVATION_MISSING_FROM_SENTENCE",
+    "EVIDENCE_RUNG_OR_BASIS_MISSING_FROM_SENTENCE",
+    "FOUNDATION_CITATION_GRAIN_OR_LAYER_MISSING",
+    "BELOW_TOUCH_REST_WITHOUT_V3_MAP_LICENSE",
+    "WINDOW_SIDE_TOUCH_OR_MAP_LICENSE_MISSING_FROM_SENTENCE"
+  ],
+  "zero_measured_law_violations": true,
+  "layer_order_complete": true,
+  "sentences_carry_layered_dual_belief": true,
+  "sentences_cite_fills": true,
+  "self_stop": false,
+  "stop_reason": null,
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

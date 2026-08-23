@@ -33,7 +33,7 @@ function emit(context) {
   const compact = Object.fromEntries(Object.entries(coherence.games).map(([eventId, game]) => [eventId, { first_coherence: game.first_coherence, ever_coherent: game.ever_coherent, timeline: compactTimeline(game) }]));
   const actions = Object.entries(compact).flatMap(([eventId, game]) => game.timeline.flatMap((row) => row.actions.map((item) => ({ event_id: eventId, leg_id: item.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, action: item.action, coherence: row.coherence, envelope: item.envelope, sentence_verbatim: item.sentence_verbatim }))));
   const receipt = {
-    label: "V54_LAYERED_DUAL_BELIEF_PROCESS_FIRST",
+    label: "V54_REST_PRICED_LAYERED_DUAL_BELIEF_PROCESS_FIRST",
     order: ["STORES_PULLED_WITH_LAYERS", "URSPAL_LAJSVA_LAYER_WALKS", "GIUBAR_DANPRA_COHERENT_BASELINES", "ACTIONS_WITH_REASONS", "FILLS_AS_CONSEQUENCES", "DELTAS_AND_GATE_LAST"],
     stores_pulled_with_layers: {
       target_tape_rows: storesPulled.tick_rows_by_game,
@@ -55,7 +55,7 @@ function emit(context) {
     const game = compact[eventId];
     return `### ${eventId}\n\nEver coherent: ${game.ever_coherent}. First coherence: ${JSON.stringify(game.first_coherence)}.\n\n${game.timeline.map((row) => `- ${row.timestamp_epoch} [${row.receipt}]: layers=${JSON.stringify(row.layer_status)}; coherence=${row.coherence.status}; predicted sum=${row.coherence.predicted_sum_cents ?? "UNKNOWN"}; spread=${row.coherence.spread_settle_bound_cents ?? "UNKNOWN"}. ${row.actions.map((item) => `${item.leg_id} ${item.action.action} ${item.action.target_cents ?? "NONE"}; sentence VERBATIM: ${item.sentence_verbatim}`).join(" || ")}`.trimEnd()).join("\n")}`;
   };
-  const markdown = `# Layered dual-belief build — process-first confirmation
+  const markdown = `# Rest-priced layered dual-belief build — process-first confirmation
 
 ## 1. Stores pulled, with grain and layer
 
@@ -83,7 +83,7 @@ ${actions.map((row) => `- ${row.event_id}|${row.leg_id} @ ${row.timestamp_epoch}
 
 ## 5. Fills as consequences
 
-${fillEvents.length ? fillEvents.map((row) => `- ${row.context.event_id}|${row.context.leg_id}: ${row.context.entry_cents}¢ at ${row.context.fill_timestamp_epoch}; trade receipt ${row.row_refs.join(",")}; standing target ${row.context.prior_standing_target_cents}.`).join("\n") : "- None."}
+${fillEvents.length ? fillEvents.map((row) => `- ${row.context.event_id}|${row.context.leg_id}: credited ${row.context.entry_cents}¢ at ${row.context.fill_timestamp_epoch} on standing rest ${row.context.prior_standing_target_cents}¢; triggering print ${row.context.triggering_print_price_cents}¢ [${row.context.execution_price_basis}]; trade receipt ${row.row_refs.join(",")}.`).join("\n") : "- None."}
 
 ## 6. Deltas and gate verdict — last
 

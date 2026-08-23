@@ -223,6 +223,9 @@ function creditPosition(state, legId, row) {
   if (row.kind !== "PRINT" || !cent(row.price_cents) || !row.receipt || !Number.isFinite(row.timestamp_epoch)) {
     throw new Error(`FILL_EVENT_REQUIRES_PRINT_RECEIPT ${state.event_id}|${legId}`);
   }
+  const restPrice = cent(position.standing_target_cents);
+  if (!restPrice) throw new Error(`FILL_EVENT_REQUIRES_STANDING_REST ${state.event_id}|${legId}`);
+  if (row.price_cents > restPrice) throw new Error(`PRINT_DID_NOT_KISS_STANDING_REST ${state.event_id}|${legId}`);
   const fillEventReceipt = captureReceipt({
     citationType: "FILL_EVENT",
     sourceId: `${state.event_id}|${legId}`,
@@ -231,14 +234,17 @@ function creditPosition(state, legId, row) {
     context: {
       event_id: state.event_id,
       leg_id: legId,
-      entry_cents: row.price_cents,
+      entry_cents: restPrice,
+      execution_price_basis: "STANDING_REST_LIMIT_CENTS",
+      triggering_print_price_cents: row.price_cents,
       fill_timestamp_epoch: row.timestamp_epoch,
-      prior_standing_target_cents: position.standing_target_cents,
+      prior_standing_target_cents: restPrice,
+      print_at_or_below_rest: row.price_cents <= restPrice,
       transition: "OPEN_REST_TO_CREDITED_HALF_PAIR",
     },
   });
   position.credited = true;
-  position.entry_cents = row.price_cents;
+  position.entry_cents = restPrice;
   position.fill_receipt = row.receipt;
   position.fill_event_receipt = fillEventReceipt;
   position.fill_timestamp_epoch = row.timestamp_epoch;

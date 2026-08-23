@@ -36,7 +36,7 @@ const ANALYSIS_ROOT = ".claude/window1_second_seat/v11_non_action_mechanism_audi
 const ACTUAL_BELL_PATH = `${ANALYSIS_ROOT}/ACTUAL_BELL_TABLE_804.json`;
 const NAMED_NEIGHBOR_PATH = `${ANALYSIS_ROOT}/NEIGHBOR_SPAN_BELL_CHECK.json`;
 const GROUND_TRUTH_CORRECTIONS_PATH = `${ANALYSIS_ROOT}/W1_GROUND_TRUTH_CORRECTIONS.jsonl`;
-const OUTPUT_LABEL = "V54_LAYERED_DUAL_BELIEF";
+const OUTPUT_LABEL = "V54_REST_PRICED_CREDITING_SENTENCE_PRICE";
 const DEPTH_MAP_COMMIT = "ac68e3bc8d2c2018ba883c131b8b4101ae4cd257";
 const DEPTH_MAP_PATH = ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json";
 
@@ -846,7 +846,7 @@ async function main() {
     storyTraces.push(...result.stage_reads.map((stage) => ({ event_id: eventId, kind: "DECISION_STAGE", ...stage })), ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })));
   }
   const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.layered_dual_belief.completed || row.layered_dual_belief.delta_vs_100_cents < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
-  const storiesHeader = `# Four stories — layered dual belief\n\nLicense: LAW_INDEX @ 0591792d, sha256 41784e6a… · F-VS-101/102/103 · F-VS-060/066/053 · L16 SPREAD_SETTLE · macro → micro → micro-micro ordering.\n\nBoth legs derive as one object. Coarse stores speak only at MACRO/MICRO; the action tick is receipt-pinned to subsecond book/print custody. Belief-priced rests begin only after the two sentences cohere against the 100-cent mirror inside the SPREAD_SETTLE bound. Until then the independently licensed frozen lineage stands. No sealed, live, or full-804 run was performed.\n\n`;
+  const storiesHeader = `# Four stories — rest-priced layered dual belief\n\nLicense: LAW_INDEX read @ bcee2c40, sha256 41784e6a… · F-VS-104/105/106 · all standing laws.\n\nEvery credit is priced at the standing rest; the triggering print proves the credit but cannot improve the recorded entry. Every belief-price field names the receipt-pinned settled book mid (series-floored) and carries its bid, ask, and book receipt. Belief-priced rests begin only after the two sentences cohere against the 100-cent mirror inside the SPREAD_SETTLE bound. No sealed, live, or full-804 run was performed.\n\n`;
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
   writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   fs.writeFileSync(path.join(output, "REPAIR_FOUR_GAME_TRACE.jsonl.gz"), zlib.gzipSync(Buffer.from(storyTraces.map((row) => JSON.stringify(row)).join("\n") + "\n"), { level: 9 }));
@@ -901,6 +901,97 @@ async function main() {
   const fillEvents = storyTraces.filter((row) => row.kind === "FILL_EVENT").map((row) => row.fill_event_receipt);
   const fillHandoffs = decisionStages.flatMap((row) => row.derivations).filter((row) => row.derivation.fill_handoff_receipt_id).map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, trade_receipt: row.citation_receipts[row.derivation.fill_handoff_receipt_id]?.context?.original_fill_receipt, handoff_receipt_id: row.derivation.fill_handoff_receipt_id, query_fingerprint_sha256: row.derivation.reposed_query_fingerprint_sha256, sentence: row.sentence }));
   writeJson(path.join(output, "FILL_HANDOFF_RECEIPT.json"), { label: "FILL_HANDOFF_RECEIPT", fill_events: fillEvents, post_fill_derivations: fillHandoffs, every_post_fill_sentence_cites_fill_receipt: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt) && row.sentence.includes(row.handoff_receipt_id)) });
+  const restPriceRows = fillEvents.map((row) => ({
+    event_id: row.context.event_id,
+    leg_id: row.context.leg_id,
+    fill_timestamp_epoch: row.context.fill_timestamp_epoch,
+    fill_receipt: row.receipt_id,
+    standing_rest_cents: row.context.prior_standing_target_cents,
+    triggering_print_cents: row.context.triggering_print_price_cents,
+    credited_entry_cents: row.context.entry_cents,
+    execution_price_basis: row.context.execution_price_basis,
+    entry_equals_standing_rest: row.context.entry_cents === row.context.prior_standing_target_cents,
+    print_at_or_below_rest: row.context.triggering_print_price_cents <= row.context.prior_standing_target_cents,
+  }));
+  const activeCreditingFiles = [
+    "arb-executor/analysis/window1_v54_functionable_os.js",
+    "arb-executor/analysis/window1_v54_dual_belief_os.js",
+    "arb-executor/analysis/build_window1_v54_dual_belief.js",
+    "arb-executor/analysis/window1_v54_dual_belief_reporter.js",
+  ];
+  const printPricedPatterns = [
+    { name: "ENTRY_FROM_ROW_PRICE_OBJECT", regex: /entry_cents\s*:\s*row\.price_cents/g },
+    { name: "ENTRY_FROM_ROW_PRICE_ASSIGNMENT", regex: /entry_cents\s*=\s*row\.price_cents/g },
+    { name: "POSITION_FROM_ROW_PRICE", regex: /position\.entry_cents\s*=\s*row\.price_cents/g },
+  ];
+  const sourceSweep = activeCreditingFiles.map((relative) => {
+    const text = fs.readFileSync(path.join(repo, relative), "utf8");
+    const matches = printPricedPatterns.flatMap((pattern) => [...text.matchAll(pattern.regex)].map((match) => ({ pattern: pattern.name, offset: match.index })));
+    return { path: relative, sha256: shaBytes(text), matches, active_print_priced_residue_count: matches.length };
+  });
+  const printPricedResidueCount = sourceSweep.reduce((sum, row) => sum + row.active_print_priced_residue_count, 0);
+  writeJson(path.join(output, "REST_PRICED_CREDITING_RECEIPT.json"), {
+    label: "REST_PRICED_CREDITING",
+    law: "A qualifying print at-or-below a standing rest proves credit; the credited entry is the rest limit, never the lower triggering print.",
+    law_index_read_at: "bcee2c40",
+    findings: ["F-VS-104", "F-VS-105", "F-VS-106"],
+    fills: restPriceRows,
+    fill_count: restPriceRows.length,
+    prints_strictly_below_rest_count: restPriceRows.filter((row) => row.triggering_print_cents < row.standing_rest_cents).length,
+    every_entry_equals_standing_rest: restPriceRows.every((row) => row.entry_equals_standing_rest),
+    every_triggering_print_at_or_below_rest: restPriceRows.every((row) => row.print_at_or_below_rest),
+  });
+  writeJson(path.join(output, "PRINT_PRICED_RESIDUE_SWEEP.json"), {
+    label: "ACTIVE_EXECUTION_SURFACE_PRINT_PRICED_RESIDUE_SWEEP",
+    scope: "The four files executed by this repair: crediting OS, layered OS, builder/grader, and story/process reporter.",
+    source_files: sourceSweep,
+    active_print_priced_residue_count: printPricedResidueCount,
+    fill_receipt_mismatch_count: restPriceRows.filter((row) => !row.entry_equals_standing_rest).length,
+    report_or_gate_input: "All stories, reports, gates, and score rows consume the position entry produced by the active crediting OS.",
+  });
+  const beliefPriceRows = allDerivations.flatMap((row) => Object.values(row.layered_dual_belief?.micro?.beliefs ?? {}).filter((belief) => belief?.status === "RESOLVED").map((belief) => ({
+    event_id: row.event_id,
+    evaluated_leg_id: row.leg_id,
+    belief_leg_id: belief.leg_id,
+    timestamp_epoch: row.timestamp_epoch,
+    stage_receipt: row.stage_receipt,
+    book_receipt: belief.belief_price_book_receipt,
+    bid_cents: belief.live_bid_cents,
+    ask_cents: belief.live_ask_cents,
+    belief_price_cents: belief.belief_price_cents,
+    basis: belief.belief_price_basis,
+    expected_series_floored_mid_cents: Math.floor((belief.live_bid_cents + belief.live_ask_cents) / 2),
+    field_matches_book_state: belief.belief_price_cents === Math.floor((belief.live_bid_cents + belief.live_ask_cents) / 2),
+  })));
+  writeJson(path.join(output, "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json"), {
+    label: "BELIEF_PRICE_IS_EVIDENCED_BOOK_STATE",
+    bare_reader_level_used_as_belief_price: false,
+    method: "SETTLED_BOOK_MID_SERIES_FLOORED_FROM_RECEIPT_PINNED_BID_ASK",
+    rows: beliefPriceRows,
+    every_field_matches_book_state: beliefPriceRows.every((row) => row.field_matches_book_state),
+    every_row_names_book_receipt: beliefPriceRows.every((row) => Boolean(row.book_receipt)),
+  });
+  const envelopePlacementRows = allDerivations.filter((row) => row.layered_dual_belief?.belief_mode).map((row) => ({
+    event_id: row.event_id,
+    leg_id: row.leg_id,
+    timestamp_epoch: row.timestamp_epoch,
+    receipt: row.stage_receipt,
+    envelope: row.layered_dual_belief.envelope,
+    placement: row.layered_dual_belief.envelope_placement,
+    action: row.action,
+    sentence_verbatim: row.sentence,
+  }));
+  const giubarEnvelopeRows = envelopePlacementRows.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL12GIUBAR");
+  writeJson(path.join(output, "ENVELOPE_PLACEMENT_RECEIPT.json"), {
+    label: "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_PLACEMENT_INSIDE_COHERENT_ENVELOPE",
+    rule: "Within a coherent envelope compare two receipt-derived candidates: live ask minus conditioned remaining-dip q50, and live bid projected inside the licensed envelope. Stand at the deeper candidate and never walk a held conviction upward. No numeric offset is added.",
+    numeric_placement_constant_added: false,
+    rows: envelopePlacementRows,
+    giubar_rows: giubarEnvelopeRows,
+    giubar_licensed_envelope_21_32_present: giubarEnvelopeRows.some((row) => row.leg_id === "BAR" && row.envelope?.low_cents === 21 && row.envelope?.high_cents === 32),
+    giubar_bar_27_derived_present: giubarEnvelopeRows.some((row) => row.leg_id === "BAR" && row.placement?.chosen_target_cents === 27 && row.placement?.floor_side_formula === "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS"),
+  });
+  writeText(path.join(output, "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md"), `# GIUBAR envelope-placement sentences — verbatim\n\n${giubarEnvelopeRows.map((row) => `## ${row.timestamp_epoch} · ${row.leg_id} · ${row.receipt}\n\nEnvelope: ${JSON.stringify(row.envelope)}\n\nPlacement: ${JSON.stringify(row.placement)}\n\n\`\`\`text\n${row.sentence_verbatim}\n\`\`\``).join("\n\n")}\n`);
   const lawViolations = [];
   for (const row of corpus.rows.filter((candidate) => candidate.span?.status === "UNBOUNDED")) {
     for (const leg of row.legs ?? []) if ([leg.low_cents, leg.high_cents, leg.close_cents, leg.net_cents].some(Number.isFinite)) lawViolations.push(`UNBOUNDED_PATH_VALUE_SERVED:${row.event_id}|${leg.leg_id}`);
@@ -948,10 +1039,15 @@ async function main() {
   if (allDerivations.some((row) => !row.sentence.includes("MACRO:") || !row.sentence.includes("MICRO:") || !row.sentence.includes("MICRO-MICRO:") || !row.sentence.includes("ORDER=MACRO="))) lawViolations.push("LAYER_DECOMPOSITION_MISSING_FROM_SENTENCE");
   if (allDerivations.some((row) => !row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS"))) lawViolations.push("V3_KEYING_DRIFT_NOT_STATED_VERBATIM");
   if (allDerivations.some((row) => row.layered_dual_belief.coherence.status === "COHERENT" && (!row.sentence.includes("believes ") || !row.sentence.includes("SIBLING-INVERSE:")))) lawViolations.push("DUAL_BELIEF_SENTENCE_FORMAT_MISSING");
+  if (printPricedResidueCount !== 0 || restPriceRows.some((row) => !row.entry_equals_standing_rest || row.execution_price_basis !== "STANDING_REST_LIMIT_CENTS")) lawViolations.push("PRINT_PRICED_CREDITING_RESIDUE");
+  if (beliefPriceRows.some((row) => !row.field_matches_book_state || !row.book_receipt || row.basis !== "SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK")) lawViolations.push("BELIEF_PRICE_NOT_EVIDENCED_BOOK_STATE");
+  if (allDerivations.some((row) => row.layered_dual_belief?.coherence?.status === "COHERENT" && !row.sentence.includes("SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK"))) lawViolations.push("BELIEF_SENTENCE_BOOK_PRICE_BASIS_MISSING");
+  if (envelopePlacementRows.some((row) => row.placement?.numeric_constant_added !== false || !row.sentence_verbatim.includes("ENVELOPE_PLACEMENT="))) lawViolations.push("ENVELOPE_PLACEMENT_UNLICENSED_OR_SILENT");
+  if (!giubarEnvelopeRows.some((row) => row.leg_id === "BAR" && row.envelope?.low_cents === 21 && row.envelope?.high_cents === 32 && row.placement?.chosen_target_cents === 27 && row.placement?.floor_side_formula === "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS")) lawViolations.push("GIUBAR_27_NOT_DERIVED_INSIDE_21_32_ENVELOPE");
   if (!fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt) && row.sentence.includes(row.handoff_receipt_id))) lawViolations.push("POST_FILL_SENTENCE_WITHOUT_FILL_RECEIPT");
   if (!corpusFloorTiming.every_eligible_game_bound || !corpusFloorTiming.every_eligible_leg_bound) lawViolations.push("BELL_BOUNDED_LIBRARY_FLOOR_TIME_COVERAGE_INCOMPLETE");
   const baselinePins = storyResults.filter((row) => ["KXATPCHALLENGERMATCH-26JUL14URSPAL", "KXATPCHALLENGERMATCH-26JUL14LAJSVA"].includes(row.event_id)).map((row) => ({ event_id: row.event_id, completed: row.lineage_receipt.completed, delta_vs_100_cents: row.lineage_receipt.delta_vs_100_cents }));
-  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "V54_LAYERED_DUAL_BELIEF_GATE", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_bed_floors: SAFETY_FLOORS, layered_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.composition_rebuild.completed, delta_vs_100_cents: row.composition_rebuild.delta_vs_100_cents, legs: row.composition_rebuild.legs })), safety_floor_pass: floorBreaks.length === 0, law_violations: lawViolations, superseded_composition_scan_signals_not_used_for_verdict: supersededCompositionScanSignals, zero_measured_law_violations: lawViolations.length === 0, layer_order_complete: allDerivations.every((row) => !(row.layered_dual_belief.micro.status === "RESOLVED" && row.layered_dual_belief.macro.status !== "RESOLVED") && !(row.layered_dual_belief.micro_micro.status === "RESOLVED" && row.layered_dual_belief.micro.status !== "RESOLVED")), sentences_carry_layered_dual_belief: allDerivations.every((row) => row.sentence.includes("MACRO:") && row.sentence.includes("MICRO:") && row.sentence.includes("MICRO-MICRO:") && row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")), sentences_cite_fills: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "GIUBAR_OR_URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
+  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "V54_REST_PRICED_CREDITING_SENTENCE_PRICE_GATE", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_bed_floors: SAFETY_FLOORS, layered_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.composition_rebuild.completed, delta_vs_100_cents: row.composition_rebuild.delta_vs_100_cents, legs: row.composition_rebuild.legs })), safety_floor_pass: floorBreaks.length === 0, rest_pricing: { fill_count: restPriceRows.length, every_entry_equals_standing_rest: restPriceRows.every((row) => row.entry_equals_standing_rest), active_print_priced_residue_count: printPricedResidueCount }, sentence_price: { rows: beliefPriceRows.length, every_field_matches_book_state: beliefPriceRows.every((row) => row.field_matches_book_state) }, giubar_envelope_placement: { envelope_21_32: giubarEnvelopeRows.some((row) => row.leg_id === "BAR" && row.envelope?.low_cents === 21 && row.envelope?.high_cents === 32), derived_27: giubarEnvelopeRows.some((row) => row.leg_id === "BAR" && row.placement?.chosen_target_cents === 27), verbatim_sentence_artifact: "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md" }, law_violations: lawViolations, superseded_composition_scan_signals_not_used_for_verdict: supersededCompositionScanSignals, zero_measured_law_violations: lawViolations.length === 0, layer_order_complete: allDerivations.every((row) => !(row.layered_dual_belief.micro.status === "RESOLVED" && row.layered_dual_belief.macro.status !== "RESOLVED") && !(row.layered_dual_belief.micro_micro.status === "RESOLVED" && row.layered_dual_belief.micro.status !== "RESOLVED")), sentences_carry_layered_dual_belief: allDerivations.every((row) => row.sentence.includes("MACRO:") && row.sentence.includes("MICRO:") && row.sentence.includes("MICRO-MICRO:") && row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")), sentences_cite_fills: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "GIUBAR_OR_URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   const coherenceTimelines = Object.fromEntries(TARGETS.stories.map((eventId) => {
     const stages = decisionStages.filter((row) => row.event_id === eventId);
     const timeline = [];
@@ -968,8 +1064,11 @@ async function main() {
   }));
   writeJson(path.join(output, "COHERENCE_TIMELINES.json"), { label: "V54_LAYERED_DUAL_BELIEF_COHERENCE_TIMELINES", contract_sum_cents: os.CONTRACT_SUM_CENTS, spread_settle_coherence_max_cents: os.SPREAD_SETTLE_COHERENCE_MAX_CENTS, provenance: os.LAYER_PROVENANCE, games: coherenceTimelines });
   writeJson(path.join(output, "LAYERED_DUAL_BELIEF_RECEIPT.json"), {
-    label: "V54_LAYERED_DUAL_BELIEF_RECEIPT",
-    law_tip: "0591792df47347dba8424d568b8ee1ddd1ec5e7a",
+    label: "V54_REST_PRICED_LAYERED_DUAL_BELIEF_RECEIPT",
+    law_tip: "bcee2c40",
+    repair_authorities: ["F-VS-104", "F-VS-105", "F-VS-106"],
+    fill_price_law: "STANDING_REST_LIMIT_CENTS",
+    belief_price_field: "SETTLED_BOOK_MID_SERIES_FLOORED_FROM_RECEIPT_PINNED_BID_ASK",
     method_not_result_input: "F-VS-103 method re-executed causally; DUAL_BELIEF_FORENSICS finished-game rows are not loaded by policy",
     resolution_order: ["MACRO", "MICRO", "MICRO_MICRO"],
     downstream_block_law: "INSUFFICIENT_EVIDENCE at any layer prevents a fresh downstream belief read; a previously licensed independent or coherent rest may remain standing without a new downstream decision",

@@ -1,0 +1,171 @@
+{
+  "label": "V54_REST_PRICED_CREDITING_SENTENCE_PRICE_ARTIFACT_MANIFEST",
+  "files": {
+    "ASSUMPTION_GAPS.md": {
+      "path": "ASSUMPTION_GAPS.md",
+      "bytes": 943,
+      "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4"
+    },
+    "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json": {
+      "path": "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json",
+      "bytes": 2847098,
+      "sha256": "635af4065ce0423c32a1451d302c17ddc1ec6c6f7de45947167a7fea5e489582"
+    },
+    "CC_URSPAL_LATE_BELL.md": {
+      "path": "CC_URSPAL_LATE_BELL.md",
+      "bytes": 464,
+      "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3"
+    },
+    "COHERENCE_TIMELINES.json": {
+      "path": "COHERENCE_TIMELINES.json",
+      "bytes": 398190,
+      "sha256": "3e58c283f3ee765ec0e0f3501d1815a426a3c7b634c1609f76efa3a3c0783f02"
+    },
+    "CORPUS_CENSUS.json": {
+      "path": "CORPUS_CENSUS.json",
+      "bytes": 14066,
+      "sha256": "8acedb8c116f2eaaee146f39ff24b04008ba5bd68a0de076f49dacb3e2ab181a"
+    },
+    "CORPUS_INDEX.jsonl.gz": {
+      "path": "CORPUS_INDEX.jsonl.gz",
+      "bytes": 2729397,
+      "sha256": "0c5aa898c29014fe97bec13ff0d81a2c323d87f739644e62fdc4df2428abf996"
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "path": "DETERMINISM_RECEIPT.json",
+      "bytes": 9636,
+      "sha256": "1e056495242f577b682199aa7c168e3b4c0f8c591ad91aa151d7ef1644597dc6"
+    },
+    "ENVELOPE_PLACEMENT_RECEIPT.json": {
+      "path": "ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 856664,
+      "sha256": "2bd749d9bc8bbdf2916925195510861f5fd55dbaf7bd14ae4f311cec2b1dcf06"
+    },
+    "EXTERNAL_CUSTODY_MANIFEST.json": {
+      "path": "EXTERNAL_CUSTODY_MANIFEST.json",
+      "bytes": 689,
+      "sha256": "9998aebcaa731a6d473cf4cdec3885d3c7c3aa7fc034a61e7b89232da73462fe"
+    },
+    "FILL_HANDOFF_RECEIPT.json": {
+      "path": "FILL_HANDOFF_RECEIPT.json",
+      "bytes": 267268,
+      "sha256": "4887f176635a5d7119a2248922bb013fc50edd97bdabaa9de71f5f36b3f8006f"
+    },
+    "FLOOR_TIME_BINDING_COVERAGE.json": {
+      "path": "FLOOR_TIME_BINDING_COVERAGE.json",
+      "bytes": 2345,
+      "sha256": "68a7fb7501068cb25d4a1533c1ff195982689466c76dc4d7b02bdd0c79c87811"
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "bytes": 465,
+      "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2"
+    },
+    "FOUNDATION_COVERAGE_BEFORE_AFTER.json": {
+      "path": "FOUNDATION_COVERAGE_BEFORE_AFTER.json",
+      "bytes": 593,
+      "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2"
+    },
+    "FOUNDATION_LIBRARY.jsonl.gz": {
+      "path": "FOUNDATION_LIBRARY.jsonl.gz",
+      "bytes": 2159635,
+      "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367"
+    },
+    "FOUNDATION_LIBRARY_RECEIPT.json": {
+      "path": "FOUNDATION_LIBRARY_RECEIPT.json",
+      "bytes": 3558,
+      "sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5"
+    },
+    "FOUR_STORIES.md": {
+      "path": "FOUR_STORIES.md",
+      "bytes": 1155809,
+      "sha256": "3c330879a59271a59fcc509d1b5bb521b139fb03992b480f908fd11e77b22d24"
+    },
+    "FOUR_STORIES_RECEIPT.json": {
+      "path": "FOUR_STORIES_RECEIPT.json",
+      "bytes": 24753,
+      "sha256": "4a6eac2d5879baa017cc126f6762b8ea30689f7fef71e86ffc95962c7da53a90"
+    },
+    "FUNCTIONALITY_RECEIPT.json": {
+      "path": "FUNCTIONALITY_RECEIPT.json",
+      "bytes": 24191,
+      "sha256": "3e55b7929c076cf0603df3f2ea03182cc00da81d0a9b631c62ceed540fb29a68"
+    },
+    "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md": {
+      "path": "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "bytes": 217962,
+      "sha256": "8c784f1a22860cc3d58f59d781a80b05c13e5b930437518b5630da42569dc9c9"
+    },
+    "LAYERED_DUAL_BELIEF_RECEIPT.json": {
+      "path": "LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "bytes": 421902,
+      "sha256": "f2606b7c541e19929386118405b3e7e9cbe5cbe48898282013b25fe2e636345a"
+    },
+    "LIBRARY_BELL_BOUND_RECEIPT.json": {
+      "path": "LIBRARY_BELL_BOUND_RECEIPT.json",
+      "bytes": 15882,
+      "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099"
+    },
+    "PRINT_PRICED_RESIDUE_SWEEP.json": {
+      "path": "PRINT_PRICED_RESIDUE_SWEEP.json",
+      "bytes": 1370,
+      "sha256": "84571a360aa49626318cf94cf01588e9460c78bfdad444f215e0629f6d85d92e"
+    },
+    "PROCESS_FIRST_CONFIRM.md": {
+      "path": "PROCESS_FIRST_CONFIRM.md",
+      "bytes": 54909,
+      "sha256": "c2b0c5585bda1a8a78a6ded62da68bded87ea9e731c6b47b3929956f82fc7229"
+    },
+    "PROCESS_FIRST_CONFIRM_RECEIPT.json": {
+      "path": "PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "bytes": 598319,
+      "sha256": "44ab283330a4fa824fbbc39628d524b9fdb037cf02accfba40c32a1769fde223"
+    },
+    "REPAIR_FOUR_GAME_TRACE.jsonl.gz": {
+      "path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 31707540,
+      "sha256": "651b1dc23ac87528a26fd699a952c131bf648b9818d35d1164c4a4e5c5745cd4"
+    },
+    "REPAIR_GATE_RECEIPT.json": {
+      "path": "REPAIR_GATE_RECEIPT.json",
+      "bytes": 1694,
+      "sha256": "67e23011ee17e2a41dcbf7d7fb33b002554a7cabb1cdb87d86b38f64d747e150"
+    },
+    "REST_PRICED_CREDITING_RECEIPT.json": {
+      "path": "REST_PRICED_CREDITING_RECEIPT.json",
+      "bytes": 3296,
+      "sha256": "5cc436601c4ec2c0048963f6ca15ae81ea69c7fd1db967da42302d3455bc52ba"
+    },
+    "SMOKE_CRIJEA.md": {
+      "path": "SMOKE_CRIJEA.md",
+      "bytes": 8690170,
+      "sha256": "66087b950d530ebc47689e8474696cf75322e5fd39d94dfb5967ff1e55f06dfe"
+    },
+    "SMOKE_CRIJEA_RECEIPT.json": {
+      "path": "SMOKE_CRIJEA_RECEIPT.json",
+      "bytes": 1080000,
+      "sha256": "add3a529ce500212124521c06da84a0727f2e251c412dc421a23939d7d6d2050"
+    },
+    "SOURCE_RECEIPTS.json": {
+      "path": "SOURCE_RECEIPTS.json",
+      "bytes": 57341,
+      "sha256": "d44da76c095fff7f994c7f06e95e63e8fceca772808bcc5cc8b2e8b242f2e4f1"
+    },
+    "TARGET_PRINTS_5.jsonl.gz": {
+      "path": "TARGET_PRINTS_5.jsonl.gz",
+      "bytes": 1224927,
+      "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e"
+    },
+    "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json": {
+      "path": "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json",
+      "bytes": 3234,
+      "sha256": "8075a2d1884cf198b8aa57849a442d13471a4f95df9348ec700c04b3cfe09389"
+    },
+    "WORKTREE_LARGE_UNTRACKED_CENSUS.json": {
+      "path": "WORKTREE_LARGE_UNTRACKED_CENSUS.json",
+      "bytes": 403,
+      "sha256": "110e75830073a33d9e8080cb7a9ca14422dd194451102272a49e0467ca8a32b5"
+    }
+  },
+  "all_committed_artifacts_under_50_mib": true
+}

@@ -1,0 +1,126 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V10_REST_PRICED_CREDITING_SENTENCE_PRICE",
+  "source_package": {
+    "path": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_rest_priced_crediting_sentence_price_20260823",
+    "manifest_sha256": "1e3c9177c2afa6aba67de97b0e77e74bbb272e833eb5925c26e235e81e96a82a"
+  },
+  "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+  "coherence": {
+    "ever_coherent": false,
+    "first_coherence": null,
+    "timeline_rows": 5
+  },
+  "execution": {
+    "gradeable": true,
+    "completed": true,
+    "combined_entry_cents": 94,
+    "delta_vs_100_cents": 6,
+    "legs": {
+      "LAJ": {
+        "credited": true,
+        "entry_cents": 53,
+        "standing_target_cents": null,
+        "fill_receipt": "8c5eeb51-910b-6b5f-ae42-307d486841f4",
+        "fill_event_receipt": {
+          "schema": "CITATION_RECEIPT_V1",
+          "kind": "QUERY_RECEIPT",
+          "citation_type": "FILL_EVENT",
+          "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+          "captured_at_receipt": "8c5eeb51-910b-6b5f-ae42-307d486841f4",
+          "row_refs": [
+            "8c5eeb51-910b-6b5f-ae42-307d486841f4"
+          ],
+          "context": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+            "leg_id": "LAJ",
+            "entry_cents": 53,
+            "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+            "triggering_print_price_cents": 53,
+            "fill_timestamp_epoch": 1784052830.356,
+            "prior_standing_target_cents": 53,
+            "print_at_or_below_rest": true,
+            "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+          },
+          "receipt_id": "CR-0d7d7452ddfefcd6fb9d4fbbafdcf5c331c20dd56a15d19ee97633d44abb8458"
+        },
+        "fill_timestamp_epoch": 1784052830.356
+      },
+      "SVA": {
+        "credited": true,
+        "entry_cents": 41,
+        "standing_target_cents": null,
+        "fill_receipt": "d97f0682-a7e3-64f5-9751-dd8c5fcf09f4",
+        "fill_event_receipt": {
+          "schema": "CITATION_RECEIPT_V1",
+          "kind": "QUERY_RECEIPT",
+          "citation_type": "FILL_EVENT",
+          "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA",
+          "captured_at_receipt": "d97f0682-a7e3-64f5-9751-dd8c5fcf09f4",
+          "row_refs": [
+            "d97f0682-a7e3-64f5-9751-dd8c5fcf09f4"
+          ],
+          "context": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+            "leg_id": "SVA",
+            "entry_cents": 41,
+            "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+            "triggering_print_price_cents": 41,
+            "fill_timestamp_epoch": 1784020209.484,
+            "prior_standing_target_cents": 41,
+            "print_at_or_below_rest": true,
+            "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+          },
+          "receipt_id": "CR-ed75e709125a152ee8db7c1da07ef4d8c75af829d8567c6df172ee7e54ac2299"
+        },
+        "fill_timestamp_epoch": 1784020209.484
+      }
+    }
+  },
+  "rest_priced_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "fill_timestamp_epoch": 1784020209.484,
+      "fill_receipt": "CR-ed75e709125a152ee8db7c1da07ef4d8c75af829d8567c6df172ee7e54ac2299",
+      "standing_rest_cents": 41,
+      "triggering_print_cents": 41,
+      "credited_entry_cents": 41,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "fill_timestamp_epoch": 1784052830.356,
+      "fill_receipt": "CR-0d7d7452ddfefcd6fb9d4fbbafdcf5c331c20dd56a15d19ee97633d44abb8458",
+      "standing_rest_cents": 53,
+      "triggering_print_cents": 53,
+      "credited_entry_cents": 53,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    }
+  ],
+  "belief_price_rows": {
+    "count": 151,
+    "every_field_matches_book_state": true
+  },
+  "gate": {
+    "safety_floor_pass": true,
+    "zero_measured_law_violations": true,
+    "self_stop": false
+  },
+  "panels": [
+    "PANEL_A_PAIR_RENDER.html",
+    "PANEL_B_ENGAGEMENT.html",
+    "PANEL_C_TRADE_REPORTS.html"
+  ],
+  "reports": [
+    "TRADE_REPORT_REFLEX.md",
+    "TRADE_REPORT_PATTERN_ENGINE.md"
+  ],
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

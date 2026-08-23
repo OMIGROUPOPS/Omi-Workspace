@@ -36,7 +36,7 @@ const ANALYSIS_ROOT = ".claude/window1_second_seat/v11_non_action_mechanism_audi
 const ACTUAL_BELL_PATH = `${ANALYSIS_ROOT}/ACTUAL_BELL_TABLE_804.json`;
 const NAMED_NEIGHBOR_PATH = `${ANALYSIS_ROOT}/NEIGHBOR_SPAN_BELL_CHECK.json`;
 const GROUND_TRUTH_CORRECTIONS_PATH = `${ANALYSIS_ROOT}/W1_GROUND_TRUTH_CORRECTIONS.jsonl`;
-const OUTPUT_LABEL = "V54_CONDITIONED_BELIEF_LIVE_DEADLINES_MIND_ONLY_BED";
+const OUTPUT_LABEL = "V54_THREE_NAMED_STEPS_REMAINING_DIP_FLOOR_SIDE_ENVELOPE_MIGRATION_MIND_ONLY_BED";
 const DEPTH_MAP_COMMIT = "ac68e3bc8d2c2018ba883c131b8b4101ae4cd257";
 const DEPTH_MAP_PATH = ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json";
 
@@ -47,6 +47,12 @@ function arg(name, fallback = null) {
 function required(name) { const value = arg(name); if (!value) throw new Error(`missing --${name}`); return path.resolve(value); }
 function canonical(value) { return JSON.stringify(value, null, 2) + "\n"; }
 function shaBytes(value) { return crypto.createHash("sha256").update(value).digest("hex"); }
+function median(values) {
+  const rows = values.filter(Number.isFinite).sort((a, b) => a - b);
+  if (!rows.length) return null;
+  const middle = Math.floor(rows.length / 2);
+  return rows.length % 2 ? rows[middle] : (rows[middle - 1] + rows[middle]) / 2;
+}
 function fileHash(file) { const hash = crypto.createHash("sha256"); const fd = fs.openSync(file, "r"); const buffer = Buffer.alloc(8 * 1024 * 1024); try { for (;;) { const n = fs.readSync(fd, buffer, 0, buffer.length, null); if (!n) break; hash.update(buffer.subarray(0, n)); } } finally { fs.closeSync(fd); } return hash.digest("hex"); }
 function receipt(file, rows = null) { const stat = fs.statSync(file); return { path: file, sha256: fileHash(file), bytes: stat.size, rows }; }
 function ensure(condition, message) { if (!condition) throw new Error(message); }
@@ -60,7 +66,7 @@ function largeUntrackedCensus(repo) {
     for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
       if (entry.name === ".git") continue;
       const absolute = path.join(directory, entry.name), relative = path.relative(repo, absolute).replaceAll("\\", "/");
-      if (relative === "tmp" || relative.startsWith("tmp/") || relative.startsWith(".claude/window1_live_v4_replay/v54_conditioned_belief_live_deadlines_mind_only_20260823/") || relative.startsWith(".claude/window1_live_v4_replay/lajsva_case_study_v11_20260823/")) continue;
+      if (relative === "tmp" || relative.startsWith("tmp/") || relative.startsWith(".claude/window1_live_v4_replay/v54_conditioned_belief_live_deadlines_mind_only_20260823/") || relative.startsWith(".claude/window1_live_v4_replay/lajsva_case_study_v11_20260823/") || relative.startsWith(".claude/window1_live_v4_replay/v54_three_named_steps_remaining_dip_floor_side_envelope_migration_20260823/") || relative.startsWith(".claude/window1_live_v4_replay/lajsva_case_study_v12_20260823/")) continue;
       if (entry.isDirectory()) walk(absolute);
       else if (entry.isFile() && !tracked.has(relative)) {
         const stat = fs.statSync(absolute);
@@ -716,7 +722,7 @@ function storySection(result, old, meta) {
   return `## ${meta.event_id}\n\n${story}${danpra}\n\n### Execution appendix — context, not verdict\n\n| version | completed | pair cents | delta vs 100 | gradeable | legs / truth closes |\n|---|---:|---:|---:|---:|---|\n| lineage receipt | ${old.completed} | ${old.combined_entry_cents ?? "NA"} | ${old.delta_vs_100_cents ?? "NA"} | ${old.gradeable} | ${JSON.stringify(old.legs)} |\n| layered dual belief | ${result.execution.completed} | ${result.execution.combined_entry_cents ?? "NA"} | ${result.execution.delta_vs_100_cents ?? "NA"} | ${result.execution.gradeable} | ${JSON.stringify(result.execution.legs)} |\n| truth close | — | — | — | ${Number.isFinite(meta.bell_epoch)} | ${closes} |\n`;
 }
 
-function emitCaseStudyV11({ caseOutput, sourceOutput, storyResult, coherenceGame, tradeReport, deadlineRows, decisionStages }) {
+function emitCaseStudyV12({ caseOutput, sourceOutput, storyResult, coherenceGame, tradeReport, deadlineRows, decisionStages }) {
   if (!caseOutput) return null;
   fs.mkdirSync(caseOutput, { recursive: true });
   const eventId = storyResult.event_id;
@@ -729,15 +735,15 @@ function emitCaseStudyV11({ caseOutput, sourceOutput, storyResult, coherenceGame
     prior = signature;
   }
   const eventDeadlineRows = deadlineRows.filter((row) => row.event_id === eventId);
-  writeText(path.join(caseOutput, "PANEL_A_PAIR_RENDER.html"), `<!doctype html><meta charset="utf-8"><title>LAJSVA v11 pair</title><h1>${eventId} · case study v11</h1><p>Ever coherent: ${coherenceGame.ever_coherent}. First coherence: ${JSON.stringify(coherenceGame.first_coherence)}</p><pre>${JSON.stringify(storyResult.layered_dual_belief, null, 2)}</pre>`);
-  writeText(path.join(caseOutput, "PANEL_B_ENGAGEMENT.html"), `<!doctype html><meta charset="utf-8"><title>LAJSVA v11 engagement</title><h1>Layered engagement</h1>${transitions.map((stage) => `<section><h2>${stage.timestamp_epoch} · ${stage.receipt}</h2><p>coherence=${stage.coherence?.status}</p>${stage.derivations.map((row) => `<h3>${row.leg_id} · ${row.action.action} ${row.action.target_cents ?? "NONE"}</h3><pre>${row.sentence.replaceAll("&", "&amp;").replaceAll("<", "&lt;")}</pre>`).join("")}</section>`).join("")}`);
-  writeText(path.join(caseOutput, "PANEL_C_TRADE_REPORTS.html"), `<!doctype html><meta charset="utf-8"><title>LAJSVA v11 reports</title><h1>Trade report + deadline grades</h1><pre>${JSON.stringify({ trade_report: tradeReport, belief_deadline_rows: eventDeadlineRows }, null, 2).replaceAll("&", "&amp;").replaceAll("<", "&lt;")}</pre>`);
-  writeText(path.join(caseOutput, "TRADE_REPORT_PATTERN_ENGINE.md"), `# LAJSVA case-study v11 — conditioned-belief machine\n\n${JSON.stringify(tradeReport, null, 2)}\n`);
+  writeText(path.join(caseOutput, "PANEL_A_PAIR_RENDER.html"), `<!doctype html><meta charset="utf-8"><title>LAJSVA v12 pair</title><h1>${eventId} · case study v12</h1><p>Ever coherent: ${coherenceGame.ever_coherent}. First coherence: ${JSON.stringify(coherenceGame.first_coherence)}</p><pre>${JSON.stringify(storyResult.layered_dual_belief, null, 2)}</pre>`);
+  writeText(path.join(caseOutput, "PANEL_B_ENGAGEMENT.html"), `<!doctype html><meta charset="utf-8"><title>LAJSVA v12 engagement</title><h1>Layered engagement</h1>${transitions.map((stage) => `<section><h2>${stage.timestamp_epoch} · ${stage.receipt}</h2><p>coherence=${stage.coherence?.status}</p>${stage.derivations.map((row) => `<h3>${row.leg_id} · ${row.action.action} ${row.action.target_cents ?? "NONE"}</h3><pre>${row.sentence.replaceAll("&", "&amp;").replaceAll("<", "&lt;")}</pre>`).join("")}</section>`).join("")}`);
+  writeText(path.join(caseOutput, "PANEL_C_TRADE_REPORTS.html"), `<!doctype html><meta charset="utf-8"><title>LAJSVA v12 reports</title><h1>Trade report + deadline grades</h1><pre>${JSON.stringify({ trade_report: tradeReport, belief_deadline_rows: eventDeadlineRows }, null, 2).replaceAll("&", "&amp;").replaceAll("<", "&lt;")}</pre>`);
+  writeText(path.join(caseOutput, "TRADE_REPORT_PATTERN_ENGINE.md"), `# LAJSVA case-study v12 — remaining-dip, floor-side, envelope-migration machine\n\n${JSON.stringify(tradeReport, null, 2)}\n`);
   writeText(path.join(caseOutput, "TRADE_REPORT_REFLEX.md"), `# LAJSVA lineage context\n\nHistorical lineage receipt only: completed=${storyResult.lineage_receipt.completed}; pair=${storyResult.lineage_receipt.combined_entry_cents ?? "NA"}; delta=${storyResult.lineage_receipt.delta_vs_100_cents ?? "NA"}. This context does not license the repaired bed.\n`);
-  writeText(path.join(caseOutput, "V1_V2_V3_V4_V5_V6_V7_V8_V9_V10_V11_SIDE_BY_SIDE.md"), `# LAJSVA case-study spine v1–v11\n\nVersions v1–v10 remain committed in their own directories. V11 closes F-VS-111/F-VS-112 mechanically: the dual belief coheres, deadlines are fresh, and the mind-only bed outcome is ${storyResult.layered_dual_belief.completed ? `${storyResult.layered_dual_belief.combined_entry_cents}¢/Δ${storyResult.layered_dual_belief.delta_vs_100_cents}` : "INCOMPLETE"}. The gate self-stops; lineage is untouched.\n`);
+  writeText(path.join(caseOutput, "V1_V2_V3_V4_V5_V6_V7_V8_V9_V10_V11_V12_SIDE_BY_SIDE.md"), `# LAJSVA case-study spine v1–v12\n\nVersions v1–v11 remain committed in their own directories. V12 repairs only F-VS-114(a/b/c): remaining dip is total minus arrived, placement uses the conditioned floor-side point rather than a deep-edge default, and a migrated envelope re-derives the rest on the same receipt. The mind-only bed outcome is ${storyResult.layered_dual_belief.completed ? `${storyResult.layered_dual_belief.combined_entry_cents}¢/Δ${storyResult.layered_dual_belief.delta_vs_100_cents}` : "INCOMPLETE"}. The gate self-stops on any tripwire break; lineage is untouched.\n`);
   writeJson(path.join(caseOutput, "CASE_STUDY_RECEIPT.json"), {
-    label: "LAJSVA_CASE_STUDY_V11_PHASE_CONDITIONED_LIVE_DEADLINE_MIND_ONLY",
-    source_package: "v54_conditioned_belief_live_deadlines_mind_only_20260823",
+    label: "LAJSVA_CASE_STUDY_V12_THREE_NAMED_STEPS_MIND_ONLY",
+    source_package: "v54_three_named_steps_remaining_dip_floor_side_envelope_migration_20260823",
     event_id: eventId,
     coherence: coherenceGame,
     execution: storyResult.layered_dual_belief,
@@ -749,8 +755,8 @@ function emitCaseStudyV11({ caseOutput, sourceOutput, storyResult, coherenceGame
     live_mutation: false,
   });
   const files = fs.readdirSync(caseOutput).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
-  writeJson(path.join(caseOutput, "ARTIFACT_HASH_MANIFEST.json"), { label: "LAJSVA_CASE_STUDY_V11", files: Object.fromEntries(files.map((name) => [name, { ...receipt(path.join(caseOutput, name)), path: name }])) });
-  return { path: "lajsva_case_study_v11_20260823", files: files.length + 1 };
+  writeJson(path.join(caseOutput, "ARTIFACT_HASH_MANIFEST.json"), { label: "LAJSVA_CASE_STUDY_V12", files: Object.fromEntries(files.map((name) => [name, { ...receipt(path.join(caseOutput, name)), path: name }])) });
+  return { path: "lajsva_case_study_v12_20260823", files: files.length + 1 };
 }
 
 async function main() {
@@ -898,7 +904,7 @@ async function main() {
     storyTraces.push(...result.stage_reads.map((stage) => ({ event_id: eventId, kind: "DECISION_STAGE", ...stage })), ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })));
   }
   const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.layered_dual_belief.completed || row.layered_dual_belief.delta_vs_100_cents < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
-  const storiesHeader = `# Four complete stories — phase-conditioned beliefs, live deadlines, mind-only bed\n\nLicense: LAW_INDEX read @ 3be11997, sha256 41784e6a… · F-VS-108/109/110/111/112 · F-VS-066 · all standing laws.\n\nEvery credit is priced at the standing rest. Full-travel priors are phase-conditioned with the leg's own evidence before subtraction. Every SHOULD deadline is derived and stamped at its own emission receipt, then graded separately. The independent lane may hold or abstain on the bed but cannot originate a completion. Belief-priced rests begin only after the two sentences cohere against the 100-cent mirror inside the SPREAD_SETTLE bound. F-VS-110 remains stamped TUNED; this repair does not adjust a rule from bed outcomes. No sealed, live, or full-804 run was performed.\n\n`;
+  const storiesHeader = `# Four complete stories — three named repairs, mind-only bed\n\nLicense: LAW_INDEX read @ 9ff83002, sha256 41784e6a… · F-VS-108/113/114/115 · F-VS-066 · all standing laws.\n\nEvery credit is priced at the standing rest. Remaining dip equals the own-evidence-conditioned total minus the share already arrived at that receipt. Placement uses the conditioned distribution's floor-side point inside a containing envelope; the deep edge is never a default. Every envelope migration re-derives an inconsistent standing rest on the same receipt. Every SHOULD deadline remains live-derived and separately graded. The independent lane may hold or abstain on the bed but cannot originate a completion. No sealed, live, or full-804 run was performed.\n\n`;
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
   writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], f_vs_110_tuned_stamp_retained: true, independent_lane_may_complete: false, self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   fs.writeFileSync(path.join(output, "REPAIR_FOUR_GAME_TRACE.jsonl.gz"), zlib.gzipSync(Buffer.from(storyTraces.map((row) => JSON.stringify(row)).join("\n") + "\n"), { level: 9 }));
@@ -998,7 +1004,8 @@ async function main() {
       },
       my_grade_of_my_own_trade: { grade, reason: outcome.completed ? `coherent rests completed at ${outcome.combined_entry_cents} cents, delta ${outcome.delta_vs_100_cents}` : `${eventFills.length} coherent-rest fill(s); pair did not complete`, receipt: eventFills.at(-1)?.receipt_id ?? finalStage?.receipt ?? null },
       what_id_flag_for_the_library: { flag: "PHASE_CONDITIONING_AND_OWN_DEADLINE_CALIBRATION", receipt: firstCoherenceStage?.receipt ?? firstBeliefStage?.receipt ?? null, artifact: "BELIEF_DEADLINE_SCORING_TABLE.json" },
-      complete_six_section_report: Boolean(firstBeliefStage && finalStage && firstCoherenceStage),
+      complete_six_section_report: Boolean(firstBeliefStage && finalStage && actionRows.length && (firstCoherenceStage || stages.every((stage) => stage.coherence?.status !== "COHERENT"))),
+      coherence_disposition: firstCoherenceStage ? "COHERED" : "NEVER_COHERED_TRUTHFULLY_REPORTED",
     };
   });
   writeJson(path.join(output, "TRADE_REPORT_FOUR.json"), { label: "F_VS_055_FOUR_GAME_TRADE_REPORTS", reports: tradeReports, every_game_complete_six_sections: tradeReports.every((report) => report.complete_six_section_report), fill_price_basis: "STANDING_REST_LIMIT_CENTS" });
@@ -1099,7 +1106,9 @@ async function main() {
         deadline_minutes_to_bell: belief.deadline.deadline_minutes_to_bell,
         modeled_floor_epoch: belief.deadline.modeled_floor_epoch,
         stale_modeled_deadline_clamped_to_emission: belief.deadline.stale_modeled_deadline_clamped_to_emission,
-        phase_conditioned_dip_distribution_cents: belief.phase_conditioned_dip_cents,
+        conditioned_total_dip_distribution_cents: belief.conditioned_total_dip_cents,
+        arrived_dip_distribution_cents: belief.arrived_dip_cents,
+        remaining_dip_distribution_cents: belief.remaining_dip_cents,
         raw_full_travel_distribution_cents: belief.raw_remaining_dip_cents,
         future_print_count_through_own_deadline: prints.length,
         realized_low_cents_by_own_deadline: realizedLow,
@@ -1113,14 +1122,19 @@ async function main() {
       });
     }
   }
+  const signedPredictionErrors = deadlineRows.filter((row) => Number.isFinite(row.signed_error_predicted_minus_realized_low_cents)).map((row) => row.signed_error_predicted_minus_realized_low_cents);
+  const predictionBiasMedian = median(signedPredictionErrors);
+  const baselinePredictionBiasMedian = -11;
+  const predictionBiasMovedTowardZero = Number.isFinite(predictionBiasMedian) && Math.abs(predictionBiasMedian) < Math.abs(baselinePredictionBiasMedian);
   writeJson(path.join(output, "BELIEF_DEADLINE_SCORING_TABLE.json"), {
-    label: "F_VS_112_FRESH_PER_EMISSION_DEADLINE_SCORING",
+    label: "F_VS_114B_REMAINING_TOTAL_MINUS_ARRIVED_WITH_FRESH_PER_EMISSION_DEADLINE_SCORING",
     law: "Each SHOULD prediction derives its own deadline at the emission receipt and is graded only against true prints between emission and that deadline.",
     rows: deadlineRows,
     row_count: deadlineRows.length,
     graded_rows: deadlineRows.filter((row) => row.grade_status === "GRADED_AT_OWN_DEADLINE").length,
     no_trade_rows: deadlineRows.filter((row) => row.grade_status !== "GRADED_AT_OWN_DEADLINE").length,
     hit_rows: deadlineRows.filter((row) => row.hit_at_or_below_prediction_by_own_deadline).length,
+    prediction_bias_shift: { baseline_median_signed_error_cents: baselinePredictionBiasMedian, repaired_median_signed_error_cents: predictionBiasMedian, moved_toward_zero: predictionBiasMovedTowardZero },
     stale_deadline_emissions: deadlineRows.filter((row) => row.deadline_epoch < row.emission_epoch).length,
     all_deadlines_fresh_and_not_before_emission: deadlineRows.every((row) => row.deadline_derives_fresh_at_emission && row.deadline_epoch >= row.emission_epoch),
   });
@@ -1131,18 +1145,41 @@ async function main() {
     receipt: row.stage_receipt,
     envelope: row.layered_dual_belief.envelope,
     placement: row.layered_dual_belief.envelope_placement,
+    consistency: row.layered_dual_belief.envelope_consistency,
     action: row.action,
     sentence_verbatim: row.sentence,
   }));
   const giubarEnvelopeRows = envelopePlacementRows.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL12GIUBAR");
   writeJson(path.join(output, "ENVELOPE_PLACEMENT_RECEIPT.json"), {
     label: "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_PLACEMENT_INSIDE_COHERENT_ENVELOPE",
-    rule: "Within a coherent envelope compare two receipt-derived candidates: live ask minus conditioned remaining-dip q50, and live bid projected inside the licensed envelope. Stand at the deeper candidate and never walk a held conviction upward. No numeric offset is added.",
+    rule: "Within a coherent envelope stand at live ask minus the total-minus-arrived remaining-dip q50, clipped inside the envelope. If remaining dip is zero, stand at the evidenced bid inside the envelope. The deep edge and projected bid are audit geometry, never competing defaults. A migrated envelope re-derives the rest on the same receipt in either direction.",
     numeric_placement_constant_added: false,
     rows: envelopePlacementRows,
     giubar_rows: giubarEnvelopeRows,
+    migrations: envelopePlacementRows.filter((row) => row.placement?.envelope_migration?.migrated),
+    inconsistent_active_rows: envelopePlacementRows.filter((row) => row.placement?.active_inconsistent_with_current_envelope),
+    every_inconsistent_active_resolved_same_receipt: envelopePlacementRows.filter((row) => row.consistency?.active_inconsistent_before_action).every((row) => row.consistency?.resolved_same_receipt),
+    deep_edge_default_rows: envelopePlacementRows.filter((row) => String(row.placement?.chosen_candidate_rule).includes("DEEP")),
     giubar_licensed_envelope_21_32_present: giubarEnvelopeRows.some((row) => row.leg_id === "BAR" && row.envelope?.low_cents === 21 && row.envelope?.high_cents === 32),
     giubar_bar_27_derived_present: giubarEnvelopeRows.some((row) => row.leg_id === "BAR" && row.placement?.chosen_target_cents === 27 && row.placement?.floor_side_formula === "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS"),
+  });
+  const q50UniverseMismatchRows = allDerivations.flatMap((row) => Object.entries(row.layered_dual_belief?.macro?.conditioned_priors ?? {}).flatMap(([legId, prior]) => {
+    const upstream = prior?.upstream_all_member_distribution_reference_cents?.q50;
+    const timed = prior?.conditioned_total_dip_distribution_cents?.q50;
+    if (!Number.isInteger(upstream) || !Number.isInteger(timed) || upstream === timed) return [];
+    return [{ event_id: row.event_id, leg_id: legId, timestamp_epoch: row.timestamp_epoch, receipt: row.stage_receipt, upstream_all_member_q50_cents: upstream, placement_floor_timed_row_universe_q50_cents: timed, row_universe: prior.row_universe, root_cause: "UPSTREAM_SUMMARY_INCLUDED_UNTIMED_MEMBERS; PLACEMENT_PHASE_ARITHMETIC_REQUIRED_POSITIVE_MEMBER_FLOOR_FRACTION" }];
+  }));
+  const namedLajMismatch = q50UniverseMismatchRows.find((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA" && row.leg_id === "LAJ" && row.receipt === "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-6963") ?? null;
+  writeJson(path.join(output, "INCONSISTENT_Q50_ROOT_CAUSE_RECEIPT.json"), {
+    label: "F_VS_114C_INCONSISTENT_Q50_INPUT_ROOT_CAUSE",
+    named_row: namedLajMismatch,
+    named_row_found: Boolean(namedLajMismatch),
+    root_cause_by_code_path: {
+      upstream: "window1_v54_functionable_os.js::conditionalNeighborLeg includes every graded member in conditional_remaining_dip_distribution_cents",
+      old_placement: "window1_v54_dual_belief_os.js::conditionTravelPrior filtered to positive member_floor_fraction before its phase q50",
+      repair: "conditioned total, arrived, and remaining quantiles now share the same floor-timed row universe; the upstream all-member summary is reference-only",
+    },
+    mismatch_rows: q50UniverseMismatchRows,
   });
   writeText(path.join(output, "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md"), `# GIUBAR envelope-placement sentences — verbatim\n\n${giubarEnvelopeRows.map((row) => `## ${row.timestamp_epoch} · ${row.leg_id} · ${row.receipt}\n\nEnvelope: ${JSON.stringify(row.envelope)}\n\nPlacement: ${JSON.stringify(row.placement)}\n\n\`\`\`text\n${row.sentence_verbatim}\n\`\`\``).join("\n\n")}\n`);
   const lawViolations = [];
@@ -1197,14 +1234,20 @@ async function main() {
   if (allDerivations.some((row) => row.layered_dual_belief?.coherence?.status === "COHERENT" && !row.sentence.includes("SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK"))) lawViolations.push("BELIEF_SENTENCE_BOOK_PRICE_BASIS_MISSING");
   if (envelopePlacementRows.some((row) => row.placement?.numeric_constant_added !== false || !row.sentence_verbatim.includes("ENVELOPE_PLACEMENT="))) lawViolations.push("ENVELOPE_PLACEMENT_UNLICENSED_OR_SILENT");
   if (deadlineRows.some((row) => !row.deadline_derives_fresh_at_emission || row.deadline_epoch < row.emission_epoch)) lawViolations.push("STALE_OR_NONCAUSAL_SHOULD_DEADLINE");
-  if (allDerivations.some((row) => Object.values(row.layered_dual_belief?.macro?.conditioned_priors ?? {}).some((prior) => prior?.status === "RESOLVED" && prior?.method !== "FULL_TRAVEL_CENTS_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS"))) lawViolations.push("FULL_TRAVEL_PRIOR_NOT_PHASE_CONDITIONED_BEFORE_SUBTRACTION");
+  if (allDerivations.some((row) => Object.values(row.layered_dual_belief?.macro?.conditioned_priors ?? {}).some((prior) => prior?.status === "RESOLVED" && prior?.method !== "REMAINING_DIP_EQUALS_CONDITIONED_TOTAL_MINUS_ARRIVED; ARRIVED_EQUALS_TOTAL_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS"))) lawViolations.push("REMAINING_DIP_NOT_CONDITIONED_TOTAL_MINUS_ARRIVED");
+  if (allDerivations.some((row) => Object.values(row.layered_dual_belief?.macro?.conditioned_priors ?? {}).some((prior) => prior?.status === "RESOLVED" && prior?.remaining_dip_distribution_cents?.q50 > prior?.conditioned_total_dip_distribution_cents?.q50))) lawViolations.push("REMAINING_DIP_EXCEEDS_CONDITIONED_TOTAL");
+  if (!predictionBiasMovedTowardZero) lawViolations.push("F_VS_114B_PREDICTION_BIAS_DID_NOT_MOVE_TOWARD_ZERO");
+  if (envelopePlacementRows.some((row) => String(row.placement?.chosen_candidate_rule).includes("DEEP"))) lawViolations.push("ENVELOPE_DEEP_EDGE_USED_AS_PLACEMENT_DEFAULT");
+  if (envelopePlacementRows.some((row) => row.consistency?.active_inconsistent_before_action && row.consistency?.resolved_same_receipt !== true)) lawViolations.push("MIGRATED_ENVELOPE_LEFT_INCONSISTENT_REST_STANDING");
+  if (envelopePlacementRows.some((row) => Number.isInteger(row.action?.target_cents) && row.envelope && (row.action.target_cents < row.envelope.low_cents || row.action.target_cents > row.envelope.high_cents))) lawViolations.push("STANDING_REST_OUTSIDE_CURRENT_LICENSED_ENVELOPE");
+  if (!namedLajMismatch) lawViolations.push("F_VS_114C_NAMED_INCONSISTENT_Q50_ROW_NOT_ROOT_CAUSED");
   if (fillEvents.some((row) => row.context.standing_license_basis === "INDEPENDENT_LINEAGE_V3_OWN_TAPE" || row.context.standing_license_basis === "INDEPENDENT_LANE_HOLD_OR_ABSTAIN_BED")) lawViolations.push("INDEPENDENT_LANE_COMPLETED_BED_GAME");
   if (allDerivations.some((row) => row.layered_dual_belief?.belief_mode === false && Number.isInteger(row.action.target_cents))) lawViolations.push("INDEPENDENT_BED_LANE_ORIGINATED_REST");
   if (!tradeReports.every((report) => report.complete_six_section_report)) lawViolations.push("MALFORMED_OR_PARTIAL_FOUR_GAME_TRADE_REPORT");
   if (!fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt) && row.sentence.includes(row.handoff_receipt_id))) lawViolations.push("POST_FILL_SENTENCE_WITHOUT_FILL_RECEIPT");
   if (!corpusFloorTiming.every_eligible_game_bound || !corpusFloorTiming.every_eligible_leg_bound) lawViolations.push("BELL_BOUNDED_LIBRARY_FLOOR_TIME_COVERAGE_INCOMPLETE");
   const baselinePins = storyResults.filter((row) => ["KXATPCHALLENGERMATCH-26JUL14URSPAL", "KXATPCHALLENGERMATCH-26JUL14LAJSVA"].includes(row.event_id)).map((row) => ({ event_id: row.event_id, completed: row.lineage_receipt.completed, delta_vs_100_cents: row.lineage_receipt.delta_vs_100_cents }));
-  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "V54_F_VS_111_112_CONDITIONED_BELIEF_LIVE_DEADLINE_GATE", law_index_read_at: "3be11997", law_index_sha256: "41784e6a…", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_bed_floors: SAFETY_FLOORS, layered_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.composition_rebuild.completed, delta_vs_100_cents: row.composition_rebuild.delta_vs_100_cents, legs: row.composition_rebuild.legs })), safety_floor_pass: floorBreaks.length === 0, phase_conditioning: { provenance: "F-VS-111@3be11997", method: "FULL_TRAVEL_CENTS_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1)", own_evidence_member_weights_retained: true }, live_deadlines: { provenance: "F-VS-112@3be11997", rows: deadlineRows.length, graded_rows: deadlineRows.filter((row) => row.grade_status === "GRADED_AT_OWN_DEADLINE").length, hit_rows: deadlineRows.filter((row) => row.hit_at_or_below_prediction_by_own_deadline).length, all_fresh: deadlineRows.every((row) => row.deadline_derives_fresh_at_emission && row.deadline_epoch >= row.emission_epoch) }, independent_bed_lane: { may_hold: true, may_abstain: true, may_complete: false, independent_lane_fill_count: fillEvents.filter((row) => String(row.context.standing_license_basis).startsWith("INDEPENDENT")).length }, no_bed_flattery: { placement_rule_changed_from_outcomes: false, f_vs_110_stamp: "TUNED_RETAINED", named_event_ids_in_policy_source: false }, rest_pricing: { fill_count: restPriceRows.length, every_entry_equals_standing_rest: restPriceRows.every((row) => row.entry_equals_standing_rest), active_print_priced_residue_count: printPricedResidueCount }, sentence_price: { rows: beliefPriceRows.length, every_field_matches_book_state: beliefPriceRows.every((row) => row.field_matches_book_state) }, envelope_placement: { rule_applied_uniformly: true, f_vs_110_tuned_stamp_retained: true, verbatim_sentence_artifact: "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md" }, law_violations: lawViolations, superseded_composition_scan_signals_not_used_for_verdict: supersededCompositionScanSignals, zero_measured_law_violations: lawViolations.length === 0, layer_order_complete: allDerivations.every((row) => !(row.layered_dual_belief.micro.status === "RESOLVED" && row.layered_dual_belief.macro.status !== "RESOLVED") && !(row.layered_dual_belief.micro_micro.status === "RESOLVED" && row.layered_dual_belief.micro.status !== "RESOLVED")), sentences_carry_layered_dual_belief: allDerivations.every((row) => row.sentence.includes("MACRO:") && row.sentence.includes("MICRO:") && row.sentence.includes("MICRO-MICRO:") && row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")), sentences_cite_fills: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "BED_TRIPWIRE_BREAK_AFTER_NAMED_STEP_REPAIR" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
+  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "V54_F_VS_114_THREE_NAMED_STEPS_MIND_ONLY_GATE", law_index_read_at: "9ff83002", law_index_sha256: "41784e6a…", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_bed_floors: SAFETY_FLOORS, layered_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.composition_rebuild.completed, delta_vs_100_cents: row.composition_rebuild.delta_vs_100_cents, legs: row.composition_rebuild.legs })), safety_floor_pass: floorBreaks.length === 0, remaining_dip: { provenance: "F-VS-114(b)@9ff83002", method: "CONDITIONED_TOTAL_MINUS_ARRIVED", own_evidence_member_weights_retained: true, prediction_bias_shift: { baseline_median_signed_error_cents: baselinePredictionBiasMedian, repaired_median_signed_error_cents: predictionBiasMedian, moved_toward_zero: predictionBiasMovedTowardZero } }, floor_side_placement: { provenance: "F-VS-114(a)@9ff83002", deep_edge_default_rows: envelopePlacementRows.filter((row) => String(row.placement?.chosen_candidate_rule).includes("DEEP")).length }, envelope_migration: { provenance: "F-VS-114(c)@9ff83002", migration_rows: envelopePlacementRows.filter((row) => row.placement?.envelope_migration?.migrated).length, inconsistent_active_rows: envelopePlacementRows.filter((row) => row.consistency?.active_inconsistent_before_action).length, every_inconsistent_active_resolved_same_receipt: envelopePlacementRows.filter((row) => row.consistency?.active_inconsistent_before_action).every((row) => row.consistency?.resolved_same_receipt), fail_loud_cancellations: envelopePlacementRows.filter((row) => row.consistency?.resolution === "CANCELLED_FAIL_LOUD_SAME_RECEIPT").length, q50_root_cause_named_row_found: Boolean(namedLajMismatch) }, live_deadlines: { provenance: "F-VS-112@3be11997", rows: deadlineRows.length, graded_rows: deadlineRows.filter((row) => row.grade_status === "GRADED_AT_OWN_DEADLINE").length, hit_rows: deadlineRows.filter((row) => row.hit_at_or_below_prediction_by_own_deadline).length, all_fresh: deadlineRows.every((row) => row.deadline_derives_fresh_at_emission && row.deadline_epoch >= row.emission_epoch) }, independent_bed_lane: { may_hold: true, may_abstain: true, may_complete: false, independent_lane_fill_count: fillEvents.filter((row) => String(row.context.standing_license_basis).startsWith("INDEPENDENT")).length }, no_bed_flattery: { placement_rule_changed_from_outcomes: false, f_vs_110_stamp: "TUNED_RETAINED", named_event_ids_in_policy_source: false }, rest_pricing: { fill_count: restPriceRows.length, every_entry_equals_standing_rest: restPriceRows.every((row) => row.entry_equals_standing_rest), active_print_priced_residue_count: printPricedResidueCount }, sentence_price: { rows: beliefPriceRows.length, every_field_matches_book_state: beliefPriceRows.every((row) => row.field_matches_book_state) }, envelope_placement: { rule_applied_uniformly: true, f_vs_110_tuned_stamp_retained: true, verbatim_sentence_artifact: "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md" }, law_violations: lawViolations, superseded_composition_scan_signals_not_used_for_verdict: supersededCompositionScanSignals, zero_measured_law_violations: lawViolations.length === 0, layer_order_complete: allDerivations.every((row) => !(row.layered_dual_belief.micro.status === "RESOLVED" && row.layered_dual_belief.macro.status !== "RESOLVED") && !(row.layered_dual_belief.micro_micro.status === "RESOLVED" && row.layered_dual_belief.micro.status !== "RESOLVED")), sentences_carry_layered_dual_belief: allDerivations.every((row) => row.sentence.includes("MACRO:") && row.sentence.includes("MICRO:") && row.sentence.includes("MICRO-MICRO:") && row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")), sentences_cite_fills: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "BED_TRIPWIRE_BREAK_AFTER_NAMED_STEP_REPAIR" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   const coherenceTimelines = Object.fromEntries(TARGETS.stories.map((eventId) => {
     const stages = decisionStages.filter((row) => row.event_id === eventId);
     const timeline = [];
@@ -1221,7 +1264,7 @@ async function main() {
   }));
   writeJson(path.join(output, "COHERENCE_TIMELINES.json"), { label: "V54_LAYERED_DUAL_BELIEF_COHERENCE_TIMELINES", contract_sum_cents: os.CONTRACT_SUM_CENTS, spread_settle_coherence_max_cents: os.SPREAD_SETTLE_COHERENCE_MAX_CENTS, provenance: os.LAYER_PROVENANCE, games: coherenceTimelines });
   const lajsvaEventId = "KXATPCHALLENGERMATCH-26JUL14LAJSVA";
-  const caseStudy = emitCaseStudyV11({
+  const caseStudy = emitCaseStudyV12({
     caseOutput: arg("case-output"),
     sourceOutput: output,
     storyResult: storyResults.find((row) => row.event_id === lajsvaEventId),
@@ -1231,15 +1274,17 @@ async function main() {
     decisionStages,
   });
   writeJson(path.join(output, "LAYERED_DUAL_BELIEF_RECEIPT.json"), {
-    label: "V54_PHASE_CONDITIONED_LIVE_DEADLINE_LAYERED_DUAL_BELIEF_RECEIPT",
-    law_tip: "3be11997",
-    repair_authorities: ["F-VS-108", "F-VS-109", "F-VS-110", "F-VS-111", "F-VS-112", "F-VS-066"],
+    label: "V54_THREE_NAMED_STEPS_LAYERED_DUAL_BELIEF_RECEIPT",
+    law_tip: "9ff83002",
+    repair_authorities: ["F-VS-108", "F-VS-113", "F-VS-114", "F-VS-115", "F-VS-066"],
     fill_price_law: "STANDING_REST_LIMIT_CENTS",
     belief_price_field: "SETTLED_BOOK_MID_SERIES_FLOORED_FROM_RECEIPT_PINNED_BID_ASK",
     method_not_result_input: "F-VS-103 method re-executed causally; DUAL_BELIEF_FORENSICS finished-game rows are not loaded by policy",
     resolution_order: ["MACRO", "MICRO", "MICRO_MICRO"],
     downstream_block_law: "INSUFFICIENT_EVIDENCE at any layer prevents a fresh downstream belief read; on the bed only a previously licensed coherent rest may remain standing; the independent lane may HOLD or ABSTAIN and cannot originate a completion",
-    phase_conditioning: "Full travel is multiplied by clamp(own window fraction / member floor fraction, 0, 1) under the already own-evidence-conditioned member weights before any subtraction.",
+    remaining_dip_law: "Remaining dip equals the own-evidence-conditioned total minus arrived travel, where arrived equals total times clamp(own window fraction / member floor fraction, 0, 1); all three quantiles use one floor-timed member universe.",
+    envelope_placement_law: "The conditioned remaining-dip q50 names the floor-side point inside a containing envelope; the envelope deep edge is never a default.",
+    envelope_migration_law: "Every migrated coherent envelope re-derives the standing rest on the same receipt; an inconsistent stale rest is fail-loud.",
     deadline_law: "Each SHOULD deadline is recalculated and stamped from the live clock at its own emission; a modeled deadline already behind now clamps to the emission receipt, never remains stale.",
     stores_by_layer: {
       MACRO: ["FOUNDATION_PER_MINUTE_UNIVERSE:MINUTE", "RANGE_SPECTRUM:RANGE_POLL", "SPIKE_ATLAS:EVENT_LEG_DESCRIPTIVE"],
@@ -1252,7 +1297,7 @@ async function main() {
     every_layer_citation_declares_grain: allDerivations.every((row) => row.sentence.includes("MICRO-MICRO:") && row.sentence.includes("SUBSECOND") && row.sentence.includes("MACRO:")),
     results: storyResults,
     games: coherenceTimelines,
-    case_study_v11: caseStudy,
+    case_study_v12: caseStudy,
   });
   const lajsvaRows = allDerivations.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA").sort((a, b) => a.timestamp_epoch - b.timestamp_epoch || a.leg_id.localeCompare(b.leg_id));
   const lastTarget = new Map();

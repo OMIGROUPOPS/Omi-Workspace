@@ -1,0 +1,249 @@
+{
+  "label": "V54_F_VS_114_THREE_NAMED_STEPS_MIND_ONLY_GATE",
+  "law_index_read_at": "9ff83002",
+  "law_index_sha256": "41784e6a…",
+  "honest_baseline_pins": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": true,
+      "delta_vs_100_cents": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": true,
+      "delta_vs_100_cents": 6
+    }
+  ],
+  "pins_equal_expected": true,
+  "required_bed_floors": {
+    "KXATPCHALLENGERMATCH_26JUL12GIUBAR": 7,
+    "KXATPCHALLENGERMATCH_26JUL14URSPAL": 3,
+    "KXATPCHALLENGERMATCH_26JUL14LAJSVA": 6
+  },
+  "layered_safety_floor_breaks": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "BAR": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": 30,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+          "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813"
+        },
+        "GIU": {
+          "credited": true,
+          "entry_cents": 66,
+          "standing_target_cents": null,
+          "fill_receipt": "924208a2-c681-7126-04df-93a053cd515b",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU",
+            "captured_at_receipt": "924208a2-c681-7126-04df-93a053cd515b",
+            "row_refs": [
+              "924208a2-c681-7126-04df-93a053cd515b"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+              "leg_id": "GIU",
+              "entry_cents": 66,
+              "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+              "triggering_print_price_cents": 66,
+              "fill_timestamp_epoch": 1783869375.227,
+              "prior_standing_target_cents": 66,
+              "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+              "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2161",
+              "print_at_or_below_rest": true,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-83580b9d3cac1e2a6e7bfa66de6a2e323a1c8c43d53ae303098fa02f970125b7"
+          },
+          "fill_timestamp_epoch": 1783869375.227,
+          "standing_license_basis": null,
+          "standing_license_receipt": null
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": true,
+      "delta_vs_100_cents": 2,
+      "legs": {
+        "PAL": {
+          "credited": true,
+          "entry_cents": 40,
+          "standing_target_cents": null,
+          "fill_receipt": "b24bd093-10ae-7fff-b81e-bcc4b7686a44",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL",
+            "captured_at_receipt": "b24bd093-10ae-7fff-b81e-bcc4b7686a44",
+            "row_refs": [
+              "b24bd093-10ae-7fff-b81e-bcc4b7686a44"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+              "leg_id": "PAL",
+              "entry_cents": 40,
+              "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+              "triggering_print_price_cents": 40,
+              "fill_timestamp_epoch": 1784041997.986,
+              "prior_standing_target_cents": 40,
+              "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+              "standing_license_receipt": "a33cbbef-d301-7a0e-6b08-13b1b83176a1",
+              "print_at_or_below_rest": true,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-c4e941ef150df162338537bed1d0f6071f6b1c454a5c0cc459ccd70510e82c24"
+          },
+          "fill_timestamp_epoch": 1784041997.986,
+          "standing_license_basis": null,
+          "standing_license_receipt": null
+        },
+        "URS": {
+          "credited": true,
+          "entry_cents": 58,
+          "standing_target_cents": null,
+          "fill_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+            "captured_at_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "row_refs": [
+              "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+              "leg_id": "URS",
+              "entry_cents": 58,
+              "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+              "triggering_print_price_cents": 57,
+              "fill_timestamp_epoch": 1784032697.6,
+              "prior_standing_target_cents": 58,
+              "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+              "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-30672",
+              "print_at_or_below_rest": true,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-806c2408e8f400f2c075f7ad4fd876721aa5d19553302989f36de3a6655c8d0c"
+          },
+          "fill_timestamp_epoch": 1784032697.6,
+          "standing_license_basis": null,
+          "standing_license_receipt": null
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "LAJ": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null
+        },
+        "SVA": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null
+        }
+      }
+    }
+  ],
+  "safety_floor_pass": false,
+  "remaining_dip": {
+    "provenance": "F-VS-114(b)@9ff83002",
+    "method": "CONDITIONED_TOTAL_MINUS_ARRIVED",
+    "own_evidence_member_weights_retained": true,
+    "prediction_bias_shift": {
+      "baseline_median_signed_error_cents": -11,
+      "repaired_median_signed_error_cents": -8,
+      "moved_toward_zero": true
+    }
+  },
+  "floor_side_placement": {
+    "provenance": "F-VS-114(a)@9ff83002",
+    "deep_edge_default_rows": 0
+  },
+  "envelope_migration": {
+    "provenance": "F-VS-114(c)@9ff83002",
+    "migration_rows": 685,
+    "inconsistent_active_rows": 22,
+    "every_inconsistent_active_resolved_same_receipt": true,
+    "fail_loud_cancellations": 14,
+    "q50_root_cause_named_row_found": true
+  },
+  "live_deadlines": {
+    "provenance": "F-VS-112@3be11997",
+    "rows": 2680,
+    "graded_rows": 1546,
+    "hit_rows": 66,
+    "all_fresh": true
+  },
+  "independent_bed_lane": {
+    "may_hold": true,
+    "may_abstain": true,
+    "may_complete": false,
+    "independent_lane_fill_count": 0
+  },
+  "no_bed_flattery": {
+    "placement_rule_changed_from_outcomes": false,
+    "f_vs_110_stamp": "TUNED_RETAINED",
+    "named_event_ids_in_policy_source": false
+  },
+  "rest_pricing": {
+    "fill_count": 3,
+    "every_entry_equals_standing_rest": true,
+    "active_print_priced_residue_count": 0
+  },
+  "sentence_price": {
+    "rows": 5483,
+    "every_field_matches_book_state": true
+  },
+  "envelope_placement": {
+    "rule_applied_uniformly": true,
+    "f_vs_110_tuned_stamp_retained": true,
+    "verbatim_sentence_artifact": "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md"
+  },
+  "law_violations": [],
+  "superseded_composition_scan_signals_not_used_for_verdict": [
+    "UNNAMED_EVIDENCE_LADDER_RUNG",
+    "TOUCH_RELATION_MISSING_FROM_SENTENCE",
+    "DEPTH_DERIVATION_MISSING_FROM_SENTENCE",
+    "EVIDENCE_RUNG_OR_BASIS_MISSING_FROM_SENTENCE",
+    "FOUNDATION_CITATION_GRAIN_OR_LAYER_MISSING",
+    "BELOW_TOUCH_REST_WITHOUT_V3_MAP_LICENSE",
+    "WINDOW_SIDE_TOUCH_OR_MAP_LICENSE_MISSING_FROM_SENTENCE"
+  ],
+  "zero_measured_law_violations": true,
+  "layer_order_complete": true,
+  "sentences_carry_layered_dual_belief": true,
+  "sentences_cite_fills": true,
+  "self_stop": true,
+  "stop_reason": "BED_TRIPWIRE_BREAK_AFTER_NAMED_STEP_REPAIR",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

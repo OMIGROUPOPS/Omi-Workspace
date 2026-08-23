@@ -1,0 +1,32 @@
+{
+  "label": "V54_THREE_NAMED_STEPS_DETERMINISM_X2",
+  "runs": 2,
+  "policy_and_receipt_builder_identical": true,
+  "run_a": {
+    "package": ".claude/window1_live_v4_replay/v54_three_named_steps_remaining_dip_floor_side_envelope_migration_20260823",
+    "case_study": ".claude/window1_live_v4_replay/lajsva_case_study_v12_20260823"
+  },
+  "run_b": {
+    "package": "C:/tmp/v54-three-named-determinism-b",
+    "case_study": "C:/tmp/v54-three-named-case-b",
+    "temporary_not_committed": true
+  },
+  "package_comparison": {
+    "files_compared": 37,
+    "byte_identical": 37,
+    "different": 0,
+    "run_a_manifest_sha256": "d7cf23b8193db939d686ab743d7db2e243fa3e3c937e88398a2c5417cf9c3431",
+    "run_b_manifest_sha256": "d7cf23b8193db939d686ab743d7db2e243fa3e3c937e88398a2c5417cf9c3431"
+  },
+  "case_study_comparison": {
+    "files_compared": 8,
+    "byte_identical": 8,
+    "different": 0,
+    "run_a_manifest_sha256": "da125736648aa6f17dd2cc841d5b9183954905463a226a9e07331d7a4e1bfb1c",
+    "run_b_manifest_sha256": "da125736648aa6f17dd2cc841d5b9183954905463a226a9e07331d7a4e1bfb1c"
+  },
+  "verdict": "PASS_BYTE_IDENTICAL_X2",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

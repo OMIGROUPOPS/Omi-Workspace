@@ -1,0 +1,94 @@
+{
+  "artifact": "DIVES_T1_V3_SELECTION_RECEIPT",
+  "created_at": "2026-08-23T14:07:17.8293378-04:00",
+  "created_before_any_selected_game_run": true,
+  "license": {
+    "law_index_read_commit": "165caa8a",
+    "law_index_sha": "41784e6a",
+    "amendment_commit": "ace3862b",
+    "redundancy_register": "F-VS-094",
+    "scope": "DIVES_T1_TRANCHE_1_V2_V3",
+    "full_804_forbidden": true,
+    "sealed_and_live_forbidden": true
+  },
+  "queue": {
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DIVE_QUEUE_V2.json",
+    "sha256": "cf2d16695fc9add24200031e489eb652408f9537a39a4c941f6bc437439103b2",
+    "git_blob": "974b4b4e3cb2510b952a4d04f85b050ab0b315e8",
+    "games": 642
+  },
+  "selection_law": {
+    "partition": "category",
+    "primary_sort": "cents-under-floor (DIVE_QUEUE_V2.worst_gap) descending",
+    "tie_break": "event_id lexicographic ascending",
+    "take_per_category": 2,
+    "selected_games": 8
+  },
+  "selected": [
+    {
+      "category": "ATP_CHALL",
+      "rank": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TORSEN",
+      "cents_under_floor": 52,
+      "offer_margin_cents": 2,
+      "queue_mechanism": "OWN_TAPE_PRESENCE_AT_TOUCH_STOOD_10PLUSC_UNDER_FLOOR"
+    },
+    {
+      "category": "ATP_CHALL",
+      "rank": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+      "cents_under_floor": 47,
+      "offer_margin_cents": 11,
+      "queue_mechanism": "OWN_TAPE_PRESENCE_AT_TOUCH_STOOD_10PLUSC_UNDER_FLOOR"
+    },
+    {
+      "category": "ATP_MAIN",
+      "rank": 1,
+      "event_id": "KXATPMATCH-26JUL14TRAKRU",
+      "cents_under_floor": 49,
+      "offer_margin_cents": 8,
+      "queue_mechanism": "DERIVED_TIMING_DEPTH_STOOD_10PLUSC_UNDER_FLOOR"
+    },
+    {
+      "category": "ATP_MAIN",
+      "rank": 2,
+      "event_id": "KXATPMATCH-26JUL19BAEKEC",
+      "cents_under_floor": 43,
+      "offer_margin_cents": 2,
+      "queue_mechanism": "DERIVED_TIMING_DEPTH_STOOD_10PLUSC_UNDER_FLOOR"
+    },
+    {
+      "category": "WTA_CHALL",
+      "rank": 1,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ASTNOH",
+      "cents_under_floor": 34,
+      "offer_margin_cents": 3,
+      "queue_mechanism": "DERIVED_TIMING_DEPTH_STOOD_10PLUSC_UNDER_FLOOR"
+    },
+    {
+      "category": "WTA_CHALL",
+      "rank": 2,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17VALFAL",
+      "cents_under_floor": 34,
+      "offer_margin_cents": 2,
+      "queue_mechanism": "DERIVED_TIMING_DEPTH_STOOD_10PLUSC_UNDER_FLOOR"
+    },
+    {
+      "category": "WTA_MAIN",
+      "rank": 1,
+      "event_id": "KXWTAMATCH-26JUL13QUERUS",
+      "cents_under_floor": 51,
+      "offer_margin_cents": 3,
+      "queue_mechanism": "DERIVED_TIMING_DEPTH_STOOD_10PLUSC_UNDER_FLOOR"
+    },
+    {
+      "category": "WTA_MAIN",
+      "rank": 2,
+      "event_id": "KXWTAMATCH-26JUL17PUTSHE",
+      "cents_under_floor": 41,
+      "offer_margin_cents": 2,
+      "queue_mechanism": "DERIVED_TIMING_DEPTH_STOOD_10PLUSC_UNDER_FLOOR"
+    }
+  ],
+  "status": "FROZEN_BEFORE_RUN"
+}

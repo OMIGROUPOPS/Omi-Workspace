@@ -18826,6 +18826,7 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| THREE_WAY_TOUCH_CAPTURE_CENSUS — QUEUED WITH TRIGGER: live-pilot boundary (output = live fill-conversion expectations) or a rebuild's four-game contradiction of the dives' TOUCH-SUFFICIENT verdicts; not before; prior art NIKVRB @a19e3b12/5c9f9f11/a1a37c45 · quote-touch @d1ac9497 · F-VS-054 | 2026-08-23 | F-VS-100 (amends F-VS-094/098) |
 | REDUNDANCY REGISTER — touch-vs-depth adjudicated by five measurements (STOOD_TOO_DEEP · Jul miss autopsy · it3 · pass-1 literal · pass-2 census); no lane re-opens it; edge_p50/SEQFLOOR_RECUT depth map BELL-SUSPECT pending W1 corrections; chain-pressure instrument (Jul 6) + three-way touch-capture census (Jul 30) = the only lawful new measurements | 2026-08-23 | F-VS-094 |
 | STORY-DIVE MANDATE — below 50% of offered on any tune pass, next step is individual-game story dives (losses weighted), not another scale pass | 2026-08-22 | F-VS-087 |
 | THE BENCHMARK — success ≈80% of honestly-offered captured on shown logic; avg game delta second ruler; not a gradient target | 2026-08-22 | F-VS-086 |
@@ -19585,3 +19586,9 @@ The Foundation catalogued in §l (F-VS-058): 9.33M minute rows, 19,207 tickers, 
 - Adjudicated, not a question: the rest stands at the touch. Receipts: STOOD_TOO_DEEP @1c9419a0 · V11 miss autopsy @fab918c1/932a7695 · it3 F-VS-073/074 @521a1613 · pass-1 F-VS-081 @fddf3f47 · pass-2 F-VS-092 @4d16922c.
 - BELL-SUSPECT: edge_p50 Dynamic-S (CONFORMANCE_20260708) and SEQFLOOR_RECUT @2f59130e — re-derive under W1TT corrections before any use.
 - NEVER-RUN, lawful to run: chain-pressure instrument (Jul-6 spec; THE_SHELF_AUDIT SHELVED) · three-way touch-capture census (Jul 30; quote-touch census @d1ac9497 is the nearest banked record, the three-way cut unrun). Nothing else new in this area (F-VS-094).
+
+## ac. DIVES T1 v3 COUNTER-GRADE + CENSUS TRIGGER (appended 2026-08-23; license ac68e3bc)
+
+- Dives @ac68e3bc: selection 8/8 reproduced; 16/16 adjudications re-derived from raw tapes + sentences + map; 792/792 sentences verbatim vs custody; 30/30 sentence==action; two incoherences (1¢ rests under FORMATION_NOT_COMPLETE; REPRICE 29 with reason FORMATION_NOT_COMPLETE) (F-VS-099).
+- Depth map V3 = it6-corpus re-derivation under bounded right edges; the four licensed cells (ATP_CHALL|8, ATP_MAIN|46/56, WTA_MAIN|42) are ≥53 MINUTE-grain legs each; W1TT corrections touch none of them (F-VS-099).
+- THREE_WAY_TOUCH_CAPTURE_CENSUS: QUEUED WITH TRIGGER (live-pilot boundary, or four-game contradiction of TOUCH-SUFFICIENT); not before (F-VS-100).

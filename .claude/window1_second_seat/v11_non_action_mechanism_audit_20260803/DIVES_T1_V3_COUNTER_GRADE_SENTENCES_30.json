@@ -1,0 +1,512 @@
+[
+ {
+  "event": "QUERUS",
+  "leg": "RUS",
+  "ts": 1783876350,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 13,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_53C",
+  "bid_ask": "66/70",
+  "vote": "1.492708",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "53",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "BAEKEC",
+  "leg": "KEC",
+  "ts": 1784390795,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 35,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_14C",
+  "bid_ask": "49/58",
+  "vote": "0.198525",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "14",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "TRAKRU",
+  "leg": "KRU",
+  "ts": 1783967217,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_37C",
+  "bid_ask": "38/92",
+  "vote": "2.744411",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "48",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "QUERUS",
+  "leg": "QUE",
+  "ts": 1783846293,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_46C",
+  "bid_ask": "47/90",
+  "vote": "3.289167",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "47",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "QUERUS",
+  "leg": "RUS",
+  "ts": 1783854405,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_12C",
+  "bid_ask": "13/84",
+  "vote": "0.282925",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "26",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "TORSEN",
+  "leg": "SEN",
+  "ts": 1784429327,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_4C",
+  "bid_ask": "5/14",
+  "vote": "0.990161",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "12",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "KIRSEK",
+  "leg": "KIR",
+  "ts": 1784004340,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_20C",
+  "bid_ask": "21/89",
+  "vote": "0.124259",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "67",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "BAEKEC",
+  "leg": "KEC",
+  "ts": 1784377302.936,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_6C",
+  "bid_ask": "7/92",
+  "vote": "0.565010",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "47",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "TRAKRU",
+  "leg": "KRU",
+  "ts": 1784021088,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 43,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_14C",
+  "bid_ask": "57/58",
+  "vote": "1.501376",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "14",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "TRAKRU",
+  "leg": "TRA",
+  "ts": 1783970213.262,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 41,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_8C",
+  "bid_ask": "49/51",
+  "vote": "1.488295",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "8",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "KIRSEK",
+  "leg": "KIR",
+  "ts": 1783995216,
+  "action": {
+   "action": "PLACE_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_3C",
+  "bid_ask": "4/95",
+  "vote": "3.247236",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "32",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "QUERUS",
+  "leg": "RUS",
+  "ts": 1783854988,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_12C",
+  "bid_ask": "13/88",
+  "vote": "0.259500",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "20",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "KIRSEK",
+  "leg": "SEK",
+  "ts": 1784000633,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_14C",
+  "bid_ask": "15/94",
+  "vote": "0.064970",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "27",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "QUERUS",
+  "leg": "QUE",
+  "ts": 1783951786,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 28,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_1C",
+  "bid_ask": "29/31",
+  "vote": "0.346035",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "1",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "QUERUS",
+  "leg": "RUS",
+  "ts": 1783863394.339,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 29,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_3C",
+  "bid_ask": "32/60",
+  "vote": "0.355471",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "3",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "ASTNOH",
+  "leg": "NOH",
+  "ts": 1784081476,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_4C",
+  "bid_ask": "5/94",
+  "vote": "0.340454",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "21",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "QUERUS",
+  "leg": "RUS",
+  "ts": 1783854951,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_12C",
+  "bid_ask": "13/56",
+  "vote": "0.190390",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "39",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "KIRSEK",
+  "leg": "KIR",
+  "ts": 1783997804.937,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_3C",
+  "bid_ask": "4/95",
+  "vote": "2.106635",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "71",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "QUERUS",
+  "leg": "QUE",
+  "ts": 1783864065,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 31,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_17C",
+  "bid_ask": "48/59",
+  "vote": "4.824003",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "17",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "PUTSHE",
+  "leg": "SHE",
+  "ts": 1784208010,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_27C",
+  "bid_ask": "28/73",
+  "vote": "2.230284",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "44",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "BAEKEC",
+  "leg": "BAE",
+  "ts": 1784545745,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_43C",
+  "bid_ask": "44/46",
+  "vote": "2.092339",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "49",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "TORSEN",
+  "leg": "TOR",
+  "ts": 1784416919,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_4C",
+  "bid_ask": "5/96",
+  "vote": "1.866813",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "11",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "TRAKRU",
+  "leg": "KRU",
+  "ts": 1783967179,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_20C",
+  "bid_ask": "21/93",
+  "vote": "3.018659",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "54",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "TRAKRU",
+  "leg": "KRU",
+  "ts": 1783970764,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 24,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_28C",
+  "bid_ask": "52/50",
+  "vote": "1.590989",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "28",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "ASTNOH",
+  "leg": "AST",
+  "ts": 1784081511,
+  "action": {
+   "action": "HOLD_REST",
+   "target_cents": 1,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_4C",
+  "bid_ask": "5/90",
+  "vote": "3.467565",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "9",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "TRAKRU",
+  "leg": "KRU",
+  "ts": 1783971225,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 26,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_28C",
+  "bid_ask": "54/55",
+  "vote": "1.592931",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "28",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "QUERUS",
+  "leg": "QUE",
+  "ts": 1783863426,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 27,
+   "reason": "FORMATION_NOT_COMPLETE"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_21C",
+  "bid_ask": "48/66",
+  "vote": "3.310872",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "21",
+  "reason": "FORMATION_NOT_COMPLETE"
+ },
+ {
+  "event": "PUTSHE",
+  "leg": "PUT",
+  "ts": 1784219187,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 30,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_26C",
+  "bid_ask": "56/59",
+  "vote": "1.056011",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "26",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "KIRSEK",
+  "leg": "SEK",
+  "ts": 1784007191,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 63,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_4C",
+  "bid_ask": "67/68",
+  "vote": "0.506237",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "4",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ },
+ {
+  "event": "ASTNOH",
+  "leg": "NOH",
+  "ts": 1784081714.183,
+  "action": {
+   "action": "REPRICE_REST",
+   "target_cents": 54,
+   "reason": "NEIGHBOR_VOTED_COMPOSITION"
+  },
+  "sentence_eq_action": true,
+  "touch": "BELOW_BEST_BID_3C",
+  "bid_ask": "57/65",
+  "vote": "0.601200",
+  "basis": "NEIGHBOR_VOTED_COMPOSITION",
+  "chosen": "3",
+  "reason": "NEIGHBOR_VOTED_COMPOSITION"
+ }
+]

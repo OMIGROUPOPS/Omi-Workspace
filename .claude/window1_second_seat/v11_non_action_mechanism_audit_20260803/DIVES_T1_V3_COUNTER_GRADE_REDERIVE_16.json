@@ -1,0 +1,258 @@
+[
+ [
+  "TORSEN",
+  "SEN",
+  true,
+  {
+   "rest": 3,
+   "gap": 1,
+   "preTouch": 5,
+   "knowable": "YES",
+   "touch": "YES",
+   "depth": "YES",
+   "p50": 3,
+   "prior_row": 212
+  },
+  ""
+ ],
+ [
+  "TORSEN",
+  "TOR",
+  true,
+  {
+   "rest": 42,
+   "gap": 52,
+   "preTouch": 85,
+   "knowable": "YES",
+   "touch": "NO",
+   "depth": "UNMAPPED",
+   "p50": null,
+   "prior_row": 218
+  },
+  ""
+ ],
+ [
+  "KIRSEK",
+  "KIR",
+  true,
+  {
+   "rest": 1,
+   "gap": 27,
+   "preTouch": 28,
+   "knowable": "YES",
+   "touch": "YES",
+   "depth": "NO",
+   "p50": 4,
+   "prior_row": 16768
+  },
+  ""
+ ],
+ [
+  "KIRSEK",
+  "SEK",
+  true,
+  {
+   "rest": 14,
+   "gap": 47,
+   "preTouch": 14,
+   "knowable": "YES",
+   "touch": "NO",
+   "depth": "NO",
+   "p50": 6,
+   "prior_row": 3266
+  },
+  ""
+ ],
+ [
+  "TRAKRU",
+  "KRU",
+  true,
+  {
+   "rest": 1,
+   "gap": 49,
+   "preTouch": 48,
+   "knowable": "YES",
+   "touch": "NO",
+   "depth": "NO",
+   "p50": 4,
+   "prior_row": 302
+  },
+  ""
+ ],
+ [
+  "TRAKRU",
+  "TRA",
+  true,
+  {
+   "rest": 38,
+   "gap": 4,
+   "preTouch": 42,
+   "knowable": "YES",
+   "touch": "YES",
+   "depth": "YES",
+   "p50": 5,
+   "prior_row": 6194
+  },
+  ""
+ ],
+ [
+  "BAEKEC",
+  "BAE",
+  true,
+  {
+   "rest": 1,
+   "gap": 43,
+   "preTouch": 44,
+   "knowable": "YES",
+   "touch": "YES",
+   "depth": "NO",
+   "p50": 5,
+   "prior_row": 5399
+  },
+  ""
+ ],
+ [
+  "BAEKEC",
+  "KEC",
+  true,
+  {
+   "rest": 54,
+   "gap": 0,
+   "preTouch": 55,
+   "knowable": "YES",
+   "touch": "YES",
+   "depth": "YES",
+   "p50": 5,
+   "prior_row": 7745
+  },
+  ""
+ ],
+ [
+  "ASTNOH",
+  "AST",
+  true,
+  {
+   "rest": 4,
+   "gap": 34,
+   "preTouch": 36,
+   "knowable": "NO",
+   "touch": "NO",
+   "depth": "NO",
+   "p50": 7,
+   "prior_row": null
+  },
+  ""
+ ],
+ [
+  "ASTNOH",
+  "NOH",
+  true,
+  {
+   "rest": 41,
+   "gap": 18,
+   "preTouch": 58,
+   "knowable": "YES",
+   "touch": "NO",
+   "depth": "NO",
+   "p50": 5,
+   "prior_row": 391
+  },
+  ""
+ ],
+ [
+  "VALFAL",
+  "FAL",
+  true,
+  {
+   "rest": 29,
+   "gap": 14,
+   "preTouch": 43,
+   "knowable": "YES",
+   "touch": "YES",
+   "depth": "NO",
+   "p50": 3,
+   "prior_row": 579
+  },
+  ""
+ ],
+ [
+  "VALFAL",
+  "VAL",
+  true,
+  {
+   "rest": 21,
+   "gap": 34,
+   "preTouch": 53,
+   "knowable": "YES",
+   "touch": "NO",
+   "depth": "NO",
+   "p50": 3,
+   "prior_row": 152
+  },
+  ""
+ ],
+ [
+  "QUERUS",
+  "QUE",
+  true,
+  {
+   "rest": 20,
+   "gap": 9,
+   "preTouch": 28,
+   "knowable": "YES",
+   "touch": "NO",
+   "depth": "NO",
+   "p50": 4,
+   "prior_row": 3144
+  },
+  ""
+ ],
+ [
+  "QUERUS",
+  "RUS",
+  true,
+  {
+   "rest": 17,
+   "gap": 51,
+   "preTouch": 70,
+   "knowable": "YES",
+   "touch": "YES",
+   "depth": "NO",
+   "p50": 6,
+   "prior_row": 58167
+  },
+  ""
+ ],
+ [
+  "PUTSHE",
+  "PUT",
+  true,
+  {
+   "rest": 17,
+   "gap": 41,
+   "preTouch": 59,
+   "knowable": "NO",
+   "touch": "YES",
+   "depth": "NO",
+   "p50": 4,
+   "prior_row": null
+  },
+  ""
+ ],
+ [
+  "PUTSHE",
+  "SHE",
+  true,
+  {
+   "rest": 38,
+   "gap": 2,
+   "preTouch": 40,
+   "knowable": "YES",
+   "touch": "YES",
+   "depth": "YES",
+   "p50": 9,
+   "prior_row": 4620
+  },
+  ""
+ ]
+]

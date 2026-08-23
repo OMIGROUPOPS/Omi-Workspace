@@ -1,0 +1,19 @@
+{
+  "threshold_bytes": 10485760,
+  "untracked_files_over_threshold": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_l19a_neighbor_voted_composition_pass2_20260823/CC_DRAWN_STORIES_30.json",
+      "bytes": 11985857,
+      "sha256": "f45928098477d1ca77fb9a739a7c41f87123b6031c121ec1b3b71d3aea8719e8",
+      "disposition": "COMMIT_IN_THIS_PASS"
+    }
+  ],
+  "external_custody": {
+    "build_1_archive_sha256": "9e796ab73ca05fb3b52b62cc7faea8fe21b1f83a52822717d4449da7531d3d02",
+    "build_2_archive_sha256": "9e796ab73ca05fb3b52b62cc7faea8fe21b1f83a52822717d4449da7531d3d02",
+    "bytes_each": 75525710,
+    "rows_each": 61400,
+    "committed": false,
+    "manifest": "EXTERNAL_CUSTODY_MANIFEST.json"
+  }
+}

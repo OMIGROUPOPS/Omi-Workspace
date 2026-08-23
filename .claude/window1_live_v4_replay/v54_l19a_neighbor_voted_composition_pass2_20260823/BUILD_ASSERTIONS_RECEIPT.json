@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "pass": 2,
+  "sentence_archive": "C:/Users/omigr/OMI-Window1-private/stage1/v54_l19a_neighbor_voted_composition_pass2/build1/ALL_SENTENCES_804.jsonl.gz",
+  "sentence_rows": 61400,
+  "neighbor_specialist_binding_rows": 61400,
+  "event_leave_self_out_rows": 61400,
+  "specialist_vote_sentence_weld_rows": 61400,
+  "old_composition_fit_rows": 0,
+  "old_fit_cell_rows": 0,
+  "assertions": {
+    "leave_self_out_on_every_decision": true,
+    "no_fitted_cells": true,
+    "no_global_coefficients": true,
+    "specialist_votes_named_in_every_sentence": true,
+    "frozen_pair_allocation_and_conservation": true,
+    "sealed_live_deployment_access": false
+  },
+  "note": "The filed Pass-2 adjustment is fully bound: every decision carries the leave-self-out specialist composition and its sentence weld; the retired 16-cell fit is absent."
+}

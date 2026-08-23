@@ -1,0 +1,14 @@
+{
+  "version": 10,
+  "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+  "candidate_status": "SELF_STOPPED",
+  "panels": [
+    "PANEL_A.json",
+    "PANEL_B.json",
+    "PANEL_C.json"
+  ],
+  "reports": [
+    "TRADE_REPORT_REFLEX.md",
+    "TRADE_REPORT_PATTERN_ENGINE.md"
+  ]
+}

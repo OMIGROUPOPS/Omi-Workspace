@@ -1,0 +1,11 @@
+{
+  "files": [
+    {
+      "logical_path": "OMI-Window1-private/stage1/v54_l19a_neighbor_voted_composition_pass2/ALL_SENTENCES_804.jsonl.gz",
+      "sha256": "9e796ab73ca05fb3b52b62cc7faea8fe21b1f83a52822717d4449da7531d3d02",
+      "bytes": 75525710,
+      "rows": 61400,
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1\\v54_l19a_neighbor_voted_composition_pass2\\build1\\ALL_SENTENCES_804.jsonl.gz"
+    }
+  ]
+}

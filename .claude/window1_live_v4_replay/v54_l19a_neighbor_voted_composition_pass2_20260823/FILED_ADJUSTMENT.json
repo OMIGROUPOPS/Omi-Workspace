@@ -1,0 +1,22 @@
+{
+  "pass": 2,
+  "status": "FILED_AND_EXECUTED_ONCE",
+  "retired": {
+    "mechanism": "16-cell error-fitted composition surface",
+    "pass_1_commit": "e5c6212c0a9a7ed1b1ece082cae884aa9d41f20c"
+  },
+  "replacement": {
+    "mechanism": "leave-self-out neighbor-voted composition",
+    "specialist_records": 18000,
+    "library_games": 9000,
+    "behaviors": [
+      "DERIVED_TIMING_DEPTH",
+      "OWN_TAPE_PRESENCE_AT_TOUCH"
+    ],
+    "runtime_weight": "similarity x coverage x this-leg evidence-match grade",
+    "cells": 0,
+    "global_coefficients": 0,
+    "binding_sha256": "56f48ab9dbfe93b82d0e53e3f9dea9d1c9f589ab9aeceb29e7a8f32d6ab6d862"
+  },
+  "behavioral_adjustments_after_observation": 0
+}

@@ -1,0 +1,27 @@
+{
+  "operator_word": "PROCEED — authorized in writing",
+  "pass": 2,
+  "validation_before_full_804": {
+    "lost_258_recovered": 5,
+    "lost_258_still_lost": 253,
+    "gained_24_retained": 6,
+    "gained_24_surrendered": 18,
+    "pre_stated_direction_pass": false
+  },
+  "full_804": {
+    "valid_completes": 38,
+    "honest_denominator": 680,
+    "locked_cents": 123,
+    "average_game_delta_vs_100_cents": 3.236842105263158,
+    "champion_identity_floor": 311,
+    "identity_retained": 23,
+    "identity_lost": 288,
+    "identity_gained": 15,
+    "hard_floor_pass": false
+  },
+  "self_stop": true,
+  "stop_reason": "Pass 2 valid completes 38 < hard floor 311.",
+  "pass_3": "NOT_RUN_REQUIRES_NEW_OPERATOR_DISPATCH_AFTER_SELF_STOP",
+  "case_study_v10": "EMITTED_FAILED_CANDIDATE_TRUTHFULLY",
+  "sealed_live_deployment_access": false
+}

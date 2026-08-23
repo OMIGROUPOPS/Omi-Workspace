@@ -1,0 +1,78 @@
+{
+  "policy_bytes_changed": false,
+  "issue_count": 8,
+  "issues": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+      "leg_id": "ARS",
+      "file": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL13ARSMAR-ARS.csv.gz",
+      "row": 85729,
+      "raw_line": "2026-0",
+      "ts_et": "2026-0",
+      "reason": "TRUNCATED_OR_MALFORMED_CAPTURE_ROW_SKIPPED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+      "leg_id": "MAR",
+      "file": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL13ARSMAR-MAR.csv.gz",
+      "row": 104012,
+      "raw_line": "2026-07-13 10:22:45",
+      "ts_et": "2026-07-13 10:22:45",
+      "reason": "TRUNCATED_OR_MALFORMED_CAPTURE_ROW_SKIPPED"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14BARKOL",
+      "leg_id": "BAR",
+      "file": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXWTACHALLENGERMATCH-26JUL14BARKOL-BAR.csv.gz",
+      "row": 48079,
+      "raw_line": "2026-07-14 1",
+      "ts_et": "2026-07-14 1",
+      "reason": "TRUNCATED_OR_MALFORMED_CAPTURE_ROW_SKIPPED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14BULPRI",
+      "leg_id": "BUL",
+      "file": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXWTAMATCH-26JUL14BULPRI-BUL.csv.gz",
+      "row": 67739,
+      "raw_line": "2026-07-14 10:44",
+      "ts_et": "2026-07-14 10:44",
+      "reason": "TRUNCATED_OR_MALFORMED_CAPTURE_ROW_SKIPPED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14BULPRI",
+      "leg_id": "PRI",
+      "file": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXWTAMATCH-26JUL14BULPRI-PRI.csv.gz",
+      "row": 88033,
+      "raw_line": "2026-07-14 10:",
+      "ts_et": "2026-07-14 10:",
+      "reason": "TRUNCATED_OR_MALFORMED_CAPTURE_ROW_SKIPPED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20NIEMAL",
+      "leg_id": "NIE",
+      "file": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXWTAMATCH-26JUL20NIEMAL-NIE.csv.gz",
+      "row": 74894,
+      "raw_line": "2026-07-20 06:18:30",
+      "ts_et": "2026-07-20 06:18:30",
+      "reason": "TRUNCATED_OR_MALFORMED_CAPTURE_ROW_SKIPPED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MARBIT",
+      "leg_id": "BIT",
+      "file": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL20MARBIT-BIT.csv.gz",
+      "row": 23014,
+      "raw_line": "2026-07-20 07:01:32",
+      "ts_et": "2026-07-20 07:01:32",
+      "reason": "TRUNCATED_OR_MALFORMED_CAPTURE_ROW_SKIPPED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14OLIIPE",
+      "leg_id": "OLI",
+      "file": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXWTAMATCH-26JUL14OLIIPE-OLI.csv.gz",
+      "row": 84597,
+      "raw_line": "2026-0",
+      "ts_et": "2026-0",
+      "reason": "TRUNCATED_OR_MALFORMED_CAPTURE_ROW_SKIPPED"
+    }
+  ]
+}

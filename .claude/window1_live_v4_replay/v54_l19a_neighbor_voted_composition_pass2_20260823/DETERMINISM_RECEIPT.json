@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "clean_builds": 2,
+  "pass": 2,
+  "policy_and_inputs_identical": true,
+  "artifacts": {
+    "NEIGHBOR_SPECIALIST_RECORDS.json": "b520f0b4d327c6556ec9d5d3cafb681d61e952e52286657c2cf2ebec50b6aa65",
+    "PASS1_LOST_GAINED_VALIDATION.json": "701ae850aa5175e0b0d57d65545fd9d61b30f0626d22fed58871986ddb75b429",
+    "SCORECARD.json": "c5420c393fb321d0bec5c76bc8fcb31ba5bee71736b6242460ca8fc99e19c3a5",
+    "PER_GAME_OUTCOME_TABLE.json": "c5ff439eebd87640412f51ed58810de87450201ad4ef89111823603bdd561a42",
+    "FOUR_GAME_TRIPWIRE.json": "6d01660d696bc55066a37ec0f47a2a94db1d9701ac599098d5f165a37311e5fb",
+    "PINS_TRIPWIRE.json": "be69ad34f8124613770184a389271e731f884f294a98318f40433bcc4663aadf",
+    "CC_DRAWN_STORIES_30.json": "f45928098477d1ca77fb9a739a7c41f87123b6031c121ec1b3b71d3aea8719e8",
+    "PROCESS_FIRST_CONFIRM_RECEIPT.json": "486d91973fdbf07f4f8eb1c1e3e92a00cfe9d5c4168bf43dd88ba61e57c1c751",
+    "REPORT.md": "603d3f651c241294b170a1aebd7dff09a09b11ce1cee1f606d5bffb5fc09c9ec",
+    "CASE_STUDY_RECEIPT.json": "2cc83a7a2fbcf5f7ab94febad0b27da6c6ab5ba8cdb0d37a413651cb2a396374",
+    "ALL_SENTENCES_804.jsonl.gz": "9e796ab73ca05fb3b52b62cc7faea8fe21b1f83a52822717d4449da7531d3d02"
+  },
+  "sentence_rows": 61400,
+  "sentence_bytes": 75525710,
+  "note": "The sentence archives are external under L22; both clean builds produced identical compressed bytes."
+}

@@ -1,0 +1,309 @@
+{
+  "parent_commit": "e5c6212c0a9a7ed1b1ece082cae884aa9d41f20c",
+  "adjustment": "NEIGHBOR_VOTED_COMPOSITION",
+  "pass1_scorecard": {
+    "path": ".claude/window1_live_v4_replay/v54_l19a_fit_composition_pass1_20260822/SCORECARD.json",
+    "sha256": "a7831ff48ab5e0fef44bd6763e748343c86607e712d89cf89867af08a79d8497",
+    "lost": 258,
+    "gained": 24
+  },
+  "law_index": {
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAW_INDEX.md",
+    "sha256": "c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6",
+    "L19a_present": true
+  },
+  "ground_truth": {
+    "base_commit": "c0056976",
+    "base_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+    "base_sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+    "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+    "corrections_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+    "corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+    "corrections_applied": [
+      "W1TT-C-001",
+      "W1TT-C-002"
+    ]
+  },
+  "corpus": {
+    "registry": {
+      "path": "C:\\Users\\omigr\\OMI-Workspace\\.corpus-cache-v6\\corpus_events_v2.jsonl",
+      "sha256": "839f0552fd4edf8e0116d4ba8e8f2bf7808db82396bfd7a0a2b1eadd860a3ebf",
+      "bytes": 4221024,
+      "rows": 12509
+    },
+    "historical": {
+      "path": "C:\\Users\\omigr\\OMI-Workspace\\.corpus-cache-v6\\historical_events_materialized.csv",
+      "sha256": "46741cded0ccb0a24302da4bc7b77f1bb3b82707a8cceaa272a902bae683339a",
+      "bytes": 1041339,
+      "rows": 5879
+    },
+    "range": {
+      "path": "C:\\Users\\omigr\\OMI-Workspace\\.corpus-cache-v6\\range_spectrum_v1.jsonl",
+      "sha256": "1e9891acaaea23a73160aaa26b10b17c87270c1209d9a2a0a23a6a6c56434884",
+      "bytes": 130935927,
+      "rows": 6252
+    },
+    "foundation": {
+      "index": {
+        "path": "C:\\tmp\\omi-v54-repair-pair-20260822\\.claude\\window1_live_v4_replay\\v54_repair_iteration6_evidence_ladder_20260822\\FOUNDATION_LIBRARY.jsonl.gz",
+        "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+        "bytes": 2159635,
+        "rows": 9000
+      },
+      "materializer_receipt": {
+        "path": "C:\\tmp\\omi-v54-repair-pair-20260822\\.claude\\window1_live_v4_replay\\v54_repair_iteration6_evidence_ladder_20260822\\FOUNDATION_LIBRARY_RECEIPT.json",
+        "sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5",
+        "bytes": 3558,
+        "rows": null
+      },
+      "source": {
+        "bytes": 406637058,
+        "external_custody_location": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+        "grain": "MINUTE",
+        "path": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+        "rows": 9330878,
+        "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4"
+      },
+      "spike_atlas": [
+        {
+          "bytes": 438587,
+          "category": "ATP_CHALL",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/atp_chall_spike_perN.parquet",
+          "rows": 5326,
+          "sha256": "e28faed5c8d19e9c09ab99a54c724b03bf38bc9c983fdf1956111a86bffa68db"
+        },
+        {
+          "bytes": 343312,
+          "category": "ATP_MAIN",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/atp_main_spike_perN.parquet",
+          "rows": 4137,
+          "sha256": "621c86340b90653e384720b1f10c4617f9fbd64d5f177cbfab0d2153c9ea960f"
+        },
+        {
+          "bytes": 86196,
+          "category": "WTA_CHALL",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/wta_chall_spike_perN.parquet",
+          "rows": 887,
+          "sha256": "ba2e5ef2b9e3a7df681d9e62e259bb583bab6b008326228c215069efc495640f"
+        },
+        {
+          "bytes": 306241,
+          "category": "WTA_MAIN",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/wta_main_spike_perN.parquet",
+          "rows": 3683,
+          "sha256": "299b52df87841dff0a065aba264b7b4311c834f80bd8bfee9f90f38ccbca7f98"
+        }
+      ],
+      "layer_license": {
+        "forbidden": [
+          "MICRO_MICRO",
+          "TICK_TIMING"
+        ],
+        "licensed": [
+          "MACRO",
+          "MICRO"
+        ]
+      },
+      "native_window_law": {
+        "excluded_method": "unknown",
+        "method_field": "match_start_method",
+        "minute_bucket_boundary": "minute_ts < match_start_ts",
+        "right_edge": "match_start_ts",
+        "rows_at_or_after_right_edge_excluded": true
+      },
+      "rows": 9000,
+      "replaced_games": 6142,
+      "added_games": 2858,
+      "coverage_before": {
+        "union_games": 12509,
+        "bounded_games": 698,
+        "unbounded_games": 11355,
+        "not_bounded_games": 11811
+      },
+      "coverage_after": {
+        "union_games": 15367,
+        "bounded_games": 9697,
+        "unbounded_games": 5265,
+        "not_bounded_games": 5670
+      }
+    },
+    "actual_bells": "0cd74a04f386fb0e0d42f6e15672f094fcd3d52ce3befed2c53b28e6fd1f0af6",
+    "named_neighbor_bells": "bb1a74716b15543bdfc119e408726dcc9c2f210a1243a942a82b544c5acee397"
+  },
+  "foundation": {
+    "path": "C:\\tmp\\omi-v54-repair-pair-20260822\\.claude\\window1_live_v4_replay\\v54_repair_iteration6_evidence_ladder_20260822\\FOUNDATION_LIBRARY.jsonl.gz",
+    "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+    "bytes": 2159635,
+    "rows": 9000
+  },
+  "floor_timing": {
+    "method": "BEST_AVAILABLE_BELL_BOUNDED_MEMBER_FLOOR_FRACTION",
+    "before_truth_table_only": {
+      "events": 496,
+      "legs": 984,
+      "by_category": {
+        "ATP_CHALL": {
+          "events": 235,
+          "legs": 464
+        },
+        "ATP_MAIN": {
+          "events": 94,
+          "legs": 187
+        },
+        "WTA_CHALL": {
+          "events": 91,
+          "legs": 181
+        },
+        "WTA_MAIN": {
+          "events": 76,
+          "legs": 152
+        }
+      }
+    },
+    "exact_truth_bindings": {
+      "events": 496,
+      "legs": 984,
+      "by_category": {
+        "ATP_CHALL": {
+          "events": 235,
+          "legs": 464
+        },
+        "ATP_MAIN": {
+          "events": 94,
+          "legs": 187
+        },
+        "WTA_CHALL": {
+          "events": 91,
+          "legs": 181
+        },
+        "WTA_MAIN": {
+          "events": 76,
+          "legs": 152
+        }
+      }
+    },
+    "after_all_bell_bounded_library_paths": {
+      "events": 9686,
+      "legs": 19336,
+      "by_category": {
+        "ATP_CHALL": {
+          "events": 3792,
+          "legs": 7583
+        },
+        "ATP_MAIN": {
+          "events": 2596,
+          "legs": 5192
+        },
+        "ITF_M": {
+          "events": 87,
+          "legs": 156
+        },
+        "ITF_W": {
+          "events": 87,
+          "legs": 158
+        },
+        "WTA_CHALL": {
+          "events": 680,
+          "legs": 1359
+        },
+        "WTA_MAIN": {
+          "events": 2444,
+          "legs": 4888
+        }
+      }
+    },
+    "eligible_bell_bounded_library_paths": {
+      "events": 9680,
+      "legs": 19323,
+      "by_category": {
+        "ATP_CHALL": {
+          "events": 3791,
+          "legs": 7580
+        },
+        "ATP_MAIN": {
+          "events": 2592,
+          "legs": 5184
+        },
+        "ITF_M": {
+          "events": 87,
+          "legs": 156
+        },
+        "ITF_W": {
+          "events": 87,
+          "legs": 158
+        },
+        "WTA_CHALL": {
+          "events": 680,
+          "legs": 1359
+        },
+        "WTA_MAIN": {
+          "events": 2443,
+          "legs": 4886
+        }
+      }
+    },
+    "every_eligible_game_bound": false,
+    "every_eligible_leg_bound": false,
+    "timing_grains": [
+      "TICK",
+      "MINUTE",
+      "RANGE_POLL"
+    ],
+    "layer_license": [
+      "MACRO",
+      "MICRO"
+    ],
+    "truth_commit": "c0056976",
+    "truth_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+  },
+  "specialist_binding_sha256": "56f48ab9dbfe93b82d0e53e3f9dea9d1c9f589ab9aeceb29e7a8f32d6ab6d862",
+  "true_prints": {
+    "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\prints.jsonl",
+    "bytes": 1766090446,
+    "scanned_rows": 4836462,
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+  },
+  "frozen": {
+    "offeredIds": {},
+    "championIds": {},
+    "receipt": {
+      "champion": {
+        "commit": "96597c98910f7ef45b62e2bc7dfab5ed9ee5f5a7",
+        "path": ".claude/window1_live_v4_replay/v52r_disposition_804_20260818/V52L_MARKET_EVENT_LEDGER_804.jsonl.gz",
+        "sha256": "eb213db5324c07ed7357bee74c9654fc7c5aad331c3e193a2b72d833c94e07cb",
+        "events": 804,
+        "completed_identity": 311
+      },
+      "denominator": {
+        "path": ".claude/window1_live_v4_replay/v52r_disposition_804_20260818/OFFER_DENOMINATOR_EVENT_LEDGER_804.jsonl.gz",
+        "sha256": "7f2e0b6725eb36111edf757958668692330aa20907925205aecc73f1b7cc30f0",
+        "rows": 804,
+        "offered_games": 680
+      }
+    }
+  }
+}

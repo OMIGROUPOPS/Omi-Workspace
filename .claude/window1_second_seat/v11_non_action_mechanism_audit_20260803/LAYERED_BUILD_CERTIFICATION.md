@@ -34,3 +34,7 @@ Verified from the trace sentences themselves (COHERENCE/MIRROR_GAP/SPREAD_BOUND)
 
 CERTIFIED: the independent lane (real licenses, no legacy rung), the URSPAL 97/Δ3 and LAJSVA 94/Δ6 lines, all six fills as true prints, the coherence machinery and its negative results, formation/crossed-book law (0 violations in trace).
 FAULTED as the bed-passing version: (A) GIUBAR's Δ7 exists only under print-priced maker fills — rest-priced it is 95/Δ5 and the gate should have self-stopped; (B) the belief-sentence price field carries evidenced-reader values that deviate from the book at the stamp, including a pre-settle mid at formation. The version stands as the best line yet (2 valid completes + the first honest GIUBAR pair since the corrections) but is NOT certified as bed-passing until fill pricing is adjudicated rest-priced or the operator rules print-pricing lawful.
+
+## Addendum (2026-08-23, post-ruling F-VS-107)
+
+MAKER FILLS PRICE AT THE REST is now law; the truth table's us_fill convention governs. The bed line is restated: **URSPAL 97/Δ3 PASS · LAJSVA 94/Δ6 PASS · GIUBAR 29+66 = 95/Δ5 FAIL (floor Δ7) · DANPRA NEITHER** — the layered build did not pass its bed. FAULT A is resolved as a confirmed break, not a convention question. FAULT B (belief price field) stands open.

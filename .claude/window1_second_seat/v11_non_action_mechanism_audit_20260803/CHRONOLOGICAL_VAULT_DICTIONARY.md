@@ -18826,6 +18826,7 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| REDUNDANCY REGISTER — touch-vs-depth adjudicated by five measurements (STOOD_TOO_DEEP · Jul miss autopsy · it3 · pass-1 literal · pass-2 census); no lane re-opens it; edge_p50/SEQFLOOR_RECUT depth map BELL-SUSPECT pending W1 corrections; chain-pressure instrument (Jul 6) + three-way touch-capture census (Jul 30) = the only lawful new measurements | 2026-08-23 | F-VS-094 |
 | STORY-DIVE MANDATE — below 50% of offered on any tune pass, next step is individual-game story dives (losses weighted), not another scale pass | 2026-08-22 | F-VS-087 |
 | THE BENCHMARK — success ≈80% of honestly-offered captured on shown logic; avg game delta second ruler; not a gradient target | 2026-08-22 | F-VS-086 |
 | LUCK vs LOGIC — a capture is understood only when its sentence shows the derivation that priced it; underived captures are luck, never a floor | 2026-08-22 | F-VS-085 (retires the 311 floor; F-VS-088) |
@@ -19578,3 +19579,9 @@ The Foundation catalogued in §l (F-VS-058): 9.33M minute rows, 19,207 tickers, 
 - LUCK vs LOGIC: understood = sentence shows the pricing derivation; otherwise luck, counted in denominator context, never a floor (F-VS-085). The reflex's 311: 0 sentence-shown, 15 traced by machine read, 296 ledger-only → luck for floor purposes; logic-backed baseline 77/680 = 11.3% (ATP_CHALL 4.8 · ATP_MAIN 30.4 · WTA_CHALL 2.1 · WTA_MAIN 13.8) (F-VS-088).
 - THE BENCHMARK: ≈80% of honestly-offered on shown logic (≈544/680), avg game delta second; measures the OS working, not a gradient target (F-VS-086).
 - STORY-DIVE MANDATE: below 50% on any tune pass → individual-game story dives, losses weighted, before any scale pass; the LOST_258 rows are the queue (F-VS-087).
+
+## ab. REDUNDANCY REGISTER — TOUCH vs DEPTH (appended 2026-08-23; operator relay)
+
+- Adjudicated, not a question: the rest stands at the touch. Receipts: STOOD_TOO_DEEP @1c9419a0 · V11 miss autopsy @fab918c1/932a7695 · it3 F-VS-073/074 @521a1613 · pass-1 F-VS-081 @fddf3f47 · pass-2 F-VS-092 @4d16922c.
+- BELL-SUSPECT: edge_p50 Dynamic-S (CONFORMANCE_20260708) and SEQFLOOR_RECUT @2f59130e — re-derive under W1TT corrections before any use.
+- NEVER-RUN, lawful to run: chain-pressure instrument (Jul-6 spec; THE_SHELF_AUDIT SHELVED) · three-way touch-capture census (Jul 30; quote-touch census @d1ac9497 is the nearest banked record, the three-way cut unrun). Nothing else new in this area (F-VS-094).

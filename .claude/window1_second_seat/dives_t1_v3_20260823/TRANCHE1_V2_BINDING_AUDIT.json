@@ -1,0 +1,33 @@
+{
+  "label": "TRANCHE1_V2_BINDING_AUDIT",
+  "status": "BLOCKED_MISSING_EIGHT_EVENT_SEED_BINDING",
+  "amendment_received": "DIVES T1 v3 replaces sections 2-3; all other Tranche 1 v2 terms stand",
+  "bound_analysis_lineage": {
+    "licensed_tip": "4d16922c",
+    "redundancy_register": "165caa8a",
+    "dive_queue": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DIVE_QUEUE_V2.json",
+    "dive_queue_games": 642
+  },
+  "missing_required_input": {
+    "field": "eight_seeded_event_ids",
+    "value": null,
+    "why_material": "The amendment preserves the original seed and subset selection. DIVE_QUEUE_V2 is a ranked 642-game queue, not an eight-event seed declaration. Selecting its first eight or drawing a new seed would change the ordered instrument."
+  },
+  "searched": [
+    "all local and remote git refs for DIVES T1 / TRANCHE 1 / seed declarations",
+    "Codex attachment text",
+    "local task receipt stream",
+    "analysis-seat files added at 4d16922c and 165caa8a"
+  ],
+  "completed_without_seed": [
+    "true-bell bounded-library category x own-close-price-cell edge_p50 re-derivation",
+    "explicit unbounded and out-of-grid exclusion census",
+    "two-build byte-identity proof"
+  ],
+  "not_fabricated": [
+    "eight game identities",
+    "sixteen per-leg adjudications",
+    "instrument-next synthesis from those sixteen stories"
+  ],
+  "resume_input": "The original Tranche 1 v2 sections 1 and 4, or only its eight seeded event IDs, is sufficient to resume the subset run."
+}

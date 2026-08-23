@@ -1,0 +1,47 @@
+{
+  "label": "DIVES_T1_V3_ARTIFACT_HASH_MANIFEST",
+  "committed_file_cap_bytes": 52428800,
+  "all_files_under_cap": true,
+  "files": [
+    {
+      "path": "arb-executor/analysis/window1_true_bell_cell_depth_map.js",
+      "bytes": 10112,
+      "sha256": "ca678559c3d8d8f76c37160317a66fdac1b129f4df883f1d927e46878066ba4d"
+    },
+    {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/REPORT.md",
+      "bytes": 2477,
+      "sha256": "b681191e39c82749dcd0dfb04a13408d497c3c1b27143abf9e3110f40c7d19ff"
+    },
+    {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRANCHE1_V2_BINDING_AUDIT.json",
+      "bytes": 1514,
+      "sha256": "4a40d191e5d6d10c9ec6690c45442437e80280e1e308b6caff8822ae0117c158"
+    },
+    {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/DETERMINISM_RECEIPT.json",
+      "bytes": 603,
+      "sha256": "69f9505d6cf3e46b3e8fe6ea37a5530364d23be281d7bdde07ea61206904aebc"
+    },
+    {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json",
+      "bytes": 305164,
+      "sha256": "72751efe0386bffe0d41e43fb680aaf2e30516b213c7a6371811725bbf67cef9"
+    },
+    {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.csv",
+      "bytes": 92235,
+      "sha256": "f52d13ea164e69cc1fc2deffe1d13b15417a3bafc9712a2099ef31a763950842"
+    },
+    {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP_EXCLUSIONS.json",
+      "bytes": 1713498,
+      "sha256": "210131609c94f517b6608b61bc8841fcad20d9f9bbee96adc501e581d23df858"
+    },
+    {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP_RECEIPT.json",
+      "bytes": 3907,
+      "sha256": "bd89e1b563cbb1b9a98238cdc059495e2c151c872df98c0979c3ac4856c18e3b"
+    }
+  ]
+}

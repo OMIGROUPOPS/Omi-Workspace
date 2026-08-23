@@ -1,0 +1,123 @@
+{
+  "label": "TRUE_BELL_CELL_DEPTH_MAP_RECEIPT",
+  "command": "node arb-executor/analysis/window1_true_bell_cell_depth_map.js --source <local bytes for pinned CORPUS_INDEX.jsonl.gz> --source-logical-path <repo path> --source-commit <sha> --out-dir <artifact dir>",
+  "source": {
+    "path": ".claude/window1_live_v4_replay/v54_repair_iteration6_evidence_ladder_20260822/CORPUS_INDEX.jsonl.gz",
+    "commit": "99233ab28f50be5a89fa1ddf96cf27ac3b36ce41",
+    "sha256": "0c5aa898c29014fe97bec13ff0d81a2c323d87f739644e62fdc4df2428abf996",
+    "bytes": 2729397,
+    "rows": 15367
+  },
+  "census": {
+    "source_games": 15367,
+    "bounded_games": 9697,
+    "unbounded_games_excluded": 5670,
+    "bounded_legs_seen": 19394,
+    "mapped_legs": 18328,
+    "out_of_grid_legs": 1066,
+    "missing_price_legs": 0,
+    "negative_edge_legs": 0,
+    "mapped_cells": 511,
+    "mapped_cells_by_category": {
+      "ATP_CHALL": 90,
+      "ATP_MAIN": 90,
+      "ITF_M": 77,
+      "ITF_W": 74,
+      "WTA_CHALL": 90,
+      "WTA_MAIN": 90
+    },
+    "by_category": {
+      "ATP_CHALL": {
+        "source_games": 6534,
+        "bounded_games": 3792,
+        "mapped_legs": 7224,
+        "out_of_grid_legs": 360,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      },
+      "ATP_MAIN": {
+        "source_games": 3672,
+        "bounded_games": 2596,
+        "mapped_legs": 4896,
+        "out_of_grid_legs": 296,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      },
+      "ITF_M": {
+        "source_games": 170,
+        "bounded_games": 95,
+        "mapped_legs": 155,
+        "out_of_grid_legs": 35,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      },
+      "ITF_W": {
+        "source_games": 144,
+        "bounded_games": 89,
+        "mapped_legs": 158,
+        "out_of_grid_legs": 20,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      },
+      "WTA_CHALL": {
+        "source_games": 1305,
+        "bounded_games": 681,
+        "mapped_legs": 1276,
+        "out_of_grid_legs": 86,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      },
+      "WTA_MAIN": {
+        "source_games": 3542,
+        "bounded_games": 2444,
+        "mapped_legs": 4619,
+        "out_of_grid_legs": 269,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      }
+    },
+    "by_quality": {
+      "FOUNDATION_MINUTE_BELL_BOUNDED": 9000,
+      "HISTORICAL_EVENT_AGGREGATE_UNBOUNDED": 419,
+      "EVENT_REGISTRY_ONLY": 405,
+      "RANGE_SPECTRUM_PATH_UNBOUNDED": 4846,
+      "RANGE_SPECTRUM_PATH_BELL_BOUNDED": 697
+    },
+    "by_bell_method": {
+      "both_sides_trade_density": 343,
+      "both_sides_price_discovery": 8062,
+      "expected_expiration_fallback": 598,
+      "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050": 12,
+      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 389,
+      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 99,
+      "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 197
+    }
+  },
+  "artifacts": [
+    {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json",
+      "bytes": 305164,
+      "sha256": "72751efe0386bffe0d41e43fb680aaf2e30516b213c7a6371811725bbf67cef9",
+      "rows": null
+    },
+    {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.csv",
+      "bytes": 92235,
+      "sha256": "f52d13ea164e69cc1fc2deffe1d13b15417a3bafc9712a2099ef31a763950842",
+      "rows": 511
+    },
+    {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP_EXCLUSIONS.json",
+      "bytes": 1713498,
+      "sha256": "210131609c94f517b6608b61bc8841fcad20d9f9bbee96adc501e581d23df858",
+      "rows": null
+    }
+  ],
+  "assertions": {
+    "only_bounded_rows_consumed": true,
+    "mapped_conservation": true,
+    "no_negative_edge_silently_clamped": true,
+    "price_cell_is_own_close_integer": true,
+    "no_policy_or_804_replay": true
+  }
+}

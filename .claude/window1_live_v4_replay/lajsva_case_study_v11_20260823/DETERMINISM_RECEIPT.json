@@ -1,0 +1,12 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V11_DETERMINISM",
+  "clean_builds": 2,
+  "files_compared": 8,
+  "differing_files": 0,
+  "byte_identical": true,
+  "pre_receipt_manifest_sha256_a": "797c32b5e0fee926a0f6e485273eb2eafef7161caf2bd67f029d152c90ed3008",
+  "pre_receipt_manifest_sha256_b": "797c32b5e0fee926a0f6e485273eb2eafef7161caf2bd67f029d152c90ed3008",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

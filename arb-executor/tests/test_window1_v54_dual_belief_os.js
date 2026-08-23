@@ -164,6 +164,8 @@ assert.equal(rung4.action.target_cents, null);
 const handoff = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(handoff, leg, { timestamp_epoch: ts, receipt: `handoff-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });
 handoff.positions.AAA.standing_target_cents = 38;
+handoff.positions.AAA.standing_license_basis = "LAYERED_COHERENT_ENVELOPE";
+handoff.positions.AAA.standing_license_receipt = "belief-license-receipt";
 const fillRow = { timestamp_epoch: 212, receipt: "trade-fill-a", kind: "PRINT", price_cents: 36, size: 5 };
 const fillReceipt = os.creditPosition(handoff, "AAA", fillRow);
 os.observe(handoff, "AAA", fillRow);
@@ -172,6 +174,8 @@ assert.equal(handoff.positions.AAA.entry_cents, 38);
 assert.equal(fillReceipt.context.entry_cents, 38);
 assert.equal(fillReceipt.context.triggering_print_price_cents, 36);
 assert.equal(fillReceipt.context.execution_price_basis, "STANDING_REST_LIMIT_CENTS");
+assert.equal(fillReceipt.context.standing_license_basis, "LAYERED_COHERENT_ENVELOPE");
+assert.equal(fillReceipt.context.standing_license_receipt, "belief-license-receipt");
 const handoffReads = os.readAll(handoff), handoffVector = os.vectorFromReads(handoff, handoffReads);
 assert.equal(handoffVector.half_pair_credited_count, 1);
 assert.equal(handoffVector.leg0_credited_entry_cents, 38);
@@ -206,5 +210,16 @@ assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placeme
 assert(joint.derivations.every((row) => row.sentence.includes("ENVELOPE_PLACEMENT=")));
 assert(joint.derivations.every((row) => row.sentence.includes("SOURCE_KEY=LIBRARY_CLOSE_CENTS") || row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")));
 assert(joint.derivations.every((row) => row.pair_conservation.at_or_below_99));
+assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.macro.conditioned_priors).every((prior) => prior.phase_conditioned_dip_distribution_cents.q50 === 0)), "full travel must scale to the receipt phase before subtraction");
+assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.deadline.deadline_epoch >= belief.deadline.emitted_at_epoch && belief.deadline.derives_fresh_at_each_emission)));
+assert(joint.derivations.every((row) => row.sentence.includes("phase-conditioned-dip=") && row.sentence.includes("deadline-emitted-now=")));
+
+const noOpinionState = os.createTapeState(meta);
+for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(noOpinionState, leg, { timestamp_epoch: ts, receipt: `noop-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });
+const noOpinionReads = os.readAll(noOpinionState);
+const noOpinion = os.deriveJointActions({ state: noOpinionState, reads: noOpinionReads, neighborhood: [], lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
+assert(noOpinion.derivations.every((row) => row.action.action === "HOLD_REST" && row.action.target_cents === null));
+assert(noOpinion.derivations.every((row) => row.action.reason === "INDEPENDENT_LANE_HOLD_OR_ABSTAIN_BED"));
+assert(noOpinion.derivations.every((row) => row.layered_dual_belief.independent_lane_may_complete === false));
 
 console.log("window1_v54_dual_belief_os: PASS");

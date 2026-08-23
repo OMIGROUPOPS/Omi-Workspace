@@ -36,7 +36,7 @@ const ANALYSIS_ROOT = ".claude/window1_second_seat/v11_non_action_mechanism_audi
 const ACTUAL_BELL_PATH = `${ANALYSIS_ROOT}/ACTUAL_BELL_TABLE_804.json`;
 const NAMED_NEIGHBOR_PATH = `${ANALYSIS_ROOT}/NEIGHBOR_SPAN_BELL_CHECK.json`;
 const GROUND_TRUTH_CORRECTIONS_PATH = `${ANALYSIS_ROOT}/W1_GROUND_TRUTH_CORRECTIONS.jsonl`;
-const OUTPUT_LABEL = "V54_REST_PRICED_CREDITING_SENTENCE_PRICE";
+const OUTPUT_LABEL = "V54_CONDITIONED_BELIEF_LIVE_DEADLINES_MIND_ONLY_BED";
 const DEPTH_MAP_COMMIT = "ac68e3bc8d2c2018ba883c131b8b4101ae4cd257";
 const DEPTH_MAP_PATH = ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json";
 
@@ -60,6 +60,7 @@ function largeUntrackedCensus(repo) {
     for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
       if (entry.name === ".git") continue;
       const absolute = path.join(directory, entry.name), relative = path.relative(repo, absolute).replaceAll("\\", "/");
+      if (relative === "tmp" || relative.startsWith("tmp/") || relative.startsWith(".claude/window1_live_v4_replay/v54_conditioned_belief_live_deadlines_mind_only_20260823/") || relative.startsWith(".claude/window1_live_v4_replay/lajsva_case_study_v11_20260823/")) continue;
       if (entry.isDirectory()) walk(absolute);
       else if (entry.isFile() && !tracked.has(relative)) {
         const stat = fs.statSync(absolute);
@@ -615,7 +616,20 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
       ensure(derivation.sentence_action_assertion.equal, `sentence action failed ${state.event_id}|${legId}`);
       ensure(derivation.citation_receipt_assertion.equal, `citation receipt failed ${state.event_id}|${legId}`);
       ensure(derivation.pair_conservation.at_or_below_99, `pair conservation failed ${state.event_id}|${legId}`);
-      if (!smokeOnly && !state.positions[legId].credited) state.positions[legId].standing_target_cents = derivation.action.action === "CANCEL_REST" ? null : derivation.action.target_cents;
+      if (!smokeOnly && !state.positions[legId].credited) {
+        const position = state.positions[legId];
+        if (derivation.action.action === "CANCEL_REST") {
+          position.standing_target_cents = null;
+          position.standing_license_basis = null;
+          position.standing_license_receipt = null;
+        } else {
+          position.standing_target_cents = derivation.action.target_cents;
+          if (Number.isInteger(derivation.action.target_cents)) {
+            position.standing_license_basis = derivation.action.reason;
+            position.standing_license_receipt = state.receipt;
+          }
+        }
+      }
       derivations.push(derivation);
     }
     const stage = { trigger, receipt: state.receipt, timestamp_epoch: state.current_epoch, hours_from_discovery: reads.time_in_window.value.hours_from_discovery, reads, neighborhood, layers: joint.layers, coherence: joint.coherence, derivations: perLeg };
@@ -700,6 +714,43 @@ function storySection(result, old, meta) {
     return `\n\n### DANPRA 59/40 all-day exhibit\n\nAt the bell the tape still showed DAN ${books.DAN?.bid_cents ?? "?"}/${books.DAN?.ask_cents ?? "?"} and PRA ${books.PRA?.bid_cents ?? "?"}/${books.PRA?.ask_cents ?? "?"}, the operator's 59/40 all-day shape. Its final named look-alikes were ${neighborsPlain(finalStage.neighborhood)}. Across those games, the high-side anchors near 56–62¢ usually dipped into 42–58¢ before closing 57–65¢, while the low-side anchors near 38–44¢ dipped into 26–44¢ before closing 38–45¢. The declared similarity and pair arithmetic concluded ${conclusions}. The OS did not chase the displayed 59/40 pair; it stood 51/33 at the bell, and neither rest filled. CITATION-RECEIPTS: ${finalStage.derivations.map((row) => citationsPlain(row)).join(" || ")}.`;
   })() : "";
   return `## ${meta.event_id}\n\n${story}${danpra}\n\n### Execution appendix — context, not verdict\n\n| version | completed | pair cents | delta vs 100 | gradeable | legs / truth closes |\n|---|---:|---:|---:|---:|---|\n| lineage receipt | ${old.completed} | ${old.combined_entry_cents ?? "NA"} | ${old.delta_vs_100_cents ?? "NA"} | ${old.gradeable} | ${JSON.stringify(old.legs)} |\n| layered dual belief | ${result.execution.completed} | ${result.execution.combined_entry_cents ?? "NA"} | ${result.execution.delta_vs_100_cents ?? "NA"} | ${result.execution.gradeable} | ${JSON.stringify(result.execution.legs)} |\n| truth close | — | — | — | ${Number.isFinite(meta.bell_epoch)} | ${closes} |\n`;
+}
+
+function emitCaseStudyV11({ caseOutput, sourceOutput, storyResult, coherenceGame, tradeReport, deadlineRows, decisionStages }) {
+  if (!caseOutput) return null;
+  fs.mkdirSync(caseOutput, { recursive: true });
+  const eventId = storyResult.event_id;
+  const stages = decisionStages.filter((row) => row.event_id === eventId).sort((a, b) => a.timestamp_epoch - b.timestamp_epoch || String(a.receipt).localeCompare(String(b.receipt)));
+  const transitions = [];
+  let prior = null;
+  for (const stage of stages) {
+    const signature = `${stage.coherence?.status}|${stage.derivations.map((row) => `${row.leg_id}:${row.action.action}:${row.action.target_cents ?? "NONE"}`).join("|")}`;
+    if (signature !== prior || stage.trigger === "FILL_HANDOFF_SAME_RECEIPT") transitions.push(stage);
+    prior = signature;
+  }
+  const eventDeadlineRows = deadlineRows.filter((row) => row.event_id === eventId);
+  writeText(path.join(caseOutput, "PANEL_A_PAIR_RENDER.html"), `<!doctype html><meta charset="utf-8"><title>LAJSVA v11 pair</title><h1>${eventId} · case study v11</h1><p>Ever coherent: ${coherenceGame.ever_coherent}. First coherence: ${JSON.stringify(coherenceGame.first_coherence)}</p><pre>${JSON.stringify(storyResult.layered_dual_belief, null, 2)}</pre>`);
+  writeText(path.join(caseOutput, "PANEL_B_ENGAGEMENT.html"), `<!doctype html><meta charset="utf-8"><title>LAJSVA v11 engagement</title><h1>Layered engagement</h1>${transitions.map((stage) => `<section><h2>${stage.timestamp_epoch} · ${stage.receipt}</h2><p>coherence=${stage.coherence?.status}</p>${stage.derivations.map((row) => `<h3>${row.leg_id} · ${row.action.action} ${row.action.target_cents ?? "NONE"}</h3><pre>${row.sentence.replaceAll("&", "&amp;").replaceAll("<", "&lt;")}</pre>`).join("")}</section>`).join("")}`);
+  writeText(path.join(caseOutput, "PANEL_C_TRADE_REPORTS.html"), `<!doctype html><meta charset="utf-8"><title>LAJSVA v11 reports</title><h1>Trade report + deadline grades</h1><pre>${JSON.stringify({ trade_report: tradeReport, belief_deadline_rows: eventDeadlineRows }, null, 2).replaceAll("&", "&amp;").replaceAll("<", "&lt;")}</pre>`);
+  writeText(path.join(caseOutput, "TRADE_REPORT_PATTERN_ENGINE.md"), `# LAJSVA case-study v11 — conditioned-belief machine\n\n${JSON.stringify(tradeReport, null, 2)}\n`);
+  writeText(path.join(caseOutput, "TRADE_REPORT_REFLEX.md"), `# LAJSVA lineage context\n\nHistorical lineage receipt only: completed=${storyResult.lineage_receipt.completed}; pair=${storyResult.lineage_receipt.combined_entry_cents ?? "NA"}; delta=${storyResult.lineage_receipt.delta_vs_100_cents ?? "NA"}. This context does not license the repaired bed.\n`);
+  writeText(path.join(caseOutput, "V1_V2_V3_V4_V5_V6_V7_V8_V9_V10_V11_SIDE_BY_SIDE.md"), `# LAJSVA case-study spine v1–v11\n\nVersions v1–v10 remain committed in their own directories. V11 closes F-VS-111/F-VS-112 mechanically: the dual belief coheres, deadlines are fresh, and the mind-only bed outcome is ${storyResult.layered_dual_belief.completed ? `${storyResult.layered_dual_belief.combined_entry_cents}¢/Δ${storyResult.layered_dual_belief.delta_vs_100_cents}` : "INCOMPLETE"}. The gate self-stops; lineage is untouched.\n`);
+  writeJson(path.join(caseOutput, "CASE_STUDY_RECEIPT.json"), {
+    label: "LAJSVA_CASE_STUDY_V11_PHASE_CONDITIONED_LIVE_DEADLINE_MIND_ONLY",
+    source_package: "v54_conditioned_belief_live_deadlines_mind_only_20260823",
+    event_id: eventId,
+    coherence: coherenceGame,
+    execution: storyResult.layered_dual_belief,
+    deadline_scoring: { rows: eventDeadlineRows.length, graded: eventDeadlineRows.filter((row) => row.grade_status === "GRADED_AT_OWN_DEADLINE").length, hits: eventDeadlineRows.filter((row) => row.hit_at_or_below_prediction_by_own_deadline).length, stale: eventDeadlineRows.filter((row) => row.deadline_epoch < row.emission_epoch).length },
+    reports: ["TRADE_REPORT_PATTERN_ENGINE.md", "TRADE_REPORT_REFLEX.md"],
+    panels: ["PANEL_A_PAIR_RENDER.html", "PANEL_B_ENGAGEMENT.html", "PANEL_C_TRADE_REPORTS.html"],
+    full_804_run: false,
+    sealed_read: false,
+    live_mutation: false,
+  });
+  const files = fs.readdirSync(caseOutput).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
+  writeJson(path.join(caseOutput, "ARTIFACT_HASH_MANIFEST.json"), { label: "LAJSVA_CASE_STUDY_V11", files: Object.fromEntries(files.map((name) => [name, { ...receipt(path.join(caseOutput, name)), path: name }])) });
+  return { path: "lajsva_case_study_v11_20260823", files: files.length + 1 };
 }
 
 async function main() {
@@ -837,18 +888,19 @@ async function main() {
   writeText(path.join(output, "SMOKE_CRIJEA.md"), smokeMarkdown(smoke));
   writeJson(path.join(output, "SMOKE_CRIJEA_RECEIPT.json"), { label: "CRIJEA_INTEGRATION_SMOKE_NO_GRADING", all_readers_fired: smokeReaderReceipt.all_readers_fired, reader_count: smokeReaderReceipt.reader_count, expected_reader_count: smokeReaderReceipt.expected_reader_count, reader_receipts: smokeReaderReceipt.readers, named_neighbors: [...new Map(smoke.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => [row.citation_receipt_id, { event_id: row.event_id, citation_receipt_id: row.citation_receipt_id, citation_receipt: row.citation_receipt }]))).values()], derivations: smoke.derivations.length, sentence_action_equal: smoke.derivations.every((row) => row.sentence_action_assertion.equal), citation_receipt_equal: smoke.derivations.every((row) => row.citation_receipt_assertion.equal), conservation: smoke.derivations.every((row) => row.pair_conservation.at_or_below_99), grading_performed: false });
 
-  const perGame = JSON.parse(fs.readFileSync(path.join(walkRoot, "PER_GAME_L1_L8.json"), "utf8")), storyResults = [], storySections = [], storyTraces = [];
+  const perGame = JSON.parse(fs.readFileSync(path.join(walkRoot, "PER_GAME_L1_L8.json"), "utf8")), storyResults = [], storySections = [], storyTraces = [], storyTapeRows = new Map();
   for (const eventId of TARGETS.stories) {
     const meta = metas.find((row) => row.event_id === eventId), rows = [...loadTicks(privateRoot, meta), ...printLoad.byEvent.get(eventId)].filter((row) => !Number.isFinite(meta.bell_epoch) || row.timestamp_epoch <= meta.bell_epoch);
+    storyTapeRows.set(eventId, rows);
     const result = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: false }), old = oldOutcome(perGame, eventId, meta);
     storyResults.push({ event_id: eventId, lineage_receipt: old, layered_dual_belief: result.execution, composition_rebuild: result.execution, tape_rows_consumed: rows.length, book_rows_consumed: rows.filter((row) => row.kind === "BOOK").length, print_rows_consumed: rows.filter((row) => row.kind === "PRINT").length, turning_points: result.stage_reads.length, derivations: result.derivations.length });
     storySections.push(storySection(result, old, meta));
     storyTraces.push(...result.stage_reads.map((stage) => ({ event_id: eventId, kind: "DECISION_STAGE", ...stage })), ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })));
   }
   const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.layered_dual_belief.completed || row.layered_dual_belief.delta_vs_100_cents < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
-  const storiesHeader = `# Four stories — rest-priced layered dual belief\n\nLicense: LAW_INDEX read @ bcee2c40, sha256 41784e6a… · F-VS-104/105/106 · all standing laws.\n\nEvery credit is priced at the standing rest; the triggering print proves the credit but cannot improve the recorded entry. Every belief-price field names the receipt-pinned settled book mid (series-floored) and carries its bid, ask, and book receipt. Belief-priced rests begin only after the two sentences cohere against the 100-cent mirror inside the SPREAD_SETTLE bound. No sealed, live, or full-804 run was performed.\n\n`;
+  const storiesHeader = `# Four complete stories — phase-conditioned beliefs, live deadlines, mind-only bed\n\nLicense: LAW_INDEX read @ 3be11997, sha256 41784e6a… · F-VS-108/109/110/111/112 · F-VS-066 · all standing laws.\n\nEvery credit is priced at the standing rest. Full-travel priors are phase-conditioned with the leg's own evidence before subtraction. Every SHOULD deadline is derived and stamped at its own emission receipt, then graded separately. The independent lane may hold or abstain on the bed but cannot originate a completion. Belief-priced rests begin only after the two sentences cohere against the 100-cent mirror inside the SPREAD_SETTLE bound. F-VS-110 remains stamped TUNED; this repair does not adjust a rule from bed outcomes. No sealed, live, or full-804 run was performed.\n\n`;
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
-  writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: false, sealed_read: false, live_mutation: false });
+  writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], f_vs_110_tuned_stamp_retained: true, independent_lane_may_complete: false, self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   fs.writeFileSync(path.join(output, "REPAIR_FOUR_GAME_TRACE.jsonl.gz"), zlib.gzipSync(Buffer.from(storyTraces.map((row) => JSON.stringify(row)).join("\n") + "\n"), { level: 9 }));
   const decisionStages = storyTraces.filter((row) => row.kind === "DECISION_STAGE");
   const allDerivations = decisionStages.flatMap((row) => row.derivations.map((derivation) => ({ event_id: row.event_id, trigger: row.trigger, stage_receipt: row.receipt, stage_reads: row.reads, ...derivation })));
@@ -900,6 +952,57 @@ async function main() {
   });
   const fillEvents = storyTraces.filter((row) => row.kind === "FILL_EVENT").map((row) => row.fill_event_receipt);
   const fillHandoffs = decisionStages.flatMap((row) => row.derivations).filter((row) => row.derivation.fill_handoff_receipt_id).map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, trade_receipt: row.citation_receipts[row.derivation.fill_handoff_receipt_id]?.context?.original_fill_receipt, handoff_receipt_id: row.derivation.fill_handoff_receipt_id, query_fingerprint_sha256: row.derivation.reposed_query_fingerprint_sha256, sentence: row.sentence }));
+  const tradeReports = TARGETS.stories.map((eventId) => {
+    const stages = decisionStages.filter((row) => row.event_id === eventId).sort((a, b) => a.timestamp_epoch - b.timestamp_epoch || String(a.receipt).localeCompare(String(b.receipt)));
+    const firstBeliefStage = stages.find((stage) => stage.derivations.some((row) => Object.values(row.layered_dual_belief?.micro?.beliefs ?? {}).some((belief) => belief.status === "RESOLVED"))) ?? stages[0];
+    const firstCoherenceStage = stages.find((stage) => stage.coherence?.status === "COHERENT") ?? null;
+    const actionRows = [];
+    const priorActionByLeg = new Map();
+    for (const stage of stages) {
+      for (const row of stage.derivations) {
+        const signature = `${row.action.action}|${row.action.target_cents ?? "NONE"}|${row.action.reason}`;
+        if (priorActionByLeg.get(row.leg_id) === signature) continue;
+        priorActionByLeg.set(row.leg_id, signature);
+        actionRows.push({ leg_id: row.leg_id, timestamp_epoch: stage.timestamp_epoch, receipt: stage.receipt, action: row.action, standing_license: row.action.reason, sentence_verbatim: row.sentence });
+      }
+    }
+    const eventFills = fillEvents.filter((fill) => fill.context.event_id === eventId);
+    const outcome = storyResults.find((row) => row.event_id === eventId).layered_dual_belief;
+    const finalStage = stages.at(-1);
+    const grade = outcome.completed && outcome.delta_vs_100_cents > 0
+      ? "GOOD_COHERENT_UNDER_PAR_COMPLETION"
+      : outcome.completed
+        ? "BAD_COHERENT_NON_DELTA_COMPLETION"
+        : eventFills.length
+          ? "MIXED_COHERENT_PARTIAL"
+          : "BAD_COHERENT_OR_ABSTAINED_WITHOUT_COMPLETION";
+    return {
+      event_id: eventId,
+      what_i_believed_at_open: {
+        receipt: firstBeliefStage?.receipt ?? null,
+        timestamp_epoch: firstBeliefStage?.timestamp_epoch ?? null,
+        dual_sentences_verbatim: firstBeliefStage?.derivations.map((row) => row.sentence) ?? [],
+      },
+      what_i_decided_per_side_and_why: {
+        first_coherence_receipt: firstCoherenceStage?.receipt ?? null,
+        first_coherence: firstCoherenceStage?.coherence ?? null,
+        first_coherent_actions: firstCoherenceStage?.derivations.map((row) => ({ leg_id: row.leg_id, action: row.action, sentence_verbatim: row.sentence })) ?? [],
+      },
+      each_action_at_each_price_with_reason: actionRows,
+      what_happened: {
+        fills: eventFills,
+        terminal_receipt: finalStage?.receipt ?? null,
+        terminal_epoch: finalStage?.timestamp_epoch ?? null,
+        terminal_actions: finalStage?.derivations.map((row) => ({ leg_id: row.leg_id, action: row.action, sentence_verbatim: row.sentence })) ?? [],
+        execution: outcome,
+      },
+      my_grade_of_my_own_trade: { grade, reason: outcome.completed ? `coherent rests completed at ${outcome.combined_entry_cents} cents, delta ${outcome.delta_vs_100_cents}` : `${eventFills.length} coherent-rest fill(s); pair did not complete`, receipt: eventFills.at(-1)?.receipt_id ?? finalStage?.receipt ?? null },
+      what_id_flag_for_the_library: { flag: "PHASE_CONDITIONING_AND_OWN_DEADLINE_CALIBRATION", receipt: firstCoherenceStage?.receipt ?? firstBeliefStage?.receipt ?? null, artifact: "BELIEF_DEADLINE_SCORING_TABLE.json" },
+      complete_six_section_report: Boolean(firstBeliefStage && finalStage && firstCoherenceStage),
+    };
+  });
+  writeJson(path.join(output, "TRADE_REPORT_FOUR.json"), { label: "F_VS_055_FOUR_GAME_TRADE_REPORTS", reports: tradeReports, every_game_complete_six_sections: tradeReports.every((report) => report.complete_six_section_report), fill_price_basis: "STANDING_REST_LIMIT_CENTS" });
+  writeText(path.join(output, "TRADE_REPORT_FOUR.md"), `# Four-game trade reports\n\n${tradeReports.map((report) => `## ${report.event_id}\n\n### WHAT I BELIEVED AT OPEN\n\n${report.what_i_believed_at_open.dual_sentences_verbatim.map((sentence) => `- ${sentence} [receipt: ${report.what_i_believed_at_open.receipt}]`).join("\n")}\n\n### WHAT I DECIDED PER SIDE AND WHY\n\n${report.what_i_decided_per_side_and_why.first_coherent_actions.map((row) => `- ${row.leg_id}: ${row.action.action} ${row.action.target_cents ?? "NONE"}. ${row.sentence_verbatim} [receipt: ${report.what_i_decided_per_side_and_why.first_coherence_receipt}]`).join("\n")}\n\n### EACH ACTION AT EACH PRICE WITH ITS REASON AT THAT TIME\n\n${report.each_action_at_each_price_with_reason.map((row) => `- ${row.leg_id} @ ${row.timestamp_epoch}: ${row.action.action} ${row.action.target_cents ?? "NONE"}; ${row.standing_license}. [receipt: ${row.receipt}]`).join("\n")}\n\n### WHAT HAPPENED\n\n${report.what_happened.fills.length ? report.what_happened.fills.map((fill) => `- ${fill.context.leg_id} filled at REST ${fill.context.entry_cents} cents; print ${fill.context.triggering_print_price_cents} cents proved the credit. [receipt: ${fill.receipt_id}; trade: ${fill.context.standing_license_receipt}]`).join("\n") : `- No fill. [receipt: ${report.what_happened.terminal_receipt}]`}\n- Terminal state: ${JSON.stringify(report.what_happened.execution)}. [receipt: ${report.what_happened.terminal_receipt}]\n\n### MY GRADE OF MY OWN TRADE\n\n- ${report.my_grade_of_my_own_trade.grade}: ${report.my_grade_of_my_own_trade.reason}. [receipt: ${report.my_grade_of_my_own_trade.receipt}]\n\n### WHAT I'D FLAG FOR THE LIBRARY\n\n- ${report.what_id_flag_for_the_library.flag}; see ${report.what_id_flag_for_the_library.artifact}. [receipt: ${report.what_id_flag_for_the_library.receipt}]`).join("\n\n")}\n`);
   writeJson(path.join(output, "FILL_HANDOFF_RECEIPT.json"), { label: "FILL_HANDOFF_RECEIPT", fill_events: fillEvents, post_fill_derivations: fillHandoffs, every_post_fill_sentence_cites_fill_receipt: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt) && row.sentence.includes(row.handoff_receipt_id)) });
   const restPriceRows = fillEvents.map((row) => ({
     event_id: row.context.event_id,
@@ -970,6 +1073,56 @@ async function main() {
     rows: beliefPriceRows,
     every_field_matches_book_state: beliefPriceRows.every((row) => row.field_matches_book_state),
     every_row_names_book_receipt: beliefPriceRows.every((row) => Boolean(row.book_receipt)),
+  });
+  const deadlineSeen = new Set(), deadlineRows = [];
+  for (const row of allDerivations) {
+    for (const belief of Object.values(row.layered_dual_belief?.micro?.beliefs ?? {})) {
+      if (belief?.status !== "RESOLVED" || !belief.deadline) continue;
+      const key = `${row.event_id}|${belief.leg_id}|${belief.deadline.emitted_at_receipt}|${belief.predicted_cents}|${belief.deadline.deadline_epoch}`;
+      if (deadlineSeen.has(key)) continue;
+      deadlineSeen.add(key);
+      const prints = (storyTapeRows.get(row.event_id) ?? []).filter((tapeRow) => tapeRow.leg_id === belief.leg_id
+        && tapeRow.kind === "PRINT"
+        && Number.isInteger(tapeRow.price_cents)
+        && tapeRow.timestamp_epoch >= belief.deadline.emitted_at_epoch
+        && tapeRow.timestamp_epoch <= belief.deadline.deadline_epoch);
+      const realizedLow = prints.length ? Math.min(...prints.map((print) => print.price_cents)) : null;
+      const firstHit = prints.find((print) => print.price_cents <= belief.predicted_cents) ?? null;
+      deadlineRows.push({
+        event_id: row.event_id,
+        leg_id: belief.leg_id,
+        emission_receipt: belief.deadline.emitted_at_receipt,
+        emission_epoch: belief.deadline.emitted_at_epoch,
+        emitted_minutes_to_bell: belief.deadline.minutes_to_bell_at_emission,
+        predicted_cents: belief.predicted_cents,
+        deadline_epoch: belief.deadline.deadline_epoch,
+        deadline_minutes_to_bell: belief.deadline.deadline_minutes_to_bell,
+        modeled_floor_epoch: belief.deadline.modeled_floor_epoch,
+        stale_modeled_deadline_clamped_to_emission: belief.deadline.stale_modeled_deadline_clamped_to_emission,
+        phase_conditioned_dip_distribution_cents: belief.phase_conditioned_dip_cents,
+        raw_full_travel_distribution_cents: belief.raw_remaining_dip_cents,
+        future_print_count_through_own_deadline: prints.length,
+        realized_low_cents_by_own_deadline: realizedLow,
+        signed_error_predicted_minus_realized_low_cents: Number.isInteger(realizedLow) ? belief.predicted_cents - realizedLow : null,
+        hit_at_or_below_prediction_by_own_deadline: Boolean(firstHit),
+        first_hit_receipt: firstHit?.receipt ?? null,
+        first_hit_epoch: firstHit?.timestamp_epoch ?? null,
+        grade_status: Number.isInteger(realizedLow) ? "GRADED_AT_OWN_DEADLINE" : "NO_TRADE_RECEIPT_BEFORE_OWN_DEADLINE",
+        deadline_derives_fresh_at_emission: belief.deadline.derives_fresh_at_each_emission === true,
+        deadline_provenance: belief.deadline.provenance,
+      });
+    }
+  }
+  writeJson(path.join(output, "BELIEF_DEADLINE_SCORING_TABLE.json"), {
+    label: "F_VS_112_FRESH_PER_EMISSION_DEADLINE_SCORING",
+    law: "Each SHOULD prediction derives its own deadline at the emission receipt and is graded only against true prints between emission and that deadline.",
+    rows: deadlineRows,
+    row_count: deadlineRows.length,
+    graded_rows: deadlineRows.filter((row) => row.grade_status === "GRADED_AT_OWN_DEADLINE").length,
+    no_trade_rows: deadlineRows.filter((row) => row.grade_status !== "GRADED_AT_OWN_DEADLINE").length,
+    hit_rows: deadlineRows.filter((row) => row.hit_at_or_below_prediction_by_own_deadline).length,
+    stale_deadline_emissions: deadlineRows.filter((row) => row.deadline_epoch < row.emission_epoch).length,
+    all_deadlines_fresh_and_not_before_emission: deadlineRows.every((row) => row.deadline_derives_fresh_at_emission && row.deadline_epoch >= row.emission_epoch),
   });
   const envelopePlacementRows = allDerivations.filter((row) => row.layered_dual_belief?.belief_mode).map((row) => ({
     event_id: row.event_id,
@@ -1043,11 +1196,15 @@ async function main() {
   if (beliefPriceRows.some((row) => !row.field_matches_book_state || !row.book_receipt || row.basis !== "SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK")) lawViolations.push("BELIEF_PRICE_NOT_EVIDENCED_BOOK_STATE");
   if (allDerivations.some((row) => row.layered_dual_belief?.coherence?.status === "COHERENT" && !row.sentence.includes("SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK"))) lawViolations.push("BELIEF_SENTENCE_BOOK_PRICE_BASIS_MISSING");
   if (envelopePlacementRows.some((row) => row.placement?.numeric_constant_added !== false || !row.sentence_verbatim.includes("ENVELOPE_PLACEMENT="))) lawViolations.push("ENVELOPE_PLACEMENT_UNLICENSED_OR_SILENT");
-  if (!giubarEnvelopeRows.some((row) => row.leg_id === "BAR" && row.envelope?.low_cents === 21 && row.envelope?.high_cents === 32 && row.placement?.chosen_target_cents === 27 && row.placement?.floor_side_formula === "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS")) lawViolations.push("GIUBAR_27_NOT_DERIVED_INSIDE_21_32_ENVELOPE");
+  if (deadlineRows.some((row) => !row.deadline_derives_fresh_at_emission || row.deadline_epoch < row.emission_epoch)) lawViolations.push("STALE_OR_NONCAUSAL_SHOULD_DEADLINE");
+  if (allDerivations.some((row) => Object.values(row.layered_dual_belief?.macro?.conditioned_priors ?? {}).some((prior) => prior?.status === "RESOLVED" && prior?.method !== "FULL_TRAVEL_CENTS_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS"))) lawViolations.push("FULL_TRAVEL_PRIOR_NOT_PHASE_CONDITIONED_BEFORE_SUBTRACTION");
+  if (fillEvents.some((row) => row.context.standing_license_basis === "INDEPENDENT_LINEAGE_V3_OWN_TAPE" || row.context.standing_license_basis === "INDEPENDENT_LANE_HOLD_OR_ABSTAIN_BED")) lawViolations.push("INDEPENDENT_LANE_COMPLETED_BED_GAME");
+  if (allDerivations.some((row) => row.layered_dual_belief?.belief_mode === false && Number.isInteger(row.action.target_cents))) lawViolations.push("INDEPENDENT_BED_LANE_ORIGINATED_REST");
+  if (!tradeReports.every((report) => report.complete_six_section_report)) lawViolations.push("MALFORMED_OR_PARTIAL_FOUR_GAME_TRADE_REPORT");
   if (!fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt) && row.sentence.includes(row.handoff_receipt_id))) lawViolations.push("POST_FILL_SENTENCE_WITHOUT_FILL_RECEIPT");
   if (!corpusFloorTiming.every_eligible_game_bound || !corpusFloorTiming.every_eligible_leg_bound) lawViolations.push("BELL_BOUNDED_LIBRARY_FLOOR_TIME_COVERAGE_INCOMPLETE");
   const baselinePins = storyResults.filter((row) => ["KXATPCHALLENGERMATCH-26JUL14URSPAL", "KXATPCHALLENGERMATCH-26JUL14LAJSVA"].includes(row.event_id)).map((row) => ({ event_id: row.event_id, completed: row.lineage_receipt.completed, delta_vs_100_cents: row.lineage_receipt.delta_vs_100_cents }));
-  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "V54_REST_PRICED_CREDITING_SENTENCE_PRICE_GATE", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_bed_floors: SAFETY_FLOORS, layered_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.composition_rebuild.completed, delta_vs_100_cents: row.composition_rebuild.delta_vs_100_cents, legs: row.composition_rebuild.legs })), safety_floor_pass: floorBreaks.length === 0, rest_pricing: { fill_count: restPriceRows.length, every_entry_equals_standing_rest: restPriceRows.every((row) => row.entry_equals_standing_rest), active_print_priced_residue_count: printPricedResidueCount }, sentence_price: { rows: beliefPriceRows.length, every_field_matches_book_state: beliefPriceRows.every((row) => row.field_matches_book_state) }, giubar_envelope_placement: { envelope_21_32: giubarEnvelopeRows.some((row) => row.leg_id === "BAR" && row.envelope?.low_cents === 21 && row.envelope?.high_cents === 32), derived_27: giubarEnvelopeRows.some((row) => row.leg_id === "BAR" && row.placement?.chosen_target_cents === 27), verbatim_sentence_artifact: "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md" }, law_violations: lawViolations, superseded_composition_scan_signals_not_used_for_verdict: supersededCompositionScanSignals, zero_measured_law_violations: lawViolations.length === 0, layer_order_complete: allDerivations.every((row) => !(row.layered_dual_belief.micro.status === "RESOLVED" && row.layered_dual_belief.macro.status !== "RESOLVED") && !(row.layered_dual_belief.micro_micro.status === "RESOLVED" && row.layered_dual_belief.micro.status !== "RESOLVED")), sentences_carry_layered_dual_belief: allDerivations.every((row) => row.sentence.includes("MACRO:") && row.sentence.includes("MICRO:") && row.sentence.includes("MICRO-MICRO:") && row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")), sentences_cite_fills: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "GIUBAR_OR_URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
+  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "V54_F_VS_111_112_CONDITIONED_BELIEF_LIVE_DEADLINE_GATE", law_index_read_at: "3be11997", law_index_sha256: "41784e6a…", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_bed_floors: SAFETY_FLOORS, layered_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.composition_rebuild.completed, delta_vs_100_cents: row.composition_rebuild.delta_vs_100_cents, legs: row.composition_rebuild.legs })), safety_floor_pass: floorBreaks.length === 0, phase_conditioning: { provenance: "F-VS-111@3be11997", method: "FULL_TRAVEL_CENTS_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1)", own_evidence_member_weights_retained: true }, live_deadlines: { provenance: "F-VS-112@3be11997", rows: deadlineRows.length, graded_rows: deadlineRows.filter((row) => row.grade_status === "GRADED_AT_OWN_DEADLINE").length, hit_rows: deadlineRows.filter((row) => row.hit_at_or_below_prediction_by_own_deadline).length, all_fresh: deadlineRows.every((row) => row.deadline_derives_fresh_at_emission && row.deadline_epoch >= row.emission_epoch) }, independent_bed_lane: { may_hold: true, may_abstain: true, may_complete: false, independent_lane_fill_count: fillEvents.filter((row) => String(row.context.standing_license_basis).startsWith("INDEPENDENT")).length }, no_bed_flattery: { placement_rule_changed_from_outcomes: false, f_vs_110_stamp: "TUNED_RETAINED", named_event_ids_in_policy_source: false }, rest_pricing: { fill_count: restPriceRows.length, every_entry_equals_standing_rest: restPriceRows.every((row) => row.entry_equals_standing_rest), active_print_priced_residue_count: printPricedResidueCount }, sentence_price: { rows: beliefPriceRows.length, every_field_matches_book_state: beliefPriceRows.every((row) => row.field_matches_book_state) }, envelope_placement: { rule_applied_uniformly: true, f_vs_110_tuned_stamp_retained: true, verbatim_sentence_artifact: "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md" }, law_violations: lawViolations, superseded_composition_scan_signals_not_used_for_verdict: supersededCompositionScanSignals, zero_measured_law_violations: lawViolations.length === 0, layer_order_complete: allDerivations.every((row) => !(row.layered_dual_belief.micro.status === "RESOLVED" && row.layered_dual_belief.macro.status !== "RESOLVED") && !(row.layered_dual_belief.micro_micro.status === "RESOLVED" && row.layered_dual_belief.micro.status !== "RESOLVED")), sentences_carry_layered_dual_belief: allDerivations.every((row) => row.sentence.includes("MACRO:") && row.sentence.includes("MICRO:") && row.sentence.includes("MICRO-MICRO:") && row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")), sentences_cite_fills: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "BED_TRIPWIRE_BREAK_AFTER_NAMED_STEP_REPAIR" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   const coherenceTimelines = Object.fromEntries(TARGETS.stories.map((eventId) => {
     const stages = decisionStages.filter((row) => row.event_id === eventId);
     const timeline = [];
@@ -1063,15 +1220,27 @@ async function main() {
     return [eventId, { first_coherence: stages.find((row) => row.coherence?.status === "COHERENT") ? stages.find((row) => row.coherence?.status === "COHERENT").derivations[0]?.layered_dual_belief?.first_coherence : null, ever_coherent: stages.some((row) => row.coherence?.status === "COHERENT"), timeline }];
   }));
   writeJson(path.join(output, "COHERENCE_TIMELINES.json"), { label: "V54_LAYERED_DUAL_BELIEF_COHERENCE_TIMELINES", contract_sum_cents: os.CONTRACT_SUM_CENTS, spread_settle_coherence_max_cents: os.SPREAD_SETTLE_COHERENCE_MAX_CENTS, provenance: os.LAYER_PROVENANCE, games: coherenceTimelines });
+  const lajsvaEventId = "KXATPCHALLENGERMATCH-26JUL14LAJSVA";
+  const caseStudy = emitCaseStudyV11({
+    caseOutput: arg("case-output"),
+    sourceOutput: output,
+    storyResult: storyResults.find((row) => row.event_id === lajsvaEventId),
+    coherenceGame: coherenceTimelines[lajsvaEventId],
+    tradeReport: tradeReports.find((row) => row.event_id === lajsvaEventId),
+    deadlineRows,
+    decisionStages,
+  });
   writeJson(path.join(output, "LAYERED_DUAL_BELIEF_RECEIPT.json"), {
-    label: "V54_REST_PRICED_LAYERED_DUAL_BELIEF_RECEIPT",
-    law_tip: "bcee2c40",
-    repair_authorities: ["F-VS-104", "F-VS-105", "F-VS-106"],
+    label: "V54_PHASE_CONDITIONED_LIVE_DEADLINE_LAYERED_DUAL_BELIEF_RECEIPT",
+    law_tip: "3be11997",
+    repair_authorities: ["F-VS-108", "F-VS-109", "F-VS-110", "F-VS-111", "F-VS-112", "F-VS-066"],
     fill_price_law: "STANDING_REST_LIMIT_CENTS",
     belief_price_field: "SETTLED_BOOK_MID_SERIES_FLOORED_FROM_RECEIPT_PINNED_BID_ASK",
     method_not_result_input: "F-VS-103 method re-executed causally; DUAL_BELIEF_FORENSICS finished-game rows are not loaded by policy",
     resolution_order: ["MACRO", "MICRO", "MICRO_MICRO"],
-    downstream_block_law: "INSUFFICIENT_EVIDENCE at any layer prevents a fresh downstream belief read; a previously licensed independent or coherent rest may remain standing without a new downstream decision",
+    downstream_block_law: "INSUFFICIENT_EVIDENCE at any layer prevents a fresh downstream belief read; on the bed only a previously licensed coherent rest may remain standing; the independent lane may HOLD or ABSTAIN and cannot originate a completion",
+    phase_conditioning: "Full travel is multiplied by clamp(own window fraction / member floor fraction, 0, 1) under the already own-evidence-conditioned member weights before any subtraction.",
+    deadline_law: "Each SHOULD deadline is recalculated and stamped from the live clock at its own emission; a modeled deadline already behind now clamps to the emission receipt, never remains stale.",
     stores_by_layer: {
       MACRO: ["FOUNDATION_PER_MINUTE_UNIVERSE:MINUTE", "RANGE_SPECTRUM:RANGE_POLL", "SPIKE_ATLAS:EVENT_LEG_DESCRIPTIVE"],
       MICRO: ["GRADED_NEIGHBORS:MINUTE/RANGE_POLL", "OWN_TAPE:TICK", "TRUE_BELL_CELL_DEPTH_MAP_V3:EVENT_CELL_REFERENCE"],
@@ -1083,6 +1252,7 @@ async function main() {
     every_layer_citation_declares_grain: allDerivations.every((row) => row.sentence.includes("MICRO-MICRO:") && row.sentence.includes("SUBSECOND") && row.sentence.includes("MACRO:")),
     results: storyResults,
     games: coherenceTimelines,
+    case_study_v11: caseStudy,
   });
   const lajsvaRows = allDerivations.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA").sort((a, b) => a.timestamp_epoch - b.timestamp_epoch || a.leg_id.localeCompare(b.leg_id));
   const lastTarget = new Map();

@@ -30,11 +30,12 @@ function compactTimeline(game) {
 function emit(context) {
   const { output, storesPulled, corpus, storyResults, fillEvents, floorBreaks, lawViolations, allDerivations, targets } = context;
   const coherence = JSON.parse(fs.readFileSync(path.join(output, "COHERENCE_TIMELINES.json"), "utf8"));
+  const deadlineScores = JSON.parse(fs.readFileSync(path.join(output, "BELIEF_DEADLINE_SCORING_TABLE.json"), "utf8"));
   const compact = Object.fromEntries(Object.entries(coherence.games).map(([eventId, game]) => [eventId, { first_coherence: game.first_coherence, ever_coherent: game.ever_coherent, timeline: compactTimeline(game) }]));
   const actions = Object.entries(compact).flatMap(([eventId, game]) => game.timeline.flatMap((row) => row.actions.map((item) => ({ event_id: eventId, leg_id: item.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, action: item.action, coherence: row.coherence, envelope: item.envelope, sentence_verbatim: item.sentence_verbatim }))));
   const receipt = {
-    label: "V54_REST_PRICED_LAYERED_DUAL_BELIEF_PROCESS_FIRST",
-    order: ["STORES_PULLED_WITH_LAYERS", "URSPAL_LAJSVA_LAYER_WALKS", "GIUBAR_DANPRA_COHERENT_BASELINES", "ACTIONS_WITH_REASONS", "FILLS_AS_CONSEQUENCES", "DELTAS_AND_GATE_LAST"],
+    label: "V54_PHASE_CONDITIONED_LIVE_DEADLINE_PROCESS_FIRST",
+    order: ["STORES_PULLED_WITH_LAYERS", "URSPAL_LAJSVA_LAYER_WALKS", "OWN_DEADLINE_SCORING", "GIUBAR_DANPRA_COHERENT_BASELINES", "ACTIONS_WITH_REASONS", "FILLS_AS_CONSEQUENCES", "DELTAS_AND_GATE_LAST"],
     stores_pulled_with_layers: {
       target_tape_rows: storesPulled.tick_rows_by_game,
       foundation: { games_served: corpus.foundation.rows, source_rows: corpus.foundation.index.rows, grain: "MINUTE", layers: ["MACRO", "MICRO"], micro_micro: false },
@@ -45,6 +46,7 @@ function emit(context) {
       odds: storesPulled.odds,
     },
     urspal_lajsva_layer_walks: Object.fromEntries(["KXATPCHALLENGERMATCH-26JUL14URSPAL", "KXATPCHALLENGERMATCH-26JUL14LAJSVA"].map((eventId) => [eventId, compact[eventId]])),
+    own_deadline_scoring: { rows: deadlineScores.row_count, graded_rows: deadlineScores.graded_rows, hit_rows: deadlineScores.hit_rows, stale_deadline_emissions: deadlineScores.stale_deadline_emissions, all_fresh: deadlineScores.all_deadlines_fresh_and_not_before_emission },
     giubar_danpra_coherent_baselines: Object.fromEntries(["KXATPCHALLENGERMATCH-26JUL12GIUBAR", "KXATPMATCH-26JUL18DANPRA"].map((eventId) => [eventId, compact[eventId]])),
     actions_with_reasons: actions,
     fills_as_consequences: fillEvents,
@@ -55,7 +57,7 @@ function emit(context) {
     const game = compact[eventId];
     return `### ${eventId}\n\nEver coherent: ${game.ever_coherent}. First coherence: ${JSON.stringify(game.first_coherence)}.\n\n${game.timeline.map((row) => `- ${row.timestamp_epoch} [${row.receipt}]: layers=${JSON.stringify(row.layer_status)}; coherence=${row.coherence.status}; predicted sum=${row.coherence.predicted_sum_cents ?? "UNKNOWN"}; spread=${row.coherence.spread_settle_bound_cents ?? "UNKNOWN"}. ${row.actions.map((item) => `${item.leg_id} ${item.action.action} ${item.action.target_cents ?? "NONE"}; sentence VERBATIM: ${item.sentence_verbatim}`).join(" || ")}`.trimEnd()).join("\n")}`;
   };
-  const markdown = `# Rest-priced layered dual-belief build — process-first confirmation
+  const markdown = `# Conditioned-belief, live-deadline build — process-first confirmation
 
 ## 1. Stores pulled, with grain and layer
 
@@ -72,20 +74,25 @@ ${walk("KXATPCHALLENGERMATCH-26JUL14URSPAL")}
 
 ${walk("KXATPCHALLENGERMATCH-26JUL14LAJSVA")}
 
-## 3. GIUBAR and DANPRA against their coherent baselines
+## 3. Each prediction graded at its own live deadline
+
+- ${deadlineScores.row_count} emitted predictions; ${deadlineScores.graded_rows} had a true print through their own deadline; ${deadlineScores.hit_rows} hit at-or-below the prediction; stale deadlines before emission=${deadlineScores.stale_deadline_emissions}; all deadline stamps fresh=${deadlineScores.all_deadlines_fresh_and_not_before_emission}.
+- Full scoring rows: BELIEF_DEADLINE_SCORING_TABLE.json.
+
+## 4. GIUBAR and DANPRA against their coherent baselines
 
 - GIUBAR: ever coherent=${compact["KXATPCHALLENGERMATCH-26JUL12GIUBAR"].ever_coherent}; first coherence=${JSON.stringify(compact["KXATPCHALLENGERMATCH-26JUL12GIUBAR"].first_coherence)}.
 - DANPRA: ever coherent=${compact["KXATPMATCH-26JUL18DANPRA"].ever_coherent}; first coherence=${JSON.stringify(compact["KXATPMATCH-26JUL18DANPRA"].first_coherence)}.
 
-## 4. Actions with reasons
+## 5. Actions with reasons
 
 ${actions.map((row) => `- ${row.event_id}|${row.leg_id} @ ${row.timestamp_epoch} [${row.receipt}]: ${row.action.action} ${row.action.target_cents ?? "NONE"}; ${row.action.reason}; coherence=${row.coherence.status}; envelope=${JSON.stringify(row.envelope)}.`).join("\n")}
 
-## 5. Fills as consequences
+## 6. Fills as consequences
 
 ${fillEvents.length ? fillEvents.map((row) => `- ${row.context.event_id}|${row.context.leg_id}: credited ${row.context.entry_cents}¢ at ${row.context.fill_timestamp_epoch} on standing rest ${row.context.prior_standing_target_cents}¢; triggering print ${row.context.triggering_print_price_cents}¢ [${row.context.execution_price_basis}]; trade receipt ${row.row_refs.join(",")}.`).join("\n") : "- None."}
 
-## 6. Deltas and gate verdict — last
+## 7. Deltas and gate verdict — last
 
 ${storyResults.map((row) => `- ${row.event_id}: ${row.layered_dual_belief.completed ? `${row.layered_dual_belief.combined_entry_cents}¢, Δ${row.layered_dual_belief.delta_vs_100_cents}` : "PARTIAL"}.`).join("\n")}
 

@@ -1,0 +1,905 @@
+{
+  "label": "V54_CONDITIONED_BELIEF_LIVE_DEADLINES_MIND_ONLY_BED",
+  "pass": 1,
+  "passes_executed": 1,
+  "similarity_declaration": {
+    "name": "V54_V6_HAND_AUTHORED_CONTINUOUS_NEIGHBORHOOD",
+    "only_adjustment_lever": true,
+    "formula": "score = covered_weight / total_weight * exp(-sum(weight*abs(query-neighbor)/scale)/covered_weight); missing fields contribute zero coverage and are never imputed",
+    "orientation": "pair legs align by formation-anchor rank, then ticker identity only breaks an exact anchor tie",
+    "weights": {
+      "category": 1.5,
+      "anchor_split_cents": 1.4,
+      "leg0_anchor_cents": 1,
+      "leg1_anchor_cents": 1,
+      "leg0_drift_cents": 1.2,
+      "leg1_drift_cents": 1.2,
+      "leg0_travel_cents": 1,
+      "leg1_travel_cents": 1,
+      "joint_mid_sum_cents": 1.3,
+      "joint_spread_cents": 0.8,
+      "inverse_coherence": 1.1,
+      "volume_log1p": 0.7,
+      "hours_from_discovery": 0.6,
+      "divot_depth_cents": 0.8
+    },
+    "scales": {
+      "anchor_split_cents": 20,
+      "leg0_anchor_cents": 30,
+      "leg1_anchor_cents": 30,
+      "leg0_drift_cents": 20,
+      "leg1_drift_cents": 20,
+      "leg0_travel_cents": 30,
+      "leg1_travel_cents": 30,
+      "joint_mid_sum_cents": 10,
+      "joint_spread_cents": 12,
+      "inverse_coherence": 1,
+      "volume_log1p": 10,
+      "hours_from_discovery": 24,
+      "divot_depth_cents": 20
+    },
+    "neighbor_count": 7,
+    "grades": "Every neighbor retains its continuous score and coverage; grade is rank N1..N7, not a threshold or gate.",
+    "declared": true,
+    "undisclosed_weights": false
+  },
+  "results": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "lineage_receipt": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL12GIUBAR|BAR": {
+            "credited": false,
+            "entry_cents": 21,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "POST_BELL_INVALID (24.6 min after bell)",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001"
+          },
+          "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU": {
+            "credited": true,
+            "entry_cents": 69,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001"
+          }
+        }
+      },
+      "layered_dual_belief": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "BAR": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 25,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813"
+          },
+          "GIU": {
+            "credited": true,
+            "entry_cents": 70,
+            "standing_target_cents": null,
+            "fill_receipt": "79567748-5443-7f7c-938e-9bee523c99a3",
+            "fill_event_receipt": {
+              "schema": "CITATION_RECEIPT_V1",
+              "kind": "QUERY_RECEIPT",
+              "citation_type": "FILL_EVENT",
+              "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU",
+              "captured_at_receipt": "79567748-5443-7f7c-938e-9bee523c99a3",
+              "row_refs": [
+                "79567748-5443-7f7c-938e-9bee523c99a3"
+              ],
+              "context": {
+                "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+                "leg_id": "GIU",
+                "entry_cents": 70,
+                "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+                "triggering_print_price_cents": 70,
+                "fill_timestamp_epoch": 1783833826.816,
+                "prior_standing_target_cents": 70,
+                "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+                "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-76",
+                "print_at_or_below_rest": true,
+                "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+              },
+              "receipt_id": "CR-e9a14bd844beabb674482cc4d5ed33c11c661fbcc15d56bea46c8e70a04fc65d"
+            },
+            "fill_timestamp_epoch": 1783833826.816,
+            "standing_license_basis": null,
+            "standing_license_receipt": null
+          }
+        }
+      },
+      "composition_rebuild": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "BAR": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 25,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813"
+          },
+          "GIU": {
+            "credited": true,
+            "entry_cents": 70,
+            "standing_target_cents": null,
+            "fill_receipt": "79567748-5443-7f7c-938e-9bee523c99a3",
+            "fill_event_receipt": {
+              "schema": "CITATION_RECEIPT_V1",
+              "kind": "QUERY_RECEIPT",
+              "citation_type": "FILL_EVENT",
+              "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU",
+              "captured_at_receipt": "79567748-5443-7f7c-938e-9bee523c99a3",
+              "row_refs": [
+                "79567748-5443-7f7c-938e-9bee523c99a3"
+              ],
+              "context": {
+                "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+                "leg_id": "GIU",
+                "entry_cents": 70,
+                "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+                "triggering_print_price_cents": 70,
+                "fill_timestamp_epoch": 1783833826.816,
+                "prior_standing_target_cents": 70,
+                "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+                "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-76",
+                "print_at_or_below_rest": true,
+                "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+              },
+              "receipt_id": "CR-e9a14bd844beabb674482cc4d5ed33c11c661fbcc15d56bea46c8e70a04fc65d"
+            },
+            "fill_timestamp_epoch": 1783833826.816,
+            "standing_license_basis": null,
+            "standing_license_receipt": null
+          }
+        }
+      },
+      "tape_rows_consumed": 5754,
+      "book_rows_consumed": 5732,
+      "print_rows_consumed": 22,
+      "turning_points": 214,
+      "derivations": 256
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "lineage_receipt": {
+        "completed": true,
+        "combined_entry_cents": 97,
+        "delta_vs_100_cents": 3,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL": {
+            "credited": true,
+            "entry_cents": 40,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID (249 s before bell)",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002"
+          },
+          "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS": {
+            "credited": true,
+            "entry_cents": 57,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002"
+          }
+        }
+      },
+      "layered_dual_belief": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "PAL": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 32,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "e1755de3-3eef-626b-12e5-7bd0bd895cd6"
+          },
+          "URS": {
+            "credited": true,
+            "entry_cents": 57,
+            "standing_target_cents": null,
+            "fill_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "fill_event_receipt": {
+              "schema": "CITATION_RECEIPT_V1",
+              "kind": "QUERY_RECEIPT",
+              "citation_type": "FILL_EVENT",
+              "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+              "captured_at_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+              "row_refs": [
+                "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91"
+              ],
+              "context": {
+                "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+                "leg_id": "URS",
+                "entry_cents": 57,
+                "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+                "triggering_print_price_cents": 57,
+                "fill_timestamp_epoch": 1784032697.6,
+                "prior_standing_target_cents": 57,
+                "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+                "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-30672",
+                "print_at_or_below_rest": true,
+                "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+              },
+              "receipt_id": "CR-6509cac6272e3b3449bbf8a84ed3e00c5786c906a480bea0d466ce5dd803cda5"
+            },
+            "fill_timestamp_epoch": 1784032697.6,
+            "standing_license_basis": null,
+            "standing_license_receipt": null
+          }
+        }
+      },
+      "composition_rebuild": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "PAL": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 32,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "e1755de3-3eef-626b-12e5-7bd0bd895cd6"
+          },
+          "URS": {
+            "credited": true,
+            "entry_cents": 57,
+            "standing_target_cents": null,
+            "fill_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "fill_event_receipt": {
+              "schema": "CITATION_RECEIPT_V1",
+              "kind": "QUERY_RECEIPT",
+              "citation_type": "FILL_EVENT",
+              "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+              "captured_at_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+              "row_refs": [
+                "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91"
+              ],
+              "context": {
+                "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+                "leg_id": "URS",
+                "entry_cents": 57,
+                "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+                "triggering_print_price_cents": 57,
+                "fill_timestamp_epoch": 1784032697.6,
+                "prior_standing_target_cents": 57,
+                "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+                "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-30672",
+                "print_at_or_below_rest": true,
+                "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+              },
+              "receipt_id": "CR-6509cac6272e3b3449bbf8a84ed3e00c5786c906a480bea0d466ce5dd803cda5"
+            },
+            "fill_timestamp_epoch": 1784032697.6,
+            "standing_license_basis": null,
+            "standing_license_receipt": null
+          }
+        }
+      },
+      "tape_rows_consumed": 42454,
+      "book_rows_consumed": 42413,
+      "print_rows_consumed": 41,
+      "turning_points": 1186,
+      "derivations": 2366
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "lineage_receipt": {
+        "completed": true,
+        "combined_entry_cents": 94,
+        "delta_vs_100_cents": 6,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": null
+          },
+          "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA": {
+            "credited": true,
+            "entry_cents": 41,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": null
+          }
+        }
+      },
+      "layered_dual_belief": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "LAJ": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 49,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d"
+          },
+          "SVA": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 39,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d"
+          }
+        }
+      },
+      "composition_rebuild": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "LAJ": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 49,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d"
+          },
+          "SVA": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 39,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d"
+          }
+        }
+      },
+      "tape_rows_consumed": 136928,
+      "book_rows_consumed": 136385,
+      "print_rows_consumed": 543,
+      "turning_points": 77,
+      "derivations": 154
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "lineage_receipt": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "gradeable": true,
+        "legs": {
+          "KXATPMATCH-26JUL18DANPRA|DAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "fill_receipt": null,
+            "truth_fill_stamp": null,
+            "correction_receipt": null
+          },
+          "KXATPMATCH-26JUL18DANPRA|PRA": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "fill_receipt": null,
+            "truth_fill_stamp": null,
+            "correction_receipt": null
+          }
+        }
+      },
+      "layered_dual_belief": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "DAN": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 53,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3806"
+          },
+          "PRA": {
+            "credited": true,
+            "entry_cents": 42,
+            "standing_target_cents": null,
+            "fill_receipt": "b1010b8c-11f5-6b9a-25e3-b04bbee26d4f",
+            "fill_event_receipt": {
+              "schema": "CITATION_RECEIPT_V1",
+              "kind": "QUERY_RECEIPT",
+              "citation_type": "FILL_EVENT",
+              "source_id": "KXATPMATCH-26JUL18DANPRA|PRA",
+              "captured_at_receipt": "b1010b8c-11f5-6b9a-25e3-b04bbee26d4f",
+              "row_refs": [
+                "b1010b8c-11f5-6b9a-25e3-b04bbee26d4f"
+              ],
+              "context": {
+                "event_id": "KXATPMATCH-26JUL18DANPRA",
+                "leg_id": "PRA",
+                "entry_cents": 42,
+                "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+                "triggering_print_price_cents": 42,
+                "fill_timestamp_epoch": 1784341326.393,
+                "prior_standing_target_cents": 42,
+                "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+                "standing_license_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1581",
+                "print_at_or_below_rest": true,
+                "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+              },
+              "receipt_id": "CR-46245664ac2817609983f211f2d791f5c92822b1f0723c987ea2549b0d7b850e"
+            },
+            "fill_timestamp_epoch": 1784341326.393,
+            "standing_license_basis": null,
+            "standing_license_receipt": null
+          }
+        }
+      },
+      "composition_rebuild": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "DAN": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 53,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3806"
+          },
+          "PRA": {
+            "credited": true,
+            "entry_cents": 42,
+            "standing_target_cents": null,
+            "fill_receipt": "b1010b8c-11f5-6b9a-25e3-b04bbee26d4f",
+            "fill_event_receipt": {
+              "schema": "CITATION_RECEIPT_V1",
+              "kind": "QUERY_RECEIPT",
+              "citation_type": "FILL_EVENT",
+              "source_id": "KXATPMATCH-26JUL18DANPRA|PRA",
+              "captured_at_receipt": "b1010b8c-11f5-6b9a-25e3-b04bbee26d4f",
+              "row_refs": [
+                "b1010b8c-11f5-6b9a-25e3-b04bbee26d4f"
+              ],
+              "context": {
+                "event_id": "KXATPMATCH-26JUL18DANPRA",
+                "leg_id": "PRA",
+                "entry_cents": 42,
+                "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+                "triggering_print_price_cents": 42,
+                "fill_timestamp_epoch": 1784341326.393,
+                "prior_standing_target_cents": 42,
+                "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+                "standing_license_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1581",
+                "print_at_or_below_rest": true,
+                "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+              },
+              "receipt_id": "CR-46245664ac2817609983f211f2d791f5c92822b1f0723c987ea2549b0d7b850e"
+            },
+            "fill_timestamp_epoch": 1784341326.393,
+            "standing_license_basis": null,
+            "standing_license_receipt": null
+          }
+        }
+      },
+      "tape_rows_consumed": 15428,
+      "book_rows_consumed": 15369,
+      "print_rows_consumed": 59,
+      "turning_points": 120,
+      "derivations": 220
+    }
+  ],
+  "safety_floor_breaks": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "lineage_receipt": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL12GIUBAR|BAR": {
+            "credited": false,
+            "entry_cents": 21,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "POST_BELL_INVALID (24.6 min after bell)",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001"
+          },
+          "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU": {
+            "credited": true,
+            "entry_cents": 69,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001"
+          }
+        }
+      },
+      "layered_dual_belief": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "BAR": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 25,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813"
+          },
+          "GIU": {
+            "credited": true,
+            "entry_cents": 70,
+            "standing_target_cents": null,
+            "fill_receipt": "79567748-5443-7f7c-938e-9bee523c99a3",
+            "fill_event_receipt": {
+              "schema": "CITATION_RECEIPT_V1",
+              "kind": "QUERY_RECEIPT",
+              "citation_type": "FILL_EVENT",
+              "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU",
+              "captured_at_receipt": "79567748-5443-7f7c-938e-9bee523c99a3",
+              "row_refs": [
+                "79567748-5443-7f7c-938e-9bee523c99a3"
+              ],
+              "context": {
+                "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+                "leg_id": "GIU",
+                "entry_cents": 70,
+                "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+                "triggering_print_price_cents": 70,
+                "fill_timestamp_epoch": 1783833826.816,
+                "prior_standing_target_cents": 70,
+                "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+                "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-76",
+                "print_at_or_below_rest": true,
+                "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+              },
+              "receipt_id": "CR-e9a14bd844beabb674482cc4d5ed33c11c661fbcc15d56bea46c8e70a04fc65d"
+            },
+            "fill_timestamp_epoch": 1783833826.816,
+            "standing_license_basis": null,
+            "standing_license_receipt": null
+          }
+        }
+      },
+      "composition_rebuild": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "BAR": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 25,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813"
+          },
+          "GIU": {
+            "credited": true,
+            "entry_cents": 70,
+            "standing_target_cents": null,
+            "fill_receipt": "79567748-5443-7f7c-938e-9bee523c99a3",
+            "fill_event_receipt": {
+              "schema": "CITATION_RECEIPT_V1",
+              "kind": "QUERY_RECEIPT",
+              "citation_type": "FILL_EVENT",
+              "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU",
+              "captured_at_receipt": "79567748-5443-7f7c-938e-9bee523c99a3",
+              "row_refs": [
+                "79567748-5443-7f7c-938e-9bee523c99a3"
+              ],
+              "context": {
+                "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+                "leg_id": "GIU",
+                "entry_cents": 70,
+                "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+                "triggering_print_price_cents": 70,
+                "fill_timestamp_epoch": 1783833826.816,
+                "prior_standing_target_cents": 70,
+                "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+                "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-76",
+                "print_at_or_below_rest": true,
+                "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+              },
+              "receipt_id": "CR-e9a14bd844beabb674482cc4d5ed33c11c661fbcc15d56bea46c8e70a04fc65d"
+            },
+            "fill_timestamp_epoch": 1783833826.816,
+            "standing_license_basis": null,
+            "standing_license_receipt": null
+          }
+        }
+      },
+      "tape_rows_consumed": 5754,
+      "book_rows_consumed": 5732,
+      "print_rows_consumed": 22,
+      "turning_points": 214,
+      "derivations": 256
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "lineage_receipt": {
+        "completed": true,
+        "combined_entry_cents": 97,
+        "delta_vs_100_cents": 3,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL": {
+            "credited": true,
+            "entry_cents": 40,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID (249 s before bell)",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002"
+          },
+          "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS": {
+            "credited": true,
+            "entry_cents": 57,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002"
+          }
+        }
+      },
+      "layered_dual_belief": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "PAL": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 32,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "e1755de3-3eef-626b-12e5-7bd0bd895cd6"
+          },
+          "URS": {
+            "credited": true,
+            "entry_cents": 57,
+            "standing_target_cents": null,
+            "fill_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "fill_event_receipt": {
+              "schema": "CITATION_RECEIPT_V1",
+              "kind": "QUERY_RECEIPT",
+              "citation_type": "FILL_EVENT",
+              "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+              "captured_at_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+              "row_refs": [
+                "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91"
+              ],
+              "context": {
+                "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+                "leg_id": "URS",
+                "entry_cents": 57,
+                "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+                "triggering_print_price_cents": 57,
+                "fill_timestamp_epoch": 1784032697.6,
+                "prior_standing_target_cents": 57,
+                "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+                "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-30672",
+                "print_at_or_below_rest": true,
+                "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+              },
+              "receipt_id": "CR-6509cac6272e3b3449bbf8a84ed3e00c5786c906a480bea0d466ce5dd803cda5"
+            },
+            "fill_timestamp_epoch": 1784032697.6,
+            "standing_license_basis": null,
+            "standing_license_receipt": null
+          }
+        }
+      },
+      "composition_rebuild": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "PAL": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 32,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "e1755de3-3eef-626b-12e5-7bd0bd895cd6"
+          },
+          "URS": {
+            "credited": true,
+            "entry_cents": 57,
+            "standing_target_cents": null,
+            "fill_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "fill_event_receipt": {
+              "schema": "CITATION_RECEIPT_V1",
+              "kind": "QUERY_RECEIPT",
+              "citation_type": "FILL_EVENT",
+              "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+              "captured_at_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+              "row_refs": [
+                "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91"
+              ],
+              "context": {
+                "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+                "leg_id": "URS",
+                "entry_cents": 57,
+                "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+                "triggering_print_price_cents": 57,
+                "fill_timestamp_epoch": 1784032697.6,
+                "prior_standing_target_cents": 57,
+                "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+                "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-30672",
+                "print_at_or_below_rest": true,
+                "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+              },
+              "receipt_id": "CR-6509cac6272e3b3449bbf8a84ed3e00c5786c906a480bea0d466ce5dd803cda5"
+            },
+            "fill_timestamp_epoch": 1784032697.6,
+            "standing_license_basis": null,
+            "standing_license_receipt": null
+          }
+        }
+      },
+      "tape_rows_consumed": 42454,
+      "book_rows_consumed": 42413,
+      "print_rows_consumed": 41,
+      "turning_points": 1186,
+      "derivations": 2366
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "lineage_receipt": {
+        "completed": true,
+        "combined_entry_cents": 94,
+        "delta_vs_100_cents": 6,
+        "gradeable": true,
+        "legs": {
+          "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": null
+          },
+          "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA": {
+            "credited": true,
+            "entry_cents": 41,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null,
+            "truth_fill_stamp": "PRE_BELL_VALID",
+            "correction_receipt": null
+          }
+        }
+      },
+      "layered_dual_belief": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "LAJ": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 49,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d"
+          },
+          "SVA": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 39,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d"
+          }
+        }
+      },
+      "composition_rebuild": {
+        "gradeable": true,
+        "completed": false,
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "legs": {
+          "LAJ": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 49,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d"
+          },
+          "SVA": {
+            "credited": false,
+            "entry_cents": null,
+            "standing_target_cents": 39,
+            "fill_receipt": null,
+            "fill_event_receipt": null,
+            "fill_timestamp_epoch": null,
+            "standing_license_basis": "LAYERED_COHERENT_ENVELOPE",
+            "standing_license_receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d"
+          }
+        }
+      },
+      "tape_rows_consumed": 136928,
+      "book_rows_consumed": 136385,
+      "print_rows_consumed": 543,
+      "turning_points": 77,
+      "derivations": 154
+    }
+  ],
+  "safety_floor_pass": false,
+  "adjustments_filed": [],
+  "f_vs_110_tuned_stamp_retained": true,
+  "independent_lane_may_complete": false,
+  "self_stop_triggered": true,
+  "self_stop_reason": "SAFETY_FLOOR_BREAK",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

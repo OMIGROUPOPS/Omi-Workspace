@@ -19,6 +19,8 @@ const LAYER_PROVENANCE = Object.freeze({
   v3_source_key: "LIBRARY_CLOSE_CENTS",
   v3_runtime_rekey: "CURRENT_CAUSAL_BEST_BID_CENTS",
   micro_micro_store: "EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND",
+  phase_conditioning_fix: "F-VS-111@3be11997",
+  live_deadline_fix: "F-VS-112@3be11997",
 });
 
 function finite(value) { return Number.isFinite(value) ? value : null; }
@@ -26,6 +28,64 @@ function cent(value) { return Number.isInteger(value) && value >= 1 && value <= 
 function clamp(value, low, high) { return Math.max(low, Math.min(high, value)); }
 function sum(values) { return values.filter(Number.isFinite).reduce((a, b) => a + b, 0); }
 function round2(value) { return Number.isFinite(value) ? Math.round(value * 100) / 100 : null; }
+
+function weightedQuantile(rows, field, quantile) {
+  const valid = rows
+    .filter((row) => Number.isFinite(row[field]) && Number.isFinite(row.conditioning_weight) && row.conditioning_weight > 0)
+    .sort((a, b) => a[field] - b[field] || String(a.event_id).localeCompare(String(b.event_id)));
+  const total = sum(valid.map((row) => row.conditioning_weight));
+  if (!valid.length || total <= 0) return null;
+  const threshold = total * quantile;
+  let running = 0;
+  for (const row of valid) {
+    running += row.conditioning_weight;
+    if (running >= threshold) return row[field];
+  }
+  return valid.at(-1)[field];
+}
+
+// F-VS-111: a member's full remaining travel is not an immediate dip.  Convert
+// it to the share evidenced by this receipt's phase before subtracting it from
+// this leg's observed low.  The member weights already contain the own-tape
+// conditioning required by F-VS-066; this function preserves and receipts it.
+function conditionTravelPrior(baseRow) {
+  const neighborLeg = baseRow?.derivation?.neighbor_leg ?? {};
+  const own = neighborLeg.own_evidence ?? {};
+  const ownFraction = finite(own.window_fraction);
+  const rows = (neighborLeg.rows ?? []).flatMap((row) => {
+    const fullTravel = finite(row.remaining_dip_cents);
+    const memberFloorFraction = finite(row.member_floor_fraction);
+    const conditioningWeight = finite(row.weight);
+    if (!(Number.isFinite(ownFraction) && Number.isFinite(fullTravel) && Number.isFinite(memberFloorFraction) && memberFloorFraction > 0 && Number.isFinite(conditioningWeight) && conditioningWeight > 0)) return [];
+    const phaseScale = clamp(ownFraction / memberFloorFraction, 0, 1);
+    return [{
+      event_id: row.event_id,
+      source_receipt: row.citation_receipt_id ?? null,
+      full_travel_cents: fullTravel,
+      member_floor_fraction: memberFloorFraction,
+      own_window_fraction: ownFraction,
+      phase_scale: round2(phaseScale),
+      phase_conditioned_dip_cents: fullTravel * phaseScale,
+      conditioning_weight: conditioningWeight,
+      own_evidence_match_grade: row.evidence_match_grade ?? null,
+    }];
+  });
+  const q = (p) => {
+    const value = weightedQuantile(rows, "phase_conditioned_dip_cents", p);
+    return Number.isFinite(value) ? Math.max(0, Math.round(value)) : null;
+  };
+  const targetFloorFraction = weightedQuantile(rows, "member_floor_fraction", 0.5);
+  return {
+    status: rows.length ? "RESOLVED" : "INSUFFICIENT_EVIDENCE",
+    method: "FULL_TRAVEL_CENTS_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS",
+    raw_full_travel_distribution_cents: neighborLeg.conditional_remaining_dip_distribution_cents ?? {},
+    phase_conditioned_dip_distribution_cents: { q25: q(0.25), q50: q(0.5), q75: q(0.75) },
+    own_evidence: own,
+    target_floor_fraction: Number.isFinite(targetFloorFraction) ? targetFloorFraction : null,
+    rows,
+    provenance: [LAYER_PROVENANCE.phase_conditioning_fix, LAYER_PROVENANCE.conditioning],
+  };
+}
 
 function actionForTarget(active, target, reason) {
   if (!cent(target)) return { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason };
@@ -54,31 +114,46 @@ function layerReceipt(state, layer, status, rowRefs, context) {
   });
 }
 
-function predictedMinuteToBell(state, legId, topNeighborLeg) {
+function freshDeadline(state, legId, conditionedPrior) {
   const formation = finite(state.legs[legId].formation_end_epoch);
   const bell = finite(state.bell_epoch);
-  const fraction = finite(topNeighborLeg?.floor_fraction);
-  if (!(Number.isFinite(formation) && Number.isFinite(bell) && bell > formation && Number.isFinite(fraction))) return null;
-  const predictedFloorEpoch = formation + clamp(fraction, 0, 1) * (bell - formation);
-  return Math.max(0, Math.round((bell - predictedFloorEpoch) / 60));
+  const now = finite(state.current_epoch);
+  const fraction = finite(conditionedPrior?.target_floor_fraction);
+  if (!(Number.isFinite(formation) && Number.isFinite(bell) && bell > formation && Number.isFinite(now) && Number.isFinite(fraction))) return null;
+  const modeledEpoch = formation + clamp(fraction, 0, 1) * (bell - formation);
+  const deadlineEpoch = clamp(Math.max(now, modeledEpoch), now, bell);
+  return {
+    emitted_at_epoch: now,
+    emitted_at_receipt: state.receipt,
+    deadline_epoch: deadlineEpoch,
+    minutes_to_bell_at_emission: Math.max(0, Math.round((bell - now) / 60)),
+    deadline_minutes_to_bell: Math.max(0, Math.round((bell - deadlineEpoch) / 60)),
+    target_floor_fraction: fraction,
+    modeled_floor_epoch: modeledEpoch,
+    stale_modeled_deadline_clamped_to_emission: modeledEpoch < now,
+    derives_fresh_at_each_emission: true,
+    provenance: LAYER_PROVENANCE.live_deadline_fix,
+  };
 }
 
-function beliefForLeg({ state, reads, neighborhood, baseRow, legId, macroStatus, macroFamily }) {
+function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, legId, macroStatus, macroFamily }) {
   const vector = baseRow.vector;
   const orientedIndex = vector.oriented_leg_ids.indexOf(legId);
   const topNeighbor = neighborhood[0] ?? null;
   const topNeighborLeg = topNeighbor?.legs?.[orientedIndex] ?? null;
   const raw = baseRow.derivation.neighbor_leg?.conditional_remaining_dip_distribution_cents ?? {};
+  const conditioned = conditionedPrior?.phase_conditioned_dip_distribution_cents ?? {};
   const own = baseRow.derivation.neighbor_leg?.own_evidence ?? {};
   const readerLevel = cent(reads.drift.value[legId]?.current_cents);
   const liveBid = cent(reads.books.value[legId]?.bid_cents);
   const liveAsk = cent(reads.books.value[legId]?.ask_cents);
   const mapCell = baseRow.derivation.true_bell_cell_depth_map?.cell ?? null;
-  const predicted = cent(own.observed_low_cents) && Number.isInteger(raw.q50)
-    ? Math.max(1, own.observed_low_cents - raw.q50)
+  const predicted = cent(own.observed_low_cents) && Number.isInteger(conditioned.q50)
+    ? Math.max(1, own.observed_low_cents - conditioned.q50)
     : null;
   const minutesToBell = Number.isFinite(state.bell_epoch) ? Math.max(0, Math.round((state.bell_epoch - state.current_epoch) / 60)) : null;
-  const byMinutes = predictedMinuteToBell(state, legId, topNeighborLeg);
+  const deadline = freshDeadline(state, legId, conditionedPrior);
+  const byMinutes = deadline?.deadline_minutes_to_bell ?? null;
   const volume = round2(Math.log1p(sum(Object.values(reads.volume.value).map((row) => row.contracts))));
   const formationComplete = Number.isFinite(reads.anchor_settle.value.formation_progress[legId]) && reads.anchor_settle.value.formation_progress[legId] >= 1;
   const beliefPrice = formationComplete && liveBid && liveAsk && liveBid < liveAsk ? Math.floor((liveBid + liveAsk) / 2) : null;
@@ -101,7 +176,7 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, legId, macroStatus,
     ? `${topNeighbor.event_id}@${round2(topNeighbor.score)} [${topNeighbor.quality}/${topNeighbor.grain ?? "UNKNOWN"}; MACRO/MICRO; ${topNeighbor.citation_receipt_id}]`
     : "NO_GRADED_NEIGHBOR";
   const plain = microResolved
-    ? `believes ${legId} at ${beliefPrice}¢ [${beliefPriceBasis}; bid=${liveBid}¢; ask=${liveAsk}¢; book-receipt=${bookReceipt}] at ${minutesToBell ?? "UNKNOWN"}min-to-bell with ${volume ?? "UNKNOWN"} vol_log1p in ${state.category}, using ${store} + ${neighborName}, SHOULD drift to ${predicted}¢ by ${byMinutes ?? "UNKNOWN"}min-to-bell`
+    ? `believes ${legId} at ${beliefPrice}¢ [${beliefPriceBasis}; bid=${liveBid}¢; ask=${liveAsk}¢; book-receipt=${bookReceipt}] at ${minutesToBell ?? "UNKNOWN"}min-to-bell with ${volume ?? "UNKNOWN"} vol_log1p in ${state.category}, using ${store} + ${neighborName}, SHOULD drift to ${predicted}¢ by ${byMinutes ?? "UNKNOWN"}min-to-bell [deadline-epoch=${deadline?.deadline_epoch ?? "UNKNOWN"}; deadline-emitted-now=${deadline?.emitted_at_epoch ?? "UNKNOWN"}; deadline-receipt=${deadline?.emitted_at_receipt ?? "UNKNOWN"}]`
     : null;
   return {
     leg_id: legId,
@@ -118,6 +193,7 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, legId, macroStatus,
     predicted_cents: predicted,
     minutes_to_bell: minutesToBell,
     predicted_minutes_to_bell: byMinutes,
+    deadline,
     volume_log1p: volume,
     store,
     v3_map_semantics: {
@@ -129,6 +205,8 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, legId, macroStatus,
     top_neighbor: topNeighbor ? { event_id: topNeighbor.event_id, score: topNeighbor.score, coverage: topNeighbor.coverage, quality: topNeighbor.quality, grain: topNeighbor.grain, licensed_layers: topNeighbor.licensed_layers, citation_receipt_id: topNeighbor.citation_receipt_id } : null,
     own_evidence: own,
     raw_remaining_dip_cents: raw,
+    phase_conditioned_dip_cents: conditioned,
+    phase_conditioning: conditionedPrior,
     book_receipt: bookReceipt,
     plain_sentence: plain,
   };
@@ -170,19 +248,20 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
   const allFormationComplete = state.leg_ids.every((id) => Number.isFinite(reads.anchor_settle.value.formation_progress[id]) && reads.anchor_settle.value.formation_progress[id] >= 1);
   const coarseNeighbors = neighborhood.filter((row) => ["FOUNDATION_MINUTE_BELL_BOUNDED", "RANGE_BELL_BOUNDED", "HISTORICAL_BELL_BOUNDED"].includes(row.quality));
   const macroFamilies = Object.fromEntries(state.leg_ids.map((id) => [id, interimFamily(reads, id)]));
+  const conditionedPriors = Object.fromEntries(openIds.map((id) => [id, conditionTravelPrior(baseRows.get(id))]));
   const macroResolved = allFormationComplete && coarseNeighbors.length > 0 && openIds.every((id) => {
-    const q50 = baseRows.get(id)?.derivation?.neighbor_leg?.conditional_remaining_dip_distribution_cents?.q50;
+    const q50 = conditionedPriors[id]?.phase_conditioned_dip_distribution_cents?.q50;
     return Number.isInteger(q50);
   });
   const macroStatus = macroResolved ? "RESOLVED" : "INSUFFICIENT_EVIDENCE";
   const macroReceipt = layerReceipt(state, "MACRO", macroStatus, coarseNeighbors.flatMap((row) => [row.citation_receipt_id, ...(row.source_receipts ?? []).map((source) => source.row_ref)]), {
     families: macroFamilies,
-    travel_priors_cents: Object.fromEntries(openIds.map((id) => [id, baseRows.get(id)?.derivation?.neighbor_leg?.conditional_remaining_dip_distribution_cents ?? null])),
+    travel_priors: Object.fromEntries(openIds.map((id) => [id, conditionedPriors[id] ?? null])),
     sources: coarseNeighbors.map((row) => ({ event_id: row.event_id, store: row.quality, grain: row.grain, licensed_layers: row.licensed_layers, citation_receipt_id: row.citation_receipt_id })),
     provenance: LAYER_PROVENANCE.layer_fit,
   });
   const beliefs = {};
-  for (const legId of openIds) beliefs[legId] = beliefForLeg({ state, reads, neighborhood, baseRow: baseRows.get(legId), legId, macroStatus, macroFamily: macroFamilies[legId] });
+  for (const legId of openIds) beliefs[legId] = beliefForLeg({ state, reads, neighborhood, baseRow: baseRows.get(legId), conditionedPrior: conditionedPriors[legId], legId, macroStatus, macroFamily: macroFamilies[legId] });
   const microResolved = macroResolved && openIds.every((id) => beliefs[id].status === "RESOLVED");
   const microStatus = microResolved ? "RESOLVED" : "INSUFFICIENT_EVIDENCE";
   const microReceipt = layerReceipt(state, "MICRO", microStatus, openIds.flatMap((id) => [beliefs[id].book_receipt, beliefs[id].top_neighbor?.citation_receipt_id]), {
@@ -236,7 +315,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     if (beliefMode) {
       const envelope = state.dual_belief.current_envelopes[legId];
       if (envelope && microMicroResolved && liveBid && liveAsk && liveBid < liveAsk) {
-        const conditionedQ50 = cent(baseRows.get(legId)?.derivation?.depth_distribution_cents?.q50) ?? (baseRows.get(legId)?.derivation?.depth_distribution_cents?.q50 === 0 ? 0 : null);
+        const conditionedQ50 = beliefs[legId]?.phase_conditioned_dip_cents?.q50;
         const floorSideRaw = Number.isInteger(conditionedQ50) ? liveAsk - conditionedQ50 : null;
         const floorSideTarget = Number.isInteger(floorSideRaw) ? clamp(floorSideRaw, envelope.low_cents, envelope.high_cents) : null;
         const bookGeometryTarget = clamp(liveBid, envelope.low_cents, envelope.high_cents);
@@ -271,14 +350,16 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         envelopePlacement[legId] = { mode: "HOLD_PREVIOUSLY_LICENSED_ENVELOPE_TARGET", chosen_target_cents: active, numeric_constant_added: false };
       }
     } else {
-      targets[legId] = lineageTarget(lineageByLeg[legId], liveAsk);
+      // F-VS-108 bed rule: an independent/no-opinion lane may hold an already
+      // licensed coherent rest or abstain, but may not originate a completion.
+      targets[legId] = active;
       lowerBounds[legId] = 1;
-      envelopePlacement[legId] = { mode: "INDEPENDENT_LINEAGE_V3_OWN_TAPE", chosen_target_cents: targets[legId], numeric_constant_added: false };
+      envelopePlacement[legId] = { mode: "INDEPENDENT_LANE_HOLD_OR_ABSTAIN_BED", chosen_target_cents: targets[legId], may_originate_rest: false, numeric_constant_added: false };
     }
     const formationComplete = Number.isFinite(reads.anchor_settle.value.formation_progress[legId]) && reads.anchor_settle.value.formation_progress[legId] >= 1;
     if (!formationComplete || (liveBid && liveAsk && liveBid >= liveAsk)) targets[legId] = null;
   }
-  let allocation = { lawful: true, targets: { ...targets }, reason: beliefMode ? "ONE_OPEN_SIDE_OR_LATCH_HOLD" : "INDEPENDENT_LINEAGE_V3_OWN_TAPE", excess_cents: 0 };
+  let allocation = { lawful: true, targets: { ...targets }, reason: beliefMode ? "ONE_OPEN_SIDE_OR_LATCH_HOLD" : "INDEPENDENT_LANE_HOLD_OR_ABSTAIN_BED", excess_cents: 0 };
   if (openIds.length === 2 && openIds.every((id) => cent(targets[id]))) allocation = allocateUnderPar(targets, lowerBounds);
   const creditedId = state.leg_ids.find((id) => reads.half_pair_state.value.legs[id].credited);
   if (creditedId && openIds.length === 1) {
@@ -287,8 +368,8 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     allocation.reason = `${allocation.reason}+FILL_HANDOFF_PAIR_CAP`;
   }
   if (!allocation.lawful) {
-    for (const legId of openIds) allocation.targets[legId] = lineageTarget(lineageByLeg[legId], reads.books.value[legId]?.ask_cents);
-    allocation.reason = `${allocation.reason}+BELIEF_ABSTAINS_TO_INDEPENDENT_LINEAGE`;
+    for (const legId of openIds) allocation.targets[legId] = cent(reads.half_pair_state.value.legs[legId].standing_target_cents);
+    allocation.reason = `${allocation.reason}+BELIEF_ABSTAINS_TO_HOLD_ONLY`;
   }
 
   const dualPlain = openIds.length === 2 && openIds.every((id) => beliefs[id]?.plain_sentence)
@@ -299,7 +380,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const row = baseRows.get(legId);
     const active = cent(reads.half_pair_state.value.legs[legId].standing_target_cents);
     const target = cent(allocation.targets[legId]);
-    const reason = beliefMode ? (microMicroResolved ? "LAYERED_COHERENT_ENVELOPE" : "HOLD_LAST_LICENSED_COHERENT_ENVELOPE") : "INDEPENDENT_LINEAGE_V3_OWN_TAPE";
+    const reason = beliefMode ? (microMicroResolved ? "LAYERED_COHERENT_ENVELOPE" : "HOLD_LAST_LICENSED_COHERENT_ENVELOPE") : "INDEPENDENT_LANE_HOLD_OR_ABSTAIN_BED";
     const action = actionForTarget(active, target, reason);
     const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${action.target_cents ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
     const upstream = `MACRO=${macroStatus}[${macroReceipt.receipt_id}] · MICRO=${microStatus}[${microReceipt.receipt_id}] · MICRO_MICRO=${microMicroStatus}[${microMicroReceipt.receipt_id}]`;
@@ -309,7 +390,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const fillHandoffText = fillHandoff
       ? ` FILL_HANDOFF=${fillHandoff.context.original_fill_receipt}[${fillHandoff.receipt_id}]; CREDITED_SIBLING_ENTRY=${fillHandoff.context.credited_sibling_entry_cents}; REPOSED_QUERY=${fillHandoff.context.reposed_query_fingerprint_sha256}.`
       : "";
-    const sentence = `${beliefText}. MACRO: family=${macroFamilies[legId].family}, prior=${JSON.stringify(baseRows.get(legId).derivation.neighbor_leg.conditional_remaining_dip_distribution_cents)}, stores=${coarseNeighbors.map((neighbor) => `${neighbor.quality}/${neighbor.grain ?? "UNKNOWN"}@${neighbor.citation_receipt_id}`).join(",") || "NONE"} [${macroReceipt.receipt_id}]. MICRO: own-window=${JSON.stringify(beliefs[legId]?.own_evidence ?? null)}, rows=${[beliefs[legId]?.book_receipt, beliefs[legId]?.top_neighbor?.citation_receipt_id].filter(Boolean).join(",") || "NONE"}, V3_KEY=${LAYER_PROVENANCE.v3_source_key}->${LAYER_PROVENANCE.v3_runtime_rekey} [${microReceipt.receipt_id}]. MICRO-MICRO: tick=${state.receipt}, book=${beliefs[legId]?.book_receipt ?? "NONE"}, store=${LAYER_PROVENANCE.micro_micro_store} [${microMicroReceipt.receipt_id}]. ORDER=${upstream}. COHERENCE=${coherence.status}; MIRROR_GAP=${coherence.absolute_mirror_gap_cents ?? "UNKNOWN"}; SPREAD_BOUND=${spread ?? "UNKNOWN"}/${SPREAD_SETTLE_COHERENCE_MAX_CENTS}; ENVELOPE=${JSON.stringify(state.dual_belief.current_envelopes?.[legId] ?? null)}; ENVELOPE_PLACEMENT=${JSON.stringify(envelopePlacement[legId])}; ALLOCATION=${allocation.reason}.${fillHandoffText} ${actionStatement}`;
+    const sentence = `${beliefText}. MACRO: family=${macroFamilies[legId].family}, full-travel-prior=${JSON.stringify(baseRows.get(legId).derivation.neighbor_leg.conditional_remaining_dip_distribution_cents)}, phase-conditioned-dip=${JSON.stringify(conditionedPriors[legId]?.phase_conditioned_dip_distribution_cents ?? null)}, conditioning-method=${conditionedPriors[legId]?.method ?? "NONE"}, stores=${coarseNeighbors.map((neighbor) => `${neighbor.quality}/${neighbor.grain ?? "UNKNOWN"}@${neighbor.citation_receipt_id}`).join(",") || "NONE"} [${macroReceipt.receipt_id}]. MICRO: own-window=${JSON.stringify(beliefs[legId]?.own_evidence ?? null)}, rows=${[beliefs[legId]?.book_receipt, beliefs[legId]?.top_neighbor?.citation_receipt_id].filter(Boolean).join(",") || "NONE"}, V3_KEY=${LAYER_PROVENANCE.v3_source_key}->${LAYER_PROVENANCE.v3_runtime_rekey} [${microReceipt.receipt_id}]. MICRO-MICRO: tick=${state.receipt}, book=${beliefs[legId]?.book_receipt ?? "NONE"}, store=${LAYER_PROVENANCE.micro_micro_store} [${microMicroReceipt.receipt_id}]. ORDER=${upstream}. COHERENCE=${coherence.status}; MIRROR_GAP=${coherence.absolute_mirror_gap_cents ?? "UNKNOWN"}; SPREAD_BOUND=${spread ?? "UNKNOWN"}/${SPREAD_SETTLE_COHERENCE_MAX_CENTS}; ENVELOPE=${JSON.stringify(state.dual_belief.current_envelopes?.[legId] ?? null)}; ENVELOPE_PLACEMENT=${JSON.stringify(envelopePlacement[legId])}; ALLOCATION=${allocation.reason}.${fillHandoffText} ${actionStatement}`;
     row.citation_receipts[macroReceipt.receipt_id] = macroReceipt;
     row.citation_receipts[microReceipt.receipt_id] = microReceipt;
     row.citation_receipts[microMicroReceipt.receipt_id] = microMicroReceipt;
@@ -317,7 +398,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.sentence = sentence;
     row.sentence_action_assertion = { hard_assert: true, expected_statement: actionStatement, equal: sentence.includes(actionStatement) };
     row.citation_receipt_assertion = { hard_assert: true, receipt_count: Object.keys(row.citation_receipts).length, equal: [macroReceipt, microReceipt, microMicroReceipt].every((receipt) => sentence.includes(receipt.receipt_id)) };
-    row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, belief_mode: beliefMode, first_coherence: state.dual_belief.first_coherence, envelope: state.dual_belief.current_envelopes?.[legId] ?? null, envelope_placement: envelopePlacement[legId], v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
+    row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, conditioned_priors: conditionedPriors, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, belief_mode: beliefMode, independent_lane_may_complete: false, first_coherence: state.dual_belief.first_coherence, envelope: state.dual_belief.current_envelopes?.[legId] ?? null, envelope_placement: envelopePlacement[legId], v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
     row.derivation.target_basis = reason;
     row.derivation.derived_target_cents = target;
     row.derivation.allocation = allocation;

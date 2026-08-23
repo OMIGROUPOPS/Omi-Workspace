@@ -1,0 +1,22 @@
+{
+  "label": "V54_CONDITIONED_BELIEF_LIVE_DEADLINE_DETERMINISM",
+  "clean_builds": 2,
+  "build_a": "v54_conditioned_belief_live_deadlines_mind_only_20260823",
+  "build_b": "v54-conditioned-belief-c",
+  "files_compared": 36,
+  "differing_files": 0,
+  "byte_identical": true,
+  "pre_receipt_manifest_sha256_a": "4a5d3fd00a0d651a29ab078206d3c576079fc1cfc57e602f3138a3c3980b6988",
+  "pre_receipt_manifest_sha256_b": "4a5d3fd00a0d651a29ab078206d3c576079fc1cfc57e602f3138a3c3980b6988",
+  "policy_hashes": {
+    "arb-executor/analysis/window1_v54_dual_belief_os.js": "d3582b8fbd567472270a50b18ce8e455f480755287012e200ce36ae5fbd8dd64",
+    "arb-executor/analysis/window1_v54_functionable_os.js": "b50766bbaa5e29b5862615724d592473ddcf188d599f59d3a87f8a69e74bfeb4",
+    "arb-executor/analysis/build_window1_v54_dual_belief.js": "8b6bab43b867b84bff25f1143c94e8c6e087c61b4ac39885815023a9cbfad1d2",
+    "arb-executor/analysis/window1_v54_dual_belief_reporter.js": "99a6b9df10a5d67ed8fbf7da12666bf6f6b043c445a7ec95047e732254270189",
+    "arb-executor/tests/test_window1_v54_dual_belief_os.js": "d52f1e8da55ee6b2357d3f3c409f23b1ddd0ae2552342a3b637831276afd6614"
+  },
+  "unit_test": "window1_v54_dual_belief_os: PASS",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

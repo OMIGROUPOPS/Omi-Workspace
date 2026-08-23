@@ -166,6 +166,8 @@ function createTapeState(meta) {
       fill_receipt: null,
       fill_event_receipt: null,
       fill_timestamp_epoch: null,
+      standing_license_basis: null,
+      standing_license_receipt: null,
     }])),
     current_epoch: meta.discovery_epoch,
     receipt: `${meta.event_id}|DISCOVERY`,
@@ -239,6 +241,8 @@ function creditPosition(state, legId, row) {
       triggering_print_price_cents: row.price_cents,
       fill_timestamp_epoch: row.timestamp_epoch,
       prior_standing_target_cents: restPrice,
+      standing_license_basis: position.standing_license_basis,
+      standing_license_receipt: position.standing_license_receipt,
       print_at_or_below_rest: row.price_cents <= restPrice,
       transition: "OPEN_REST_TO_CREDITED_HALF_PAIR",
     },
@@ -249,6 +253,8 @@ function creditPosition(state, legId, row) {
   position.fill_event_receipt = fillEventReceipt;
   position.fill_timestamp_epoch = row.timestamp_epoch;
   position.standing_target_cents = null;
+  position.standing_license_basis = null;
+  position.standing_license_receipt = null;
   return fillEventReceipt;
 }
 

@@ -1,0 +1,24 @@
+{
+  "label": "DIVES_T1_V3_WORKTREE_CENSUS_CLOSEOUT",
+  "registered_worktrees_seen": 55,
+  "active_worktree": "C:/Users/omigr/OMI-Workspace-codex-window1/.worktrees/omi-dives-t1-v3-20260823",
+  "branch": "codex/window1-dives-t1-v3-20260823",
+  "head_before_final_package_commit": "ab82e016962cbbccc51e0a47847191a8bef745af",
+  "isolation": {
+    "all_writes_confined_to_active_worktree": true,
+    "main_workspace_untouched": true,
+    "sealed_untouched": true,
+    "live_untouched": true
+  },
+  "temporary_builds": {
+    "builds_compared": 2,
+    "byte_identity": true,
+    "temporary_directory_removed_before_commit": true
+  },
+  "package": {
+    "changed_paths_before_this_closeout_receipt": 16,
+    "all_changes_in_scope": true,
+    "all_files_below_50_mb": true,
+    "expected_status_after_final_commit_and_push": "CLEAN_AND_REMOTE_EQUAL"
+  }
+}

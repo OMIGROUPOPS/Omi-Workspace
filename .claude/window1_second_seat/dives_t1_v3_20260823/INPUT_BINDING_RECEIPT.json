@@ -1,0 +1,149 @@
+{
+  "label": "DIVES_T1_V3_INPUT_BINDING_RECEIPT",
+  "scope": "eight selected games only; no 804; no sealed; no live",
+  "sources": {
+    "selection": {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/SELECTION_RECEIPT.json",
+      "bytes": 2994,
+      "sha256": "ca6ff730d68878124cb2b53e9f51108e7d165338cc7a214147ef471075e8c94b",
+      "rows": 8
+    },
+    "dive_queue": {
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DIVE_QUEUE_V2.json",
+      "bytes": 515390,
+      "sha256": "cf2d16695fc9add24200031e489eb652408f9537a39a4c941f6bc437439103b2",
+      "rows": 642
+    },
+    "ground_truth": {
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+      "bytes": 1426420,
+      "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+      "rows": 804
+    },
+    "depth_map": {
+      "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json",
+      "bytes": 305164,
+      "sha256": "72751efe0386bffe0d41e43fb680aaf2e30516b213c7a6371811725bbf67cef9",
+      "rows": 511
+    },
+    "pass2_outcomes": {
+      "path": "v54_l19a_neighbor_voted_composition_pass2/PER_GAME_OUTCOME_TABLE.json",
+      "bytes": 433431,
+      "sha256": "c5ff439eebd87640412f51ed58810de87450201ad4ef89111823603bdd561a42",
+      "rows": 804
+    },
+    "pass2_sentences": {
+      "path": "stage1/v54_l19a_neighbor_voted_composition_pass2/build1/ALL_SENTENCES_804.jsonl.gz",
+      "bytes": 75525710,
+      "sha256": "9e796ab73ca05fb3b52b62cc7faea8fe21b1f83a52822717d4449da7531d3d02",
+      "rows": 61400
+    },
+    "selected_tapes": [
+      {
+        "path": "KXATPCHALLENGERMATCH-26JUL19TORSEN-SEN.csv.gz",
+        "bytes": 274818,
+        "sha256": "db70922ad9078d2d37dbab24453cf1db20874a0665627beb982cb7f12c5452b6",
+        "rows": 24733
+      },
+      {
+        "path": "KXATPCHALLENGERMATCH-26JUL19TORSEN-TOR.csv.gz",
+        "bytes": 254630,
+        "sha256": "8b5c3f69b9c472a1be6957c238f47f0ff90cc3ded7ffe823198ae5f8be721819",
+        "rows": 21797
+      },
+      {
+        "path": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR.csv.gz",
+        "bytes": 394163,
+        "sha256": "cd01629a82aefe5f8da4f0fb7e8746a340ac4b4ab1062b0d7ea4c51eb64ac192",
+        "rows": 48562
+      },
+      {
+        "path": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-SEK.csv.gz",
+        "bytes": 244096,
+        "sha256": "a46f219494fa961f3f73a7f7cbee1833d7bb4bce0cc2c9a4e3acea7bbc595df0",
+        "rows": 29554
+      },
+      {
+        "path": "KXATPMATCH-26JUL14TRAKRU-KRU.csv.gz",
+        "bytes": 734929,
+        "sha256": "fee78a26f07e5807202073c45ff7f4626396913bfe3e8dab35b9bc080929cf64",
+        "rows": 84709
+      },
+      {
+        "path": "KXATPMATCH-26JUL14TRAKRU-TRA.csv.gz",
+        "bytes": 817864,
+        "sha256": "68d2f746d99511e9e6fe99c92b906cd0bfdf91e65cc251d0761d00908d5a373b",
+        "rows": 105869
+      },
+      {
+        "path": "KXATPMATCH-26JUL19BAEKEC-BAE.csv.gz",
+        "bytes": 458001,
+        "sha256": "b456971ed24ad3b7b200d91abf6f93e400fb0a49b183b8a182640ad713d9d3ed",
+        "rows": 45682
+      },
+      {
+        "path": "KXATPMATCH-26JUL19BAEKEC-KEC.csv.gz",
+        "bytes": 461858,
+        "sha256": "bc5125f2e1883392cb30aa6fe6cfa5834996fbd6499fc3308d6587aad426f44d",
+        "rows": 46301
+      },
+      {
+        "path": "KXWTACHALLENGERMATCH-26JUL15ASTNOH-AST.csv.gz",
+        "bytes": 302828,
+        "sha256": "70d2a6934ee475a124d29c70519f57edd603280a592778c51f51ec6214b601ad",
+        "rows": 29536
+      },
+      {
+        "path": "KXWTACHALLENGERMATCH-26JUL15ASTNOH-NOH.csv.gz",
+        "bytes": 278725,
+        "sha256": "2163b77faa7afa64c647f8433d53e6c6d7dc4b12d2c6b17069c4cda51062c722",
+        "rows": 27148
+      },
+      {
+        "path": "KXWTACHALLENGERMATCH-26JUL17VALFAL-FAL.csv.gz",
+        "bytes": 791464,
+        "sha256": "e8a42d9617246e9e85b730f20340635bc42fc9a4bb9abaf0d27173aa035aa8ce",
+        "rows": 87243
+      },
+      {
+        "path": "KXWTACHALLENGERMATCH-26JUL17VALFAL-VAL.csv.gz",
+        "bytes": 882594,
+        "sha256": "a85d34b4d278a7bf75ca3d36c1faeeb36068169ce1d333548a7fc32673708238",
+        "rows": 102879
+      },
+      {
+        "path": "KXWTAMATCH-26JUL13QUERUS-QUE.csv.gz",
+        "bytes": 532237,
+        "sha256": "5c0dc24dc203b8638f1ade90c428479fde0eb7a4ba322ac7fabff6d43de75eb5",
+        "rows": 56636
+      },
+      {
+        "path": "KXWTAMATCH-26JUL13QUERUS-RUS.csv.gz",
+        "bytes": 725604,
+        "sha256": "39166dbd2ebe88a1c3382b19a8752723bb2ff4c1fa4944382825a0377ae7f557",
+        "rows": 108099
+      },
+      {
+        "path": "KXWTAMATCH-26JUL17PUTSHE-PUT.csv.gz",
+        "bytes": 1020317,
+        "sha256": "815302909c240aaba1d94798a9ba349594aa7886aefb2dbf7d127c61317d405d",
+        "rows": 111479
+      },
+      {
+        "path": "KXWTAMATCH-26JUL17PUTSHE-SHE.csv.gz",
+        "bytes": 943824,
+        "sha256": "3456197f1ba666de29f64fcd98a11e4ec698dabd514c1e520d242373c42d0552",
+        "rows": 101077
+      }
+    ]
+  },
+  "selected_sentence_rows": 792,
+  "assertions": {
+    "selection_was_frozen_before_sentence_or_tape_walk": true,
+    "exactly_8_games": true,
+    "exactly_16_legs": true,
+    "no_804_replay": true,
+    "sealed_untouched": true,
+    "live_untouched": true
+  }
+}

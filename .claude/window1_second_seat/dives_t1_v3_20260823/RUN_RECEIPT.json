@@ -1,0 +1,30 @@
+{
+  "label": "DIVES_T1_V3_TRANCHE_1_RUN_RECEIPT",
+  "selection_receipt_commit": "ab82e016",
+  "selected_games": 8,
+  "selected_legs": 16,
+  "selected_sentence_rows": 792,
+  "adjudications": {
+    "knowable": { "YES": 14, "NO": 2 },
+    "touch_sufficient": { "YES": 9, "NO": 7 },
+    "depth_licensed": { "YES": 4, "NO": 11, "UNMAPPED": 1 }
+  },
+  "honest_outcomes": {
+    "COMPLETE": 0,
+    "PARTIAL": 4,
+    "NEITHER": 4
+  },
+  "next_instrument": "THREE_WAY_TOUCH_CAPTURE_CENSUS",
+  "assertions": {
+    "selection_named_before_any_run": true,
+    "process_first_order": true,
+    "verbatim_machine_sentences_retained": true,
+    "true_bell_cell_depth_map_consumed": true,
+    "determinism_x2": true,
+    "all_committed_files_below_50_mb": true,
+    "no_804": true,
+    "sealed_untouched": true,
+    "live_untouched": true
+  },
+  "status": "PASS"
+}

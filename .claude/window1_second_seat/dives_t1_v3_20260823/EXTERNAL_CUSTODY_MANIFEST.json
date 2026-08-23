@@ -1,0 +1,12 @@
+{
+  "label": "L22_CUSTODY_RECEIPT",
+  "committed_file_cap_bytes": 50000000,
+  "oversized_artifacts": [],
+  "all_generated_artifacts_within_cap": true,
+  "source_sentence_archive_external_custody": {
+    "path": "stage1/v54_l19a_neighbor_voted_composition_pass2/build1/ALL_SENTENCES_804.jsonl.gz",
+    "bytes": 75525710,
+    "sha256": "9e796ab73ca05fb3b52b62cc7faea8fe21b1f83a52822717d4449da7531d3d02",
+    "rows": 61400
+  }
+}

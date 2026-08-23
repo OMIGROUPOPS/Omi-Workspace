@@ -1,0 +1,17 @@
+{
+  "selected_games": 8,
+  "legs": 16,
+  "adjudication_counts": {
+    "knowable_yes": 14,
+    "knowable_no": 2,
+    "touch_sufficient_yes": 9,
+    "touch_sufficient_no": 7,
+    "depth_licensed_yes": 4,
+    "depth_licensed_no": 11,
+    "depth_unmapped": 1
+  },
+  "next_instrument": "THREE_WAY_TOUCH_CAPTURE_CENSUS",
+  "reason": "The eight dives contain both touch-creditable floor prints and floors outside the bid touch, while the raw WS last-trade channel and the certified floor channel also diverge on named legs. The next lawful measurement is therefore the three-way quote-touch / traded-at-level / print-cross census. Chain-pressure would reopen placement direction despite F-VS-094's adjudicated touch-standing law and is not justified by these rows.",
+  "chain_pressure_status": "NOT_SELECTED; remains NEVER_RUN",
+  "three_way_touch_capture_status": "JUSTIFIED_NEXT; still NEVER_RUN in this package"
+}

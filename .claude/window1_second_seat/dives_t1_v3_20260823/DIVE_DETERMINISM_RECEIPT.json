@@ -1,0 +1,24 @@
+{
+  "label": "DIVES_T1_V3_EIGHT_GAME_DETERMINISM",
+  "runs": 2,
+  "builds": [
+    ".tmp_dives_t1_v3/build5",
+    ".tmp_dives_t1_v3/build6"
+  ],
+  "policy_or_replay_behavior_changed": false,
+  "artifact_count_each": 10,
+  "all_artifacts_byte_identical": true,
+  "artifact_sha256": {
+    "ACTIONS_8.json": "55710eff136bed9f1fe366d6bbbf64917b4ba4eef83c7cf93e880a9809113ef6",
+    "ADJUDICATIONS_16.csv": "45a0bf03cc34a378088843bad5efad5053f6899dd5d845508e08527f0494b9b0",
+    "ADJUDICATIONS_16.json": "1ad43c273aaa5be8b0fafc949b3b6e475ff51fa53498c6014748782ae720c5bf",
+    "ARTIFACT_HASH_MANIFEST.json": "d3f9f735d4e0803225f466e54e92c66adc7a5b2393caaa0377cf48affceb5fa8",
+    "DIVE_STORIES_8.json": "55403a1296456d21feab63de557a71060e92e792bab229755be74008121c3cd2",
+    "EXTERNAL_CUSTODY_MANIFEST.json": "84b53b607f86cd21159ea4b04754be970342d0e7b9fa257959ddc052c2f6f7a3",
+    "INPUT_BINDING_RECEIPT.json": "fcb09e8a018b52f42cdbc09ffc5daaf96590136cca2ada506ddc8a5b72b1d986",
+    "PROCESS_FIRST_REPORT.md": "121d2018992f82044309ff1ebb0039c59176fe53b364b273e8c6315078b4d173",
+    "SELECTED_SENTENCES_8.jsonl.gz": "95d6b36620c402a480388902f6c30c81b2480307282e442cebf40ec3c9a0b46a",
+    "SYNTHESIS.json": "981a0b0707046522c4cb96769c72d9dfcc662bd536b4013df6a2e16c31b91886"
+  },
+  "status": "PASS"
+}

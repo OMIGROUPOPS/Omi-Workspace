@@ -1,0 +1,17 @@
+{
+  "label": "V54_COMPOSITION_REBUILD_DETERMINISM_X2",
+  "clean_builds": 2,
+  "files_per_build": 32,
+  "mismatched_files": 0,
+  "byte_identical": true,
+  "build_1_manifest_sha256": "3c8fd184453f099abf4a5a62afdb58d0e06eeb0b92677904a1b498971697b2c4",
+  "build_2_manifest_sha256": "3c8fd184453f099abf4a5a62afdb58d0e06eeb0b92677904a1b498971697b2c4",
+  "policy_behavior_changed_between_builds": false,
+  "scope": {
+    "integration_smoke_games": 1,
+    "graded_games": 4,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_read_or_mutation": false
+  }
+}

@@ -60,24 +60,48 @@ assert.match(derivation.sentence, /CR-[0-9a-f]{64}/);
 assert.equal(derivation.pair_conservation.at_or_below_99, true);
 assert.equal(derivation.resources_consulted.length, 0, "connectivity must not be mislabeled as consultation");
 assert.ok(Object.values(derivation.citation_receipts).every((row) => row.captured_at_receipt === state.receipt));
-assert.equal(derivation.derivation.target_basis, "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS");
-assert.equal(derivation.derivation.evidence_rung, "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS");
+assert.equal(derivation.derivation.target_basis, "EVIDENCED_TOUCH");
+assert.equal(derivation.derivation.evidence_rung, "EVIDENCED_TOUCH");
+assert.equal(derivation.derivation.proposed_target_cents, reads.books.value.AAA.bid_cents);
 assert.equal(derivation.derivation.stale_prior_path_used, false);
 assert.match(derivation.sentence, /TOUCH_RELATION=/);
-assert.match(derivation.sentence, /time-conditioned remaining-dip/);
+assert.match(derivation.sentence, /PRICE_AT_EVIDENCED_TOUCH=/);
+assert.match(derivation.sentence, /MAP_CELL=/);
+assert.match(derivation.sentence, /MAP_P50_CENTS=/);
+assert.match(derivation.sentence, /MAP_MEMBERS=/);
 assert.match(derivation.sentence, /CHOSEN_DEPTH_CENTS=/);
 assert.match(derivation.sentence, /OWN_WINDOW=/);
 assert.match(derivation.sentence, /PAIR_STATE=/);
-assert.match(derivation.sentence, /EVIDENCE_RUNG=RUNG_1_TIME_BEARING_GRADED_NEIGHBORS/);
+assert.match(derivation.sentence, /EVIDENCE_RUNG=EVIDENCED_TOUCH/);
 
 const untimedNeighborhood = neighborhood.map((row) => ({ ...row, legs: row.legs.map((leg) => ({ ...leg, floor_fraction: null })) }));
 const rung2 = os.deriveAction({ state, reads, neighborhood: untimedNeighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r2" }, resources });
-assert.equal(rung2.derivation.evidence_rung, "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW");
+assert.equal(rung2.derivation.evidence_rung, "EVIDENCED_TOUCH");
+assert.equal(rung2.derivation.proposed_target_cents, reads.books.value.AAA.bid_cents);
 
 const rung3 = os.deriveAction({ state, reads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r3" }, resources });
-assert.equal(rung3.derivation.evidence_rung, "RUNG_3_OWN_TAPE");
+assert.equal(rung3.derivation.evidence_rung, "EVIDENCED_TOUCH");
 assert.equal(rung3.derivation.distribution_depth_cents, 0);
 assert.equal(rung3.derivation.proposed_target_cents, reads.books.value.AAA.bid_cents);
+
+os.configureTrueBellCellDepthMap({
+  kind: "TRUE_BELL_CELL_CONDITIONAL_DEPTH_MAP_V3",
+  commit: "ac68e3bc-test",
+  path: "TRUE_BELL_CELL_DEPTH_MAP.json",
+  sha256: "map-test-sha",
+  cells: [{ category: "ATP_MAIN", price_cell: 37, edge_p50_cents: 3, n_legs: 20 }],
+});
+const timedCorpus = corpus.map((row) => row.event_id === "TEST-EVENT" ? row : ({
+  ...row,
+  legs: row.legs.map((leg) => ({ ...leg, specialist_record: { kind: "BOUNDED_TWO_BEHAVIOR_FLOOR_CAPTURE", floor_fraction: 0.5, source_receipt: `${row.event_id}|${leg.leg_id}|floor` } })),
+}));
+const timedNeighborhood = os.retrieveNeighborhood(timedCorpus, vector, "TEST-EVENT", 2, state.receipt);
+const mapped = os.deriveAction({ state, reads, neighborhood: timedNeighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-map" }, resources });
+assert.equal(mapped.derivation.evidence_rung, "TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED");
+assert.equal(mapped.derivation.true_bell_cell_depth_map.licensed, true);
+assert.equal(mapped.derivation.proposed_target_cents, 34);
+assert.match(mapped.sentence, /MAP_CELL=ATP_MAIN\|37/);
+assert.match(mapped.sentence, /MAP_P50_CENTS=3/);
 
 const splitState = os.createTapeState(meta);
 splitState.positions.AAA.standing_target_cents = 60;
@@ -85,10 +109,21 @@ splitState.positions.BBB.standing_target_cents = 36;
 const splitReads = { half_pair_state: { value: { legs: { AAA: { ...splitState.positions.AAA }, BBB: { ...splitState.positions.BBB } } } } };
 function splitRow(legId, target, grade) {
   const actionStatement = `ACTION=HOLD_REST; TARGET_CENTS=${target}; ACTIVE_TARGET_BEFORE_CENTS=${target}.`;
+  const liveAsk = target + 1;
   return {
     leg_id: legId,
     action: { action: "HOLD_REST", target_cents: target, reason: "INCUMBENT" },
-    derivation: { lawful_unallocated_target_cents: target, derived_target_cents: target, allocation_priority_grade: grade },
+    derivation: {
+      lawful_unallocated_target_cents: target,
+      derived_target_cents: target,
+      allocation_priority_grade: grade,
+      live_bid_cents: target,
+      live_ask_cents: liveAsk,
+      formation_complete: true,
+      formed_two_sided_book: true,
+      crossed_book: false,
+      true_bell_cell_depth_map: { cell: { edge_p50_cents: 5 } },
+    },
     sentence: `ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`,
     sentence_action_assertion: { expected_statement: actionStatement, equal: true },
     pair_conservation: { at_or_below_99: true },
@@ -121,8 +156,10 @@ assert.match(blocked.sentence, /ACTION=HOLD_REST; TARGET_CENTS=NONE/);
 const noTape = os.createTapeState(meta);
 const noTapeReads = os.readAll(noTape);
 const rung4 = os.deriveAction({ state: noTape, reads: noTapeReads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r4" }, resources });
-assert.equal(rung4.derivation.evidence_rung, "RUNG_4_REFLEX_BYTE_EQUAL");
-assert.equal(rung4.derivation.proposed_target_cents, 38);
+assert.equal(rung4.derivation.evidence_rung, "EVIDENCED_TOUCH");
+assert.equal(rung4.derivation.proposed_target_cents, null);
+assert.equal(rung4.action.action, "HOLD_REST");
+assert.equal(rung4.action.target_cents, null);
 
 const handoff = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(handoff, leg, { timestamp_epoch: ts, receipt: `handoff-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });

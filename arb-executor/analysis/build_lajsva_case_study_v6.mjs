@@ -7,9 +7,9 @@ import os from "node:os";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 
-const REPAIR_ROOT = ".claude/window1_live_v4_replay/v54_repair_iteration6_evidence_ladder_20260822";
-const OUT_ROOT = ".claude/window1_live_v4_replay/lajsva_case_study_v7_20260822";
-const V5_ROOT = ".claude/window1_live_v4_replay/lajsva_case_study_v5_20260822";
+const REPAIR_ROOT = ".claude/window1_live_v4_replay/v54_composition_rebuild_mind_windowed_touch_priced_map_licensed_20260823";
+const OUT_ROOT = ".claude/window1_live_v4_replay/lajsva_case_study_v8_20260823";
+const PRIOR_ROOT = ".claude/window1_live_v4_replay/lajsva_case_study_v7_20260822";
 
 function canonical(value) { return JSON.stringify(value, null, 2) + "\n"; }
 function hash(value) { return crypto.createHash("sha256").update(value).digest("hex"); }
@@ -27,16 +27,16 @@ function main() {
     .replace('const REPAIR_ROOT = ".claude/window1_live_v4_replay/v54_repair_iteration2_foundation_conditional_dip_early_riser_20260822";', `const REPAIR_ROOT = "${REPAIR_ROOT}";`)
     .replace('const OUT_ROOT = ".claude/window1_live_v4_replay/lajsva_case_study_v3_20260822";', `const OUT_ROOT = "${OUT_ROOT}";`)
     .replaceAll("CONDITIONAL_DIP_RECEIPT.json", "EVIDENCE_LADDER_RECEIPT.json")
-    .replaceAll("V1_V2_V3_SIDE_BY_SIDE.md", "V1_V2_V3_V4_V5_V6_V7_SIDE_BY_SIDE.md")
-    .replaceAll("repair iteration 2", "repair iteration 6")
-    .replaceAll("Foundation + conditional dip + early riser", "evidence ladder")
-    .replaceAll("this leg's own dip/no-dip state and the q50 remaining dip of same-state, native-bell-bounded MINUTE neighbors", "the best available receipt-named rung: time-bearing graded neighbors, graded neighbors plus own-window evidence, own tape, or reflex")
-    .replaceAll("LAJSVA v3", "LAJSVA v7")
-    .replaceAll("v3 repaired machine", "v7 repaired machine")
-    .replaceAll("FOUNDATION_CONDITIONAL_DIP_EARLY_RISER", "EVIDENCE_LADDER")
-    .replaceAll("LAJSVA_CASE_STUDY_V3", "LAJSVA_CASE_STUDY_V7")
-    .replaceAll("V3 receipt", "V7 receipt");
-  const temp = fs.mkdtempSync(path.join(os.tmpdir(), "lajsva-v7-"));
+    .replaceAll("V1_V2_V3_SIDE_BY_SIDE.md", "V1_V2_V3_V4_V5_V6_V7_V8_SIDE_BY_SIDE.md")
+    .replaceAll("repair iteration 2", "composition rebuild")
+    .replaceAll("Foundation + conditional dip + early riser", "mind-windowed, touch-priced, map-licensed composition")
+    .replaceAll("this leg's own dip/no-dip state and the q50 remaining dip of same-state, native-bell-bounded MINUTE neighbors", "the mind-selected own-clock window, evidenced touch, and receipt-bound V3 map license")
+    .replaceAll("LAJSVA v3", "LAJSVA v8")
+    .replaceAll("v3 repaired machine", "v8 composition rebuild")
+    .replaceAll("FOUNDATION_CONDITIONAL_DIP_EARLY_RISER", "MIND_WINDOW_TOUCH_MAP_LICENSE")
+    .replaceAll("LAJSVA_CASE_STUDY_V3", "LAJSVA_CASE_STUDY_V8")
+    .replaceAll("V3 receipt", "V8 receipt");
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), "lajsva-v8-"));
   const generated = path.join(temp, "builder.mjs");
   fs.writeFileSync(generated, source, "utf8");
   try {
@@ -56,12 +56,12 @@ function main() {
   const caseReceipt = JSON.parse(fs.readFileSync(caseReceiptFile, "utf8"));
   const gateFile = path.join(repo, REPAIR_ROOT, "REPAIR_GATE_RECEIPT.json");
   const gate = JSON.parse(fs.readFileSync(gateFile, "utf8"));
-  const v5ReceiptFile = path.join(repo, V5_ROOT, "CASE_STUDY_RECEIPT.json");
-  const v5 = JSON.parse(fs.readFileSync(v5ReceiptFile, "utf8"));
+  const priorReceiptFile = path.join(repo, PRIOR_ROOT, "CASE_STUDY_RECEIPT.json");
+  const priorReceipt = JSON.parse(fs.readFileSync(priorReceiptFile, "utf8"));
   const result = caseReceipt.v1_v2_v3?.v3 ?? null;
-  const prior = v5.v1_v2_v3_v4_v5?.v5 ?? null;
+  const prior = priorReceipt.v1_v2_v3_v4_v5_v6_v7?.v7 ?? null;
   const outcome = (value) => value?.completed ? `${value.pair_cents}, Δ${value.delta_cents}` : "partial";
-  const spine = `# LAJSVA case-study spine — v1 / v2 / v3 / v4 / v5 / v6 / v7
+  const spine = `# LAJSVA case-study spine — v1 / v2 / v3 / v4 / v5 / v6 / v7 / v8
 
 | version | library / wiring | outcome | status |
 |---|---|---|---|
@@ -71,15 +71,16 @@ function main() {
 | v4 | strict pre-bell minutes; subtractive graded retrieval; inert split | partial | self-stopped |
 | v5 | composition + presence | ${outcome(prior)} | self-stopped |
 | v6 | conditioned remaining-dip + own-window + pair-state derived depth | partial | self-stopped |
-| v7 | evidence ladder: timed neighbors → neighbors+own-window → own tape → reflex | ${outcome(result)} | ${gate.self_stop ? `self-stop: ${gate.stop_reason}` : "gate pass"} |
+| v7 | evidence ladder: timed neighbors → neighbors+own-window → own tape → reflex | ${outcome(prior)} | banked prior |
+| v8 | mind-selected own-clock windows; touch pricing; V3-map-licensed depth | ${outcome(result)} | ${gate.self_stop ? `self-stop: ${gate.stop_reason}` : "gate pass"} |
 
-V5 receipt: ${V5_ROOT}/CASE_STUDY_RECEIPT.json@sha256:${hash(fs.readFileSync(v5ReceiptFile))}
+V7 receipt: ${PRIOR_ROOT}/CASE_STUDY_RECEIPT.json@sha256:${hash(fs.readFileSync(priorReceiptFile))}
 
-V7 gate: ${REPAIR_ROOT}/REPAIR_GATE_RECEIPT.json@sha256:${hash(fs.readFileSync(gateFile))}
+V8 gate: ${REPAIR_ROOT}/REPAIR_GATE_RECEIPT.json@sha256:${hash(fs.readFileSync(gateFile))}
 `;
-  fs.writeFileSync(path.join(out, "V1_V2_V3_V4_V5_V6_V7_SIDE_BY_SIDE.md"), spine, "utf8");
-  caseReceipt.label = "LAJSVA_CASE_STUDY_V7_EVIDENCE_LADDER";
-  caseReceipt.v1_v2_v3_v4_v5_v6_v7 = { v1: "COMPLETE_94_DELTA_6_BROKEN_REASONING", v2: "PARTIAL", v3: "PARTIAL", v4: "PARTIAL", v5: prior, v6: "PARTIAL", v7: result };
+  fs.writeFileSync(path.join(out, "V1_V2_V3_V4_V5_V6_V7_V8_SIDE_BY_SIDE.md"), spine, "utf8");
+  caseReceipt.label = "LAJSVA_CASE_STUDY_V8_MIND_WINDOW_TOUCH_MAP_LICENSE";
+  caseReceipt.v1_v2_v3_v4_v5_v6_v7_v8 = { v1: "COMPLETE_94_DELTA_6_BROKEN_REASONING", v2: "PARTIAL", v3: "PARTIAL", v4: "PARTIAL", v5: "COMPLETE_99_DELTA_1", v6: "PARTIAL", v7: prior, v8: result };
   delete caseReceipt.v1_v2_v3;
   caseReceipt.panel_b.cascade_shown_as_receipts = true;
   caseReceipt.scope.full_804_run = false;
@@ -96,14 +97,14 @@ V7 gate: ${REPAIR_ROOT}/REPAIR_GATE_RECEIPT.json@sha256:${hash(fs.readFileSync(g
   fs.rmSync(determinismFile, { force: true });
   const names = fs.readdirSync(out).filter((name) => !["ARTIFACT_HASH_MANIFEST.json", "DETERMINISM_RECEIPT.json"].includes(name)).sort();
   const rows = names.map((name) => receipt(repo, path.join(out, name)));
-  const manifest = { label: "LAJSVA_CASE_STUDY_V7_MANIFEST", files: rows, required_paths_present: true, all_under_50_mb: rows.every((row) => row.bytes <= 50 * 1024 * 1024) };
+  const manifest = { label: "LAJSVA_CASE_STUDY_V8_MANIFEST", files: rows, required_paths_present: true, all_under_50_mb: rows.every((row) => row.bytes <= 50 * 1024 * 1024) };
   fs.writeFileSync(path.join(out, "ARTIFACT_HASH_MANIFEST.json"), canonical(manifest), "utf8");
   const manifestHash = hash(fs.readFileSync(path.join(out, "ARTIFACT_HASH_MANIFEST.json")));
-  if (expected && expected !== manifestHash) throw new Error(`CASE_STUDY_V7_DETERMINISM_FAILED ${expected} != ${manifestHash}`);
+  if (expected && expected !== manifestHash) throw new Error(`CASE_STUDY_V8_DETERMINISM_FAILED ${expected} != ${manifestHash}`);
   if (expected) {
-    fs.writeFileSync(determinismFile, canonical({ label: "LAJSVA_CASE_STUDY_V7_DETERMINISM_X2", two_clean_builds: true, first_manifest_sha256: expected, second_manifest_sha256: manifestHash, byte_identical: true }), "utf8");
+    fs.writeFileSync(determinismFile, canonical({ label: "LAJSVA_CASE_STUDY_V8_DETERMINISM_X2", two_clean_builds: true, first_manifest_sha256: expected, second_manifest_sha256: manifestHash, byte_identical: true }), "utf8");
     const finalRows = [...rows, receipt(repo, determinismFile)];
-    fs.writeFileSync(path.join(out, "ARTIFACT_HASH_MANIFEST.json"), canonical({ label: "LAJSVA_CASE_STUDY_V7_MANIFEST", files: finalRows, required_paths_present: true, all_under_50_mb: finalRows.every((row) => row.bytes <= 50 * 1024 * 1024) }), "utf8");
+    fs.writeFileSync(path.join(out, "ARTIFACT_HASH_MANIFEST.json"), canonical({ label: "LAJSVA_CASE_STUDY_V8_MANIFEST", files: finalRows, required_paths_present: true, all_under_50_mb: finalRows.every((row) => row.bytes <= 50 * 1024 * 1024) }), "utf8");
   }
   process.stdout.write(canonical({ output: OUT_ROOT, result, self_stop: gate.self_stop, required_paths_present: true, manifest_sha256: manifestHash }));
 }

@@ -91,26 +91,41 @@ const SIMILARITY_DECLARATION = Object.freeze({
   undisclosed_weights: false,
 });
 const CONDITIONAL_DIP_DECLARATION = Object.freeze({
-  question: "Which bounded historical neighbors were presence specialists versus timing-depth specialists at this leg's current evidence-conditioned window position?",
+  question: "Which side/window is live, and does the current evidenced-touch price cell lawfully license the conditioned depth below touch?",
   distribution: "weighted q25/q50/q75 of integer-cent remaining dip; each member contributes its remaining dip only while its bell-bounded floor lies ahead of this leg's current window fraction, and contributes zero once that corresponding floor time has passed",
   signing_statistic: "Each leave-self-out neighbor votes DERIVED_TIMING_DEPTH before its own bounded floor fraction and OWN_TAPE_PRESENCE_AT_TOUCH at-or-after it. Its continuous similarity, coverage, and this-leg evidence-match grade determine vote weight. The two vote masses normalize directly; no fitted cell or global coefficient exists.",
   member_law: "Nearest usable members are never rejected by a binary dip/no-dip gate; similarity, coverage, and continuous evidence-distance jointly grade every member.",
   depth_inputs: ["PRECOMPUTED_BOUNDED_NEIGHBOR_SPECIALIST_RECORD", "THIS_LEG_OWN_BOUNDED_EVIDENCE", "OWN_BELL_BOUNDED_WINDOW_POSITION", "OPEN_OR_HALF_PAIR_STATE"],
   basis_names: ["DERIVED_TIMING_DEPTH", "OWN_TAPE_PRESENCE_AT_TOUCH"],
-  authority_order: ["NEIGHBOR_VOTED_COMPOSITION", "FROZEN_CURRENT_LEVEL_IF_NO_VOTE"],
-  fitness_law: "No cells, global coefficients, category precedence, or threshold. Each neighbor's continuously graded evidence-conditioned weight is cast for the behavior that captured its bounded floor at the query leg's current phase; vote masses normalize to one.",
-  provenance: "OPERATOR_FILED_L19A_PASS2_NEIGHBOR_VOTED_COMPOSITION: corpus specialist records are precomputed from bounded historical tape, the evaluated game is excluded from its own neighborhood, and the current leg's evidence conditions every vote",
+  authority_order: ["EVIDENCED_TOUCH", "TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED"],
+  fitness_law: "The mind's graded shape-floor timing votes select the leg's own window. Pricing stands at the evidenced touch by default; below-touch depth is lawful only when the current causal touch-price cell's V3 p50 covers the evidence-conditioned depth.",
+  provenance: "COMPOSITION_REBUILD_20260823: F-VS-094 touch law; TRUE_BELL_CELL_DEPTH_MAP_V3 @ac68e3bc; F-VS-065 own clocks; F-VS-066 conditioning",
   blanket_anchor_ratio: "DELETED",
   absolute_floor_target_path: "DELETED",
-  lineage_depth_fallback: "FROZEN_CURRENT_LEVEL_BID_MINUS_ONE_ONLY_WHEN_NO_LAWFUL_SPECIALIST_VOTE",
+  lineage_depth_fallback: "DELETED_FROM_COMPOSITION_PRICING; UNMAPPED_OR_UNLICENSED_DEPTH_PRICES_AT_EVIDENCED_TOUCH",
 });
 const neighborhoodCorpusCache = new WeakMap();
 
 let neighborSpecialistBinding = null;
+let trueBellCellDepthMapBinding = null;
 
 function configureNeighborSpecialistBinding(binding) {
   if (!binding || binding.kind !== "LEAVE_SELF_OUT_BOUNDED_NEIGHBOR_SPECIALIST_RECORDS" || !binding.binding_sha256) throw new Error("INVALID_NEIGHBOR_SPECIALIST_BINDING");
   neighborSpecialistBinding = binding;
+}
+
+function configureTrueBellCellDepthMap(binding) {
+  if (!binding || binding.kind !== "TRUE_BELL_CELL_CONDITIONAL_DEPTH_MAP_V3" || !binding.sha256 || !Array.isArray(binding.cells)) {
+    throw new Error("INVALID_TRUE_BELL_CELL_DEPTH_MAP_BINDING");
+  }
+  const cells = new Map();
+  for (const row of binding.cells) {
+    if (typeof row.category !== "string" || !Number.isInteger(row.price_cell) || !Number.isInteger(row.edge_p50_cents) || !Number.isInteger(row.n_legs)) {
+      throw new Error("INVALID_TRUE_BELL_CELL_DEPTH_MAP_ROW");
+    }
+    cells.set(`${row.category}|${row.price_cell}`, Object.freeze({ ...row }));
+  }
+  trueBellCellDepthMapBinding = Object.freeze({ ...binding, cells_by_key: cells });
 }
 
 function sha256(value) {
@@ -614,68 +629,93 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   const fitPhase = Number.isFinite(windowFraction) ? windowFraction : clipped(formationProgress ?? 0);
   const timingVoteMass = timedNeighborLeg.specialist_vote_mass.DERIVED_TIMING_DEPTH;
   const presenceVoteMass = timedNeighborLeg.specialist_vote_mass.OWN_TAPE_PRESENCE_AT_TOUCH;
-  const timingDepth = timedNeighborLeg.specialist_timing_depth_distribution_cents.q50;
-  const timeBearingAvailable = Boolean(timingVoteMass > 0 && Number.isFinite(timingDepth));
-  const ownTapeAvailable = Boolean(presenceVoteMass > 0 && liveBid && liveAsk && book?.receipt);
+  const formedTwoSidedBook = Boolean(liveBid && liveAsk && liveBid < liveAsk && book?.receipt);
+  const crossedBook = Boolean(liveBid && liveAsk && liveBid >= liveAsk);
+  const touchCents = formedTwoSidedBook ? liveBid : null;
+  const mapCell = touchCents && trueBellCellDepthMapBinding
+    ? trueBellCellDepthMapBinding.cells_by_key.get(`${state.category}|${touchCents}`) ?? null
+    : null;
+  const conditionalDepth = timedNeighborLeg.conditional_remaining_dip_distribution_cents.q50;
+  const mindWindow = timingVoteMass > presenceVoteMass
+    ? "SHAPE_FLOOR_TIMING_WINDOW"
+    : presenceVoteMass > timingVoteMass
+      ? "OWN_EVIDENCE_TOUCH_WINDOW"
+      : "PAIR_CLOCK_TOUCH_WINDOW";
+  const mapDepthLicensed = Boolean(
+    mindWindow === "SHAPE_FLOOR_TIMING_WINDOW"
+    && mapCell
+    && Number.isInteger(conditionalDepth)
+    && conditionalDepth > 0
+    && conditionalDepth <= mapCell.edge_p50_cents
+  );
+  const chosenDepth = mapDepthLicensed ? conditionalDepth : formedTwoSidedBook ? 0 : null;
+  const evidenceRung = mapDepthLicensed ? "TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED" : "EVIDENCED_TOUCH";
   const basisRows = [
     {
-      basis: "DERIVED_TIMING_DEPTH",
-      available: timeBearingAvailable,
-      depth_cents: timeBearingAvailable ? timingDepth : null,
-      vote_mass: timingVoteMass,
-      raw_fitness: timeBearingAvailable ? timingVoteMass : 0,
-      fitness_reason: `specialist_vote_mass=${timingVoteMass}; conditioning=similarity*coverage*this_leg_evidence_match; timing_depth_q50=${timingDepth ?? "NA"}`,
-      license_receipts: timedNeighborLeg.specialist_votes.filter((row) => row.behavior === "DERIVED_TIMING_DEPTH").map((row) => row.source_receipt),
-      voters: timedNeighborLeg.specialist_votes.filter((row) => row.behavior === "DERIVED_TIMING_DEPTH"),
+      basis: "MIND_WINDOW_SELECTION",
+      available: timingVoteMass > 0 || presenceVoteMass > 0,
+      depth_cents: null,
+      vote_mass: timingVoteMass + presenceVoteMass,
+      raw_fitness: timingVoteMass + presenceVoteMass,
+      normalized_weight: 1,
+      fitness_reason: `window=${mindWindow}; timing_vote_mass=${timingVoteMass}; touch_vote_mass=${presenceVoteMass}; own_clock_fraction=${Number.isFinite(windowFraction) ? windowFraction : "NA"}`,
+      license_receipts: timedNeighborLeg.specialist_votes.map((row) => row.source_receipt).filter(Boolean),
+      voters: timedNeighborLeg.specialist_votes,
     },
     {
-      basis: "OWN_TAPE_PRESENCE_AT_TOUCH",
-      available: ownTapeAvailable,
-      depth_cents: ownTapeAvailable ? 0 : null,
-      vote_mass: presenceVoteMass,
-      raw_fitness: ownTapeAvailable ? presenceVoteMass : 0,
-      fitness_reason: `specialist_vote_mass=${presenceVoteMass}; conditioning=similarity*coverage*this_leg_evidence_match; current_touch_receipt=${book?.receipt ?? "NA"}`,
-      license_receipts: [...timedNeighborLeg.specialist_votes.filter((row) => row.behavior === "OWN_TAPE_PRESENCE_AT_TOUCH").map((row) => row.source_receipt), ...[book?.receipt].filter(Boolean)],
-      voters: timedNeighborLeg.specialist_votes.filter((row) => row.behavior === "OWN_TAPE_PRESENCE_AT_TOUCH"),
+      basis: mapDepthLicensed ? "TRUE_BELL_CELL_DEPTH_MAP_V3" : "EVIDENCED_TOUCH",
+      available: formedTwoSidedBook,
+      depth_cents: chosenDepth,
+      vote_mass: mapDepthLicensed ? mapCell.n_legs : 1,
+      raw_fitness: formedTwoSidedBook ? 1 : 0,
+      normalized_weight: 1,
+      fitness_reason: mapDepthLicensed
+        ? `cell=${state.category}|${touchCents}; p50=${mapCell.edge_p50_cents}; members=${mapCell.n_legs}; conditioned_q50=${conditionalDepth}; own_dip_state=${legState}`
+        : `touch=${touchCents ?? "NA"}; cell=${mapCell ? `${state.category}|${touchCents}` : "UNMAPPED"}; conditioned_q50=${conditionalDepth ?? "NA"}; own_dip_state=${legState}`,
+      license_receipts: [book?.receipt, ...(mapDepthLicensed ? [`${trueBellCellDepthMapBinding.commit}:${trueBellCellDepthMapBinding.path}@sha256:${trueBellCellDepthMapBinding.sha256}`] : [])].filter(Boolean),
+      voters: [],
     },
   ];
-  const blendFitnessMass = sum(basisRows.map((row) => row.raw_fitness));
-  for (const row of basisRows) row.normalized_weight = blendFitnessMass > 0 ? row.raw_fitness / blendFitnessMass : 0;
-  const frozenCurrentLevelAvailable = Boolean(liveBid && liveBid > 1 && liveAsk && book?.receipt);
-  const frozenCurrentLevelDepth = frozenCurrentLevelAvailable ? 1 : null;
-  const weightedDepthCents = blendFitnessMass > 0 ? sum(basisRows.map((row) => row.normalized_weight * (row.depth_cents ?? 0))) : frozenCurrentLevelDepth;
-  const blendDistributionDepth = Number.isFinite(weightedDepthCents) ? Math.round(weightedDepthCents) : null;
-  const evidenceRung = blendFitnessMass > 0 ? "NEIGHBOR_VOTED_COMPOSITION" : "FROZEN_CURRENT_LEVEL_NO_SPECIALIST_VOTE";
+  const blendFitnessMass = timingVoteMass + presenceVoteMass;
+  const weightedDepthCents = chosenDepth;
+  const blendDistributionDepth = chosenDepth;
   const pairCap = siblingCommitment ? PAR_BUDGET_CENTS - siblingCommitment : PAR_BUDGET_CENTS - 1;
-  const pairRequiredDepth = liveBid && siblingCommitment ? Math.max(0, liveBid - pairCap) : 0;
-  const chosenDepth = Number.isFinite(blendDistributionDepth) && liveBid ? Math.max(blendDistributionDepth, pairRequiredDepth) : null;
-  const proposedTarget = liveBid && Number.isFinite(chosenDepth) ? Math.max(1, liveBid - chosenDepth) : null;
+  const pairRequiredDepth = touchCents && siblingCommitment ? Math.max(0, touchCents - pairCap) : 0;
+  const totalRequiredDepth = Number.isInteger(chosenDepth) ? Math.max(chosenDepth, pairRequiredDepth) : null;
+  const mapCanLicenseRequiredDepth = pairRequiredDepth === 0 || Boolean(mapCell && pairRequiredDepth <= mapCell.edge_p50_cents);
+  const proposedTarget = touchCents && Number.isInteger(totalRequiredDepth) && mapCanLicenseRequiredDepth ? Math.max(1, touchCents - totalRequiredDepth) : null;
   const targetBasis = evidenceRung;
   const targetAuthority = targetBasis;
   const lawfulUnallocatedTarget = cent(proposedTarget) ? Math.max(1, Math.min(proposedTarget, postOnlyCap)) : null;
   const boundedTradeLow = cent(ownLowRead.true_trade_low_cents);
   const belowBoundedTradeLow = Boolean(boundedTradeLow && cent(lawfulUnallocatedTarget) && lawfulUnallocatedTarget < boundedTradeLow);
-  const blendLicensesDepth = Boolean(liveBid && ((blendFitnessMass > 0 && basisRows.some((row) => row.normalized_weight > 0 && row.license_receipts.length)) || (blendFitnessMass === 0 && frozenCurrentLevelAvailable)));
-  const blendLicenseReceipts = blendFitnessMass > 0
-    ? [...new Set(basisRows.filter((row) => row.normalized_weight > 0).flatMap((row) => row.license_receipts))]
-    : [book?.receipt].filter(Boolean);
+  const finalDepthBelowTouch = touchCents && cent(lawfulUnallocatedTarget) ? touchCents - lawfulUnallocatedTarget : null;
+  const blendLicensesDepth = Boolean(
+    formedTwoSidedBook
+    && Number.isInteger(finalDepthBelowTouch)
+    && (finalDepthBelowTouch === 0 || (mapCell && finalDepthBelowTouch <= mapCell.edge_p50_cents))
+  );
+  const blendLicenseReceipts = [...new Set(basisRows.flatMap((row) => row.license_receipts))];
   const jointDepthLicense = !belowBoundedTradeLow
-    ? { required: false, lawful: true, basis: "NOT_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] }
+    ? { required: finalDepthBelowTouch > 0, lawful: blendLicensesDepth, basis: finalDepthBelowTouch > 0 ? evidenceRung : "EVIDENCED_TOUCH", receipts: blendLicenseReceipts }
     : blendLicensesDepth
-      ? { required: true, lawful: true, basis: evidenceRung, receipts: blendLicenseReceipts }
-      : { required: true, lawful: false, basis: "NEIGHBOR_VOTE_RESOURCE_GAP_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] };
+      ? { required: true, lawful: true, basis: "TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED_BELOW_OWN_LOW", receipts: blendLicenseReceipts }
+      : { required: true, lawful: false, basis: "NO_MAP_LICENSE_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] };
   const evidenceLawfulTarget = jointDepthLicense.lawful ? lawfulUnallocatedTarget : null;
   const derivedTarget = cent(evidenceLawfulTarget) ? Math.max(1, Math.min(evidenceLawfulTarget, pairCap)) : null;
-  const touchRelation = liveBid && liveAsk && cent(evidenceLawfulTarget)
-    ? evidenceLawfulTarget === liveBid ? "AT_BEST_BID" : evidenceLawfulTarget > liveBid ? `INSIDE_SPREAD_${evidenceLawfulTarget - liveBid}C_ABOVE_BID` : `BELOW_BEST_BID_${liveBid - evidenceLawfulTarget}C`
-    : "NO_FORMED_TWO_SIDED_BOOK";
-  const touchDistance = liveBid && cent(evidenceLawfulTarget) ? Math.abs(evidenceLawfulTarget - liveBid) : 99;
+  const touchRelation = crossedBook
+    ? "CROSSED_BOOK_NOT_A_TOUCH"
+    : touchCents && cent(evidenceLawfulTarget)
+      ? evidenceLawfulTarget === touchCents ? "AT_EVIDENCED_TOUCH" : `MAP_LICENSED_${touchCents - evidenceLawfulTarget}C_BELOW_TOUCH`
+      : "NO_FORMED_TWO_SIDED_BOOK";
+  const touchDistance = touchCents && cent(evidenceLawfulTarget) ? Math.abs(evidenceLawfulTarget - touchCents) : 99;
   const blendEvidenceGrade = blendFitnessMass;
   const allocationPriorityGrade = blendEvidenceGrade / (1 + touchDistance);
   const active = cent(position.standing_target_cents);
   let action;
   if (!Number.isFinite(formationProgress) || formationProgress < 1) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "FORMATION_NOT_COMPLETE" };
-  else if (!cent(derivedTarget)) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "NEIGHBOR_VOTED_COMPOSITION_HAS_NO_LAWFUL_TARGET" };
+  else if (crossedBook) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "CROSSED_BOOK_NOT_A_TOUCH_FAIL_LOUD" };
+  else if (!cent(derivedTarget)) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "NO_LAWFUL_TOUCH_OR_MAP_LICENSED_TARGET" };
   else action = { action: active === null ? "PLACE_REST" : active === derivedTarget ? "HOLD_REST" : "REPRICE_REST", target_cents: derivedTarget, reason: evidenceRung };
   const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${cent(action.target_cents) ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
   const namedNeighborhood = neighborhood.length
@@ -688,11 +728,11 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   const conditional = timedNeighborLeg.conditional_remaining_dip_distribution_cents;
   const basisWeightStatement = basisRows.map((row) => `${row.basis}:${row.normalized_weight.toFixed(9)}@depth=${Number.isFinite(row.depth_cents) ? row.depth_cents : "NA"}[${row.fitness_reason}]`).join(";");
   const voteStatement = timedNeighborLeg.specialist_votes.map((row) => `${row.event_id}:${row.behavior}@${row.weight.toFixed(9)}[phase=${row.own_window_fraction};neighbor_floor_phase=${row.member_floor_fraction};evidence_distance=${row.evidence_distance_cents};source=${row.source_receipt}]`).join(",") || "NO_LAWFUL_SPECIALIST_VOTES";
-  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; its own ${timedNeighborLeg.own_evidence.basis} bounded evidence low is ${timedNeighborLeg.own_evidence.observed_low_cents ?? "UNKNOWN"}, so its observed state is ${timedNeighborLeg.own_evidence.dip_state} with ${timedNeighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents and specialist timing-depth q25/q50/q75 ${timedNeighborLeg.specialist_timing_depth_distribution_cents.q25 ?? "UNKNOWN"}/${timedNeighborLeg.specialist_timing_depth_distribution_cents.q50 ?? "UNKNOWN"}/${timedNeighborLeg.specialist_timing_depth_distribution_cents.q75 ?? "UNKNOWN"} cents. SPECIALIST_VOTES=${voteStatement}; NEIGHBOR_VOTE_WEIGHTS=${basisWeightStatement}; TARGET_BASIS=${targetBasis}; VOTE_MASS=${blendEvidenceGrade}; WEIGHTED_DEPTH_CENTS=${Number.isFinite(weightedDepthCents) ? weightedDepthCents.toFixed(9) : "UNKNOWN"}; LIVE_TOUCH_BID=${liveBid ?? "UNKNOWN"}; CHOSEN_DEPTH_CENTS=${chosenDepth ?? "UNKNOWN"}; PRE_ALLOCATION_DEPTH_TARGET_CENTS=${evidenceLawfulTarget ?? "UNKNOWN"}; the vote is conditioned on this leg's own bounded evidence, with no fitted cell, global coefficient, category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold.`;
-  const windowStatement = ` OWN_WINDOW=formation ${formationEnd ?? "UNKNOWN"} to ${windowEnd ?? "UNKNOWN"} [${windowSource}], elapsed ${elapsedWindowSeconds ?? "UNKNOWN"}s, remaining ${remainingWindowSeconds ?? "UNKNOWN"}s, continuous fraction ${Number.isFinite(windowFraction) ? windowFraction.toFixed(9) : "UNKNOWN"}; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt.`;
+  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; its own ${timedNeighborLeg.own_evidence.basis} bounded evidence low is ${timedNeighborLeg.own_evidence.observed_low_cents ?? "UNKNOWN"}, so its observed state is ${timedNeighborLeg.own_evidence.dip_state} with ${timedNeighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents. SPECIALIST_VOTES=${voteStatement}; WINDOW_SIDE_READ=${mindWindow}; WINDOW_VOTE_MASS_TIMING_TOUCH=${timingVoteMass}/${presenceVoteMass}; PRICE_AT_EVIDENCED_TOUCH=${touchCents ?? "UNKNOWN"}; MAP_CELL=${mapCell ? `${state.category}|${mapCell.price_cell}` : "UNMAPPED"}; MAP_P50_CENTS=${mapCell?.edge_p50_cents ?? "UNMAPPED"}; MAP_MEMBERS=${mapCell?.n_legs ?? 0}; CONDITIONED_DEPTH_CENTS=${conditionalDepth ?? "UNKNOWN"}; EVIDENCE_RUNG=${evidenceRung}; TARGET_BASIS=${targetBasis}; CHOSEN_DEPTH_CENTS=${totalRequiredDepth ?? "UNKNOWN"}; PRE_ALLOCATION_DEPTH_TARGET_CENTS=${evidenceLawfulTarget ?? "UNKNOWN"}; depth is conditioned on this leg's own bounded evidence and is zero unless the V3 map row licenses it.`;
+  const windowStatement = ` OWN_WINDOW=formation ${formationEnd ?? "UNKNOWN"} to ${windowEnd ?? "UNKNOWN"} [${windowSource}], elapsed ${elapsedWindowSeconds ?? "UNKNOWN"}s, remaining ${remainingWindowSeconds ?? "UNKNOWN"}s, continuous fraction ${Number.isFinite(windowFraction) ? windowFraction.toFixed(9) : "UNKNOWN"}; the mind selects ${mindWindow} for this side on its own clock.`;
   const pairStateStatement = ` PAIR_STATE=${pairState}; LEG_STATE=${legState}; SPECIALIST_PHASE=${fitPhase.toFixed(9)}; CREDITED_SIBLING=${siblingCommitment ? `${siblingId}@${siblingCommitment}` : "NONE"}; PAIR_REQUIRED_DEPTH_CENTS=${pairRequiredDepth}; PAIR_CAP_CENTS=${pairCap}.`;
   const presenceStatement = ` TOUCH_RELATION=${touchRelation}; LIVE_BID_ASK=${liveBid ?? "UNKNOWN"}/${liveAsk ?? "UNKNOWN"}; JOINT_DEPTH_LICENSE=${jointDepthLicense.basis}; DEPTH_LICENSE_RECEIPTS=${jointDepthLicense.receipts.join(",") || "NONE"}.`;
-  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement}${windowStatement}${pairStateStatement}${presenceStatement} Frozen lineage receipt ${lineageStatement} remains provenance; when no lawful specialist vote exists, frozen current-level bid-minus-one behavior runs unchanged from live receipt ${book?.receipt ?? "RESOURCE-GAP"}; post-only cap is ${postOnlyCap}.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
+  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement}${windowStatement}${pairStateStatement}${presenceStatement} Frozen lineage receipt ${lineageStatement} remains provenance only; composition pricing stands at the evidenced touch unless the V3 row licenses the conditioned depth; post-only cap is ${postOnlyCap}.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
   if (!sentence.includes(actionStatement)) throw new Error(`SENTENCE_ACTION_MISMATCH ${state.event_id}|${legId}|${state.receipt}`);
   for (const row of neighborhood) if (!sentence.includes(`[${row.citation_receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_NOT_WELDED:${row.event_id}|${state.receipt}`);
   if (!sentence.includes(`[${readerReceipt.receipt_id}]`) || !sentence.includes(`[${lineageReceipt.receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION SENTENCE_RECEIPT_NOT_WELDED|${state.receipt}`);
@@ -707,7 +747,7 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     neighborhood,
     resources_consulted: [...new Set(neighborhood.filter((row) => row.quality === "FOUNDATION_MINUTE_BELL_BOUNDED").flatMap((row) => ["FOUNDATION_PER_MINUTE_UNIVERSE", ...(row.legs?.some((leg) => leg.spike_atlas) ? ["SPIKE_ATLAS"] : [])]))],
     citation_receipts: citationReceipts,
-    derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, neighbor_specialist_composition: { kind: neighborSpecialistBinding?.kind ?? "UNBOUND_SPECIALIST_RECORDS", binding_sha256: neighborSpecialistBinding?.binding_sha256 ?? null, event_leave_self_out: true, no_cells: true, no_global_coefficients: true, leg_state: legState, pair_state: pairState, phase: fitPhase, vote_mass: timedNeighborLeg.specialist_vote_mass, vote_total: timedNeighborLeg.specialist_vote_total }, basis_availability: { derived_timing_depth: timeBearingAvailable, own_tape_presence_at_touch: ownTapeAvailable, frozen_current_level_fallback: blendFitnessMass === 0 && frozenCurrentLevelAvailable }, basis_weights: basisRows, blend_fitness_mass: blendFitnessMass, blend_evidence_grade: blendEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, weighted_depth_cents: weightedDepthCents, distribution_depth_cents: blendDistributionDepth, chosen_depth_cents: chosenDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: blendFitnessMass === 0, reflex_rung_used: blendFitnessMass === 0, sibling_commitment_cents: siblingCommitment, pair_state: pairState, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
+    derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, mind_window: mindWindow, true_bell_cell_depth_map: { bound: Boolean(trueBellCellDepthMapBinding), commit: trueBellCellDepthMapBinding?.commit ?? null, path: trueBellCellDepthMapBinding?.path ?? null, sha256: trueBellCellDepthMapBinding?.sha256 ?? null, lookup_basis: "CURRENT_CAUSAL_EVIDENCED_TOUCH_CENTS", cell: mapCell, conditioned_depth_cents: conditionalDepth, licensed: mapDepthLicensed }, neighbor_specialist_composition: { kind: neighborSpecialistBinding?.kind ?? "UNBOUND_SPECIALIST_RECORDS", binding_sha256: neighborSpecialistBinding?.binding_sha256 ?? null, event_leave_self_out: true, leg_state: legState, pair_state: pairState, phase: fitPhase, vote_mass: timedNeighborLeg.specialist_vote_mass, vote_total: timedNeighborLeg.specialist_vote_total }, basis_availability: { evidenced_touch: formedTwoSidedBook, map_depth_license: mapDepthLicensed }, basis_weights: basisRows, blend_fitness_mass: blendFitnessMass, blend_evidence_grade: blendEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, weighted_depth_cents: weightedDepthCents, distribution_depth_cents: blendDistributionDepth, chosen_depth_cents: totalRequiredDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: false, sibling_commitment_cents: siblingCommitment, pair_state: pairState, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, formation_complete: Number.isFinite(formationProgress) && formationProgress >= 1, formed_two_sided_book: formedTwoSidedBook, crossed_book: crossedBook, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
     action,
     sentence,
     sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },
@@ -738,10 +778,10 @@ function allocatePairActions({ state, reads, derivations }) {
   const creditedRows = state.leg_ids.filter((id) => reads.half_pair_state.value.legs[id].credited);
   const allocated = new Map();
 
-  if (creditedRows.length === 0 && openRows.length === 2 && openRows.every((row) => cent(row.derivation.lawful_unallocated_target_cents))) {
+  if (creditedRows.length === 0 && openRows.length === 2 && openRows.every((row) => cent(row.action.target_cents))) {
     const [left, right] = openRows;
-    const leftFrom = left.derivation.lawful_unallocated_target_cents;
-    const rightFrom = right.derivation.lawful_unallocated_target_cents;
+    const leftFrom = left.action.target_cents;
+    const rightFrom = right.action.target_cents;
     const excess = Math.max(0, leftFrom + rightFrom - PAR_BUDGET_CENTS);
     const leftGrade = Number.isFinite(left.derivation.allocation_priority_grade) ? left.derivation.allocation_priority_grade : 0;
     const rightGrade = Number.isFinite(right.derivation.allocation_priority_grade) ? right.derivation.allocation_priority_grade : 0;
@@ -788,10 +828,20 @@ function allocatePairActions({ state, reads, derivations }) {
 
   for (const row of openRows) {
     const entry = allocated.get(row.leg_id);
-    const target = cent(entry.target);
+    let target = cent(entry.target);
     const active = cent(reads.half_pair_state.value.legs[row.leg_id].standing_target_cents);
+    const liveBid = cent(row.derivation.live_bid_cents);
+    const liveAsk = cent(row.derivation.live_ask_cents);
+    const finalDepth = liveBid && target ? liveBid - target : null;
+    const mapP50 = row.derivation.true_bell_cell_depth_map?.cell?.edge_p50_cents;
+    const formationLawful = row.derivation.formation_complete === true;
+    const touchLawful = row.derivation.formed_two_sided_book === true && liveBid < liveAsk;
+    const depthLawful = Number.isInteger(finalDepth) && (finalDepth === 0 || (Number.isInteger(mapP50) && finalDepth <= mapP50));
+    if (!formationLawful || !touchLawful || !depthLawful) target = null;
     let action;
-    if (!target) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "JOINT_DERIVATION_HAS_NO_LAWFUL_DERIVED_DEPTH" };
+    if (!formationLawful) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "FORMATION_NOT_COMPLETE" };
+    else if (!touchLawful) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: row.derivation.crossed_book ? "CROSSED_BOOK_NOT_A_TOUCH_FAIL_LOUD" : "NO_FORMED_TWO_SIDED_BOOK" };
+    else if (!target) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "JOINT_ALLOCATION_EXCEEDS_MAP_LICENSED_DEPTH" };
     else action = { action: active === null ? "PLACE_REST" : active === target ? "HOLD_REST" : "REPRICE_REST", target_cents: target, reason: entry.allocation.mode === "GRADED-CONTINUOUS-SPLIT" ? "DERIVED_GRADED_CONTINUOUS_SPLIT" : row.action.reason };
     rewriteAllocatedAction(row, action, entry.allocation, reads);
   }
@@ -830,6 +880,7 @@ module.exports = {
   assertResources,
   conditionalNeighborLeg,
   configureNeighborSpecialistBinding,
+  configureTrueBellCellDepthMap,
   captureReceipt,
   assertCaptureReceipt,
   deriveAction,

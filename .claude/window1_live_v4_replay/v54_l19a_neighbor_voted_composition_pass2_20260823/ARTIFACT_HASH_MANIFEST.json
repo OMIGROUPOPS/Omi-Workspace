@@ -68,6 +68,22 @@
       "sha256": "701ae850aa5175e0b0d57d65545fd9d61b30f0626d22fed58871986ddb75b429",
       "bytes": 12036
     },
+    "PASS2_ONE_OS_BENCHMARK.json": {
+      "sha256": "a96ed3f9925242925bd71f916cbbf30abfebcf09a2bcab660d7f84da4c505201",
+      "bytes": 629595
+    },
+    "PASS2_ONE_OS_DETERMINISM_RECEIPT.json": {
+      "sha256": "61d52fb52ec483fbce822c07b4665ec0ca0c22b8d467853b59386abd7c08c798",
+      "bytes": 524
+    },
+    "PASS2_ONE_OS_REFRAME_RECEIPT.json": {
+      "sha256": "ce3b4cad4a51d1a68ba6fdb1a058c9f8bb59f7fc1758eb3d8e6c97d639841bc5",
+      "bytes": 448
+    },
+    "PASS2_PER_MARKET_STORIES.json": {
+      "sha256": "f1d886e866860ab27c3d856f8183c86dc53b6d837a6bec736524eff7382c25e0",
+      "bytes": 326629
+    },
     "PASS2_POISON_CHECK_RECEIPT.json": {
       "sha256": "467fe8b44c07a5ea9f4034ef6fc675e84b058dc4309e55cf87a05d11084f73d1",
       "bytes": 2823

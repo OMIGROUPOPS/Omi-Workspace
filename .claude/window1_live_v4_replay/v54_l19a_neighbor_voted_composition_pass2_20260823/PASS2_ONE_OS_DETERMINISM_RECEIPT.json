@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "clean_reporting_builds": 2,
+  "policy_replay_rerun": false,
+  "policy_bytes_changed": false,
+  "decision_bytes_changed": false,
+  "score_bytes_changed": false,
+  "artifacts": {
+    "PASS2_ONE_OS_BENCHMARK.json": "a96ed3f9925242925bd71f916cbbf30abfebcf09a2bcab660d7f84da4c505201",
+    "PASS2_PER_MARKET_STORIES.json": "f1d886e866860ab27c3d856f8183c86dc53b6d837a6bec736524eff7382c25e0",
+    "PASS2_ONE_OS_REFRAME_RECEIPT.json": "ce3b4cad4a51d1a68ba6fdb1a058c9f8bb59f7fc1758eb3d8e6c97d639841bc5"
+  }
+}

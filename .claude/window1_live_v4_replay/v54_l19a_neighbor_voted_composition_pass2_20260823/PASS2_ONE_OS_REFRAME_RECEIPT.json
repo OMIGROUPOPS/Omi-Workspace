@@ -1,0 +1,16 @@
+{
+  "status": "PASS_2_COMPLETE",
+  "operator_ruling": "ONE_OS_GATE_REFRAME",
+  "policy_bytes_changed": false,
+  "decision_bytes_changed": false,
+  "score_bytes_changed": false,
+  "benchmark_context_only": true,
+  "hard_stops_remaining": [
+    "LAW_VIOLATION",
+    "DETERMINISM_FAILURE",
+    "SEALED_CONTACT",
+    "MISSING_REPORT"
+  ],
+  "benchmark_artifact": "PASS2_ONE_OS_BENCHMARK.json",
+  "per_market_stories": "PASS2_PER_MARKET_STORIES.json"
+}

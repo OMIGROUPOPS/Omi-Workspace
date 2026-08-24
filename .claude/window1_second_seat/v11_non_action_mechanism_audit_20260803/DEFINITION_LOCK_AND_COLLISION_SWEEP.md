@@ -178,3 +178,72 @@ Two are **demonstrably false**:
 **`coherence` has a hole rather than a collision**: 339 rows where the second reading is null.
 
 **And the checking apparatus cannot see any of it.** 17 gate fields are typed-in literals, two of them false. Five checks read the output of the thing they check. Eight more cannot fail by construction. The remedy the Definition Lock implies is mechanical: **every value carrying a locked term must be written with a `_source` sibling naming the store it came from, and every check must read a different store than the producer.** On today's evidence that would have caught F-VS-159 at write time, and `live_bid_is_reference_only` on the first order.
+
+---
+
+# ADDENDUM — 12-lane sweep returned; two of my claims corrected, three terms added to the lock
+
+Filed as F-VS-168 … F-VS-170. Every row below re-derived by me from the primary source before filing.
+
+## A — Corrections
+
+**(a) "LOW" is a silent SUBSTITUTE, not two live values. The class was wrong; the defect is not.**
+
+Measured over all 3,198 derivations, comparing `own_evidence.observed_low_cents` against `criterion.observed_traded_low_cents` **in the same row**:
+
+| basis | relation | rows |
+|---|---|---:|
+| `TRUE_TRADE` | traded low **equals** the own-evidence low | **2,759** |
+| `TRUE_TRADE` | traded low null | 156 |
+| `BOOK_PATH` | traded low **null** | **283** |
+| any | the two present and **different** | **0** |
+
+The two lows never coexist with different values. `functionable_os.js:498-499` reads
+```js
+const ownLow   = ownEvidence.true_trade_low_cents ?? ownEvidence.book_path_low_cents;
+const ownBasis = Number.isFinite(ownEvidence.true_trade_low_cents) ? "TRUE_TRADE"
+               : Number.isFinite(ownEvidence.book_path_low_cents)  ? "BOOK_PATH" : "NO_OWN_LOW";
+```
+— a **fallback**, not a competitor. So the correct statement of the defect: *one term, one definition, **two producers**, and the substitution is invisible to every downstream consumer*, which then reads the number under `target_axis: POST_FORMATION_TRUE_TRADE_LOW_CENTS`. Under the Definition Lock that is still a violation — the value's source assertion is false — but it belongs to a **substitution** class, not a collision class, and the lock needs both.
+
+Everything measured in F-VS-164 stands: 283 `BOOK_PATH` rows all with `true_trade_count: 0`, 28 of 60 orders taken on one, and the three directly-priced rows including DAN's PLACE 52.
+
+**(b) The envelope chain runs on 46 of the 283, not all of them.** `predicted_cents` is set on all 283; `envelope.low_cents` on **46**. The other 237 carry no envelope at all, because `proposedEnvelopes` is built only under `coherentNow` (`os.js:467`). The 28 actions and the 3 direct-priced rows are unaffected.
+
+**(c) F-VS-167's `activeInconsistent` entry carried a 680e995c figure onto 3c56730a.** I wrote "forced false on 2,589 of 2,624 envelope rows"; that was the measurement from the previous build (F-VS-149), where the retired lock pinned rests far below their envelopes. **At 3c56730a only 25 rows in the whole run have a standing rest outside its envelope**; `active_inconsistent_before_action` is **true on 22**, and the `envelopeAuthoritativeAtReceipt` whitelist (`os.js:824-827`) suppresses it on exactly **3**:
+
+| ln | leg | ts | rest | envelope | mode |
+|---|---|---:|---:|---|---|
+| 234 | PAL | 1784016213 | 34 | [35,38] | `EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT` |
+| **1397** | **URS** | **1784030027** | **57** | **[58,58]** | `EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT` |
+| 66504 | DAN | 1784339306.774 | 52 | [57,59] | `EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT` |
+
+The mechanism is unchanged and it is small — but **ln1397 is the row where the belief dropped 57** (F-VS-160(c)), and ln66504 is DAN's own floor instant. The suppression fires three times and twice on a row that mattered.
+
+## B — Three terms added to the lock
+
+**"LOW", third producer — the book MID.** `functionable_os.js:177-182`:
+```js
+function referenceOf(row) {
+  if (row.kind === "PRINT" && cent(row.price_cents))        return row.price_cents;
+  if (row.kind === "BOOK"  && cent(row.last_trade_cents))   return row.last_trade_cents;
+  if (row.kind === "BOOK"  && cent(row.bid_cents) && cent(row.ask_cents))
+                                                            return Math.floor((row.bid_cents + row.ask_cents) / 2);
+  return null; }
+```
+`:210 running_low_cents = Math.min(running_low_cents, reference)` — so `book_path_low_cents` (`:627`) is a running minimum over a series whose third branch is a **mid-quote**, i.e. a number that never traded and is not even a bid. That is the value the fallback at `:499` promotes into `own_evidence.observed_low_cents` on 283 rows.
+
+**"LOWER BOUND" — a load-bearing floor with no name in the record.** `lowerBounds[legId]` is set in six places (`os.js:599, 648, 661, 701, 736, 756`) and consumed at `os.js:378`:
+```js
+const headroom = Object.fromEntries(ids.map((id) => [id, Math.max(0, out[id] - lowerBounds[id])]));
+```
+inside `allocateUnderPar`. It decides which leg absorbs a par excess. **It is never emitted to any receipt under any name** — 10 references in the OS, all internal. It is the number that made SVA absorb the whole 1¢ at ln57287 (F-VS-160(b)): LAJ's headroom was `59 − 59 = 0` because `lowerBounds.LAJ` was its envelope low. A term that decides a cent and appears in no record cannot be audited at all.
+
+**"COMPLETED" and "DELTA_VS_100_CENTS" — two values, one receipt.** `REPAIR_GATE_RECEIPT.json` carries both at once:
+
+| object | LAJSVA | source |
+|---|---|---|
+| `honest_baseline_pins` | `completed: true, delta_vs_100_cents: 6` | `build.js:1994` → `row.lineage_receipt` (a **prior run**) |
+| `layered_safety_floor_breaks` | `completed: false, delta_vs_100_cents: null` | `build.js:1233` → `row.layered_dual_belief` (**this run**) |
+
+Neither object says which run it describes. A reader taking `completed` from the gate gets `true` or `false` depending on which array they open. This is the collision class the lock names, on a term not in the operator's list of seven — and it is the term the whole bed is graded on.

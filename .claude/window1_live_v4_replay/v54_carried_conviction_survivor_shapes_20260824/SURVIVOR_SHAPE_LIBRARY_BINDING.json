@@ -1,0 +1,28 @@
+{
+  "label": "V54_RESTORED_SURVIVOR_SHAPE_LIBRARIES",
+  "source_commit": "189eaa20",
+  "modules": [
+    "window1_interim_elimination_v13",
+    "window1_pair_interim_elimination_v18",
+    "window1_pair_couple_elimination_v19"
+  ],
+  "libraries": [
+    {
+      "path": ".claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "sha256": "4542b46d29b9d55dd97775ef3d8f8f3d971b899cf00e375189b15d08609849e2",
+      "groups": 16,
+      "pair_hypothesis_groups": 4
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b",
+      "groups": 16,
+      "pair_couple_groups": 4
+    }
+  ],
+  "causal_binding": "ANY_FITTED_INTERIM_ENVELOPE_MATCHES_CURRENT_PREFIX; NO_RIGHT_EDGE_OR_SPAN_FRACTION_CONSUMED",
+  "provenance": [
+    "F-VS-133/F-VS-135@e7081336",
+    "189eaa20"
+  ]
+}

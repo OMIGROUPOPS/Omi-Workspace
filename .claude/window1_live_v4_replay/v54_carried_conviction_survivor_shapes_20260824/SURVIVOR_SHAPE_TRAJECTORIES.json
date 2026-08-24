@@ -1,0 +1,4571 @@
+{
+  "label": "V54_RESTORED_STATEFUL_SURVIVOR_SHAPES",
+  "source_commit": "189eaa20",
+  "declaration": "Every leg starts with the full fitted V13 interim-shape set for its category/region. V13 single-leg, V18 synchronized-pair, and V19 hierarchical-couple modules narrow it causally. Every elimination carries a per-receipt overturn test and is reinstated when that test succeeds.",
+  "right_edge_or_span_fraction_consumed": false,
+  "modules": [
+    "window1_interim_elimination_v13",
+    "window1_pair_interim_elimination_v18",
+    "window1_pair_couple_elimination_v19"
+  ],
+  "legs": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "seeded_shape_count": 4,
+      "seeded_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-4",
+      "final_survivor_count": 1,
+      "trajectory_rows": 16,
+      "eliminations_observed": 3,
+      "reinstatements_observed": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "seeded_shape_count": 3,
+      "seeded_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-4",
+      "final_survivor_count": 1,
+      "trajectory_rows": 8,
+      "eliminations_observed": 2,
+      "reinstatements_observed": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "seeded_shape_count": 3,
+      "seeded_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+      "final_survivor_count": 1,
+      "trajectory_rows": 5,
+      "eliminations_observed": 2,
+      "reinstatements_observed": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "seeded_shape_count": 4,
+      "seeded_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+      "final_survivor_count": 2,
+      "trajectory_rows": 4,
+      "eliminations_observed": 2,
+      "reinstatements_observed": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "seeded_shape_count": 4,
+      "seeded_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1",
+      "final_survivor_count": 4,
+      "trajectory_rows": 34,
+      "eliminations_observed": 0,
+      "reinstatements_observed": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "seeded_shape_count": 3,
+      "seeded_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1",
+      "final_survivor_count": 3,
+      "trajectory_rows": 6,
+      "eliminations_observed": 0,
+      "reinstatements_observed": 0
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "seeded_shape_count": 3,
+      "seeded_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1",
+      "final_survivor_count": 1,
+      "trajectory_rows": 14,
+      "eliminations_observed": 2,
+      "reinstatements_observed": 0
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "seeded_shape_count": 3,
+      "seeded_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1",
+      "final_survivor_count": 1,
+      "trajectory_rows": 8,
+      "eliminations_observed": 2,
+      "reinstatements_observed": 0
+    }
+  ],
+  "trajectories": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831340,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-4",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": null,
+        "current_cents": 94,
+        "move_cents": null,
+        "material_two_cent_move": false,
+        "effect": "TIGHTENED_OR_HELD_SUB_TWO_CENT_MOVE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831362,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-12",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 93,
+        "current_cents": 91,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 1
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831434,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-49",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 83,
+        "current_cents": 81,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 2
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831459,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-67",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 79,
+        "current_cents": 77,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831471,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-73",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 77,
+        "current_cents": 75,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 4
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831495,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-85",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 73,
+        "current_cents": 71,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 5
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831508,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-94",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 71,
+        "current_cents": 69,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 6
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831532,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-107",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 68,
+        "current_cents": 66,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 7
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831623,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-27",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 66,
+        "current_cents": 42,
+        "move_cents": -24,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 8
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783833752,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-64",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 35,
+        "current_cents": 33,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 9
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783833962,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-263",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-263",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-263",
+            "current_reference_cents": 32,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -3,
+              "ask_dip": -3,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 3,
+              "qualified_ask_descent_count": 1,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-263"
+        }
+      ],
+      "eliminated_now": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1"
+      ],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 33,
+        "current_cents": 32,
+        "move_cents": -1,
+        "material_two_cent_move": false,
+        "effect": "ELIMINATED_SHAPES_INCONSISTENT_WITH_NEW_MOVEMENT",
+        "eliminated_shape_ids": [
+          "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1"
+        ],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 10
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783840908,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-213",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-213",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-213",
+            "current_reference_cents": 30,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -5,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 2,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-213"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 32,
+        "current_cents": 30,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 11
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783841801,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315",
+            "current_reference_cents": 30,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 3,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315",
+            "current_reference_cents": 30,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 3,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315",
+            "current_reference_cents": 30,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 3,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315"
+        }
+      ],
+      "eliminated_now": [
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4"
+      ],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 30,
+        "current_cents": 30,
+        "move_cents": 0,
+        "material_two_cent_move": false,
+        "effect": "ELIMINATED_SHAPES_INCONSISTENT_WITH_NEW_MOVEMENT",
+        "eliminated_shape_ids": [
+          "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+          "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4"
+        ],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 12
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783841972,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+            "current_reference_cents": 28,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -7,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 7,
+              "qualified_ask_descent_count": 4,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+            "current_reference_cents": 28,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -7,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 7,
+              "qualified_ask_descent_count": 4,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+            "current_reference_cents": 28,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -7,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 7,
+              "qualified_ask_descent_count": 4,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 30,
+        "current_cents": 28,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 13
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783854033,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888",
+            "current_reference_cents": 30,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 5,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888",
+            "current_reference_cents": 30,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 5,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888",
+            "current_reference_cents": 30,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 5,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 28,
+        "current_cents": 30,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 14
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783863525,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781",
+            "current_reference_cents": 32,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -3,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 3,
+              "qualified_ask_descent_count": 5,
+              "qualified_ask_rise_count": 1
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781",
+            "current_reference_cents": 32,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -3,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 3,
+              "qualified_ask_descent_count": 5,
+              "qualified_ask_rise_count": 1
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781",
+            "current_reference_cents": 32,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -3,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 3,
+              "qualified_ask_descent_count": 5,
+              "qualified_ask_rise_count": 1
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 30,
+        "current_cents": 32,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 15
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783831340,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-4",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": null,
+        "current_cents": 94,
+        "move_cents": null,
+        "material_two_cent_move": false,
+        "effect": "TIGHTENED_OR_HELD_SUB_TWO_CENT_MOVE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783831623,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-27",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 94,
+        "current_cents": 77,
+        "move_cents": -17,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 1
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783831858,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+            "current_reference_cents": 71,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -5,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+            "current_reference_cents": 71,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -5,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47"
+        }
+      ],
+      "eliminated_now": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3"
+      ],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 76,
+        "current_cents": 71,
+        "move_cents": -5,
+        "material_two_cent_move": true,
+        "effect": "ELIMINATED_SHAPES_INCONSISTENT_WITH_NEW_MOVEMENT",
+        "eliminated_shape_ids": [
+          "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+          "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3"
+        ],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 2
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783851291,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-547",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-547",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-547",
+            "current_reference_cents": 73,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -3,
+              "ask_dip": -7,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 3,
+              "qualified_ask_descent_count": 4,
+              "qualified_ask_rise_count": 4
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-547"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-547",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-547",
+            "current_reference_cents": 73,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -3,
+              "ask_dip": -7,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 3,
+              "qualified_ask_descent_count": 4,
+              "qualified_ask_rise_count": 4
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-547"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 70,
+        "current_cents": 73,
+        "move_cents": 3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783852936,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-736",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-736",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-736",
+            "current_reference_cents": 71,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -7,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 6,
+              "qualified_ask_rise_count": 4
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-736"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-736",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-736",
+            "current_reference_cents": 71,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -5,
+              "ask_dip": -7,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 5,
+              "qualified_ask_descent_count": 6,
+              "qualified_ask_rise_count": 4
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-736"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 73,
+        "current_cents": 71,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 4
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783861526,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1688",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1688",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1688",
+            "current_reference_cents": 70,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -6,
+              "ask_dip": -7,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 6,
+              "qualified_ask_descent_count": 6,
+              "qualified_ask_rise_count": 5
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1688"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1688",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1688",
+            "current_reference_cents": 70,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -6,
+              "ask_dip": -7,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 6,
+              "qualified_ask_descent_count": 6,
+              "qualified_ask_rise_count": 5
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1688"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 72,
+        "current_cents": 70,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 5
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783866958,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2323",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2323",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2323",
+            "current_reference_cents": 68,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -8,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 8,
+              "qualified_ask_descent_count": 8,
+              "qualified_ask_rise_count": 5
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2323"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2323",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2323",
+            "current_reference_cents": 68,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -8,
+              "ask_dip": -8,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 8,
+              "qualified_ask_descent_count": 8,
+              "qualified_ask_rise_count": 5
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2323"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 70,
+        "current_cents": 68,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 6
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783873872,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+            "current_reference_cents": 69,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -7,
+              "ask_dip": -10,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 7,
+              "qualified_ask_descent_count": 11,
+              "qualified_ask_rise_count": 6
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+            "current_reference_cents": 69,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -7,
+              "ask_dip": -10,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 7,
+              "qualified_ask_descent_count": 11,
+              "qualified_ask_rise_count": 6
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 66,
+        "current_cents": 69,
+        "move_cents": 3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 7
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784007323,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_pair_couple_elimination_v19",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+            "current_reference_cents": 86,
+            "macro_state": "UNAVAILABLE",
+            "prefix": null,
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_A_SIGNABLE_HIERARCHICAL_PAIR_COUPLE_SUPPORTS_THIS_SHAPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+          "eliminated_by": "window1_pair_couple_elimination_v19",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+            "current_reference_cents": 86,
+            "macro_state": "UNAVAILABLE",
+            "prefix": null,
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_A_SIGNABLE_HIERARCHICAL_PAIR_COUPLE_SUPPORTS_THIS_SHAPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1"
+        }
+      ],
+      "eliminated_now": [
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": null,
+        "current_cents": 86,
+        "move_cents": null,
+        "material_two_cent_move": false,
+        "effect": "ELIMINATED_SHAPES_INCONSISTENT_WITH_NEW_MOVEMENT",
+        "eliminated_shape_ids": [
+          "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+        ],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+      },
+      "trajectory_count": 1
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784007401,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22",
+            "current_reference_cents": 91,
+            "macro_state": "UNAVAILABLE",
+            "prefix": null,
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22",
+            "current_reference_cents": 91,
+            "macro_state": "UNAVAILABLE",
+            "prefix": null,
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 84,
+        "current_cents": 91,
+        "move_cents": 7,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+      },
+      "trajectory_count": 2
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784007603,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+            "current_reference_cents": 64,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -22,
+              "ask_dip": -22,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 22,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+            "current_reference_cents": 64,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -22,
+              "ask_dip": -22,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 22,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 91,
+        "current_cents": 64,
+        "move_cents": -27,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+      },
+      "trajectory_count": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784020205,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-327",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-327",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-327",
+            "current_reference_cents": 58,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -28,
+              "ask_dip": -28,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 28,
+              "qualified_ask_descent_count": 5,
+              "qualified_ask_rise_count": 1
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-327"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-327",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-327",
+            "current_reference_cents": 58,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -28,
+              "ask_dip": -28,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 28,
+              "qualified_ask_descent_count": 5,
+              "qualified_ask_rise_count": 1
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-327"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 60,
+        "current_cents": 58,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+      },
+      "trajectory_count": 4
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784020884,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-891",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-891",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-891",
+            "current_reference_cents": 55,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -31,
+              "ask_dip": -31,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 31,
+              "qualified_ask_descent_count": 11,
+              "qualified_ask_rise_count": 3
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-891"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-891",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-891",
+            "current_reference_cents": 55,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -31,
+              "ask_dip": -31,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 31,
+              "qualified_ask_descent_count": 11,
+              "qualified_ask_rise_count": 3
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-891"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 57,
+        "current_cents": 55,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+      },
+      "trajectory_count": 5
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784007323,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+          "eliminated_by": "window1_pair_couple_elimination_v19",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+            "current_reference_cents": 86,
+            "macro_state": "UNAVAILABLE",
+            "prefix": null,
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_A_SIGNABLE_HIERARCHICAL_PAIR_COUPLE_SUPPORTS_THIS_SHAPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+          "eliminated_by": "window1_pair_couple_elimination_v19",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1",
+            "current_reference_cents": 86,
+            "macro_state": "UNAVAILABLE",
+            "prefix": null,
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_A_SIGNABLE_HIERARCHICAL_PAIR_COUPLE_SUPPORTS_THIS_SHAPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1"
+        }
+      ],
+      "eliminated_now": [
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": null,
+        "current_cents": 86,
+        "move_cents": null,
+        "material_two_cent_move": false,
+        "effect": "ELIMINATED_SHAPES_INCONSISTENT_WITH_NEW_MOVEMENT",
+        "eliminated_shape_ids": [
+          "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+          "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+        ],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+      },
+      "trajectory_count": 1
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784007401,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22",
+            "current_reference_cents": 91,
+            "macro_state": "UNAVAILABLE",
+            "prefix": null,
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22",
+            "current_reference_cents": 91,
+            "macro_state": "UNAVAILABLE",
+            "prefix": null,
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-22"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 85,
+        "current_cents": 91,
+        "move_cents": 6,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+      },
+      "trajectory_count": 2
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784007603,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+            "current_reference_cents": 46,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -40,
+              "ask_dip": -40,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 40,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+            "current_reference_cents": 46,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -40,
+              "ask_dip": -40,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 40,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 91,
+        "current_cents": 46,
+        "move_cents": -45,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+      },
+      "trajectory_count": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784007604,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-65",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-65",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-65",
+            "current_reference_cents": 43,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -43,
+              "ask_dip": -43,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 43,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-65"
+        },
+        {
+          "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-65",
+          "evidence": {
+            "current_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-65",
+            "current_reference_cents": 43,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -43,
+              "ask_dip": -43,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 43,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-65"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 46,
+        "current_cents": 43,
+        "move_cents": -3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "SIGNABLE_PAIR_COUPLES_NARROWED_BOTH_LEG_SETS"
+      },
+      "trajectory_count": 4
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1783998959,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": null,
+        "current_cents": 95,
+        "move_cents": null,
+        "material_two_cent_move": false,
+        "effect": "TIGHTENED_OR_HELD_SUB_TWO_CENT_MOVE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784001495,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 95,
+        "current_cents": 43,
+        "move_cents": -52,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 1
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784020558,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 41,
+        "current_cents": 39,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 2
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784021161,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1043",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 40,
+        "current_cents": 42,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784024294,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3034",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 44,
+        "current_cents": 52,
+        "move_cents": 8,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 6
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784024295,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3036",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 52,
+        "current_cents": 50,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 7
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784024298,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3041",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 50,
+        "current_cents": 47,
+        "move_cents": -3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 8
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784024325,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4231",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 47,
+        "current_cents": 50,
+        "move_cents": 3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 9
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784025513,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18605",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 47,
+        "current_cents": 50,
+        "move_cents": 3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 10
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784025688,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3502",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 48,
+        "current_cents": 50,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 11
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026350,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-21747",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 48,
+        "current_cents": 46,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 12
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026368,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-21826",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 46,
+        "current_cents": 48,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 13
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026458,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-22210",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 49,
+        "current_cents": 47,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 14
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026460,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-22295",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 47,
+        "current_cents": 49,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 15
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026470,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-22431",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 49,
+        "current_cents": 47,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 16
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026493,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-22888",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 47,
+        "current_cents": 49,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 17
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026528,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-23358",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 47,
+        "current_cents": 49,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 18
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026529,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-23382",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 49,
+        "current_cents": 47,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 19
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026530,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-23414",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 47,
+        "current_cents": 49,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 20
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026533,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-23431",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 49,
+        "current_cents": 47,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 21
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026617,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-24020",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 49,
+        "current_cents": 47,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 22
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026641,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-24540",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 49,
+        "current_cents": 47,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 23
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026645,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-24689",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 47,
+        "current_cents": 49,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 24
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026679,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-24837",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 49,
+        "current_cents": 47,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 25
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026716,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-25118",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 48,
+        "current_cents": 50,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 26
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026718,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-25142",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 50,
+        "current_cents": 48,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 27
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026918,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-25650",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 47,
+        "current_cents": 50,
+        "move_cents": 3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 28
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026935,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-25711",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 51,
+        "current_cents": 49,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 29
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784026987,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-25764",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 50,
+        "current_cents": 47,
+        "move_cents": -3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 30
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784029268,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3794",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 46,
+        "current_cents": 48,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 31
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784029909,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3975",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 48,
+        "current_cents": 45,
+        "move_cents": -3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 32
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784030005,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4035",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 45,
+        "current_cents": 50,
+        "move_cents": 5,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 33
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784030007,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4046",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 50,
+        "current_cents": 47,
+        "move_cents": -3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 34
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784041639.585,
+      "receipt": "a529177f-2dbf-74ab-6105-8f02b6f6c01b",
+      "all_shape_ids": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 44,
+        "current_cents": 42,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 48
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1783998959,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": null,
+        "current_cents": 95,
+        "move_cents": null,
+        "material_two_cent_move": false,
+        "effect": "TIGHTENED_OR_HELD_SUB_TWO_CENT_MOVE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784001495,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 95,
+        "current_cents": 67,
+        "move_cents": -28,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 1
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784024261,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2904",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 62,
+        "current_cents": 60,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 4
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784025121,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3206",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 57,
+        "current_cents": 59,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 5
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784025342,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3297",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 60,
+        "current_cents": 58,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 6
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784025491,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3455",
+      "all_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 58,
+        "current_cents": 60,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 7
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784316994,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": null,
+        "current_cents": 94,
+        "move_cents": null,
+        "material_two_cent_move": false,
+        "effect": "TIGHTENED_OR_HELD_SUB_TWO_CENT_MOVE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 0
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784329677,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-71",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 88,
+        "current_cents": 86,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 1
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784329964,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-73",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 87,
+        "current_cents": 84,
+        "move_cents": -3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 2
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784330513,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-293",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 73,
+        "current_cents": 77,
+        "move_cents": 4,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 3
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784330620,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-301",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 77,
+        "current_cents": 75,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 4
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784330621,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-311",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 75,
+        "current_cents": 77,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 5
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784330774,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-351",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 76,
+        "current_cents": 74,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 6
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784331077,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-238",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 75,
+        "current_cents": 77,
+        "move_cents": 2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 7
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784331165,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-242",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 77,
+        "current_cents": 72,
+        "move_cents": -5,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 8
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332204,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-464",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 65,
+        "current_cents": 76,
+        "move_cents": 11,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 9
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332553,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 76,
+        "current_cents": 63,
+        "move_cents": -13,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 10
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332558,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-472",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-472",
+          "evidence": {
+            "current_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-472",
+            "current_reference_cents": 62,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -1,
+              "ask_dip": -1,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 1,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-472"
+        }
+      ],
+      "eliminated_now": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0"
+      ],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 63,
+        "current_cents": 62,
+        "move_cents": -1,
+        "material_two_cent_move": false,
+        "effect": "ELIMINATED_SHAPES_INCONSISTENT_WITH_NEW_MOVEMENT",
+        "eliminated_shape_ids": [
+          "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0"
+        ],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 11
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332594,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-516",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-516",
+          "evidence": {
+            "current_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-516",
+            "current_reference_cents": 60,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -3,
+              "ask_dip": -3,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 3,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-516"
+        }
+      ],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 62,
+        "current_cents": 60,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 12
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332608,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-611",
+      "all_shape_ids": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-611",
+          "evidence": {
+            "current_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-611",
+            "current_reference_cents": 60,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -3,
+              "ask_dip": -4,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 3,
+              "qualified_ask_descent_count": 1,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-611"
+        },
+        {
+          "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-611",
+          "evidence": {
+            "current_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-611",
+            "current_reference_cents": 60,
+            "macro_state": "REBOUND_BELOW_ANCHOR",
+            "prefix": {
+              "ask_net": -3,
+              "ask_dip": -4,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 3,
+              "qualified_ask_descent_count": 1,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-611"
+        }
+      ],
+      "eliminated_now": [
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2"
+      ],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 60,
+        "current_cents": 60,
+        "move_cents": 0,
+        "material_two_cent_move": false,
+        "effect": "ELIMINATED_SHAPES_INCONSISTENT_WITH_NEW_MOVEMENT",
+        "eliminated_shape_ids": [
+          "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2"
+        ],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 13
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784316994,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1",
+      "all_shape_ids": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": null,
+        "current_cents": 94,
+        "move_cents": null,
+        "material_two_cent_move": false,
+        "effect": "TIGHTENED_OR_HELD_SUB_TWO_CENT_MOVE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 0
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784326474,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-17",
+      "all_shape_ids": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 93,
+        "current_cents": 60,
+        "move_cents": -33,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 1
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784328299,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-28",
+      "all_shape_ids": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 60,
+        "current_cents": 57,
+        "move_cents": -3,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 2
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784328405,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-30",
+      "all_shape_ids": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 57,
+        "current_cents": 50,
+        "move_cents": -7,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 3
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784328637,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-33",
+      "all_shape_ids": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 50,
+        "current_cents": 48,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 4
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784332553,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "all_shape_ids": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [],
+      "eliminated_now": [],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 47,
+        "current_cents": 45,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE",
+        "eliminated_shape_ids": [],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 5
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784332609,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-629",
+      "all_shape_ids": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-629",
+          "evidence": {
+            "current_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-629",
+            "current_reference_cents": 43,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -2,
+              "ask_dip": -2,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 2,
+              "qualified_ask_descent_count": 0,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-629"
+        }
+      ],
+      "eliminated_now": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0"
+      ],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 45,
+        "current_cents": 43,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "ELIMINATED_SHAPES_INCONSISTENT_WITH_NEW_MOVEMENT",
+        "eliminated_shape_ids": [
+          "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0"
+        ],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 6
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784341326,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355",
+      "all_shape_ids": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "survivor_shapes": [
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "eliminations": [
+        {
+          "shape_id": "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355",
+          "evidence": {
+            "current_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355",
+            "current_reference_cents": 41,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -4,
+              "ask_dip": -4,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 4,
+              "qualified_ask_descent_count": 1,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355"
+        },
+        {
+          "shape_id": "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+          "eliminated_by": "window1_interim_elimination_v13",
+          "eliminated_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355",
+          "evidence": {
+            "current_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355",
+            "current_reference_cents": 41,
+            "macro_state": "AT_DESCENDING_LOW",
+            "prefix": {
+              "ask_net": -4,
+              "ask_dip": -4,
+              "ask_peak": 0,
+              "ask_drawdown_from_peak": 4,
+              "qualified_ask_descent_count": 1,
+              "qualified_ask_rise_count": 0
+            },
+            "pair_status": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+            "couple_status": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+          },
+          "matched_bins": [],
+          "overturn_test": "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT",
+          "last_rechecked_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355"
+        }
+      ],
+      "eliminated_now": [
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2"
+      ],
+      "reinstated_now": [],
+      "movement": {
+        "prior_cents": 43,
+        "current_cents": 41,
+        "move_cents": -2,
+        "material_two_cent_move": true,
+        "effect": "ELIMINATED_SHAPES_INCONSISTENT_WITH_NEW_MOVEMENT",
+        "eliminated_shape_ids": [
+          "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2"
+        ],
+        "reinstated_shape_ids": []
+      },
+      "modules": {
+        "single": "CAUSAL_INTERIM_ENVELOPES_NARROWED",
+        "pair": "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT",
+        "couple": "NO_SIGNABLE_PAIR_COUPLE_ABSTAIN"
+      },
+      "trajectory_count": 7
+    }
+  ],
+  "every_leg_seeded": true,
+  "every_live_elimination_has_overturn_test": true
+}

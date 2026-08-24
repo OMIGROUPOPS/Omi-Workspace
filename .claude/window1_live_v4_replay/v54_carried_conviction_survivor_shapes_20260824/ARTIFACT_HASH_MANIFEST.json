@@ -1,0 +1,311 @@
+{
+  "label": "V54_CARRIED_CONVICTION_SURVIVOR_SHAPES_MIND_ONLY_BED",
+  "files": {
+    "ASSUMPTION_GAPS.md": {
+      "path": "ASSUMPTION_GAPS.md",
+      "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+      "bytes": 943,
+      "rows": null
+    },
+    "ATOMIC_CANCEL_REPLACE_RECEIPT.json": {
+      "path": "ATOMIC_CANCEL_REPLACE_RECEIPT.json",
+      "sha256": "4f7ddfa939be24197d7aa974c230ab78b0e9cd4c60cc6ab9634ce810c94f2194",
+      "bytes": 91410,
+      "rows": null
+    },
+    "ATOMIC_REARM_RECEIPT.json": {
+      "path": "ATOMIC_REARM_RECEIPT.json",
+      "sha256": "46b4638022a2a753ee745c90e44e47f2179b73e777350d2662f333ff31d8830a",
+      "bytes": 10596886,
+      "rows": null
+    },
+    "BELIEF_DEADLINE_SCORING_TABLE.json": {
+      "path": "BELIEF_DEADLINE_SCORING_TABLE.json",
+      "sha256": "e3fe19945b73d3071f83d05d94a7bea0efb3faa312cc085ec56394532747def1",
+      "bytes": 6411731,
+      "rows": null
+    },
+    "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json": {
+      "path": "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json",
+      "sha256": "d1ae713d996aeb1a187f0523dc26d69ebbda5e924a52e0eb68f4679d99c16461",
+      "bytes": 3199538,
+      "rows": null
+    },
+    "CARRIED_CONVICTION_RECEIPT.json": {
+      "path": "CARRIED_CONVICTION_RECEIPT.json",
+      "sha256": "33ff39bb64a2cf5488eade597aed074ff1a2b819af4a6489d1fe7a04b2a10751",
+      "bytes": 41022812,
+      "rows": null
+    },
+    "CC_URSPAL_LATE_BELL.md": {
+      "path": "CC_URSPAL_LATE_BELL.md",
+      "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+      "bytes": 464,
+      "rows": null
+    },
+    "COHERENCE_PLACEMENT_LATENCY_RECEIPT.json": {
+      "path": "COHERENCE_PLACEMENT_LATENCY_RECEIPT.json",
+      "sha256": "c4bd2efe3da1e2641ea97a1a4feef0b25d1521a9492853bc4471aac7eb18b685",
+      "bytes": 41226,
+      "rows": null
+    },
+    "COHERENCE_TIMELINES.json": {
+      "path": "COHERENCE_TIMELINES.json",
+      "sha256": "e35eaca9894892055a595ad6680125f142081c8da61cf0eac53d151d72ccac80",
+      "bytes": 3374252,
+      "rows": null
+    },
+    "CORPUS_CENSUS.json": {
+      "path": "CORPUS_CENSUS.json",
+      "sha256": "8acedb8c116f2eaaee146f39ff24b04008ba5bd68a0de076f49dacb3e2ab181a",
+      "bytes": 14066,
+      "rows": null
+    },
+    "CORPUS_INDEX.jsonl.gz": {
+      "path": "CORPUS_INDEX.jsonl.gz",
+      "sha256": "209d40cfa3d3426e629595730e264f7a3ebcfc5bd784389fe57eb08e1f4f6e26",
+      "bytes": 4415276,
+      "rows": null
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "path": "DETERMINISM_RECEIPT.json",
+      "sha256": "e5887dff0ef4edee7136e35cae69cf9cb50b8590eff63e5fac8ff2550a98497d",
+      "bytes": 2819,
+      "rows": null
+    },
+    "ENVELOPE_PLACEMENT_RECEIPT.json": {
+      "path": "ENVELOPE_PLACEMENT_RECEIPT.json",
+      "sha256": "901e0b6d77bfff5e854ee9d1dfdfcf4901fcf5c92f3bfffd60aef439b9dc97d5",
+      "bytes": 36963960,
+      "rows": null
+    },
+    "EXTERNAL_CUSTODY_MANIFEST.json": {
+      "path": "EXTERNAL_CUSTODY_MANIFEST.json",
+      "sha256": "76bee3e40516d048aca1c58e25284eb4753252a3cd20f7a758b995cc5ebe6ca1",
+      "bytes": 1623,
+      "rows": null
+    },
+    "FILL_HANDOFF_RECEIPT.json": {
+      "path": "FILL_HANDOFF_RECEIPT.json",
+      "sha256": "8eba981fd46da283f189a97ebd0bfd7306fdb0030bdfaa06e6a3f17f1c771431",
+      "bytes": 391702,
+      "rows": null
+    },
+    "FLOOR_TIME_BINDING_COVERAGE.json": {
+      "path": "FLOOR_TIME_BINDING_COVERAGE.json",
+      "sha256": "68a7fb7501068cb25d4a1533c1ff195982689466c76dc4d7b02bdd0c79c87811",
+      "bytes": 2345,
+      "rows": null
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+      "bytes": 465,
+      "rows": null
+    },
+    "FOUNDATION_COVERAGE_BEFORE_AFTER.json": {
+      "path": "FOUNDATION_COVERAGE_BEFORE_AFTER.json",
+      "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+      "bytes": 593,
+      "rows": null
+    },
+    "FOUNDATION_LIBRARY.jsonl.gz": {
+      "path": "FOUNDATION_LIBRARY.jsonl.gz",
+      "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+      "bytes": 2159635,
+      "rows": null
+    },
+    "FOUNDATION_LIBRARY_RECEIPT.json": {
+      "path": "FOUNDATION_LIBRARY_RECEIPT.json",
+      "sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5",
+      "bytes": 3558,
+      "rows": null
+    },
+    "FOUR_STORIES.md": {
+      "path": "FOUR_STORIES.md",
+      "sha256": "b6c035f34a9f6e76624efe80c60c166833c60291779012a394345e1371dfa082",
+      "bytes": 8170135,
+      "rows": null
+    },
+    "FOUR_STORIES_RECEIPT.json": {
+      "path": "FOUR_STORIES_RECEIPT.json",
+      "sha256": "6355f04288756770f2d4e77748c6a9da3cde5258b57a77207821ba9e94f923f6",
+      "bytes": 916040,
+      "rows": null
+    },
+    "FUNCTIONALITY_RECEIPT.json": {
+      "path": "FUNCTIONALITY_RECEIPT.json",
+      "sha256": "3e55b7929c076cf0603df3f2ea03182cc00da81d0a9b631c62ceed540fb29a68",
+      "bytes": 24191,
+      "rows": null
+    },
+    "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz": {
+      "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+      "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+      "bytes": 1668883,
+      "rows": null
+    },
+    "FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json": {
+      "path": "FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json",
+      "sha256": "cfe59471d2df7fb9a5d18440099c4df1e5f2fed0cf351e9b4f9ede24739666e1",
+      "bytes": 1112,
+      "rows": null
+    },
+    "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md": {
+      "path": "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "sha256": "a289ed5b4699fd5aa4f660a23a13d9bf63bbaf964d9c42cfcc2d0fadefc144da",
+      "bytes": 3161996,
+      "rows": null
+    },
+    "INCONSISTENT_Q50_ROOT_CAUSE_RECEIPT.json": {
+      "path": "INCONSISTENT_Q50_ROOT_CAUSE_RECEIPT.json",
+      "sha256": "f4dca2b941da4eabc5896ca68b4a432ef416707854960d5faccf4e34f1bdb439",
+      "bytes": 2544855,
+      "rows": null
+    },
+    "INSIDE_SPREAD_REACH_RECEIPT.json": {
+      "path": "INSIDE_SPREAD_REACH_RECEIPT.json",
+      "sha256": "da2818add15a0738e1c111a51f9cad67911b1b54835ad4d2a6c949691a04a1ab",
+      "bytes": 4008855,
+      "rows": null
+    },
+    "LAJ_FLOOR_MOMENT_BELIEF_INPUTS.json": {
+      "path": "LAJ_FLOOR_MOMENT_BELIEF_INPUTS.json",
+      "sha256": "a9ae9bccef20cd82eee7f5b96f8d93faa968b2c9cd4333e94a4b1277f78bbf83",
+      "bytes": 16799,
+      "rows": null
+    },
+    "LAWFUL_INCOMPLETE_RECEIPT.json": {
+      "path": "LAWFUL_INCOMPLETE_RECEIPT.json",
+      "sha256": "94f1fa940a2c6e27c239c2f480488afa78b45cf0cc260d9fd76de61f35e4af7c",
+      "bytes": 679351,
+      "rows": null
+    },
+    "LAYERED_DUAL_BELIEF_RECEIPT.json": {
+      "path": "LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "sha256": "6221f71f8c58ca9fe54f0df0460574d7909d46cb7605ed4adc5aecbdfd7a000d",
+      "bytes": 4434481,
+      "rows": null
+    },
+    "LIBRARY_BELL_BOUND_RECEIPT.json": {
+      "path": "LIBRARY_BELL_BOUND_RECEIPT.json",
+      "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+      "bytes": 15882,
+      "rows": null
+    },
+    "LIVE_TOUCH_CONSUMPTION_RECEIPT.json": {
+      "path": "LIVE_TOUCH_CONSUMPTION_RECEIPT.json",
+      "sha256": "f55c9423666384193d350d065be95d55cbaf80c7a7aa1be6440d5f47427f670a",
+      "bytes": 1446749,
+      "rows": null
+    },
+    "NO_ENVELOPE_TOUCH_LANE_CENSUS.json": {
+      "path": "NO_ENVELOPE_TOUCH_LANE_CENSUS.json",
+      "sha256": "d8d3979c5d10d903aa6e481e53b003e79a7a5584c3af8231f20df16d4ddddedd",
+      "bytes": 2356,
+      "rows": null
+    },
+    "PHASE_CENTRAL_ESTIMATE_SURFACE.json": {
+      "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+      "sha256": "52667e215dc0ef6bf393e23d3acd6c78d24809cbabc5b0e0aa82088fc5a5f557",
+      "bytes": 8497,
+      "rows": null
+    },
+    "PRINT_PRICED_RESIDUE_SWEEP.json": {
+      "path": "PRINT_PRICED_RESIDUE_SWEEP.json",
+      "sha256": "135c60e8bb752096d49eda3f0572af5259112f18f776686e6246b80f2ec8b2c2",
+      "bytes": 1370,
+      "rows": null
+    },
+    "PROCESS_FIRST_CONFIRM.md": {
+      "path": "PROCESS_FIRST_CONFIRM.md",
+      "sha256": "21a01952f695dd63439b8bd7073ba106b4eb256936e50132710fbb8cf821085f",
+      "bytes": 675498,
+      "rows": null
+    },
+    "PROCESS_FIRST_CONFIRM_RECEIPT.json": {
+      "path": "PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "sha256": "9dc7e32b8481d5acd925e0170c78f878e2825dbfe2ff2ebe7649a21acc664fef",
+      "bytes": 5503757,
+      "rows": null
+    },
+    "REPAIR_GATE_RECEIPT.json": {
+      "path": "REPAIR_GATE_RECEIPT.json",
+      "sha256": "a8742db63cb4d6a5955f3a072e7b08743dff9c3091cf1d819045cc652ce326b0",
+      "bytes": 703799,
+      "rows": null
+    },
+    "REST_PRICED_CREDITING_RECEIPT.json": {
+      "path": "REST_PRICED_CREDITING_RECEIPT.json",
+      "sha256": "3f0625aeeb2910aa129863e9e3c47fcb99b97af365d95b305a7d3548eddae9b3",
+      "bytes": 2340,
+      "rows": null
+    },
+    "SMOKE_CRIJEA.md": {
+      "path": "SMOKE_CRIJEA.md",
+      "sha256": "932418de448fe7afcf1f84701c0e1516e351fad9943eec947699ed28fc339858",
+      "bytes": 13630608,
+      "rows": null
+    },
+    "SMOKE_CRIJEA_RECEIPT.json": {
+      "path": "SMOKE_CRIJEA_RECEIPT.json",
+      "sha256": "1ad55e5bc0abfa7a72c3104006ae5cd6a9143d9c5ca3149210edad93ba32cd0f",
+      "bytes": 1077087,
+      "rows": null
+    },
+    "SOURCE_RECEIPTS.json": {
+      "path": "SOURCE_RECEIPTS.json",
+      "sha256": "762f17416d51f47f58d6bc20351307d2b943e94e4d138793a456c98e1663020d",
+      "bytes": 59116,
+      "rows": null
+    },
+    "SURVIVOR_SHAPE_LIBRARY_BINDING.json": {
+      "path": "SURVIVOR_SHAPE_LIBRARY_BINDING.json",
+      "sha256": "6f6008da864f63edcb432f8bb17d99ae70d3223e80e70fadcea279092e944b5f",
+      "bytes": 957,
+      "rows": null
+    },
+    "SURVIVOR_SHAPE_TRAJECTORIES.json": {
+      "path": "SURVIVOR_SHAPE_TRAJECTORIES.json",
+      "sha256": "56f56fb23a3b57d1e75ef38faa9741c14df40acaffad4e71f11750404f821136",
+      "bytes": 175854,
+      "rows": null
+    },
+    "TARGET_PRINTS_5.jsonl.gz": {
+      "path": "TARGET_PRINTS_5.jsonl.gz",
+      "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+      "bytes": 1224927,
+      "rows": null
+    },
+    "TOUCH_SUBORDINATION_RECEIPT.json": {
+      "path": "TOUCH_SUBORDINATION_RECEIPT.json",
+      "sha256": "8a9050c59677a0a10714fa87c8ea77d3398a30f3f1b4989a871172b5f53f95ac",
+      "bytes": 664,
+      "rows": null
+    },
+    "TRADE_REPORT_FOUR.json": {
+      "path": "TRADE_REPORT_FOUR.json",
+      "sha256": "2d1fbed35bdbb4301a8c2134cab44525444b77c6b78456e911f3fc44ed1fb4d5",
+      "bytes": 1858780,
+      "rows": null
+    },
+    "TRADE_REPORT_FOUR.md": {
+      "path": "TRADE_REPORT_FOUR.md",
+      "sha256": "06ad8c1e8ab308717bd8efb8784c86538ad778780cae6bb11876f3b963e37596",
+      "bytes": 165899,
+      "rows": null
+    },
+    "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json": {
+      "path": "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json",
+      "sha256": "8075a2d1884cf198b8aa57849a442d13471a4f95df9348ec700c04b3cfe09389",
+      "bytes": 3234,
+      "rows": null
+    },
+    "WORKTREE_LARGE_UNTRACKED_CENSUS.json": {
+      "path": "WORKTREE_LARGE_UNTRACKED_CENSUS.json",
+      "sha256": "74c15b2f28ad1971716db07d501b5be6af328401f58bd5a32816f14140916670",
+      "bytes": 1376,
+      "rows": null
+    }
+  }
+}

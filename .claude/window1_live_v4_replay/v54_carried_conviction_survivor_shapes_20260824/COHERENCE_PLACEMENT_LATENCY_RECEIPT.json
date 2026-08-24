@@ -1,0 +1,1071 @@
+{
+  "label": "F_VS_118_COHERENCE_TO_PLACEMENT_SAME_RECEIPT",
+  "rule": "A new rest may originate only on a receipt whose current dual belief is coherent and whose post-allocation target is lawful. Already-licensed rests may hold through later disagreement but stale coherence never originates a placement.",
+  "provenance": "F-VS-118@c08ce381",
+  "per_leg": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "first_lawful_current_coherence_epoch": 1783873872,
+      "first_lawful_current_coherence_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+      "first_placement_or_replacement_epoch": 1783873872,
+      "first_placement_or_replacement_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "first_lawful_current_coherence_epoch": null,
+      "first_lawful_current_coherence_receipt": null,
+      "first_placement_or_replacement_epoch": null,
+      "first_placement_or_replacement_receipt": null,
+      "latency_seconds": null,
+      "outcome": "NO_LAWFUL_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "first_lawful_current_coherence_epoch": 1784016081.367,
+      "first_lawful_current_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "first_placement_or_replacement_epoch": 1784016081.367,
+      "first_placement_or_replacement_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "first_lawful_current_coherence_epoch": 1784016081.367,
+      "first_lawful_current_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "first_placement_or_replacement_epoch": 1784016081.367,
+      "first_placement_or_replacement_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "first_lawful_current_coherence_epoch": 1784005897.194,
+      "first_lawful_current_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "first_placement_or_replacement_epoch": 1784005897.194,
+      "first_placement_or_replacement_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "first_lawful_current_coherence_epoch": 1784005897.194,
+      "first_lawful_current_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "first_placement_or_replacement_epoch": 1784005897.194,
+      "first_placement_or_replacement_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "first_lawful_current_coherence_epoch": 1784332553,
+      "first_lawful_current_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "first_placement_or_replacement_epoch": 1784332553,
+      "first_placement_or_replacement_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "first_lawful_current_coherence_epoch": 1784339306.774,
+      "first_lawful_current_coherence_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+      "first_placement_or_replacement_epoch": 1784339306.774,
+      "first_placement_or_replacement_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    }
+  ],
+  "placement_or_replacement_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783873872,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 32,
+        "first_lawful_coherence_epoch": 1783873872,
+        "first_lawful_coherence_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 0,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 32,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 30,
+        "high_cents": 32,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784005897.194,
+      "receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 34,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 0,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 34,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 34,
+        "high_cents": 37,
+        "belief_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784005897.194,
+      "receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 65,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 0,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 65,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 63,
+        "high_cents": 66,
+        "belief_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784006316,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-567",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 35,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 418.80599999427795,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 35,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 34,
+        "high_cents": 37,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-567"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784006316,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-567",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 64,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 418.80599999427795,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 64,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 63,
+        "high_cents": 66,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-567"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784006318,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-569",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 36,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 420.80599999427795,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 36,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 34,
+        "high_cents": 38,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-569"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784006318,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-569",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 63,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 420.80599999427795,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 63,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 63,
+        "high_cents": 66,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-569"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784016213,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 38,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 10315.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 38,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 35,
+        "high_cents": 38,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784018092.473,
+      "receipt": "ee538694-14b7-41bc-b4cc-bbc59be78303",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 36,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 12195.279000043869,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 36,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 35,
+        "high_cents": 38,
+        "belief_receipt": "ee538694-14b7-41bc-b4cc-bbc59be78303"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784018092.473,
+      "receipt": "ee538694-14b7-41bc-b4cc-bbc59be78303",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 63,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 12195.279000043869,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 63,
+        "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+      },
+      "envelope": {
+        "low_cents": 62,
+        "high_cents": 64,
+        "belief_receipt": "ee538694-14b7-41bc-b4cc-bbc59be78303"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784023248,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2090",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 42,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 17350.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 42,
+        "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+      },
+      "envelope": {
+        "low_cents": 39,
+        "high_cents": 43,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2090"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784028269,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-28036",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 57,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 22371.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 57,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 57,
+        "high_cents": 58,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-28036"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784030027,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 43,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 24129.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 43,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 40,
+        "high_cents": 44,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784031046,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4291",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 41,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 25148.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 41,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 40,
+        "high_cents": 44,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4291"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784031046,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4291",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 58,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 25148.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 58,
+        "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+      },
+      "envelope": {
+        "low_cents": 58,
+        "high_cents": 58,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4291"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784016081.367,
+      "receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 61,
+        "first_lawful_coherence_epoch": 1784016081.367,
+        "first_lawful_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 0,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 61,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 59,
+        "high_cents": 62,
+        "belief_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784016081.367,
+      "receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 38,
+        "first_lawful_coherence_epoch": 1784016081.367,
+        "first_lawful_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 0,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 38,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 35,
+        "high_cents": 39,
+        "belief_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784020201.83,
+      "receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 59,
+        "first_lawful_coherence_epoch": 1784016081.367,
+        "first_lawful_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 4120.462999820709,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 59,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 59,
+        "high_cents": 62,
+        "belief_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784020201.83,
+      "receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 40,
+        "first_lawful_coherence_epoch": 1784016081.367,
+        "first_lawful_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 4120.462999820709,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 40,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 38,
+        "high_cents": 41,
+        "belief_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784020209,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-355",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 41,
+        "first_lawful_coherence_epoch": 1784016081.367,
+        "first_lawful_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 4127.632999897003,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 41,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 38,
+        "high_cents": 41,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-355"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332553,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 49,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 0,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 49,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 46,
+        "high_cents": 58,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784339306.774,
+      "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 57,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 6753.773999929428,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 57,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 57,
+        "high_cents": 59,
+        "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784339306.774,
+      "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 42,
+        "first_lawful_coherence_epoch": 1784339306.774,
+        "first_lawful_coherence_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 0,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 42,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 41,
+        "high_cents": 43,
+        "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784341326,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 58,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 8773,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 58,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 57,
+        "high_cents": 59,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784347255,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9650",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 59,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 14702,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 59,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 58,
+        "high_cents": 60,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9650"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784347255,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9650",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 40,
+        "first_lawful_coherence_epoch": 1784339306.774,
+        "first_lawful_coherence_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 7948.226000070572,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 40,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 40,
+        "high_cents": 41,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9650"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784359388,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2877",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 58,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 26835,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 58,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 58,
+        "high_cents": 60,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2877"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784359388,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2877",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 41,
+        "first_lawful_coherence_epoch": 1784339306.774,
+        "first_lawful_coherence_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 20081.226000070572,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 41,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "envelope": {
+        "low_cents": 40,
+        "high_cents": 41,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2877"
+      }
+    }
+  ],
+  "stale_envelope_originated_new_rest_rows": [],
+  "every_qualified_action_same_receipt": true
+}

@@ -1,0 +1,14 @@
+{
+  "label": "F_VS_129_TOUCH_SUBORDINATED_AND_DISAGREES_NOT_TRADING_STATE",
+  "law": "A current lawful belief envelope always prices the rest. The touch lane may act only without an envelope and never at DISAGREES. DISAGREES may hold an already-licensed rest or continue re-deriving, but may not originate or reprice one.",
+  "provenance": [
+    "F-VS-129@3e3d3548",
+    "DISPATCH_TOUCH_SUBORDINATED@2026-08-24"
+  ],
+  "touch_rows_without_live_envelope": 242,
+  "touch_over_live_envelope_violations": [],
+  "disagrees_rows": 279,
+  "disagrees_placement_violations": [],
+  "zero_touch_over_live_envelope": true,
+  "zero_placements_or_reprices_at_disagrees": true
+}

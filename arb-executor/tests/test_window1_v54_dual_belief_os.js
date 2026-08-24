@@ -196,6 +196,38 @@ const jointCorpus = [
   { event_id: "JOINT-N1", event_date: "26JUN01", category: "ATP_MAIN", quality: "FOUNDATION_MINUTE_BELL_BOUNDED", grain: "MINUTE", licensed_layers: ["MACRO", "MICRO"], vector: jointVector, legs: [{ leg_id: "JA", anchor_cents: 40, observed_low_cents: 38, low_cents: 36, floor_fraction: 0.5, future_low_return_path: [{ window_fraction: 0, seen_true_trade_low_cents: 38, strict_future_true_trade_low_cents: 39, future_low_minus_seen_low_cents: 1, source_row_ref: "minute#ja" }], future_low_return_source: "future-low#ja" }, { leg_id: "JB", anchor_cents: 60, observed_low_cents: 58, low_cents: 58, floor_fraction: 0.5, future_low_return_path: [{ window_fraction: 0, seen_true_trade_low_cents: 58, strict_future_true_trade_low_cents: 57, future_low_minus_seen_low_cents: -1, source_row_ref: "minute#jb" }], future_low_return_source: "future-low#jb" }], source_receipts: [{ source_id: "FOUNDATION", row_ref: "foundation.jsonl#row-1" }] },
 ];
 const jointNeighborhood = os.retrieveNeighborhood(jointCorpus, jointVector, "TEST-EVENT", 1, jointState.receipt);
+const allMacroStates = ["ANCHOR_OR_UNMOVED", "AT_RISING_PEAK", "PULLBACK_ABOVE_ANCHOR", "RETURNED_TO_ANCHOR_FROM_PEAK", "AT_DESCENDING_LOW", "REBOUND_BELOW_ANCHOR"];
+const anyEnvelope = { macro_states: allMacroStates, ask_net: [-99, 99], ask_dip: [-99, 99], ask_peak: [-99, 99], ask_drawdown_from_peak: [-99, 99] };
+os.configureSurvivorShapeLibraries({
+  source_commit: "189eaa20",
+  sha256: { pair: "pair-test-sha", couple: "couple-test-sha" },
+  pair: {
+    groups: {
+      "ATP_MAIN|26_50": { shapes: [{ shape_id: "ATP_MAIN_26_50_INTERIM_PATH_TEST", interim_envelopes: { 0: anyEnvelope } }] },
+      "ATP_MAIN|51_75": { shapes: [{ shape_id: "ATP_MAIN_51_75_INTERIM_PATH_TEST", interim_envelopes: { 0: anyEnvelope } }] },
+    },
+    pair_hypothesis_groups: { ATP_MAIN: { hypotheses: [] } },
+  },
+  couple: { pair_couple_groups: { ATP_MAIN: { couples: [] } } },
+});
+
+const askPrefix = require("../analysis/window1_v54_survivor_shape_elimination.js").causalAskPrefix({
+  formation_end_epoch: 200,
+  books: [
+    { timestamp_epoch: 190, receipt: "pre-formation", bid_cents: 45, ask_cents: 50, ask_1_sz: 8 },
+    { timestamp_epoch: 200, receipt: "formed-50", bid_cents: 49, ask_cents: 50, ask_1_sz: 8 },
+    { timestamp_epoch: 210, receipt: "formed-50-dwell", bid_cents: 49, ask_cents: 50, ask_1_sz: 8 },
+    { timestamp_epoch: 211, receipt: "descend-48", bid_cents: 47, ask_cents: 48, ask_1_sz: 8 },
+    { timestamp_epoch: 221, receipt: "descend-48-dwell", bid_cents: 47, ask_cents: 48, ask_1_sz: 8 },
+    { timestamp_epoch: 222, receipt: "rebound-49", bid_cents: 48, ask_cents: 49, ask_1_sz: 8 },
+  ],
+});
+assert.equal(askPrefix.first.receipt, "formed-50", "the prefix must begin at the causal formation end, not the pre-formation book");
+assert.equal(askPrefix.prefix.ask_net, -1);
+assert.equal(askPrefix.prefix.ask_dip, -2, "a descent is negative relative to the formed ask");
+assert.equal(askPrefix.prefix.ask_peak, 0);
+assert.equal(askPrefix.prefix.ask_drawdown_from_peak, 1, "drawdown is peak minus current ask");
+assert.equal(askPrefix.prefix.qualified_ask_descent_count, 1);
 os.configurePhaseCentralSurface({
   kind: "F_VS_124_PHASE_CATEGORY_CENTRAL_FUTURE_LOW_SURFACE",
   sha256: "surface-test-sha",

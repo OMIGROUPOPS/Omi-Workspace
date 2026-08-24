@@ -1,0 +1,33 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_carried_conviction_survivor_shapes_20260824/ATOMIC_REARM_RECEIPT.json",
+      "bytes": 10596886,
+      "sha256": "46b4638022a2a753ee745c90e44e47f2179b73e777350d2662f333ff31d8830a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_carried_conviction_survivor_shapes_20260824/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 41022812,
+      "sha256": "33ff39bb64a2cf5488eade597aed074ff1a2b819af4a6489d1fe7a04b2a10751"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_carried_conviction_survivor_shapes_20260824/ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 36963960,
+      "sha256": "901e0b6d77bfff5e854ee9d1dfdfcf4901fcf5c92f3bfffd60aef439b9dc97d5"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_carried_conviction_survivor_shapes_20260824/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 84686823,
+      "sha256": "fc4aba4aa4e866c819fcdadd3fbe84bfcbef87f7bf4d0efb4ccefac9080ed9e4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_carried_conviction_survivor_shapes_20260824/SMOKE_CRIJEA.md",
+      "bytes": 13630608,
+      "sha256": "932418de448fe7afcf1f84701c0e1516e351fad9943eec947699ed28fc339858"
+    }
+  ],
+  "count": 5,
+  "bytes": 186901089
+}

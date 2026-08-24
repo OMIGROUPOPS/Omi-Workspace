@@ -1,0 +1,83 @@
+{
+  "label": "V54_NO_ENVELOPE_AND_TOUCH_LANE_COUNTS_PER_LEG",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "evaluated_receipts": 213,
+      "no_lawful_envelope_receipts": 82,
+      "touch_lane_receipts": 36,
+      "touch_lane_actions": 0,
+      "carried_conviction_actions": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "evaluated_receipts": 213,
+      "no_lawful_envelope_receipts": 82,
+      "touch_lane_receipts": 36,
+      "touch_lane_actions": 0,
+      "carried_conviction_actions": 0
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "evaluated_receipts": 1185,
+      "no_lawful_envelope_receipts": 44,
+      "touch_lane_receipts": 1,
+      "touch_lane_actions": 0,
+      "carried_conviction_actions": 7
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "evaluated_receipts": 1183,
+      "no_lawful_envelope_receipts": 42,
+      "touch_lane_receipts": 1,
+      "touch_lane_actions": 0,
+      "carried_conviction_actions": 5
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "evaluated_receipts": 78,
+      "no_lawful_envelope_receipts": 73,
+      "touch_lane_receipts": 5,
+      "touch_lane_actions": 0,
+      "carried_conviction_actions": 1
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "evaluated_receipts": 33,
+      "no_lawful_envelope_receipts": 28,
+      "touch_lane_receipts": 5,
+      "touch_lane_actions": 0,
+      "carried_conviction_actions": 2
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "evaluated_receipts": 120,
+      "no_lawful_envelope_receipts": 87,
+      "touch_lane_receipts": 79,
+      "touch_lane_actions": 0,
+      "carried_conviction_actions": 4
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "evaluated_receipts": 116,
+      "no_lawful_envelope_receipts": 83,
+      "touch_lane_receipts": 79,
+      "touch_lane_actions": 0,
+      "carried_conviction_actions": 3
+    }
+  ],
+  "totals": {
+    "no_lawful_envelope_receipts": 521,
+    "touch_lane_receipts": 242,
+    "touch_lane_actions": 0,
+    "carried_conviction_actions": 22
+  }
+}

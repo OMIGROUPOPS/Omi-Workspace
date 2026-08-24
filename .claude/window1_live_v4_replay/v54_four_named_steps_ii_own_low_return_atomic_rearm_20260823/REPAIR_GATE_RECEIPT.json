@@ -1,0 +1,338 @@
+{
+  "label": "V54_FOUR_NAMED_STEPS_II_MIND_ONLY_GATE",
+  "law_index_read_at": "97411938",
+  "law_index_sha256": "41784e6a…",
+  "cc_forensics": "97411938:F-VS-119..121",
+  "honest_baseline_pins": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": true,
+      "delta_vs_100_cents": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": true,
+      "delta_vs_100_cents": 6
+    }
+  ],
+  "pins_equal_expected": true,
+  "required_bed_floors": {
+    "KXATPCHALLENGERMATCH_26JUL12GIUBAR": 7,
+    "KXATPCHALLENGERMATCH_26JUL14URSPAL": 3,
+    "KXATPCHALLENGERMATCH_26JUL14LAJSVA": 6
+  },
+  "layered_safety_floor_breaks": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "BAR": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null
+        },
+        "GIU": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "PAL": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": 38,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": "HOLD_LAST_LICENSED_COHERENT_ENVELOPE",
+          "standing_license_receipt": "e1755de3-3eef-626b-12e5-7bd0bd895cd6"
+        },
+        "URS": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "LAJ": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null
+        },
+        "SVA": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null
+        }
+      }
+    }
+  ],
+  "safety_floor_pass": false,
+  "own_low_return": {
+    "provenance": "F-VS-120@97411938",
+    "future_low_return_library": {
+      "index": {
+        "path": "C:\\Users\\omigr\\OMI-Workspace-codex-window1\\tmp\\v54-four-steps-ii\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+        "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+        "bytes": 1668883,
+        "rows": 5260
+      },
+      "materializer_receipt": {
+        "path": "C:\\Users\\omigr\\OMI-Workspace-codex-window1\\tmp\\v54-four-steps-ii\\FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json",
+        "sha256": "cfe59471d2df7fb9a5d18440099c4df1e5f2fed0cf351e9b4f9ede24739666e1",
+        "bytes": 1112,
+        "rows": null
+      },
+      "source": {
+        "bytes": 406637058,
+        "path": "tmp/per_minute_features.parquet",
+        "rows": 9330878,
+        "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4"
+      },
+      "output": {
+        "bounded_legs": 8386,
+        "by_category_legs": {
+          "ATP_CHALL": 3484,
+          "ATP_MAIN": 2427,
+          "WTA_CHALL": 487,
+          "WTA_MAIN": 1988
+        },
+        "bytes": 1668883,
+        "path": "C:\\Users\\omigr\\OMI-Workspace-codex-window1\\tmp\\v54-four-steps-ii\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+        "path_points": 71649,
+        "rows": 5260,
+        "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201"
+      },
+      "method": "EXACT_MINUTE_PATH_CHANGE_POINTS; NO_BUCKETS; NO_THRESHOLDS; NO_PLACEMENT_CONSTANTS; CURRENT_MINUTE_EXCLUDED_FROM_ITS_LABEL",
+      "layer_license": {
+        "grain": "MINUTE",
+        "licensed_layers": [
+          "MACRO",
+          "MICRO"
+        ],
+        "micro_micro_licensed": false
+      }
+    },
+    "bias_shift": {
+      "baseline_median_signed_error_cents": -3,
+      "repaired_median_signed_error_cents": -20,
+      "moved_toward_zero": false
+    }
+  },
+  "atomic_rearm": {
+    "provenance": "F-VS-120@97411938",
+    "legs": 4,
+    "resolved_legs": 3,
+    "pending_at_edge_legs": 1,
+    "permanent_silence": 0
+  },
+  "lawful_incomplete": {
+    "provenance": "F-VS-121@97411938",
+    "rows": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "stamp": "UNSTAMPED_INCOMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "BAR": 27,
+            "GIU": 66
+          },
+          "two_leg_floor_sum_cents": 93,
+          "strictly_under_par_offer_cents": 6,
+          "proof": "27+66=93; max(0,99-93)=6"
+        },
+        "rest_at_floor_rows": [],
+        "rest_at_floor_proven": false,
+        "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001",
+        "unstamped_abstention_scores_zero": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "stamp": "UNSTAMPED_INCOMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "PAL": 39,
+            "URS": 57
+          },
+          "two_leg_floor_sum_cents": 96,
+          "strictly_under_par_offer_cents": 3,
+          "proof": "39+57=96; max(0,99-96)=3"
+        },
+        "rest_at_floor_rows": [],
+        "rest_at_floor_proven": false,
+        "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002",
+        "unstamped_abstention_scores_zero": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "stamp": "UNSTAMPED_INCOMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "LAJ": 51,
+            "SVA": 41
+          },
+          "two_leg_floor_sum_cents": 92,
+          "strictly_under_par_offer_cents": 7,
+          "proof": "51+41=92; max(0,99-92)=7"
+        },
+        "rest_at_floor_rows": [],
+        "rest_at_floor_proven": false,
+        "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "unstamped_abstention_scores_zero": true
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "stamp": "UNSTAMPED_INCOMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "DAN": 59,
+            "PRA": 41
+          },
+          "two_leg_floor_sum_cents": 100,
+          "strictly_under_par_offer_cents": 0,
+          "proof": "59+41=100; max(0,99-100)=0"
+        },
+        "rest_at_floor_rows": [],
+        "rest_at_floor_proven": false,
+        "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+        "unstamped_abstention_scores_zero": true
+      }
+    ],
+    "danpra_stamp": {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "stamp": "UNSTAMPED_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "DAN": 59,
+          "PRA": 41
+        },
+        "two_leg_floor_sum_cents": 100,
+        "strictly_under_par_offer_cents": 0,
+        "proof": "59+41=100; max(0,99-100)=0"
+      },
+      "rest_at_floor_rows": [],
+      "rest_at_floor_proven": false,
+      "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+      "unstamped_abstention_scores_zero": true
+    },
+    "unstamped_incomplete_scores_zero": true
+  },
+  "named_step_failures": [
+    "OWN_LOW_RETURN_BIAS_DID_NOT_RECENTER",
+    "DANPRA_LAWFUL_INCOMPLETE_STAMP_OR_PROOF_MISSING"
+  ],
+  "coherence_placement": {
+    "provenance": "F-VS-118@c08ce381",
+    "latency_receipt": "COHERENCE_PLACEMENT_LATENCY_RECEIPT.json",
+    "every_qualified_action_same_receipt": true,
+    "stale_envelope_originated_new_rest_count": 0
+  },
+  "atomic_cancel_replace": {
+    "provenance": "F-VS-118@c08ce381",
+    "receipt": "ATOMIC_CANCEL_REPLACE_RECEIPT.json",
+    "atomic_replacements": 861,
+    "fail_loud_no_replacement": 4,
+    "danpra_prior_cancel_storm_receipts": 15,
+    "danpra_repaired_cancel_receipts": 2,
+    "danpra_cancel_storm_disappeared": true
+  },
+  "floor_side_placement": {
+    "provenance": "F-VS-114(a)@9ff83002",
+    "deep_edge_default_rows": 0
+  },
+  "envelope_migration": {
+    "provenance": "F-VS-114(c)@9ff83002 + F-VS-118@c08ce381",
+    "migration_rows": 3292,
+    "inconsistent_active_rows": 865,
+    "every_inconsistent_active_resolved_same_receipt": true,
+    "q50_root_cause_named_row_found": true
+  },
+  "live_deadlines": {
+    "provenance": "F-VS-112@3be11997",
+    "rows": 5975,
+    "graded_rows": 3179,
+    "hit_rows": 59,
+    "all_fresh": true
+  },
+  "independent_bed_lane": {
+    "may_hold": true,
+    "may_abstain": true,
+    "may_complete": false,
+    "independent_lane_fill_count": 0
+  },
+  "no_bed_flattery": {
+    "placement_rule_changed_from_outcomes": false,
+    "f_vs_110_stamp": "TUNED_RETAINED",
+    "named_event_ids_in_policy_source": false
+  },
+  "rest_pricing": {
+    "fill_count": 0,
+    "every_entry_equals_standing_rest": true,
+    "active_print_priced_residue_count": 0
+  },
+  "sentence_price": {
+    "rows": 12410,
+    "every_field_matches_book_state": true
+  },
+  "envelope_placement": {
+    "rule_applied_uniformly": true,
+    "f_vs_110_tuned_stamp_retained": true,
+    "verbatim_sentence_artifact": "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md"
+  },
+  "law_violations": [],
+  "superseded_composition_scan_signals_not_used_for_verdict": [
+    "UNNAMED_EVIDENCE_LADDER_RUNG",
+    "TOUCH_RELATION_MISSING_FROM_SENTENCE",
+    "DEPTH_DERIVATION_MISSING_FROM_SENTENCE",
+    "EVIDENCE_RUNG_OR_BASIS_MISSING_FROM_SENTENCE",
+    "FOUNDATION_CITATION_GRAIN_OR_LAYER_MISSING",
+    "BELOW_TOUCH_REST_WITHOUT_V3_MAP_LICENSE",
+    "WINDOW_SIDE_TOUCH_OR_MAP_LICENSE_MISSING_FROM_SENTENCE"
+  ],
+  "zero_measured_law_violations": true,
+  "layer_order_complete": true,
+  "sentences_carry_layered_dual_belief": true,
+  "sentences_cite_fills": true,
+  "self_stop": true,
+  "stop_reason": "BED_TRIPWIRE_BREAK_AFTER_FOUR_NAMED_STEP_REPAIR",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

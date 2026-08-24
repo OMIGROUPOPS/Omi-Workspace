@@ -1,0 +1,41 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "taken_after_external_custody_and_temporary_source_cleanup": true,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_four_named_steps_ii_own_low_return_atomic_rearm_20260823/COHERENCE_TIMELINES.json",
+      "bytes": 12469046,
+      "sha256": "9f43a753a5474a1806abaf030b0569c2fb9073687e813c270b8e14e3245f545e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_four_named_steps_ii_own_low_return_atomic_rearm_20260823/FOUR_STORIES.md",
+      "bytes": 31229026,
+      "sha256": "1509da485ca374244c595f763f890eca614d482bc398086cb934628c4c0d5c88"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_four_named_steps_ii_own_low_return_atomic_rearm_20260823/LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "bytes": 12487850,
+      "sha256": "db00c80fc1f83c482d498f722db2c4135b068730add17f46b805f8191dff10d2"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_four_named_steps_ii_own_low_return_atomic_rearm_20260823/PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "bytes": 16227525,
+      "sha256": "2dc35034c528e7bf253ed70ffbf5506d30658f6aa21516f90f37ec37ea2e6c8e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_four_named_steps_ii_own_low_return_atomic_rearm_20260823/SMOKE_CRIJEA.md",
+      "bytes": 11670014,
+      "sha256": "ef875f4ba8de64a1913ba672c25f823cde55a99f837de93a367491620c252831"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_four_named_steps_ii_own_low_return_atomic_rearm_20260823/TRADE_REPORT_FOUR.json",
+      "bytes": 14783227,
+      "sha256": "e3e9b7453a920ca965b129986668203810290d1a33acbf9d0376ddebbb07279f"
+    }
+  ],
+  "count": 6,
+  "bytes": 98866688,
+  "largest_committed_artifact_bytes": 31229026,
+  "all_committed_artifacts_under_50_mib": true
+}

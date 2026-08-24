@@ -193,7 +193,7 @@ os.observe(jointState, "AAA", { timestamp_epoch: 211, receipt: "joint-print-a", 
 os.observe(jointState, "BBB", { timestamp_epoch: 211, receipt: "joint-print-b", kind: "PRINT", price_cents: 62, size: 7 });
 const jointReads = os.readAll(jointState), jointVector = os.vectorFromReads(jointState, jointReads);
 const jointCorpus = [
-  { event_id: "JOINT-N1", event_date: "26JUN01", category: "ATP_MAIN", quality: "FOUNDATION_MINUTE_BELL_BOUNDED", grain: "MINUTE", licensed_layers: ["MACRO", "MICRO"], vector: jointVector, legs: [{ leg_id: "JA", anchor_cents: 40, observed_low_cents: 38, low_cents: 36, floor_fraction: 0.5 }, { leg_id: "JB", anchor_cents: 60, observed_low_cents: 58, low_cents: 58, floor_fraction: 0.5 }], source_receipts: [{ source_id: "FOUNDATION", row_ref: "foundation.jsonl#row-1" }] },
+  { event_id: "JOINT-N1", event_date: "26JUN01", category: "ATP_MAIN", quality: "FOUNDATION_MINUTE_BELL_BOUNDED", grain: "MINUTE", licensed_layers: ["MACRO", "MICRO"], vector: jointVector, legs: [{ leg_id: "JA", anchor_cents: 40, observed_low_cents: 38, low_cents: 36, floor_fraction: 0.5, future_low_return_path: [{ window_fraction: 0, seen_true_trade_low_cents: 38, strict_future_true_trade_low_cents: 39, future_low_minus_seen_low_cents: 1, source_row_ref: "minute#ja" }], future_low_return_source: "future-low#ja" }, { leg_id: "JB", anchor_cents: 60, observed_low_cents: 58, low_cents: 58, floor_fraction: 0.5, future_low_return_path: [{ window_fraction: 0, seen_true_trade_low_cents: 58, strict_future_true_trade_low_cents: 57, future_low_minus_seen_low_cents: -1, source_row_ref: "minute#jb" }], future_low_return_source: "future-low#jb" }], source_receipts: [{ source_id: "FOUNDATION", row_ref: "foundation.jsonl#row-1" }] },
 ];
 const jointNeighborhood = os.retrieveNeighborhood(jointCorpus, jointVector, "TEST-EVENT", 1, jointState.receipt);
 const joint = os.deriveJointActions({ state: jointState, reads: jointReads, neighborhood: jointNeighborhood, lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
@@ -213,8 +213,9 @@ assert(joint.derivations.every((row) => row.pair_conservation.at_or_below_99));
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.macro.conditioned_priors).every((prior) => prior.remaining_dip_distribution_cents.q50 <= prior.conditioned_total_dip_distribution_cents.q50)), "remaining travel must be total minus arrived");
 assert.equal(joint.derivations[0].layered_dual_belief.macro.conditioned_priors.AAA.remaining_dip_distribution_cents.q50, 2);
 assert.equal(joint.derivations[0].layered_dual_belief.macro.conditioned_priors.BBB.remaining_dip_distribution_cents.q50, 0);
-assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.predicted_cents, 38, "own low already contains arrived dip and must not subtract remaining q50 again");
-assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.remaining_dip_consumption.double_subtraction_avoided_cents, 2);
+assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.predicted_cents, 39, "belief target must add the conditioned strict-future-low offset to the causal seen low");
+assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.remaining_dip_consumption.expected_future_low_minus_seen_low_cents, 1);
+assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.remaining_dip_consumption.own_low_return_assumption_removed, true);
 assert(joint.derivations.every((row) => row.layered_dual_belief.coherence_placement.current_coherence));
 assert(joint.derivations.filter((row) => row.action.action === "PLACE_REST").every((row) => row.layered_dual_belief.coherence_placement.qualification_to_action_latency_seconds === 0));
 assert(joint.derivations.every((row) => row.layered_dual_belief.coherence_placement.stale_envelope_originated_new_rest === false));

@@ -1,0 +1,37 @@
+{
+  "label": "V54_FOUR_NAMED_STEPS_II_DETERMINISM_X2",
+  "runs": 2,
+  "same_frozen_inputs": true,
+  "same_policy_bytes": true,
+  "policy_sha256": {
+    "arb-executor/analysis/window1_v54_functionable_os.js": "208f419c1eeb4c4a09c2d6880559e9a9fcc1eeadb79dde4e4b81660b6207375b",
+    "arb-executor/analysis/window1_v54_dual_belief_os.js": "b809db92b3929c70d0979d30048f1ae89a96c5f79c17e7c69c05fbaba84acc71"
+  },
+  "decision_trace": {
+    "logical_path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+    "rows": 77399,
+    "run_1_sha256": "e2e0b3678aeb16963fd9d389ff5d18489f3a014da81e522a7bf13524aa41ded1",
+    "run_2_sha256": "e2e0b3678aeb16963fd9d389ff5d18489f3a014da81e522a7bf13524aa41ded1",
+    "byte_identical": true,
+    "external_custody_manifest": "EXTERNAL_CUSTODY_MANIFEST.json"
+  },
+  "outcome_vector_run_1": {
+    "KXATPCHALLENGERMATCH-26JUL12GIUBAR": "INCOMPLETE",
+    "KXATPCHALLENGERMATCH-26JUL14URSPAL": "INCOMPLETE",
+    "KXATPCHALLENGERMATCH-26JUL14LAJSVA": "INCOMPLETE",
+    "KXATPMATCH-26JUL18DANPRA": "INCOMPLETE"
+  },
+  "outcome_vector_run_2": {
+    "KXATPCHALLENGERMATCH-26JUL12GIUBAR": "INCOMPLETE",
+    "KXATPCHALLENGERMATCH-26JUL14URSPAL": "INCOMPLETE",
+    "KXATPCHALLENGERMATCH-26JUL14LAJSVA": "INCOMPLETE",
+    "KXATPMATCH-26JUL18DANPRA": "INCOMPLETE"
+  },
+  "outcome_vectors_equal": true,
+  "run_1_receipt_scanner_status": "SUPERSEDED_BY_RECEIPT_ONLY_CORRECTION_BEFORE_RUN_2",
+  "run_2_four_stories_receipt_sha256": "9b672b447d101e25032ebd53d0bcf5ddbb37bcadd6fc1c738b300260e2e1f88b",
+  "determinism_pass": true,
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

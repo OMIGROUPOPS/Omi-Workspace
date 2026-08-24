@@ -1,0 +1,92 @@
+{
+  "label": "F_VS_121_LAWFUL_INCOMPLETE_ARITHMETIC_STAMPS",
+  "provenance": "F-VS-121@97411938",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "stamp": "UNSTAMPED_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "BAR": 27,
+          "GIU": 66
+        },
+        "two_leg_floor_sum_cents": 93,
+        "strictly_under_par_offer_cents": 6,
+        "proof": "27+66=93; max(0,99-93)=6"
+      },
+      "rest_at_floor_rows": [],
+      "rest_at_floor_proven": false,
+      "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001",
+      "unstamped_abstention_scores_zero": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "stamp": "UNSTAMPED_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "PAL": 39,
+          "URS": 57
+        },
+        "two_leg_floor_sum_cents": 96,
+        "strictly_under_par_offer_cents": 3,
+        "proof": "39+57=96; max(0,99-96)=3"
+      },
+      "rest_at_floor_rows": [],
+      "rest_at_floor_proven": false,
+      "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002",
+      "unstamped_abstention_scores_zero": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "stamp": "UNSTAMPED_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "LAJ": 51,
+          "SVA": 41
+        },
+        "two_leg_floor_sum_cents": 92,
+        "strictly_under_par_offer_cents": 7,
+        "proof": "51+41=92; max(0,99-92)=7"
+      },
+      "rest_at_floor_rows": [],
+      "rest_at_floor_proven": false,
+      "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "unstamped_abstention_scores_zero": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "stamp": "UNSTAMPED_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "DAN": 59,
+          "PRA": 41
+        },
+        "two_leg_floor_sum_cents": 100,
+        "strictly_under_par_offer_cents": 0,
+        "proof": "59+41=100; max(0,99-100)=0"
+      },
+      "rest_at_floor_rows": [],
+      "rest_at_floor_proven": false,
+      "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+      "unstamped_abstention_scores_zero": true
+    }
+  ],
+  "danpra": {
+    "event_id": "KXATPMATCH-26JUL18DANPRA",
+    "stamp": "UNSTAMPED_INCOMPLETE",
+    "arithmetic": {
+      "floor_by_leg_cents": {
+        "DAN": 59,
+        "PRA": 41
+      },
+      "two_leg_floor_sum_cents": 100,
+      "strictly_under_par_offer_cents": 0,
+      "proof": "59+41=100; max(0,99-100)=0"
+    },
+    "rest_at_floor_rows": [],
+    "rest_at_floor_proven": false,
+    "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+    "unstamped_abstention_scores_zero": true
+  },
+  "unstamped_incomplete_games_score_zero": true
+}

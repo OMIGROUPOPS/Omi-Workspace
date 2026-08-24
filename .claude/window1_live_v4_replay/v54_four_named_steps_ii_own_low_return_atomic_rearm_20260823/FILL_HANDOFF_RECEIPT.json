@@ -1,0 +1,6 @@
+{
+  "label": "FILL_HANDOFF_RECEIPT",
+  "fill_events": [],
+  "post_fill_derivations": [],
+  "every_post_fill_sentence_cites_fill_receipt": true
+}

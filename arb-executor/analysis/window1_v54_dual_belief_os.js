@@ -27,6 +27,8 @@ const LAYER_PROVENANCE = Object.freeze({
   double_subtraction_fix: "F-VS-117b@c08ce381",
   coherence_placement_fix: "F-VS-118@c08ce381",
   atomic_cancel_replace_fix: "F-VS-118@c08ce381",
+  own_low_return_fix: "F-VS-120@97411938",
+  atomic_rearm_fix: "F-VS-120@97411938",
 });
 
 function finite(value) { return Number.isFinite(value) ? value : null; }
@@ -50,6 +52,23 @@ function weightedQuantile(rows, field, quantile) {
   return valid.at(-1)[field];
 }
 
+function weightedMean(rows, field) {
+  const valid = rows.filter((row) => Number.isFinite(row[field]) && Number.isFinite(row.conditioning_weight) && row.conditioning_weight > 0);
+  const total = sum(valid.map((row) => row.conditioning_weight));
+  return total > 0 ? sum(valid.map((row) => row[field] * row.conditioning_weight)) / total : null;
+}
+
+function memberFutureLowAtFraction(path, fraction) {
+  if (!Array.isArray(path) || !path.length || !Number.isFinite(fraction)) return null;
+  let selected = null;
+  for (const row of path) {
+    if (!Number.isFinite(row.window_fraction) || row.window_fraction > fraction) break;
+    selected = row;
+  }
+  if (!selected) selected = path[0];
+  return Number.isFinite(selected?.future_low_minus_seen_low_cents) ? selected : null;
+}
+
 // F-VS-114(b): remaining dip is conditioned total travel minus the travel that
 // has already arrived at this receipt.  The old implementation subtracted the
 // arrived share and therefore made the claimed remaining dip grow toward the
@@ -64,7 +83,8 @@ function conditionTravelPrior(baseRow) {
     const fullTravel = finite(row.remaining_dip_cents);
     const memberFloorFraction = finite(row.member_floor_fraction);
     const conditioningWeight = finite(row.weight);
-    if (!(Number.isFinite(ownFraction) && Number.isFinite(fullTravel) && Number.isFinite(memberFloorFraction) && memberFloorFraction > 0 && Number.isFinite(conditioningWeight) && conditioningWeight > 0)) return [];
+    const futureLowRow = memberFutureLowAtFraction(row.future_low_return_path, ownFraction);
+    if (!(Number.isFinite(ownFraction) && Number.isFinite(fullTravel) && Number.isFinite(memberFloorFraction) && memberFloorFraction > 0 && Number.isFinite(conditioningWeight) && conditioningWeight > 0 && futureLowRow)) return [];
     const phaseScale = clamp(ownFraction / memberFloorFraction, 0, 1);
     const arrivedDip = fullTravel * phaseScale;
     return [{
@@ -77,6 +97,11 @@ function conditionTravelPrior(baseRow) {
       conditioned_total_dip_cents: fullTravel,
       arrived_dip_cents: arrivedDip,
       remaining_dip_cents: Math.max(0, fullTravel - arrivedDip),
+      member_seen_true_trade_low_cents: futureLowRow.seen_true_trade_low_cents,
+      member_strict_future_true_trade_low_cents: futureLowRow.strict_future_true_trade_low_cents,
+      future_low_minus_seen_low_cents: futureLowRow.future_low_minus_seen_low_cents,
+      future_low_source_row_ref: futureLowRow.source_row_ref,
+      future_low_return_source: row.future_low_return_source ?? null,
       conditioning_weight: conditioningWeight,
       own_evidence_match_grade: row.evidence_match_grade ?? null,
     }];
@@ -89,23 +114,28 @@ function conditionTravelPrior(baseRow) {
   const targetFloorFraction = weightedQuantile(rows, "member_floor_fraction", 0.5);
   const sourceRows = neighborLeg.rows ?? [];
   const excludedUntimedRows = sourceRows.filter((row) => !Number.isFinite(row.member_floor_fraction) || row.member_floor_fraction <= 0).map((row) => ({ event_id: row.event_id, member_floor_fraction: row.member_floor_fraction ?? null, reason: "NO_POSITIVE_MEMBER_FLOOR_FRACTION" }));
+  const excludedFutureLowRows = sourceRows.filter((row) => !memberFutureLowAtFraction(row.future_low_return_path, ownFraction)).map((row) => ({ event_id: row.event_id, leg_id: row.leg_id ?? null, reason: "NO_BELL_BOUNDED_STRICT_FUTURE_LOW_AT_CAUSAL_MEMBER_PHASE" }));
+  const expectedOffset = weightedMean(rows, "future_low_minus_seen_low_cents");
   return {
     status: rows.length ? "RESOLVED" : "INSUFFICIENT_EVIDENCE",
-    method: "REMAINING_DIP_EQUALS_CONDITIONED_TOTAL_MINUS_ARRIVED; ARRIVED_EQUALS_TOTAL_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS",
+    method: "EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_WEIGHTED_MEMBER_FUTURE_LOW_MINUS_SEEN_LOW_AT_SAME_WINDOW_PHASE; STRICT_FUTURE_MINUTE_LABEL; OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS; NO_CONSTANTS",
     upstream_all_member_distribution_reference_cents: neighborLeg.conditional_remaining_dip_distribution_cents ?? {},
     conditioned_total_dip_distribution_cents: distribution("conditioned_total_dip_cents"),
     arrived_dip_distribution_cents: distribution("arrived_dip_cents"),
     remaining_dip_distribution_cents: distribution("remaining_dip_cents"),
+    future_low_minus_seen_low_distribution_cents: distribution("future_low_minus_seen_low_cents"),
+    expected_future_low_minus_seen_low_cents: Number.isFinite(expectedOffset) ? expectedOffset : null,
     row_universe: {
       source_rows: sourceRows.length,
       floor_timed_rows: rows.length,
       excluded_untimed_rows: excludedUntimedRows,
+      excluded_future_low_rows: excludedFutureLowRows,
       one_universe_for_total_arrived_and_remaining_quantiles: true,
     },
     own_evidence: own,
     target_floor_fraction: Number.isFinite(targetFloorFraction) ? targetFloorFraction : null,
     rows,
-    provenance: [LAYER_PROVENANCE.remaining_dip_inversion_fix, LAYER_PROVENANCE.phase_conditioning_fix, LAYER_PROVENANCE.conditioning],
+    provenance: [LAYER_PROVENANCE.own_low_return_fix, LAYER_PROVENANCE.conditioning],
   };
 }
 
@@ -170,16 +200,15 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, l
   const liveBid = cent(reads.books.value[legId]?.bid_cents);
   const liveAsk = cent(reads.books.value[legId]?.ask_cents);
   const mapCell = baseRow.derivation.true_bell_cell_depth_map?.cell ?? null;
-  // F-VS-117b: own.observed_low_cents is already the causal state after the
-  // arrived share of travel.  The conditioned remaining-dip distribution
-  // describes what remains from that state; subtracting its q50 from the
-  // already-arrived own low a second time was the measured -8c bias term.
-  // The belief target therefore anchors at the current causal own low.  The
-  // remaining distribution stays fully receipted and may place within a
-  // coherent envelope, but it is never subtracted twice from the belief.
-  const predicted = cent(own.observed_low_cents) && Number.isInteger(conditioned.q50)
-    ? own.observed_low_cents
+  // F-VS-120: the seen low is state, not the answer.  Members supply the
+  // bell-bounded strict-future low relative to the low they had seen at the
+  // same phase.  The existing own-evidence conditioning weights form the
+  // expectation; no return-to-low assumption or numerical offset survives.
+  const expectedFutureLowOffset = conditionedPrior?.expected_future_low_minus_seen_low_cents;
+  const predictedRaw = cent(own.observed_low_cents) && Number.isFinite(expectedFutureLowOffset)
+    ? own.observed_low_cents + Math.round(expectedFutureLowOffset)
     : null;
+  const predicted = cent(predictedRaw);
   const minutesToBell = Number.isFinite(state.bell_epoch) ? Math.max(0, Math.round((state.bell_epoch - state.current_epoch) / 60)) : null;
   const deadline = freshDeadline(state, legId, conditionedPrior);
   const byMinutes = deadline?.deadline_minutes_to_bell ?? null;
@@ -236,10 +265,11 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, l
     raw_remaining_dip_cents: raw,
     remaining_dip_cents: conditioned,
     remaining_dip_consumption: {
-      role: "CURRENT_STATE_REFERENCE_NOT_SECOND_SUBTRACTION",
-      own_low_already_contains_arrived_dip: true,
-      double_subtraction_avoided_cents: conditioned.q50 ?? null,
-      provenance: LAYER_PROVENANCE.double_subtraction_fix,
+      role: "LEGACY_TRAVEL_TELEMETRY_NOT_BELIEF_TARGET",
+      own_low_return_assumption_removed: true,
+      expected_future_low_minus_seen_low_cents: expectedFutureLowOffset ?? null,
+      future_low_minus_seen_low_distribution_cents: conditionedPrior?.future_low_minus_seen_low_distribution_cents ?? {},
+      provenance: LAYER_PROVENANCE.own_low_return_fix,
     },
     conditioned_total_dip_cents: conditionedPrior?.conditioned_total_dip_distribution_cents ?? {},
     arrived_dip_cents: conditionedPrior?.arrived_dip_distribution_cents ?? {},
@@ -276,8 +306,9 @@ function allocateUnderPar(targets, lowerBounds) {
 }
 
 function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resources }) {
-  if (!state.dual_belief) state.dual_belief = { first_coherence: null, current_envelopes: null, coherence_history: [], envelope_history: [], first_lawful_coherence_by_leg: {} };
+  if (!state.dual_belief) state.dual_belief = { first_coherence: null, current_envelopes: null, coherence_history: [], envelope_history: [], first_lawful_coherence_by_leg: {}, rearm_by_leg: {} };
   if (!state.dual_belief.first_lawful_coherence_by_leg) state.dual_belief.first_lawful_coherence_by_leg = {};
+  if (!state.dual_belief.rearm_by_leg) state.dual_belief.rearm_by_leg = {};
   const openIds = state.leg_ids.filter((id) => !reads.half_pair_state.value.legs[id].credited);
   const baseRows = new Map();
   for (const legId of openIds) {
@@ -288,8 +319,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
   const macroFamilies = Object.fromEntries(state.leg_ids.map((id) => [id, interimFamily(reads, id)]));
   const conditionedPriors = Object.fromEntries(openIds.map((id) => [id, conditionTravelPrior(baseRows.get(id))]));
   const macroResolved = allFormationComplete && coarseNeighbors.length > 0 && openIds.every((id) => {
-    const q50 = conditionedPriors[id]?.remaining_dip_distribution_cents?.q50;
-    return Number.isInteger(q50);
+    return Number.isFinite(conditionedPriors[id]?.expected_future_low_minus_seen_low_cents);
   });
   const macroStatus = macroResolved ? "RESOLVED" : "INSUFFICIENT_EVIDENCE";
   const macroReceipt = layerReceipt(state, "MACRO", macroStatus, coarseNeighbors.flatMap((row) => [row.citation_receipt_id, ...(row.source_receipts ?? []).map((source) => source.row_ref)]), {
@@ -335,7 +365,10 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     spread_settle_max_cents: SPREAD_SETTLE_COHERENCE_MAX_CENTS,
     provenance: [LAYER_PROVENANCE.pair_coherence, LAYER_PROVENANCE.spread_settle],
   };
-  state.dual_belief.coherence_history.push(coherence);
+  const priorCoherence = state.dual_belief.coherence_history.at(-1);
+  const coherenceSignature = `${coherence.status}|${coherence.predicted_sum_cents ?? "NONE"}|${coherence.spread_settle_bound_cents ?? "NONE"}`;
+  const priorCoherenceSignature = priorCoherence ? `${priorCoherence.status}|${priorCoherence.predicted_sum_cents ?? "NONE"}|${priorCoherence.spread_settle_bound_cents ?? "NONE"}` : null;
+  if (coherenceSignature !== priorCoherenceSignature) state.dual_belief.coherence_history.push(coherence);
   const envelopeMigrations = {};
   if (coherentNow) {
     const envelopes = Object.fromEntries(openIds.map((id) => [id, { low_cents: beliefs[id].predicted_cents, high_cents: beliefs[id].envelope_high_cents, belief_receipt: state.receipt }]));
@@ -361,8 +394,8 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     if (beliefMode && coherentNow) {
       const envelope = state.dual_belief.current_envelopes[legId];
       if (envelope && microMicroResolved && liveBid && liveAsk && liveBid < liveAsk) {
-        const conditionedQ50 = beliefs[legId]?.remaining_dip_cents?.q50;
-        const floorSideRaw = Number.isInteger(conditionedQ50) ? liveAsk - conditionedQ50 : null;
+        const conditionedExpectedFutureLow = cent(beliefs[legId]?.predicted_cents);
+        const floorSideRaw = conditionedExpectedFutureLow;
         const lawfulEnvelopeHigh = Math.min(envelope.high_cents, liveAsk - 1);
         const lawfulEnvelopeExists = envelope.low_cents <= lawfulEnvelopeHigh;
         const floorSideTarget = Number.isInteger(floorSideRaw) && lawfulEnvelopeExists ? clamp(floorSideRaw, envelope.low_cents, lawfulEnvelopeHigh) : null;
@@ -371,9 +404,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         // envelope.  The envelope's deep edge and the projected bid are audit
         // geometry, not alternative defaults.  With zero remaining dip the
         // evidenced bid is the lawful floor-side point.
-        const distributionPricedTarget = Number.isInteger(conditionedQ50) && conditionedQ50 > 0 && Number.isInteger(floorSideTarget)
-          ? floorSideTarget
-          : bookGeometryTarget;
+        const distributionPricedTarget = Number.isInteger(floorSideTarget) ? floorSideTarget : bookGeometryTarget;
         // F-VS-114(c): a newly migrated envelope re-derives the standing rest
         // on this same receipt, in either direction.  A stale active target may
         // never veto the current belief-priced target.
@@ -387,12 +418,14 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
           coherence_exists_at_receipt: true,
           lawful_envelope_high_cents: lawfulEnvelopeHigh,
           lawful_envelope_exists: lawfulEnvelopeExists,
-          conditioned_remaining_dip_q50_cents: conditionedQ50,
-          floor_side_formula: "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS",
+          conditioned_expected_future_low_cents: conditionedExpectedFutureLow,
+          future_low_minus_seen_low_distribution_cents: beliefs[legId]?.phase_conditioning?.future_low_minus_seen_low_distribution_cents ?? null,
+          expected_future_low_minus_seen_low_cents: beliefs[legId]?.phase_conditioning?.expected_future_low_minus_seen_low_cents ?? null,
+          floor_side_formula: "CONDITIONED_EXPECTED_FUTURE_LOW_CENTS",
           floor_side_raw_cents: floorSideRaw,
           floor_side_inside_envelope_cents: floorSideTarget,
           live_bid_projected_inside_envelope_cents: bookGeometryTarget,
-          chosen_candidate_rule: conditionedQ50 > 0 ? "CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY" : "ZERO_REMAINING_DIP_USES_EVIDENCED_BID_INSIDE_ENVELOPE",
+          chosen_candidate_rule: Number.isInteger(floorSideTarget) ? "CONDITIONED_EXPECTED_FUTURE_LOW_INSIDE_COHERENT_ENVELOPE" : "NO_EXPECTED_FUTURE_LOW_USES_EVIDENCED_BID_INSIDE_ENVELOPE",
           chosen_before_migration_discipline_cents: distributionPricedTarget,
           active_target_before_cents: active,
           chosen_target_cents: targets[legId],
@@ -492,9 +525,12 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const atomicNoReplacement = allocation.replacement_unavailable === true && allocation.no_lawful_replacement_legs?.includes(legId);
     const envelopeNoReplacement = Boolean(activeInconsistent && envelopePlacement[legId]?.lawful_envelope_exists === false);
     const noLawfulReplacement = atomicNoReplacement || envelopeNoReplacement;
+    const pendingRearmBefore = state.dual_belief.rearm_by_leg[legId] ?? null;
     const reason = noLawfulReplacement
       ? "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
-      : beliefMode ? (coherentNow ? "LAYERED_COHERENT_ENVELOPE" : "HOLD_LAST_LICENSED_COHERENT_ENVELOPE") : "INDEPENDENT_LANE_HOLD_OR_ABSTAIN_BED";
+      : pendingRearmBefore && Number.isInteger(target)
+        ? "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+        : beliefMode ? (coherentNow ? "LAYERED_COHERENT_ENVELOPE" : "HOLD_LAST_LICENSED_COHERENT_ENVELOPE") : "INDEPENDENT_LANE_HOLD_OR_ABSTAIN_BED";
     const action = actionForTarget(active, target, reason);
     const targetInsideCurrentEnvelope = Number.isInteger(target) && currentEnvelope && target >= currentEnvelope.low_cents && target <= currentEnvelope.high_cents;
     if (coherentNow && Number.isInteger(target) && !state.dual_belief.first_lawful_coherence_by_leg[legId]) {
@@ -523,6 +559,47 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       stale_envelope_originated_new_rest: !coherentNow && !Number.isInteger(active) && action.action === "PLACE_REST",
       provenance: LAYER_PROVENANCE.coherence_placement_fix,
     };
+    let rearmReceipt;
+    if (action.action === "CANCEL_REST" && noLawfulReplacement) {
+      const prior = pendingRearmBefore;
+      rearmReceipt = {
+        status: "REARM_PENDING",
+        armed_at_epoch: prior?.armed_at_epoch ?? state.current_epoch,
+        armed_at_receipt: prior?.armed_at_receipt ?? state.receipt,
+        latest_attempt_epoch: state.current_epoch,
+        latest_attempt_receipt: state.receipt,
+        attempts: (prior?.attempts ?? 0) + 1,
+        trigger: noLawfulReplacement ? envelopeConsistency.no_lawful_replacement_reason : "NO_LAWFUL_REPLACEMENT",
+        permanent_silence_allowed: false,
+        provenance: LAYER_PROVENANCE.atomic_rearm_fix,
+      };
+      state.dual_belief.rearm_by_leg[legId] = rearmReceipt;
+    } else if (pendingRearmBefore && Number.isInteger(target) && ["PLACE_REST", "REPRICE_REST", "HOLD_REST"].includes(action.action)) {
+      rearmReceipt = {
+        ...pendingRearmBefore,
+        status: "REARM_RESOLVED_WITH_LAWFUL_REST",
+        resolved_at_epoch: state.current_epoch,
+        resolved_at_receipt: state.receipt,
+        replacement_target_cents: target,
+        attempts: (pendingRearmBefore.attempts ?? 0) + 1,
+        permanent_silence_allowed: false,
+        provenance: LAYER_PROVENANCE.atomic_rearm_fix,
+      };
+      delete state.dual_belief.rearm_by_leg[legId];
+    } else if (pendingRearmBefore) {
+      rearmReceipt = {
+        ...pendingRearmBefore,
+        status: "REARM_PENDING",
+        latest_attempt_epoch: state.current_epoch,
+        latest_attempt_receipt: state.receipt,
+        attempts: (pendingRearmBefore.attempts ?? 0) + 1,
+        permanent_silence_allowed: false,
+        provenance: LAYER_PROVENANCE.atomic_rearm_fix,
+      };
+      state.dual_belief.rearm_by_leg[legId] = rearmReceipt;
+    } else {
+      rearmReceipt = { status: "NOT_REQUIRED", attempts: 0, permanent_silence_allowed: false, provenance: LAYER_PROVENANCE.atomic_rearm_fix };
+    }
     const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${action.target_cents ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
     const upstream = `MACRO=${macroStatus}[${macroReceipt.receipt_id}] · MICRO=${microStatus}[${microReceipt.receipt_id}] · MICRO_MICRO=${microMicroStatus}[${microMicroReceipt.receipt_id}]`;
     const beliefText = dualPlain.length ? `${dualPlain[0]} || SIBLING-INVERSE: ${dualPlain[1]}` : "DUAL_BELIEF=INSUFFICIENT_EVIDENCE";
@@ -539,7 +616,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.sentence = sentence;
     row.sentence_action_assertion = { hard_assert: true, expected_statement: actionStatement, equal: sentence.includes(actionStatement) };
     row.citation_receipt_assertion = { hard_assert: true, receipt_count: Object.keys(row.citation_receipts).length, equal: [macroReceipt, microReceipt, microMicroReceipt].every((receipt) => sentence.includes(receipt.receipt_id)) };
-    row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, conditioned_priors: conditionedPriors, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, belief_mode: beliefMode, independent_lane_may_complete: false, first_coherence: state.dual_belief.first_coherence, envelope_history_count: state.dual_belief.envelope_history.length, envelope_migration_at_receipt: envelopeMigrations[legId] ?? null, envelope_consistency: envelopeConsistency, coherence_placement: coherencePlacement, envelope: currentEnvelope, envelope_placement: envelopePlacement[legId], v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
+    row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, conditioned_priors: conditionedPriors, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, belief_mode: beliefMode, independent_lane_may_complete: false, first_coherence: state.dual_belief.first_coherence, envelope_history_count: state.dual_belief.envelope_history.length, envelope_migration_at_receipt: envelopeMigrations[legId] ?? null, envelope_consistency: envelopeConsistency, coherence_placement: coherencePlacement, atomic_rearm: rearmReceipt, envelope: currentEnvelope, envelope_placement: envelopePlacement[legId], v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
     row.derivation.target_basis = reason;
     row.derivation.derived_target_cents = target;
     row.derivation.allocation = allocation;

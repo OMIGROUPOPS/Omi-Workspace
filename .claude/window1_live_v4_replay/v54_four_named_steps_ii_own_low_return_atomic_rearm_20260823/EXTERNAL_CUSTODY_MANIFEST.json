@@ -1,0 +1,54 @@
+{
+  "label": "V54_FOUR_NAMED_STEPS_II_EXTERNAL_CUSTODY",
+  "files": [
+    {
+      "logical_path": "FOUNDATION_PER_MINUTE_UNIVERSE",
+      "custody_location": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+      "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+      "bytes": 406637058,
+      "rows": 9330878,
+      "committed": false,
+      "compact_derivatives": [
+        {
+          "path": "FOUNDATION_LIBRARY.jsonl.gz",
+          "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+          "bytes": 2159635,
+          "rows": 9000
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+          "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+          "bytes": 1668883,
+          "rows": 5260
+        }
+      ]
+    },
+    {
+      "logical_path": "ATOMIC_REARM_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_four_named_steps_ii_20260823\\ATOMIC_REARM_RECEIPT.json",
+      "sha256": "40f5c7ff2175bfd67ebeff2d9452ef47910f4b045abfc0424e6f5d97d9ae374c",
+      "bytes": 114592405,
+      "rows": 76957,
+      "committed": false
+    },
+    {
+      "logical_path": "ENVELOPE_PLACEMENT_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_four_named_steps_ii_20260823\\ENVELOPE_PLACEMENT_RECEIPT.json",
+      "sha256": "0f5633ffc8e59986b61da2100b1e803fe0a76b6616e161ee906db1bdc834a09b",
+      "bytes": 89204403,
+      "rows": 5920,
+      "committed": false
+    },
+    {
+      "logical_path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_four_named_steps_ii_20260823\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "e2e0b3678aeb16963fd9d389ff5d18489f3a014da81e522a7bf13524aa41ded1",
+      "bytes": 157545252,
+      "rows": 77399,
+      "committed": false
+    }
+  ],
+  "all_committed_artifacts_under_50_mb": true,
+  "committed_artifact_cap_bytes": 52428800,
+  "oversized_artifacts_moved_to_external_custody": 3
+}

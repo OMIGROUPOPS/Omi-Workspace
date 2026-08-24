@@ -213,6 +213,11 @@ assert(joint.derivations.every((row) => row.pair_conservation.at_or_below_99));
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.macro.conditioned_priors).every((prior) => prior.remaining_dip_distribution_cents.q50 <= prior.conditioned_total_dip_distribution_cents.q50)), "remaining travel must be total minus arrived");
 assert.equal(joint.derivations[0].layered_dual_belief.macro.conditioned_priors.AAA.remaining_dip_distribution_cents.q50, 2);
 assert.equal(joint.derivations[0].layered_dual_belief.macro.conditioned_priors.BBB.remaining_dip_distribution_cents.q50, 0);
+assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.predicted_cents, 38, "own low already contains arrived dip and must not subtract remaining q50 again");
+assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.remaining_dip_consumption.double_subtraction_avoided_cents, 2);
+assert(joint.derivations.every((row) => row.layered_dual_belief.coherence_placement.current_coherence));
+assert(joint.derivations.filter((row) => row.action.action === "PLACE_REST").every((row) => row.layered_dual_belief.coherence_placement.qualification_to_action_latency_seconds === 0));
+assert(joint.derivations.every((row) => row.layered_dual_belief.coherence_placement.stale_envelope_originated_new_rest === false));
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.deadline.deadline_epoch >= belief.deadline.emitted_at_epoch && belief.deadline.derives_fresh_at_each_emission)));
 assert(joint.derivations.every((row) => row.sentence.includes("remaining-dip=total-minus-arrived=") && row.sentence.includes("deadline-emitted-now=")));
 

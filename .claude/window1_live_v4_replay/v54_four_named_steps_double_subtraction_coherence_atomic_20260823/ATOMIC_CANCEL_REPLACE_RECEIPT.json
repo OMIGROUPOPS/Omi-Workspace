@@ -1,0 +1,587 @@
+{
+  "label": "F_VS_118_CANCEL_AND_REPLACE_ATOMIC",
+  "rule": "An inconsistent rest is replaced inside the current envelope on the same receipt when a lawful joint replacement exists. Only that inconsistent rest cancels fail-loud when no lawful replacement exists; a consistent sibling rest is not globally cleared.",
+  "provenance": "F-VS-118@c08ce381",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783841774,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432",
+      "envelope": {
+        "low_cents": 27,
+        "high_cents": 28,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 26,
+        "live_ask_cents": 30,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 28,
+        "lawful_envelope_exists": true,
+        "conditioned_remaining_dip_q50_cents": 11,
+        "floor_side_formula": "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS",
+        "floor_side_raw_cents": 19,
+        "floor_side_inside_envelope_cents": 27,
+        "live_bid_projected_inside_envelope_cents": 27,
+        "chosen_candidate_rule": "CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY",
+        "chosen_before_migration_discipline_cents": 27,
+        "active_target_before_cents": 29,
+        "chosen_target_cents": 27,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 29,
+            "high_cents": 30,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-348"
+          },
+          "to": {
+            "low_cents": 27,
+            "high_cents": 28,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432"
+          },
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "CANCEL_AND_REPLACE_ATOMIC_SAME_RECEIPT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": true,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": null,
+        "current_envelope": {
+          "low_cents": 27,
+          "high_cents": 28,
+          "belief_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432"
+        },
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 27,
+        "reason": "LAYERED_COHERENT_ENVELOPE"
+      },
+      "sentence_verbatim": "believes BAR at 28¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=26¢; ask=30¢; book-receipt=KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432] at 542min-to-bell with 6.03 vol_log1p in ATP_CHALL, using ATP_CHALL|26 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26APR19SHEVAN@0.84 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-2584885ed24498b354ddb0eb0d996b8393130519e40c8afbb8a6fbc7875e628a], SHOULD drift to 27¢ by 446min-to-bell [deadline-epoch=1783847528.8923078; deadline-emitted-now=1783841774; deadline-receipt=KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432] || SIBLING-INVERSE: believes GIU at 68¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=68¢; ask=69¢; book-receipt=KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-295] at 542min-to-bell with 6.03 vol_log1p in ATP_CHALL, using ATP_CHALL|68 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26APR19SHEVAN@0.84 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-2584885ed24498b354ddb0eb0d996b8393130519e40c8afbb8a6fbc7875e628a], SHOULD drift to 69¢ by 5min-to-bell [deadline-epoch=1783873982.082397; deadline-emitted-now=1783841774; deadline-receipt=KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432]. MACRO: family=INTERIM_DOWN_TRAVEL, conditioned-total-dip={\"q25\":5,\"q50\":31,\"q75\":31}, arrived-dip={\"q25\":1,\"q50\":20,\"q75\":20}, remaining-dip=total-minus-arrived={\"q25\":4,\"q50\":11,\"q75\":11}, conditioning-method=REMAINING_DIP_EQUALS_CONDITIONED_TOTAL_MINUS_ARRIVED; ARRIVED_EQUALS_TOTAL_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-2584885ed24498b354ddb0eb0d996b8393130519e40c8afbb8a6fbc7875e628a,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-338c8d7df6fe17cc83a308f02446fdb8c16486ecab37f515fc714e47333a7da7,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-6b50fdc28410f354d173ae0eba4cb945bf1d2653105dd311542a93551c9b4f5d,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-98fb27fb25fdb9ce774d77d31a443eb1af4c88804f3847fa43eb3b8c24826e91,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-9983bc7b031e3bf9fa03a5c4e59bbcc212712af490e327a96b1943cc0b15e1eb,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-269888238d75e868ae127dc97aa25f55305c0829f1f356f0e57b66018f146d33,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-96c809d96b8c63b0fb90067dfad8d5fe768d723d6a43e111a3b18b05eb050142 [CR-52758d60fd460f48707d7c686e8329ca21ff2639e4ecbefdd18615470fb4a3bc]. MICRO: own-window={\"basis\":\"BOOK_PATH\",\"anchor_cents\":31,\"observed_low_cents\":27,\"observed_dip_cents\":4,\"dip_state\":\"DIP_OBSERVED\",\"true_trade_count\":0,\"formation_end_epoch\":1783831858,\"window_end_epoch\":1783874300,\"elapsed_window_seconds\":9916,\"remaining_window_seconds\":32526,\"window_fraction\":0.2336364921539984,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:BOOK_SIGNATURE_OPERATOR_RULED\"}, rows=KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432,CR-2584885ed24498b354ddb0eb0d996b8393130519e40c8afbb8a6fbc7875e628a, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-5f24975a224cd3b087a2f08b081a0b0f9602cecff1e747029debc7559a9d7d6a]. MICRO-MICRO: tick=KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432, book=KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-3afa897ff1eeafe200b076ea5292f66120e993f80d87502b7c016f65fcbd9468]. ORDER=MACRO=RESOLVED[CR-52758d60fd460f48707d7c686e8329ca21ff2639e4ecbefdd18615470fb4a3bc] · MICRO=RESOLVED[CR-5f24975a224cd3b087a2f08b081a0b0f9602cecff1e747029debc7559a9d7d6a] · MICRO_MICRO=RESOLVED[CR-3afa897ff1eeafe200b076ea5292f66120e993f80d87502b7c016f65fcbd9468]. COHERENCE=COHERENT; MIRROR_GAP=4; SPREAD_BOUND=5/20; ENVELOPE={\"low_cents\":27,\"high_cents\":28,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":26,\"live_ask_cents\":30,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":28,\"lawful_envelope_exists\":true,\"conditioned_remaining_dip_q50_cents\":11,\"floor_side_formula\":\"LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS\",\"floor_side_raw_cents\":19,\"floor_side_inside_envelope_cents\":27,\"live_bid_projected_inside_envelope_cents\":27,\"chosen_candidate_rule\":\"CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY\",\"chosen_before_migration_discipline_cents\":27,\"active_target_before_cents\":29,\"chosen_target_cents\":27,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":29,\"high_cents\":30,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-348\"},\"to\":{\"low_cents\":27,\"high_cents\":28,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432\"},\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-432\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LATCH_HOLD. ACTION=REPRICE_REST; TARGET_CENTS=27; ACTIVE_TARGET_BEFORE_CENTS=29."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783841801.304,
+      "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+      "envelope": {
+        "low_cents": 27,
+        "high_cents": 27,
+        "belief_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 25,
+        "live_ask_cents": 30,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 27,
+        "lawful_envelope_exists": true,
+        "conditioned_remaining_dip_q50_cents": 11,
+        "floor_side_formula": "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS",
+        "floor_side_raw_cents": 19,
+        "floor_side_inside_envelope_cents": 27,
+        "live_bid_projected_inside_envelope_cents": 27,
+        "chosen_candidate_rule": "CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY",
+        "chosen_before_migration_discipline_cents": 27,
+        "active_target_before_cents": 26,
+        "chosen_target_cents": 27,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 26,
+            "high_cents": 27,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-436"
+          },
+          "to": {
+            "low_cents": 27,
+            "high_cents": 27,
+            "belief_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028"
+          },
+          "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "CANCEL_AND_REPLACE_ATOMIC_SAME_RECEIPT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": true,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": null,
+        "current_envelope": {
+          "low_cents": 27,
+          "high_cents": 27,
+          "belief_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028"
+        },
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 27,
+        "reason": "LAYERED_COHERENT_ENVELOPE"
+      },
+      "sentence_verbatim": "believes BAR at 27¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=25¢; ask=30¢; book-receipt=KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-436] at 542min-to-bell with 6.49 vol_log1p in ATP_CHALL, using ATP_CHALL|25 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26APR19SHEVAN@0.82 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-b49f8ae2a359c1b837edeccc46b8687714c5093bd2fbd2dc9f5e6e54c1a9f25e], SHOULD drift to 27¢ by 116min-to-bell [deadline-epoch=1783867353.6824877; deadline-emitted-now=1783841801.304; deadline-receipt=2898debe-683f-4cd1-7a5e-572e1b7ac028] || SIBLING-INVERSE: believes GIU at 68¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=68¢; ask=69¢; book-receipt=KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-307] at 542min-to-bell with 6.49 vol_log1p in ATP_CHALL, using ATP_CHALL|68 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26APR19SHEVAN@0.82 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-b49f8ae2a359c1b837edeccc46b8687714c5093bd2fbd2dc9f5e6e54c1a9f25e], SHOULD drift to 69¢ by 5min-to-bell [deadline-epoch=1783873982.082397; deadline-emitted-now=1783841801.304; deadline-receipt=2898debe-683f-4cd1-7a5e-572e1b7ac028]. MACRO: family=INTERIM_DOWN_TRAVEL, conditioned-total-dip={\"q25\":5,\"q50\":15,\"q75\":31}, arrived-dip={\"q25\":1,\"q50\":4,\"q75\":20}, remaining-dip=total-minus-arrived={\"q25\":4,\"q50\":11,\"q75\":11}, conditioning-method=REMAINING_DIP_EQUALS_CONDITIONED_TOTAL_MINUS_ARRIVED; ARRIVED_EQUALS_TOTAL_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-b49f8ae2a359c1b837edeccc46b8687714c5093bd2fbd2dc9f5e6e54c1a9f25e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-591ecdeed4cfef41658f056794189648f284a749ea02ca546b5d97f80e4cd826,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-4ddaa2486e7cebd545c0475bf2ee9565da5a77d9c14797b15da991ba0521e6f6,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-25854a41544ff830bed922afb0833ded0b8f7f368b933b823e5b4b79d0251c49,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-cdb5f89f7379a4d294b98ac6291c49a9169bd0cac6a5b834b8cd040c62a89d8a,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-1cbaf6942c2a0a95d072c34bce1f6903aa7c578c65af423aeb90c4507e0f515e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-a80baa937a3a5feca016f8dc190d8d5bb3ec8c82067063769e734fd781ccb112 [CR-6d43f44c3e2733d6d2b46d0e2a4c616aa4c9c89db2dc6673097d693118a8e95a]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":31,\"observed_low_cents\":27,\"observed_dip_cents\":4,\"dip_state\":\"DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1783831858,\"window_end_epoch\":1783874300,\"elapsed_window_seconds\":9943.303999900818,\"remaining_window_seconds\":32498.696000099182,\"window_fraction\":0.23427981715990806,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:BOOK_SIGNATURE_OPERATOR_RULED\"}, rows=KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-436,CR-b49f8ae2a359c1b837edeccc46b8687714c5093bd2fbd2dc9f5e6e54c1a9f25e, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-74d14f539ff5e4846f27ad34e9a04631032fae63b923b50b526bb6165b112d5a]. MICRO-MICRO: tick=2898debe-683f-4cd1-7a5e-572e1b7ac028, book=KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-436, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-6d52e190efafd99b4403527d5fab62942406dc24154ffaaf71927eda4046ad1e]. ORDER=MACRO=RESOLVED[CR-6d43f44c3e2733d6d2b46d0e2a4c616aa4c9c89db2dc6673097d693118a8e95a] · MICRO=RESOLVED[CR-74d14f539ff5e4846f27ad34e9a04631032fae63b923b50b526bb6165b112d5a] · MICRO_MICRO=RESOLVED[CR-6d52e190efafd99b4403527d5fab62942406dc24154ffaaf71927eda4046ad1e]. COHERENCE=COHERENT; MIRROR_GAP=4; SPREAD_BOUND=6/20; ENVELOPE={\"low_cents\":27,\"high_cents\":27,\"belief_receipt\":\"2898debe-683f-4cd1-7a5e-572e1b7ac028\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":25,\"live_ask_cents\":30,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":27,\"lawful_envelope_exists\":true,\"conditioned_remaining_dip_q50_cents\":11,\"floor_side_formula\":\"LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS\",\"floor_side_raw_cents\":19,\"floor_side_inside_envelope_cents\":27,\"live_bid_projected_inside_envelope_cents\":27,\"chosen_candidate_rule\":\"CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY\",\"chosen_before_migration_discipline_cents\":27,\"active_target_before_cents\":26,\"chosen_target_cents\":27,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":26,\"high_cents\":27,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-436\"},\"to\":{\"low_cents\":27,\"high_cents\":27,\"belief_receipt\":\"2898debe-683f-4cd1-7a5e-572e1b7ac028\"},\"receipt\":\"2898debe-683f-4cd1-7a5e-572e1b7ac028\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LATCH_HOLD. ACTION=REPRICE_REST; TARGET_CENTS=27; ACTIVE_TARGET_BEFORE_CENTS=26."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784005897.194,
+      "receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "envelope": {
+        "low_cents": 66,
+        "high_cents": 66,
+        "belief_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 60,
+        "live_ask_cents": 66,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 65,
+        "lawful_envelope_exists": false,
+        "conditioned_remaining_dip_q50_cents": 17,
+        "floor_side_formula": "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS",
+        "floor_side_raw_cents": 49,
+        "floor_side_inside_envelope_cents": null,
+        "live_bid_projected_inside_envelope_cents": null,
+        "chosen_candidate_rule": "CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY",
+        "chosen_before_migration_discipline_cents": null,
+        "active_target_before_cents": 57,
+        "chosen_target_cents": null,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 49,
+            "high_cents": 62,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-55"
+          },
+          "to": {
+            "low_cents": 66,
+            "high_cents": 66,
+            "belief_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8"
+          },
+          "receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "CANCEL_REQUIRED_FAIL_LOUD",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": false,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": "ENVELOPE_POINT_AT_OR_ABOVE_LIVE_ASK",
+        "current_envelope": {
+          "low_cents": 66,
+          "high_cents": 66,
+          "belief_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8"
+        },
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "sentence_verbatim": "believes PAL at 37¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=34¢; ask=40¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-64] at 606min-to-bell with 2.4 vol_log1p in ATP_CHALL, using ATP_CHALL|34 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-d1653f2a3e0fa788aefb92d4602cea125c27aff3991262f3073572b1885f09c3], SHOULD drift to 37¢ by 1min-to-bell [deadline-epoch=1784042181.2709677; deadline-emitted-now=1784005897.194; deadline-receipt=202f2bef-d8ac-4abd-6613-7e48b7eda7d8] || SIBLING-INVERSE: believes URS at 63¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=60¢; ask=66¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-556] at 606min-to-bell with 2.4 vol_log1p in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-d1653f2a3e0fa788aefb92d4602cea125c27aff3991262f3073572b1885f09c3], SHOULD drift to 66¢ by 104min-to-bell [deadline-epoch=1784035977.4615386; deadline-emitted-now=1784005897.194; deadline-receipt=202f2bef-d8ac-4abd-6613-7e48b7eda7d8]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":17,\"q50\":34,\"q75\":41}, arrived-dip={\"q25\":3,\"q50\":5,\"q75\":5}, remaining-dip=total-minus-arrived={\"q25\":15,\"q50\":17,\"q75\":36}, conditioning-method=REMAINING_DIP_EQUALS_CONDITIONED_TOTAL_MINUS_ARRIVED; ARRIVED_EQUALS_TOTAL_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d1653f2a3e0fa788aefb92d4602cea125c27aff3991262f3073572b1885f09c3,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-30ad4b79409cd3c94b25fef7d084a1d73f2ec4d61d3e22daf263e01857e0106e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-a06df39261c40982166ae92399aabf0b4bd897d476c6b4e91c911b0f2e6d1240,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-c99b9e2fb0170ec7647fa6d8e8f592ce8bf2d9497d33ba4d0bc42a7baca4f5d1,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-5528b88b2be13d5e7892f0c1c9273bba1e7d8d703ac78484c6a819757b5160d3,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d9827f8a86c003856a8d2f7d792cbbaa722a2d22b59a78a881b5794f2b25df9e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-9c89c61ecf32d426dce87b1c20d17219c5f3b901bc1afcc682e0e0583d6d80c0 [CR-8a1983176d6ad7f3a2f00570c13e3923295a95d0f5679d539d4c4a375785aaf0]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":62,\"observed_low_cents\":66,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1784001495,\"window_end_epoch\":1784042247,\"elapsed_window_seconds\":4402.194000005722,\"remaining_window_seconds\":36349.80599999428,\"window_fraction\":0.10802399882228411,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_SIGNATURE_OPERATOR_RULED\"}, rows=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-556,CR-d1653f2a3e0fa788aefb92d4602cea125c27aff3991262f3073572b1885f09c3, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-36da38ab821fe2c78006566e1d57a7bc391cab8166f1d7b499b7f39e8f3d3882]. MICRO-MICRO: tick=202f2bef-d8ac-4abd-6613-7e48b7eda7d8, book=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-556, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-d277aa38cb0046bd1b3c963ddfdfea250d41cf3adb39a58460220626d3ef1cdc]. ORDER=MACRO=RESOLVED[CR-8a1983176d6ad7f3a2f00570c13e3923295a95d0f5679d539d4c4a375785aaf0] · MICRO=RESOLVED[CR-36da38ab821fe2c78006566e1d57a7bc391cab8166f1d7b499b7f39e8f3d3882] · MICRO_MICRO=RESOLVED[CR-d277aa38cb0046bd1b3c963ddfdfea250d41cf3adb39a58460220626d3ef1cdc]. COHERENCE=COHERENT; MIRROR_GAP=3; SPREAD_BOUND=12/20; ENVELOPE={\"low_cents\":66,\"high_cents\":66,\"belief_receipt\":\"202f2bef-d8ac-4abd-6613-7e48b7eda7d8\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":60,\"live_ask_cents\":66,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":65,\"lawful_envelope_exists\":false,\"conditioned_remaining_dip_q50_cents\":17,\"floor_side_formula\":\"LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS\",\"floor_side_raw_cents\":49,\"floor_side_inside_envelope_cents\":null,\"live_bid_projected_inside_envelope_cents\":null,\"chosen_candidate_rule\":\"CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY\",\"chosen_before_migration_discipline_cents\":null,\"active_target_before_cents\":57,\"chosen_target_cents\":null,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":49,\"high_cents\":62,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-55\"},\"to\":{\"low_cents\":66,\"high_cents\":66,\"belief_receipt\":\"202f2bef-d8ac-4abd-6613-7e48b7eda7d8\"},\"receipt\":\"202f2bef-d8ac-4abd-6613-7e48b7eda7d8\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"CANCEL_REQUIRED_FAIL_LOUD\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LATCH_HOLD. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=57."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784021161.637,
+      "receipt": "038f03f3-2dcd-7363-da5f-06677e3be932",
+      "envelope": {
+        "low_cents": 40,
+        "high_cents": 40,
+        "belief_receipt": "038f03f3-2dcd-7363-da5f-06677e3be932"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 35,
+        "live_ask_cents": 41,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 40,
+        "lawful_envelope_exists": true,
+        "conditioned_remaining_dip_q50_cents": 14,
+        "floor_side_formula": "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS",
+        "floor_side_raw_cents": 27,
+        "floor_side_inside_envelope_cents": 40,
+        "live_bid_projected_inside_envelope_cents": 40,
+        "chosen_candidate_rule": "CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY",
+        "chosen_before_migration_discipline_cents": 40,
+        "active_target_before_cents": 37,
+        "chosen_target_cents": 40,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 37,
+            "high_cents": 38,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2899"
+          },
+          "to": {
+            "low_cents": 40,
+            "high_cents": 40,
+            "belief_receipt": "038f03f3-2dcd-7363-da5f-06677e3be932"
+          },
+          "receipt": "038f03f3-2dcd-7363-da5f-06677e3be932",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "CANCEL_AND_REPLACE_ATOMIC_SAME_RECEIPT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": true,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": null,
+        "current_envelope": {
+          "low_cents": 40,
+          "high_cents": 40,
+          "belief_receipt": "038f03f3-2dcd-7363-da5f-06677e3be932"
+        },
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 40,
+        "reason": "LAYERED_COHERENT_ENVELOPE"
+      },
+      "sentence_verbatim": "believes PAL at 38¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=35¢; ask=41¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2899] at 351min-to-bell with 5.53 vol_log1p in ATP_CHALL, using ATP_CHALL|35 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.8 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-3cfd16d25849a2aa9558aac87e7cf35cb10a349fae8b102d29d046ac36c493cc], SHOULD drift to 40¢ by 30min-to-bell [deadline-epoch=1784040449.1176472; deadline-emitted-now=1784021161.637; deadline-receipt=038f03f3-2dcd-7363-da5f-06677e3be932] || SIBLING-INVERSE: believes URS at 62¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=60¢; ask=64¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1042] at 351min-to-bell with 5.53 vol_log1p in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.8 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-3cfd16d25849a2aa9558aac87e7cf35cb10a349fae8b102d29d046ac36c493cc], SHOULD drift to 64¢ by 351min-to-bell [deadline-epoch=1784021161.637; deadline-emitted-now=1784021161.637; deadline-receipt=038f03f3-2dcd-7363-da5f-06677e3be932]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":9,\"q50\":28,\"q75\":28}, arrived-dip={\"q25\":9,\"q50\":14,\"q75\":14}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":14,\"q75\":14}, conditioning-method=REMAINING_DIP_EQUALS_CONDITIONED_TOTAL_MINUS_ARRIVED; ARRIVED_EQUALS_TOTAL_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-3cfd16d25849a2aa9558aac87e7cf35cb10a349fae8b102d29d046ac36c493cc,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-bd21b42dc776af8d3b5aefe7f7e2736b6fc11e87fd2b7a2889bdbb954c8720e7,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-3da02e55ae162a2ff157228029b03d7b2df87f8527a0b64e0698a860f673875a,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-5edc8a125ffad2857185376a327f66ab21e22617631f8036e4547a8b441c19f6,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-404ed83530410801636560ec0a96620542e6ee3825e30736447ad189ce90ab11,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-3e743e56183b5213fbd1ec7cf4f937d8d39e03a8aaa01c5758e0f1227144dfa3,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-481622672c7c70ea11179b6870edd138b9be0a82d258875183c6595f11c0d217 [CR-d9a9baeb1cc1301568b05e129a3d7817edefbcdcdc4b5d8dbbda97753a1a14cf]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":38,\"observed_low_cents\":40,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":7,\"formation_end_epoch\":1784001495,\"window_end_epoch\":1784042247,\"elapsed_window_seconds\":19666.637000083923,\"remaining_window_seconds\":21085.362999916077,\"window_fraction\":0.4825931733432451,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_SIGNATURE_OPERATOR_RULED\"}, rows=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2899,CR-3cfd16d25849a2aa9558aac87e7cf35cb10a349fae8b102d29d046ac36c493cc, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-127e147ba192fb5a7497b910dee4cb078dc99a27b5a4f7ac125c09f72fb8fa4a]. MICRO-MICRO: tick=038f03f3-2dcd-7363-da5f-06677e3be932, book=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2899, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-d0ea0b417e6afbbd090051ba8f54c9d26b9d4d15322742ce913892c8a47b079d]. ORDER=MACRO=RESOLVED[CR-d9a9baeb1cc1301568b05e129a3d7817edefbcdcdc4b5d8dbbda97753a1a14cf] · MICRO=RESOLVED[CR-127e147ba192fb5a7497b910dee4cb078dc99a27b5a4f7ac125c09f72fb8fa4a] · MICRO_MICRO=RESOLVED[CR-d0ea0b417e6afbbd090051ba8f54c9d26b9d4d15322742ce913892c8a47b079d]. COHERENCE=COHERENT; MIRROR_GAP=4; SPREAD_BOUND=10/20; ENVELOPE={\"low_cents\":40,\"high_cents\":40,\"belief_receipt\":\"038f03f3-2dcd-7363-da5f-06677e3be932\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":35,\"live_ask_cents\":41,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":40,\"lawful_envelope_exists\":true,\"conditioned_remaining_dip_q50_cents\":14,\"floor_side_formula\":\"LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS\",\"floor_side_raw_cents\":27,\"floor_side_inside_envelope_cents\":40,\"live_bid_projected_inside_envelope_cents\":40,\"chosen_candidate_rule\":\"CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY\",\"chosen_before_migration_discipline_cents\":40,\"active_target_before_cents\":37,\"chosen_target_cents\":40,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":37,\"high_cents\":38,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2899\"},\"to\":{\"low_cents\":40,\"high_cents\":40,\"belief_receipt\":\"038f03f3-2dcd-7363-da5f-06677e3be932\"},\"receipt\":\"038f03f3-2dcd-7363-da5f-06677e3be932\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LATCH_HOLD. ACTION=REPRICE_REST; TARGET_CENTS=40; ACTIVE_TARGET_BEFORE_CENTS=37."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784016081.367,
+      "receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "envelope": {
+        "low_cents": 62,
+        "high_cents": 62,
+        "belief_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 59,
+        "live_ask_cents": 62,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 61,
+        "lawful_envelope_exists": false,
+        "conditioned_remaining_dip_q50_cents": 33,
+        "floor_side_formula": "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS",
+        "floor_side_raw_cents": 29,
+        "floor_side_inside_envelope_cents": null,
+        "live_bid_projected_inside_envelope_cents": null,
+        "chosen_candidate_rule": "CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY",
+        "chosen_before_migration_discipline_cents": null,
+        "active_target_before_cents": 44,
+        "chosen_target_cents": null,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 44,
+            "high_cents": 59,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-55"
+          },
+          "to": {
+            "low_cents": 62,
+            "high_cents": 62,
+            "belief_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6"
+          },
+          "receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "CANCEL_REQUIRED_FAIL_LOUD",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": false,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": "ENVELOPE_POINT_AT_OR_ABOVE_LIVE_ASK",
+        "current_envelope": {
+          "low_cents": 62,
+          "high_cents": 62,
+          "belief_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6"
+        },
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "sentence_verbatim": "believes LAJ at 60¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=59¢; ask=62¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-183] at 1039min-to-bell with 1.39 vol_log1p in ATP_CHALL, using ATP_CHALL|59 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.83 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-8352d9bdb2cfafca1f523c78b01dc116eddf6d447ef3bbfed45b50b5324397bf], SHOULD drift to 62¢ by 5min-to-bell [deadline-epoch=1784078071.7295208; deadline-emitted-now=1784016081.367; deadline-receipt=51ffb46a-c62c-6890-aa69-cd9970de51c6] || SIBLING-INVERSE: believes SVA at 39¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=37¢; ask=41¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-192] at 1039min-to-bell with 1.39 vol_log1p in ATP_CHALL, using ATP_CHALL|37 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.83 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-8352d9bdb2cfafca1f523c78b01dc116eddf6d447ef3bbfed45b50b5324397bf], SHOULD drift to 38¢ by 27min-to-bell [deadline-epoch=1784076776.2155964; deadline-emitted-now=1784016081.367; deadline-receipt=51ffb46a-c62c-6890-aa69-cd9970de51c6]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":10,\"q50\":38,\"q75\":38}, arrived-dip={\"q25\":1,\"q50\":5,\"q75\":5}, remaining-dip=total-minus-arrived={\"q25\":9,\"q50\":33,\"q75\":33}, conditioning-method=REMAINING_DIP_EQUALS_CONDITIONED_TOTAL_MINUS_ARRIVED; ARRIVED_EQUALS_TOTAL_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-8352d9bdb2cfafca1f523c78b01dc116eddf6d447ef3bbfed45b50b5324397bf,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-3062f74983a5ce8ee70e5b2e2b12d7c053d828a8b40f0afd8c9c3e7da6fc4343,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-0b035597d4c1f2a7377b517a64bd2b86e73b386d271e827b9e3a615040ab7a3f,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-e9208fa25c229ee0df1fc5b4ffa9260503ade7b39a4347a6137ab3dd41a036ef,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-db0aecf55ecb92da746e934b2c336093b580bfb5eb4dc0a8400830c2002b198a,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-1168ab18e18c855fcb512ce8dc6fc543812af128167ac87f24dffe8df61fc551,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-449010287047a58c71b79ddcbd0d3772b808d9d492b5e29c6a54ede075e45d08 [CR-bc9b018b50d72e7185245f3f8191d1c1eddbdcb403afcaca1b11fb18fd604ce8]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":59,\"observed_low_cents\":62,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1784007603,\"window_end_epoch\":1784078400,\"elapsed_window_seconds\":8478.367000102997,\"remaining_window_seconds\":62318.632999897,\"window_fraction\":0.11975602073679671,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT\"}, rows=KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-183,CR-8352d9bdb2cfafca1f523c78b01dc116eddf6d447ef3bbfed45b50b5324397bf, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-976d04e6657697faf0a2e13139734a959ebda0630bf0c59a961d6b9c5522e81a]. MICRO-MICRO: tick=51ffb46a-c62c-6890-aa69-cd9970de51c6, book=KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-183, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-aed56a8961b29dc560399c2cf1d4181427b8401743e39af369b04a83eeaeb191]. ORDER=MACRO=RESOLVED[CR-bc9b018b50d72e7185245f3f8191d1c1eddbdcb403afcaca1b11fb18fd604ce8] · MICRO=RESOLVED[CR-976d04e6657697faf0a2e13139734a959ebda0630bf0c59a961d6b9c5522e81a] · MICRO_MICRO=RESOLVED[CR-aed56a8961b29dc560399c2cf1d4181427b8401743e39af369b04a83eeaeb191]. COHERENCE=COHERENT; MIRROR_GAP=0; SPREAD_BOUND=7/20; ENVELOPE={\"low_cents\":62,\"high_cents\":62,\"belief_receipt\":\"51ffb46a-c62c-6890-aa69-cd9970de51c6\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":59,\"live_ask_cents\":62,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":61,\"lawful_envelope_exists\":false,\"conditioned_remaining_dip_q50_cents\":33,\"floor_side_formula\":\"LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS\",\"floor_side_raw_cents\":29,\"floor_side_inside_envelope_cents\":null,\"live_bid_projected_inside_envelope_cents\":null,\"chosen_candidate_rule\":\"CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY\",\"chosen_before_migration_discipline_cents\":null,\"active_target_before_cents\":44,\"chosen_target_cents\":null,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":44,\"high_cents\":59,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-55\"},\"to\":{\"low_cents\":62,\"high_cents\":62,\"belief_receipt\":\"51ffb46a-c62c-6890-aa69-cd9970de51c6\"},\"receipt\":\"51ffb46a-c62c-6890-aa69-cd9970de51c6\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"CANCEL_REQUIRED_FAIL_LOUD\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LATCH_HOLD. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=44."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784020201.83,
+      "receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+      "envelope": {
+        "low_cents": 41,
+        "high_cents": 41,
+        "belief_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 40,
+        "live_ask_cents": 41,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 40,
+        "lawful_envelope_exists": false,
+        "conditioned_remaining_dip_q50_cents": 29,
+        "floor_side_formula": "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS",
+        "floor_side_raw_cents": 12,
+        "floor_side_inside_envelope_cents": null,
+        "live_bid_projected_inside_envelope_cents": null,
+        "chosen_candidate_rule": "CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY",
+        "chosen_before_migration_discipline_cents": null,
+        "active_target_before_cents": 39,
+        "chosen_target_cents": null,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 38,
+            "high_cents": 40,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-363"
+          },
+          "to": {
+            "low_cents": 41,
+            "high_cents": 41,
+            "belief_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668"
+          },
+          "receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "CANCEL_REQUIRED_FAIL_LOUD",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": false,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": "ENVELOPE_POINT_AT_OR_ABOVE_LIVE_ASK",
+        "current_envelope": {
+          "low_cents": 41,
+          "high_cents": 41,
+          "belief_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668"
+        },
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "sentence_verbatim": "believes LAJ at 59¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=58¢; ask=60¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-391] at 970min-to-bell with 3.43 vol_log1p in ATP_CHALL, using ATP_CHALL|58 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR26BARVAR@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-5f9bdcf24271348d804781bedc574e0b0d3e0fa2aa9fae8b215fda9723cf0479], SHOULD drift to 62¢ by 11min-to-bell [deadline-epoch=1784077719.2596154; deadline-emitted-now=1784020201.83; deadline-receipt=95992e7f-c30f-6ca9-7bac-082bc6399668] || SIBLING-INVERSE: believes SVA at 40¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=40¢; ask=41¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-300] at 970min-to-bell with 3.43 vol_log1p in ATP_CHALL, using ATP_CHALL|40 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR26BARVAR@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-5f9bdcf24271348d804781bedc574e0b0d3e0fa2aa9fae8b215fda9723cf0479], SHOULD drift to 41¢ by 21min-to-bell [deadline-epoch=1784077150.6411765; deadline-emitted-now=1784020201.83; deadline-receipt=95992e7f-c30f-6ca9-7bac-082bc6399668]. MACRO: family=INTERIM_STILL, conditioned-total-dip={\"q25\":35,\"q50\":35,\"q75\":35}, arrived-dip={\"q25\":6,\"q50\":6,\"q75\":6}, remaining-dip=total-minus-arrived={\"q25\":29,\"q50\":29,\"q75\":29}, conditioning-method=REMAINING_DIP_EQUALS_CONDITIONED_TOTAL_MINUS_ARRIVED; ARRIVED_EQUALS_TOTAL_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-5f9bdcf24271348d804781bedc574e0b0d3e0fa2aa9fae8b215fda9723cf0479,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-721e58b8fdfe82a7bbd2204cc6cab340617c16236473f8478281a61b8415e17f,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-89ed4c3bb7ae500a35556fbf75e2b4e59edf6ef5dc1ede7b35eac93758c22f02,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-f2a440f35a3c3ef6925c14c2adfa24d2e1dd38fca1ae8b29e3b6200def344a38,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-ee3610a49f19d50e5bd20b4d2720a16cd81dee265b5a28e669a5c08453524132,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-fb66e478e5450491d2473e769e174d5cf50f25ac3de37164d187a19322d9b5c7,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d7f00b22e504722602dee5a4e64cc9b5f3ae25349cffbad078bba2206ac5f993 [CR-23ae5b80160e459c14736a4ad91e5f1f46ba5a5c37a5ca5395825883f8f99bce]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":41,\"observed_low_cents\":41,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1784007603,\"window_end_epoch\":1784078400,\"elapsed_window_seconds\":12598.829999923706,\"remaining_window_seconds\":58198.170000076294,\"window_fraction\":0.17795711682590656,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT\"}, rows=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-300,CR-5f9bdcf24271348d804781bedc574e0b0d3e0fa2aa9fae8b215fda9723cf0479, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-fe88a5dbcc1d2ac6fec2cafbae9005b6389c9dfc8ab3daaae40274cf00ec8d39]. MICRO-MICRO: tick=95992e7f-c30f-6ca9-7bac-082bc6399668, book=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-300, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-d2dd80fb1f0304b859971470d9583e59e9595e5b14a014829ddb83095f56e36b]. ORDER=MACRO=RESOLVED[CR-23ae5b80160e459c14736a4ad91e5f1f46ba5a5c37a5ca5395825883f8f99bce] · MICRO=RESOLVED[CR-fe88a5dbcc1d2ac6fec2cafbae9005b6389c9dfc8ab3daaae40274cf00ec8d39] · MICRO_MICRO=RESOLVED[CR-d2dd80fb1f0304b859971470d9583e59e9595e5b14a014829ddb83095f56e36b]. COHERENCE=COHERENT; MIRROR_GAP=3; SPREAD_BOUND=3/20; ENVELOPE={\"low_cents\":41,\"high_cents\":41,\"belief_receipt\":\"95992e7f-c30f-6ca9-7bac-082bc6399668\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":40,\"live_ask_cents\":41,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":40,\"lawful_envelope_exists\":false,\"conditioned_remaining_dip_q50_cents\":29,\"floor_side_formula\":\"LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS\",\"floor_side_raw_cents\":12,\"floor_side_inside_envelope_cents\":null,\"live_bid_projected_inside_envelope_cents\":null,\"chosen_candidate_rule\":\"CONDITIONED_REMAINING_DIP_Q50_FLOOR_SIDE_ONLY\",\"chosen_before_migration_discipline_cents\":null,\"active_target_before_cents\":39,\"chosen_target_cents\":null,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":38,\"high_cents\":40,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-363\"},\"to\":{\"low_cents\":41,\"high_cents\":41,\"belief_receipt\":\"95992e7f-c30f-6ca9-7bac-082bc6399668\"},\"receipt\":\"95992e7f-c30f-6ca9-7bac-082bc6399668\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"CANCEL_REQUIRED_FAIL_LOUD\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LATCH_HOLD. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=39."
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784339306.774,
+      "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+      "envelope": {
+        "low_cents": 59,
+        "high_cents": 59,
+        "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 58,
+        "live_ask_cents": 59,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 58,
+        "lawful_envelope_exists": false,
+        "conditioned_remaining_dip_q50_cents": 0,
+        "floor_side_formula": "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS",
+        "floor_side_raw_cents": 59,
+        "floor_side_inside_envelope_cents": null,
+        "live_bid_projected_inside_envelope_cents": null,
+        "chosen_candidate_rule": "ZERO_REMAINING_DIP_USES_EVIDENCED_BID_INSIDE_ENVELOPE",
+        "chosen_before_migration_discipline_cents": null,
+        "active_target_before_cents": 50,
+        "chosen_target_cents": null,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 49,
+            "high_cents": 58,
+            "belief_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-484"
+          },
+          "to": {
+            "low_cents": 59,
+            "high_cents": 59,
+            "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+          },
+          "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "CANCEL_REQUIRED_FAIL_LOUD",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": false,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": "ENVELOPE_POINT_AT_OR_ABOVE_LIVE_ASK",
+        "current_envelope": {
+          "low_cents": 59,
+          "high_cents": 59,
+          "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+        },
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "sentence_verbatim": "believes DAN at 58¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=58¢; ask=59¢; book-receipt=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 59¢ by 563min-to-bell [deadline-epoch=1784339306.774; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2] || SIBLING-INVERSE: believes PRA at 42¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=42¢; ask=43¢; book-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1254] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|42 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 43¢ by 13min-to-bell [deadline-epoch=1784372271.3681417; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":2,\"q50\":7,\"q75\":30}, arrived-dip={\"q25\":2,\"q50\":3,\"q75\":30}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":0,\"q75\":4}, conditioning-method=REMAINING_DIP_EQUALS_CONDITIONED_TOTAL_MINUS_ARRIVED; ARRIVED_EQUALS_TOTAL_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-767aca1da7310a48e6136840b781b7da639700b540b85b2d5c439dd8435bf044,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-802f4b2a2c44f3dce4eb3e0b4ddc5cd91304a103452f13d21bcd21f14e1675c2,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-8f07d4d8d8f59ba47454b90f8c8a75cb91c546381418afdfc36438a6624ac2f5,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d3d671247270fe5fa66c7a615bcb2edff5838fff8b172a8e992d1f5c6cda4afe,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-11dbbc46e62b48048e70ccf9fff720567e9b1af10bd8f47d1e0cca0e7e706412,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-7fc1c51391b4db89af48d08814bdf19cbf855238b140c07c39c9c33e17a3848f [CR-57c76663f78b73959f2bc8ac0c5885bd1f9ba3f279c3cca2c5116c1d9b0f28f1]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":58,\"observed_low_cents\":59,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1784332553,\"window_end_epoch\":1784373060,\"elapsed_window_seconds\":6753.773999929428,\"remaining_window_seconds\":33753.22600007057,\"window_fraction\":0.1667310341405048,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_INFERENCE\"}, rows=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485,CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-84966c777bff7d55f57630e3a7408c81a1ed660366099f4a7a868e05524c3c20]. MICRO-MICRO: tick=868ebd99-045b-41ce-52f3-d6ed304390d2, book=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. ORDER=MACRO=RESOLVED[CR-57c76663f78b73959f2bc8ac0c5885bd1f9ba3f279c3cca2c5116c1d9b0f28f1] · MICRO=RESOLVED[CR-84966c777bff7d55f57630e3a7408c81a1ed660366099f4a7a868e05524c3c20] · MICRO_MICRO=RESOLVED[CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. COHERENCE=COHERENT; MIRROR_GAP=2; SPREAD_BOUND=2/20; ENVELOPE={\"low_cents\":59,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":58,\"live_ask_cents\":59,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":58,\"lawful_envelope_exists\":false,\"conditioned_remaining_dip_q50_cents\":0,\"floor_side_formula\":\"LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS\",\"floor_side_raw_cents\":59,\"floor_side_inside_envelope_cents\":null,\"live_bid_projected_inside_envelope_cents\":null,\"chosen_candidate_rule\":\"ZERO_REMAINING_DIP_USES_EVIDENCED_BID_INSIDE_ENVELOPE\",\"chosen_before_migration_discipline_cents\":null,\"active_target_before_cents\":50,\"chosen_target_cents\":null,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":49,\"high_cents\":58,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-484\"},\"to\":{\"low_cents\":59,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\"},\"receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"CANCEL_REQUIRED_FAIL_LOUD\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LATCH_HOLD. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=50."
+    }
+  ],
+  "cancel_and_replace_atomic_rows": 3,
+  "fail_loud_no_replacement_rows": 4,
+  "danpra": {
+    "prior_distinct_fail_loud_cancel_receipts_cc": 15,
+    "repaired_distinct_cancel_receipts": 1,
+    "cancel_storm_disappeared": true,
+    "receipts": [
+      "868ebd99-045b-41ce-52f3-d6ed304390d2"
+    ],
+    "rows": [
+      {
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "leg_id": "DAN",
+        "timestamp_epoch": 1784339306.774,
+        "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+        "envelope": {
+          "low_cents": 59,
+          "high_cents": 59,
+          "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+        },
+        "placement": {
+          "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+          "live_bid_cents": 58,
+          "live_ask_cents": 59,
+          "coherence_exists_at_receipt": true,
+          "lawful_envelope_high_cents": 58,
+          "lawful_envelope_exists": false,
+          "conditioned_remaining_dip_q50_cents": 0,
+          "floor_side_formula": "LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS",
+          "floor_side_raw_cents": 59,
+          "floor_side_inside_envelope_cents": null,
+          "live_bid_projected_inside_envelope_cents": null,
+          "chosen_candidate_rule": "ZERO_REMAINING_DIP_USES_EVIDENCED_BID_INSIDE_ENVELOPE",
+          "chosen_before_migration_discipline_cents": null,
+          "active_target_before_cents": 50,
+          "chosen_target_cents": null,
+          "envelope_migration": {
+            "migrated": true,
+            "from": {
+              "low_cents": 49,
+              "high_cents": 58,
+              "belief_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-484"
+            },
+            "to": {
+              "low_cents": 59,
+              "high_cents": 59,
+              "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+            },
+            "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+            "provenance": "F-VS-114(c)@9ff83002"
+          },
+          "active_inconsistent_with_current_envelope": true,
+          "inconsistent_active_preallocation_resolution": "CANCEL_REQUIRED_FAIL_LOUD",
+          "placement_provenance": "F-VS-114(a)@9ff83002",
+          "coherence_placement_provenance": "F-VS-118@c08ce381",
+          "numeric_constant_added": false
+        },
+        "consistency": {
+          "active_inconsistent_before_action": true,
+          "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+          "resolved_same_receipt": true,
+          "cancel_and_replace_atomic": false,
+          "fail_loud_only_without_lawful_replacement": true,
+          "no_lawful_replacement_reason": "ENVELOPE_POINT_AT_OR_ABOVE_LIVE_ASK",
+          "current_envelope": {
+            "low_cents": 59,
+            "high_cents": 59,
+            "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+          },
+          "provenance": [
+            "F-VS-114(c)@9ff83002",
+            "F-VS-118@c08ce381"
+          ]
+        },
+        "action": {
+          "action": "CANCEL_REST",
+          "target_cents": null,
+          "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+        },
+        "sentence_verbatim": "believes DAN at 58¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=58¢; ask=59¢; book-receipt=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 59¢ by 563min-to-bell [deadline-epoch=1784339306.774; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2] || SIBLING-INVERSE: believes PRA at 42¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=42¢; ask=43¢; book-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1254] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|42 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 43¢ by 13min-to-bell [deadline-epoch=1784372271.3681417; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":2,\"q50\":7,\"q75\":30}, arrived-dip={\"q25\":2,\"q50\":3,\"q75\":30}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":0,\"q75\":4}, conditioning-method=REMAINING_DIP_EQUALS_CONDITIONED_TOTAL_MINUS_ARRIVED; ARRIVED_EQUALS_TOTAL_X_CLAMP(OWN_WINDOW_FRACTION_DIV_MEMBER_FLOOR_FRACTION,0,1); OWN_TAPE_CONDITIONED_MEMBER_WEIGHTS, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-767aca1da7310a48e6136840b781b7da639700b540b85b2d5c439dd8435bf044,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-802f4b2a2c44f3dce4eb3e0b4ddc5cd91304a103452f13d21bcd21f14e1675c2,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-8f07d4d8d8f59ba47454b90f8c8a75cb91c546381418afdfc36438a6624ac2f5,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d3d671247270fe5fa66c7a615bcb2edff5838fff8b172a8e992d1f5c6cda4afe,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-11dbbc46e62b48048e70ccf9fff720567e9b1af10bd8f47d1e0cca0e7e706412,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-7fc1c51391b4db89af48d08814bdf19cbf855238b140c07c39c9c33e17a3848f [CR-57c76663f78b73959f2bc8ac0c5885bd1f9ba3f279c3cca2c5116c1d9b0f28f1]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":58,\"observed_low_cents\":59,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1784332553,\"window_end_epoch\":1784373060,\"elapsed_window_seconds\":6753.773999929428,\"remaining_window_seconds\":33753.22600007057,\"window_fraction\":0.1667310341405048,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_INFERENCE\"}, rows=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485,CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-84966c777bff7d55f57630e3a7408c81a1ed660366099f4a7a868e05524c3c20]. MICRO-MICRO: tick=868ebd99-045b-41ce-52f3-d6ed304390d2, book=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. ORDER=MACRO=RESOLVED[CR-57c76663f78b73959f2bc8ac0c5885bd1f9ba3f279c3cca2c5116c1d9b0f28f1] · MICRO=RESOLVED[CR-84966c777bff7d55f57630e3a7408c81a1ed660366099f4a7a868e05524c3c20] · MICRO_MICRO=RESOLVED[CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. COHERENCE=COHERENT; MIRROR_GAP=2; SPREAD_BOUND=2/20; ENVELOPE={\"low_cents\":59,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":58,\"live_ask_cents\":59,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":58,\"lawful_envelope_exists\":false,\"conditioned_remaining_dip_q50_cents\":0,\"floor_side_formula\":\"LIVE_ASK_CENTS_MINUS_CONDITIONED_REMAINING_DIP_Q50_CENTS\",\"floor_side_raw_cents\":59,\"floor_side_inside_envelope_cents\":null,\"live_bid_projected_inside_envelope_cents\":null,\"chosen_candidate_rule\":\"ZERO_REMAINING_DIP_USES_EVIDENCED_BID_INSIDE_ENVELOPE\",\"chosen_before_migration_discipline_cents\":null,\"active_target_before_cents\":50,\"chosen_target_cents\":null,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":49,\"high_cents\":58,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-484\"},\"to\":{\"low_cents\":59,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\"},\"receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"CANCEL_REQUIRED_FAIL_LOUD\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LATCH_HOLD. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=50."
+      }
+    ]
+  }
+}

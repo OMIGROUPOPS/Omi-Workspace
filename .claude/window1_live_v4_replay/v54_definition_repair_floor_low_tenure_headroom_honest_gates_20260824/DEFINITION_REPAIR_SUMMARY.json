@@ -1,0 +1,107 @@
+{
+  "label": "V54_DEFINITION_REPAIR_EXECUTABLE_SUMMARY",
+  "run_source": "V54_DEFINITION_REPAIR_20260824",
+  "scope": {
+    "four_games_only": true,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false,
+    "deployment": false
+  },
+  "definitions": {
+    "floor": {
+      "authority": "BELL_LAWFUL_OBSERVED_TRADED_LOW_ONLY",
+      "belief_fallback_removed": true,
+      "evaluated_receipts": 3509,
+      "independent_check_failures": 0,
+      "implementation": "arb-executor/analysis/window1_v54_dual_belief_os.js:745"
+    },
+    "low": {
+      "true_trade_field_accepts_only": "TRUE_TRADE_PRINT",
+      "book_path_and_midpoint_separately_named": true,
+      "cc_expected_non_trade_rows": 283,
+      "executable_non_trade_rows": 286,
+      "executable_difference_vs_cc_count": 3,
+      "all_non_trade_consumption_disclosed": true,
+      "changed_action_rows": 201,
+      "changed_target_rows": 151,
+      "changed_target_rows_by_leg": {
+        "URSPAL|PAL": 70,
+        "URSPAL|URS": 46,
+        "LAJSVA|LAJ": 28,
+        "LAJSVA|SVA": 1,
+        "DANPRA|DAN": 5,
+        "DANPRA|PRA": 1
+      },
+      "danpra_opening_named_case": {
+        "leg_id": "DAN",
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-966",
+        "prior_target_cents": 52,
+        "repaired_target_cents": 57,
+        "repaired_basis": "BOOK_PATH_REFERENCE_NOT_A_TRADE:BOOK_BID_ASK_MID_SERIES_FLOORED_NON_TRADE"
+      },
+      "implementation": "arb-executor/analysis/window1_v54_functionable_os.js:186"
+    },
+    "par_allocation_bound": {
+      "name": "PAR_ALLOCATION_OBSERVED_TRADED_FLOOR_BOUND",
+      "writes": 3509,
+      "every_write_named": true,
+      "every_bound_at_or_below_observed_traded_floor": true,
+      "allocation_sentences_complete": true,
+      "named_sva_case": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-355",
+        "proposal_cents": 41,
+        "final_target_cents": 41,
+        "observed_traded_floor_cents": 41,
+        "reduction_cents": 0
+      },
+      "implementation": "arb-executor/analysis/window1_v54_dual_belief_os.js:752"
+    },
+    "tenure": {
+      "at_floor_receipts": 307,
+      "episodes": 4,
+      "violations": 0,
+      "episodes_by_leg": {
+        "GIUBAR|BAR": { "level_cents": 27, "tenure_seconds": 22975 },
+        "GIUBAR|GIU": { "level_cents": 66, "tenure_seconds": 356 },
+        "URSPAL|URS": { "level_cents": 57, "tenure_seconds": 251 },
+        "DANPRA|PRA": { "level_cents": 41, "tenure_seconds": 9483 }
+      },
+      "implementation": "arb-executor/analysis/window1_v54_dual_belief_os.js:865"
+    },
+    "honest_gates": {
+      "fail_capable_gate_fields": 10,
+      "typed_pass_literals": 0,
+      "self_reading_checks": 0,
+      "run_source_present_on_current_and_lineage_scores": true,
+      "definition_check_failures": 0,
+      "bed_failures": [
+        "CURRENT_BED_TRIPWIRE",
+        "LAW_VIOLATIONS"
+      ]
+    }
+  },
+  "four_game_outcomes": [
+    { "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR", "state": "PARTIAL" },
+    { "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL", "state": "COMPLETE", "combined_entry_cents": 97, "delta_cents": 3 },
+    { "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA", "state": "COMPLETE", "combined_entry_cents": 95, "delta_cents": 5 },
+    { "event_id": "KXATPMATCH-26JUL18DANPRA", "state": "PARTIAL" }
+  ],
+  "self_stop": {
+    "triggered": true,
+    "reason": "CURRENT_BED_TRIPWIRE+LAW_VIOLATIONS",
+    "tripwire_breaks": [
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "KXATPCHALLENGERMATCH-26JUL14LAJSVA"
+    ],
+    "law_violations": [
+      "SINGLETON_SURVIVOR_ENVELOPE_NOT_CONSUMED",
+      "FAIL_LOUD_CANCEL_WITHOUT_REARM_STATE"
+    ],
+    "lineage_untouched": true
+  },
+  "determinism": {
+    "runs_per_game": 2,
+    "all_byte_identical": true
+  }
+}

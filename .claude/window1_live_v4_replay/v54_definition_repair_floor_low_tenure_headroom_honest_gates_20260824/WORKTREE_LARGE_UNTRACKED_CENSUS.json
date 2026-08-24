@@ -1,0 +1,88 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 158418712,
+      "sha256": "9af6f1a838ed466832c28a9cf5c20ef38caa505f1734ea6f66f75ffb749783a6"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/COHERENCE_TIMELINES.json",
+      "bytes": 10966570,
+      "sha256": "baa8e95137da2505c3ff80169d0013e135c3812e02f065ee2def4c21da1cf57e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/DIAGNOSTIC_SUMMARY_RECEIPT.json",
+      "bytes": 38167027,
+      "sha256": "18e1ae6b5faef7b8d61d4b46a4ed242a896b9cc061a90b9b7fc4ae72d007cfe1"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 10527379,
+      "sha256": "a390ed36edb54237708d4f77a21b110b49dc16ed59b548b34fffbe0450cef552"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 147715974,
+      "sha256": "bba0129687665d58b058cc09832341a49adcf4c86731109ae01a53ddaf689a7c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/FOUR_STORIES_RECEIPT.json",
+      "bytes": 44344831,
+      "sha256": "e2b39dcb423d8cb922cff3b8df6ae72233688191d47a5a83ddf905334ef8e6fc"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/FOUR_STORIES.md",
+      "bytes": 57262169,
+      "sha256": "8c86f745f3b1f6285b5de620423ff34048331cc003eee9f3d5716e488b89c970"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 30434363,
+      "sha256": "8c24dc384fd849de5fabd09aabecf070d7ebb953c6242db4302524cb61500406"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/LAWFUL_INCOMPLETE_RECEIPT.json",
+      "bytes": 38116533,
+      "sha256": "044b68dee835bab802015f12dc456a965c3ff3594010dbc15d08248ce7c6824b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "bytes": 85969275,
+      "sha256": "60e11ec4fa03ed95546c2f3fb870b107ad887c4114389911b13d2f5dc0389131"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "bytes": 207453296,
+      "sha256": "669c4cc9af1b24bb4fc2f6073521a00ed0bdd3e09aa31fd67605650596322768"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/PAR_ALLOCATION_HEADROOM_RECEIPT.json",
+      "bytes": 78814133,
+      "sha256": "f428a08ec57eab51ecbc238c7491d84f5652727409117d08df2731d927fd8c14"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "bytes": 61624074,
+      "sha256": "608bddcd3f4481306ceabb06580c036825a35b47c8cb82a87bb96f1135538686"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 112805539,
+      "sha256": "104057b66c9ffc83464add755d48b782c0b23200b59ba68d562b946367d90655"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/SMOKE_CRIJEA.md",
+      "bytes": 16494251,
+      "sha256": "e5962ad588c07b698bad2055773941ba5c4b9696774ef387d0e216afd030fce9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_definition_repair_floor_low_tenure_headroom_honest_gates_20260824/TRADE_REPORT_FOUR.json",
+      "bytes": 11283326,
+      "sha256": "733d195a3406da31f147b8807c3029d77a48fc4650c1e97e40308b65cafeae8a"
+    }
+  ],
+  "count": 16,
+  "bytes": 1110397452
+}

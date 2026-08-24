@@ -1,0 +1,188 @@
+{
+  "label": "OBSERVED_TRADED_FLOOR_REST_TENURE_BY_LEG",
+  "run_source": "V54_DEFINITION_REPAIR_20260824",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "at_floor_receipts": 161,
+      "episodes": [
+        {
+          "level_cents": 27,
+          "start_epoch": 1783851325,
+          "start_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+          "first_row": {
+            "timestamp_epoch": 1783851325,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-549",
+            "action": {
+              "action": "HOLD_REST",
+              "target_cents": 27,
+              "reason": "EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT"
+            },
+            "status": "AT_OBSERVED_TRADED_FLOOR_HOLDING"
+          },
+          "last_row": {
+            "timestamp_epoch": 1783874300,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+            "action": {
+              "action": "HOLD_REST",
+              "target_cents": 27,
+              "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+            },
+            "status": "AT_OBSERVED_TRADED_FLOOR_HOLDING",
+            "ended_by": null
+          },
+          "supporting_shapes": [
+            "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+            "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+            "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+            "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+          ],
+          "tenure_seconds": 22975
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "at_floor_receipts": 130,
+      "episodes": [
+        {
+          "level_cents": 66,
+          "start_epoch": 1783873944,
+          "start_receipt": "848f36d8-d3dd-7f33-08ea-b42fcae3a383",
+          "first_row": {
+            "timestamp_epoch": 1783873944,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2836",
+            "action": {
+              "action": "HOLD_REST",
+              "target_cents": 66,
+              "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+            },
+            "status": "AT_OBSERVED_TRADED_FLOOR_HOLDING"
+          },
+          "last_row": {
+            "timestamp_epoch": 1783874300,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+            "action": {
+              "action": "HOLD_REST",
+              "target_cents": 66,
+              "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+            },
+            "status": "AT_OBSERVED_TRADED_FLOOR_HOLDING",
+            "ended_by": null
+          },
+          "supporting_shapes": [
+            "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+            "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+            "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+          ],
+          "tenure_seconds": 356
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "at_floor_receipts": 0,
+      "episodes": []
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "at_floor_receipts": 6,
+      "episodes": [
+        {
+          "level_cents": 58,
+          "start_epoch": 1784031096,
+          "start_receipt": "de8acb81-1259-6081-ed5a-a11461e5f45b",
+          "first_row": {
+            "timestamp_epoch": 1784031096,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4294",
+            "action": {
+              "action": "HOLD_REST",
+              "target_cents": 58,
+              "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+            },
+            "status": "AT_OBSERVED_TRADED_FLOOR_HOLDING"
+          },
+          "last_row": {
+            "timestamp_epoch": 1784031347,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-30675",
+            "action": {
+              "action": "HOLD_REST",
+              "target_cents": 58,
+              "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+            },
+            "status": "AT_OBSERVED_TRADED_FLOOR_HOLDING",
+            "ended_by": null
+          },
+          "supporting_shapes": [
+            "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+            "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+            "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+          ],
+          "tenure_seconds": 251
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "at_floor_receipts": 0,
+      "episodes": []
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "at_floor_receipts": 0,
+      "episodes": []
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "at_floor_receipts": 0,
+      "episodes": []
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "at_floor_receipts": 10,
+      "episodes": [
+        {
+          "level_cents": 41,
+          "start_epoch": 1784359766,
+          "start_receipt": "c7944353-8ad7-67a5-978b-0bc2d9c3ddcc",
+          "first_row": {
+            "timestamp_epoch": 1784359766,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2893",
+            "action": {
+              "action": "HOLD_REST",
+              "target_cents": 41,
+              "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+            },
+            "status": "AT_OBSERVED_TRADED_FLOOR_HOLDING"
+          },
+          "last_row": {
+            "timestamp_epoch": 1784369249,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3315",
+            "action": {
+              "action": "HOLD_REST",
+              "target_cents": 41,
+              "reason": "EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT"
+            },
+            "status": "AT_OBSERVED_TRADED_FLOOR_HOLDING",
+            "ended_by": null
+          },
+          "supporting_shapes": [
+            "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+            "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+            "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+          ],
+          "tenure_seconds": 9483
+        }
+      ]
+    }
+  ],
+  "disagrees_moved_floor_rest_count": 0
+}

@@ -147,6 +147,8 @@ function createTapeState(meta) {
     formation_end_epoch: finite(meta.formation_end_epochs?.[legId]),
     rows: [], books: [], prints: [], references: [], steps: [], divots: [],
     current_book: null, current_reference_cents: null, running_low_cents: null,
+    running_book_path_low_cents: null, running_book_last_reference_low_cents: null,
+    running_book_mid_low_cents: null, running_book_path_low_source: null,
     running_true_trade_low_cents: null, running_true_trade_high_cents: null,
     running_high_cents: null, volume_contracts: 0, last_change_epoch: null,
   }]));
@@ -181,6 +183,13 @@ function referenceOf(row) {
   return null;
 }
 
+function referenceBasisOf(row) {
+  if (row.kind === "PRINT" && cent(row.price_cents)) return "TRUE_TRADE_PRINT";
+  if (row.kind === "BOOK" && cent(row.last_trade_cents)) return "BOOK_REPORTED_LAST_REFERENCE_NON_TRADE";
+  if (row.kind === "BOOK" && cent(row.bid_cents) && cent(row.ask_cents)) return "BOOK_BID_ASK_MID_SERIES_FLOORED_NON_TRADE";
+  return null;
+}
+
 function observe(state, legId, row) {
   const leg = state.legs[legId];
   if (!leg) throw new Error(`UNKNOWN_LEG ${state.event_id}|${legId}`);
@@ -189,6 +198,7 @@ function observe(state, legId, row) {
   state.receipt = row.receipt;
   leg.rows.push(row);
   const reference = referenceOf(row);
+  const referenceBasis = referenceBasisOf(row);
   if (row.kind === "BOOK") {
     leg.current_book = row;
     leg.books.push(row);
@@ -209,7 +219,18 @@ function observe(state, legId, row) {
     leg.current_reference_cents = reference;
     leg.running_low_cents = leg.running_low_cents === null ? reference : Math.min(leg.running_low_cents, reference);
     leg.running_high_cents = leg.running_high_cents === null ? reference : Math.max(leg.running_high_cents, reference);
-    leg.references.push({ timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, cents: reference });
+    leg.references.push({ timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, cents: reference, source: referenceBasis });
+    if (row.kind === "BOOK") {
+      if (leg.running_book_path_low_cents === null || reference < leg.running_book_path_low_cents) {
+        leg.running_book_path_low_cents = reference;
+        leg.running_book_path_low_source = { source: referenceBasis, receipt: row.receipt, timestamp_epoch: row.timestamp_epoch };
+      }
+      if (referenceBasis === "BOOK_REPORTED_LAST_REFERENCE_NON_TRADE") {
+        leg.running_book_last_reference_low_cents = leg.running_book_last_reference_low_cents === null ? reference : Math.min(leg.running_book_last_reference_low_cents, reference);
+      } else if (referenceBasis === "BOOK_BID_ASK_MID_SERIES_FLOORED_NON_TRADE") {
+        leg.running_book_mid_low_cents = leg.running_book_mid_low_cents === null ? reference : Math.min(leg.running_book_mid_low_cents, reference);
+      }
+    }
     if (leg.references.length >= 3) {
       const a = leg.references.at(-3), b = leg.references.at(-2), c = leg.references.at(-1);
       if (b.cents < a.cents && b.cents < c.cents) leg.divots.push({ timestamp_epoch: b.timestamp_epoch, receipt: b.receipt, floor_cents: b.cents, depth_cents: Math.min(a.cents, c.cents) - b.cents });
@@ -292,7 +313,20 @@ function readAll(state) {
     steps_stillness: stamp(state, "steps_stillness", Object.fromEntries(ids.map((id, i) => [id, { step_count: legs[i].steps.length, last_step_cents: last(legs[i].steps)?.cents ?? null, still_seconds: dwellSeconds[i] }])), receipts),
     shape_survival: stamp(state, "shape_survival", Object.fromEntries(ids.map((id, i) => [id, { directional_step_share: shapeSurvival[i], observed_steps: legs[i].steps.length }])), receipts),
     ripeness: stamp(state, "ripeness", Object.fromEntries(ids.map((id, i) => [id, { continuous_evidence_mass: ripeness[i], observations: legs[i].rows.length, prints: legs[i].prints.length }])), receipts),
-    lows_travel: stamp(state, "lows_travel", Object.fromEntries(ids.map((id, i) => [id, { low_cents: legs[i].running_low_cents, high_cents: legs[i].running_high_cents, travel_cents: travels[i], true_trade_low_cents: legs[i].running_true_trade_low_cents, true_trade_high_cents: legs[i].running_true_trade_high_cents, true_trade_count: legs[i].prints.length }])), receipts),
+    lows_travel: stamp(state, "lows_travel", Object.fromEntries(ids.map((id, i) => [id, {
+      reference_path_low_cents: legs[i].running_low_cents,
+      book_path_low_cents: legs[i].running_book_path_low_cents,
+      book_path_low_source: legs[i].running_book_path_low_source,
+      book_reported_last_reference_low_cents: legs[i].running_book_last_reference_low_cents,
+      book_mid_low_cents: legs[i].running_book_mid_low_cents,
+      high_cents: legs[i].running_high_cents,
+      travel_cents: travels[i],
+      observed_traded_low_cents: legs[i].running_true_trade_low_cents,
+      observed_traded_high_cents: legs[i].running_true_trade_high_cents,
+      true_trade_low_cents: legs[i].running_true_trade_low_cents,
+      true_trade_high_cents: legs[i].running_true_trade_high_cents,
+      true_trade_count: legs[i].prints.length,
+    }])), receipts),
     joint_state_spread_dwell: stamp(state, "joint_state_spread_dwell", { mid_sum_cents: Number.isInteger(currents[0]) && Number.isInteger(currents[1]) ? currents[0] + currents[1] : null, spread_sum_cents: Number.isFinite(spreads[0]) && Number.isFinite(spreads[1]) ? spreads[0] + spreads[1] : null, dwell_seconds: Object.fromEntries(ids.map((id, i) => [id, dwellSeconds[i]])) }, receipts),
     divots: stamp(state, "divots", Object.fromEntries(ids.map((id, i) => [id, { count: legs[i].divots.length, mean_depth_cents: divotDepths[i], latest: last(legs[i].divots) }])), receipts),
     depth_size: stamp(state, "depth_size", Object.fromEntries(ids.map((id, i) => [id, { bid_depth_5: finite(books[i]?.bid_depth_5), ask_depth_5: finite(books[i]?.ask_depth_5), bid_share: depthRatios[i], top_bid_size: finite(books[i]?.bid_1_sz), top_ask_size: finite(books[i]?.ask_1_sz) }])), receipts, ids.filter((id, i) => !books[i]).map((id) => `BOOK_MISSING:${id}`)),
@@ -318,7 +352,7 @@ function vectorFromReads(state, reads) {
     anchor_cents: reads.anchor_settle.value.anchors_cents[id],
     drift_cents: reads.drift.value[id].drift_cents,
     travel_cents: reads.lows_travel.value[id].travel_cents,
-    low_cents: reads.lows_travel.value[id].low_cents,
+    low_cents: reads.lows_travel.value[id].reference_path_low_cents,
   })));
   const positionByOrientedLeg = oriented.map((row) => reads.half_pair_state.value.legs[row.leg_id]);
   return {
@@ -556,7 +590,25 @@ function conditionalNeighborLeg(neighborhood, orientedIndex, ownEvidence) {
     specialist_vote_mass: specialistVoteMass,
     specialist_vote_total: specialistVoteTotal,
     specialist_timing_depth_distribution_cents: specialistTimingDepthDistribution,
-    own_evidence: { basis: ownBasis, anchor_cents: ownAnchor, observed_low_cents: ownLow, observed_dip_cents: ownObservedDip, dip_state: ownDipState, true_trade_count: ownEvidence.true_trade_count, formation_end_epoch: ownEvidence.formation_end_epoch, window_end_epoch: ownEvidence.window_end_epoch, elapsed_window_seconds: ownEvidence.elapsed_window_seconds, remaining_window_seconds: ownEvidence.remaining_window_seconds, window_fraction: ownEvidence.window_fraction, window_source: ownEvidence.window_source },
+    own_evidence: {
+      basis: ownBasis,
+      anchor_cents: ownAnchor,
+      conditioning_low_cents: ownLow,
+      observed_traded_low_cents: ownEvidence.true_trade_low_cents ?? null,
+      observed_book_path_low_cents: ownEvidence.book_path_low_cents ?? null,
+      book_path_low_source: ownEvidence.book_path_low_source ?? null,
+      non_traded_low_consumed: ownBasis === "BOOK_PATH",
+      non_traded_low_disclosure: ownBasis === "BOOK_PATH" ? `BOOK_PATH_REFERENCE_NOT_A_TRADE:${ownEvidence.book_path_low_source?.source ?? "UNKNOWN"}` : null,
+      observed_dip_cents: ownObservedDip,
+      dip_state: ownDipState,
+      true_trade_count: ownEvidence.true_trade_count,
+      formation_end_epoch: ownEvidence.formation_end_epoch,
+      window_end_epoch: ownEvidence.window_end_epoch,
+      elapsed_window_seconds: ownEvidence.elapsed_window_seconds,
+      remaining_window_seconds: ownEvidence.remaining_window_seconds,
+      window_fraction: ownEvidence.window_fraction,
+      window_source: ownEvidence.window_source,
+    },
     conditional_remaining_dip_distribution_cents: { q25, q50, q75 },
     time_conditioned_remaining_dip_distribution_cents: { q25: timedQ25, q50: timedQ50, q75: timedQ75 },
     time_conditioned_members: timeConditionedRows.length,
@@ -624,7 +676,8 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   const timedNeighborLeg = conditionalNeighborLeg(neighborhood, orientedIndex, {
     anchor_cents: anchor,
     true_trade_low_cents: ownLowRead.true_trade_low_cents,
-    book_path_low_cents: ownLowRead.low_cents,
+    book_path_low_cents: ownLowRead.book_path_low_cents,
+    book_path_low_source: ownLowRead.book_path_low_source,
     true_trade_count: ownLowRead.true_trade_count,
     formation_end_epoch: formationEnd,
     window_end_epoch: windowEnd,
@@ -740,7 +793,7 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   const conditional = timedNeighborLeg.conditional_remaining_dip_distribution_cents;
   const basisWeightStatement = basisRows.map((row) => `${row.basis}:${row.normalized_weight.toFixed(9)}@depth=${Number.isFinite(row.depth_cents) ? row.depth_cents : "NA"}[${row.fitness_reason}]`).join(";");
   const voteStatement = timedNeighborLeg.specialist_votes.map((row) => `${row.event_id}:${row.behavior}@${row.weight.toFixed(9)}[phase=${row.own_window_fraction};neighbor_floor_phase=${row.member_floor_fraction};evidence_distance=${row.evidence_distance_cents};source=${row.source_receipt}]`).join(",") || "NO_LAWFUL_SPECIALIST_VOTES";
-  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; its own ${timedNeighborLeg.own_evidence.basis} bounded evidence low is ${timedNeighborLeg.own_evidence.observed_low_cents ?? "UNKNOWN"}, so its observed state is ${timedNeighborLeg.own_evidence.dip_state} with ${timedNeighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents. SPECIALIST_VOTES=${voteStatement}; WINDOW_SIDE_READ=${mindWindow}; WINDOW_VOTE_MASS_TIMING_TOUCH=${timingVoteMass}/${presenceVoteMass}; PRICE_AT_EVIDENCED_TOUCH=${touchCents ?? "UNKNOWN"}; MAP_CELL=${mapCell ? `${state.category}|${mapCell.price_cell}` : "UNMAPPED"}; MAP_P50_CENTS=${mapCell?.edge_p50_cents ?? "UNMAPPED"}; MAP_MEMBERS=${mapCell?.n_legs ?? 0}; CONDITIONED_DEPTH_CENTS=${conditionalDepth ?? "UNKNOWN"}; EVIDENCE_RUNG=${evidenceRung}; TARGET_BASIS=${targetBasis}; CHOSEN_DEPTH_CENTS=${totalRequiredDepth ?? "UNKNOWN"}; PRE_ALLOCATION_DEPTH_TARGET_CENTS=${evidenceLawfulTarget ?? "UNKNOWN"}; depth is conditioned on this leg's own bounded evidence and is zero unless the V3 map row licenses it.`;
+  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; CONDITIONING_LOW=${timedNeighborLeg.own_evidence.conditioning_low_cents ?? "UNKNOWN"}; CONDITIONING_LOW_SOURCE=${timedNeighborLeg.own_evidence.basis}; OBSERVED_TRADED_LOW=${timedNeighborLeg.own_evidence.observed_traded_low_cents ?? "NONE"}; BOOK_PATH_LOW=${timedNeighborLeg.own_evidence.observed_book_path_low_cents ?? "NONE"}; NON_TRADED_LOW_DISCLOSURE=${timedNeighborLeg.own_evidence.non_traded_low_disclosure ?? "NOT_CONSUMED"}; its observed state is ${timedNeighborLeg.own_evidence.dip_state} with ${timedNeighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents. SPECIALIST_VOTES=${voteStatement}; WINDOW_SIDE_READ=${mindWindow}; WINDOW_VOTE_MASS_TIMING_TOUCH=${timingVoteMass}/${presenceVoteMass}; PRICE_AT_EVIDENCED_TOUCH=${touchCents ?? "UNKNOWN"}; MAP_CELL=${mapCell ? `${state.category}|${mapCell.price_cell}` : "UNMAPPED"}; MAP_P50_CENTS=${mapCell?.edge_p50_cents ?? "UNMAPPED"}; MAP_MEMBERS=${mapCell?.n_legs ?? 0}; CONDITIONED_DEPTH_CENTS=${conditionalDepth ?? "UNKNOWN"}; EVIDENCE_RUNG=${evidenceRung}; TARGET_BASIS=${targetBasis}; CHOSEN_DEPTH_CENTS=${totalRequiredDepth ?? "UNKNOWN"}; PRE_ALLOCATION_DEPTH_TARGET_CENTS=${evidenceLawfulTarget ?? "UNKNOWN"}; depth is conditioned on this leg's own bounded evidence and is zero unless the V3 map row licenses it.`;
   const windowStatement = ` OWN_WINDOW=formation ${formationEnd ?? "UNKNOWN"} to ${windowEnd ?? "UNKNOWN"} [${windowSource}], elapsed ${elapsedWindowSeconds ?? "UNKNOWN"}s, remaining ${remainingWindowSeconds ?? "UNKNOWN"}s, continuous fraction ${Number.isFinite(windowFraction) ? windowFraction.toFixed(9) : "UNKNOWN"}; the mind selects ${mindWindow} for this side on its own clock.`;
   const pairStateStatement = ` PAIR_STATE=${pairState}; LEG_STATE=${legState}; SPECIALIST_PHASE=${fitPhase.toFixed(9)}; CREDITED_SIBLING=${siblingCommitment ? `${siblingId}@${siblingCommitment}` : "NONE"}; PAIR_REQUIRED_DEPTH_CENTS=${pairRequiredDepth}; PAIR_CAP_CENTS=${pairCap}.`;
   const presenceStatement = ` TOUCH_RELATION=${touchRelation}; LIVE_BID_ASK=${liveBid ?? "UNKNOWN"}/${liveAsk ?? "UNKNOWN"}; JOINT_DEPTH_LICENSE=${jointDepthLicense.basis}; DEPTH_LICENSE_RECEIPTS=${jointDepthLicense.receipts.join(",") || "NONE"}.`;

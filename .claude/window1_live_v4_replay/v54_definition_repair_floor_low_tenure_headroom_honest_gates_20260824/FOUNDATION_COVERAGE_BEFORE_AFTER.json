@@ -1,0 +1,28 @@
+{
+  "label": "FOUNDATION_BOUNDED_SPAN_COVERAGE",
+  "target_from_f_vs_061": {
+    "bounded_games": 698,
+    "unbounded_games": 11811
+  },
+  "measured": {
+    "before": {
+      "union_games": 12509,
+      "bounded_games": 698,
+      "unbounded_games": 11355,
+      "not_bounded_games": 11811
+    },
+    "after": {
+      "union_games": 15367,
+      "bounded_games": 9697,
+      "unbounded_games": 5265,
+      "not_bounded_games": 5670
+    }
+  },
+  "native_unknown_method_excluded": true,
+  "grain": "MINUTE",
+  "licensed_layers": [
+    "MACRO",
+    "MICRO"
+  ],
+  "micro_micro_licensed": false
+}

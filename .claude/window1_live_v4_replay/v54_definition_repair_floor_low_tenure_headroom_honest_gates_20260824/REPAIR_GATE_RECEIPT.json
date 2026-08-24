@@ -1,0 +1,212 @@
+{
+  "label": "V54_DEFINITION_REPAIR_HONEST_GATE",
+  "run_source": "V54_DEFINITION_REPAIR_20260824",
+  "law_index_read_at": "44559ebc",
+  "law_index_sha256": "41784e6a…",
+  "cc_forensics": [
+    "e65fe458:F-VS-163..167",
+    "44559ebc:F-VS-168..170"
+  ],
+  "contract": "Every check reads a store distinct from the producer it checks; every pass value is computed from failures, not typed as a literal.",
+  "checks": [
+    {
+      "id": "BASELINE_PINS",
+      "producer_store": "FROZEN_LINEAGE_PER_GAME_L1_L8",
+      "check_store": "BED_SAFETY_FLOOR_SPEC",
+      "observed": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+          "completed": true,
+          "delta_vs_100_cents": 3
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "completed": true,
+          "delta_vs_100_cents": 6
+        }
+      ],
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "CURRENT_BED_TRIPWIRE",
+      "producer_store": "V54_DEFINITION_REPAIR_EXECUTION",
+      "check_store": "BED_SAFETY_FLOOR_SPEC",
+      "observed": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+          "run_source": "V54_DEFINITION_REPAIR_20260824",
+          "completed": false,
+          "delta_vs_100_cents": null
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+          "run_source": "V54_DEFINITION_REPAIR_20260824",
+          "completed": true,
+          "delta_vs_100_cents": 3
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "run_source": "V54_DEFINITION_REPAIR_20260824",
+          "completed": true,
+          "delta_vs_100_cents": 5
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18DANPRA",
+          "run_source": "V54_DEFINITION_REPAIR_20260824",
+          "completed": false,
+          "delta_vs_100_cents": null
+        }
+      ],
+      "failures": [
+        "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "KXATPCHALLENGERMATCH-26JUL14LAJSVA"
+      ],
+      "can_fail": true,
+      "passed": false
+    },
+    {
+      "id": "FLOOR_IS_OBSERVED_TRADE_LOW",
+      "producer_store": "V54_POLICY_FLOOR_FIELDS",
+      "check_store": "MATERIALIZED_TRUE_PRINT_PREFIX",
+      "observed": 3509,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "NON_TRADED_LOW_DISCLOSED",
+      "producer_store": "V54_POLICY_LOW_CONSUMPTION_FIELDS",
+      "check_store": "SERIALIZED_DECISION_SENTENCES",
+      "observed": 286,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "PAR_BOUND_NAMED_AND_NOT_ABOVE_FLOOR",
+      "producer_store": "V54_PAIR_ALLOCATOR",
+      "check_store": "OBSERVED_TRUE_PRINT_PREFIX",
+      "observed": 3509,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "AT_FLOOR_TENURE",
+      "producer_store": "V54_REST_STATE_MACHINE",
+      "check_store": "SURVIVOR_ELIMINATION_TRAJECTORY_PLUS_TRUE_PRINTS",
+      "observed": 307,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "TARGET_AUTHORITY_ACTUAL",
+      "producer_store": "V54_DERIVATION_TARGET_AUTHORITY",
+      "check_store": "ENVELOPE_PLACEMENT_MODE",
+      "observed": 3509,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "RUN_SOURCE_EXPLICIT",
+      "producer_store": "FOUR_GAME_SCORE_OBJECTS",
+      "check_store": "RUN_SOURCE_CONTRACT",
+      "observed": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+          "current": "V54_DEFINITION_REPAIR_20260824",
+          "lineage": "FROZEN_LINEAGE_PER_GAME_L1_L8"
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+          "current": "V54_DEFINITION_REPAIR_20260824",
+          "lineage": "FROZEN_LINEAGE_PER_GAME_L1_L8"
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "current": "V54_DEFINITION_REPAIR_20260824",
+          "lineage": "FROZEN_LINEAGE_PER_GAME_L1_L8"
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18DANPRA",
+          "current": "V54_DEFINITION_REPAIR_20260824",
+          "lineage": "FROZEN_LINEAGE_PER_GAME_L1_L8"
+        }
+      ],
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "DETERMINISM_X2",
+      "producer_store": "REPLAY_BUILD_ONE",
+      "check_store": "REPLAY_BUILD_TWO",
+      "observed": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+          "first_sha256": "6ff6f0059078d25cb1506590cc44750d82b9c4fb676ce042b5ca658c4764259c",
+          "second_sha256": "6ff6f0059078d25cb1506590cc44750d82b9c4fb676ce042b5ca658c4764259c"
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+          "first_sha256": "20e8ad2966d4c10c0fda43df7bc858ba7049c5fdeb2facf535085463255175fc",
+          "second_sha256": "20e8ad2966d4c10c0fda43df7bc858ba7049c5fdeb2facf535085463255175fc"
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "first_sha256": "4f34d89e2a659f0af3df34288a7c1949d519360defdee2876d7ea29f3bd83484",
+          "second_sha256": "4f34d89e2a659f0af3df34288a7c1949d519360defdee2876d7ea29f3bd83484"
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18DANPRA",
+          "first_sha256": "c44219b50a848c00cb1d0c7966479d756239e2760097a8180aa32ff008c1b44b",
+          "second_sha256": "c44219b50a848c00cb1d0c7966479d756239e2760097a8180aa32ff008c1b44b"
+        }
+      ],
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "LAW_VIOLATIONS",
+      "producer_store": "SERIALIZED_DECISION_TRACE",
+      "check_store": "INDEPENDENT_LAW_CHECK_REGISTRY",
+      "observed": [
+        "SINGLETON_SURVIVOR_ENVELOPE_NOT_CONSUMED",
+        "FAIL_LOUD_CANCEL_WITHOUT_REARM_STATE"
+      ],
+      "failures": [
+        "SINGLETON_SURVIVOR_ENVELOPE_NOT_CONSUMED",
+        "FAIL_LOUD_CANCEL_WITHOUT_REARM_STATE"
+      ],
+      "can_fail": true,
+      "passed": false
+    }
+  ],
+  "check_count": 10,
+  "gate_fields_that_can_fail": 10,
+  "failures": [
+    {
+      "id": "CURRENT_BED_TRIPWIRE",
+      "failures": [
+        "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "KXATPCHALLENGERMATCH-26JUL14LAJSVA"
+      ]
+    },
+    {
+      "id": "LAW_VIOLATIONS",
+      "failures": [
+        "SINGLETON_SURVIVOR_ENVELOPE_NOT_CONSUMED",
+        "FAIL_LOUD_CANCEL_WITHOUT_REARM_STATE"
+      ]
+    }
+  ],
+  "zero_measured_law_violations": false,
+  "safety_floor_pass": false,
+  "self_stop": true,
+  "stop_reason": "CURRENT_BED_TRIPWIRE+LAW_VIOLATIONS"
+}

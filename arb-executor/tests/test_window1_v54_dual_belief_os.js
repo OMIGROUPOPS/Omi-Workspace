@@ -213,6 +213,9 @@ assert(joint.derivations.every((row) => row.sentence.includes("SETTLED_BOOK_MID_
 assert(joint.derivations.every((row) => row.sentence.includes("book-receipt=")));
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.status !== "RESOLVED" || belief.belief_price_cents === Math.floor((belief.live_bid_cents + belief.live_ask_cents) / 2))));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
+assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.placement_quantile === "Q75"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.chosen_candidate_rule === "CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.touch_anchored_inside_coherent_envelope === false));
 assert(joint.derivations.every((row) => row.sentence.includes("ENVELOPE_PLACEMENT=")));
 assert(joint.derivations.every((row) => row.sentence.includes("SOURCE_KEY=LIBRARY_CLOSE_CENTS") || row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")));
 assert(joint.derivations.every((row) => row.pair_conservation.at_or_below_99));
@@ -229,6 +232,19 @@ assert(joint.derivations.filter((row) => row.action.action === "PLACE_REST").eve
 assert(joint.derivations.every((row) => row.layered_dual_belief.coherence_placement.stale_envelope_originated_new_rest === false));
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.deadline.deadline_epoch >= belief.deadline.emitted_at_epoch && belief.deadline.derives_fresh_at_each_emission)));
 assert(joint.derivations.every((row) => row.sentence.includes("remaining-dip=total-minus-arrived=") && row.sentence.includes("deadline-emitted-now=")));
+
+os.configurePhaseCentralSurface({
+  kind: "F_VS_124_PHASE_CATEGORY_CENTRAL_FUTURE_LOW_SURFACE",
+  sha256: "surface-disagrees-test-sha",
+  source_sha256: "future-low-disagrees-test-sha",
+  cells: [{ category: "ATP_MAIN", phase_band: "P00_10", phase_low_inclusive: 0, phase_high_exclusive: 0.1, members: 101, q25_cents: -5, q50_cents: -4, q75_cents: 0, q50_midrank: 0.51 }],
+});
+const disagrees = os.deriveJointActions({ state: jointState, reads: jointReads, neighborhood: jointNeighborhood, lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
+assert.equal(disagrees.coherence.status, "DISAGREES");
+assert(disagrees.derivations.every((row) => !["PLACE_REST", "REPRICE_REST"].includes(row.action.action)));
+assert(disagrees.derivations.every((row) => row.action.reason === "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT"));
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT"));
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.may_originate_rest === false && row.layered_dual_belief.envelope_placement.may_reprice_rest === false));
 
 const noOpinionState = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(noOpinionState, leg, { timestamp_epoch: ts, receipt: `noop-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });

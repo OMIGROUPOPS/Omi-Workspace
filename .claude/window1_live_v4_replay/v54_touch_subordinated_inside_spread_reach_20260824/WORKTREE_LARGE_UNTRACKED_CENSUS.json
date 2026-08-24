@@ -1,0 +1,28 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_touch_subordinated_inside_spread_reach_20260824/ATOMIC_REARM_RECEIPT.json",
+      "bytes": 10702764,
+      "sha256": "87dab1c0a13960253d266e1cb55b681900974c6749fb6984162f40c10b93cee7"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_touch_subordinated_inside_spread_reach_20260824/ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 29119516,
+      "sha256": "237d438df78825734aa77f0a367b884324568ac36ffe6304d4ceaca4156e012f"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_touch_subordinated_inside_spread_reach_20260824/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 76559328,
+      "sha256": "9d1d1215832e2f5d204850b0e60d29d24b74322e529de2ca853d6bb0579ca9de"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_touch_subordinated_inside_spread_reach_20260824/SMOKE_CRIJEA.md",
+      "bytes": 11842137,
+      "sha256": "74f25a43e579999496bb1142f9f064ac03d6c8eb83d92038247858857088ec08"
+    }
+  ],
+  "count": 4,
+  "bytes": 128223745
+}

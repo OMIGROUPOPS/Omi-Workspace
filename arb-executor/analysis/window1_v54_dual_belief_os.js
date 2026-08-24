@@ -31,6 +31,9 @@ const LAYER_PROVENANCE = Object.freeze({
   atomic_rearm_fix: "F-VS-120@97411938",
   phase_central_estimate_fix: "F-VS-124@48dbf36b",
   consume_live_touch_fix: "F-VS-125@48dbf36b",
+  touch_subordination_fix: "F-VS-129@3e3d3548",
+  disagrees_not_trading_state: "DISPATCH_TOUCH_SUBORDINATED@2026-08-24",
+  inside_spread_reach_fix: "F-VS-130@3e3d3548",
   own_evidence_sufficiency: "F-VS-068@521a1613",
 });
 
@@ -438,16 +441,22 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       const envelope = state.dual_belief.current_envelopes[legId];
       if (envelope && microMicroResolved && liveBid && liveAsk && liveBid < liveAsk) {
         const conditionedExpectedFutureLow = cent(beliefs[legId]?.predicted_cents);
-        const floorSideRaw = conditionedExpectedFutureLow;
+        const phaseCentralEstimate = beliefs[legId]?.phase_conditioning?.phase_central_estimate ?? null;
+        const causalSeenLow = cent(beliefs[legId]?.own_evidence?.observed_low_cents);
+        const upperQuantileOffset = finite(phaseCentralEstimate?.q75_cents);
+        const upperQuantileRaw = Number.isInteger(causalSeenLow) && Number.isFinite(upperQuantileOffset)
+          ? causalSeenLow + Math.round(upperQuantileOffset)
+          : null;
         const lawfulEnvelopeHigh = Math.min(envelope.high_cents, liveAsk - 1);
         const lawfulEnvelopeExists = envelope.low_cents <= lawfulEnvelopeHigh;
-        const floorSideTarget = Number.isInteger(floorSideRaw) && lawfulEnvelopeExists ? clamp(floorSideRaw, envelope.low_cents, lawfulEnvelopeHigh) : null;
-        const bookGeometryTarget = lawfulEnvelopeExists ? clamp(liveBid, envelope.low_cents, lawfulEnvelopeHigh) : null;
-        // F-VS-114(a): q50 names the floor-side point inside the containing
-        // envelope.  The envelope's deep edge and the projected bid are audit
-        // geometry, not alternative defaults.  With zero remaining dip the
-        // evidenced bid is the lawful floor-side point.
-        const distributionPricedTarget = Number.isInteger(floorSideTarget) ? floorSideTarget : bookGeometryTarget;
+        const upperQuantileTarget = Number.isInteger(upperQuantileRaw) && lawfulEnvelopeExists
+          ? clamp(upperQuantileRaw, envelope.low_cents, lawfulEnvelopeHigh)
+          : null;
+        // F-VS-130: coherent belief pricing must account for executable prints
+        // inside the displayed spread. The already-built conditioned population's
+        // upper quantile names that cent. The live bid remains evidence in the
+        // sentence, but it never anchors a coherent-envelope placement.
+        const distributionPricedTarget = upperQuantileTarget;
         // F-VS-114(c): a newly migrated envelope re-derives the standing rest
         // on this same receipt, in either direction.  A stale active target may
         // never veto the current belief-priced target.
@@ -464,11 +473,19 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
           conditioned_expected_future_low_cents: conditionedExpectedFutureLow,
           future_low_minus_seen_low_distribution_cents: beliefs[legId]?.phase_conditioning?.future_low_minus_seen_low_distribution_cents ?? null,
           expected_future_low_minus_seen_low_cents: beliefs[legId]?.phase_conditioning?.expected_future_low_minus_seen_low_cents ?? null,
-          floor_side_formula: "CONDITIONED_EXPECTED_FUTURE_LOW_CENTS",
-          floor_side_raw_cents: floorSideRaw,
-          floor_side_inside_envelope_cents: floorSideTarget,
-          live_bid_projected_inside_envelope_cents: bookGeometryTarget,
-          chosen_candidate_rule: Number.isInteger(floorSideTarget) ? "CONDITIONED_EXPECTED_FUTURE_LOW_INSIDE_COHERENT_ENVELOPE" : "NO_EXPECTED_FUTURE_LOW_USES_EVIDENCED_BID_INSIDE_ENVELOPE",
+          placement_quantile: "Q75",
+          placement_quantile_reason: "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+          placement_population_members: phaseCentralEstimate?.members ?? null,
+          placement_population_cell: phaseCentralEstimate?.phase_band ?? null,
+          placement_population_source_sha256: phaseCentralEstimate?.surface_sha256 ?? null,
+          causal_seen_low_cents: causalSeenLow,
+          selected_quantile_offset_cents: upperQuantileOffset,
+          selected_quantile_raw_cents: upperQuantileRaw,
+          selected_quantile_inside_envelope_cents: upperQuantileTarget,
+          conditioned_q50_reference_cents: conditionedExpectedFutureLow,
+          live_bid_reference_only_cents: liveBid,
+          touch_anchored_inside_coherent_envelope: false,
+          chosen_candidate_rule: Number.isInteger(upperQuantileTarget) ? "CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE" : "NO_LAWFUL_CONDITIONED_Q75_INSIDE_ENVELOPE",
           chosen_before_migration_discipline_cents: distributionPricedTarget,
           active_target_before_cents: active,
           chosen_target_cents: targets[legId],
@@ -488,28 +505,51 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         lowerBounds[legId] = envelope?.low_cents ?? 1;
         envelopePlacement[legId] = { mode: "HOLD_PREVIOUSLY_LICENSED_ENVELOPE_TARGET", coherence_exists_at_receipt: true, chosen_target_cents: active, numeric_constant_added: false };
       }
-    } else if (beliefMode) {
-      // F-VS-125: an unresolved/null envelope cannot make the machine blind to
-      // the leg's own evidenced live book. The bid at this exact receipt is an
-      // independently licensed price, not a prediction or a stale envelope.
-      targets[legId] = liveBid && liveAsk && liveBid < liveAsk ? liveBid : active;
-      lowerBounds[legId] = targets[legId] ?? 1;
+    } else if (coherence.status === "DISAGREES") {
+      // A disagreement is evidence that the pair read has not resolved, not a
+      // separate trading state. No lane may originate or reprice a rest here.
+      // A previously licensed rest may hold while the pair re-derives.
+      targets[legId] = active;
+      lowerBounds[legId] = active ?? 1;
       envelopePlacement[legId] = {
-        mode: "CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_UNRESOLVED",
+        mode: "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT",
         coherence_exists_at_receipt: false,
+        coherence_status_at_receipt: coherence.status,
         live_bid_cents: liveBid,
         live_ask_cents: liveAsk,
         book_receipt: book?.receipt ?? null,
         chosen_target_cents: targets[legId],
-        may_originate_rest: true,
-        data_consumed: Boolean(liveBid && liveAsk && liveBid < liveAsk && book?.receipt),
-        provenance: [LAYER_PROVENANCE.consume_live_touch_fix, LAYER_PROVENANCE.own_evidence_sufficiency],
+        may_originate_rest: false,
+        may_reprice_rest: false,
+        data_consumed_for_placement: false,
+        provenance: [LAYER_PROVENANCE.disagrees_not_trading_state, LAYER_PROVENANCE.pair_coherence],
+        numeric_constant_added: false,
+      };
+    } else if (beliefMode) {
+      // A prior envelope remains senior to the touch lane. When the current
+      // upstream chain is insufficient, hold its already-licensed rest and wait
+      // for a current lawful envelope; do not substitute the live bid.
+      targets[legId] = active;
+      lowerBounds[legId] = active ?? 1;
+      envelopePlacement[legId] = {
+        mode: "PRIOR_BELIEF_ENVELOPE_SUBORDINATES_TOUCH_HOLD_PENDING_CURRENT_RESOLUTION",
+        coherence_exists_at_receipt: false,
+        coherence_status_at_receipt: coherence.status,
+        prior_envelope: state.dual_belief.current_envelopes?.[legId] ?? null,
+        live_bid_cents: liveBid,
+        live_ask_cents: liveAsk,
+        book_receipt: book?.receipt ?? null,
+        chosen_target_cents: targets[legId],
+        may_originate_rest: false,
+        may_reprice_rest: false,
+        touch_lane_subordinated: true,
+        provenance: [LAYER_PROVENANCE.touch_subordination_fix, LAYER_PROVENANCE.pair_coherence],
         numeric_constant_added: false,
       };
     } else {
-      // F-VS-068/F-VS-125 is the named mind-only license when no envelope has
-      // formed: the current live book is evidence in sight. It may originate a
-      // rest at the bid, subject to the unchanged pair-conservation allocator.
+      // F-VS-068/F-VS-125 remains lawful only when no belief envelope exists and
+      // the pair is not in DISAGREES. The current live book is evidence in sight,
+      // subject to the unchanged pair-conservation allocator.
       targets[legId] = liveBid && liveAsk && liveBid < liveAsk ? liveBid : active;
       lowerBounds[legId] = targets[legId] ?? 1;
       envelopePlacement[legId] = { mode: "CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_NULL", live_bid_cents: liveBid, live_ask_cents: liveAsk, book_receipt: book?.receipt ?? null, chosen_target_cents: targets[legId], may_originate_rest: true, data_consumed: Boolean(liveBid && liveAsk && liveBid < liveAsk && book?.receipt), provenance: [LAYER_PROVENANCE.consume_live_touch_fix, LAYER_PROVENANCE.own_evidence_sufficiency], numeric_constant_added: false };
@@ -579,7 +619,13 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       ? "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
       : pendingRearmBefore && Number.isInteger(target)
         ? "ATOMIC_REARM_LAWFUL_REPLACEMENT"
-        : beliefMode ? (coherentNow ? "LAYERED_COHERENT_ENVELOPE" : "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_UNRESOLVED") : "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL";
+        : coherentNow
+          ? "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+          : coherence.status === "DISAGREES"
+            ? "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT"
+            : beliefMode
+              ? "PRIOR_BELIEF_ENVELOPE_SUBORDINATES_TOUCH_HOLD_PENDING_CURRENT_RESOLUTION"
+              : "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL";
     const action = actionForTarget(active, target, reason);
     const targetInsideCurrentEnvelope = Number.isInteger(target) && currentEnvelope && target >= currentEnvelope.low_cents && target <= currentEnvelope.high_cents;
     if (coherentNow && Number.isInteger(target) && !state.dual_belief.first_lawful_coherence_by_leg[legId]) {

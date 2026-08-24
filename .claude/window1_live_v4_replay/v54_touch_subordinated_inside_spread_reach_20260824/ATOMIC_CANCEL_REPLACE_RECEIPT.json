@@ -1,0 +1,621 @@
+{
+  "label": "F_VS_118_CANCEL_AND_REPLACE_ATOMIC",
+  "rule": "An inconsistent rest is replaced inside the current envelope on the same receipt when a lawful joint replacement exists. Only that inconsistent rest cancels fail-loud when no lawful replacement exists; a consistent sibling rest is not globally cleared.",
+  "provenance": "F-VS-118@c08ce381",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784016213,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716",
+      "envelope": {
+        "low_cents": 64,
+        "high_cents": 66,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 59,
+        "live_ask_cents": 64,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 63,
+        "lawful_envelope_exists": false,
+        "conditioned_expected_future_low_cents": 64,
+        "future_low_minus_seen_low_distribution_cents": {
+          "q25": 0,
+          "q50": 0,
+          "q75": 2
+        },
+        "expected_future_low_minus_seen_low_cents": -2,
+        "placement_quantile": "Q75",
+        "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+        "placement_population_members": 1121,
+        "placement_population_cell": "P30_50",
+        "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+        "causal_seen_low_cents": 66,
+        "selected_quantile_offset_cents": 1,
+        "selected_quantile_raw_cents": 67,
+        "selected_quantile_inside_envelope_cents": null,
+        "conditioned_q50_reference_cents": 64,
+        "live_bid_reference_only_cents": 59,
+        "touch_anchored_inside_coherent_envelope": false,
+        "chosen_candidate_rule": "NO_LAWFUL_CONDITIONED_Q75_INSIDE_ENVELOPE",
+        "chosen_before_migration_discipline_cents": null,
+        "active_target_before_cents": 63,
+        "chosen_target_cents": null,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 63,
+            "high_cents": 66,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-663"
+          },
+          "to": {
+            "low_cents": 64,
+            "high_cents": 66,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716"
+          },
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "CANCEL_REQUIRED_FAIL_LOUD",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": false,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": "ENVELOPE_POINT_AT_OR_ABOVE_LIVE_ASK",
+        "current_envelope": {
+          "low_cents": 64,
+          "high_cents": 66,
+          "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716"
+        },
+        "envelope_authoritative_at_receipt": true,
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "sentence_verbatim": "believes PAL at 38¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=36¢; ask=41¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-970] at 434min-to-bell with 2.4 vol_log1p in ATP_CHALL, using ATP_CHALL|36 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-fd3c28a90e2e906cdc224ef159dbcd8c8d18c64fe3c57b0e0b37e1862f06fbb1], SHOULD drift to 35¢ by 13min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.471454; CENTRAL_MEMBERS=1121; CENTRAL_CELL=P30_50; deadline-epoch=1784041467.9892473; deadline-emitted-now=1784016213; deadline-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716] || SIBLING-INVERSE: believes URS at 61¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=59¢; ask=64¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716] at 434min-to-bell with 2.4 vol_log1p in ATP_CHALL, using ATP_CHALL|59 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-fd3c28a90e2e906cdc224ef159dbcd8c8d18c64fe3c57b0e0b37e1862f06fbb1], SHOULD drift to 64¢ by 104min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.471454; CENTRAL_MEMBERS=1121; CENTRAL_CELL=P30_50; deadline-epoch=1784035977.4615386; deadline-emitted-now=1784016213; deadline-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":10,\"q50\":17,\"q75\":34}, arrived-dip={\"q25\":7,\"q50\":9,\"q75\":16}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":1,\"q75\":10}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-fd3c28a90e2e906cdc224ef159dbcd8c8d18c64fe3c57b0e0b37e1862f06fbb1,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-1dc6a3c8a425d75eb078c95601b84bd64f95b9f8b967493535bc31fe52800d44,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-25914aa233c1bd31a98e2f54f5686c21f7ed204c8d12126d06eeeb2120473fa0,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d4c13fd54e1553d6b95f7183ea50f8b94848858f889e4ffd7ff2327c90667f0e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-e4c4dc04fc253df62ed449436f1cecd1ff2a7b249a37655e8fcde105c4e48e8a,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-1ed2b0f3538deef1f113b8e50ce9848554fd2c8fccf264eb89c8e51964b7da78,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-3a6e22bd18a762872cffb3343ca0edacdadd583579954b1d2117a6e84cb8b0c1 [CR-5303bb9d3e640ca90093e7e88060e1eeea9f10191463730b418aa60dddd82267]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":62,\"observed_low_cents\":66,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1784001495,\"window_end_epoch\":1784042247,\"elapsed_window_seconds\":14718,\"remaining_window_seconds\":26034,\"window_fraction\":0.36116018845700826,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_SIGNATURE_OPERATOR_RULED\"}, rows=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716,CR-fd3c28a90e2e906cdc224ef159dbcd8c8d18c64fe3c57b0e0b37e1862f06fbb1, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-c33c32c8f3a4098d252e24b7d6055a1c40f9a1c11e00cf510df7729640668943]. MICRO-MICRO: tick=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716, book=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-1fef5f074f9b6f0970ba7e5f1c407caa3be7bec93ffa161aafacf163c9cb02cb]. ORDER=MACRO=RESOLVED[CR-5303bb9d3e640ca90093e7e88060e1eeea9f10191463730b418aa60dddd82267] · MICRO=RESOLVED[CR-c33c32c8f3a4098d252e24b7d6055a1c40f9a1c11e00cf510df7729640668943] · MICRO_MICRO=RESOLVED[CR-1fef5f074f9b6f0970ba7e5f1c407caa3be7bec93ffa161aafacf163c9cb02cb]. COHERENCE=COHERENT; MIRROR_GAP=1; SPREAD_BOUND=10/20; ENVELOPE={\"low_cents\":64,\"high_cents\":66,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":59,\"live_ask_cents\":64,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":63,\"lawful_envelope_exists\":false,\"conditioned_expected_future_low_cents\":64,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":2},\"expected_future_low_minus_seen_low_cents\":-2,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":1121,\"placement_population_cell\":\"P30_50\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":66,\"selected_quantile_offset_cents\":1,\"selected_quantile_raw_cents\":67,\"selected_quantile_inside_envelope_cents\":null,\"conditioned_q50_reference_cents\":64,\"live_bid_reference_only_cents\":59,\"touch_anchored_inside_coherent_envelope\":false,\"chosen_candidate_rule\":\"NO_LAWFUL_CONDITIONED_Q75_INSIDE_ENVELOPE\",\"chosen_before_migration_discipline_cents\":null,\"active_target_before_cents\":63,\"chosen_target_cents\":null,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":63,\"high_cents\":66,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-663\"},\"to\":{\"low_cents\":64,\"high_cents\":66,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716\"},\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"CANCEL_REQUIRED_FAIL_LOUD\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LIVE_TOUCH. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=63."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784021161.637,
+      "receipt": "d82f2055-c54c-730c-de31-188fbda671d5",
+      "envelope": {
+        "low_cents": 38,
+        "high_cents": 41,
+        "belief_receipt": "d82f2055-c54c-730c-de31-188fbda671d5"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 35,
+        "live_ask_cents": 42,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 41,
+        "lawful_envelope_exists": true,
+        "conditioned_expected_future_low_cents": 38,
+        "future_low_minus_seen_low_distribution_cents": {
+          "q25": 0,
+          "q50": 0,
+          "q75": 3
+        },
+        "expected_future_low_minus_seen_low_cents": -2,
+        "placement_quantile": "Q75",
+        "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+        "placement_population_members": 1121,
+        "placement_population_cell": "P30_50",
+        "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+        "causal_seen_low_cents": 40,
+        "selected_quantile_offset_cents": 1,
+        "selected_quantile_raw_cents": 41,
+        "selected_quantile_inside_envelope_cents": 41,
+        "conditioned_q50_reference_cents": 38,
+        "live_bid_reference_only_cents": 35,
+        "touch_anchored_inside_coherent_envelope": false,
+        "chosen_candidate_rule": "CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE",
+        "chosen_before_migration_discipline_cents": 41,
+        "active_target_before_cents": 36,
+        "chosen_target_cents": 41,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 35,
+            "high_cents": 43,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1043"
+          },
+          "to": {
+            "low_cents": 38,
+            "high_cents": 41,
+            "belief_receipt": "d82f2055-c54c-730c-de31-188fbda671d5"
+          },
+          "receipt": "d82f2055-c54c-730c-de31-188fbda671d5",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": false,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": "PAIR_ALLOCATION_INFEASIBLE_INSIDE_ENVELOPES",
+        "current_envelope": {
+          "low_cents": 38,
+          "high_cents": 41,
+          "belief_receipt": "d82f2055-c54c-730c-de31-188fbda671d5"
+        },
+        "envelope_authoritative_at_receipt": true,
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "sentence_verbatim": "believes PAL at 38¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=35¢; ask=42¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2910] at 351min-to-bell with 5.53 vol_log1p in ATP_CHALL, using ATP_CHALL|35 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.78 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-0a3e40307047037aaa1c3f7dd6033a2a3bd416c3169e4ce71fa127618a43228c], SHOULD drift to 38¢ by 30min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.471454; CENTRAL_MEMBERS=1121; CENTRAL_CELL=P30_50; deadline-epoch=1784040449.1176472; deadline-emitted-now=1784021161.637; deadline-receipt=d82f2055-c54c-730c-de31-188fbda671d5] || SIBLING-INVERSE: believes URS at 62¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=60¢; ask=64¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1043] at 351min-to-bell with 5.53 vol_log1p in ATP_CHALL, using ATP_CHALL|60 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.78 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-0a3e40307047037aaa1c3f7dd6033a2a3bd416c3169e4ce71fa127618a43228c], SHOULD drift to 62¢ by 351min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.471454; CENTRAL_MEMBERS=1121; CENTRAL_CELL=P30_50; deadline-epoch=1784021161.637; deadline-emitted-now=1784021161.637; deadline-receipt=d82f2055-c54c-730c-de31-188fbda671d5]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":9,\"q50\":28,\"q75\":28}, arrived-dip={\"q25\":9,\"q50\":14,\"q75\":14}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":14,\"q75\":14}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-0a3e40307047037aaa1c3f7dd6033a2a3bd416c3169e4ce71fa127618a43228c,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-330924401606eddc9244b6851c877335344d13b98cb2d279a6a9dfebb0dc733b,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-a471919988110ebf102691912e1f577c03dab8ef488233f8460d787bcbdc0cb6,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-6c23a75ff6ef0d6a330d6603d1e10672c682022c28de2f8d444daae9fec210d9,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-a0b12bd35f09e52a6769d6440bad2ee2422b7ab35aa94b78455405835f8e7e3c,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-172eb05f5e2b8c16d56aafbfc9dd1bacceda33e682bf1e94485e1d6eb7835249,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-54856c86b3698fee079e9ad2fce25c52e3122c4596bcd82b3b7f50d375c52d1a [CR-d3ce10b7c59d33328e62be152ab3c971f89f51ba358d10239e106dceadf36026]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":38,\"observed_low_cents\":40,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":7,\"formation_end_epoch\":1784001495,\"window_end_epoch\":1784042247,\"elapsed_window_seconds\":19666.637000083923,\"remaining_window_seconds\":21085.362999916077,\"window_fraction\":0.4825931733432451,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_SIGNATURE_OPERATOR_RULED\"}, rows=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2910,CR-0a3e40307047037aaa1c3f7dd6033a2a3bd416c3169e4ce71fa127618a43228c, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-8fb75b02f3194278797c48b77c010e6b69c112d0b0431f9e6c932b072fc699f0]. MICRO-MICRO: tick=d82f2055-c54c-730c-de31-188fbda671d5, book=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2910, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-31d42206389dd23cb42ce899488ea9edb707c3cc0ba3f215ee3c837be0d23436]. ORDER=MACRO=RESOLVED[CR-d3ce10b7c59d33328e62be152ab3c971f89f51ba358d10239e106dceadf36026] · MICRO=RESOLVED[CR-8fb75b02f3194278797c48b77c010e6b69c112d0b0431f9e6c932b072fc699f0] · MICRO_MICRO=RESOLVED[CR-31d42206389dd23cb42ce899488ea9edb707c3cc0ba3f215ee3c837be0d23436]. COHERENCE=COHERENT; MIRROR_GAP=0; SPREAD_BOUND=11/20; ENVELOPE={\"low_cents\":38,\"high_cents\":41,\"belief_receipt\":\"d82f2055-c54c-730c-de31-188fbda671d5\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":35,\"live_ask_cents\":42,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":41,\"lawful_envelope_exists\":true,\"conditioned_expected_future_low_cents\":38,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":3},\"expected_future_low_minus_seen_low_cents\":-2,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":1121,\"placement_population_cell\":\"P30_50\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":40,\"selected_quantile_offset_cents\":1,\"selected_quantile_raw_cents\":41,\"selected_quantile_inside_envelope_cents\":41,\"conditioned_q50_reference_cents\":38,\"live_bid_reference_only_cents\":35,\"touch_anchored_inside_coherent_envelope\":false,\"chosen_candidate_rule\":\"CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE\",\"chosen_before_migration_discipline_cents\":41,\"active_target_before_cents\":36,\"chosen_target_cents\":41,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":35,\"high_cents\":43,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1043\"},\"to\":{\"low_cents\":38,\"high_cents\":41,\"belief_receipt\":\"d82f2055-c54c-730c-de31-188fbda671d5\"},\"receipt\":\"d82f2055-c54c-730c-de31-188fbda671d5\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ATOMIC_REPLACEMENT_UNAVAILABLE_FAIL_LOUD_INCONSISTENT_ONLY. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=36."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784030027,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766",
+      "envelope": {
+        "low_cents": 58,
+        "high_cents": 58,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 54,
+        "live_ask_cents": 58,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 57,
+        "lawful_envelope_exists": false,
+        "conditioned_expected_future_low_cents": 58,
+        "future_low_minus_seen_low_distribution_cents": {
+          "q25": 0,
+          "q50": 0,
+          "q75": 1
+        },
+        "expected_future_low_minus_seen_low_cents": 0,
+        "placement_quantile": "Q75",
+        "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+        "placement_population_members": 2091,
+        "placement_population_cell": "P70_90",
+        "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+        "causal_seen_low_cents": 58,
+        "selected_quantile_offset_cents": 3,
+        "selected_quantile_raw_cents": 61,
+        "selected_quantile_inside_envelope_cents": null,
+        "conditioned_q50_reference_cents": 58,
+        "live_bid_reference_only_cents": 54,
+        "touch_anchored_inside_coherent_envelope": false,
+        "chosen_candidate_rule": "NO_LAWFUL_CONDITIONED_Q75_INSIDE_ENVELOPE",
+        "chosen_before_migration_discipline_cents": null,
+        "active_target_before_cents": 57,
+        "chosen_target_cents": null,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 57,
+            "high_cents": 58,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4046"
+          },
+          "to": {
+            "low_cents": 58,
+            "high_cents": 58,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766"
+          },
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "CANCEL_REQUIRED_FAIL_LOUD",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": false,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": "ENVELOPE_POINT_AT_OR_ABOVE_LIVE_ASK",
+        "current_envelope": {
+          "low_cents": 58,
+          "high_cents": 58,
+          "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766"
+        },
+        "envelope_authoritative_at_receipt": true,
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "sentence_verbatim": "believes PAL at 44¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=41¢; ask=47¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766] at 204min-to-bell with 5.69 vol_log1p in ATP_CHALL, using ATP_CHALL|41 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-b330685055d992596c8a570778cc0ab420b4e2b46056c5c8457c5de4c3e6fd36], SHOULD drift to 40¢ by 55min-to-bell [PHASE_CENTRAL_ESTIMATE=0¢; CENTRAL_ESTIMATE_RANK=0.51363; CENTRAL_MEMBERS=2091; CENTRAL_CELL=P70_90; deadline-epoch=1784038937.1928935; deadline-emitted-now=1784030027; deadline-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766] || SIBLING-INVERSE: believes URS at 56¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=54¢; ask=58¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4052] at 204min-to-bell with 5.69 vol_log1p in ATP_CHALL, using ATP_CHALL|54 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-b330685055d992596c8a570778cc0ab420b4e2b46056c5c8457c5de4c3e6fd36], SHOULD drift to 58¢ by 104min-to-bell [PHASE_CENTRAL_ESTIMATE=0¢; CENTRAL_ESTIMATE_RANK=0.51363; CENTRAL_MEMBERS=2091; CENTRAL_CELL=P70_90; deadline-epoch=1784035977.4615386; deadline-emitted-now=1784030027; deadline-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766]. MACRO: family=INTERIM_DOWN_TRAVEL, conditioned-total-dip={\"q25\":17,\"q50\":27,\"q75\":34}, arrived-dip={\"q25\":14,\"q50\":20,\"q75\":31}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":3,\"q75\":7}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-b330685055d992596c8a570778cc0ab420b4e2b46056c5c8457c5de4c3e6fd36,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-6f9d04ab90e3203f152e21ec29fa610ef7721c5a01f673801a6eacc17c53b0f3,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-123298a163aab0f5911928fda2ecc31d53d4d38cd933358b05a915db935975ed,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-e49520d9b6a94c83dafb9d00db5a16e6a1374343c24ded2219927046e0e24d98,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-fbec6aa256985f1fd8ade2d6740e6297b1c54db188cf2a53b204d3040076832d,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-dceba0d046f9e1cd9773d12b73506c660620b322e4c22f695021429a42a4d79a,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-bba6790e441f974a737cfa97b1d2e938e85ce5c83c152bbcbc68ecec4f0acd16 [CR-fb214bd6ad5182778c11f9361e046bd4464cfe20530022eb2790817ea6955c85]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":62,\"observed_low_cents\":58,\"observed_dip_cents\":4,\"dip_state\":\"DIP_OBSERVED\",\"true_trade_count\":5,\"formation_end_epoch\":1784001495,\"window_end_epoch\":1784042247,\"elapsed_window_seconds\":28532,\"remaining_window_seconds\":12220,\"window_fraction\":0.700137416568512,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_SIGNATURE_OPERATOR_RULED\"}, rows=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4052,CR-b330685055d992596c8a570778cc0ab420b4e2b46056c5c8457c5de4c3e6fd36, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-702f4dab535f6f27856a8ab6ff41d4942fc833ba030241d45fbad77a81c36aef]. MICRO-MICRO: tick=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766, book=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4052, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-2afefdf29ae1391c8a96f98e516239201040b33390f9f2e1dcacfabe1d8abaea]. ORDER=MACRO=RESOLVED[CR-fb214bd6ad5182778c11f9361e046bd4464cfe20530022eb2790817ea6955c85] · MICRO=RESOLVED[CR-702f4dab535f6f27856a8ab6ff41d4942fc833ba030241d45fbad77a81c36aef] · MICRO_MICRO=RESOLVED[CR-2afefdf29ae1391c8a96f98e516239201040b33390f9f2e1dcacfabe1d8abaea]. COHERENCE=COHERENT; MIRROR_GAP=2; SPREAD_BOUND=10/20; ENVELOPE={\"low_cents\":58,\"high_cents\":58,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":54,\"live_ask_cents\":58,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":57,\"lawful_envelope_exists\":false,\"conditioned_expected_future_low_cents\":58,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":1},\"expected_future_low_minus_seen_low_cents\":0,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":2091,\"placement_population_cell\":\"P70_90\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":58,\"selected_quantile_offset_cents\":3,\"selected_quantile_raw_cents\":61,\"selected_quantile_inside_envelope_cents\":null,\"conditioned_q50_reference_cents\":58,\"live_bid_reference_only_cents\":54,\"touch_anchored_inside_coherent_envelope\":false,\"chosen_candidate_rule\":\"NO_LAWFUL_CONDITIONED_Q75_INSIDE_ENVELOPE\",\"chosen_before_migration_discipline_cents\":null,\"active_target_before_cents\":57,\"chosen_target_cents\":null,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":57,\"high_cents\":58,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4046\"},\"to\":{\"low_cents\":58,\"high_cents\":58,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766\"},\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"CANCEL_REQUIRED_FAIL_LOUD\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LIVE_TOUCH. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=57."
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784339306.774,
+      "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+      "envelope": {
+        "low_cents": 57,
+        "high_cents": 59,
+        "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 58,
+        "live_ask_cents": 59,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 58,
+        "lawful_envelope_exists": true,
+        "conditioned_expected_future_low_cents": 57,
+        "future_low_minus_seen_low_distribution_cents": {
+          "q25": 0,
+          "q50": 0,
+          "q75": 0
+        },
+        "expected_future_low_minus_seen_low_cents": -2,
+        "placement_quantile": "Q75",
+        "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+        "placement_population_members": 1298,
+        "placement_population_cell": "P10_30",
+        "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+        "causal_seen_low_cents": 59,
+        "selected_quantile_offset_cents": 1,
+        "selected_quantile_raw_cents": 60,
+        "selected_quantile_inside_envelope_cents": 58,
+        "conditioned_q50_reference_cents": 57,
+        "live_bid_reference_only_cents": 58,
+        "touch_anchored_inside_coherent_envelope": false,
+        "chosen_candidate_rule": "CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE",
+        "chosen_before_migration_discipline_cents": 58,
+        "active_target_before_cents": 49,
+        "chosen_target_cents": 58,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 46,
+            "high_cents": 58,
+            "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964"
+          },
+          "to": {
+            "low_cents": 57,
+            "high_cents": 59,
+            "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+          },
+          "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "CANCEL_AND_REPLACE_ATOMIC_SAME_RECEIPT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": true,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": null,
+        "current_envelope": {
+          "low_cents": 57,
+          "high_cents": 59,
+          "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+        },
+        "envelope_authoritative_at_receipt": true,
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 57,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "sentence_verbatim": "believes DAN at 58¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=58¢; ask=59¢; book-receipt=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 57¢ by 563min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784339306.774; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2] || SIBLING-INVERSE: believes PRA at 42¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=42¢; ask=43¢; book-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1254] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|42 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 41¢ by 4min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784372805.2389936; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":2,\"q50\":7,\"q75\":30}, arrived-dip={\"q25\":2,\"q50\":3,\"q75\":30}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":0,\"q75\":4}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-767aca1da7310a48e6136840b781b7da639700b540b85b2d5c439dd8435bf044,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-802f4b2a2c44f3dce4eb3e0b4ddc5cd91304a103452f13d21bcd21f14e1675c2,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-8f07d4d8d8f59ba47454b90f8c8a75cb91c546381418afdfc36438a6624ac2f5,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d3d671247270fe5fa66c7a615bcb2edff5838fff8b172a8e992d1f5c6cda4afe,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-11dbbc46e62b48048e70ccf9fff720567e9b1af10bd8f47d1e0cca0e7e706412,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-7fc1c51391b4db89af48d08814bdf19cbf855238b140c07c39c9c33e17a3848f [CR-fc36c61c77c604b12ea9ce38ef284f79bbb254ba6146e26b23c07e6d1c4aaa85]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":58,\"observed_low_cents\":59,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1784332553,\"window_end_epoch\":1784373060,\"elapsed_window_seconds\":6753.773999929428,\"remaining_window_seconds\":33753.22600007057,\"window_fraction\":0.1667310341405048,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_INFERENCE\"}, rows=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485,CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-220d60205970009e1186baa0951b55dc7a70aab7afacba5e25f86511fb8fece0]. MICRO-MICRO: tick=868ebd99-045b-41ce-52f3-d6ed304390d2, book=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. ORDER=MACRO=RESOLVED[CR-fc36c61c77c604b12ea9ce38ef284f79bbb254ba6146e26b23c07e6d1c4aaa85] · MICRO=RESOLVED[CR-220d60205970009e1186baa0951b55dc7a70aab7afacba5e25f86511fb8fece0] · MICRO_MICRO=RESOLVED[CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. COHERENCE=COHERENT; MIRROR_GAP=2; SPREAD_BOUND=2/20; ENVELOPE={\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":58,\"live_ask_cents\":59,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":58,\"lawful_envelope_exists\":true,\"conditioned_expected_future_low_cents\":57,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":0},\"expected_future_low_minus_seen_low_cents\":-2,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":1298,\"placement_population_cell\":\"P10_30\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":59,\"selected_quantile_offset_cents\":1,\"selected_quantile_raw_cents\":60,\"selected_quantile_inside_envelope_cents\":58,\"conditioned_q50_reference_cents\":57,\"live_bid_reference_only_cents\":58,\"touch_anchored_inside_coherent_envelope\":false,\"chosen_candidate_rule\":\"CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE\",\"chosen_before_migration_discipline_cents\":58,\"active_target_before_cents\":49,\"chosen_target_cents\":58,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":46,\"high_cents\":58,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964\"},\"to\":{\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\"},\"receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=JOINT_TARGET_RECONCILED_INSIDE_COHERENT_ENVELOPES. ACTION=REPRICE_REST; TARGET_CENTS=57; ACTIVE_TARGET_BEFORE_CENTS=49."
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784360967,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+      "envelope": {
+        "low_cents": 59,
+        "high_cents": 60,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940"
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 58,
+        "live_ask_cents": 60,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 59,
+        "lawful_envelope_exists": true,
+        "conditioned_expected_future_low_cents": 59,
+        "future_low_minus_seen_low_distribution_cents": {
+          "q25": 0,
+          "q50": 0,
+          "q75": 2
+        },
+        "expected_future_low_minus_seen_low_cents": 0,
+        "placement_quantile": "Q75",
+        "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+        "placement_population_members": 1695,
+        "placement_population_cell": "P70_90",
+        "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+        "causal_seen_low_cents": 59,
+        "selected_quantile_offset_cents": 3,
+        "selected_quantile_raw_cents": 62,
+        "selected_quantile_inside_envelope_cents": 59,
+        "conditioned_q50_reference_cents": 59,
+        "live_bid_reference_only_cents": 58,
+        "touch_anchored_inside_coherent_envelope": false,
+        "chosen_candidate_rule": "CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE",
+        "chosen_before_migration_discipline_cents": 59,
+        "active_target_before_cents": 58,
+        "chosen_target_cents": 59,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 58,
+            "high_cents": 60,
+            "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2905"
+          },
+          "to": {
+            "low_cents": 59,
+            "high_cents": 60,
+            "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940"
+          },
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": false,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": "PAIR_ALLOCATION_INFEASIBLE_INSIDE_ENVELOPES",
+        "current_envelope": {
+          "low_cents": 59,
+          "high_cents": 60,
+          "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940"
+        },
+        "envelope_authoritative_at_receipt": true,
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "sentence_verbatim": "believes DAN at 59¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=58¢; ask=60¢; book-receipt=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10579] at 202min-to-bell with 7.14 vol_log1p in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-25OCT15GIRDAV@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-e8a802702923f6ab6b150a42ba733c73d5dbc2a603a94feae1b65a339a0befc3], SHOULD drift to 59¢ by 202min-to-bell [PHASE_CENTRAL_ESTIMATE=0¢; CENTRAL_ESTIMATE_RANK=0.50295; CENTRAL_MEMBERS=1695; CENTRAL_CELL=P70_90; deadline-epoch=1784360967; deadline-emitted-now=1784360967; deadline-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940] || SIBLING-INVERSE: believes PRA at 41¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=40¢; ask=42¢; book-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940] at 202min-to-bell with 7.14 vol_log1p in ATP_MAIN, using ATP_MAIN|40 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-25OCT15GIRDAV@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-e8a802702923f6ab6b150a42ba733c73d5dbc2a603a94feae1b65a339a0befc3], SHOULD drift to 41¢ by 1min-to-bell [PHASE_CENTRAL_ESTIMATE=0¢; CENTRAL_ESTIMATE_RANK=0.50295; CENTRAL_MEMBERS=1695; CENTRAL_CELL=P70_90; deadline-epoch=1784373009.7431762; deadline-emitted-now=1784360967; deadline-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":2,\"q50\":5,\"q75\":30}, arrived-dip={\"q25\":2,\"q50\":5,\"q75\":30}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":0,\"q75\":0}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-e8a802702923f6ab6b150a42ba733c73d5dbc2a603a94feae1b65a339a0befc3,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-45e6a3dd93f413c37757fe65104791b5c720da92cca7e02ba0198f50ecba872d,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-c0e21cff08852f4c3385b479f1138d35b9a7a52ea052f21babcd76b79fc9b5eb,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-8985752cd8103f6382b775eaab3ebb4ae0948f325f6cf4aff28de47247d8d777,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-202ade2c53f0bf7dab12d3a8e13f90b60ddad9ee013c7c9cc97a17f835fec265,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-7ab4a87021c9ae1346f7525a0f176f32c177977af04a82cedd54dd122d37939d,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-3b4e45a6a5ec9b1b41191b0147e7697e671dc6d02b3cad721a3efebbc5a415d3 [CR-ed1c9f4b8c7568d247c4fdf74672aeecd2ee16ca9016b655775059fd0bc41850]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":58,\"observed_low_cents\":59,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":15,\"formation_end_epoch\":1784332553,\"window_end_epoch\":1784373060,\"elapsed_window_seconds\":28414,\"remaining_window_seconds\":12093,\"window_fraction\":0.7014590070851952,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_INFERENCE\"}, rows=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10579,CR-e8a802702923f6ab6b150a42ba733c73d5dbc2a603a94feae1b65a339a0befc3, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-ccd35758b13318e75a481a8c92b2d19c025fb2464cbaf5f7f8f1708a5bd97cd4]. MICRO-MICRO: tick=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940, book=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10579, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-f0d25ec74b7e784946f323e08097ca940819837931f843379f125b7e04dba3a1]. ORDER=MACRO=RESOLVED[CR-ed1c9f4b8c7568d247c4fdf74672aeecd2ee16ca9016b655775059fd0bc41850] · MICRO=RESOLVED[CR-ccd35758b13318e75a481a8c92b2d19c025fb2464cbaf5f7f8f1708a5bd97cd4] · MICRO_MICRO=RESOLVED[CR-f0d25ec74b7e784946f323e08097ca940819837931f843379f125b7e04dba3a1]. COHERENCE=COHERENT; MIRROR_GAP=0; SPREAD_BOUND=4/20; ENVELOPE={\"low_cents\":59,\"high_cents\":60,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":58,\"live_ask_cents\":60,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":59,\"lawful_envelope_exists\":true,\"conditioned_expected_future_low_cents\":59,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":2},\"expected_future_low_minus_seen_low_cents\":0,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":1695,\"placement_population_cell\":\"P70_90\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":59,\"selected_quantile_offset_cents\":3,\"selected_quantile_raw_cents\":62,\"selected_quantile_inside_envelope_cents\":59,\"conditioned_q50_reference_cents\":59,\"live_bid_reference_only_cents\":58,\"touch_anchored_inside_coherent_envelope\":false,\"chosen_candidate_rule\":\"CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE\",\"chosen_before_migration_discipline_cents\":59,\"active_target_before_cents\":58,\"chosen_target_cents\":59,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":58,\"high_cents\":60,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2905\"},\"to\":{\"low_cents\":59,\"high_cents\":60,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940\"},\"receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ATOMIC_REPLACEMENT_UNAVAILABLE_FAIL_LOUD_INCONSISTENT_ONLY. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=58."
+    }
+  ],
+  "cancel_and_replace_atomic_rows": 1,
+  "fail_loud_no_replacement_rows": 4,
+  "danpra": {
+    "prior_distinct_fail_loud_cancel_receipts_cc": 15,
+    "repaired_distinct_cancel_receipts": 1,
+    "cancel_storm_disappeared": true,
+    "receipts": [
+      "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940"
+    ],
+    "rows": [
+      {
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "leg_id": "DAN",
+        "timestamp_epoch": 1784339306.774,
+        "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+        "envelope": {
+          "low_cents": 57,
+          "high_cents": 59,
+          "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+        },
+        "placement": {
+          "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+          "live_bid_cents": 58,
+          "live_ask_cents": 59,
+          "coherence_exists_at_receipt": true,
+          "lawful_envelope_high_cents": 58,
+          "lawful_envelope_exists": true,
+          "conditioned_expected_future_low_cents": 57,
+          "future_low_minus_seen_low_distribution_cents": {
+            "q25": 0,
+            "q50": 0,
+            "q75": 0
+          },
+          "expected_future_low_minus_seen_low_cents": -2,
+          "placement_quantile": "Q75",
+          "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+          "placement_population_members": 1298,
+          "placement_population_cell": "P10_30",
+          "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+          "causal_seen_low_cents": 59,
+          "selected_quantile_offset_cents": 1,
+          "selected_quantile_raw_cents": 60,
+          "selected_quantile_inside_envelope_cents": 58,
+          "conditioned_q50_reference_cents": 57,
+          "live_bid_reference_only_cents": 58,
+          "touch_anchored_inside_coherent_envelope": false,
+          "chosen_candidate_rule": "CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE",
+          "chosen_before_migration_discipline_cents": 58,
+          "active_target_before_cents": 49,
+          "chosen_target_cents": 58,
+          "envelope_migration": {
+            "migrated": true,
+            "from": {
+              "low_cents": 46,
+              "high_cents": 58,
+              "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964"
+            },
+            "to": {
+              "low_cents": 57,
+              "high_cents": 59,
+              "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+            },
+            "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+            "provenance": "F-VS-114(c)@9ff83002"
+          },
+          "active_inconsistent_with_current_envelope": true,
+          "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+          "placement_provenance": "F-VS-114(a)@9ff83002",
+          "coherence_placement_provenance": "F-VS-118@c08ce381",
+          "numeric_constant_added": false
+        },
+        "consistency": {
+          "active_inconsistent_before_action": true,
+          "resolution": "CANCEL_AND_REPLACE_ATOMIC_SAME_RECEIPT",
+          "resolved_same_receipt": true,
+          "cancel_and_replace_atomic": true,
+          "fail_loud_only_without_lawful_replacement": true,
+          "no_lawful_replacement_reason": null,
+          "current_envelope": {
+            "low_cents": 57,
+            "high_cents": 59,
+            "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2"
+          },
+          "envelope_authoritative_at_receipt": true,
+          "provenance": [
+            "F-VS-114(c)@9ff83002",
+            "F-VS-118@c08ce381"
+          ]
+        },
+        "action": {
+          "action": "REPRICE_REST",
+          "target_cents": 57,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "sentence_verbatim": "believes DAN at 58¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=58¢; ask=59¢; book-receipt=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 57¢ by 563min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784339306.774; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2] || SIBLING-INVERSE: believes PRA at 42¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=42¢; ask=43¢; book-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1254] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|42 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 41¢ by 4min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784372805.2389936; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":2,\"q50\":7,\"q75\":30}, arrived-dip={\"q25\":2,\"q50\":3,\"q75\":30}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":0,\"q75\":4}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-767aca1da7310a48e6136840b781b7da639700b540b85b2d5c439dd8435bf044,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-802f4b2a2c44f3dce4eb3e0b4ddc5cd91304a103452f13d21bcd21f14e1675c2,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-8f07d4d8d8f59ba47454b90f8c8a75cb91c546381418afdfc36438a6624ac2f5,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d3d671247270fe5fa66c7a615bcb2edff5838fff8b172a8e992d1f5c6cda4afe,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-11dbbc46e62b48048e70ccf9fff720567e9b1af10bd8f47d1e0cca0e7e706412,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-7fc1c51391b4db89af48d08814bdf19cbf855238b140c07c39c9c33e17a3848f [CR-fc36c61c77c604b12ea9ce38ef284f79bbb254ba6146e26b23c07e6d1c4aaa85]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":58,\"observed_low_cents\":59,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1784332553,\"window_end_epoch\":1784373060,\"elapsed_window_seconds\":6753.773999929428,\"remaining_window_seconds\":33753.22600007057,\"window_fraction\":0.1667310341405048,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_INFERENCE\"}, rows=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485,CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-220d60205970009e1186baa0951b55dc7a70aab7afacba5e25f86511fb8fece0]. MICRO-MICRO: tick=868ebd99-045b-41ce-52f3-d6ed304390d2, book=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. ORDER=MACRO=RESOLVED[CR-fc36c61c77c604b12ea9ce38ef284f79bbb254ba6146e26b23c07e6d1c4aaa85] · MICRO=RESOLVED[CR-220d60205970009e1186baa0951b55dc7a70aab7afacba5e25f86511fb8fece0] · MICRO_MICRO=RESOLVED[CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. COHERENCE=COHERENT; MIRROR_GAP=2; SPREAD_BOUND=2/20; ENVELOPE={\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":58,\"live_ask_cents\":59,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":58,\"lawful_envelope_exists\":true,\"conditioned_expected_future_low_cents\":57,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":0},\"expected_future_low_minus_seen_low_cents\":-2,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":1298,\"placement_population_cell\":\"P10_30\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":59,\"selected_quantile_offset_cents\":1,\"selected_quantile_raw_cents\":60,\"selected_quantile_inside_envelope_cents\":58,\"conditioned_q50_reference_cents\":57,\"live_bid_reference_only_cents\":58,\"touch_anchored_inside_coherent_envelope\":false,\"chosen_candidate_rule\":\"CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE\",\"chosen_before_migration_discipline_cents\":58,\"active_target_before_cents\":49,\"chosen_target_cents\":58,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":46,\"high_cents\":58,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964\"},\"to\":{\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\"},\"receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=JOINT_TARGET_RECONCILED_INSIDE_COHERENT_ENVELOPES. ACTION=REPRICE_REST; TARGET_CENTS=57; ACTIVE_TARGET_BEFORE_CENTS=49."
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "leg_id": "DAN",
+        "timestamp_epoch": 1784360967,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+        "envelope": {
+          "low_cents": 59,
+          "high_cents": 60,
+          "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940"
+        },
+        "placement": {
+          "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+          "live_bid_cents": 58,
+          "live_ask_cents": 60,
+          "coherence_exists_at_receipt": true,
+          "lawful_envelope_high_cents": 59,
+          "lawful_envelope_exists": true,
+          "conditioned_expected_future_low_cents": 59,
+          "future_low_minus_seen_low_distribution_cents": {
+            "q25": 0,
+            "q50": 0,
+            "q75": 2
+          },
+          "expected_future_low_minus_seen_low_cents": 0,
+          "placement_quantile": "Q75",
+          "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+          "placement_population_members": 1695,
+          "placement_population_cell": "P70_90",
+          "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+          "causal_seen_low_cents": 59,
+          "selected_quantile_offset_cents": 3,
+          "selected_quantile_raw_cents": 62,
+          "selected_quantile_inside_envelope_cents": 59,
+          "conditioned_q50_reference_cents": 59,
+          "live_bid_reference_only_cents": 58,
+          "touch_anchored_inside_coherent_envelope": false,
+          "chosen_candidate_rule": "CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE",
+          "chosen_before_migration_discipline_cents": 59,
+          "active_target_before_cents": 58,
+          "chosen_target_cents": 59,
+          "envelope_migration": {
+            "migrated": true,
+            "from": {
+              "low_cents": 58,
+              "high_cents": 60,
+              "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2905"
+            },
+            "to": {
+              "low_cents": 59,
+              "high_cents": 60,
+              "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940"
+            },
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+            "provenance": "F-VS-114(c)@9ff83002"
+          },
+          "active_inconsistent_with_current_envelope": true,
+          "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+          "placement_provenance": "F-VS-114(a)@9ff83002",
+          "coherence_placement_provenance": "F-VS-118@c08ce381",
+          "numeric_constant_added": false
+        },
+        "consistency": {
+          "active_inconsistent_before_action": true,
+          "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+          "resolved_same_receipt": true,
+          "cancel_and_replace_atomic": false,
+          "fail_loud_only_without_lawful_replacement": true,
+          "no_lawful_replacement_reason": "PAIR_ALLOCATION_INFEASIBLE_INSIDE_ENVELOPES",
+          "current_envelope": {
+            "low_cents": 59,
+            "high_cents": 60,
+            "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940"
+          },
+          "envelope_authoritative_at_receipt": true,
+          "provenance": [
+            "F-VS-114(c)@9ff83002",
+            "F-VS-118@c08ce381"
+          ]
+        },
+        "action": {
+          "action": "CANCEL_REST",
+          "target_cents": null,
+          "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+        },
+        "sentence_verbatim": "believes DAN at 59¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=58¢; ask=60¢; book-receipt=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10579] at 202min-to-bell with 7.14 vol_log1p in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-25OCT15GIRDAV@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-e8a802702923f6ab6b150a42ba733c73d5dbc2a603a94feae1b65a339a0befc3], SHOULD drift to 59¢ by 202min-to-bell [PHASE_CENTRAL_ESTIMATE=0¢; CENTRAL_ESTIMATE_RANK=0.50295; CENTRAL_MEMBERS=1695; CENTRAL_CELL=P70_90; deadline-epoch=1784360967; deadline-emitted-now=1784360967; deadline-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940] || SIBLING-INVERSE: believes PRA at 41¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=40¢; ask=42¢; book-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940] at 202min-to-bell with 7.14 vol_log1p in ATP_MAIN, using ATP_MAIN|40 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-25OCT15GIRDAV@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-e8a802702923f6ab6b150a42ba733c73d5dbc2a603a94feae1b65a339a0befc3], SHOULD drift to 41¢ by 1min-to-bell [PHASE_CENTRAL_ESTIMATE=0¢; CENTRAL_ESTIMATE_RANK=0.50295; CENTRAL_MEMBERS=1695; CENTRAL_CELL=P70_90; deadline-epoch=1784373009.7431762; deadline-emitted-now=1784360967; deadline-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940]. MACRO: family=INTERIM_UP_TRAVEL, conditioned-total-dip={\"q25\":2,\"q50\":5,\"q75\":30}, arrived-dip={\"q25\":2,\"q50\":5,\"q75\":30}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":0,\"q75\":0}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-e8a802702923f6ab6b150a42ba733c73d5dbc2a603a94feae1b65a339a0befc3,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-45e6a3dd93f413c37757fe65104791b5c720da92cca7e02ba0198f50ecba872d,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-c0e21cff08852f4c3385b479f1138d35b9a7a52ea052f21babcd76b79fc9b5eb,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-8985752cd8103f6382b775eaab3ebb4ae0948f325f6cf4aff28de47247d8d777,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-202ade2c53f0bf7dab12d3a8e13f90b60ddad9ee013c7c9cc97a17f835fec265,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-7ab4a87021c9ae1346f7525a0f176f32c177977af04a82cedd54dd122d37939d,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-3b4e45a6a5ec9b1b41191b0147e7697e671dc6d02b3cad721a3efebbc5a415d3 [CR-ed1c9f4b8c7568d247c4fdf74672aeecd2ee16ca9016b655775059fd0bc41850]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":58,\"observed_low_cents\":59,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":15,\"formation_end_epoch\":1784332553,\"window_end_epoch\":1784373060,\"elapsed_window_seconds\":28414,\"remaining_window_seconds\":12093,\"window_fraction\":0.7014590070851952,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_INFERENCE\"}, rows=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10579,CR-e8a802702923f6ab6b150a42ba733c73d5dbc2a603a94feae1b65a339a0befc3, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-ccd35758b13318e75a481a8c92b2d19c025fb2464cbaf5f7f8f1708a5bd97cd4]. MICRO-MICRO: tick=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940, book=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10579, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-f0d25ec74b7e784946f323e08097ca940819837931f843379f125b7e04dba3a1]. ORDER=MACRO=RESOLVED[CR-ed1c9f4b8c7568d247c4fdf74672aeecd2ee16ca9016b655775059fd0bc41850] · MICRO=RESOLVED[CR-ccd35758b13318e75a481a8c92b2d19c025fb2464cbaf5f7f8f1708a5bd97cd4] · MICRO_MICRO=RESOLVED[CR-f0d25ec74b7e784946f323e08097ca940819837931f843379f125b7e04dba3a1]. COHERENCE=COHERENT; MIRROR_GAP=0; SPREAD_BOUND=4/20; ENVELOPE={\"low_cents\":59,\"high_cents\":60,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940\"}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":58,\"live_ask_cents\":60,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":59,\"lawful_envelope_exists\":true,\"conditioned_expected_future_low_cents\":59,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":2},\"expected_future_low_minus_seen_low_cents\":0,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":1695,\"placement_population_cell\":\"P70_90\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":59,\"selected_quantile_offset_cents\":3,\"selected_quantile_raw_cents\":62,\"selected_quantile_inside_envelope_cents\":59,\"conditioned_q50_reference_cents\":59,\"live_bid_reference_only_cents\":58,\"touch_anchored_inside_coherent_envelope\":false,\"chosen_candidate_rule\":\"CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE\",\"chosen_before_migration_discipline_cents\":59,\"active_target_before_cents\":58,\"chosen_target_cents\":59,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":58,\"high_cents\":60,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2905\"},\"to\":{\"low_cents\":59,\"high_cents\":60,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940\"},\"receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ATOMIC_REPLACEMENT_UNAVAILABLE_FAIL_LOUD_INCONSISTENT_ONLY. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=58."
+      }
+    ]
+  }
+}

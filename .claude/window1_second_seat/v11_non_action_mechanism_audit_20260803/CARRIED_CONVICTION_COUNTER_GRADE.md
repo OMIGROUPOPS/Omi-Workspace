@@ -57,3 +57,17 @@ Survivor set at each leg's audited floor moment:
 
 CERTIFIED: statefulness is real and monotone, overturn tests are carried, the same-receipt read is genuinely gone, the movement is stated in every sentence, touch actions are zero, all four fills are rest-priced and trade-id verified, determinism is byte-identical, and DANPRA's lawful-incomplete is now proven.
 FAULTED: (i) "22 carried-conviction placements" mislabels 22 freshly-priced proposals — the carry branch is 0/3,141; (ii) `eliminationsStillHold` passes on a single survivor, which let LAJ confirm a conviction while the book left it and cost the 51 floor; (iii) elimination fires on the ask-quote axis while capture depends on the traded low, leaving 4/8 legs holding only the unusable remainder at their floor and 2/8 with no eliminations at all; (iv) the whole restoration produced **zero** behavioural change against f5fb8e8f. The ruling's intent is not yet tested.
+
+## Addendum (F-VS-140) — the zero-change claim, strengthened to the full trace
+
+The headline was filed on coherent placement rows only. It now rests on a direct derivation-by-derivation diff of both custodied traces:
+
+| measure | f5fb8e8f | b229d5dc |
+|---|---|---|
+| derivation rows | 3,141 | 3,141 |
+| COHERENT / DISAGREES / INSUFFICIENT_EVIDENCE | 2,620 / 279 / 242 | 2,620 / 279 / 242 |
+| fills | SVA 41, PAL 41, URS 58, PRA 41 | identical, same timestamps |
+| distinct (event, leg, ts, receipt) keys | 2,886 | 2,886 (0 unique to either) |
+| differing (action, target, reason) | — | **0 of 2,886** |
+
+This also closes the one soft spot in the filed evidence: f5fb8e8f's `ENVELOPE_PLACEMENT_RECEIPT` holds 147 `DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT` rows and b229d5dc's holds none, which could have signalled a real difference. It does not — **both traces contain 279 DISAGREES derivations**; only the receipt routing changed. The restoration changed not one action, target or reason.

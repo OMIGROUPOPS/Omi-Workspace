@@ -174,3 +174,56 @@ Same at ln57286 and at **ln57287 @1784020209**, the receipt where the prior buil
 CERTIFIED: the floor lock is retired in substance, not renamed — 2,759 protected rows → 96, and the belief now reaches the floor on 4 of the 5 levels I named. PAL captured its exact corrected floor on the single print that set it; URSPAL completed at 97; determinism is byte-identical X2; all four fills verify against the raw print store by trade_id and satisfy F-VS-107; the V18/V19 custody gap I filed at 680e995c is closed.
 
 FAULTED: (i) the proposal supervisor adjudicates nothing — its admission test is `proposal ≤ evidenced floor`, so it admitted the reprice that cost GIU its fill, and `supervisor_complete` is true on all 3,198 rows by construction; (ii) on the DISAGREES rows where two of the three misses happened there is no evidenced floor at all, so the organ is inert exactly where the losses occur; (iii) the atomic-replacement path spends a receipt on every reprice and that receipt is what SVA lost the fill by — 2.516 s; (iv) the singleton `rest < ask` guard is lawful but its fallback cancelled a standing rest at URS's exact floor and cost 1¢ on the only completion; (v) both self-reported floor-rest violations are cancels of belief-priced rests mislabelled as floors — the law inherits the retired lock's category error; (vi) DAN's cancel produced no rearm state and the rearm receipt that would show it is empty while 64,906 attempts sit in the trace; (vii) carry is structurally unreachable and its counter cannot increment; (viii) underneath all of it, the evidenced-floor selector names the envelope low as the floor on 2,271 of 2,563 rows where the traded low sits in the same object — the third appearance of the error that armed the retired lock.
+
+---
+
+# ADDENDUM — 12-lane counter-grade returned; five of my own claims corrected, two gate assertions falsified
+
+Filed as F-VS-160 … F-VS-162. Every row below re-derived by me from the primary source before filing.
+
+## A — Corrections to F-VS-149 / 153 / 154 / 156 / 158
+
+**(a) §1's "I cannot reproduce 1,576/1,563" is wrong — it reproduces exactly.** `exact_floor_proposals` is the **equality** predicate `proposal_cents == evidenced_floor_cents`: **1,563 admitted + 13 blocked = 1,576**. My 1,672 / 1,658 / 14 is the **inequality** set `proposal ≤ evidenced_floor`, which is `supervised_floor_proposals`. The gate uses two predicates for two counters and I conflated them. Related: **8 of the 1,576 are self-referential** — `proposed_conflicting_target_cents` is null, so `os.js:949`'s `??` falls back to `chosen_target_cents` = the held rest = the evidenced floor, forcing equality. **The run's headline refusal, ln265 URS, is one of those 8** — no conflicting proposal existed there at all.
+
+**(b) §2's SVA attribution is wrong on the decisive step. It is the pair budget.** Row **ln57287, ts 1784020209 — 0.484 s before SVA's last 41 print**:
+
+```
+SVA  HOLD_REST 40   env [38,41]  ask 42  lawful_envelope_high 41
+     proposal_cents 41   final_target_cents 40
+     allocation {LAJ 59, SVA 40}  JOINT_TARGET_RECONCILED_INSIDE_COHERENT_ENVELOPES  excess_cents 1
+     pair_conservation {sibling LAJ 59, sum_cents 99, at_or_below_99 true}
+```
+
+41 was **postable** (ask 42). LAJ 59 + SVA 41 = 100 against `PAR_BUDGET_CENTS = 99` (`window1_v54_functionable_os.js:8`), excess 1. `allocateUnderPar` cuts the leg with the most headroom — LAJ `59 − 59 = 0`, SVA `41 − 38 = 3` — so **SVA absorbs the whole cent and is capped at 40**. And LAJ's 59 is a **carried survivor-envelope low sitting 8¢ above LAJ's ground-truth floor of 51**: the over-carried sibling consumed the budget SVA's floor needed. The ln57288 cancel is 0.516 s past the print and did not cost the fill. My "supervisor classified 41 as not-at-or-below-floor and the atomic path spent the second" describes downstream labels, not the binding step.
+
+**(c) §3.2's "1¢ cost" is wrong. The cent belongs to the belief narrowing, not to the `rest < ask` bound.**
+
+| ln | ts | env | ask | lawful exists | action |
+|---|---:|---|---:|---|---|
+| 1395/1396 | 1784030005/30007 | [57,58] | 58 | **true** | HOLD 57 — 57 lawful and held |
+| **1397** | **1784030027** | **[58,58]** | — | — | HOLD 57 — **the belief drops 57** |
+| 1398 | 1784030288 | [58,58] | 58 | **false** | CANCEL (`FAIL_LOUD_NO_LAWFUL_REPLACEMENT`) |
+| 1405 | 1784031046 | [58,58] | **59** | true | **PLACE 58** |
+
+**ln1405 is the build's own counterfactual**: the first receipt at which the bound stopped binding, it placed **58, not 57**. Without the bound, ln1398 would have been `REPRICE 57→58` on the same inconsistency — same entry. The bound cost **0¢ and 0 fills** (no ≤57 print falls in the 758 s restless window); it cost exposure and turned a reprice into a cancel. **The adjudication stands and was the order's actual question: `rest < ask` is a lawful post-only guard, not of the retired lock's class.** The cent is attributable to a singleton belief formed 1¢ above the realized floor.
+
+**(d) §4 overstated.** `prior_receipt_placements_or_reprices: 0` is structurally unfalsifiable **and** behaviourally accurate — the single carried-envelope row (ln1357) **held with a null target**, so nothing in the run was priced off a carried conviction. It is not *evidence*; it is not *wrong*. Two vacuous companions I did not name: `every_prior_receipt_action_restates_basis_and_survivors` is `.every()` over an empty array, and `CARRIED_CONVICTION_ACTION_WITHOUT_LIVE_SUPPORT_OR_BASIS_RESTATEMENT` is `.some()` over the same empty array — the carry lane's own compliance check cannot fire while carry is 0.
+
+**(e) F-VS-149's denominator was loose.** 2,589 rests below their own envelope low is 2,589 of the **2,624 rows that carry an envelope — 98.7%**, not 82.4% of 3,143. The defect is larger than I stated.
+
+## B — Two gate assertions falsified
+
+**`urs_repriced_off_57: false` is FALSE.** URS has 41 rows with `active_target_before_cents == 57` and **two move off it**: ln216 ts 1784004251 `REPRICE 57→58`, and ln1398 ts 1784030288 `CANCEL 57→null`. Both satisfy the metric's inner condition at `build_window1_v54_dual_belief.js:1401`. Both are excluded because the population at `:1380` filters on `active_was_at_evidenced_floor || protected_from_conflicting_belief_or_cancel`, and that flag is **false on both** — evidenced floor null at ln216, and already ratcheted 57→58 at ln1398. **The moment the evidenced floor moves off the rest, the row that abandons the rest becomes invisible to the metric named for it.** Third instance of the pattern, after F-VS-145 and the `supervisor_complete` finding above. ln216 is also the F-VS-142(a) 57→58 move **recurring** — denied by both builds' gates.
+
+**`same_receipt_write_then_read_removed: true` is FALSE, and the condition regressed 9.2× at this commit.** Rows carrying a prior conviction, measured on each build's own trace:
+
+| build | `prior_receipt_genuinely_readable: true` | false rows | distinct prior receipts |
+|---|---|---:|---:|
+| 680e995c | 2,503 / 2,761 (90.7 %) | 258 | 2 |
+| **3c56730a** | **439 / 2,816 (15.6 %)** | **2,377** | **1,063** |
+
+The prior build's 258 were one two-receipt replay burst; this build's 2,377 span a thousand receipts, so it is not the old mechanism. The commit's other large delta is the rearm lane going 8,353 → 64,906 events; I could not settle the writer from the trace and do not assert it. Not yet load-bearing — all 2,377 rows carry their own live proposed envelope — but it is a latent regression under a false gate assertion.
+
+## C — What the lanes confirmed
+
+The cancel-arming predicate is `os.js:897 if (action.action === "CANCEL_REST" && noLawfulReplacement)`, and `no_lawful_replacement_reason` is a faithful proxy. Measured: **21 of 22 cancels are armed; the sole un-armed cancel is ln66507, DAN, ts 1784342553.971** — exactly F-VS-157, now settled on the predicate rather than the reason string. F-VS-155 is strengthened: at ln265 the book was bid 59 / ask 63, so the 63 rest sat **at the offer** and was no longer a passive maker rest — cancelling it was correct, and the law that flags it is mis-specified.

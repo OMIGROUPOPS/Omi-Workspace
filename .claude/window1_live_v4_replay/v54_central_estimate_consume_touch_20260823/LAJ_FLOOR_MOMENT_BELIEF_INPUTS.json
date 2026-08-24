@@ -1,0 +1,13 @@
+{
+  "label": "F_VS_120_MEASUREMENT_ONLY_LAJ_FLOOR_MOMENT_BELIEF_INPUTS",
+  "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+  "leg_id": "LAJ",
+  "truth_floor_cents": 51,
+  "truth_floor_epoch": 1784060123.2,
+  "evaluated_stage_epoch": 1784059613,
+  "evaluated_stage_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+  "envelope_at_stage": null,
+  "beliefs_verbatim": null,
+  "conditioning_rows_verbatim": {},
+  "policy_change_from_this_measurement": false
+}

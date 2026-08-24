@@ -1,0 +1,48 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_central_estimate_consume_touch_20260823/ATOMIC_REARM_RECEIPT.json",
+      "bytes": 87548025,
+      "sha256": "0afd2bb58fd02c09d43cfc144b89cb95d4243cfc0c0fc15c5b31ce264df34d0e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_central_estimate_consume_touch_20260823/ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 24892516,
+      "sha256": "ca13fd77a135e076a8d0d3817d20fafaab255966048e82df446c1babc6bd6def"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_central_estimate_consume_touch_20260823/FOUR_STORIES_RECEIPT.json",
+      "bytes": 13794932,
+      "sha256": "269728dc0c8ac8496412291f6e2422afa87eeef7fecf959cb2aa58c64afce440"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_central_estimate_consume_touch_20260823/FOUR_STORIES.md",
+      "bytes": 17889829,
+      "sha256": "0fb2e283a3d5891d1d3a0341b055764dc0635205ec8c7f42d3597c2a3b73e26b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_central_estimate_consume_touch_20260823/LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "bytes": 18423929,
+      "sha256": "c7f8ce533f9915a9945c2164fc6c82a0ddc4ae3959d6deaef86e0af69b084eb0"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_central_estimate_consume_touch_20260823/PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "bytes": 19831029,
+      "sha256": "c4d4bae293a53c71fbcb21e7421db83e00e0dff2db0c621e4e2007224a4b234b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_central_estimate_consume_touch_20260823/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 76076010,
+      "sha256": "1544561c67b51018d3911924dc6a167bd72bad016be55e61bf41be59f8ecbadb"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_central_estimate_consume_touch_20260823/SMOKE_CRIJEA.md",
+      "bytes": 11842137,
+      "sha256": "74f25a43e579999496bb1142f9f064ac03d6c8eb83d92038247858857088ec08"
+    }
+  ],
+  "count": 8,
+  "bytes": 270298407
+}

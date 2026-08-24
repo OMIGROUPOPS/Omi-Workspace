@@ -196,6 +196,12 @@ const jointCorpus = [
   { event_id: "JOINT-N1", event_date: "26JUN01", category: "ATP_MAIN", quality: "FOUNDATION_MINUTE_BELL_BOUNDED", grain: "MINUTE", licensed_layers: ["MACRO", "MICRO"], vector: jointVector, legs: [{ leg_id: "JA", anchor_cents: 40, observed_low_cents: 38, low_cents: 36, floor_fraction: 0.5, future_low_return_path: [{ window_fraction: 0, seen_true_trade_low_cents: 38, strict_future_true_trade_low_cents: 39, future_low_minus_seen_low_cents: 1, source_row_ref: "minute#ja" }], future_low_return_source: "future-low#ja" }, { leg_id: "JB", anchor_cents: 60, observed_low_cents: 58, low_cents: 58, floor_fraction: 0.5, future_low_return_path: [{ window_fraction: 0, seen_true_trade_low_cents: 58, strict_future_true_trade_low_cents: 57, future_low_minus_seen_low_cents: -1, source_row_ref: "minute#jb" }], future_low_return_source: "future-low#jb" }], source_receipts: [{ source_id: "FOUNDATION", row_ref: "foundation.jsonl#row-1" }] },
 ];
 const jointNeighborhood = os.retrieveNeighborhood(jointCorpus, jointVector, "TEST-EVENT", 1, jointState.receipt);
+os.configurePhaseCentralSurface({
+  kind: "F_VS_124_PHASE_CATEGORY_CENTRAL_FUTURE_LOW_SURFACE",
+  sha256: "surface-test-sha",
+  source_sha256: "future-low-test-sha",
+  cells: [{ category: "ATP_MAIN", phase_band: "P00_10", phase_low_inclusive: 0, phase_high_exclusive: 0.1, members: 101, q25_cents: -1, q50_cents: 0, q75_cents: 1, q50_midrank: 0.51 }],
+});
 const joint = os.deriveJointActions({ state: jointState, reads: jointReads, neighborhood: jointNeighborhood, lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
 assert.equal(joint.layers.macro.context.status, "RESOLVED");
 assert.equal(joint.layers.micro.context.status, "RESOLVED");
@@ -213,8 +219,10 @@ assert(joint.derivations.every((row) => row.pair_conservation.at_or_below_99));
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.macro.conditioned_priors).every((prior) => prior.remaining_dip_distribution_cents.q50 <= prior.conditioned_total_dip_distribution_cents.q50)), "remaining travel must be total minus arrived");
 assert.equal(joint.derivations[0].layered_dual_belief.macro.conditioned_priors.AAA.remaining_dip_distribution_cents.q50, 2);
 assert.equal(joint.derivations[0].layered_dual_belief.macro.conditioned_priors.BBB.remaining_dip_distribution_cents.q50, 0);
-assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.predicted_cents, 39, "belief target must add the conditioned strict-future-low offset to the causal seen low");
-assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.remaining_dip_consumption.expected_future_low_minus_seen_low_cents, 1);
+assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.predicted_cents, 38, "belief target must add the phase-central strict-future-low offset to the causal seen low");
+assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.remaining_dip_consumption.expected_future_low_minus_seen_low_cents, 0);
+assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.phase_conditioning.phase_central_estimate.estimate_rank_in_population, 0.51);
+assert(joint.derivations.every((row) => row.sentence.includes("CENTRAL_ESTIMATE_RANK=0.51")));
 assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.remaining_dip_consumption.own_low_return_assumption_removed, true);
 assert(joint.derivations.every((row) => row.layered_dual_belief.coherence_placement.current_coherence));
 assert(joint.derivations.filter((row) => row.action.action === "PLACE_REST").every((row) => row.layered_dual_belief.coherence_placement.qualification_to_action_latency_seconds === 0));
@@ -226,8 +234,10 @@ const noOpinionState = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(noOpinionState, leg, { timestamp_epoch: ts, receipt: `noop-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });
 const noOpinionReads = os.readAll(noOpinionState);
 const noOpinion = os.deriveJointActions({ state: noOpinionState, reads: noOpinionReads, neighborhood: [], lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
-assert(noOpinion.derivations.every((row) => row.action.action === "HOLD_REST" && row.action.target_cents === null));
-assert(noOpinion.derivations.every((row) => row.action.reason === "INDEPENDENT_LANE_HOLD_OR_ABSTAIN_BED"));
-assert(noOpinion.derivations.every((row) => row.layered_dual_belief.independent_lane_may_complete === false));
+assert.deepEqual(noOpinion.derivations.map((row) => row.action.target_cents), [37, 61]);
+assert(noOpinion.derivations.every((row) => row.action.action === "PLACE_REST"));
+assert(noOpinion.derivations.every((row) => row.action.reason === "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL"));
+assert(noOpinion.derivations.every((row) => row.layered_dual_belief.independent_lane_may_complete === true));
+assert(noOpinion.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_NULL"));
 
 console.log("window1_v54_dual_belief_os: PASS");

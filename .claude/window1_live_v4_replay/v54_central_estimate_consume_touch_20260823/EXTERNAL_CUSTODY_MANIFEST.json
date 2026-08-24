@@ -1,0 +1,51 @@
+{
+  "label": "V54_CENTRAL_ESTIMATE_CONSUME_TOUCH_EXTERNAL_CUSTODY",
+  "files": [
+    {
+      "logical_path": "FOUNDATION_PER_MINUTE_UNIVERSE",
+      "custody_location": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+      "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+      "bytes": 406637058,
+      "rows": 9330878,
+      "committed": false,
+      "compact_derivatives": [
+        {
+          "path": "FOUNDATION_LIBRARY.jsonl.gz",
+          "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+          "bytes": 2159635,
+          "rows": 9000
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+          "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+          "bytes": 1668883,
+          "rows": 5260
+        },
+        {
+          "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+          "sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+          "rows": 24
+        }
+      ]
+    },
+    {
+      "logical_path": "ATOMIC_REARM_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_central_estimate_consume_touch_20260823\\ATOMIC_REARM_RECEIPT.json",
+      "sha256": "0afd2bb58fd02c09d43cfc144b89cb95d4243cfc0c0fc15c5b31ce264df34d0e",
+      "bytes": 87548025,
+      "rows": 64477,
+      "committed": false
+    },
+    {
+      "logical_path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_central_estimate_consume_touch_20260823\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "1544561c67b51018d3911924dc6a167bd72bad016be55e61bf41be59f8ecbadb",
+      "bytes": 76076010,
+      "rows": 64964,
+      "committed": false
+    }
+  ],
+  "all_committed_artifacts_under_50_mb": true,
+  "committed_artifact_cap_bytes": 52428800,
+  "oversized_artifacts_moved_to_external_custody": 2
+}

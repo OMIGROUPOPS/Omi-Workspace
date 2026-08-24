@@ -18826,6 +18826,7 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| THE TWO-WAY STREET — every failed prediction attributed DATA-GAP / DATA-UNCONSUMED / MISREAD; unattributed misses are unfinished forensics | 2026-08-23 | F-VS-122 (first census: F-VS-126, 0 DATA-GAP) |
 | THE FUNCTIONABLE STANDARD — no 804 until all 4 bed games are living proof with the full machine on (beliefs formed, coherent, pricing the rests); no-opinion completions score zero | 2026-08-23 | F-VS-108 (scored: F-VS-112, bed 2/4) |
 | FILL-PRICE REPORTING — fill prices are the only reportable prices; diagnostic/predicted/summary numbers beside or in place of a fill price = reporting-fraud class | 2026-08-23 | F-VS-108 |
 | MAKER FILLS PRICE AT THE REST — a resting bid executes at its own price; print-priced crediting below the rest retired as fill-model inflation (kin F-VS-054); truth-table us_fill convention is law; layered bed line restated GIUBAR 95/Δ5 FAIL | 2026-08-23 | F-VS-107 (closes F-VS-105) |

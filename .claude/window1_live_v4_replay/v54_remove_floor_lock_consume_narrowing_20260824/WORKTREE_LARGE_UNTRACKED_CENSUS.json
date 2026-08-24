@@ -1,0 +1,52 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "timing": "POST_CUSTODY_FINAL_CLOSEOUT",
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_remove_floor_lock_consume_narrowing_20260824/FLOOR_REST_PROTECTION_RECEIPT.json",
+      "bytes": 48838048,
+      "sha256": "b92fe98f2545f581cd9be1c24add3a624bbdf30ee17410a53a498f38bf1c3f33"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_remove_floor_lock_consume_narrowing_20260824/FOUR_STORIES.md",
+      "bytes": 46857957,
+      "sha256": "50112be1e7d40ece1d8373c2227fb6d2a8832a9194b208474312b7bc448bbebe"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_remove_floor_lock_consume_narrowing_20260824/FOUR_STORIES_RECEIPT.json",
+      "bytes": 42820454,
+      "sha256": "cfd8908cf522c64ce8ac5b5a527a22c5bdb78d196609426a3fcbc40d7a0c3644"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_remove_floor_lock_consume_narrowing_20260824/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 28850429,
+      "sha256": "9d6bcc05786e40221383279ad0182dd9e39d37265bcce912ea95ed8754497ba7"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_remove_floor_lock_consume_narrowing_20260824/LAWFUL_INCOMPLETE_RECEIPT.json",
+      "bytes": 36042949,
+      "sha256": "3e43554e892af7557fc39e45b9aa4a4dcbb4fb95565f8168ccd88ae79835f65a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_remove_floor_lock_consume_narrowing_20260824/PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "bytes": 52360375,
+      "sha256": "7953821efa727d10de0875f52e81750f751fa36f48ad401b5b5754b66ead9a6c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_remove_floor_lock_consume_narrowing_20260824/REPAIR_GATE_RECEIPT.json",
+      "bytes": 36092944,
+      "sha256": "853d77d85fee1963e3d9a76bcb9263e6646758a5b477cd2fad4c040bcec87b9f"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_remove_floor_lock_consume_narrowing_20260824/SMOKE_CRIJEA.md",
+      "bytes": 15394798,
+      "sha256": "2f834a2e5d0e5faf1905b67fffb976f68c7c519eb387efe908df9c4cec1616a7"
+    }
+  ],
+  "count": 8,
+  "bytes": 307257954,
+  "oversized_files_moved_to_external_custody": 5,
+  "all_remaining_untracked_files_under_committed_cap_bytes": true,
+  "committed_cap_bytes": 52428800
+}

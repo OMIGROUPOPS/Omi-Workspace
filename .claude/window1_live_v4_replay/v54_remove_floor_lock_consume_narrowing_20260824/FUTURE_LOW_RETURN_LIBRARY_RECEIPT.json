@@ -1,0 +1,34 @@
+{
+  "label": "V54_BELL_BOUNDED_FUTURE_LOW_RETURN_LIBRARY",
+  "layer_license": {
+    "grain": "MINUTE",
+    "licensed_layers": [
+      "MACRO",
+      "MICRO"
+    ],
+    "micro_micro_licensed": false
+  },
+  "method": "EXACT_MINUTE_PATH_CHANGE_POINTS; NO_BUCKETS; NO_THRESHOLDS; NO_PLACEMENT_CONSTANTS; CURRENT_MINUTE_EXCLUDED_FROM_ITS_LABEL",
+  "output": {
+    "bounded_legs": 8386,
+    "by_category_legs": {
+      "ATP_CHALL": 3484,
+      "ATP_MAIN": 2427,
+      "WTA_CHALL": 487,
+      "WTA_MAIN": 1988
+    },
+    "bytes": 1668883,
+    "path": "C:\\Users\\omigr\\OMI-Workspace-codex-window1\\tmp\\v54-four-steps-ii\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+    "path_points": 71649,
+    "rows": 5260,
+    "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201"
+  },
+  "question": "STRICT_FUTURE_TRUE_TRADE_LOW_MINUS_CAUSAL_SEEN_TRUE_TRADE_LOW_AT_MEMBER_MINUTE",
+  "source": {
+    "bytes": 406637058,
+    "path": "tmp/per_minute_features.parquet",
+    "rows": 9330878,
+    "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4"
+  },
+  "unknown_bell_method_excluded": true
+}

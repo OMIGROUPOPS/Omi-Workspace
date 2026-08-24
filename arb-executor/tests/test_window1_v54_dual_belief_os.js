@@ -247,7 +247,7 @@ assert(joint.derivations.every((row) => row.sentence.includes("book-receipt=")))
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.status !== "RESOLVED" || belief.belief_price_cents === Math.floor((belief.live_bid_cents + belief.live_ask_cents) / 2))));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.placement_quantile === "Q75"));
-assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.chosen_candidate_rule === "CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN"));
+assert(joint.derivations.every((row) => ["CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN", "SINGLETON_SURVIVOR_ENVELOPE_CONSUMED_AT_EXACT_LEVEL"].includes(row.layered_dual_belief.envelope_placement.chosen_candidate_rule)));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.touch_anchored_inside_coherent_envelope === false));
 assert(joint.derivations.every((row) => row.sentence.includes("ENVELOPE_PLACEMENT=")));
 assert(joint.derivations.every((row) => row.sentence.includes("SOURCE_KEY=LIBRARY_CLOSE_CENTS") || row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")));
@@ -265,6 +265,11 @@ assert(joint.derivations.filter((row) => row.action.action === "PLACE_REST").eve
 assert(joint.derivations.every((row) => row.layered_dual_belief.coherence_placement.stale_envelope_originated_new_rest === false));
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.deadline.deadline_epoch >= belief.deadline.emitted_at_epoch && belief.deadline.derives_fresh_at_each_emission)));
 assert(joint.derivations.every((row) => row.sentence.includes("remaining-dip=total-minus-arrived=") && row.sentence.includes("deadline-emitted-now=")));
+assert.equal(Object.prototype.hasOwnProperty.call(jointState.dual_belief, "floor_rest_locks"), false, "persistent first-guess floor locks must be retired");
+assert(joint.derivations.every((row) => row.layered_dual_belief.floor_rest_protection.floor_rest_locks_retired === true));
+assert(joint.derivations.every((row) => row.layered_dual_belief.proposal_supervisor && !String(row.layered_dual_belief.proposal_supervisor.status).includes("NOT_REQUIRED")));
+assert.deepEqual(os.chooseEnvelopePlacementTarget({ low_cents: 66, high_cents: 66 }, 63, 68), { target_cents: 66, singleton_level_cents: 66, singleton_consumed: true });
+assert.deepEqual(os.chooseEnvelopePlacementTarget({ low_cents: 62, high_cents: 66 }, 64, 68), { target_cents: 64, singleton_level_cents: null, singleton_consumed: false });
 
 os.configurePhaseCentralSurface({
   kind: "F_VS_124_PHASE_CATEGORY_CENTRAL_FUTURE_LOW_SURFACE",

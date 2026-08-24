@@ -18826,6 +18826,8 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| CARRIED CONVICTION vs STALE PRIOR — a belief persists and updates; lawful while its eliminations hold and its basis is re-stated at the current receipt; stale only when contradicted or un-re-stateable, then updated or dropped, never silently reused; the movement itself is evidence and must be stated | 2026-08-24 | F-VS-134 (amends F-VS-102/106/118; scoped F-VS-135) |
+| SHAPE ELIMINATION RESTORED — first-class organ: survivors carried, eliminations permanent unless the evidence that made them is overturned | 2026-08-24 | F-VS-134 (retired organ named: 189eaa20, F-VS-133) |
 | THE TWO-WAY STREET — every failed prediction attributed DATA-GAP / DATA-UNCONSUMED / MISREAD; unattributed misses are unfinished forensics | 2026-08-23 | F-VS-122 (first census: F-VS-126, 0 DATA-GAP) |
 | THE FUNCTIONABLE STANDARD — no 804 until all 4 bed games are living proof with the full machine on (beliefs formed, coherent, pricing the rests); no-opinion completions score zero | 2026-08-23 | F-VS-108 (scored: F-VS-112, bed 2/4) |
 | FILL-PRICE REPORTING — fill prices are the only reportable prices; diagnostic/predicted/summary numbers beside or in place of a fill price = reporting-fraud class | 2026-08-23 | F-VS-108 |
@@ -19597,3 +19599,10 @@ The Foundation catalogued in §l (F-VS-058): 9.33M minute rows, 19,207 tickers, 
 - Dives @ac68e3bc: selection 8/8 reproduced; 16/16 adjudications re-derived from raw tapes + sentences + map; 792/792 sentences verbatim vs custody; 30/30 sentence==action; two incoherences (1¢ rests under FORMATION_NOT_COMPLETE; REPRICE 29 with reason FORMATION_NOT_COMPLETE) (F-VS-099).
 - Depth map V3 = it6-corpus re-derivation under bounded right edges; the four licensed cells (ATP_CHALL|8, ATP_MAIN|46/56, WTA_MAIN|42) are ≥53 MINUTE-grain legs each; W1TT corrections touch none of them (F-VS-099).
 - THREE_WAY_TOUCH_CAPTURE_CENSUS: QUEUED WITH TRIGGER (live-pilot boundary, or four-game contradiction of TOUCH-SUFFICIENT); not before (F-VS-100).
+
+## ad. CARRIED CONVICTION vs STALE PRIOR (appended 2026-08-24; operator relay)
+
+- Persistence is not a defect; UNEXAMINED persistence is. A belief formed on evidence persists and updates: each receipt confirms, tightens, or shifts it, and the movement is itself evidence — state what was confirmed or eliminated (F-VS-134).
+- Lawful while (i) its supporting eliminations still hold and (ii) its sentence re-states its basis at the current receipt. Stale only when contradicted by new evidence or when the basis can no longer be re-stated — then updated or dropped, never silently reused.
+- F-VS-102 narrows to SILENT reuse · F-VS-106 survives as an instance (un-re-stateable basis) · F-VS-118 releases: current-receipt COHERENCE is replaced by current-receipt RE-STATEMENT, un-blocking dual_belief_os.js:528-548 at f5fb8e8f (untested: 0 of 2,767 rows) (F-VS-135).
+- Shape elimination restored as first-class; the organ to restore is the 189eaa20 survivor_shapes class (9 files there, 0 at the current tip). A restored organ carries the overturn test with each survivor set, not only the survivors (F-VS-133/135).

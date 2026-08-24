@@ -1,0 +1,339 @@
+{
+  "label": "F_VS_120_MEASUREMENT_ONLY_LAJ_FLOOR_MOMENT_BELIEF_INPUTS",
+  "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+  "leg_id": "LAJ",
+  "truth_floor_cents": 51,
+  "truth_floor_epoch": 1784060123.2,
+  "evaluated_stage_epoch": 1784059613,
+  "evaluated_stage_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+  "envelope_at_stage": null,
+  "beliefs_verbatim": {
+    "SVA": {
+      "leg_id": "SVA",
+      "status": "RESOLVED",
+      "family": "INTERIM_UP_TRAVEL",
+      "current_cents": 48,
+      "belief_price_cents": 48,
+      "belief_price_basis": "SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK",
+      "belief_price_book_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+      "reader_level_cents": 49,
+      "envelope_high_cents": 49,
+      "live_bid_cents": 48,
+      "live_ask_cents": 49,
+      "predicted_cents": 41,
+      "minutes_to_bell": 313,
+      "predicted_minutes_to_bell": 21,
+      "deadline": {
+        "emitted_at_epoch": 1784059613,
+        "emitted_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+        "deadline_epoch": 1784077150.6411765,
+        "minutes_to_bell_at_emission": 313,
+        "deadline_minutes_to_bell": 21,
+        "target_floor_fraction": 0.9823529411764705,
+        "modeled_floor_epoch": 1784077150.6411765,
+        "stale_modeled_deadline_clamped_to_emission": false,
+        "derives_fresh_at_each_emission": true,
+        "provenance": "F-VS-112@3be11997"
+      },
+      "volume_log1p": 8.68,
+      "store": "ATP_CHALL|48 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS)",
+      "v3_map_semantics": {
+        "source_key": "LIBRARY_CLOSE_CENTS",
+        "runtime_rekey": "CURRENT_CAUSAL_BEST_BID_CENTS",
+        "stated_verbatim": true,
+        "cell": {
+          "category": "ATP_CHALL",
+          "price_cell": 48,
+          "n_legs": 97,
+          "n_games": 97,
+          "edge_p25_raw_cents": 2,
+          "edge_p50_raw_cents": 6,
+          "edge_p75_raw_cents": 13,
+          "edge_p25_cents": 2,
+          "edge_p50_cents": 6,
+          "edge_p75_cents": 13,
+          "edge_min_cents": 0,
+          "edge_max_cents": 44,
+          "edge_ge_5_share": 0.6082474226804123,
+          "grains": {
+            "MINUTE": 88,
+            "UNKNOWN": 9
+          },
+          "bell_methods": {
+            "both_sides_price_discovery": 88,
+            "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 8,
+            "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1
+          }
+        }
+      },
+      "top_neighbor": {
+        "event_id": "KXATPCHALLENGERMATCH-26FEB07SMISMI2",
+        "score": 0.7725243182335043,
+        "coverage": 0.9452054794520548,
+        "quality": "FOUNDATION_MINUTE_BELL_BOUNDED",
+        "grain": "MINUTE",
+        "licensed_layers": [
+          "MACRO",
+          "MICRO"
+        ],
+        "citation_receipt_id": "CR-d7a10beddba069a718f56b4dba683eb54abb82112d4e455f1ce97de2b67a0d8d"
+      },
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 42,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 52010,
+        "remaining_window_seconds": 18787,
+        "window_fraction": 0.734635648403181,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "raw_remaining_dip_cents": {
+        "q25": 0,
+        "q50": 9,
+        "q75": 35
+      },
+      "remaining_dip_cents": {
+        "q25": 0,
+        "q50": 9,
+        "q75": 9
+      },
+      "remaining_dip_consumption": {
+        "role": "LEGACY_TRAVEL_TELEMETRY_NOT_BELIEF_TARGET",
+        "own_low_return_assumption_removed": true,
+        "expected_future_low_minus_seen_low_cents": 0,
+        "future_low_minus_seen_low_distribution_cents": {
+          "q25": 0,
+          "q50": 0,
+          "q75": 3
+        },
+        "provenance": "F-VS-120@97411938"
+      },
+      "conditioned_total_dip_cents": {
+        "q25": 9,
+        "q50": 35,
+        "q75": 35
+      },
+      "arrived_dip_cents": {
+        "q25": 9,
+        "q50": 26,
+        "q75": 26
+      },
+      "phase_conditioning": {
+        "status": "RESOLVED",
+        "method": "EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL",
+        "upstream_all_member_distribution_reference_cents": {
+          "q25": 0,
+          "q50": 9,
+          "q75": 35
+        },
+        "conditioned_total_dip_distribution_cents": {
+          "q25": 9,
+          "q50": 35,
+          "q75": 35
+        },
+        "arrived_dip_distribution_cents": {
+          "q25": 9,
+          "q50": 26,
+          "q75": 26
+        },
+        "remaining_dip_distribution_cents": {
+          "q25": 0,
+          "q50": 9,
+          "q75": 9
+        },
+        "future_low_minus_seen_low_distribution_cents": {
+          "q25": 0,
+          "q50": 0,
+          "q75": 3
+        },
+        "expected_future_low_minus_seen_low_cents": 0,
+        "phase_central_estimate": {
+          "category": "ATP_CHALL",
+          "phase_band": "P70_90",
+          "phase_low_inclusive": 0.7,
+          "phase_high_exclusive": 0.9,
+          "members": 2091,
+          "q25_cents": -6,
+          "q50_cents": 0,
+          "q75_cents": 3,
+          "q50_midrank": 0.51363,
+          "estimate_rank_in_population": 0.51363,
+          "source_sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+          "surface_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+          "provenance": "F-VS-124@48dbf36b"
+        },
+        "displaced_seven_neighbor_tail_estimate_cents": -13.779502760092146,
+        "row_universe": {
+          "source_rows": 7,
+          "floor_timed_rows": 3,
+          "excluded_untimed_rows": [
+            {
+              "event_id": "KXATPCHALLENGERMATCH-26MAR30WISZAH",
+              "member_floor_fraction": 0,
+              "reason": "NO_POSITIVE_MEMBER_FLOOR_FRACTION"
+            },
+            {
+              "event_id": "KXATPCHALLENGERMATCH-26FEB25SIMGRA",
+              "member_floor_fraction": 0,
+              "reason": "NO_POSITIVE_MEMBER_FLOOR_FRACTION"
+            },
+            {
+              "event_id": "KXATPCHALLENGERMATCH-26APR04NEUGIL",
+              "member_floor_fraction": 0,
+              "reason": "NO_POSITIVE_MEMBER_FLOOR_FRACTION"
+            },
+            {
+              "event_id": "KXATPCHALLENGERMATCH-26MAR01LOKZAH",
+              "member_floor_fraction": 0,
+              "reason": "NO_POSITIVE_MEMBER_FLOOR_FRACTION"
+            }
+          ],
+          "excluded_future_low_rows": [],
+          "one_universe_for_total_arrived_and_remaining_quantiles": true
+        },
+        "own_evidence": {
+          "basis": "TRUE_TRADE",
+          "anchor_cents": 41,
+          "observed_low_cents": 41,
+          "observed_dip_cents": 0,
+          "dip_state": "NO_DIP_OBSERVED",
+          "true_trade_count": 42,
+          "formation_end_epoch": 1784007603,
+          "window_end_epoch": 1784078400,
+          "elapsed_window_seconds": 52010,
+          "remaining_window_seconds": 18787,
+          "window_fraction": 0.734635648403181,
+          "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+        },
+        "target_floor_fraction": 0.9823529411764705,
+        "rows": [
+          {
+            "event_id": "KXATPCHALLENGERMATCH-26FEB07SMISMI2",
+            "source_receipt": null,
+            "full_travel_cents": 1,
+            "member_floor_fraction": 0.9696485623003195,
+            "own_window_fraction": 0.734635648403181,
+            "phase_scale": 0.76,
+            "conditioned_total_dip_cents": 1,
+            "arrived_dip_cents": 0.7576308334438078,
+            "remaining_dip_cents": 0.24236916655619223,
+            "member_seen_true_trade_low_cents": 25,
+            "member_strict_future_true_trade_low_cents": 24,
+            "future_low_minus_seen_low_cents": -1,
+            "future_low_source_row_ref": "KXATPCHALLENGERMATCH-26FEB07SMISMI2-SMI@minute_ts=1770453660",
+            "future_low_return_source": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_carried_conviction_survivor_shapes_20260824\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz#KXATPCHALLENGERMATCH-26FEB07SMISMI2|SMI",
+            "conditioning_weight": 0.04563713866276695,
+            "own_evidence_match_grade": 0.0625
+          },
+          {
+            "event_id": "KXATPCHALLENGERMATCH-26MAR10ANDECH",
+            "source_receipt": null,
+            "full_travel_cents": 9,
+            "member_floor_fraction": 0.38095238095238093,
+            "own_window_fraction": 0.734635648403181,
+            "phase_scale": 1,
+            "conditioned_total_dip_cents": 9,
+            "arrived_dip_cents": 9,
+            "remaining_dip_cents": 0,
+            "member_seen_true_trade_low_cents": 30,
+            "member_strict_future_true_trade_low_cents": 33,
+            "future_low_minus_seen_low_cents": 3,
+            "future_low_source_row_ref": "KXATPCHALLENGERMATCH-26MAR10ANDECH-ECH@minute_ts=1773173340",
+            "future_low_return_source": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_carried_conviction_survivor_shapes_20260824\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz#KXATPCHALLENGERMATCH-26MAR10ANDECH|ECH",
+            "conditioning_weight": 0.35634124105686515,
+            "own_evidence_match_grade": 0.5
+          },
+          {
+            "event_id": "KXATPCHALLENGERMATCH-26MAR16BRASAN",
+            "source_receipt": null,
+            "full_travel_cents": 35,
+            "member_floor_fraction": 0.9823529411764705,
+            "own_window_fraction": 0.734635648403181,
+            "phase_scale": 0.75,
+            "conditioned_total_dip_cents": 35,
+            "arrived_dip_cents": 26.17414435927501,
+            "remaining_dip_cents": 8.825855640724988,
+            "member_seen_true_trade_low_cents": 41,
+            "member_strict_future_true_trade_low_cents": 18,
+            "future_low_minus_seen_low_cents": -23,
+            "future_low_source_row_ref": "KXATPCHALLENGERMATCH-26MAR16BRASAN-SAN@minute_ts=1773636840",
+            "future_low_return_source": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_carried_conviction_survivor_shapes_20260824\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz#KXATPCHALLENGERMATCH-26MAR16BRASAN|SAN",
+            "conditioning_weight": 0.7117239565940644,
+            "own_evidence_match_grade": 1
+          }
+        ],
+        "provenance": [
+          "F-VS-124@48dbf36b",
+          "F-VS-120@97411938",
+          "F-VS-066@521a1613"
+        ]
+      },
+      "book_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+      "plain_sentence": "believes SVA at 48¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=48¢; ask=49¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979] at 313min-to-bell with 8.68 vol_log1p in ATP_CHALL, using ATP_CHALL|48 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.77 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-d7a10beddba069a718f56b4dba683eb54abb82112d4e455f1ce97de2b67a0d8d], SHOULD drift to 41¢ by 21min-to-bell [PHASE_CENTRAL_ESTIMATE=0¢; CENTRAL_ESTIMATE_RANK=0.51363; CENTRAL_MEMBERS=2091; CENTRAL_CELL=P70_90; deadline-epoch=1784077150.6411765; deadline-emitted-now=1784059613; deadline-receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979]"
+    }
+  },
+  "conditioning_rows_verbatim": {
+    "SVA": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26FEB07SMISMI2",
+        "source_receipt": null,
+        "full_travel_cents": 1,
+        "member_floor_fraction": 0.9696485623003195,
+        "own_window_fraction": 0.734635648403181,
+        "phase_scale": 0.76,
+        "conditioned_total_dip_cents": 1,
+        "arrived_dip_cents": 0.7576308334438078,
+        "remaining_dip_cents": 0.24236916655619223,
+        "member_seen_true_trade_low_cents": 25,
+        "member_strict_future_true_trade_low_cents": 24,
+        "future_low_minus_seen_low_cents": -1,
+        "future_low_source_row_ref": "KXATPCHALLENGERMATCH-26FEB07SMISMI2-SMI@minute_ts=1770453660",
+        "future_low_return_source": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_carried_conviction_survivor_shapes_20260824\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz#KXATPCHALLENGERMATCH-26FEB07SMISMI2|SMI",
+        "conditioning_weight": 0.04563713866276695,
+        "own_evidence_match_grade": 0.0625
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26MAR10ANDECH",
+        "source_receipt": null,
+        "full_travel_cents": 9,
+        "member_floor_fraction": 0.38095238095238093,
+        "own_window_fraction": 0.734635648403181,
+        "phase_scale": 1,
+        "conditioned_total_dip_cents": 9,
+        "arrived_dip_cents": 9,
+        "remaining_dip_cents": 0,
+        "member_seen_true_trade_low_cents": 30,
+        "member_strict_future_true_trade_low_cents": 33,
+        "future_low_minus_seen_low_cents": 3,
+        "future_low_source_row_ref": "KXATPCHALLENGERMATCH-26MAR10ANDECH-ECH@minute_ts=1773173340",
+        "future_low_return_source": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_carried_conviction_survivor_shapes_20260824\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz#KXATPCHALLENGERMATCH-26MAR10ANDECH|ECH",
+        "conditioning_weight": 0.35634124105686515,
+        "own_evidence_match_grade": 0.5
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26MAR16BRASAN",
+        "source_receipt": null,
+        "full_travel_cents": 35,
+        "member_floor_fraction": 0.9823529411764705,
+        "own_window_fraction": 0.734635648403181,
+        "phase_scale": 0.75,
+        "conditioned_total_dip_cents": 35,
+        "arrived_dip_cents": 26.17414435927501,
+        "remaining_dip_cents": 8.825855640724988,
+        "member_seen_true_trade_low_cents": 41,
+        "member_strict_future_true_trade_low_cents": 18,
+        "future_low_minus_seen_low_cents": -23,
+        "future_low_source_row_ref": "KXATPCHALLENGERMATCH-26MAR16BRASAN-SAN@minute_ts=1773636840",
+        "future_low_return_source": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_carried_conviction_survivor_shapes_20260824\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz#KXATPCHALLENGERMATCH-26MAR16BRASAN|SAN",
+        "conditioning_weight": 0.7117239565940644,
+        "own_evidence_match_grade": 1
+      }
+    ]
+  },
+  "policy_change_from_this_measurement": false
+}

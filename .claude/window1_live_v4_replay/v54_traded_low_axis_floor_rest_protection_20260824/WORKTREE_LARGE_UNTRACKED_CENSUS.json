@@ -1,0 +1,36 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "scope": "git ls-files --others --exclude-standard after failed-run custody and final oversized-artifact custody",
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_traded_low_axis_floor_rest_protection_20260824/FOUR_STORIES.md",
+      "bytes": 13313607,
+      "sha256": "6393e4af2af65e3c09a8ca62824110e2539ff9bd2bccd837e7942a13f07e14e4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_traded_low_axis_floor_rest_protection_20260824/LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "bytes": 12503912,
+      "sha256": "7228bba37425da68f28613b43bfca7cc57d467d8f55464378e40523304c41c62"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_traded_low_axis_floor_rest_protection_20260824/PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "bytes": 14900314,
+      "sha256": "0d8ba78451249ab6328539367f825bfc14caf7037c75f51b8420e50361a4e3dc"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_traded_low_axis_floor_rest_protection_20260824/SMOKE_CRIJEA.md",
+      "bytes": 15336914,
+      "sha256": "20973b518f444ab1ef956f0f870ab854a6203a33934cba6447ca540e21613e12"
+    }
+  ],
+  "count": 4,
+  "bytes": 56064447,
+  "failed_run_copies": {
+    "repository_paths_present": 0,
+    "external_custody_roots": [
+      "C:/Users/omigr/OMI-Window1-private/stage1_store/v54_traded_low_axis_floor_rest_protection_failed_precedence_20260824",
+      "C:/Users/omigr/OMI-Window1-private/stage1_store/v54_traded_low_axis_floor_rest_protection_failed_scan_20260824"
+    ]
+  }
+}

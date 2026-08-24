@@ -1,0 +1,67 @@
+{
+  "label": "V54_TRADED_LOW_AXIS_FLOOR_PROTECTION_EXTERNAL_CUSTODY",
+  "files": [
+    {
+      "logical_path": "FOUNDATION_PER_MINUTE_UNIVERSE",
+      "custody_location": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+      "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+      "bytes": 406637058,
+      "rows": 9330878,
+      "committed": false,
+      "compact_derivatives": [
+        {
+          "path": "FOUNDATION_LIBRARY.jsonl.gz",
+          "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+          "bytes": 2159635,
+          "rows": 9000
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+          "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+          "bytes": 1668883,
+          "rows": 5260
+        },
+        {
+          "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+          "sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+          "rows": 24
+        }
+      ]
+    },
+    {
+      "logical_path": "CARRIED_CONVICTION_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_traded_low_axis_floor_rest_protection_20260824\\CARRIED_CONVICTION_RECEIPT.json",
+      "sha256": "f71aa80eaaccda6978d719697ea3ac36325f321b4ac0805a01fdbfc7d27704d4",
+      "bytes": 99235829,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "ENVELOPE_PLACEMENT_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_traded_low_axis_floor_rest_protection_20260824\\ENVELOPE_PLACEMENT_RECEIPT.json",
+      "sha256": "bee18e9466261709c9ff11d1cc34b7195a62eb37504ee715856d61a94e4e2a53",
+      "bytes": 84111184,
+      "rows": 2624,
+      "committed": false
+    },
+    {
+      "logical_path": "FLOOR_REST_PROTECTION_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_traded_low_axis_floor_rest_protection_20260824\\FLOOR_REST_PROTECTION_RECEIPT.json",
+      "sha256": "1d24922558ef1d899aaf54bdac8f8b71f4dc13d107db3e74c1caaa836c711040",
+      "bytes": 105479214,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_traded_low_axis_floor_rest_protection_20260824\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "6039baa5de77c419a0a06d15f774aba676d2ff493c8f63480feff4b2bb006f42",
+      "bytes": 94254970,
+      "rows": 1597,
+      "committed": false
+    }
+  ],
+  "all_committed_artifacts_under_50_mb": true,
+  "committed_artifact_cap_bytes": 52428800,
+  "oversized_artifacts_moved_to_external_custody": 4
+}

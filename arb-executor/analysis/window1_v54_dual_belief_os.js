@@ -37,6 +37,9 @@ const LAYER_PROVENANCE = Object.freeze({
   inside_spread_reach_fix: "F-VS-130@3e3d3548",
   survivor_shape_restoration: "F-VS-133/F-VS-135@e7081336; structural source @189eaa20",
   carried_conviction: "F-VS-134@e7081336",
+  traded_low_axis_alignment: "F-VS-139/F-VS-143@f4752720",
+  floor_rest_protection: "F-VS-138/F-VS-142@f4752720",
+  disagrees_own_evidence_release: "F-VS-138/F-VS-142@f4752720; F-VS-068@521a1613",
   continuous_belief_movement: "RIDER_BELIEF_EVOLVES@2026-08-24",
   own_evidence_sufficiency: "F-VS-068@521a1613",
 });
@@ -68,6 +71,16 @@ function cent(value) { return Number.isInteger(value) && value >= 1 && value <= 
 function clamp(value, low, high) { return Math.max(low, Math.min(high, value)); }
 function sum(values) { return values.filter(Number.isFinite).reduce((a, b) => a + b, 0); }
 function round2(value) { return Number.isFinite(value) ? Math.round(value * 100) / 100 : null; }
+
+function supportedFloorLevel(criterion, referenceCents) {
+  const levels = criterion?.candidate_final_floor_levels_cents ?? [];
+  if (!Number.isInteger(referenceCents) || !levels.length) return null;
+  return [...levels].sort((a, b) => Math.abs(a - referenceCents) - Math.abs(b - referenceCents) || a - b)[0] ?? null;
+}
+
+function criterionSupportsLevel(criterion, targetCents) {
+  return Number.isInteger(targetCents) && (criterion?.candidate_final_floor_levels_cents ?? []).includes(targetCents);
+}
 
 function weightedQuantile(rows, field, quantile) {
   const valid = rows
@@ -356,11 +369,12 @@ function allocateUnderPar(targets, lowerBounds) {
 }
 
 function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resources }) {
-  if (!state.dual_belief) state.dual_belief = { first_coherence: null, current_envelopes: null, carried_convictions: {}, coherence_history: [], envelope_history: [], conviction_history: [], first_lawful_coherence_by_leg: {}, rearm_by_leg: {} };
+  if (!state.dual_belief) state.dual_belief = { first_coherence: null, current_envelopes: null, carried_convictions: {}, coherence_history: [], envelope_history: [], conviction_history: [], first_lawful_coherence_by_leg: {}, rearm_by_leg: {}, floor_rest_locks: {} };
   if (!state.dual_belief.first_lawful_coherence_by_leg) state.dual_belief.first_lawful_coherence_by_leg = {};
   if (!state.dual_belief.rearm_by_leg) state.dual_belief.rearm_by_leg = {};
   if (!state.dual_belief.carried_convictions) state.dual_belief.carried_convictions = {};
   if (!state.dual_belief.conviction_history) state.dual_belief.conviction_history = [];
+  if (!state.dual_belief.floor_rest_locks) state.dual_belief.floor_rest_locks = {};
   const openIds = state.leg_ids.filter((id) => !reads.half_pair_state.value.legs[id].credited);
   const baseRows = new Map();
   for (const legId of openIds) {
@@ -430,7 +444,20 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     ? JSON.parse(JSON.stringify(state.dual_belief.current_envelopes))
     : {};
   const proposedEnvelopes = coherentNow
-    ? Object.fromEntries(openIds.map((id) => [id, { low_cents: beliefs[id].predicted_cents, high_cents: beliefs[id].envelope_high_cents, belief_receipt: state.receipt }]))
+    ? Object.fromEntries(openIds.flatMap((id) => {
+      const criterion = survivorUpdate.legs[id]?.target_criterion;
+      const supported = supportedFloorLevel(criterion, beliefs[id].predicted_cents);
+      const high = beliefs[id].envelope_high_cents;
+      if (!Number.isInteger(supported) || !Number.isInteger(high) || supported > high) return [];
+      return [[id, {
+        low_cents: supported,
+        high_cents: high,
+        belief_receipt: state.receipt,
+        target_axis: survivorShapes.TRADED_LOW_AXIS,
+        target_criterion: criterion,
+        belief_prediction_reference_cents: beliefs[id].predicted_cents,
+      }]];
+    }))
     : {};
   const decisionEnvelopes = {};
   const nextEnvelopes = { ...priorEnvelopes };
@@ -445,7 +472,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const survivorIds = survivor?.survivor_shapes ?? [];
     const priorSupport = priorConviction?.supporting_shape_ids ?? [];
     const supportIntersection = priorSupport.filter((shapeId) => survivorIds.includes(shapeId));
-    const eliminationsStillHold = !priorConviction || supportIntersection.length > 0;
+    const eliminationsStillHold = !priorConviction || (priorSupport.length > 0 && supportIntersection.length > 0);
     const book = reads.books.value[id];
     const basisRestated = Boolean(book?.receipt && cent(book.bid_cents) && cent(book.ask_cents) && book.bid_cents < book.ask_cents && survivorIds.length);
     const priorReceiptReadable = Boolean(priorConviction?.belief_receipt && priorConviction.belief_receipt !== state.receipt);
@@ -486,12 +513,17 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       carried_conviction_law: LAYER_PROVENANCE.carried_conviction,
     };
     if (effective) {
+      const supportForNext = proposed
+        ? priorConviction && ["CONFIRMED_CARRIED_CONVICTION", "TIGHTENED_CARRIED_CONVICTION"].includes(update) && supportIntersection.length
+          ? supportIntersection
+          : [...survivorIds]
+        : supportIntersection;
       nextEnvelopes[id] = effective;
       nextConvictions[id] = {
         envelope: effective,
         belief_receipt: proposed ? state.receipt : priorConviction.belief_receipt,
         latest_basis_restatement_receipt: state.receipt,
-        supporting_shape_ids: [...survivorIds],
+        supporting_shape_ids: [...supportForNext],
         movement_statement: convictionEvolution[id].movement_statement,
         provenance: LAYER_PROVENANCE.carried_conviction,
       };
@@ -508,6 +540,14 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const book = reads.books.value[legId];
     const liveBid = cent(book?.bid_cents), liveAsk = cent(book?.ask_cents);
     const active = cent(reads.half_pair_state.value.legs[legId].standing_target_cents);
+    const survivor = survivorUpdate.legs[legId];
+    const criterion = survivor?.target_criterion ?? null;
+    const priorFloorLock = state.dual_belief.floor_rest_locks[legId] ?? null;
+    const reinstatedAgainstLock = priorFloorLock
+      ? (survivor?.reinstated_now ?? []).some((shapeId) => priorFloorLock.eliminated_shape_ids_at_lock?.includes(shapeId))
+      : false;
+    const floorLockStanding = Boolean(priorFloorLock && active === priorFloorLock.target_cents);
+    const floorLockSupported = Boolean(floorLockStanding && !reinstatedAgainstLock && (priorFloorLock.supporting_shape_ids ?? []).some((shapeId) => (survivor?.survivor_shapes ?? []).includes(shapeId)));
     if (decisionEnvelopes[legId] && coherentNow) {
       const envelope = decisionEnvelopes[legId];
       if (envelope && microMicroResolved && liveBid && liveAsk && liveBid < liveAsk) {
@@ -523,11 +563,18 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         const upperQuantileTarget = Number.isInteger(upperQuantileRaw) && lawfulEnvelopeExists
           ? clamp(upperQuantileRaw, envelope.low_cents, lawfulEnvelopeHigh)
           : null;
+        const supportedQuantileTarget = supportedFloorLevel(criterion, upperQuantileTarget);
+        const axisAlignedQuantileTarget = Number.isInteger(supportedQuantileTarget)
+          && lawfulEnvelopeExists
+          && supportedQuantileTarget >= envelope.low_cents
+          && supportedQuantileTarget <= lawfulEnvelopeHigh
+          ? supportedQuantileTarget
+          : null;
         // F-VS-130: coherent belief pricing must account for executable prints
         // inside the displayed spread. The already-built conditioned population's
         // upper quantile names that cent. The live bid remains evidence in the
         // sentence, but it never anchors a coherent-envelope placement.
-        const distributionPricedTarget = upperQuantileTarget;
+        const distributionPricedTarget = axisAlignedQuantileTarget;
         // F-VS-114(c): a newly migrated envelope re-derives the standing rest
         // on this same receipt, in either direction.  A stale active target may
         // never veto the current belief-priced target.
@@ -552,11 +599,13 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
           causal_seen_low_cents: causalSeenLow,
           selected_quantile_offset_cents: upperQuantileOffset,
           selected_quantile_raw_cents: upperQuantileRaw,
-          selected_quantile_inside_envelope_cents: upperQuantileTarget,
+          selected_quantile_inside_envelope_cents: axisAlignedQuantileTarget,
+          pre_axis_quantile_inside_envelope_cents: upperQuantileTarget,
+          traded_low_target_criterion: criterion,
           conditioned_q50_reference_cents: conditionedExpectedFutureLow,
           live_bid_reference_only_cents: liveBid,
           touch_anchored_inside_coherent_envelope: false,
-          chosen_candidate_rule: Number.isInteger(upperQuantileTarget) ? "CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE" : "NO_LAWFUL_CONDITIONED_Q75_INSIDE_ENVELOPE",
+          chosen_candidate_rule: Number.isInteger(axisAlignedQuantileTarget) ? "CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN" : "NO_LAWFUL_TRADED_LOW_SUPPORTED_Q75_INSIDE_ENVELOPE",
           chosen_before_migration_discipline_cents: distributionPricedTarget,
           active_target_before_cents: active,
           chosen_target_cents: targets[legId],
@@ -577,23 +626,34 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         envelopePlacement[legId] = { mode: "HOLD_PREVIOUSLY_LICENSED_ENVELOPE_TARGET", coherence_exists_at_receipt: true, chosen_target_cents: active, numeric_constant_added: false };
       }
     } else if (coherence.status === "DISAGREES") {
-      // A disagreement is evidence that the pair read has not resolved, not a
-      // separate trading state. No lane may originate or reprice a rest here.
-      // A previously licensed rest may hold while the pair re-derives.
-      targets[legId] = active;
-      lowerBounds[legId] = active ?? 1;
+      // F-VS-138/142: disagreement blocks belief-priced origination, but it
+      // cannot veto independent own-tape evidence that the surviving traded-low
+      // hypotheses support. The deepest current own evidence (true-trade low or
+      // live bid) names the rest; the disagreement remains explicit.
+      const runningTradeLow = cent(state.legs[legId].running_true_trade_low_cents);
+      const ownEvidenceTarget = [runningTradeLow, liveBid].filter(Number.isInteger).sort((a, b) => a - b)[0] ?? null;
+      const ownEvidenceComplete = Boolean(ownEvidenceTarget && liveBid && liveAsk && liveBid < liveAsk && book?.receipt);
+      const survivorSupported = ownEvidenceComplete && criterionSupportsLevel(criterion, ownEvidenceTarget);
+      targets[legId] = survivorSupported ? ownEvidenceTarget : active;
+      lowerBounds[legId] = targets[legId] ?? 1;
       envelopePlacement[legId] = {
-        mode: "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT",
+        mode: survivorSupported ? "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED" : "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT",
         coherence_exists_at_receipt: false,
         coherence_status_at_receipt: coherence.status,
         live_bid_cents: liveBid,
         live_ask_cents: liveAsk,
         book_receipt: book?.receipt ?? null,
+        running_true_trade_low_cents: runningTradeLow,
+        own_evidence_target_cents: ownEvidenceTarget,
+        own_evidence_complete: ownEvidenceComplete,
+        survivor_target_supported: survivorSupported,
+        traded_low_target_criterion: criterion,
         chosen_target_cents: targets[legId],
-        may_originate_rest: false,
-        may_reprice_rest: false,
-        data_consumed_for_placement: false,
-        provenance: [LAYER_PROVENANCE.disagrees_not_trading_state, LAYER_PROVENANCE.pair_coherence],
+        may_originate_rest: survivorSupported,
+        may_reprice_rest: survivorSupported,
+        disagreement_stated: true,
+        data_consumed_for_placement: survivorSupported,
+        provenance: [LAYER_PROVENANCE.disagrees_own_evidence_release, LAYER_PROVENANCE.traded_low_axis_alignment, LAYER_PROVENANCE.pair_coherence],
         numeric_constant_added: false,
       };
     } else if (decisionEnvelopes[legId]) {
@@ -608,7 +668,9 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       const upperQuantileRaw = Number.isInteger(causalSeenLow) && Number.isFinite(upperQuantileOffset) ? causalSeenLow + Math.round(upperQuantileOffset) : null;
       const lawfulEnvelopeHigh = liveAsk ? Math.min(envelope.high_cents, liveAsk - 1) : null;
       const lawfulEnvelopeExists = Number.isInteger(lawfulEnvelopeHigh) && envelope.low_cents <= lawfulEnvelopeHigh;
-      const carriedTarget = Number.isInteger(upperQuantileRaw) && lawfulEnvelopeExists ? clamp(upperQuantileRaw, envelope.low_cents, lawfulEnvelopeHigh) : active;
+      const preAxisCarriedTarget = Number.isInteger(upperQuantileRaw) && lawfulEnvelopeExists ? clamp(upperQuantileRaw, envelope.low_cents, lawfulEnvelopeHigh) : active;
+      const supportedCarriedTarget = supportedFloorLevel(criterion, preAxisCarriedTarget);
+      const carriedTarget = Number.isInteger(supportedCarriedTarget) && lawfulEnvelopeExists && supportedCarriedTarget >= envelope.low_cents && supportedCarriedTarget <= lawfulEnvelopeHigh ? supportedCarriedTarget : active;
       targets[legId] = carriedTarget;
       lowerBounds[legId] = envelope.low_cents;
       envelopePlacement[legId] = {
@@ -624,6 +686,8 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         placement_quantile: "Q75",
         selected_quantile_offset_cents: upperQuantileOffset,
         selected_quantile_raw_cents: upperQuantileRaw,
+        pre_axis_target_cents: preAxisCarriedTarget,
+        traded_low_target_criterion: criterion,
         lawful_envelope_high_cents: lawfulEnvelopeHigh,
         lawful_envelope_exists: lawfulEnvelopeExists,
         may_originate_rest: true,
@@ -646,6 +710,26 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     }
     const formationComplete = Number.isFinite(reads.anchor_settle.value.formation_progress[legId]) && reads.anchor_settle.value.formation_progress[legId] >= 1;
     if (!formationComplete || (liveBid && liveAsk && liveBid >= liveAsk)) targets[legId] = null;
+    const beliefWouldVacateFloorUpward = floorLockSupported && (!Number.isInteger(targets[legId]) || targets[legId] > active);
+    // Protection is senior to a fresh book's temporary invalidity. The rest was
+    // already lawfully licensed and standing; a crossed/missing receipt cannot
+    // retroactively cancel it. Only an overturned supporting elimination can.
+    if (floorLockSupported && beliefWouldVacateFloorUpward) {
+      targets[legId] = active;
+      lowerBounds[legId] = active;
+      envelopePlacement[legId] = {
+        mode: "FLOOR_REST_PROTECTED_SUPPORTING_ELIMINATIONS_NOT_OVERTURNED",
+        active_floor_rest_cents: active,
+        proposed_upward_or_cancel_target_cents: envelopePlacement[legId]?.chosen_target_cents ?? null,
+        floor_lock: priorFloorLock,
+        reinstated_against_lock: reinstatedAgainstLock,
+        supporting_shapes_still_alive: (priorFloorLock.supporting_shape_ids ?? []).filter((shapeId) => (survivor?.survivor_shapes ?? []).includes(shapeId)),
+        chosen_target_cents: active,
+        may_cancel_or_reprice_upward: false,
+        provenance: LAYER_PROVENANCE.floor_rest_protection,
+        numeric_constant_added: false,
+      };
+    }
   }
   let allocation = { lawful: true, targets: { ...targets }, reason: beliefMode ? "ONE_OPEN_SIDE_OR_LIVE_TOUCH" : "OWN_EVIDENCED_LIVE_TOUCH_MIND_ONLY", excess_cents: 0 };
   if (openIds.length === 2 && openIds.every((id) => cent(targets[id]))) allocation = allocateUnderPar(targets, lowerBounds);
@@ -708,7 +792,12 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const envelopeNoReplacement = Boolean(activeInconsistent && envelopePlacement[legId]?.lawful_envelope_exists === false);
     const noLawfulReplacement = atomicNoReplacement || envelopeNoReplacement;
     const pendingRearmBefore = state.dual_belief.rearm_by_leg[legId] ?? null;
-    const reason = noLawfulReplacement
+    const placementMode = envelopePlacement[legId]?.mode;
+    const reason = placementMode === "FLOOR_REST_PROTECTED_SUPPORTING_ELIMINATIONS_NOT_OVERTURNED"
+      ? "FLOOR_REST_PROTECTED_SUPPORTING_ELIMINATIONS_NOT_OVERTURNED"
+      : placementMode === "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED"
+        ? "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED"
+        : noLawfulReplacement
       ? "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
       : pendingRearmBefore && Number.isInteger(target)
         ? "ATOMIC_REARM_LAWFUL_REPLACEMENT"
@@ -720,6 +809,16 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
               ? "CARRIED_CONVICTION_Q75_BASIS_RESTATED_SURVIVORS_HOLD"
               : "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL";
     const action = actionForTarget(active, target, reason);
+    const priorFloorLock = state.dual_belief.floor_rest_locks[legId] ?? null;
+    const survivor = survivorUpdate.legs[legId];
+    const lockReinstatedShapes = priorFloorLock
+      ? (survivor?.reinstated_now ?? []).filter((shapeId) => priorFloorLock.eliminated_shape_ids_at_lock?.includes(shapeId))
+      : [];
+    const lockSupportAlive = priorFloorLock
+      ? (priorFloorLock.supporting_shape_ids ?? []).filter((shapeId) => (survivor?.survivor_shapes ?? []).includes(shapeId))
+      : [];
+    const priorFloorLockBinding = Boolean(priorFloorLock && active === priorFloorLock.target_cents && lockReinstatedShapes.length === 0 && lockSupportAlive.length > 0);
+    const floorRestProtectionViolation = priorFloorLockBinding && (!Number.isInteger(target) || target > active);
     const targetInsideCurrentEnvelope = Number.isInteger(target) && currentEnvelope && target >= currentEnvelope.low_cents && target <= currentEnvelope.high_cents;
     if (coherentNow && Number.isInteger(target) && !state.dual_belief.first_lawful_coherence_by_leg[legId]) {
       state.dual_belief.first_lawful_coherence_by_leg[legId] = { epoch: state.current_epoch, receipt: state.receipt };
@@ -727,6 +826,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const firstLawfulCoherence = state.dual_belief.first_lawful_coherence_by_leg[legId] ?? null;
     const placementAtCurrentCoherence = coherentNow && Number.isInteger(target) && ["PLACE_REST", "REPRICE_REST", "HOLD_REST"].includes(action.action);
     const carriedPlacement = envelopePlacement[legId]?.mode === "CARRIED_PRIOR_RECEIPT_CONVICTION_Q75_BASIS_RESTATED" && ["PLACE_REST", "REPRICE_REST"].includes(action.action);
+    const disagreesOwnEvidencePlacement = envelopePlacement[legId]?.mode === "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED" && ["PLACE_REST", "REPRICE_REST"].includes(action.action);
     const envelopeConsistency = {
       active_inconsistent_before_action: Boolean(activeInconsistent),
       resolution: !activeInconsistent ? "NOT_REQUIRED" : targetInsideCurrentEnvelope ? "CANCEL_AND_REPLACE_ATOMIC_SAME_RECEIPT" : action.action === "CANCEL_REST" ? "FAIL_LOUD_NO_LAWFUL_REPLACEMENT" : "VIOLATION_STALE_REST_SURVIVED",
@@ -750,6 +850,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       carried_conviction_originated_or_repriced_rest: carriedPlacement,
       carried_conviction_basis_re_stated: carriedPlacement ? convictionEvolution[legId].basis_re_stated_at_current_receipt : null,
       carried_conviction_prior_receipt: carriedPlacement ? convictionEvolution[legId].prior_conviction_receipt : null,
+      disagrees_own_evidence_originated_or_repriced_rest: disagreesOwnEvidencePlacement,
       live_touch_originated_new_rest: !coherentNow && !Number.isInteger(active) && action.action === "PLACE_REST" && String(envelopePlacement[legId]?.mode ?? "").startsWith("CONSUME_OWN_EVIDENCED_LIVE_TOUCH"),
       provenance: [LAYER_PROVENANCE.coherence_placement_fix, LAYER_PROVENANCE.carried_conviction],
     };
@@ -794,6 +895,51 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     } else {
       rearmReceipt = { status: "NOT_REQUIRED", attempts: 0, permanent_silence_allowed: false, provenance: LAYER_PROVENANCE.atomic_rearm_fix };
     }
+    const floorCriterion = survivor?.target_criterion ?? null;
+    const targetIsEvidencedFloor = Number.isInteger(target) && (
+      target === floorCriterion?.observed_traded_low_cents
+      || target === currentEnvelope?.low_cents
+      || envelopePlacement[legId]?.mode === "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED"
+    );
+    let floorRestLockAfter = priorFloorLock;
+    if (floorRestProtectionViolation) {
+      floorRestLockAfter = { ...priorFloorLock, violation_at_receipt: state.receipt, violation_action: action };
+    } else if (Number.isInteger(target) && targetIsEvidencedFloor && ["PLACE_REST", "REPRICE_REST", "HOLD_REST"].includes(action.action)) {
+      floorRestLockAfter = {
+        target_cents: target,
+        armed_at_epoch: priorFloorLock?.target_cents === target ? priorFloorLock.armed_at_epoch : state.current_epoch,
+        armed_at_receipt: priorFloorLock?.target_cents === target ? priorFloorLock.armed_at_receipt : state.receipt,
+        latest_recheck_receipt: state.receipt,
+        target_axis: survivorShapes.TRADED_LOW_AXIS,
+        floor_evidence: {
+          observed_traded_low_cents: floorCriterion?.observed_traded_low_cents ?? null,
+          current_envelope_low_cents: currentEnvelope?.low_cents ?? null,
+          placement_mode: envelopePlacement[legId]?.mode ?? null,
+        },
+        supporting_shape_ids: [...(survivor?.survivor_shapes ?? [])],
+        eliminated_shape_ids_at_lock: [...(survivor?.eliminated_shape_ids ?? [])],
+        supporting_eliminations_overturned: false,
+        provenance: LAYER_PROVENANCE.floor_rest_protection,
+      };
+    } else if (priorFloorLock && lockReinstatedShapes.length) {
+      floorRestLockAfter = { ...priorFloorLock, latest_recheck_receipt: state.receipt, supporting_eliminations_overturned: true, reinstated_shape_ids: lockReinstatedShapes };
+    } else if (priorFloorLock && Number.isInteger(target) && target === priorFloorLock.target_cents) {
+      floorRestLockAfter = { ...priorFloorLock, latest_recheck_receipt: state.receipt, supporting_eliminations_overturned: false };
+    } else if (priorFloorLock && (!Number.isInteger(target) || target !== priorFloorLock.target_cents)) {
+      floorRestLockAfter = null;
+    }
+    if (floorRestLockAfter) state.dual_belief.floor_rest_locks[legId] = floorRestLockAfter;
+    else delete state.dual_belief.floor_rest_locks[legId];
+    const floorRestProtection = {
+      prior_lock: priorFloorLock,
+      prior_lock_binding: priorFloorLockBinding,
+      supporting_shapes_still_alive: lockSupportAlive,
+      reinstated_shapes_against_lock: lockReinstatedShapes,
+      protected_from_upward_belief_or_cancel: envelopePlacement[legId]?.mode === "FLOOR_REST_PROTECTED_SUPPORTING_ELIMINATIONS_NOT_OVERTURNED",
+      violation: floorRestProtectionViolation,
+      lock_after: floorRestLockAfter,
+      provenance: LAYER_PROVENANCE.floor_rest_protection,
+    };
     const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${action.target_cents ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
     const upstream = `MACRO=${macroStatus}[${macroReceipt.receipt_id}] · MICRO=${microStatus}[${microReceipt.receipt_id}] · MICRO_MICRO=${microMicroStatus}[${microMicroReceipt.receipt_id}]`;
     const beliefText = dualPlain.length ? `${dualPlain[0]} || SIBLING-INVERSE: ${dualPlain[1]}` : "DUAL_BELIEF=INSUFFICIENT_EVIDENCE";
@@ -802,7 +948,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const fillHandoffText = fillHandoff
       ? ` FILL_HANDOFF=${fillHandoff.context.original_fill_receipt}[${fillHandoff.receipt_id}]; CREDITED_SIBLING_ENTRY=${fillHandoff.context.credited_sibling_entry_cents}; REPOSED_QUERY=${fillHandoff.context.reposed_query_fingerprint_sha256}.`
       : "";
-    const sentence = `${beliefText}. MACRO: family=${macroFamilies[legId].family}, SURVIVOR_SHAPES=${JSON.stringify(survivorUpdate.legs[legId])}, conditioned-total-dip=${JSON.stringify(conditionedPriors[legId]?.conditioned_total_dip_distribution_cents ?? null)}, arrived-dip=${JSON.stringify(conditionedPriors[legId]?.arrived_dip_distribution_cents ?? null)}, remaining-dip=total-minus-arrived=${JSON.stringify(conditionedPriors[legId]?.remaining_dip_distribution_cents ?? null)}, conditioning-method=${conditionedPriors[legId]?.method ?? "NONE"}, stores=${coarseNeighbors.map((neighbor) => `${neighbor.quality}/${neighbor.grain ?? "UNKNOWN"}@${neighbor.citation_receipt_id}`).join(",") || "NONE"} [${macroReceipt.receipt_id}]. MICRO: own-window=${JSON.stringify(beliefs[legId]?.own_evidence ?? null)}, rows=${[beliefs[legId]?.book_receipt, beliefs[legId]?.top_neighbor?.citation_receipt_id].filter(Boolean).join(",") || "NONE"}, V3_KEY=${LAYER_PROVENANCE.v3_source_key}->${LAYER_PROVENANCE.v3_runtime_rekey} [${microReceipt.receipt_id}]. MICRO-MICRO: tick=${state.receipt}, book=${beliefs[legId]?.book_receipt ?? "NONE"}, store=${LAYER_PROVENANCE.micro_micro_store} [${microMicroReceipt.receipt_id}]. ORDER=${upstream}. COHERENCE=${coherence.status}; MIRROR_GAP=${coherence.absolute_mirror_gap_cents ?? "UNKNOWN"}; SPREAD_BOUND=${spread ?? "UNKNOWN"}/${SPREAD_SETTLE_COHERENCE_MAX_CENTS}; CONVICTION_EVOLUTION=${JSON.stringify(convictionEvolution[legId])}; ENVELOPE=${JSON.stringify(currentEnvelope)}; ENVELOPE_PLACEMENT=${JSON.stringify(envelopePlacement[legId])}; ALLOCATION=${allocation.reason}.${fillHandoffText} ${actionStatement}`;
+    const sentence = `${beliefText}. MACRO: family=${macroFamilies[legId].family}, SURVIVOR_SHAPES=${JSON.stringify(survivorUpdate.legs[legId])}, conditioned-total-dip=${JSON.stringify(conditionedPriors[legId]?.conditioned_total_dip_distribution_cents ?? null)}, arrived-dip=${JSON.stringify(conditionedPriors[legId]?.arrived_dip_distribution_cents ?? null)}, remaining-dip=total-minus-arrived=${JSON.stringify(conditionedPriors[legId]?.remaining_dip_distribution_cents ?? null)}, conditioning-method=${conditionedPriors[legId]?.method ?? "NONE"}, stores=${coarseNeighbors.map((neighbor) => `${neighbor.quality}/${neighbor.grain ?? "UNKNOWN"}@${neighbor.citation_receipt_id}`).join(",") || "NONE"} [${macroReceipt.receipt_id}]. MICRO: own-window=${JSON.stringify(beliefs[legId]?.own_evidence ?? null)}, rows=${[beliefs[legId]?.book_receipt, beliefs[legId]?.top_neighbor?.citation_receipt_id].filter(Boolean).join(",") || "NONE"}, V3_KEY=${LAYER_PROVENANCE.v3_source_key}->${LAYER_PROVENANCE.v3_runtime_rekey} [${microReceipt.receipt_id}]. MICRO-MICRO: tick=${state.receipt}, book=${beliefs[legId]?.book_receipt ?? "NONE"}, store=${LAYER_PROVENANCE.micro_micro_store} [${microMicroReceipt.receipt_id}]. ORDER=${upstream}. COHERENCE=${coherence.status}; MIRROR_GAP=${coherence.absolute_mirror_gap_cents ?? "UNKNOWN"}; SPREAD_BOUND=${spread ?? "UNKNOWN"}/${SPREAD_SETTLE_COHERENCE_MAX_CENTS}; TRADED_LOW_TARGET_CRITERION=${JSON.stringify(floorCriterion)}; CONVICTION_EVOLUTION=${JSON.stringify(convictionEvolution[legId])}; FLOOR_REST_PROTECTION=${JSON.stringify(floorRestProtection)}; ENVELOPE=${JSON.stringify(currentEnvelope)}; ENVELOPE_PLACEMENT=${JSON.stringify(envelopePlacement[legId])}; ALLOCATION=${allocation.reason}.${fillHandoffText} ${actionStatement}`;
     row.citation_receipts[macroReceipt.receipt_id] = macroReceipt;
     row.citation_receipts[microReceipt.receipt_id] = microReceipt;
     row.citation_receipts[microMicroReceipt.receipt_id] = microMicroReceipt;
@@ -810,7 +956,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.sentence = sentence;
     row.sentence_action_assertion = { hard_assert: true, expected_statement: actionStatement, equal: sentence.includes(actionStatement) };
     row.citation_receipt_assertion = { hard_assert: true, receipt_count: Object.keys(row.citation_receipts).length, equal: [macroReceipt, microReceipt, microMicroReceipt].every((receipt) => sentence.includes(receipt.receipt_id)) };
-    row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, survivor_shapes: survivorUpdate, conditioned_priors: conditionedPriors, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, belief_mode: beliefMode, conviction_evolution: convictionEvolution[legId], carried_conviction_consumed_for_action: ["PLACE_REST", "REPRICE_REST"].includes(action.action) && convictionEvolution[legId].prior_receipt_genuinely_readable, independent_lane_may_complete: true, independent_lane_license: [LAYER_PROVENANCE.consume_live_touch_fix, LAYER_PROVENANCE.own_evidence_sufficiency], first_coherence: state.dual_belief.first_coherence, envelope_history_count: state.dual_belief.envelope_history.length, envelope_migration_at_receipt: envelopeMigrations[legId] ?? null, envelope_consistency: envelopeConsistency, coherence_placement: coherencePlacement, atomic_rearm: rearmReceipt, envelope: currentEnvelope, envelope_placement: envelopePlacement[legId], v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
+    row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, survivor_shapes: survivorUpdate, conditioned_priors: conditionedPriors, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, belief_mode: beliefMode, conviction_evolution: convictionEvolution[legId], carried_conviction_consumed_for_action: carriedPlacement, independent_lane_may_complete: true, independent_lane_license: [LAYER_PROVENANCE.consume_live_touch_fix, LAYER_PROVENANCE.own_evidence_sufficiency, LAYER_PROVENANCE.disagrees_own_evidence_release], first_coherence: state.dual_belief.first_coherence, envelope_history_count: state.dual_belief.envelope_history.length, envelope_migration_at_receipt: envelopeMigrations[legId] ?? null, envelope_consistency: envelopeConsistency, coherence_placement: coherencePlacement, floor_rest_protection: floorRestProtection, envelope: currentEnvelope, envelope_placement: envelopePlacement[legId], v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
     delete row.derivation.stale_prior_path_used;
     row.derivation.carried_conviction = convictionEvolution[legId];
     row.derivation.target_basis = reason;
@@ -827,6 +973,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
   for (const id of state.leg_ids.filter((legId) => !openIds.includes(legId))) {
     delete nextEnvelopes[id];
     delete nextConvictions[id];
+    delete state.dual_belief.floor_rest_locks[id];
   }
   state.dual_belief.current_envelopes = Object.keys(nextEnvelopes).length ? nextEnvelopes : null;
   state.dual_belief.carried_convictions = nextConvictions;

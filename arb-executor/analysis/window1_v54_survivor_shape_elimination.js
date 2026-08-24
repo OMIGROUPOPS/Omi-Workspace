@@ -2,9 +2,10 @@
 
 // Stateful structural port of the survivor_shapes organ at 189eaa20.
 // The fitted V13/V18/V19 libraries are consumed from their pinned Git objects.
-// Unlike the retired replay, this port never uses a right-edge progress bin:
-// a hypothesis survives when any of its fitted interim envelopes is compatible
-// with the causal prefix visible at this receipt.
+// Unlike the retired replay, this port never uses a right-edge progress bin.
+// F-VS-139/143 rebind the runtime criterion to the objective axis: the causal
+// traded-low path and each fitted shape's member-backed traded-low depth bins.
+// Ask reachability remains executable-book evidence; it cannot define a floor.
 
 const SOURCE_COMMIT = "189eaa20";
 const MODULES = Object.freeze({
@@ -12,20 +13,17 @@ const MODULES = Object.freeze({
   pair: "window1_pair_interim_elimination_v18",
   couple: "window1_pair_couple_elimination_v19",
 });
-const MACRO_KEYS = ["ask_net", "ask_dip", "ask_peak", "ask_drawdown_from_peak"];
-const PAIR_MACRO_KEYS = [
-  "high_ask_net", "high_ask_dip", "high_ask_peak", "high_ask_drawdown_from_peak",
-  "low_ask_net", "low_ask_dip", "low_ask_peak", "low_ask_drawdown_from_peak",
-  "ask_sum", "ask_net_sum",
-];
-const QUALIFIED_DWELL_SECONDS = 10;
-const QUALIFIED_CAPACITY_CONTRACTS = 5;
+const TRADED_LOW_AXIS = "POST_FORMATION_TRUE_TRADE_LOW_CENTS";
 let libraries = null;
 
 function configureSurvivorShapeLibraries(binding) {
   if (!binding || binding.source_commit !== SOURCE_COMMIT) throw new Error("SURVIVOR_SHAPE_SOURCE_COMMIT_MISMATCH");
   if (!binding.pair?.groups || !binding.pair?.pair_hypothesis_groups || !binding.couple?.pair_couple_groups) throw new Error("SURVIVOR_SHAPE_LIBRARY_INCOMPLETE");
-  if (!binding.sha256?.pair || !binding.sha256?.couple) throw new Error("SURVIVOR_SHAPE_LIBRARY_HASH_MISSING");
+  if (!binding.sha256?.pair || !binding.sha256?.couple || !binding.sha256?.traded_low_support) throw new Error("SURVIVOR_SHAPE_LIBRARY_HASH_MISSING");
+  const shapes = Object.values(binding.pair.groups).flatMap((group) => group.shapes ?? []);
+  if (shapes.some((shape) => !shape.traded_low_support || !Array.isArray(shape.traded_low_support.depth_bins_cents))) {
+    throw new Error("SURVIVOR_SHAPE_TRADED_LOW_SUPPORT_MISSING");
+  }
   libraries = binding;
 }
 
@@ -34,123 +32,71 @@ function finite(value) { return Number.isFinite(value) ? value : null; }
 function region(price) { return price <= 25 ? "le25" : price <= 50 ? "26_50" : price <= 75 ? "51_75" : "ge76"; }
 function macroState(prefix) {
   if (!prefix) return "UNAVAILABLE";
-  if (prefix.ask_net === 0 && prefix.ask_drawdown_from_peak === 0) return "ANCHOR_OR_UNMOVED";
-  if (prefix.ask_net > 0 && prefix.ask_drawdown_from_peak === 0) return "AT_RISING_PEAK";
-  if (prefix.ask_net > 0) return "PULLBACK_ABOVE_ANCHOR";
-  if (prefix.ask_net === 0) return "RETURNED_TO_ANCHOR_FROM_PEAK";
-  if (prefix.ask_net === prefix.ask_dip) return "AT_DESCENDING_LOW";
+  if (prefix.trade_net === 0 && prefix.trade_drawdown_from_peak === 0) return "ANCHOR_OR_UNMOVED";
+  if (prefix.trade_net > 0 && prefix.trade_drawdown_from_peak === 0) return "AT_RISING_PEAK";
+  if (prefix.trade_net > 0) return "PULLBACK_ABOVE_ANCHOR";
+  if (prefix.trade_net === 0) return "RETURNED_TO_ANCHOR_FROM_PEAK";
+  if (prefix.trade_net === prefix.trade_dip) return "AT_DESCENDING_LOW";
   return "REBOUND_BELOW_ANCHOR";
 }
 
-function matchesRange(value, range) {
-  return Array.isArray(range) && Number.isFinite(value) && value >= range[0] && value <= range[1];
-}
-
 function matchingSingleBins(shape, row) {
-  if (!row?.prefix) return [];
-  return Object.entries(shape.interim_envelopes ?? {}).flatMap(([bin, envelope]) => {
-    const stateMatches = (envelope.macro_states ?? []).includes(macroState(row.prefix));
-    const rangesMatch = MACRO_KEYS.every((key) => matchesRange(row.prefix[key], envelope[key]));
-    return stateMatches && rangesMatch ? [Number(bin)] : [];
-  });
+  if (!Number.isInteger(row?.observed_traded_low_depth_cents)) return [...(shape.traded_low_support?.depth_bins_cents ?? [])];
+  // A final traded low cannot be shallower than a low already printed. Exact
+  // member-backed depth bins at or beyond the observed depth remain possible.
+  return (shape.traded_low_support?.depth_bins_cents ?? []).filter((depth) => depth >= row.observed_traded_low_depth_cents);
 }
 
-function causalAskPrefix(leg) {
-  const books = leg.books.filter((row) => cent(row.bid_cents) && cent(row.ask_cents) && row.bid_cents <= row.ask_cents);
-  const formedIndex = Number.isFinite(leg.formation_end_epoch)
-    ? books.findIndex((row) => row.timestamp_epoch >= leg.formation_end_epoch)
-    : books.findIndex((row) => row.ask_cents - row.bid_cents === 1);
-  if (formedIndex < 0) return null;
-  const rows = books.slice(formedIndex);
-  const first = rows[0], current = rows.at(-1);
-  let low = first.ask_cents, high = first.ask_cents, lastAsk = first.ask_cents, lastAskChange = first.timestamp_epoch;
-  let episodeAsk = null, episodeStart = null, episodeRecorded = false, priorQualifiedAsk = null, qualifiedDescents = 0, qualifiedRises = 0;
-  for (const row of rows) {
-    if (episodeAsk === null || row.ask_cents !== episodeAsk) {
-      episodeAsk = row.ask_cents;
-      episodeStart = row.timestamp_epoch;
-      episodeRecorded = false;
-    }
-    if (!episodeRecorded && row.timestamp_epoch - episodeStart >= QUALIFIED_DWELL_SECONDS && finite(row.ask_1_sz) >= QUALIFIED_CAPACITY_CONTRACTS) {
-      if (priorQualifiedAsk !== null) {
-        if (row.ask_cents < priorQualifiedAsk) qualifiedDescents += 1;
-        else if (row.ask_cents > priorQualifiedAsk) qualifiedRises += 1;
-      }
-      priorQualifiedAsk = row.ask_cents;
-      episodeRecorded = true;
-    }
-    if (row.ask_cents !== lastAsk) {
-      lastAsk = row.ask_cents;
-      lastAskChange = row.timestamp_epoch;
-    }
-    low = Math.min(low, row.ask_cents);
-    high = Math.max(high, row.ask_cents);
-  }
+function causalTradePrefix(leg) {
+  const anchor = cent(leg.anchor_cents);
+  const rows = leg.prints.filter((row) => cent(row.price_cents) && (!Number.isFinite(leg.formation_end_epoch) || row.timestamp_epoch >= leg.formation_end_epoch));
+  if (!anchor || !rows.length) return { rows: rows.length, anchor_cents: anchor, current: rows.at(-1) ?? null, prefix: null };
+  const current = rows.at(-1);
+  const low = Math.min(...rows.map((row) => row.price_cents));
+  const high = Math.max(...rows.map((row) => row.price_cents));
   return {
     rows: rows.length,
-    first,
+    anchor_cents: anchor,
     current,
-    ask_dwell_seconds: Math.max(0, current.timestamp_epoch - lastAskChange),
     prefix: {
-      ask_net: current.ask_cents - first.ask_cents,
-      ask_dip: low - first.ask_cents,
-      ask_peak: high - first.ask_cents,
-      ask_drawdown_from_peak: high - current.ask_cents,
-      qualified_ask_descent_count: qualifiedDescents,
-      qualified_ask_rise_count: qualifiedRises,
+      trade_net: current.price_cents - anchor,
+      trade_dip: low - anchor,
+      trade_peak: high - anchor,
+      trade_drawdown_from_peak: high - current.price_cents,
+      observed_traded_low_cents: low,
+      observed_traded_low_depth_cents: anchor - low,
     },
   };
 }
 
 function rowForLeg(state, reads, legId) {
   const leg = state.legs[legId];
-  const askPath = causalAskPrefix(leg);
-  const book = askPath?.current ?? reads.books.value[legId];
-  const current = cent(book?.ask_cents);
-  const firstBid = cent(askPath?.first?.bid_cents) ?? cent(leg.anchor_cents);
+  const tradePath = causalTradePrefix(leg);
+  const book = reads.books.value[legId];
+  const anchor = cent(leg.anchor_cents);
   return {
     leg_id: legId,
-    price_region: firstBid ? region(firstBid) : null,
-    ask: current,
+    price_region: anchor ? region(anchor) : null,
+    anchor_cents: anchor,
+    observed_traded_low_cents: tradePath.prefix?.observed_traded_low_cents ?? null,
+    observed_traded_low_depth_cents: tradePath.prefix?.observed_traded_low_depth_cents ?? null,
+    latest_trade_cents: cent(tradePath.current?.price_cents),
+    latest_trade_receipt: tradePath.current?.receipt ?? null,
+    ask: cent(book?.ask_cents),
+    bid: cent(book?.bid_cents),
     spread: cent(book?.ask_cents) && cent(book?.bid_cents) ? book.ask_cents - book.bid_cents : null,
     top_ask_size: finite(book?.ask_1_sz),
     top5_ask_depth: finite(book?.ask_depth_5),
-    ask_dwell_seconds: finite(askPath?.ask_dwell_seconds),
     receipt: book?.receipt ?? state.receipt,
-    prefix: askPath?.prefix ?? null,
+    prefix: tradePath.prefix,
     prefix_provenance: {
-      source: `${SOURCE_COMMIT}:build_window1_quote_shape_elimination_replay_v1.js::prefixRows`,
-      first_book_rule: Number.isFinite(leg.formation_end_epoch) ? "FIRST_TWO_SIDED_BOOK_AT_OR_AFTER_CAUSAL_FORMATION_END" : "LEGACY_FIRST_SPREAD_EQUALS_ONE_FALLBACK",
-      dwell_seconds: QUALIFIED_DWELL_SECONDS,
-      capacity_contracts: QUALIFIED_CAPACITY_CONTRACTS,
-      reference_series: "BEST_ASK_ONLY",
+      structural_source: `${SOURCE_COMMIT}:V13/V18/V19 member identities and ordinal families`,
+      runtime_axis: TRADED_LOW_AXIS,
+      target_axis: TRADED_LOW_AXIS,
+      ask_reachability_role: "EXECUTABLE_BOOK_INFORMATION_ONLY_NEVER_FLOOR_DEFINITION",
+      formation_rule: "POST_CAUSAL_FORMATION_TRUE_PRINTS_ONLY",
     },
   };
-}
-
-function pairFeatures(highRow, lowRow) {
-  if (!highRow?.prefix || !lowRow?.prefix) return null;
-  return {
-    high_ask_net: highRow.prefix.ask_net,
-    high_ask_dip: highRow.prefix.ask_dip,
-    high_ask_peak: highRow.prefix.ask_peak,
-    high_ask_drawdown_from_peak: highRow.prefix.ask_drawdown_from_peak,
-    low_ask_net: lowRow.prefix.ask_net,
-    low_ask_dip: lowRow.prefix.ask_dip,
-    low_ask_peak: lowRow.prefix.ask_peak,
-    low_ask_drawdown_from_peak: lowRow.prefix.ask_drawdown_from_peak,
-    ask_sum: Number.isInteger(highRow.ask) && Number.isInteger(lowRow.ask) ? highRow.ask + lowRow.ask : null,
-    ask_net_sum: Number.isFinite(highRow.prefix.ask_net) && Number.isFinite(lowRow.prefix.ask_net) ? highRow.prefix.ask_net + lowRow.prefix.ask_net : null,
-  };
-}
-
-function matchingPairBins(hypothesis, highRow, lowRow) {
-  const features = pairFeatures(highRow, lowRow);
-  if (!features) return [];
-  return (hypothesis.joint_interim_envelopes ?? []).flatMap((envelope, bin) => {
-    const matches = PAIR_MACRO_KEYS.every((key) => matchesRange(features[key], envelope[key]));
-    return matches ? [bin] : [];
-  });
 }
 
 function signablePairTuples(hypotheses, highShapes, lowShapes) {
@@ -168,7 +114,11 @@ function signablePairTuples(hypotheses, highShapes, lowShapes) {
 
 function applyPairInterim(group, highShapes, lowShapes, highRow, lowRow) {
   if (!group) return { status: "PAIR_SOURCE_UNAVAILABLE_ABSTAIN", high_shapes: highShapes, low_shapes: lowShapes, hypotheses: [], tuples: [] };
-  const hypotheses = group.hypotheses.filter((hypothesis) => hypothesis.usable_for_signing && matchingPairBins(hypothesis, highRow, lowRow).length);
+  // The retired synchronized envelopes were fitted on ask paths. They are not
+  // lawful runtime evidence after the traded-low-axis ruling. Pair hypotheses
+  // may still narrow by their fitted component-shape tuples once each component
+  // survived its own traded-low support test; the ask bins are not consulted.
+  const hypotheses = group.hypotheses.filter((hypothesis) => hypothesis.usable_for_signing);
   const tuples = signablePairTuples(hypotheses, highShapes, lowShapes);
   if (!tuples.length) return { status: "PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT", high_shapes: highShapes, low_shapes: lowShapes, hypotheses: [], tuples: [] };
   const allowedHigh = new Set(tuples.map((row) => row.high_shape_id));
@@ -176,7 +126,7 @@ function applyPairInterim(group, highShapes, lowShapes, highRow, lowRow) {
   const narrowedHigh = highShapes.filter((id) => allowedHigh.has(id));
   const narrowedLow = lowShapes.filter((id) => allowedLow.has(id));
   if (!narrowedHigh.length || !narrowedLow.length) return { status: "PAIR_INTERIM_CONTRADICTION_ABSTAINS", high_shapes: highShapes, low_shapes: lowShapes, hypotheses: [], tuples: [] };
-  return { status: "PAIR_AND_SINGLE_LIBRARIES_MUTUALLY_NARROWED", high_shapes: narrowedHigh, low_shapes: narrowedLow, hypotheses, tuples };
+  return { status: "PAIR_COMPONENT_TRADED_LOW_SUPPORT_MUTUALLY_NARROWED", high_shapes: narrowedHigh, low_shapes: narrowedLow, hypotheses, tuples };
 }
 
 function applyPairCouples(group, highShapes, lowShapes) {
@@ -196,11 +146,40 @@ function applyPairCouples(group, highShapes, lowShapes) {
 
 function eliminationRecord(shapeId, module, receipt, evidence, matchedBins = []) {
   const overturn = module === MODULES.single
-    ? "REINSTATE_WHEN_THIS_SHAPE_MATCHES_ANY_FITTED_CAUSAL_INTERIM_ENVELOPE_ON_A_LATER_RECEIPT"
+    ? "REINSTATE_ONLY_IF_THE_TRUE_TRADE_LEDGER_OR_MEMBER_DEPTH_BINDING_IS_CORRECTED_SO_THIS_SHAPE_HAS_A_REMAINING_EXACT_TRADED_LOW_DEPTH_BIN"
     : module === MODULES.pair
       ? "REINSTATE_WHEN_A_SIGNABLE_SYNCHRONIZED_PAIR_HYPOTHESIS_SUPPORTS_THIS_SHAPE_ON_A_LATER_RECEIPT"
       : "REINSTATE_WHEN_A_SIGNABLE_HIERARCHICAL_PAIR_COUPLE_SUPPORTS_THIS_SHAPE_ON_A_LATER_RECEIPT";
   return { shape_id: shapeId, eliminated_by: module, eliminated_at_receipt: receipt, evidence, matched_bins: matchedBins, overturn_test: overturn, last_rechecked_receipt: receipt };
+}
+
+function targetCriterion(group, shapeIds, row) {
+  const shapeById = new Map((group?.shapes ?? []).map((shape) => [shape.shape_id, shape]));
+  const counts = new Map();
+  const shapeSupports = [];
+  for (const shapeId of shapeIds) {
+    const support = shapeById.get(shapeId)?.traded_low_support;
+    if (!support) continue;
+    const remaining = (support.depth_bins_cents ?? []).filter((depth) => !Number.isInteger(row.observed_traded_low_depth_cents) || depth >= row.observed_traded_low_depth_cents);
+    shapeSupports.push({ shape_id: shapeId, support_n: support.support_n, depth_bins_cents: support.depth_bins_cents, remaining_depth_bins_cents: remaining, min_depth_cents: support.min_depth_cents, max_depth_cents: support.max_depth_cents });
+    for (const depth of remaining) counts.set(depth, (counts.get(depth) ?? 0) + (support.depth_counts?.[String(depth)] ?? 0));
+  }
+  const depths = [...counts.keys()].sort((a, b) => a - b);
+  const levels = depths.map((depth) => row.anchor_cents - depth).filter(cent).sort((a, b) => a - b);
+  return {
+    axis: TRADED_LOW_AXIS,
+    anchor_cents: row.anchor_cents,
+    observed_traded_low_cents: row.observed_traded_low_cents,
+    observed_traded_low_depth_cents: row.observed_traded_low_depth_cents,
+    candidate_final_depth_bins_cents: depths,
+    candidate_final_floor_levels_cents: [...new Set(levels)],
+    candidate_depth_counts: Object.fromEntries([...counts.entries()].map(([depth, n]) => [String(depth), n])),
+    deepest_supported_floor_cents: levels.length ? Math.min(...levels) : null,
+    shallowest_supported_floor_cents: levels.length ? Math.max(...levels) : null,
+    signable: levels.length > 0,
+    shape_supports: shapeSupports,
+    ask_reachability_defines_target: false,
+  };
 }
 
 function initialise(state, rows) {
@@ -229,9 +208,19 @@ function advanceSurvivorShapes({ state, reads }) {
     }
     const group = libraries.pair.groups[`${state.category}|${legState.price_region}`];
     const matches = new Map((group?.shapes ?? []).map((shape) => [shape.shape_id, matchingSingleBins(shape, row)]));
+    const hasTradeEvidence = Number.isInteger(row.observed_traded_low_depth_cents);
     const compatible = legState.all_shape_ids.filter((id) => (matches.get(id) ?? []).length);
-    const singleSurvivors = compatible.length ? compatible : [...legState.survivor_shapes];
-    stages[legId] = { row, group, matches, before: [...legState.survivor_shapes], single: singleSurvivors, single_status: compatible.length ? "CAUSAL_INTERIM_ENVELOPES_NARROWED" : "INSUFFICIENT_EVIDENCE_SINGLE_MODULE_ABSTAINS" };
+    const singleSurvivors = !hasTradeEvidence
+      ? [...legState.survivor_shapes]
+      : compatible.length
+        ? compatible
+        : [...legState.all_shape_ids];
+    const singleStatus = !hasTradeEvidence
+      ? "INSUFFICIENT_EVIDENCE_NO_POST_FORMATION_TRUE_TRADE_LOW"
+      : compatible.length
+        ? "EXACT_MEMBER_TRADED_LOW_DEPTH_BINS_NARROWED"
+        : "INSUFFICIENT_EVIDENCE_OBSERVED_TRADED_LOW_OUTSIDE_LIBRARY_SUPPORT_REOPEN_FULL_SET";
+    stages[legId] = { row, group, matches, before: [...legState.survivor_shapes], single: singleSurvivors, single_status: singleStatus };
   }
   const ordered = [...state.leg_ids].sort((a, b) => (state.legs[b].books[0]?.bid_cents ?? 0) - (state.legs[a].books[0]?.bid_cents ?? 0) || a.localeCompare(b));
   const [highId, lowId] = ordered;
@@ -253,22 +242,27 @@ function advanceSurvivorShapes({ state, reads }) {
       const module = !stage.single.includes(shapeId) ? MODULES.single : !(legId === highId ? pair.high_shapes : pair.low_shapes).includes(shapeId) ? MODULES.pair : MODULES.couple;
       const evidence = {
         current_receipt: state.receipt,
-        current_reference_cents: stage.row.ask,
+        axis: TRADED_LOW_AXIS,
+        current_reference_cents: stage.row.observed_traded_low_cents,
         macro_state: macroState(stage.row.prefix),
         prefix: stage.row.prefix,
         pair_status: pair.status,
         couple_status: couple.status,
       };
-      legState.eliminated[shapeId] = eliminationRecord(shapeId, module, state.receipt, evidence, stage.matches.get(shapeId) ?? []);
+      const priorRecord = legState.eliminated[shapeId];
+      legState.eliminated[shapeId] = priorRecord
+        ? { ...priorRecord, latest_evidence: evidence, matched_bins: stage.matches.get(shapeId) ?? [], last_rechecked_receipt: state.receipt }
+        : eliminationRecord(shapeId, module, state.receipt, evidence, stage.matches.get(shapeId) ?? []);
     }
-    const current = stage.row.ask, prior = legState.prior_current_cents;
+    const current = stage.row.observed_traded_low_cents, prior = legState.prior_current_cents;
     const move = Number.isInteger(current) && Number.isInteger(prior) ? current - prior : null;
     const movement = {
       prior_cents: prior,
       current_cents: current,
       move_cents: move,
       material_two_cent_move: Number.isInteger(move) && Math.abs(move) >= 2,
-      effect: reinstatedNow.length ? "OVERTURNED_PRIOR_ELIMINATIONS_AND_REINSTATED_SHAPES" : eliminatedNow.length ? "ELIMINATED_SHAPES_INCONSISTENT_WITH_NEW_MOVEMENT" : Number.isInteger(move) && Math.abs(move) >= 2 ? "CONFIRMED_OR_SHIFTED_WITHOUT_SURVIVOR_CHANGE" : "TIGHTENED_OR_HELD_SUB_TWO_CENT_MOVE",
+      axis: TRADED_LOW_AXIS,
+      effect: reinstatedNow.length ? "OVERTURNED_PRIOR_ELIMINATIONS_AND_REINSTATED_SHAPES" : eliminatedNow.length ? "ELIMINATED_SHAPES_WITH_NO_REMAINING_MEMBER_TRADED_LOW_DEPTH_BIN" : Number.isInteger(move) && Math.abs(move) >= 2 ? "CONFIRMED_OR_SHIFTED_ON_TRADED_LOW_AXIS_WITHOUT_SURVIVOR_CHANGE" : "TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS",
       eliminated_shape_ids: eliminatedNow,
       reinstated_shape_ids: reinstatedNow,
     };
@@ -280,6 +274,7 @@ function advanceSurvivorShapes({ state, reads }) {
     }
     legState.survivor_shapes = [...after];
     legState.prior_current_cents = current;
+    const criterion = targetCriterion(stage.group, after, stage.row);
     updates[legId] = {
       all_shape_ids: [...legState.all_shape_ids],
       survivor_shapes: [...after],
@@ -291,9 +286,11 @@ function advanceSurvivorShapes({ state, reads }) {
       trajectory_count: legState.trajectory.length,
       price_region: legState.price_region,
       modules: { single: stage.single_status, pair: pair.status, couple: couple.status },
+      target_criterion: criterion,
+      target_axis: TRADED_LOW_AXIS,
     };
   }
   return { source_commit: SOURCE_COMMIT, source_sha256: libraries.sha256, high_leg_id: highId, low_leg_id: lowId, pair_status: pair.status, couple_status: couple.status, legs: updates };
 }
 
-module.exports = { SOURCE_COMMIT, MODULES, configureSurvivorShapeLibraries, advanceSurvivorShapes, macroState, causalAskPrefix };
+module.exports = { SOURCE_COMMIT, MODULES, TRADED_LOW_AXIS, configureSurvivorShapeLibraries, advanceSurvivorShapes, macroState, causalTradePrefix };

@@ -198,36 +198,37 @@ const jointCorpus = [
 const jointNeighborhood = os.retrieveNeighborhood(jointCorpus, jointVector, "TEST-EVENT", 1, jointState.receipt);
 const allMacroStates = ["ANCHOR_OR_UNMOVED", "AT_RISING_PEAK", "PULLBACK_ABOVE_ANCHOR", "RETURNED_TO_ANCHOR_FROM_PEAK", "AT_DESCENDING_LOW", "REBOUND_BELOW_ANCHOR"];
 const anyEnvelope = { macro_states: allMacroStates, ask_net: [-99, 99], ask_dip: [-99, 99], ask_peak: [-99, 99], ask_drawdown_from_peak: [-99, 99] };
+const tradedLowSupport = (depths) => ({ support_n: depths.length, depth_bins_cents: depths, depth_counts: Object.fromEntries(depths.map((depth) => [String(depth), 1])), min_depth_cents: Math.min(...depths), max_depth_cents: Math.max(...depths) });
 os.configureSurvivorShapeLibraries({
   source_commit: "189eaa20",
-  sha256: { pair: "pair-test-sha", couple: "couple-test-sha" },
+  sha256: { pair: "pair-test-sha", couple: "couple-test-sha", traded_low_support: "traded-low-test-sha" },
   pair: {
     groups: {
-      "ATP_MAIN|26_50": { shapes: [{ shape_id: "ATP_MAIN_26_50_INTERIM_PATH_TEST", interim_envelopes: { 0: anyEnvelope } }] },
-      "ATP_MAIN|51_75": { shapes: [{ shape_id: "ATP_MAIN_51_75_INTERIM_PATH_TEST", interim_envelopes: { 0: anyEnvelope } }] },
+      "ATP_MAIN|26_50": { shapes: [{ shape_id: "ATP_MAIN_26_50_INTERIM_PATH_TEST", interim_envelopes: { 0: anyEnvelope }, traded_low_support: tradedLowSupport([2, 3, 5]) }] },
+      "ATP_MAIN|51_75": { shapes: [{ shape_id: "ATP_MAIN_51_75_INTERIM_PATH_TEST", interim_envelopes: { 0: anyEnvelope }, traded_low_support: tradedLowSupport([-2, 0, 2]) }] },
     },
     pair_hypothesis_groups: { ATP_MAIN: { hypotheses: [] } },
   },
   couple: { pair_couple_groups: { ATP_MAIN: { couples: [] } } },
 });
 
-const askPrefix = require("../analysis/window1_v54_survivor_shape_elimination.js").causalAskPrefix({
+const tradePrefix = require("../analysis/window1_v54_survivor_shape_elimination.js").causalTradePrefix({
+  anchor_cents: 50,
   formation_end_epoch: 200,
-  books: [
-    { timestamp_epoch: 190, receipt: "pre-formation", bid_cents: 45, ask_cents: 50, ask_1_sz: 8 },
-    { timestamp_epoch: 200, receipt: "formed-50", bid_cents: 49, ask_cents: 50, ask_1_sz: 8 },
-    { timestamp_epoch: 210, receipt: "formed-50-dwell", bid_cents: 49, ask_cents: 50, ask_1_sz: 8 },
-    { timestamp_epoch: 211, receipt: "descend-48", bid_cents: 47, ask_cents: 48, ask_1_sz: 8 },
-    { timestamp_epoch: 221, receipt: "descend-48-dwell", bid_cents: 47, ask_cents: 48, ask_1_sz: 8 },
-    { timestamp_epoch: 222, receipt: "rebound-49", bid_cents: 48, ask_cents: 49, ask_1_sz: 8 },
+  prints: [
+    { timestamp_epoch: 190, receipt: "pre-formation", price_cents: 45 },
+    { timestamp_epoch: 200, receipt: "formed-50", price_cents: 50 },
+    { timestamp_epoch: 211, receipt: "descend-48", price_cents: 48 },
+    { timestamp_epoch: 222, receipt: "rebound-49", price_cents: 49 },
   ],
 });
-assert.equal(askPrefix.first.receipt, "formed-50", "the prefix must begin at the causal formation end, not the pre-formation book");
-assert.equal(askPrefix.prefix.ask_net, -1);
-assert.equal(askPrefix.prefix.ask_dip, -2, "a descent is negative relative to the formed ask");
-assert.equal(askPrefix.prefix.ask_peak, 0);
-assert.equal(askPrefix.prefix.ask_drawdown_from_peak, 1, "drawdown is peak minus current ask");
-assert.equal(askPrefix.prefix.qualified_ask_descent_count, 1);
+assert.equal(tradePrefix.current.receipt, "rebound-49");
+assert.equal(tradePrefix.prefix.trade_net, -1);
+assert.equal(tradePrefix.prefix.trade_dip, -2, "a descent is negative relative to the L16 anchor");
+assert.equal(tradePrefix.prefix.trade_peak, 0);
+assert.equal(tradePrefix.prefix.trade_drawdown_from_peak, 1, "drawdown is peak minus current traded price");
+assert.equal(tradePrefix.prefix.observed_traded_low_cents, 48);
+assert.equal(tradePrefix.prefix.observed_traded_low_depth_cents, 2);
 os.configurePhaseCentralSurface({
   kind: "F_VS_124_PHASE_CATEGORY_CENTRAL_FUTURE_LOW_SURFACE",
   sha256: "surface-test-sha",
@@ -246,7 +247,7 @@ assert(joint.derivations.every((row) => row.sentence.includes("book-receipt=")))
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.status !== "RESOLVED" || belief.belief_price_cents === Math.floor((belief.live_bid_cents + belief.live_ask_cents) / 2))));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.placement_quantile === "Q75"));
-assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.chosen_candidate_rule === "CONDITIONED_POPULATION_Q75_INSIDE_COHERENT_ENVELOPE"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.chosen_candidate_rule === "CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.touch_anchored_inside_coherent_envelope === false));
 assert(joint.derivations.every((row) => row.sentence.includes("ENVELOPE_PLACEMENT=")));
 assert(joint.derivations.every((row) => row.sentence.includes("SOURCE_KEY=LIBRARY_CLOSE_CENTS") || row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")));
@@ -273,10 +274,11 @@ os.configurePhaseCentralSurface({
 });
 const disagrees = os.deriveJointActions({ state: jointState, reads: jointReads, neighborhood: jointNeighborhood, lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
 assert.equal(disagrees.coherence.status, "DISAGREES");
-assert(disagrees.derivations.every((row) => !["PLACE_REST", "REPRICE_REST"].includes(row.action.action)));
-assert(disagrees.derivations.every((row) => row.action.reason === "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT"));
-assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT"));
-assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.may_originate_rest === false && row.layered_dual_belief.envelope_placement.may_reprice_rest === false));
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").action.reason, "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.mode, "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.may_originate_rest, true);
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").action.reason, "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").layered_dual_belief.envelope_placement.survivor_target_supported, false);
 
 const noOpinionState = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(noOpinionState, leg, { timestamp_epoch: ts, receipt: `noop-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });

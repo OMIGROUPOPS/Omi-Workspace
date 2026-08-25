@@ -153,4 +153,132 @@ layered 58+40 Δ2; LAJSVA lineage 53+41 Δ6 vs layered 54+41 Δ5.
 
 ---
 
-*Adversarial verification lanes (12) running; corrections, if any, will be filed as an addendum.*
+---
+
+# ADDENDUM — 12 lanes returned; my mechanism attribution corrected, the street table overturned
+
+Filed as F-VS-211 … F-VS-214. Every lane ran with an adversarial verify pass; every number below
+was recomputed by at least two independent seats from the trace, prints.jsonl, the raw book tapes,
+and `git show d837b992:` code. Where the lanes refuted my first-push claims, the corrections are here.
+
+## A — The mechanism is not floor-capture. It is `min(traded_low, ask−1)`, and the ask pulls the trigger.
+
+My §2 read the lifts as the engine consuming the evidenced floor. The code and a 46-row controlled
+experiment in the trace say otherwise (`window1_v54_functionable_os.js` @d837b992):
+
+- `:741` — once a leg's own tape has ANY true print, the authority target IS the running observed
+  traded low (`boundedTradeLow`); the map/votes/mind chain is consulted only before the first print.
+- `:672` `postOnlyCap = liveAsk − 1` and `:778` `lawful = min(proposed, postOnlyCap)` — a price
+  REDEFINITION (contradicting C03's own register text "NEVER_REDEFINE_THE_PRICE").
+- `:801` — reprice whenever active ≠ derived. Symmetric; no rule keeps a deeper standing rest.
+
+**URS ln1721 fired on the ask tick, not the floor.** Rows ln1675–1720 — 46 consecutive URS rows,
+1784028269–1784030535 — all read `traded_low 58, proposed 58, cap 57 (ask 58), HOLD 57`. The floor
+input had been 58 for 2,827 s and moved nothing. The single row where the ask reads 59 is the single
+row with an order; and min(64, 58) = 58 shows the ask move alone sufficed. The 57 "stand" I credited
+was itself clamp arithmetic — min(proposed 64, ask−1) — never a floor belief. Verified against the
+raw book tape at both anchor rows (rows 3647 and 4294). Same identity on the other legs: GIU's 68
+and LAJ's 53 were `min(traded_low, ask−1)` artifacts, and each lift is the clamp releasing on an ask
+tick toward the running low. LAJ's endgame descent 56→55→54→53 was `min(pair_cap 58 = 99−41, ask−1)` —
+LAJ's true-trade low was still 62 on one print; even my "efloor 54" framing at ln1784 was wrong about
+what priced the row. **The mind-window prices nothing anywhere**: its uses are serialization
+(`:750/:813/:814/:832`); `member_floor_fraction` feeds vote classification (`:555-562`) but no output
+reaches a price. On URS, authority == ask−1 on 1,502/1,507 rows (99.7%); run-wide 1,626/3,014 (53.9%).
+**The bid-collision of @71b179b3 became an ask-collision.** My §1 "the engine prices (target−bid
+spans −10…+9)" therefore splits: the spread is mostly the clamp; the genuinely engine-priced orders
+are the pre-first-print V3-rung ones — 54 of 320 price-bearing orders (63/528 with cancels).
+And vote non-emptiness is structurally guaranteed (always exactly 7 = fixed retrieval k; 23,716 =
+3,388×7) — what evidences the binding is record content (0/18,000 field mismatches against the
+corpus formula) and the weight/behavior laws, which do verify. No corpus rebuild: FOUNDATION_LIBRARY
+is blob-identical (928f3d1d) across all 18 v54 packages at both commits; the 18,000 eligible legs
+existed at 71b179b3 — only the binding call was missing, exactly F-VS-205.
+
+**ln343's class census, corrected upward: 18 reprices off levels that later filled** (URS 14, LAJ 2,
+BAR 1, GIU 1). And the protection that should catch it is blind two layers deep: both the OS predicate
+(`dual_belief_os.js:1351/:1361`) and the URS-specific guard (`build.js:2589-2592`) require the rest to
+sit exactly AT the evidenced floor — a cap-clamped rest one cent below the floor being dragged up is
+invisible to both, on every leg. On URS the `active == floor` conjunct was satisfiable only during the
+final 26.7 minutes, after ln1721 — the guard could never have fired in time. The SAME_RECEIPT law's
+lift disposition (`DENIED_DEEP_REST_LIFTED_TO_NEW_EVIDENCED_FLOOR`, :1056) never fired anywhere in the
+run — all six SAME_RECEIPT rows took the hold branch; every lift was executed by `:741/:801`.
+
+## B — The street table, re-attributed (corrects §3): MISREAD 5¢ · DATA-UNCONSUMED 2¢ · DATA-GAP 1¢
+
+My first-push totals (UNCONSUMED 3 / GAP 5 / MISREAD 0) are dead. Per cent, lane-verified:
+
+| leg | cents | street | why |
+|---|---|---|---|
+| GIU | 3 | **MISREAD ×3** | `:741` promoted the running traded low (set by the OPENING-HIGH prints 70/71) to the target the instant GIU first printed; 66 was producible from four consumed stores — one of three evidence-grade-1.0 voters licensed 66 (the trio's floors: 55/64/66), every consulted cell's p25–p50 band contained 66, the timing store put the floor at fraction 0.87–0.95 (true: 0.884 — accurate to ~13 min) while the machine paid at 0.238, and a delta-consuming pair cap (100−7−27) lands exactly 66. 66 never appears in any target field of any row; 66 was postable on 51/51 GIU rows. DATA-GAP: none. |
+| URS | 1 | **MISREAD** | the ask−1 redefinition — the book side consumed as the level, the same family as old ln343's bid. Not my "DATA-GAP by design." The counterfactual 57 rest stands to the floor print and fills at 57 (no sub-58 print intervenes — verified). |
+| LAJ | 1 | **MISREAD** | ln1788: the clamp released 53→54 on the ask tick; five ≤53 prints followed before the floor. |
+| LAJ | 1 | **DATA-UNCONSUMED** | sub-52 vote floors (38/43/44; `deepest_supported_floor_cents 38`) sat on the rows while q50 aggregation emitted 43–59 — and the machine had already STOOD at a map-priced 52 for 3,449 s: ln1755 lifted 52→61 on the FIRST print (the 62-print), one receipt after SAME_RECEIPT held it — the single most expensive reprice in LAJ's life (a held 52 fills at 52 on the floor print → Δ7, one cent from spec). |
+| LAJ | 1 | **DATA-GAP** | the exact level 51 appears in no consumed channel ever — candidate floor lattice jumps 50→54, post-formation q50 set {43,52,55,58,59}; a sub-51 rest misses the floor entirely (only exactly 51 captures 51). |
+| PAL | 1 | **DATA-UNCONSUMED** | the authority's own pair-allocation machinery proposed PAL 39 (rejected_candidate_targets {PAL: 39, URS: 63}) through the churn, and the live bid 39 = the true floor sat on the lift row; `:741` took the traded low 40. |
+
+BAR and SVA: 0¢ — and BAR's fill is the clean capture (its standing-license receipt IS the 27¢ floor
+print @1783841801.3048, the W1TT-C-001 moment; fill 112 ms later). SVA is the chase that got lucky:
+it witnessed the first 41 print resting 40 (SAME_RECEIPT hold), lifted to 41 seven seconds later, and
+the second 41 print rescued it 0.484 s after that.
+
+**The self-stop fired on exactly these cents.** SAFETY_FLOORS (7/4/8) has two post-hoc consumers —
+the gate tripwire AND `self_stop_triggered` (build:1468/:1471; gate `self_stop: true, stop_reason:
+CURRENT_BED_TRIPWIRE`) — while the placement path never reads it. The commit's own headline mechanism
+halted the run over the 8¢ its pricing identity surrendered.
+
+## C — DANPRA and the forfeited seventh (extends §4; two of my claims corrected)
+
+- **The seventh fill was forfeited by contract.** PRA's floor 41 printed TWELVE times in-span (first
+  at the truth floor moment, 1784342553.971). PRA was pinned at 40 from ln1875 (ts 1784341326). At
+  ln1886 and ln1894 the engine's own authority target read **41** — `authority_target_divergence
+  {authority 41, final 40, diverged: true, senior_authority_reason: C04_CANCEL_REARM_RESTORES_PRICE}` —
+  the rearm contract restored the 40 over the engine's floor answer, and four 41¢ prints passed over
+  the rest after the rearm burst (last in-span @1784372115.642). DAN reached its floor 59 only
+  7,948 s (132.5 min) after its floor moment — every ≤59 print predates the tenure; the banked
+  rest-at-floor tenure never coincided with a floor-priced print.
+- **The run breached its span.** ln1893 @1784373056 (span_end + 896 s) cancelled both legs;
+  ln1894 @1784373060 (+900 s) PLACED a new PRA rest at 40 — an order after the governing span end
+  1784372160. Every DANPRA row carries `window_end_epoch 1784373060` (the bell) — the known
+  bell-for-span_end error is inside the trace's own window_timing, inflating every DANPRA
+  window_fraction the two-behavior specialists key on. The story renders the post-span placement
+  as its final transition.
+- **Correction to my §4:** the cross-file receipts on the 17 DAN rows are NOT a defect — decision
+  stages are pair-level and either leg's book row lawfully triggers them (ONE_DECISION_PER_RECEIPT).
+  Retracted. The real defects: the one-legged proof is PACKAGE-WIDE — all four LAWFUL_INCOMPLETE rows
+  stamp `rest_at_floor_proven: true` on single-leg conduct (GIUBAR: 2 rows all BAR, GIU zero; URSPAL:
+  400 all URS, PAL zero; LAJSVA: 1 SVA, LAJ zero; DANPRA: 17 DAN, PRA zero) — the field's definition
+  is the defect, not the DANPRA instance. And "stood 51/33 at the bell" is a HARDCODED GENERATOR
+  LITERAL — fixed template text at `build_window1_v54_dual_belief.js:1220`, F-VS-204's class, inside
+  a story corpus that otherwise verifies 684/684 citations with zero mismatches.
+
+## D — The thrash storm and the receipts that cannot see it
+
+- **PAL: 400 orders — 194 same-price cancel→restore cycles over 4.95 h** (median inter-cancel 4 s,
+  peak 19 in a sliding minute), driven by two contradictory lawfulness predicates: the atomic branch
+  cancels 32 as outside the envelope [35,35] (os:1204-1209); the restore predicate re-places the same
+  32 with NO envelope test (os:1257-1260). 190/194 cycles show identical state (active 32,
+  authority-chosen 40). The churn ended at ln635 @1784024261 when the ask-tracking URS target reached
+  59, making 40+59 = 99 lawful — 8,436 s BEFORE the URS fill. Total uncovered time across restored
+  cycles: 1,624.8 s. Rearm attempts = decision-row sampling (355 attempts = 355 rows). F-VS-176's
+  class at +71% (528 vs 309); GIUBAR alone (21 orders) is at the historical 22–23 scale.
+- **The storm receipts cannot fire.** `ATOMIC_CANCEL_REPLACE_RECEIPT.json` claims
+  `cancel_storm_disappeared: true` — its metric draws only consistency-flagged DANPRA rows
+  (build:2465-2467) and reports `repaired_distinct_cancel_receipts: 0` while this run's DANPRA emitted
+  8 real cancels and URSPAL manufactured a 194-cancel storm it never examines. `EVERY_CANCEL_REARMS`
+  passes any status beginning `REARM_` — it verifies arming, not restoration; DAN's terminal cancel
+  never resolved and passed.
+- **Gate residue (F-VS-204's class, third generation):** two literals were genuinely repaired
+  (`authority_restored` → vote_count > 0; `no_lane_may_replace_target` → derived), but
+  `lane_level_replaced_authority` became a TAUTOLOGY — computed one line after
+  `targets[legId] = authorityTarget ?? active` (os:989-991), false by construction, and consumed by
+  the PRICING_AUTHORITY_RESTORED gate (build:2905). New self-agreeing check:
+  `authority_target_divergence.licensed_senior` — the producer enumerates its own excuse and the
+  checker consumes it (build:1535); 774 diverged rows, 774/774 licensed. And the run's self-grade
+  contradicts its own gate: TRADE_REPORT_FOUR grades all three completed pairs
+  `GOOD_COHERENT_UNDER_PAR_COMPLETION` while the same commit self-stops on exactly those pairs —
+  a ZERO CONTRADICTIONS item (two internal rules wanting opposite things about the same run).
+- **Story machinery:** the transition denominators are exact (19/508/46/32 reproduce from
+  build:1188-1199 verbatim), but the renderer's mandatory-inclusion guarantee is dead on long games —
+  `.slice(0, 8)` (build:1201-1211) discards the fill-handoff and terminal transitions it just marked
+  mandatory; the URSPAL story renders 8/508 with zero of that game's 196 cancels and no fills.
+  TRADE_REPORT_FOUR's six fill lines all mislabel their citation: the "trade:" field carries the
+  licensing receipt, not the filling trade.

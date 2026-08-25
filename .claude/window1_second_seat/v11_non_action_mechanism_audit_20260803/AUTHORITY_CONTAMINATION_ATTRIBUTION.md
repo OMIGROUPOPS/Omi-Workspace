@@ -85,3 +85,52 @@ Last derivation row at or before each governing floor moment; "demoted path" = t
 CERTIFIED: the contracts are registered and honored as written (zero substitutions, measured); the second allocator is deleted; determinism holds; the DANPRA arithmetic is honestly computed; the LAJ 53 capture is real and is the F-VS-175 cent.
 
 FAULTED, decisively: **the restored authority is the bid-follower under a crown** — 481/481 targets at the live bid, ten of ten orders at the bid, the spread eye inert at 0 consumptions — and contract C01 converts every previously-repaired lane into its executor. The three §5 contaminations contribute nothing to the placed levels because two are moot by demotion and the third is overridden by the anchor; **the operative contamination is the V3 touch re-keying itself**, the oldest defect in this series, now senior to everything that was built to correct it. The floors were on the rows; the machine was forbidden to use them.
+
+---
+
+# ADDENDUM — 12 lanes returned; the mechanism is sharper than I filed, three of my claims corrected
+
+Filed as F-VS-204 … F-VS-206. Every figure re-checked against the lane evidence before filing; the quantification lane's verifier returned **zero refuted findings** on the substitute table.
+
+## A — Corrections to F-VS-201/202/203
+
+**(a) "Zero substitutions measured true" was too generous — the verdict splits.** Genuinely *measured*: the allocator deletion (runtime source-scan, `occurrences 0`, plus a test pin). **Asserted**: the fields the gate reads — `authority_restored_to_decision_path: true` (os:275), `no_lane_may_replace_target: true` (os:290), `lane_level_replaced_authority: false` (os:985) — are **hard-coded literals**, the F-VS-167 class returning inside the very build that removed the last batch; `PRICING_AUTHORITY_RESTORED` cannot fail on production data. And the numeric fact nobody tests: **final action target ≠ authority target on 2,292 of 3,016 rows** — the senior holds override the crown on 76 % of rows, lawfully per C01's text, but no check re-derives that each divergence traces to a licensed senior contract.
+
+**(b) The contract register is 21 entries, not 15** — 15 `FIRED_OR_PRICED` + 6 `LATENT_REGISTERED`. Only **C01 (731 rows) and C02 (2,285 rows)** are ever the active contract; C05 and C04 never fired; **C15's `FIRED_OR_PRICED` state is contradicted by its own run** (0 spread-eye consumptions); C11 carries a raw-space typo in its resolution. `TECHNIQUE_CONTRACT_REGISTER` tests **serialization presence** (21 entries attached + a sentence token), not conduct.
+
+**(c) Street corrections on the floor-moment table.** The lane's finer reading is right and mine was too coarse: **URS ln343 is the run's one true MISREAD** (the bid read as the level while the same row's evidenced floor read 64). GIU, PAL, SVA, DAN and PRA at their floor moments are **DATA-UNCONSUMED** — the floor evidence sat on the rows and no lane read it into an action, because the hold family refuses lifts. BAR's placement and LAJ's are **DATA-GAP at placement** (no true trade existed yet at span start — `floor @row: NONE` on 8 of the 10 order rows) shading into DATA-UNCONSUMED once the floors printed. And one demoted-column correction: **DAN is a wash** — the demoted path rested 58, also below the 59 floor; neither fills.
+
+## B — The mechanism, sharper: the crown's depth apparatus is dead at the data plane
+
+The bid degeneracy is not a preference — it is a missing binding:
+
+- `specialist_votes: []` on **3,016 of 3,016** derivations, because **the corpus carries zero specialist records** — no `specialist_record` in `CORPUS_INDEX.jsonl.gz`, and `configureNeighborSpecialistBinding` is **never called** in the build.
+- The mind-window vote therefore ties 0-vs-0 on every row → `PAIR_CLOCK_TOUCH_WINDOW` on 3,016/3,016 → the V3 map is **never licensed** (`map_licensed: false` on 3,016/3,016) → `chosen_depth_cents = 0` on 2,988/3,016 → `base_target = touch − 0 = the live bid` (the other 28 are post-fill pair-cap rows; 242 fail `baseLawful` and are the POST_ONLY_BLOCKED rows).
+
+**The authority's entire pricing intelligence — the V3 map, the conditional depth, the mind-window — contributed zero cents on every row of the run.** That is a dormant-allocator-class defect (F-VS-200's own class) sitting *inside* the crowned chain: a technique wired into seniority whose engine is unplugged at the data plane. The crown is not consulting a map and choosing the bid; it cannot consult the map at all.
+
+Two adjacent defects the lanes pinned:
+
+- **A false provenance stamp**: when the target sits below the leg's own bounded traded low, `jointDepthLicense` stamps basis `TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED_BELOW_OWN_LOW` — but the license that actually fired is the **trivially-true depth-0 clause** (fos:762-765), not the map. Observed on ln343 URS, ln1448 LAJ, ln1557 PRA. A Definition-Lock violation on the word *licensed*.
+- **The hold family is also what saved BAR**: at ln47 the authority read **25** (the bid had fallen) and the C02 hold kept the 29 rest that later filled. Two downward reprices, **zero upward lifts** — the "no-lift ratchet": the holds froze the span-start bid one-way, blocking both the worse chase (BAR) and every lift toward a floor (GIU 63→never 66, PAL 33→never 39, SVA 36→never 41).
+
+## C — The substitute table, confirmed and closed
+
+The quantification lane computed all three substitutes per order row and its verifier reproduced every number with **no refutations**:
+
+| ln | leg | placed | (a) unweighted | (a) coverage-only | (b) evidenced ceiling | (c) derived bound | F-VS-188 ceiling |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 37 | BAR | 29 | 29 | 29 | 29 | 29 | 27 |
+| 37 | GIU | 63 | 63 | 63 | 63 | 63 | 66 |
+| 216 | PAL | 33 | 33 | 33 | 33 | 33 | 39 |
+| 216 | URS | 57 | 57 | 57 | 57 | 57 | 57 |
+| 343 | URS | 52 | 52 | 52 | 52 | 52 | 57 |
+| 1404 | LAJ | 54 | 54 | 54 | 54 | 54 | 51 |
+| 1404 | SVA | 36 | 36 | 36 | 36 | 36 | 41 |
+| 1448 | LAJ | 53 | 53 | 53 | 53 | 53 | 51 |
+| 1557 | DAN | 53 | 53 | 53 | 53 | 53 | — |
+| 1557 | PRA | 37 | 37 | 37 | 37 | 37 | — |
+
+**All three substitutes: 0¢ on all ten orders** — row-local, fully computed, structurally closed by `targets[legId] = authorityTarget ?? active` (os:977) and the dead depth channel. The derived lane bound is real as a *record* substitute: tape-median spreads are **3 / 10 / 2 / 3** per game against the assumed 20, and **1,015 of 1,196 COHERENT decision rows would reclassify to DISAGREES** (including order rows ln343 and ln1557) — with 0¢ of level effect, since nothing after the authority reads coherence. The 20 still authors the coherence ledger the gate counts; it prices nothing.
+
+**The board the crown left:** 19¢ of lawful completion delta was available (GIUBAR 7 + URSPAL 4 + LAJSVA 8), every ceiling level postable from the first instant of its span. The crown banked 0 completions, one +1¢ entry (LAJ 53) stranded in a half-pair, one −2¢ entry (BAR 29), and the ln343 reprice destroyed the only certain floor-level fill it ever owned.

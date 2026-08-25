@@ -161,3 +161,60 @@ Filed as F-VS-196 … F-VS-198. Every row re-checked before filing.
 
 **Zero is the standard. Nineteen contradictions are catalogued; one is dissolved; eighteen are open** — six with triage, thirteen without (the level-selection overlap inside the arbitrated lane×lane entry keeps that entry open despite its contract). Every triaged entry remains on this register until a build removes the overlap itself: one post-only definition for every lane, one cancellation law, one tenure instrument, one allocator, one clock.
 
+---
+
+## 5 — THE FUNCTION AUDIT (standing; operator ruling, 2026-08-25, filed verbatim)
+
+> **EVERY SINGLE FUNCTION HAS A FUNCTION** — everything that has an effect on OS opinion and sentiment is **validated** (source proven, provenance stated, consumed by a named decision); anything in the decision path that **affects nothing or duplicates another's job is a defect** (dormant allocator class), and anything **unvalidated that shapes sentiment is a contamination** (midpoint-low class). Standing audit: the register gains a column — each technique's inputs **VALIDATED yes/no**, and each technique's output **CONSUMED BY** whom; blanks are findings. No other change.
+
+The column, normalized as one audit table keyed to the register's row numbers. **VALIDATED** = every input has a proven source and stated provenance. **CONSUMED BY** = the named decision that reads the output. Anything not YES / not a named decision is a finding, cited.
+
+| # | inputs VALIDATED? | output CONSUMED BY | finding |
+|---|---|---|---|
+| E1 window | **partial** — 3 of 4 games operator-ruled/machine; DANPRA is `TAPE_INFERENCE` and the consumption edge runs 900 s past the governing span | phase math, deadlines, rearm window, the tape-consumption filter (build:1344) | F-VS-166 open |
+| E2 reference series | **partial** — the tape is receipt-proven, but the third branch of `referenceOf` is a **computed midpoint**, and via the drift reader it becomes the **coherent envelope's HIGH** (os:288/337) with no disclosure — the same class E4 discloses on the low side | drift reader, lows_travel, DISAGREES book-validity, **envelope high** | **NEW — the envelope-high midpoint channel is an undisclosed sibling of the midpoint-low contamination** |
+| E3 traded floor | **YES** — print receipt on the same object; the gate recomputes it from the raw tape prefix | P3 target, par bound (C1), tenure (C8), hold (P6), same-receipt law (P7), gate | — (the model row) |
+| E4 non-traded-low disclosure | **YES** — basis, producing branch and source receipt stated; sentence carries it | E6 conditioning | — (the remediated contamination the ruling names) |
+| E5 survivor shapes | **mostly** — libraries sha256-bound @189eaa20, custody verified; **but** high/low orientation is frozen at the first book bid (sse:225), an input with no stated validation | P3 license, envelope snap, P6 support, P5 | orientation input unvalidated |
+| E6 conditioned belief | **partial** — foundation library and phase surface are sha-bound; the conditioning low is disclosed; **but the 14 similarity weights/scales (fos:52-92) and the evidence-match formula `1/(1+|dipΔ|)` (fos:549-551) are hand-authored values with stated provenance and NO source proof** — unvalidated numbers shaping every conditioned quantile | envelope construction, P1 pricing, E8 | **NEW — contamination class: hand-authored weights shape sentiment unvalidated** |
+| E7 coherence switch | **partial** — beliefs and book are proven; `SPREAD_SETTLE_COHERENCE_MAX_CENTS = 20` (os:11) is a numeric constant with no operational derivation (the literal audit covers booleans only) | the lane selector — every placement | the 20 is an unvalidated sentiment-shaping constant |
+| E8 freshDeadline | YES (E6 + window) | deadline scoring table, sentences | — (scoreable, consumed) |
+| P1 coherent Q75 | YES (E5/E6/E7 + ask) | arbitration → orders; produced the run's only below-low floor capture | — |
+| P2 singleton | YES | P1 target / refusal reason; P6 trigger | — |
+| P3 DISAGREES release | **partial** — its inputs are proven (E3 + E5) but its own postability premise is unvalidated: no `target < ask` test | arbitration → 3 orders | F-VS-191 open |
+| P4 live-touch | YES (bid/ask + receipt) | arbitration; 0 orders this run | — |
+| P5 carried conviction | YES (prior envelope + survivors, basis restated) | arbitration; 2 HOLDs | — |
+| P6 postable hold | YES (ask + captured-floor license + pair plan) | allocation re-insert → held orders | license never stamped on DISAGREES placements (F-VS-196b) |
+| P7 same-receipt floor | YES (print on the current epoch + ask) | overrides every lane's proposal; 3 rows | detector/writer guard mismatch (F-VS-197) |
+| P8 hold-previously-licensed | YES | arbitration; **0 rows** — live branch, unfired this bed | watch: unfired ≠ dead |
+| C1 allocator + bound | YES (targets + E3 bound) | the joint plan; every order | **the reduction branch has fired 0 times — the bound has never reduced a target, and its output is not re-snapped to the axis (U1)** |
+| C2 arbitration | YES (all lanes' proposals) | the emitted order; winner/loser record | per-leg only (F-VS-196d) |
+| C3 fill-handoff cap | YES (fill events) | post-fill targets | cap never bound; if it binds, output un-snapped (U1) |
+| C4 consistency + atomic | YES (rest vs envelope + ask) | cancels/replacements | two modes escape the check (U4) |
+| C5 rearm | YES (cancels + lanes) | the next lawful rest | resolution lane unspecified (F-VS-198) |
+| C6 rest-priced crediting | **YES** — trade_id resolved in the print store, entry == rest asserted | pair sums, bed verdict | — |
+| C7 lawful-incomplete | YES (E3 both legs + par) | bed verdict | — |
+| C8 tenure | **NO** — three instruments give three answers on one episode, one counts tenure where no traded floor exists | gate `AT_FLOOR_TENURE` | F-VS-190/198 open — an unvalidated measurement shaping the gate |
+| A1 sentences | YES (hard asserts vs the row) | operator reading; gate substring checks | — |
+| A2 gate + probes | **partial** — `passed` computed from failures; **the probes are hand-written twins, one a constant** | the bed verdict | F-VS-187 open |
+| A3 determinism | YES | score emission license | one-host limit stated |
+| A4 custody/literal/producer audits | YES (sha256 / scan / writer search) | L20/L22 compliance | classifier-by-line-shape caveat (F-VS-183) |
+| A5 attribution + pins | YES (`run_source` on both objects) | bed comparison | — |
+
+### Defects under the ruling, by its two named classes
+
+**Dormant-allocator class (in the decision path, affecting nothing or duplicating another's job)** — all verified at 4a96ded9:
+1. **`allocatePairActions` + `rewriteAllocatedAction`** (fos:828-933) — a second, dormant allocator with a grade-proportional reduction rule that **contradicts** the live headroom-greedy `allocateUnderPar`; exported, zero call sites (U6).
+2. **`lineageTarget`** (os:371-378) and **`supportingShapeIdsForLevel`** (os:103-109) — defined, never called.
+3. **The full `similarity` variant** (fos:385-407) — dead; nothing consumes even a hash of it.
+4. **The displaced base pricing chain** — touch pricing, mind-window vote, V3 map re-keying, joint depth license, base post-only/pair caps: every emitted action overwrites their work (os:1163-1183). They duplicate the dual layer's job and affect no order.
+5. **Floor-rest protection's writer** (os:802-819) — fired 0 times while its **detector** fired once where no writer could act (F-VS-197): a function whose only output this run was an unroutable violation.
+
+**Midpoint-low contamination class (unvalidated, shaping sentiment)**:
+1. **The envelope-high midpoint channel** — the coherent envelope's ceiling is the drift reader's reference level, whose third source is `floor((bid+ask)/2)`; unlike the low side (E4), **nothing discloses when the high is mid-derived**. New finding.
+2. **The 14 hand-authored similarity weights and the evidence-match formula** — stated, never validated against any store; they shape every neighborhood and therefore every conditioned belief. New finding.
+3. **`SPREAD_SETTLE_COHERENCE_MAX_CENTS = 20`** — the constant that decides which lane may price, with no operational derivation on record.
+4. *(Remediated exemplar)* the midpoint low itself — now disclosed per-row with its producing branch and receipt (E4); the class's name survives as the standard.
+
+**Blanks-are-findings summary: 0 blank cells; 11 rows carry a finding.** Three are new to this audit — the envelope-high midpoint channel, the unvalidated similarity weights, and the unvalidated coherence constant — filed under F-VS-200.
+

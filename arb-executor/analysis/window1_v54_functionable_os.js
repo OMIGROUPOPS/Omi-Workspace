@@ -825,113 +825,6 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   };
 }
 
-function rewriteAllocatedAction(row, action, allocation, reads) {
-  const priorStatement = row.sentence_action_assertion.expected_statement;
-  const active = cent(reads.half_pair_state.value.legs[row.leg_id].standing_target_cents);
-  const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${cent(action.target_cents) ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
-  const liveBid = cent(row.derivation.live_bid_cents);
-  const finalDepth = liveBid && cent(action.target_cents) ? liveBid - action.target_cents : null;
-  const allocationStatement = `ALLOCATION=${allocation.mode}; PRIORITY_GRADES=${allocation.priority_grades ?? "NONE"}; FROM_CENTS=${allocation.from_cents ?? "NONE"}; TO_CENTS=${allocation.to_cents ?? "NONE"}; EXCESS_CENTS=${allocation.excess_cents ?? 0}; FINAL_DEPTH_BELOW_TOUCH_CENTS=${finalDepth ?? "UNKNOWN"}; REASON=${allocation.reason}.`;
-  row.sentence = row.sentence.replace("ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION.", allocationStatement).replace(priorStatement, actionStatement);
-  row.action = action;
-  row.derivation.derived_target_cents = cent(action.target_cents);
-  row.derivation.final_depth_below_touch_cents = finalDepth;
-  row.derivation.allocation = allocation;
-  row.sentence_action_assertion = { hard_assert: true, expected_statement: actionStatement, equal: row.sentence.includes(actionStatement) };
-  return row;
-}
-
-function allocatePairActions({ state, reads, derivations }) {
-  const rows = new Map(derivations.map((row) => [row.leg_id, row]));
-  const openRows = derivations.filter((row) => !reads.half_pair_state.value.legs[row.leg_id].credited);
-  const creditedRows = state.leg_ids.filter((id) => reads.half_pair_state.value.legs[id].credited);
-  const allocated = new Map();
-
-  if (creditedRows.length === 0 && openRows.length === 2 && openRows.every((row) => cent(row.action.target_cents))) {
-    const [left, right] = openRows;
-    const leftFrom = left.action.target_cents;
-    const rightFrom = right.action.target_cents;
-    const excess = Math.max(0, leftFrom + rightFrom - PAR_BUDGET_CENTS);
-    const leftGrade = Number.isFinite(left.derivation.allocation_priority_grade) ? left.derivation.allocation_priority_grade : 0;
-    const rightGrade = Number.isFinite(right.derivation.allocation_priority_grade) ? right.derivation.allocation_priority_grade : 0;
-    const gradeMass = leftGrade + rightGrade;
-    const leftReduction = excess === 0 ? 0 : gradeMass > 0 ? Math.round(excess * rightGrade / gradeMass) : Math.floor(excess / 2);
-    const rightReduction = excess - leftReduction;
-    let leftTo = Math.max(1, leftFrom - leftReduction);
-    let rightTo = Math.max(1, rightFrom - rightReduction);
-    if (leftTo + rightTo > PAR_BUDGET_CENTS) {
-      const residual = leftTo + rightTo - PAR_BUDGET_CENTS;
-      if (leftGrade >= rightGrade) rightTo = Math.max(1, rightTo - residual);
-      else leftTo = Math.max(1, leftTo - residual);
-    }
-    const changed = leftFrom !== leftTo || rightFrom !== rightTo;
-    const common = {
-      mode: changed ? "GRADED-CONTINUOUS-SPLIT" : "COMPOSED-PICTURE-NO-REALLOCATION",
-      priority_grades: `${left.leg_id}:${leftGrade.toFixed(9)},${right.leg_id}:${rightGrade.toFixed(9)}`,
-      from_cents: `${left.leg_id}:${leftFrom},${right.leg_id}:${rightFrom}`,
-      to_cents: `${left.leg_id}:${leftTo},${right.leg_id}:${rightTo}`,
-      excess_cents: excess,
-      stale_prior_consumed: false,
-      reason: changed
-        ? `fresh per-receipt composition exceeded 99; each revisable standing plan yielded continuously in inverse proportion to its current evidence grade before market interaction`
-        : "fresh per-receipt composed targets already fit the 99-cent conservation budget",
-    };
-    allocated.set(left.leg_id, { target: leftTo, allocation: common });
-    allocated.set(right.leg_id, { target: rightTo, allocation: common });
-  } else {
-    for (const row of openRows) {
-      allocated.set(row.leg_id, {
-        target: cent(row.action.target_cents),
-        allocation: {
-          mode: "CURRENT-BEHAVIOR-BYTE-EQUAL",
-          priority_grades: null,
-          from_cents: null,
-          to_cents: null,
-          excess_cents: 0,
-          stale_prior_consumed: false,
-          reason: creditedRows.length ? "a credited fill is a commitment, so frozen pair-cap arithmetic applies" : "one or both fresh per-receipt composed targets are unavailable",
-        },
-      });
-    }
-  }
-
-  for (const row of openRows) {
-    const entry = allocated.get(row.leg_id);
-    let target = cent(entry.target);
-    const active = cent(reads.half_pair_state.value.legs[row.leg_id].standing_target_cents);
-    const liveBid = cent(row.derivation.live_bid_cents);
-    const liveAsk = cent(row.derivation.live_ask_cents);
-    const finalDepth = liveBid && target ? liveBid - target : null;
-    const mapP50 = row.derivation.true_bell_cell_depth_map?.cell?.edge_p50_cents;
-    const formationLawful = row.derivation.formation_complete === true;
-    const touchLawful = row.derivation.formed_two_sided_book === true && liveBid < liveAsk;
-    const depthLawful = Number.isInteger(finalDepth) && (finalDepth === 0 || (Number.isInteger(mapP50) && finalDepth <= mapP50));
-    if (!formationLawful || !touchLawful || !depthLawful) target = null;
-    let action;
-    if (!formationLawful) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "FORMATION_NOT_COMPLETE" };
-    else if (!touchLawful) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: row.derivation.crossed_book ? "CROSSED_BOOK_NOT_A_TOUCH_FAIL_LOUD" : "NO_FORMED_TWO_SIDED_BOOK" };
-    else if (!target) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "JOINT_ALLOCATION_EXCEEDS_MAP_LICENSED_DEPTH" };
-    else action = { action: active === null ? "PLACE_REST" : active === target ? "HOLD_REST" : "REPRICE_REST", target_cents: target, reason: entry.allocation.mode === "GRADED-CONTINUOUS-SPLIT" ? "DERIVED_GRADED_CONTINUOUS_SPLIT" : row.action.reason };
-    rewriteAllocatedAction(row, action, entry.allocation, reads);
-  }
-
-  for (const row of derivations) {
-    const siblingId = state.leg_ids.find((id) => id !== row.leg_id);
-    const siblingRow = rows.get(siblingId);
-    const siblingPosition = reads.half_pair_state.value.legs[siblingId];
-    const siblingPlan = siblingPosition.credited ? cent(siblingPosition.entry_cents) : cent(siblingRow?.action?.target_cents);
-    const target = cent(row.action.target_cents);
-    row.pair_conservation = {
-      sibling_leg_id: siblingId,
-      sibling_commitment_cents: siblingPlan,
-      evaluated_target_cents: target,
-      sum_cents: target && siblingPlan ? target + siblingPlan : null,
-      at_or_below_99: !(target && siblingPlan) || target + siblingPlan <= PAR_BUDGET_CENTS,
-    };
-  }
-  return derivations;
-}
-
 module.exports = {
   PAR_BUDGET_CENTS,
   READER_NAMES,
@@ -953,5 +846,4 @@ module.exports = {
   captureReceipt,
   assertCaptureReceipt,
   deriveAction,
-  allocatePairActions,
 };

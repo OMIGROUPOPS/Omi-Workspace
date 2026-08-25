@@ -1,0 +1,53 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_contracts_authority_spread_eye_20260825/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 37370554,
+      "sha256": "01f52bb1436b2c5629c444422c229be4a3c5c1bb4c4bfb8a42997f97692904cd"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_contracts_authority_spread_eye_20260825/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 37279272,
+      "sha256": "20d36f40eb99f062ec6b8cb7660b34deec92d7ad1f87dccff4800db06b54729c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_contracts_authority_spread_eye_20260825/ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 43335621,
+      "sha256": "979601b9a0a6351594087bbfcc3ee2261eb224c12fecdf1eec27500fb077a68b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_contracts_authority_spread_eye_20260825/FLOOR_REST_PROTECTION_RECEIPT.json",
+      "bytes": 20464556,
+      "sha256": "2cdb14643c18698422f73e581bc0cc31b4ef98c064caf77ab99ae308f2caaa2b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_contracts_authority_spread_eye_20260825/NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "bytes": 46265407,
+      "sha256": "71cc1383b0f58dfcebe50a9a6f21a665dcd418c4f62250846cdc15b422606cc3"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_contracts_authority_spread_eye_20260825/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 15552118,
+      "sha256": "29f865f6345821e20723bae003c6e7d094cdfaa46b173ead45473fa62117b2d4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_contracts_authority_spread_eye_20260825/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 113531790,
+      "sha256": "153b7c2bc6e5290f432e8c4b1bff463dbe4f17d57cdf8462c5fbbdce4f5c1027"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_contracts_authority_spread_eye_20260825/SMOKE_CRIJEA.md",
+      "bytes": 18995184,
+      "sha256": "c039795b6172e9c0aad32de8b6e3456f1e7e33d480115a038dfd8de8a1b510ac"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_contracts_authority_spread_eye_20260825/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 20735380,
+      "sha256": "f9945e7feaa42f89891749fcfb650f624cae6e14a51d136c605a759324b9403c"
+    }
+  ],
+  "count": 9,
+  "bytes": 353529882
+}

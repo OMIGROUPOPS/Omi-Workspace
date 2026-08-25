@@ -1,0 +1,2589 @@
+{
+  "label": "V54_FIRED_CONTRACT_EXECUTION",
+  "locked_book_rows": [],
+  "locked_book_cancelled_existing_rest_count": 0,
+  "same_receipt_floor_handoffs": [],
+  "allocation_and_cap_resnaps": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-362",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-547",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-549",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-551",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-553",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-555",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-636",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-558",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-640",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-560",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-561",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-566",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-569",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-653",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-572",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-656",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-658",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-574",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-669",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-581",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-582",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-591",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-736",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "f6988de7-aeba-53c2-ff8e-dd70aa8fe0a3",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1153",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1688",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1975",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2323",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2397",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2443",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2836",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2919",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 63,
+        "cap_cents": 70,
+        "arithmetic_target_cents": 63,
+        "snapped_target_cents": 63,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "8c5eeb51-910b-6b5f-ae42-307d486841f4",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 36,
+        "cap_cents": 46,
+        "arithmetic_target_cents": 36,
+        "snapped_target_cents": 36,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 36
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 36,
+        "cap_cents": 46,
+        "arithmetic_target_cents": 36,
+        "snapped_target_cents": 36,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 36
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-7432",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 36,
+        "cap_cents": 46,
+        "arithmetic_target_cents": 36,
+        "snapped_target_cents": 36,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 36
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-13585",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 36,
+        "cap_cents": 46,
+        "arithmetic_target_cents": 36,
+        "snapped_target_cents": 36,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 36
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-70555",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 36,
+        "cap_cents": 46,
+        "arithmetic_target_cents": 36,
+        "snapped_target_cents": 36,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 36
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 36,
+        "cap_cents": 46,
+        "arithmetic_target_cents": 36,
+        "snapped_target_cents": 36,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 36
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d",
+      "resnaps": [],
+      "fill_handoff_resnap": {
+        "before_cap_cents": 36,
+        "cap_cents": 46,
+        "arithmetic_target_cents": 36,
+        "snapped_target_cents": 36,
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS"
+      },
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "final_target_cents": 36
+    }
+  ],
+  "every_resnap_names_traded_low_axis": true
+}

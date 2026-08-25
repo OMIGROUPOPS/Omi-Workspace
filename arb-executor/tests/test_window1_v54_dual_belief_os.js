@@ -106,40 +106,7 @@ assert.equal(mapped.derivation.proposed_target_cents, 34);
 assert.match(mapped.sentence, /MAP_CELL=ATP_MAIN\|37/);
 assert.match(mapped.sentence, /MAP_P50_CENTS=3/);
 
-const splitState = os.createTapeState(meta);
-splitState.positions.AAA.standing_target_cents = 60;
-splitState.positions.BBB.standing_target_cents = 36;
-const splitReads = { half_pair_state: { value: { legs: { AAA: { ...splitState.positions.AAA }, BBB: { ...splitState.positions.BBB } } } } };
-function splitRow(legId, target, grade) {
-  const actionStatement = `ACTION=HOLD_REST; TARGET_CENTS=${target}; ACTIVE_TARGET_BEFORE_CENTS=${target}.`;
-  const liveAsk = target + 1;
-  return {
-    leg_id: legId,
-    action: { action: "HOLD_REST", target_cents: target, reason: "INCUMBENT" },
-    derivation: {
-      lawful_unallocated_target_cents: target,
-      derived_target_cents: target,
-      allocation_priority_grade: grade,
-      live_bid_cents: target,
-      live_ask_cents: liveAsk,
-      formation_complete: true,
-      formed_two_sided_book: true,
-      crossed_book: false,
-      true_bell_cell_depth_map: { cell: { edge_p50_cents: 5 } },
-    },
-    sentence: `ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`,
-    sentence_action_assertion: { expected_statement: actionStatement, equal: true },
-    pair_conservation: { at_or_below_99: true },
-  };
-}
-const splitRows = [splitRow("AAA", 60, 1), splitRow("BBB", 41, 3)];
-os.allocatePairActions({ state: splitState, reads: splitReads, derivations: splitRows });
-assert.equal(splitRows[0].action.target_cents, 58, "lower-grade plan yields the larger continuous share");
-assert.equal(splitRows[1].action.target_cents, 41, "higher-grade plan retains its fresh target");
-assert(splitRows.every((row) => row.pair_conservation.at_or_below_99));
-assert(splitRows.every((row) => row.sentence.includes("ALLOCATION=GRADED-CONTINUOUS-SPLIT")));
-assert(splitRows.every((row) => row.derivation.allocation.stale_prior_consumed === false));
-assert(splitRows.every((row) => row.derivation.allocation.from_cents !== row.derivation.allocation.to_cents));
+assert.equal(os.allocatePairActions, undefined, "the dormant second allocator must not survive the contracts build");
 
 const uncitedCorpus = [{ ...corpus[1], source_receipts: ["BARE_SOURCE_LABEL"] }];
 assert.throws(
@@ -249,9 +216,9 @@ assert(joint.derivations.every((row) => row.sentence.includes("SETTLED_BOOK_MID_
 assert(joint.derivations.every((row) => row.sentence.includes("book-receipt=")));
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.status !== "RESOLVED" || belief.belief_price_cents === Math.floor((belief.live_bid_cents + belief.live_ask_cents) / 2))));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
-assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.placement_quantile === "Q75"));
-assert(joint.derivations.every((row) => ["CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN", "SINGLETON_SURVIVOR_ENVELOPE_CONSUMED_AT_EXACT_LEVEL"].includes(row.layered_dual_belief.envelope_placement.chosen_candidate_rule)));
-assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.touch_anchored_inside_coherent_envelope === false));
+assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_restored_to_decision_path));
+assert(joint.derivations.every((row) => row.layered_dual_belief.decision_arbitration.lane_may_replace_authority === false));
 assert(joint.derivations.every((row) => row.sentence.includes("ENVELOPE_PLACEMENT=")));
 assert(joint.derivations.every((row) => row.sentence.includes("SOURCE_KEY=LIBRARY_CLOSE_CENTS") || row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")));
 assert(joint.derivations.every((row) => row.pair_conservation.at_or_below_99));
@@ -274,7 +241,7 @@ assert(joint.derivations.every((row) => row.layered_dual_belief.floor_rest_prote
 assert(joint.derivations.every((row) => row.layered_dual_belief.par_allocation_floor_bound.name === "PAR_ALLOCATION_OBSERVED_TRADED_FLOOR_BOUND"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.par_allocation_floor_bound.value_cents <= row.layered_dual_belief.par_allocation_floor_bound.evidenced_floor_cents));
 assert(joint.derivations.every((row) => row.sentence.includes("PAR_ALLOCATION_FLOOR_BOUND=") && row.sentence.includes("OBSERVED_TRADED_FLOOR=")));
-assert(joint.derivations.every((row) => row.derivation.target_authority === "CONDITIONED_Q75_RECONCILED_TO_SURVIVOR_TRADED_LOW_SUPPORT"));
+assert(joint.derivations.every((row) => row.derivation.target_authority === "BASE_V3_MAP_JOINT_DEPTH_MIND_WINDOW_PRICING_AUTHORITY"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.proposal_supervisor && !String(row.layered_dual_belief.proposal_supervisor.status).includes("NOT_REQUIRED")));
 assert.deepEqual(os.chooseEnvelopePlacementTarget({ low_cents: 66, high_cents: 66 }, 63, 68), { target_cents: 66, singleton_level_cents: 66, singleton_consumed: true });
 assert.deepEqual(os.chooseEnvelopePlacementTarget({ low_cents: 62, high_cents: 66 }, 64, 68), { target_cents: 64, singleton_level_cents: null, singleton_consumed: false });
@@ -287,15 +254,10 @@ os.configurePhaseCentralSurface({
 });
 const disagrees = os.deriveJointActions({ state: jointState, reads: jointReads, neighborhood: jointNeighborhood, lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
 assert.equal(disagrees.coherence.status, "DISAGREES");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").action.reason, "FLOOR_CAPABLE_OWN_BOOK_LEVEL_BELOW_PRIOR_TRADE_LOW");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.mode, "FLOOR_CAPABLE_OWN_BOOK_LEVEL_BELOW_PRIOR_TRADE_LOW");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.may_originate_rest, true);
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.live_bid_consumed_as_price, true);
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.live_bid_relation, "OWN_BOOK_LEVEL_BELOW_PRIOR_TRADE_LOW_LICENSED_BY_SIGNABLE_SURVIVOR_RANGE");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.decision_arbitration.winner.lane, "FLOOR_CAPABLE_OWN_BOOK_LEVEL");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").action.reason, "FLOOR_CAPABLE_OWN_BOOK_LEVEL_BELOW_PRIOR_TRADE_LOW");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").layered_dual_belief.envelope_placement.survivor_target_supported, true);
-assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.lower_lawful_level_existed));
+assert(disagrees.derivations.every((row) => row.action.reason === "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"));
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner.lane === "FLOOR_CAPABLE_WRITER"));
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.pricing_authority.no_lane_may_replace_target));
 assert(disagrees.derivations.every((row) => row.action.target_cents < row.layered_dual_belief.envelope_placement.live_ask_cents));
 
 const noOpinionState = os.createTapeState(meta);
@@ -306,8 +268,8 @@ assert.equal(noOpinionReads.lows_travel.value.AAA.book_path_low_cents, 38);
 const noOpinion = os.deriveJointActions({ state: noOpinionState, reads: noOpinionReads, neighborhood: [], lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
 assert.deepEqual(noOpinion.derivations.map((row) => row.action.target_cents), [37, 61]);
 assert(noOpinion.derivations.every((row) => row.action.action === "PLACE_REST"));
-assert(noOpinion.derivations.every((row) => row.action.reason === "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL"));
-assert(noOpinion.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner.lane === "NULL_ENVELOPE_OWN_TOUCH"));
-assert(noOpinion.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_NULL"));
+assert(noOpinion.derivations.every((row) => row.action.reason === "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"));
+assert(noOpinion.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner.lane === "OWN_TOUCH_WRITER"));
+assert(noOpinion.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
 
 console.log("window1_v54_dual_belief_os: PASS");

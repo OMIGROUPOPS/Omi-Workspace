@@ -103,40 +103,11 @@ assert.equal(mapped.derivation.proposed_target_cents, 34);
 assert.match(mapped.sentence, /MAP_CELL=ATP_MAIN\|37/);
 assert.match(mapped.sentence, /MAP_P50_CENTS=3/);
 
-const splitState = os.createTapeState(meta);
-splitState.positions.AAA.standing_target_cents = 60;
-splitState.positions.BBB.standing_target_cents = 36;
-const splitReads = { half_pair_state: { value: { legs: { AAA: { ...splitState.positions.AAA }, BBB: { ...splitState.positions.BBB } } } } };
-function splitRow(legId, target, grade) {
-  const actionStatement = `ACTION=HOLD_REST; TARGET_CENTS=${target}; ACTIVE_TARGET_BEFORE_CENTS=${target}.`;
-  const liveAsk = target + 1;
-  return {
-    leg_id: legId,
-    action: { action: "HOLD_REST", target_cents: target, reason: "INCUMBENT" },
-    derivation: {
-      lawful_unallocated_target_cents: target,
-      derived_target_cents: target,
-      allocation_priority_grade: grade,
-      live_bid_cents: target,
-      live_ask_cents: liveAsk,
-      formation_complete: true,
-      formed_two_sided_book: true,
-      crossed_book: false,
-      true_bell_cell_depth_map: { cell: { edge_p50_cents: 5 } },
-    },
-    sentence: `ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`,
-    sentence_action_assertion: { expected_statement: actionStatement, equal: true },
-    pair_conservation: { at_or_below_99: true },
-  };
-}
-const splitRows = [splitRow("AAA", 60, 1), splitRow("BBB", 41, 3)];
-os.allocatePairActions({ state: splitState, reads: splitReads, derivations: splitRows });
-assert.equal(splitRows[0].action.target_cents, 58, "lower-grade plan yields the larger continuous share");
-assert.equal(splitRows[1].action.target_cents, 41, "higher-grade plan retains its fresh target");
-assert(splitRows.every((row) => row.pair_conservation.at_or_below_99));
-assert(splitRows.every((row) => row.sentence.includes("ALLOCATION=GRADED-CONTINUOUS-SPLIT")));
-assert(splitRows.every((row) => row.derivation.allocation.stale_prior_consumed === false));
-assert(splitRows.every((row) => row.derivation.allocation.from_cents !== row.derivation.allocation.to_cents));
+assert.equal(
+  os.allocatePairActions,
+  undefined,
+  "the dormant second allocator is deleted; the joint pricing authority owns allocation",
+);
 
 const uncitedCorpus = [{ ...corpus[1], source_receipts: ["BARE_SOURCE_LABEL"] }];
 assert.throws(

@@ -1,0 +1,275 @@
+{
+  "label": "V54_SINGLE_ORDER_TRANSITION_TENURE_PRODUCER",
+  "run_source": "V54_CONTRACTS_AUTHORITY_RESTORED_SPREAD_EYE_20260825",
+  "law": "Tenure is reconstructed from actual PLACE/REPRICE/CANCEL/FILL transitions. A rest at or below the causal running traded low counts from the order transition, including when its level is below that running low. An interval with no decision rows is UNSAMPLED, never zero.",
+  "producer": "build_window1_v54_dual_belief.js::ORDER_TRANSITION_TENURE_SINGLE_PRODUCER",
+  "competing_in_policy_sampled_row_producer": false,
+  "every_policy_row_names_single_producer": true,
+  "provenance": [
+    "F-VS-184@12f25f37",
+    "CC@601207d0/12f25f37"
+  ],
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "truth_table_floor_cents": 27,
+      "decision_rows_total": 48,
+      "sampling_status": "SAMPLED_SOMEWHERE_IN_WINDOW",
+      "at_floor_receipts": 0,
+      "episodes": [
+        {
+          "level_cents": 29,
+          "standing_started_at_epoch": 1783831858,
+          "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+          "standing_ended_at_epoch": 1783841801.304,
+          "standing_ended_by": "FILL:2898debe-683f-4cd1-7a5e-572e1b7ac028",
+          "full_standing_interval_seconds": 9943.303999900818,
+          "governing_floor_tenure_started_at_epoch": null,
+          "governing_floor_tenure_started_at_receipt": null,
+          "tenure_seconds": null,
+          "running_traded_low_at_stand_cents": null,
+          "truth_table_floor_cents": 27,
+          "relation_to_running_low_at_stand": "NO_TRADED_FLOOR_AT_STAND",
+          "counted_as_governing_floor_tenure": false,
+          "decision_rows_inside_standing_interval": 11,
+          "sampling_status": "SAMPLED",
+          "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "truth_table_floor_cents": 66,
+      "decision_rows_total": 213,
+      "sampling_status": "SAMPLED_SOMEWHERE_IN_WINDOW",
+      "at_floor_receipts": 173,
+      "episodes": [
+        {
+          "level_cents": 63,
+          "standing_started_at_epoch": 1783831858,
+          "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+          "standing_ended_at_epoch": 1783874300,
+          "standing_ended_by": "WINDOW_EDGE",
+          "full_standing_interval_seconds": 42442,
+          "governing_floor_tenure_started_at_epoch": 1783833752.027,
+          "governing_floor_tenure_started_at_receipt": "505935b7-b8b1-4144-1e43-e3f22e873fb4",
+          "tenure_seconds": 40547.97300004959,
+          "running_traded_low_at_stand_cents": null,
+          "truth_table_floor_cents": 66,
+          "relation_to_running_low_at_stand": "NO_TRADED_FLOOR_AT_STAND",
+          "counted_as_governing_floor_tenure": true,
+          "decision_rows_inside_standing_interval": 176,
+          "sampling_status": "SAMPLED",
+          "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "truth_table_floor_cents": 39,
+      "decision_rows_total": 1184,
+      "sampling_status": "SAMPLED_SOMEWHERE_IN_WINDOW",
+      "at_floor_receipts": 1149,
+      "episodes": [
+        {
+          "level_cents": 33,
+          "standing_started_at_epoch": 1784001495,
+          "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+          "standing_ended_at_epoch": 1784042247,
+          "standing_ended_by": "WINDOW_EDGE",
+          "full_standing_interval_seconds": 40752,
+          "governing_floor_tenure_started_at_epoch": 1784021161.637,
+          "governing_floor_tenure_started_at_receipt": "038f03f3-2dcd-7363-da5f-06677e3be932",
+          "tenure_seconds": 21085.362999916077,
+          "running_traded_low_at_stand_cents": null,
+          "truth_table_floor_cents": 39,
+          "relation_to_running_low_at_stand": "NO_TRADED_FLOOR_AT_STAND",
+          "counted_as_governing_floor_tenure": true,
+          "decision_rows_inside_standing_interval": 1182,
+          "sampling_status": "SAMPLED",
+          "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "truth_table_floor_cents": 57,
+      "decision_rows_total": 1184,
+      "sampling_status": "SAMPLED_SOMEWHERE_IN_WINDOW",
+      "at_floor_receipts": 1178,
+      "episodes": [
+        {
+          "level_cents": 57,
+          "standing_started_at_epoch": 1784001495,
+          "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+          "standing_ended_at_epoch": 1784024401,
+          "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3061",
+          "full_standing_interval_seconds": 22906,
+          "governing_floor_tenure_started_at_epoch": 1784005897.194,
+          "governing_floor_tenure_started_at_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+          "tenure_seconds": 18503.805999994278,
+          "running_traded_low_at_stand_cents": null,
+          "truth_table_floor_cents": 57,
+          "relation_to_running_low_at_stand": "NO_TRADED_FLOOR_AT_STAND",
+          "counted_as_governing_floor_tenure": true,
+          "decision_rows_inside_standing_interval": 127,
+          "sampling_status": "SAMPLED",
+          "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+        },
+        {
+          "level_cents": 52,
+          "standing_started_at_epoch": 1784024401,
+          "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3061",
+          "standing_ended_at_epoch": 1784042247,
+          "standing_ended_by": "WINDOW_EDGE",
+          "full_standing_interval_seconds": 17846,
+          "governing_floor_tenure_started_at_epoch": 1784024401,
+          "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3061",
+          "tenure_seconds": 17846,
+          "running_traded_low_at_stand_cents": 64,
+          "truth_table_floor_cents": 57,
+          "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+          "counted_as_governing_floor_tenure": true,
+          "decision_rows_inside_standing_interval": 1055,
+          "sampling_status": "SAMPLED",
+          "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "truth_table_floor_cents": 51,
+      "decision_rows_total": 71,
+      "sampling_status": "SAMPLED_SOMEWHERE_IN_WINDOW",
+      "at_floor_receipts": 51,
+      "episodes": [
+        {
+          "level_cents": 54,
+          "standing_started_at_epoch": 1784007603,
+          "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+          "standing_ended_at_epoch": 1784024857,
+          "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1693",
+          "full_standing_interval_seconds": 17254,
+          "governing_floor_tenure_started_at_epoch": 1784016081.367,
+          "governing_floor_tenure_started_at_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+          "tenure_seconds": 8775.632999897003,
+          "running_traded_low_at_stand_cents": null,
+          "truth_table_floor_cents": 51,
+          "relation_to_running_low_at_stand": "NO_TRADED_FLOOR_AT_STAND",
+          "counted_as_governing_floor_tenure": true,
+          "decision_rows_inside_standing_interval": 44,
+          "sampling_status": "SAMPLED",
+          "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+        },
+        {
+          "level_cents": 53,
+          "standing_started_at_epoch": 1784024857,
+          "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1693",
+          "standing_ended_at_epoch": 1784052830.356,
+          "standing_ended_by": "FILL:8c5eeb51-910b-6b5f-ae42-307d486841f4",
+          "full_standing_interval_seconds": 27973.355999946594,
+          "governing_floor_tenure_started_at_epoch": 1784024857,
+          "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1693",
+          "tenure_seconds": 27973.355999946594,
+          "running_traded_low_at_stand_cents": 62,
+          "truth_table_floor_cents": 51,
+          "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+          "counted_as_governing_floor_tenure": true,
+          "decision_rows_inside_standing_interval": 21,
+          "sampling_status": "SAMPLED",
+          "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "truth_table_floor_cents": 41,
+      "decision_rows_total": 78,
+      "sampling_status": "SAMPLED_SOMEWHERE_IN_WINDOW",
+      "at_floor_receipts": 48,
+      "episodes": [
+        {
+          "level_cents": 36,
+          "standing_started_at_epoch": 1784007603,
+          "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+          "standing_ended_at_epoch": 1784078400,
+          "standing_ended_by": "WINDOW_EDGE",
+          "full_standing_interval_seconds": 70797,
+          "governing_floor_tenure_started_at_epoch": 1784020201.83,
+          "governing_floor_tenure_started_at_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+          "tenure_seconds": 58198.170000076294,
+          "running_traded_low_at_stand_cents": null,
+          "truth_table_floor_cents": 41,
+          "relation_to_running_low_at_stand": "NO_TRADED_FLOOR_AT_STAND",
+          "counted_as_governing_floor_tenure": true,
+          "decision_rows_inside_standing_interval": 72,
+          "sampling_status": "SAMPLED",
+          "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "truth_table_floor_cents": 59,
+      "decision_rows_total": 119,
+      "sampling_status": "SAMPLED_SOMEWHERE_IN_WINDOW",
+      "at_floor_receipts": 22,
+      "episodes": [
+        {
+          "level_cents": 53,
+          "standing_started_at_epoch": 1784332553,
+          "standing_started_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+          "standing_ended_at_epoch": 1784373060,
+          "standing_ended_by": "WINDOW_EDGE",
+          "full_standing_interval_seconds": 40507,
+          "governing_floor_tenure_started_at_epoch": 1784339306.774,
+          "governing_floor_tenure_started_at_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+          "tenure_seconds": 33753.22600007057,
+          "running_traded_low_at_stand_cents": null,
+          "truth_table_floor_cents": 59,
+          "relation_to_running_low_at_stand": "NO_TRADED_FLOOR_AT_STAND",
+          "counted_as_governing_floor_tenure": true,
+          "decision_rows_inside_standing_interval": 39,
+          "sampling_status": "SAMPLED",
+          "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "truth_table_floor_cents": 41,
+      "decision_rows_total": 119,
+      "sampling_status": "SAMPLED_SOMEWHERE_IN_WINDOW",
+      "at_floor_receipts": 39,
+      "episodes": [
+        {
+          "level_cents": 37,
+          "standing_started_at_epoch": 1784332553,
+          "standing_started_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+          "standing_ended_at_epoch": 1784373060,
+          "standing_ended_by": "WINDOW_EDGE",
+          "full_standing_interval_seconds": 40507,
+          "governing_floor_tenure_started_at_epoch": 1784332553,
+          "governing_floor_tenure_started_at_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+          "tenure_seconds": 40507,
+          "running_traded_low_at_stand_cents": 60,
+          "truth_table_floor_cents": 41,
+          "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+          "counted_as_governing_floor_tenure": true,
+          "decision_rows_inside_standing_interval": 39,
+          "sampling_status": "SAMPLED",
+          "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+        }
+      ]
+    }
+  ],
+  "disagrees_moved_floor_rest_count": 0
+}

@@ -1,0 +1,2118 @@
+{
+  "label": "V54_CONTRACTS_AUTHORITY_RESTORED_SPREAD_EYE_NON_GATE_DIAGNOSTIC_SUMMARY",
+  "law_index_read_at": "9ef05314",
+  "law_index_sha256": "41784e6a…",
+  "cc_forensics": [
+    "36f04e25:THE_TECHNIQUE_FRAME",
+    "9ef05314:F-VS-193..198",
+    "d945bcdd:F-VS-186..189",
+    "2941cd15:F-VS-190..192"
+  ],
+  "honest_baseline_pins": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": true,
+      "delta_vs_100_cents": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": true,
+      "delta_vs_100_cents": 6
+    }
+  ],
+  "pins_equal_expected": true,
+  "required_bed_floors": {
+    "KXATPCHALLENGERMATCH_26JUL12GIUBAR": 7,
+    "KXATPCHALLENGERMATCH_26JUL14URSPAL": 4,
+    "KXATPCHALLENGERMATCH_26JUL14LAJSVA": 8
+  },
+  "layered_safety_floor_breaks": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "BAR": {
+          "credited": true,
+          "entry_cents": 29,
+          "standing_target_cents": null,
+          "fill_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|BAR",
+            "captured_at_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+            "row_refs": [
+              "2898debe-683f-4cd1-7a5e-572e1b7ac028"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+              "leg_id": "BAR",
+              "entry_cents": 29,
+              "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+              "triggering_print_price_cents": 27,
+              "fill_timestamp_epoch": 1783841801.304,
+              "prior_standing_target_cents": 29,
+              "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+              "print_at_or_below_rest": true,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-9badf1b43572ff597faf2853621754f6130c59e66112c32f79fdb99f09b4cd79"
+          },
+          "fill_timestamp_epoch": 1783841801.304,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null
+        },
+        "GIU": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": 63,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+          "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+          "standing_captured_rest_level_cents": 63,
+          "standing_captured_rest_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "PAL": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": 33,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+          "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+          "standing_captured_rest_level_cents": 33,
+          "standing_captured_rest_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9"
+        },
+        "URS": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": 52,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+          "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3061",
+          "standing_captured_rest_level_cents": 52,
+          "standing_captured_rest_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3061"
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "LAJ": {
+          "credited": true,
+          "entry_cents": 53,
+          "standing_target_cents": null,
+          "fill_receipt": "8c5eeb51-910b-6b5f-ae42-307d486841f4",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+            "captured_at_receipt": "8c5eeb51-910b-6b5f-ae42-307d486841f4",
+            "row_refs": [
+              "8c5eeb51-910b-6b5f-ae42-307d486841f4"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+              "leg_id": "LAJ",
+              "entry_cents": 53,
+              "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+              "triggering_print_price_cents": 53,
+              "fill_timestamp_epoch": 1784052830.356,
+              "prior_standing_target_cents": 53,
+              "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1693",
+              "print_at_or_below_rest": true,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-be018f71653303e2e0441826ca91d2e6cbff3bceadabda3fba14043be79a2026"
+          },
+          "fill_timestamp_epoch": 1784052830.356,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null
+        },
+        "SVA": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": 36,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+          "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+          "standing_captured_rest_level_cents": 36,
+          "standing_captured_rest_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60"
+        }
+      }
+    }
+  ],
+  "safety_floor_pass": false,
+  "central_estimator": {
+    "provenance": "F-VS-124@48dbf36b",
+    "future_low_return_library": {
+      "index": {
+        "path": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_hold_postable_rest_honest_tenure_20260825\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+        "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+        "bytes": 1668883,
+        "rows": 5260
+      },
+      "materializer_receipt": {
+        "path": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_hold_postable_rest_honest_tenure_20260825\\FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json",
+        "sha256": "cfe59471d2df7fb9a5d18440099c4df1e5f2fed0cf351e9b4f9ede24739666e1",
+        "bytes": 1112,
+        "rows": null
+      },
+      "source": {
+        "bytes": 406637058,
+        "path": "tmp/per_minute_features.parquet",
+        "rows": 9330878,
+        "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4"
+      },
+      "output": {
+        "bounded_legs": 8386,
+        "by_category_legs": {
+          "ATP_CHALL": 3484,
+          "ATP_MAIN": 2427,
+          "WTA_CHALL": 487,
+          "WTA_MAIN": 1988
+        },
+        "bytes": 1668883,
+        "path": "C:\\Users\\omigr\\OMI-Workspace-codex-window1\\tmp\\v54-four-steps-ii\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+        "path_points": 71649,
+        "rows": 5260,
+        "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201"
+      },
+      "method": "EXACT_MINUTE_PATH_CHANGE_POINTS; NO_BUCKETS; NO_THRESHOLDS; NO_PLACEMENT_CONSTANTS; CURRENT_MINUTE_EXCLUDED_FROM_ITS_LABEL",
+      "layer_license": {
+        "grain": "MINUTE",
+        "licensed_layers": [
+          "MACRO",
+          "MICRO"
+        ],
+        "micro_micro_licensed": false
+      }
+    },
+    "surface": {
+      "kind": "F_VS_124_PHASE_CATEGORY_CENTRAL_FUTURE_LOW_SURFACE",
+      "source_sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+      "provenance": "F-VS-124@48dbf36b",
+      "method": "CATEGORY_X_FILED_PHASE_BAND_POPULATION; TERMINAL_PATH_POINT_PER_LEG_EXCLUDED; Q50_NEAREST_RANK; MIDRANK_REPORTED",
+      "phase_bands": [
+        {
+          "id": "P00_10",
+          "low": 0,
+          "high": 0.1
+        },
+        {
+          "id": "P10_30",
+          "low": 0.1,
+          "high": 0.3
+        },
+        {
+          "id": "P30_50",
+          "low": 0.3,
+          "high": 0.5
+        },
+        {
+          "id": "P50_70",
+          "low": 0.5,
+          "high": 0.7
+        },
+        {
+          "id": "P70_90",
+          "low": 0.7,
+          "high": 0.9
+        },
+        {
+          "id": "P90_100",
+          "low": 0.9,
+          "high": 1
+        }
+      ],
+      "source_path_points": 71613,
+      "terminal_points_excluded": 8383,
+      "central_population_points": 63227,
+      "cc_f_vs_124_reported_population_points": 63260,
+      "cc_reconciliation_difference_points": -33,
+      "cells": [
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P00_10",
+          "phase_low_inclusive": 0,
+          "phase_high_exclusive": 0.1,
+          "members": 7316,
+          "q25_cents": -11,
+          "q50_cents": -4,
+          "q75_cents": -1,
+          "q50_midrank": 0.501367,
+          "min_cents": -94,
+          "max_cents": 87
+        },
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P10_30",
+          "phase_low_inclusive": 0.1,
+          "phase_high_exclusive": 0.3,
+          "members": 1316,
+          "q25_cents": -8,
+          "q50_cents": -3,
+          "q75_cents": 0,
+          "q50_midrank": 0.487842,
+          "min_cents": -89,
+          "max_cents": 92
+        },
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P30_50",
+          "phase_low_inclusive": 0.3,
+          "phase_high_exclusive": 0.5,
+          "members": 1121,
+          "q25_cents": -6,
+          "q50_cents": -2,
+          "q75_cents": 1,
+          "q50_midrank": 0.471454,
+          "min_cents": -58,
+          "max_cents": 93
+        },
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P50_70",
+          "phase_low_inclusive": 0.5,
+          "phase_high_exclusive": 0.7,
+          "members": 1101,
+          "q25_cents": -5,
+          "q50_cents": -1,
+          "q75_cents": 2,
+          "q50_midrank": 0.512716,
+          "min_cents": -56,
+          "max_cents": 65
+        },
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P70_90",
+          "phase_low_inclusive": 0.7,
+          "phase_high_exclusive": 0.9,
+          "members": 2091,
+          "q25_cents": -6,
+          "q50_cents": 0,
+          "q75_cents": 3,
+          "q50_midrank": 0.51363,
+          "min_cents": -48,
+          "max_cents": 92
+        },
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P90_100",
+          "phase_low_inclusive": 0.9,
+          "phase_high_exclusive": 1,
+          "members": 12316,
+          "q25_cents": -2,
+          "q50_cents": 3,
+          "q75_cents": 10,
+          "q50_midrank": 0.479052,
+          "min_cents": -56,
+          "max_cents": 96
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P00_10",
+          "phase_low_inclusive": 0,
+          "phase_high_exclusive": 0.1,
+          "members": 5952,
+          "q25_cents": -10,
+          "q50_cents": -3,
+          "q75_cents": 0,
+          "q50_midrank": 0.521337,
+          "min_cents": -94,
+          "max_cents": 84
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P10_30",
+          "phase_low_inclusive": 0.1,
+          "phase_high_exclusive": 0.3,
+          "members": 1298,
+          "q25_cents": -6,
+          "q50_cents": -2,
+          "q75_cents": 1,
+          "q50_midrank": 0.489985,
+          "min_cents": -73,
+          "max_cents": 81
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P30_50",
+          "phase_low_inclusive": 0.3,
+          "phase_high_exclusive": 0.5,
+          "members": 891,
+          "q25_cents": -5,
+          "q50_cents": -1,
+          "q75_cents": 2,
+          "q50_midrank": 0.497755,
+          "min_cents": -62,
+          "max_cents": 82
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P50_70",
+          "phase_low_inclusive": 0.5,
+          "phase_high_exclusive": 0.7,
+          "members": 873,
+          "q25_cents": -5,
+          "q50_cents": -1,
+          "q75_cents": 2,
+          "q50_midrank": 0.462772,
+          "min_cents": -70,
+          "max_cents": 65
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P70_90",
+          "phase_low_inclusive": 0.7,
+          "phase_high_exclusive": 0.9,
+          "members": 1695,
+          "q25_cents": -6,
+          "q50_cents": 0,
+          "q75_cents": 3,
+          "q50_midrank": 0.50295,
+          "min_cents": -64,
+          "max_cents": 66
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P90_100",
+          "phase_low_inclusive": 0.9,
+          "phase_high_exclusive": 1,
+          "members": 7481,
+          "q25_cents": 0,
+          "q50_cents": 4,
+          "q75_cents": 11,
+          "q50_midrank": 0.518781,
+          "min_cents": -84,
+          "max_cents": 86
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P00_10",
+          "phase_low_inclusive": 0,
+          "phase_high_exclusive": 0.1,
+          "members": 978,
+          "q25_cents": -15,
+          "q50_cents": -6,
+          "q75_cents": -2,
+          "q50_midrank": 0.476994,
+          "min_cents": -78,
+          "max_cents": 82
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P10_30",
+          "phase_low_inclusive": 0.1,
+          "phase_high_exclusive": 0.3,
+          "members": 189,
+          "q25_cents": -10,
+          "q50_cents": -4,
+          "q75_cents": -1,
+          "q50_midrank": 0.521164,
+          "min_cents": -60,
+          "max_cents": 77
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P30_50",
+          "phase_low_inclusive": 0.3,
+          "phase_high_exclusive": 0.5,
+          "members": 167,
+          "q25_cents": -11,
+          "q50_cents": -3,
+          "q75_cents": 1,
+          "q50_midrank": 0.508982,
+          "min_cents": -65,
+          "max_cents": 88
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P50_70",
+          "phase_low_inclusive": 0.5,
+          "phase_high_exclusive": 0.7,
+          "members": 150,
+          "q25_cents": -9,
+          "q50_cents": -3,
+          "q75_cents": 1,
+          "q50_midrank": 0.48,
+          "min_cents": -45,
+          "max_cents": 85
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P70_90",
+          "phase_low_inclusive": 0.7,
+          "phase_high_exclusive": 0.9,
+          "members": 275,
+          "q25_cents": -7,
+          "q50_cents": -2,
+          "q75_cents": 2,
+          "q50_midrank": 0.472727,
+          "min_cents": -42,
+          "max_cents": 88
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P90_100",
+          "phase_low_inclusive": 0.9,
+          "phase_high_exclusive": 1,
+          "members": 2081,
+          "q25_cents": -3,
+          "q50_cents": 3,
+          "q75_cents": 11,
+          "q50_midrank": 0.494474,
+          "min_cents": -48,
+          "max_cents": 78
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P00_10",
+          "phase_low_inclusive": 0,
+          "phase_high_exclusive": 0.1,
+          "members": 4693,
+          "q25_cents": -13,
+          "q50_cents": -4,
+          "q75_cents": -1,
+          "q50_midrank": 0.516301,
+          "min_cents": -95,
+          "max_cents": 88
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P10_30",
+          "phase_low_inclusive": 0.1,
+          "phase_high_exclusive": 0.3,
+          "members": 963,
+          "q25_cents": -9,
+          "q50_cents": -3,
+          "q75_cents": 1,
+          "q50_midrank": 0.489616,
+          "min_cents": -75,
+          "max_cents": 89
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P30_50",
+          "phase_low_inclusive": 0.3,
+          "phase_high_exclusive": 0.5,
+          "members": 769,
+          "q25_cents": -7,
+          "q50_cents": -2,
+          "q75_cents": 1,
+          "q50_midrank": 0.485046,
+          "min_cents": -74,
+          "max_cents": 91
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P50_70",
+          "phase_low_inclusive": 0.5,
+          "phase_high_exclusive": 0.7,
+          "members": 746,
+          "q25_cents": -7,
+          "q50_cents": -2,
+          "q75_cents": 1,
+          "q50_midrank": 0.465147,
+          "min_cents": -73,
+          "max_cents": 85
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P70_90",
+          "phase_low_inclusive": 0.7,
+          "phase_high_exclusive": 0.9,
+          "members": 1479,
+          "q25_cents": -13,
+          "q50_cents": -1,
+          "q75_cents": 2,
+          "q50_midrank": 0.514537,
+          "min_cents": -69,
+          "max_cents": 89
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P90_100",
+          "phase_low_inclusive": 0.9,
+          "phase_high_exclusive": 1,
+          "members": 7286,
+          "q25_cents": -1,
+          "q50_cents": 4,
+          "q75_cents": 14,
+          "q50_midrank": 0.506451,
+          "min_cents": -60,
+          "max_cents": 93
+        }
+      ],
+      "sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd"
+    },
+    "bias_shift": {
+      "baseline_median_signed_error_cents": -20,
+      "repaired_median_signed_error_cents": -4,
+      "moved_toward_zero": true,
+      "hit_share": 0.39893617021276595,
+      "cc_counterfactual": {
+        "median_signed_error_cents": -4,
+        "graded_rows": 3179,
+        "hit_rows": 1214,
+        "hit_share": 0.38188109468386283,
+        "provenance": "F-VS-127@3e3d3548",
+        "correction": "F_VS_124_HIT_TEST_WAS_INVERTED; REALIZED_LOW_AT_OR_BELOW_PREDICTION_IS_THE_HIT"
+      },
+      "reproduces_corrected_cc_within_one_percentage_point": false,
+      "role": "TELEMETRY_NOT_GATE"
+    }
+  },
+  "consume_live_touch": {
+    "provenance": [
+      "F-VS-125@48dbf36b",
+      "F-VS-129@3e3d3548",
+      "F-VS-068@521a1613"
+    ],
+    "rows": 0,
+    "floor_touch_rows": 0,
+    "floor_stood_rows": 0,
+    "data_unconsumed_violations": 0,
+    "touch_over_live_envelope_violations": 0,
+    "disagrees_placement_violations": 0,
+    "lawful_disagrees_own_evidence_actions": 7
+  },
+  "survivor_shapes": {
+    "source_commit": "189eaa20",
+    "receipt": "SURVIVOR_SHAPE_TRAJECTORIES.json",
+    "legs": 8,
+    "trajectory_rows": 13,
+    "eliminations_observed": 4,
+    "reinstatements_observed": 0,
+    "every_leg_seeded": true,
+    "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+    "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET",
+    "floor_moment_separation_receipt": "SURVIVOR_FLOOR_MOMENT_SEPARATION.json"
+  },
+  "carried_conviction": {
+    "provenance": "F-VS-134..135@e7081336",
+    "receipt": "CARRIED_CONVICTION_RECEIPT.json",
+    "prior_receipt_placements_or_reprices": 0,
+    "prior_receipt_readability": {
+      "readable_rows": 2535,
+      "unreadable_rows": 4
+    },
+    "hardcoded_stale_prior_gate_occurrences": 0,
+    "no_envelope_touch_lane_receipt": "NO_ENVELOPE_TOUCH_LANE_CENSUS.json",
+    "zero_action_blocker": [
+      "SHIFTED_CARRIED_CONVICTION",
+      "CONFIRMED_CARRIED_CONVICTION",
+      "TIGHTENED_CARRIED_CONVICTION",
+      "DISAGREES_HOLDS_OR_REDERIVES_NO_PLACEMENT"
+    ]
+  },
+  "floor_rest_protection": {
+    "provenance": [
+      "F-VS-138/F-VS-142@f4752720",
+      "F-VS-148..152@d079687f"
+    ],
+    "receipt": "FLOOR_REST_PROTECTION_RECEIPT.json",
+    "floor_rest_lock_source_occurrences": 0,
+    "protected_rows": 2285,
+    "violations": 0,
+    "urs_repriced_off_observed_floor": false
+  },
+  "narrowing_and_supervisor": {
+    "receipt": "NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+    "exact_floor_proposals": 363,
+    "exact_floor_proposals_admitted": 363,
+    "singleton_envelope_rows": 0,
+    "singleton_unconsumed_rows": 0,
+    "supervised_floor_proposals": 2228
+  },
+  "disagrees_own_evidence": {
+    "provenance": "F-VS-068 + F-VS-138/F-VS-142@f4752720",
+    "receipt": "DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+    "licensed_rows": 56,
+    "unlicensed_placement_violations": 0,
+    "laj_51_floor_stood": false
+  },
+  "atomic_rearm": {
+    "provenance": "F-VS-120@97411938",
+    "legs": 0,
+    "resolved_legs": 0,
+    "pending_at_edge_legs": 0,
+    "permanent_silence": 0
+  },
+  "lawful_incomplete": {
+    "provenance": "F-VS-121@97411938",
+    "rows": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "stamp": "UNSTAMPED_INCOMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "BAR": 27,
+            "GIU": 66
+          },
+          "two_leg_floor_sum_cents": 93,
+          "strictly_under_par_offer_cents": 6,
+          "proof": "27+66=93; max(0,99-93)=6"
+        },
+        "rest_at_floor_rows": [],
+        "rest_at_floor_proven": false,
+        "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001",
+        "unstamped_abstention_scores_zero": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "stamp": "UNSTAMPED_INCOMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "PAL": 39,
+            "URS": 57
+          },
+          "two_leg_floor_sum_cents": 96,
+          "strictly_under_par_offer_cents": 3,
+          "proof": "39+57=96; max(0,99-96)=3"
+        },
+        "rest_at_floor_rows": [
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784001495,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+            "action": "PLACE_REST",
+            "sentence_sha256": "b785d47d6eb872110c9b3f7cff1bdcf914128a0c5ba7ab9546cbeb215af474dc",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784004251,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-57",
+            "action": "HOLD_REST",
+            "sentence_sha256": "ae050585995c3829b314e59fe40731fcd254185cae3ece2e75de10e0a2ba8797",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784004270,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-66",
+            "action": "HOLD_REST",
+            "sentence_sha256": "c728e0a2a36d9f89f7988ba3fcfb0a57f5f6ba8401dba9e2fbdc47e92307784d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784004782,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-524",
+            "action": "HOLD_REST",
+            "sentence_sha256": "86b48478f0601f1413c50d223b1f9351f7b870cb66547784371a887ef9faf430",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784004784,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-529",
+            "action": "HOLD_REST",
+            "sentence_sha256": "83a6ce3ed049569757190be3bdb572b108d08c4c796f4e734d68fe0cbba1ab6b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784005897.194,
+            "receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+            "action": "HOLD_REST",
+            "sentence_sha256": "23d06ae3d9c9f6236d2301e23b1a748bdbbdfca7f74e3b8b9b29e2d000ecd768",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784006316,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-567",
+            "action": "HOLD_REST",
+            "sentence_sha256": "d98925d6bf85c4c0ffe968cc60a1d751ffe414ec8a073a3a5b126d7a016adb11",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784006318,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-569",
+            "action": "HOLD_REST",
+            "sentence_sha256": "f91b21356712d01fa9a70b351c62fabb41b2222d5850bee59e3caefb441ed49a",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784006433,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-587",
+            "action": "HOLD_REST",
+            "sentence_sha256": "219880d0e55acb0258c7ffee8f387cf5ed5ec71cdf1908bbee455f6cf2fa96d5",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784006434,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-589",
+            "action": "HOLD_REST",
+            "sentence_sha256": "640a07c9ffa3565cce6a38ade5a7a7a7d2c766e1f5dde1c15196473e5843d6b8",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784006436,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-81",
+            "action": "HOLD_REST",
+            "sentence_sha256": "73f9677ebefe39dbd5268ab864ee1d2cd3e0629e42cd7392f094c899a9a92ea6",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784006930,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-606",
+            "action": "HOLD_REST",
+            "sentence_sha256": "0bb9061fe473c4c17fcbe3aef23fad727e8b98c8e1ea4a2b40c5a31c74647080",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784006931,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-608",
+            "action": "HOLD_REST",
+            "sentence_sha256": "20cee1f527fa42b9e83e14f75bd4936f1030074582459fec8744f787e4276086",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784006932,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-613",
+            "action": "HOLD_REST",
+            "sentence_sha256": "45f5aa91fe94c2191da4ff2248019afdebbee4f6a22692534542c12e1fa6b924",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784006933,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-618",
+            "action": "HOLD_REST",
+            "sentence_sha256": "eee40d8945dc5fdd772bce8340ea5ad04fa4e03e8bf45ed439b30f88c574c397",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784006942,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-627",
+            "action": "HOLD_REST",
+            "sentence_sha256": "5f78eccfd17bac2fbcb8d39aca09c17e5592fac635192eba38349a183d62492f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784007006,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-641",
+            "action": "HOLD_REST",
+            "sentence_sha256": "efb6cfaa9a0acffe7a6439059aef2edd63b1db9c492af68deb6b3ba0c5ed89d0",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784007007,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-643",
+            "action": "HOLD_REST",
+            "sentence_sha256": "fb4db6948e0ead89ff640a0f0fc95fc2dbad11ee0207dec9961fba7451b01307",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784009712,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-663",
+            "action": "HOLD_REST",
+            "sentence_sha256": "caac1469474b60030384111d2799cb20c8d6651ab98e0dafdb6a4d0043cb1985",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784016213,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716",
+            "action": "HOLD_REST",
+            "sentence_sha256": "45b754a0c4a2470a135edc8712b1eaaab93c77de0339923d5b28ffc041c585f6",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784016214,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-719",
+            "action": "HOLD_REST",
+            "sentence_sha256": "6eeeb27feb68afffc9a420b184daa24c71301dc8d60ea5101f2e5d6b25d83e70",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784016215,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-729",
+            "action": "HOLD_REST",
+            "sentence_sha256": "b040a9e7744bb57dddd2943bfc7dcab4115d07caa541cd6f085dddb0915aa28a",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784016223,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-740",
+            "action": "HOLD_REST",
+            "sentence_sha256": "2ab7eeddbfa3e21d86a6756f44980109d5104d306a7c61e090d8ea2b24791780",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784016225,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-988",
+            "action": "HOLD_REST",
+            "sentence_sha256": "dacae35c3bc56a61baa141a3f0f77ad81d0e84b945dbfe875e7c7bf2abfaf034",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784018093,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-818",
+            "action": "HOLD_REST",
+            "sentence_sha256": "5671a4a115d153e23686a647c5430cf57cbdd4992ee26742eba40b1c41f558f0",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784018094,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-831",
+            "action": "HOLD_REST",
+            "sentence_sha256": "c5326202b620b99c07b76c51bb9ced84a0db734697a7e369c08632340551d7c6",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784018811,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-897",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9549654b13e8032996d233042ae0fe3646e7d21cab3da1cef8715f46724b07d6",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784018812,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-905",
+            "action": "HOLD_REST",
+            "sentence_sha256": "a60e9b3b64326346c97decd6346e30cfeb8c487f235c8e6b9614eee8c5a92e71",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784018813,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-911",
+            "action": "HOLD_REST",
+            "sentence_sha256": "ba2f692a1f2bec7a804316b4eaf29ca83e6b210ef35b76d1a2577c109bc41b58",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784020558,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+            "action": "HOLD_REST",
+            "sentence_sha256": "5266e607036d59ccce9ae5574371e04902b1275c68b3ed2c38dcd3c273091be8",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784020642,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-979",
+            "action": "HOLD_REST",
+            "sentence_sha256": "da25b5945f026cd2ce1fd6d83861ce75d54850683096a11f09d99b8f283dc4a9",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784020736,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-998",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9f618edcd22d6f50db00ff5398a2767877f7537a6c1beaf14cb80db40b4f45e6",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784021103,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1037",
+            "action": "HOLD_REST",
+            "sentence_sha256": "98a71b35b9b93d7bd401b7fba1fec44aab86e7ae4d6ea3903ed1ab7f9da6350c",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784021161,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1043",
+            "action": "HOLD_REST",
+            "sentence_sha256": "26c664b1ffab1ad438ec2c440f9d262c63079c15222e242b69ad382b05bd6b3b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784021161.637,
+            "receipt": "d82f2055-c54c-730c-de31-188fbda671d5",
+            "action": "HOLD_REST",
+            "sentence_sha256": "ee166476bf2c42511082ae3f546dcd807dcdddf3e41a0ed3bc13e3fc04910e5e",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784021162,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+            "action": "HOLD_REST",
+            "sentence_sha256": "dca4fae84a8dfd101faf0b013278e9266d8c58b8a585eaf7c55aa5a5cf11c3ce",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784021163,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1054",
+            "action": "HOLD_REST",
+            "sentence_sha256": "f96e9901cc05789c959634d1963547eaf0d220301b626ae4e98d798c6dcaccd2",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784021164,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2922",
+            "action": "HOLD_REST",
+            "sentence_sha256": "dd317afcf8c0cb1e5eeb71c4362dd9212721b8734a6ffc90e7052faf58fedd4c",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784021453,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1097",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9d4894631f4befcdfd3a7ecda4631070744b48b66ab5313c151c050f852b336c",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784021644,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1260",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9260cea48595b0ab3cf05d86075fec9279c0573393e8c746f69a90365026a36b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784022240,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1596",
+            "action": "HOLD_REST",
+            "sentence_sha256": "21b4fc60bce64a81722d58241bc8a05ced26022d02c082d059fa1b4bf1292234",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784022247,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1600",
+            "action": "HOLD_REST",
+            "sentence_sha256": "bba4bde316e84cbad4d16c3e99fcb87b3b9b1d985d885fd0135afb2bfb0b095a",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784022826,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1845",
+            "action": "HOLD_REST",
+            "sentence_sha256": "8b20c245fab7e508dd82af306eae42a749fe9d2bb61ef3c957517d6091fc9ac2",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784022845,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3370",
+            "action": "HOLD_REST",
+            "sentence_sha256": "49e9ce1a3161c9b05903d0e91c6ba71b10f719944d7549fac5528a183f8caec6",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784022852,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1868",
+            "action": "HOLD_REST",
+            "sentence_sha256": "d4863e297ec0601146c74e515a2c1823361b31b8a37db39720ab27970e3c9dab",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023079,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1966",
+            "action": "HOLD_REST",
+            "sentence_sha256": "220186120c7f1682a88d8006e57ec5f3220bf2dbfe573961021d47711438c01c",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023191,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2058",
+            "action": "HOLD_REST",
+            "sentence_sha256": "c96affd9f2cb8694c1fa9cd70f9406df50e7ee5627e528a284e0cec36a84c4ab",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023193,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2062",
+            "action": "HOLD_REST",
+            "sentence_sha256": "b3d57f31a3930d64f1a98a967d7011825bd1d79d4c51e4009040cff25d693a3e",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023195,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2084",
+            "action": "HOLD_REST",
+            "sentence_sha256": "1c611aebd7fa62127bc0a9b64c751945d54b56cb8321394803f04612573aebf3",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023245,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2087",
+            "action": "HOLD_REST",
+            "sentence_sha256": "899c69de0814f4af01f18bd7a4e2d9002aea676b853fcae05e5c2694b41c493d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023254,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3449",
+            "action": "HOLD_REST",
+            "sentence_sha256": "0f2aa9d75329af8e1d4e2aaba64b6307cbddecf7b40ae12fc5a8718d415755b2",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023255,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2094",
+            "action": "HOLD_REST",
+            "sentence_sha256": "c2f27269a0af5493eb9a1acec28843a784031754d9738e9923ab68d5f4e7c359",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023257,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2096",
+            "action": "HOLD_REST",
+            "sentence_sha256": "8689c791ea96a8bbaee085bf530d507acedd84085d94b27d8262e639695a6eb8",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023282,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2116",
+            "action": "HOLD_REST",
+            "sentence_sha256": "5226b834596906013ae0e01de2d290e4592222f94bdf31e3d9dde655323a2d18",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023286,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3479",
+            "action": "HOLD_REST",
+            "sentence_sha256": "598c4eadd71ee7825ee9daab51afa25d142787abedacd5f926665a6c2a25d156",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023493,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2129",
+            "action": "HOLD_REST",
+            "sentence_sha256": "f81a95ff002838e006ce21f5b7fb8bcf8fe993d59c57ef5f6d83a8f592ee7b73",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023495,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2137",
+            "action": "HOLD_REST",
+            "sentence_sha256": "57056a35f9545b0820fd16bc6e4afddce8eacacff93a4f24f6fe3dc4e881e7fc",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023497,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2144",
+            "action": "HOLD_REST",
+            "sentence_sha256": "e6c3cf789664863e8f8205bc3abcbf66c8ab6b4d9cf4d11a75c51e024c380ebb",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023499,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2148",
+            "action": "HOLD_REST",
+            "sentence_sha256": "196dc4a88318df888fb23d8c5990476ce534bdeaa11d13c3c7e6af0c5897e321",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023511,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2152",
+            "action": "HOLD_REST",
+            "sentence_sha256": "89177e952f7ebbb2d3524099d1b63c8b84fb09b8e5ab4f6a893cbc267cb4daf6",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023512,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2153",
+            "action": "HOLD_REST",
+            "sentence_sha256": "6526861723a6b9119a085294144a8511bb4a63f3fb95193cdc6ddd9aeeb7e21f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023513,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2157",
+            "action": "HOLD_REST",
+            "sentence_sha256": "178f756e61ead573583e3bc209752df45e03b05e5976f94bd7ad2a0174514d7d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023520,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2162",
+            "action": "HOLD_REST",
+            "sentence_sha256": "ddd226b23c78dc89a97686f15be54dbf2bdfee917269724793fdff60c2c08c08",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023521,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2166",
+            "action": "HOLD_REST",
+            "sentence_sha256": "979793219e4ea51396a7757cdf69352c3e5684d3ec3c9c965c599830cd076d4b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023522,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2168",
+            "action": "HOLD_REST",
+            "sentence_sha256": "dbd77d1a4757e85761440b6b7ff342678deee52c2824ae5ed23aea38dfa7ca91",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023523,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2174",
+            "action": "HOLD_REST",
+            "sentence_sha256": "74b79132e3ce48f45f145656b794d543541695af20067836d078fb2ef4f40d18",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023526,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2179",
+            "action": "HOLD_REST",
+            "sentence_sha256": "700cbef20cb2a0fc725802362da162ce6d75b0ff784c1512afcbc4de784a3577",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023527,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2183",
+            "action": "HOLD_REST",
+            "sentence_sha256": "4921c78ad9c27cb38215ce6056a1a0ae26aef99eb2d6fde39dbd7eec6a64c013",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023528,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2185",
+            "action": "HOLD_REST",
+            "sentence_sha256": "76ac8ad6856276aa140880c83e85146df78a3e41cf6c4357185f3510235a9d53",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023531,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2187",
+            "action": "HOLD_REST",
+            "sentence_sha256": "674ef0908226215a04dbdcaa8d084ed5b26f2c3eaa9977a514b15b4d9351cba3",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023533,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2191",
+            "action": "HOLD_REST",
+            "sentence_sha256": "edced234f8fd306bfe47cfadccac18d339884f15df0c6689adbc75b31f18d616",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023537,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2193",
+            "action": "HOLD_REST",
+            "sentence_sha256": "830e0b12c669aad4b064601fe89186ac7269fc96d161f0a6e7627c11e67b42e1",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023538,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2199",
+            "action": "HOLD_REST",
+            "sentence_sha256": "d6420bb066e49003908423407d7d10ad6e8cd9f07c82590d70da7c952ade8816",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023540,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2201",
+            "action": "HOLD_REST",
+            "sentence_sha256": "89b4e98452b3c1f7e32ae596576caa614c02a288b35f82c117ee18616f22210e",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023541,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2204",
+            "action": "HOLD_REST",
+            "sentence_sha256": "a7c71ea18de4664cc6986a7c41f10bf669860e2071bd1355919713daef21270f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023542,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2205",
+            "action": "HOLD_REST",
+            "sentence_sha256": "26e63d5b161b445e06c62b4cee9e5998d46ce48da70b81b5d53bae4e9b5259d8",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023543,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2207",
+            "action": "HOLD_REST",
+            "sentence_sha256": "1a3baa314dbd9622deb00cfb4401b50769ffa58bf47265e0b24033ecd3c9efbe",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023547,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2212",
+            "action": "HOLD_REST",
+            "sentence_sha256": "252820177d230fb8917d24d3348f27e9ed67687515504768266f80769ec4d8c1",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023551,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2214",
+            "action": "HOLD_REST",
+            "sentence_sha256": "75017a30a47b17d748c6d550b4dc889b0139a730706d7b874e1ee7c496979e06",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023553,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2216",
+            "action": "HOLD_REST",
+            "sentence_sha256": "7cae3a829acde886b2798ea60028f610b1b8b7a3b285ee15f5d7b9ea2f8d56db",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023562,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2222",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9dea2c8ab414bf46ee504e62a1b932c848219b0897ac7c309aa3e37f0986cda2",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023563,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2226",
+            "action": "HOLD_REST",
+            "sentence_sha256": "7974d9cf9a92b114e03f8acc6a15edde093da389e2a8f3b638a1668cd7468e5e",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023564,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2231",
+            "action": "HOLD_REST",
+            "sentence_sha256": "891c8b5cd7534e3e862ed0274929edae3cba9d2b0d701e0593ea93d4f9b73683",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023565,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2233",
+            "action": "HOLD_REST",
+            "sentence_sha256": "8da32baf17ff66bb2552437d895a4516569efcc27821aa86da23e68efcaa3cde",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023566,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2238",
+            "action": "HOLD_REST",
+            "sentence_sha256": "df93379a361afa6559ffbc425ae3cad5973d0bd226f3bbf24db336aeb22bf218",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023567,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2245",
+            "action": "HOLD_REST",
+            "sentence_sha256": "22ae04d487d9da8366aa8682eb0dbe81007d057e2b3a8a52d2130367275e3bcc",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784023753,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3568",
+            "action": "HOLD_REST",
+            "sentence_sha256": "c82658c35960650b6b6cd79cfcf431a06918b56c0c9d739a76d68bc65bbb28ba",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024261,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2904",
+            "action": "HOLD_REST",
+            "sentence_sha256": "c1754cb1687ee12bf825c5a6c1002a6aa46ef2581bfe9985f572604659fcb36f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024268,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2930",
+            "action": "HOLD_REST",
+            "sentence_sha256": "3a9202f0902667a130eb2a111320252129dfe0cec198930f98eab8d47f797996",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024291,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2971",
+            "action": "HOLD_REST",
+            "sentence_sha256": "ce933773a090923da55cc0632cd679a681cb4722f9f811935ecbbed9f8163568",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024292,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2987",
+            "action": "HOLD_REST",
+            "sentence_sha256": "d16d81b19b136cc6cefc138bb709a078230a5b71860b0d608bdb5d847c4f8bb2",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024293,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2989",
+            "action": "HOLD_REST",
+            "sentence_sha256": "5a2670576e9c86d8cc54b000ca25d4ce7eb100b0ab9939817d4307fe410fddf6",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024294,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3034",
+            "action": "HOLD_REST",
+            "sentence_sha256": "271b2e576fe718ce964b37022fc2a292585d00edf2b18725f9551d3e35835455",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024295,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3036",
+            "action": "HOLD_REST",
+            "sentence_sha256": "72bb4f97d30967696bc8b4130d154ef963d50567f5c3946d6ea2afd7346b0002",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024298,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3041",
+            "action": "HOLD_REST",
+            "sentence_sha256": "49d4417b2720ec2fc795e221018c79fb3e52bc61b261aad5ea8af0592a85002d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024309,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3990",
+            "action": "HOLD_REST",
+            "sentence_sha256": "f425f4846f6647da6fb5039feb305ed7a063fbfda5da1edf32d51267a20df277",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024310,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4021",
+            "action": "HOLD_REST",
+            "sentence_sha256": "286bab9a6f47e7dc068f3785194e1d6bb00e7c7cf64f3f3736216f0aed749de3",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024311,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4037",
+            "action": "HOLD_REST",
+            "sentence_sha256": "98d27036c60e9c083db34e2d8404debf5f1d431d130421b4c2d8603c662ae928",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024321,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4123",
+            "action": "HOLD_REST",
+            "sentence_sha256": "110cc91c40ad6393de8fe556e98e4e890f0887d238f7f972d4020b2d8c3d6be9",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024323,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4199",
+            "action": "HOLD_REST",
+            "sentence_sha256": "16fdb5c63395ea16c02b67dcdf6b9066ed73e039d8adbfc46e6d296e7044996f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024325,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4231",
+            "action": "HOLD_REST",
+            "sentence_sha256": "d8c35d5f137879e7479b428baaad66824222caceb1567a04783b5e28467547ed",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024338,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4262",
+            "action": "HOLD_REST",
+            "sentence_sha256": "a9cd6da41a21e866e0500a541d33456b72d5ef8b28b83ab4366b7d3427744e91",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024341,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4265",
+            "action": "HOLD_REST",
+            "sentence_sha256": "22d6483c39fdcca9f76fb4a178b4da19b4562663bf70886fcdcd9e264c831da6",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024346,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4268",
+            "action": "HOLD_REST",
+            "sentence_sha256": "35e423ef174af6891087bed4c5734f7bbc88761d7edf599047e4150d1f23e2b7",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024348,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4270",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9d007360300fc78c7f7ca881b3a88cb3b51cab84670531d4db72800dc57b82d0",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024352,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4274",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9bc622f2de955ff11364f13f2a299780b6c2727acc6943c0ddff1255828b9ce5",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024354,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4277",
+            "action": "HOLD_REST",
+            "sentence_sha256": "f7152e21c8b888436b200d74abf4dbc0502a9f8b3eedf853773a35d6308fe40b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024358,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4280",
+            "action": "HOLD_REST",
+            "sentence_sha256": "6b1df3dffe4f6e20134b0f28e1a8cb95337667e6edd550ca522857f15442bd9f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024360,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4283",
+            "action": "HOLD_REST",
+            "sentence_sha256": "7bb4383576a704c6ec52c6ee7c56754f789f3452ebf969a04c1b352fbbcccb9a",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024364,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4288",
+            "action": "HOLD_REST",
+            "sentence_sha256": "4de393414b85ee72837990c477b418ed20691f7705aacc9b8653913878d50c81",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024366,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4291",
+            "action": "HOLD_REST",
+            "sentence_sha256": "881285bcb07fd0e8c76b12e3de54e8022dac46c471d2a94a89cd94faf904d67f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024368,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4294",
+            "action": "HOLD_REST",
+            "sentence_sha256": "2d752cbd6d7dfa77c5b4989e34df54a7a63ad91b2730e00261f93c37ded2df82",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024369,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4297",
+            "action": "HOLD_REST",
+            "sentence_sha256": "95b7f6f819446a1b6fe81351fd950f9936567b89e2b9e66b3697999eb2ff553b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024371,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4300",
+            "action": "HOLD_REST",
+            "sentence_sha256": "0e29616a16be34831b7df8eca09d9eb1bdaeadabd14644b03f06567fce1fd36b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024372,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4303",
+            "action": "HOLD_REST",
+            "sentence_sha256": "a34d42e98ad972f5ca03b3a1b9d5dc88a0d56d13f71c0ce1cde13e3ccff6d2f9",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024373,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4306",
+            "action": "HOLD_REST",
+            "sentence_sha256": "31c567b41af4305a83e87d74125a9cf6c8f3c0cf76734a533346ce5bec19b26f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024375,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4309",
+            "action": "HOLD_REST",
+            "sentence_sha256": "0cd2de444dc118699663cd16aec73db65e03dbc3f41a75cfd9a155954caad30d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024377,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4312",
+            "action": "HOLD_REST",
+            "sentence_sha256": "f7c5d70e5056a1cb438747de484acdeed7e4c118f60182ebb3f61a067192a262",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024380,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4316",
+            "action": "HOLD_REST",
+            "sentence_sha256": "a45612ae5a8a3b86ace49c43af85d993518da14db591bd3128a70c0f00595b4d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024390,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4329",
+            "action": "HOLD_REST",
+            "sentence_sha256": "51ba5549ba3b1064c33e4a259bbaf61e7a63b05aa27aa33f45a8554a9c19a05e",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024392,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4364",
+            "action": "HOLD_REST",
+            "sentence_sha256": "6b34d8de0d25bf6f73c7aef69135012cce6a217b14ab72596d8a9868238b573a",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024393,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4377",
+            "action": "HOLD_REST",
+            "sentence_sha256": "7423c693a1b9a6cfd1d485ab832ad4453127089178414697e667a036934d218f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024394,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4383",
+            "action": "HOLD_REST",
+            "sentence_sha256": "150009c2e70226cdbe923e62c386a202c265a3865a790447ee2d98c64cf24647",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024395,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4408",
+            "action": "HOLD_REST",
+            "sentence_sha256": "236e3034fba02f8c556c89c59020ae1be4053e5acb47d4023c7fb6b06fe84445",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024396,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4430",
+            "action": "HOLD_REST",
+            "sentence_sha256": "e2c359f753c90a15536b42569419862b5e1099ccbcc467e2e71cd63c718f334f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024397,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4438",
+            "action": "HOLD_REST",
+            "sentence_sha256": "ec7441f618348b3c0dd10bd7eb1fc709bbe15d3ccff1520f0768a04cac1f5a63",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784024399,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3054",
+            "action": "HOLD_REST",
+            "sentence_sha256": "7a8d9b16ff0e4763a09dcc3c49a0b5a5f4d44d2d7d5d1f211f2bee455cf491aa",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          }
+        ],
+        "rest_at_floor_proven": true,
+        "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002",
+        "unstamped_abstention_scores_zero": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "stamp": "UNSTAMPED_INCOMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "LAJ": 51,
+            "SVA": 41
+          },
+          "two_leg_floor_sum_cents": 92,
+          "strictly_under_par_offer_cents": 7,
+          "proof": "51+41=92; max(0,99-92)=7"
+        },
+        "rest_at_floor_rows": [],
+        "rest_at_floor_proven": false,
+        "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "unstamped_abstention_scores_zero": true
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "stamp": "UNSTAMPED_INCOMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "DAN": 59,
+            "PRA": 41
+          },
+          "two_leg_floor_sum_cents": 100,
+          "strictly_under_par_offer_cents": 0,
+          "proof": "59+41=100; max(0,99-100)=0"
+        },
+        "rest_at_floor_rows": [],
+        "rest_at_floor_proven": false,
+        "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+        "unstamped_abstention_scores_zero": true
+      }
+    ],
+    "danpra_stamp": {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "stamp": "UNSTAMPED_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "DAN": 59,
+          "PRA": 41
+        },
+        "two_leg_floor_sum_cents": 100,
+        "strictly_under_par_offer_cents": 0,
+        "proof": "59+41=100; max(0,99-100)=0"
+      },
+      "rest_at_floor_rows": [],
+      "rest_at_floor_proven": false,
+      "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+      "unstamped_abstention_scores_zero": true
+    },
+    "unstamped_incomplete_count": 4
+  },
+  "named_step_failures": [
+    "DANPRA_LAWFUL_INCOMPLETE_STAMP_OR_PROOF_MISSING"
+  ],
+  "coherence_placement": {
+    "provenance": "F-VS-118@c08ce381",
+    "latency_receipt": "COHERENCE_PLACEMENT_LATENCY_RECEIPT.json",
+    "every_qualified_action_same_receipt": true,
+    "stale_envelope_originated_new_rest_count": 6
+  },
+  "atomic_cancel_replace": {
+    "provenance": "F-VS-118@c08ce381",
+    "receipt": "ATOMIC_CANCEL_REPLACE_RECEIPT.json",
+    "atomic_replacements": 0,
+    "fail_loud_no_replacement": 0,
+    "danpra_prior_cancel_storm_receipts": 15,
+    "danpra_repaired_cancel_receipts": 0,
+    "danpra_cancel_storm_disappeared": true
+  },
+  "inside_spread_reach_placement": {
+    "provenance": "F-VS-130@3e3d3548",
+    "quantile": "Q75",
+    "coherent_rows": 12,
+    "violations": 0,
+    "target_equals_live_bid_rows": 10,
+    "target_equals_live_bid_by_lane": {
+      "PRICING_AUTHORITY_TARGET_EXECUTED": 10
+    }
+  },
+  "envelope_migration": {
+    "provenance": "F-VS-114(c)@9ff83002 + F-VS-118@c08ce381",
+    "migration_rows": 5,
+    "inconsistent_active_rows": 0,
+    "every_inconsistent_active_resolved_same_receipt": true,
+    "q50_root_cause_named_row_found": false
+  },
+  "live_deadlines": {
+    "provenance": "F-VS-112@3be11997",
+    "rows": 2634,
+    "graded_rows": 1504,
+    "hit_rows": 600,
+    "all_fresh": true
+  },
+  "independent_bed_lane": {
+    "hold_rows": 3006,
+    "abstain_rows": 242,
+    "own_evidence_fill_count": 0
+  },
+  "no_bed_flattery": {
+    "f_vs_110_stamp": "TUNED_RETAINED",
+    "named_event_id_source_occurrences": 0
+  },
+  "rest_pricing": {
+    "fill_count": 2,
+    "every_entry_equals_standing_rest": true,
+    "active_print_priced_residue_count": 0
+  },
+  "sentence_price": {
+    "rows": 5376,
+    "every_field_matches_book_state": true
+  },
+  "envelope_placement": {
+    "rows_evaluated": 2392,
+    "distinct_policy_modes": [
+      "EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT",
+      "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "SAME_RECEIPT_ESTABLISHED_FLOOR_GOVERNS"
+    ],
+    "f_vs_110_stamp": "TUNED_RETAINED",
+    "verbatim_sentence_artifact": "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md"
+  },
+  "law_violations": [],
+  "superseded_composition_scan_signals_not_used_for_verdict": [
+    "UNNAMED_EVIDENCE_LADDER_RUNG",
+    "TOUCH_RELATION_MISSING_FROM_SENTENCE",
+    "DEPTH_DERIVATION_MISSING_FROM_SENTENCE",
+    "EVIDENCE_RUNG_OR_BASIS_MISSING_FROM_SENTENCE",
+    "FOUNDATION_CITATION_GRAIN_OR_LAYER_MISSING",
+    "BELOW_TOUCH_REST_WITHOUT_V3_MAP_LICENSE",
+    "WINDOW_SIDE_TOUCH_OR_MAP_LICENSE_MISSING_FROM_SENTENCE"
+  ],
+  "zero_measured_law_violations": true,
+  "layer_order_complete": true,
+  "sentences_carry_layered_dual_belief": true,
+  "sentences_cite_fills": true,
+  "self_stop": true,
+  "stop_reason": "BED_TRIPWIRE_BREAK_AFTER_FLOOR_LOCK_RETIREMENT_AND_NARROWING_CONSUMPTION",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

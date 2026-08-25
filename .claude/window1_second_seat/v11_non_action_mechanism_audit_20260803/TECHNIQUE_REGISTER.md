@@ -68,11 +68,11 @@ One row per technique. **Feeds** names the evidence store; **contributes** is wh
 
 ## 3 — CONTRADICTION AUDIT
 
-A contradiction = two techniques able to issue conflicting instructions about the same leg on the same receipt, or one technique's output invalidating another's premise. Fired pairs first, each with its state.
+A contradiction = two internal rules wanting opposite things: two techniques able to issue conflicting instructions about the same leg on the same receipt, or one technique's output invalidating another's premise. Fired contradictions first, each with its state. (The word PAIR is reserved for its one meaning — both legs of a game owned/completed — and is not used for these entries.)
 
-### Fired pairs
+### Fired contradictions
 
-| pair | the collision | deciding mechanism | state |
+| contradiction | the collision | deciding mechanism | state |
 |---|---|---|---|
 | **P6 × P1** — hold guard vs coherent reprice (**tenure/belief-drift**) | P6 holds URS's postable 57 for 508 s; at ln1372 ts 1784031096 the ask moves to 59, the singleton 58 becomes postable, and **P1 reprices the held rest up to 58** — while 57 is still postable and is the level that prints. Cost: the URSPAL cent (97 vs 96) | none — P6's guard term `crossingSingletonBlocked` goes false and P1 simply wins by branch order | **UNMANAGED.** No stated rule says whether a standing postable rest at a *deeper* price outranks the belief's newly-postable level. This is the exact "gate breaks gate" the frame forbids: the hold was added as an eye, and P1 overrides it without a recorded adjudication |
 | **P3 × post-only** — DISAGREES release vs the maker premise (**guard/singleton family**) | P3's guard validates the *book* (`liveBid < liveAsk`) but never the *target*: ln83 GIU `PLACE 67` against ask 66 (above the offer), ln2902 LAJ `PLACE 54` against ask 54 (at the offer). P1 and P6 both carry the target-level test; P3 does not | none — the guard is absent | **UNMANAGED** (F-VS-191). One term (`ownEvidenceTarget < liveAsk`) reconciles it. Until then the OS applies two different definitions of "postable" depending on lane — a Definition-Lock violation on the term *postable* |
@@ -83,9 +83,9 @@ A contradiction = two techniques able to issue conflicting instructions about th
 | **E1 × truth table** — window vs governing span | DANPRA's window runs to the bell 1784373060 while the governing span ends 1784372160; 900 s of tail in which techniques act outside the scored span | none | **UNMANAGED** (F-VS-166); benign this run, unpriced in general |
 | **C8 × P1** — tenure vs below-low rests (measurement contradiction) | Tenure credits only `active == evidencedFloor`; P1's best behaviour — resting *below* the observed low (PAL 39 vs low 40, 18,818.6 s) — scores zero, and GIU's 1,589.2 s at its floor scores zero for want of evaluation instants | none | **UNMANAGED** (F-VS-190). Not a decision conflict, but the measuring eye contradicts the acting eye: what tenure rewards is not what fills |
 
-### Unfired pairs waiting to collide
+### Unfired contradictions waiting to fire
 
-| pair | the waiting collision | state |
+| contradiction | the waiting collision | state |
 |---|---|---|
 | **P5 × P1** — carried conviction vs current belief | P5 fired twice as HOLDs. If a carried envelope ever *proposes a price* while P1 proposes another on the same receipt, branch order decides (`:566` coherent before `:714` carried) with no stated precedence law | UNMANAGED in law, managed by accident of branch order |
 | **P6 × C1** — hold vs allocator reduction | P6 checks `pairPlanLawful` at :851 before holding, but if the *sibling* subsequently rises so the held rest violates par, C1's reduction and the hold have no stated winner | UNMANAGED; unexercised |
@@ -96,7 +96,7 @@ A contradiction = two techniques able to issue conflicting instructions about th
 
 ### The audit in one sentence
 
-Of the fourteen pairs, **four are managed** (two by explicit stated seniority — P7's law is the model the frame asks for), **four partially managed**, and **six unmanaged** — and the two unmanaged pairs that have already cost cents (P6×P1, P3×post-only) share one root: a technique that exists in one lane and not another, which is precisely the "contradictory environment" the Technique Frame outlaws. The frame's test for any future build: a new notion must either state its seniority against every technique it touches (as P7 does) or change no other technique's output.
+Under the ZERO CONTRADICTIONS ruling (§4): every entry above is a CONTRADICTION and every one is OPEN. Seniority contracts — P7's stated seniority, the one-decision arbitration, the lawful-incomplete stamp, the carried/coherent branch precedence — are TRIAGE: they stop the bleeding at a fired contradiction but do not close it. A contradiction closes only when the overlap that created it is dissolved by design, as the coherence switch dissolves singleton×DISAGREES (the two can never be live together). The two open contradictions that have already cost cents (P6×P1, P3×post-only) share one root: a technique that exists in one lane and not another — the contradictory environment the Technique Frame outlaws.
 
 ---
 
@@ -124,7 +124,7 @@ Filed as F-VS-196 … F-VS-198. Every row re-checked before filing.
 
 **(e) One lane claim REJECTED under the corrections law.** The audit's P11 claimed URSPAL's PAL fill landed 26.6 s past the span edge, citing c0056976's `span_end 1784042040`. **W1TT-C-002 governs and sets URSPAL's span_end to 1784042247** — the PAL fill at 1784042066.596 is *inside* the governing span by 180.4 s. Both the lane and its verifier read the uncorrected table — the seat's oldest named failure mode. The DANPRA half (bell 1784373060 consumed vs governing span_end 1784372160, 900 s tail) stands, as filed in F-VS-166.
 
-## B — A fifteenth pair, fired and unmanaged (P12)
+## B — A fifteenth contradiction, fired and open (P12)
 
 **The same-receipt floor law's violation detector fires where no writer can act.** Its writer is guarded on `Number.isInteger(active)` (:763); its detector is not (:990-995). Trace **ln41, ts 1783833752.027, GIU**: floor 70 established at this epoch, postable (< ask 71), **no active rest**, the DISAGREES lane lawfully refuses origination — and the row is stamped `floor_rest_protection.violation: true`, **the only violation=true row in the bed**. One technique's measurement brands unlawful an outcome the writers' guards make inevitable. Nothing routes it. Also noted: the law is **epoch-grain**, not receipt-grain (`timestamp_epoch === state.current_epoch`, :756) — a floor print at the same epoch under a different receipt still triggers it; and the arbitration serializes `winningLane: "SAME_RECEIPT_ESTABLISHED_FLOOR"`, a lane name absent from `laneEligibility` (:953-959), on 3 receipts that list all five named lanes as losers — a consumer keying winners to lane names drops those decisions.
 
@@ -134,7 +134,7 @@ Filed as F-VS-196 … F-VS-198. Every row re-checked before filing.
 2. The **harness table** (`EVIDENCED_FLOOR_TENURE_TABLE.json`) counts the identical URS episode as governing-floor tenure — `BELOW_RUNNING_TRADED_LOW, runlow 58, 2,827 s`.
 3. And the table **over-counts on a third axis**: DAN lv 52 (1784332553→1784339622) is `counted_as_governing_floor_tenure: true` for 315.2 s with `running_traded_low_at_stand: null` — build:1637-1643 falls back to *any print at or above the rest* to start "governing floor tenure", including when **no traded floor exists at all**.
 
-## D — Latent pairs added to the audit
+## D — Latent contradictions added to the audit
 
 - **U1 — post-allocation writers vs the axis.** The par reduction (never fired — the reconciliation branch appears in 0 of 2,781 rows, so **the named floor bound has never actually reduced a target**) and the fill-handoff cap (never bound) both emit cents that are **never re-snapped to `candidate_final_floor_levels_cents`**. The first real squeeze breaks the traded-low-axis premise silently.
 - **U2** — floor protection (W7) zeroes headroom; if the pair then goes par-infeasible while DISAGREES, the atomic fallback's hold test requires a decision envelope DISAGREES never has → the "protected" rest is cancelled by machinery ranked junior to it.
@@ -143,4 +143,21 @@ Filed as F-VS-196 … F-VS-198. Every row re-checked before filing.
 - **U5** — a DISAGREES running-low above `99 − siblingEntry` would be capped into an unsupported level after licensing (GIU came within 5¢: target 67, cap 72).
 - **U6** — the dormant second allocator: two par arithmetics for one pair the day anything wires it.
 
-**And P5 sharpened into a sentence the frame was written for:** LAJ's rearm — opened by the coherent lane's lawful cancel — was resolved 4.5 hours later **by the DISAGREES lane's crossing 54-at-the-ask order (F-VS-191)**. The repair machinery delivered its repair through the one unguarded lane. Techniques not humming together is not an abstraction; it is the LAJ fill.
+**And the P5 contradiction sharpened into a sentence the frame was written for:** LAJ's rearm — opened by the coherent lane's lawful cancel — was resolved 4.5 hours later **by the DISAGREES lane's crossing 54-at-the-ask order (F-VS-191)**. The repair machinery delivered its repair through the one unguarded lane. Techniques not humming together is not an abstraction; it is the LAJ fill.
+
+---
+
+## 4 — ZERO CONTRADICTIONS (operator ruling, 2026-08-25, filed verbatim)
+
+> **ZERO CONTRADICTIONS** — "2 internal rules wanting opposite things" is a CONTRADICTION; there should be **0 contradictions anywhere**; the OS synergizes, never disagrees with itself. Vocabulary corrected throughout the register: these entries are renamed **CONTRADICTIONS** (the word **PAIR** keeps its one meaning — both legs of a game owned/completed). **Seniority contracts are TRIAGE, not the standard** — each contracted contradiction stays open on the register until the overlap that created it is dissolved by design. No other change.
+
+### The register scoreboard under the ruling
+
+| state | count | entries |
+|---|---:|---|
+| **DISSOLVED BY DESIGN** (the overlap cannot exist) | **1** | singleton×DISAGREES — mutually exclusive branches of the coherence switch. (The verified non-collisions — W6-then-W10, W10 double-reinsertion, live-touch×crossed-book closure — were never contradictions.) |
+| **CONTRACTED — OPEN** (triage in place: a stated seniority, arbitration, or stamp) | **6** | P7×lanes (stated seniority) · allocator×floors (lawful-incomplete stamp) · carried×coherent (branch precedence + arbitration record) · lane×lane order-thrash (one-decision arbitration; level-selection overlap remains) · singleton×post-only (the min() chooser) · per-leg arbitration (pair-level simultaneity governed only by the joint sum) |
+| **UNCONTRACTED — OPEN** | **13** | hold×coherent-reprice (the URS surrender) · DISAGREES×post-only (crossing bids) · locked-book nullifier×below-floor rests · cancel-economics×consistency · rearm-resolution-lane unspecified · tenure×below-low rests (three instruments, three answers) · window-bell×governing-span (DANPRA) · same-receipt-detector×writer-guards (P12) · U1 post-allocation×axis · U2 protection×atomic-fallback-in-DISAGREES · U3 carried-fallback×consistency · U4 modes escaping activeInconsistent · U5 DISAGREES×fill-cap · U6 dormant second allocator |
+
+**Zero is the standard. Nineteen contradictions are catalogued; one is dissolved; eighteen are open** — six with triage, thirteen without (the level-selection overlap inside the arbitrated lane×lane entry keeps that entry open despite its contract). Every triaged entry remains on this register until a build removes the overlap itself: one post-only definition for every lane, one cancellation law, one tenure instrument, one allocator, one clock.
+

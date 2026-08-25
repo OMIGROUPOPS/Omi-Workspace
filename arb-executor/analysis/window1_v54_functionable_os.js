@@ -170,6 +170,8 @@ function createTapeState(meta) {
       fill_timestamp_epoch: null,
       standing_license_basis: null,
       standing_license_receipt: null,
+      standing_governing_floor_cents: null,
+      standing_governing_floor_receipt: null,
     }])),
     current_epoch: meta.discovery_epoch,
     receipt: `${meta.event_id}|DISCOVERY`,
@@ -276,6 +278,8 @@ function creditPosition(state, legId, row) {
   position.standing_target_cents = null;
   position.standing_license_basis = null;
   position.standing_license_receipt = null;
+  position.standing_governing_floor_cents = null;
+  position.standing_governing_floor_receipt = null;
   return fillEventReceipt;
 }
 

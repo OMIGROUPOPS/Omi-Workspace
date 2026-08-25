@@ -1,0 +1,233 @@
+{
+  "label": "F_VS_183_EXECUTED_GATE_COUNTEREXAMPLES",
+  "law": "A gate is marked fail-capable only when its executable predicate detects an injected counterexample. Producer/check label inequality and prose conditions carry no authority.",
+  "run_source": "V54_HOLD_POSTABLE_FLOOR_REST_HONEST_TENURE_20260825",
+  "provenance": [
+    "F-VS-183@12f25f37",
+    "CC@601207d0/12f25f37"
+  ],
+  "checks": [
+    {
+      "id": "BASELINE_PINS",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "BASELINE_PINS",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_BASELINE_PINS",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          "EXECUTED_COUNTEREXAMPLE_BASELINE_PINS"
+        ]
+      }
+    },
+    {
+      "id": "CURRENT_BED_TRIPWIRE",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "CURRENT_BED_TRIPWIRE",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_CURRENT_BED_TRIPWIRE",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          "EXECUTED_COUNTEREXAMPLE_CURRENT_BED_TRIPWIRE"
+        ]
+      }
+    },
+    {
+      "id": "FLOOR_IS_OBSERVED_TRADE_LOW_ALL_ROWS",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "FLOOR_IS_OBSERVED_TRADE_LOW_ALL_ROWS",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_FLOOR_IS_OBSERVED_TRADE_LOW_ALL_ROWS",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "emitted_floor_cents": 42,
+            "independent_print_floor_cents": 41
+          }
+        ]
+      }
+    },
+    {
+      "id": "ONE_DECISION_PER_RECEIPT",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "ONE_DECISION_PER_RECEIPT",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_ONE_DECISION_PER_RECEIPT",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "key": "EXECUTED_COUNTEREXAMPLE_ONE_DECISION_PER_RECEIPT",
+            "count": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "DISAGREES_DOES_NOT_DEFAULT_TO_LIVE_BID",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "DISAGREES_DOES_NOT_DEFAULT_TO_LIVE_BID",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_DISAGREES_DOES_NOT_DEFAULT_TO_LIVE_BID",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "target_cents": 40,
+            "live_bid_cents": 40,
+            "live_bid_relation": "REFERENCE_ONLY_NOT_LEVEL_AUTHORITY"
+          }
+        ]
+      }
+    },
+    {
+      "id": "EVERY_CANCEL_REARMS",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "EVERY_CANCEL_REARMS",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_EVERY_CANCEL_REARMS",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "action": "CANCEL_REST",
+            "rearm_status": "NO_REARM_PENDING_OR_TRIGGERED"
+          }
+        ]
+      }
+    },
+    {
+      "id": "NO_UNEXPLAINED_LITERAL_CLAIMS",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "NO_UNEXPLAINED_LITERAL_CLAIMS",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_NO_UNEXPLAINED_LITERAL_CLAIMS",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "field": "live_bid_is_reference_only",
+            "literal_value": true,
+            "classification": "UNEXPLAINED_NAMED_SERIALIZED_CLAIM"
+          }
+        ]
+      }
+    },
+    {
+      "id": "NON_TRADED_LOW_DISCLOSED",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "NON_TRADED_LOW_DISCLOSED",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_NON_TRADED_LOW_DISCLOSED",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "non_traded_low_consumed": true,
+            "sentence": "DISCLOSURE_MISSING"
+          }
+        ]
+      }
+    },
+    {
+      "id": "PAR_BOUND_NAMED_AND_NOT_ABOVE_FLOOR",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "PAR_BOUND_NAMED_AND_NOT_ABOVE_FLOOR",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_PAR_BOUND_NAMED_AND_NOT_ABOVE_FLOOR",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "name": "PAR_ALLOCATION_OBSERVED_TRADED_FLOOR_BOUND",
+            "value_cents": 42,
+            "evidenced_floor_cents": 41
+          }
+        ]
+      }
+    },
+    {
+      "id": "AT_FLOOR_TENURE",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "AT_FLOOR_TENURE",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_AT_FLOOR_TENURE",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "active_target_before_cents": 41,
+            "evidenced_floor_cents": 41,
+            "final_target_cents": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": "TARGET_AUTHORITY_ACTUAL",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "TARGET_AUTHORITY_ACTUAL",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_TARGET_AUTHORITY_ACTUAL",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "expected": "OBSERVED_TRUE_TRADE_FLOOR_TENURE",
+            "emitted": "LIVE_TOUCH"
+          }
+        ]
+      }
+    },
+    {
+      "id": "RUN_SOURCE_EXPLICIT",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "RUN_SOURCE_EXPLICIT",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_RUN_SOURCE_EXPLICIT",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "current": "WRONG_RUN",
+            "lineage": "FROZEN_LINEAGE_PER_GAME_L1_L8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "DETERMINISM_X2",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "DETERMINISM_X2",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_DETERMINISM_X2",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          {
+            "first_sha256": "a",
+            "second_sha256": "b"
+          }
+        ]
+      }
+    },
+    {
+      "id": "LAW_VIOLATIONS",
+      "can_fail": true,
+      "counterexample_probe": {
+        "executed": "YES",
+        "predicate_id": "LAW_VIOLATIONS",
+        "injected_counterexample": "EXECUTED_COUNTEREXAMPLE_LAW_VIOLATIONS",
+        "detected_failure_count": 1,
+        "detected_failures": [
+          "INJECTED_LAW_VIOLATION"
+        ]
+      }
+    }
+  ],
+  "executed_checks": 14,
+  "fail_capable_checks": 14,
+  "non_falsifiable_checks": []
+}

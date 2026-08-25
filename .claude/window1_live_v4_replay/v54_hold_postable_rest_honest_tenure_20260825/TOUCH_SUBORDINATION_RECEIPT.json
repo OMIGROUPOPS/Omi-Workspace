@@ -1,0 +1,15 @@
+{
+  "label": "F_VS_129_TOUCH_SUBORDINATED_WITH_F_VS_138_DISAGREES_OWN_EVIDENCE_RELEASE",
+  "law": "A current lawful belief envelope always prices the rest. DISAGREES blocks belief-priced origination; independently complete own evidence may originate or reprice only at an exact level supported by the surviving traded-low hypotheses, with disagreement stated.",
+  "provenance": [
+    "F-VS-129@3e3d3548",
+    "F-VS-138/F-VS-142@f4752720"
+  ],
+  "touch_rows_without_live_envelope": 243,
+  "touch_over_live_envelope_violations": [],
+  "disagrees_rows": 222,
+  "disagrees_placement_violations": [],
+  "zero_touch_over_live_envelope": true,
+  "lawful_disagrees_own_evidence_rows": 22,
+  "zero_unlicensed_placements_or_reprices_at_disagrees": true
+}

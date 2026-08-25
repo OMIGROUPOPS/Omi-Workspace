@@ -49,6 +49,9 @@ const LAYER_PROVENANCE = Object.freeze({
   definition_repair_headroom: "F-VS-160/F-VS-169@a2a6a25d/44559ebc",
   definition_repair_tenure: "F-VS-154/F-VS-155@6093141b",
   honest_gate_contract: "F-VS-163/F-VS-165/F-VS-166/F-VS-167/F-VS-170@e65fe458/44559ebc",
+  same_receipt_floor_hold: "F-VS-185@12f25f37; CC@601207d0/12f25f37",
+  postable_floor_rest_hold: "F-VS-183@12f25f37; singleton adjudication CC@601207d0",
+  honest_floor_tenure: "F-VS-184@12f25f37; CC@601207d0/12f25f37",
 });
 
 const PHASE_CENTRAL_BANDS = Object.freeze([
@@ -746,9 +749,38 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const formationComplete = Number.isFinite(reads.anchor_settle.value.formation_progress[legId]) && reads.anchor_settle.value.formation_progress[legId] >= 1;
     if (!formationComplete || (liveBid && liveAsk && liveBid >= liveAsk)) targets[legId] = null;
     const evidencedFloor = cent(state.legs[legId].running_true_trade_low_cents);
-    const evidencedFloorReceipt = evidencedFloor === null
+    const evidencedFloorPrint = evidencedFloor === null
       ? null
-      : [...state.legs[legId].prints].reverse().find((row) => cent(row.price_cents) === evidencedFloor)?.receipt ?? null;
+      : [...state.legs[legId].prints].reverse().find((row) => cent(row.price_cents) === evidencedFloor) ?? null;
+    const evidencedFloorReceipt = evidencedFloorPrint?.receipt ?? null;
+    const floorEstablishedOnCurrentReceipt = Boolean(evidencedFloorPrint && evidencedFloorPrint.timestamp_epoch === state.current_epoch);
+    const sameReceiptFloorPostable = Boolean(floorEstablishedOnCurrentReceipt && Number.isInteger(liveAsk) && evidencedFloor < liveAsk);
+    const targetBeforeSameReceiptFloorLaw = cent(targets[legId]);
+    // F-VS-185: once the current receipt itself establishes a postable traded
+    // floor, no lane may move the rest below or away from that price on the
+    // same receipt. Pair conservation remains senior and is checked after this
+    // proposal, but the pricing proposal itself must consume the new fact.
+    if (Number.isInteger(active) && floorEstablishedOnCurrentReceipt && targetBeforeSameReceiptFloorLaw !== evidencedFloor) {
+      const governedTarget = sameReceiptFloorPostable ? evidencedFloor : active;
+      targets[legId] = governedTarget;
+      envelopePlacement[legId] = {
+        ...envelopePlacement[legId],
+        mode: "SAME_RECEIPT_ESTABLISHED_FLOOR_GOVERNS",
+        prior_mode: envelopePlacement[legId]?.mode ?? null,
+        prior_target_cents: targetBeforeSameReceiptFloorLaw,
+        evidenced_floor_cents: evidencedFloor,
+        evidenced_floor_receipt: evidencedFloorReceipt,
+        evidenced_floor_timestamp_epoch: evidencedFloorPrint.timestamp_epoch,
+        floor_established_on_current_receipt: floorEstablishedOnCurrentReceipt,
+        floor_postable_below_live_ask: sameReceiptFloorPostable,
+        chosen_target_cents: governedTarget,
+        disposition: sameReceiptFloorPostable
+          ? "REPRICE_TO_NEWLY_ESTABLISHED_POSTABLE_FLOOR"
+          : "HOLD_EXISTING_REST_NEW_FLOOR_NOT_POSTABLE_NO_AWAY_REPRICE",
+        may_reprice_below_or_away_from_established_floor: false,
+        provenance: LAYER_PROVENANCE.same_receipt_floor_hold,
+      };
+    }
     const targetBeforeAllocation = cent(targets[legId]);
     const boundValue = evidencedFloor && targetBeforeAllocation ? Math.min(evidencedFloor, targetBeforeAllocation) : targetBeforeAllocation;
     parAllocationFloorBounds[legId] = {
@@ -793,6 +825,56 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const openId = openIds[0], cap = base.PAR_BUDGET_CENTS - reads.half_pair_state.value.legs[creditedId].entry_cents;
     allocation.targets[openId] = cent(allocation.targets[openId]) ? Math.min(allocation.targets[openId], cap) : null;
     allocation.reason = `${allocation.reason}+FILL_HANDOFF_PAIR_CAP`;
+  }
+  // F-VS-183: an unpostable singleton is a lawful refusal of that NEW price,
+  // not authority to cancel an already-postable rest at the governing floor
+  // captured by the immediately preceding envelope. That captured floor can
+  // sit below the later running traded low; F-VS-184 requires its tenure to
+  // remain visible rather than silently redefining "floor" to the new low.
+  for (const legId of openIds) {
+    if (Number.isInteger(cent(allocation.targets[legId]))) continue;
+    const active = cent(reads.half_pair_state.value.legs[legId].standing_target_cents);
+    const floor = cent(state.legs[legId].running_true_trade_low_cents);
+    const ask = cent(reads.books.value[legId]?.ask_cents);
+    const placement = envelopePlacement[legId] ?? {};
+    const singleton = cent(placement.singleton_survivor_envelope_level_cents);
+    const governingCapturedFloor = cent(reads.half_pair_state.value.legs[legId].standing_governing_floor_cents)
+      ?? cent(placement.envelope_migration?.from?.low_cents)
+      ?? cent(convictionEvolution[legId]?.prior_envelope?.low_cents)
+      ?? floor;
+    const crossingSingletonBlocked = Boolean(singleton && Number.isInteger(ask) && singleton >= ask && placement.singleton_envelope_consumed !== true);
+    const activeIsPostableFloor = Boolean(active && governingCapturedFloor && active === governingCapturedFloor && Number.isInteger(ask) && active < ask);
+    const siblingId = state.leg_ids.find((id) => id !== legId);
+    const siblingPlan = reads.half_pair_state.value.legs[siblingId].credited
+      ? cent(reads.half_pair_state.value.legs[siblingId].entry_cents)
+      : cent(allocation.targets[siblingId]) ?? cent(reads.half_pair_state.value.legs[siblingId].standing_target_cents);
+    const pairPlanLawful = !Number.isInteger(siblingPlan) || active + siblingPlan <= base.PAR_BUDGET_CENTS;
+    if (crossingSingletonBlocked && activeIsPostableFloor && pairPlanLawful) {
+      allocation.targets[legId] = active;
+      allocation.reason = `${allocation.reason}+HOLD_POSTABLE_FLOOR_REST_WHILE_SINGLETON_CROSSES`;
+      envelopePlacement[legId] = {
+        ...placement,
+        mode: "POSTABLE_FLOOR_REST_HELD_WHILE_SINGLETON_CROSSES",
+        prior_mode: placement.mode ?? null,
+        active_floor_rest_cents: active,
+        evidenced_floor_cents: floor,
+        governing_captured_floor_cents: governingCapturedFloor,
+        governing_floor_source: reads.half_pair_state.value.legs[legId].standing_governing_floor_cents === governingCapturedFloor
+          ? "STANDING_REST_CAPTURED_FLOOR_LICENSE"
+          : "PRIOR_RECEIPT_SURVIVOR_BACKED_ENVELOPE_LOW",
+        governing_floor_receipt: reads.half_pair_state.value.legs[legId].standing_governing_floor_receipt
+          ?? placement.envelope_migration?.from?.belief_receipt
+          ?? convictionEvolution[legId]?.prior_conviction_receipt
+          ?? null,
+        live_ask_cents: ask,
+        crossing_singleton_cents: singleton,
+        singleton_guard_disposition: "NEW_SINGLETON_UNPOSTABLE_EXISTING_LAWFUL_FLOOR_REST_HELD",
+        pair_plan_sibling_cents: siblingPlan,
+        pair_plan_at_or_below_99: pairPlanLawful,
+        chosen_target_cents: active,
+        provenance: LAYER_PROVENANCE.postable_floor_rest_hold,
+      };
+    }
   }
   if (!allocation.lawful) {
     const failedAllocation = allocation;
@@ -848,7 +930,11 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const noLawfulReplacement = atomicNoReplacement || envelopeNoReplacement;
     const pendingRearmBefore = state.dual_belief.rearm_by_leg[legId] ?? null;
     const placementMode = envelopePlacement[legId]?.mode;
-    const reason = placementMode === "EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT"
+    const reason = placementMode === "SAME_RECEIPT_ESTABLISHED_FLOOR_GOVERNS"
+      ? "SAME_RECEIPT_ESTABLISHED_FLOOR_GOVERNS"
+      : placementMode === "POSTABLE_FLOOR_REST_HELD_WHILE_SINGLETON_CROSSES"
+        ? "POSTABLE_FLOOR_REST_HELD_WHILE_SINGLETON_CROSSES"
+      : placementMode === "EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT"
       ? "EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT"
       : placementMode === "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED"
         ? "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED"
@@ -873,6 +959,10 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     };
     const winningLane = placementMode === "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED"
       ? "DISAGREES_OWN_EVIDENCE"
+      : placementMode === "SAME_RECEIPT_ESTABLISHED_FLOOR_GOVERNS"
+        ? "SAME_RECEIPT_ESTABLISHED_FLOOR"
+      : placementMode === "POSTABLE_FLOOR_REST_HELD_WHILE_SINGLETON_CROSSES"
+        ? "ACTIVE_REST_HOLD"
       : placementMode === "CARRIED_PRIOR_RECEIPT_CONVICTION_Q75_BASIS_RESTATED"
         ? "CARRIED_CONVICTION"
         : placementMode === "CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_NULL"
@@ -894,7 +984,15 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       : [...state.legs[legId].prints].reverse().find((print) => cent(print.price_cents) === evidencedFloor)?.receipt ?? null;
     const floorSupportAlive = active === evidencedFloor ? (survivor?.survivor_shapes ?? []) : [];
     const activeAtSupportedFloor = Boolean(active === evidencedFloor && evidencedFloorReceipt && floorSupportAlive.length > 0);
-    const floorRestProtectionViolation = activeAtSupportedFloor && target !== active;
+    const floorPrint = evidencedFloor === null
+      ? null
+      : [...state.legs[legId].prints].reverse().find((print) => cent(print.price_cents) === evidencedFloor) ?? null;
+    const floorEstablishedOnCurrentReceipt = Boolean(floorPrint && floorPrint.timestamp_epoch === state.current_epoch);
+    const sameReceiptFloorDeparture = Boolean(floorEstablishedOnCurrentReceipt
+      && Number.isInteger(reads.books.value[legId]?.ask_cents)
+      && evidencedFloor < reads.books.value[legId].ask_cents
+      && target !== evidencedFloor);
+    const floorRestProtectionViolation = (activeAtSupportedFloor && target !== active) || sameReceiptFloorDeparture;
     const targetInsideCurrentEnvelope = Number.isInteger(target) && currentEnvelope && target >= currentEnvelope.low_cents && target <= currentEnvelope.high_cents;
     if (coherentNow && Number.isInteger(target) && !state.dual_belief.first_lawful_coherence_by_leg[legId]) {
       state.dual_belief.first_lawful_coherence_by_leg[legId] = { epoch: state.current_epoch, receipt: state.receipt };
@@ -903,6 +1001,8 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const placementAtCurrentCoherence = coherentNow && Number.isInteger(target) && ["PLACE_REST", "REPRICE_REST", "HOLD_REST"].includes(action.action);
     const carriedPlacement = envelopePlacement[legId]?.mode === "CARRIED_PRIOR_RECEIPT_CONVICTION_Q75_BASIS_RESTATED" && ["PLACE_REST", "REPRICE_REST"].includes(action.action);
     const disagreesOwnEvidencePlacement = envelopePlacement[legId]?.mode === "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED" && ["PLACE_REST", "REPRICE_REST"].includes(action.action);
+    const observedFloorPlacement = ["SAME_RECEIPT_ESTABLISHED_FLOOR_GOVERNS", "POSTABLE_FLOOR_REST_HELD_WHILE_SINGLETON_CROSSES"].includes(envelopePlacement[legId]?.mode)
+      && ["PLACE_REST", "REPRICE_REST", "HOLD_REST"].includes(action.action);
     const envelopeConsistency = {
       active_inconsistent_before_action: Boolean(activeInconsistent),
       resolution: !activeInconsistent ? "ACTIVE_CONSISTENT_OR_NO_CURRENT_ENVELOPE" : targetInsideCurrentEnvelope ? "CANCEL_AND_REPLACE_ATOMIC_SAME_RECEIPT" : action.action === "CANCEL_REST" ? "FAIL_LOUD_NO_LAWFUL_REPLACEMENT" : "VIOLATION_STALE_REST_SURVIVED",
@@ -927,6 +1027,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       carried_conviction_basis_re_stated: carriedPlacement ? convictionEvolution[legId].basis_re_stated_at_current_receipt : null,
       carried_conviction_prior_receipt: carriedPlacement ? convictionEvolution[legId].prior_conviction_receipt : null,
       disagrees_own_evidence_originated_or_repriced_rest: disagreesOwnEvidencePlacement,
+      observed_floor_originated_repriced_or_held_rest: observedFloorPlacement,
       live_touch_originated_new_rest: !coherentNow && !Number.isInteger(active) && action.action === "PLACE_REST" && String(envelopePlacement[legId]?.mode ?? "").startsWith("CONSUME_OWN_EVIDENCED_LIVE_TOUCH"),
       provenance: [LAYER_PROVENANCE.coherence_placement_fix, LAYER_PROVENANCE.carried_conviction],
     };
@@ -1009,6 +1110,10 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       supporting_shapes_still_alive: floorSupportAlive,
       proposed_target_before_protection_cents: envelopePlacement[legId]?.proposed_conflicting_target_cents ?? envelopePlacement[legId]?.chosen_target_cents ?? null,
       protected_from_conflicting_belief_or_cancel: envelopePlacement[legId]?.mode === "EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT",
+      floor_established_on_current_receipt: floorEstablishedOnCurrentReceipt,
+      same_receipt_floor_departure: sameReceiptFloorDeparture,
+      same_receipt_floor_law_applied: envelopePlacement[legId]?.mode === "SAME_RECEIPT_ESTABLISHED_FLOOR_GOVERNS",
+      postable_floor_rest_held_against_crossing_singleton: envelopePlacement[legId]?.mode === "POSTABLE_FLOOR_REST_HELD_WHILE_SINGLETON_CROSSES",
       violation: floorRestProtectionViolation,
       tenure: floorRestTenure,
       provenance: LAYER_PROVENANCE.floor_rest_protection,
@@ -1069,7 +1174,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.derivation.target_basis = reason;
     row.derivation.target_authority = ["CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE", "CARRIED_PRIOR_RECEIPT_CONVICTION_Q75_BASIS_RESTATED"].includes(placementMode)
       ? "CONDITIONED_Q75_RECONCILED_TO_SURVIVOR_TRADED_LOW_SUPPORT"
-      : placementMode === "EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT"
+      : ["EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT", "SAME_RECEIPT_ESTABLISHED_FLOOR_GOVERNS", "POSTABLE_FLOOR_REST_HELD_WHILE_SINGLETON_CROSSES"].includes(placementMode)
         ? "OBSERVED_TRUE_TRADE_FLOOR_TENURE"
         : placementMode === "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED"
           ? "OWN_EVIDENCE_WITH_SURVIVOR_SUPPORT"

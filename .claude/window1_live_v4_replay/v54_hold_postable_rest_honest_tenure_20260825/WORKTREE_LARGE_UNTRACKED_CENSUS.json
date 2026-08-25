@@ -1,0 +1,73 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 133177968,
+      "sha256": "41c7975e22e293832640a3cbbb7d8d1df61f29b899346a17fc21559c2aac144d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/DIAGNOSTIC_SUMMARY_RECEIPT.json",
+      "bytes": 32316644,
+      "sha256": "42ce86ae6e4190034123a2a94f8ea662de4b04beaec1a034d89d6db272b634b8"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 113452595,
+      "sha256": "79de360cc227b919012136534f9af6d465f4cac16002173a49828e35ae12c8e2"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/FOUR_STORIES_RECEIPT.json",
+      "bytes": 31701634,
+      "sha256": "0f4df44147eecb5950a0f00910edfa7342c1e175c2531ad85f034bb0d5777c84"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/FOUR_STORIES.md",
+      "bytes": 41361059,
+      "sha256": "2c61e6dee6f4ecd5f685eaef4874d3c74ca7168a01e2e37f938b1850ff3a53fb"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 24263662,
+      "sha256": "6c08a451fe2f082ec8641865c0c43a7fb7430825a18f7078fc870f026a8ef5e4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/LAWFUL_INCOMPLETE_RECEIPT.json",
+      "bytes": 32268693,
+      "sha256": "5086f388c044409376141270b6e808e4261f5528998a2b02443ec2375df9cddc"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "bytes": 68776213,
+      "sha256": "d4f705c6caa3199648021c64407fa893a45884bedcd1a69bcb7140146cc72696"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "bytes": 169215081,
+      "sha256": "d1009d630818f4c5a2697b3dcace4f3c52663e2003c8fd53fd4cf87dfd7d53da"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/PAR_ALLOCATION_HEADROOM_RECEIPT.json",
+      "bytes": 66840272,
+      "sha256": "209953066104e5289e08bc7e06b9b270dc2de51479a8fc5e3ae7368989c1ffb1"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "bytes": 40371747,
+      "sha256": "72dec01b2b1fb7567c3de9214a8d46fa4f0e4c7f38645aac41b6c8550a9cdb9c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 92984451,
+      "sha256": "8f218ce2e21b3eb183c171eb0f38eca3ecca6d710d5805b4900c9341c1fdbf11"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_hold_postable_rest_honest_tenure_20260825/SMOKE_CRIJEA.md",
+      "bytes": 16819450,
+      "sha256": "e6a9327125d94ebd07b985d1048cff4d089abf63a7c3d304f0a8dbe3d2860c33"
+    }
+  ],
+  "count": 13,
+  "bytes": 863549469
+}

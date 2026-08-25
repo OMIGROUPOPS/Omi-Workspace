@@ -97,3 +97,50 @@ A contradiction = two techniques able to issue conflicting instructions about th
 ### The audit in one sentence
 
 Of the fourteen pairs, **four are managed** (two by explicit stated seniority — P7's law is the model the frame asks for), **four partially managed**, and **six unmanaged** — and the two unmanaged pairs that have already cost cents (P6×P1, P3×post-only) share one root: a technique that exists in one lane and not another, which is precisely the "contradictory environment" the Technique Frame outlaws. The frame's test for any future build: a new notion must either state its seniority against every technique it touches (as P7 does) or change no other technique's output.
+
+---
+
+# ADDENDUM — 4-lane sweep returned; register extended, one misattribution corrected, one lane claim rejected under the corrections law
+
+Filed as F-VS-196 … F-VS-198. Every row re-checked before filing.
+
+## A — Corrections to the register and audit
+
+**(a) The DAN cancel was misattributed.** F-VS-195(iii) charged it to the consistency check. The actual writer is the **locked-book nullifier — `os.js:750`**: `if (!formationComplete || (liveBid && liveAsk && liveBid >= liveAsk)) targets[legId] = null` — which on a locked book (DAN ln4526, bid 59 / ask 59, `crossed_book: true`) nulls the target regardless of the standing rest, turning a placement law silently into a cancellation law, under an emitted reason that misattributes it (`OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL`). Narrowing that matters: the same-receipt floor law (:763) and floor-rest protection (:802) both run *after* :750 and re-impose a target — so an active rest standing **at** the supported evidenced floor survives a locked book; the unmanaged blast radius is **below-floor rests specifically**, exactly the population the hold-guard commit was written to protect. W5 joins the register as a technique in its own right.
+
+**(b) Register additions** (all verified at 4a96ded9):
+- **Neighborhood retrieval engine** — `SIMILARITY_DECLARATION` (fos:52-92, 14 hand-authored weights/scales, 7 neighbors, leave-self-out asserted at build:944). The engine every conditioned quantity descends from, previously catalogued only via its consumers.
+- **Evidence-match conditioning weights** — `weight = score × coverage × 1/(1+|ownDip−memberDip|)` (fos:549-551) → `conditioning_weight` (os:156). The weights behind every conditioned quantile.
+- **Formation/crossed-book veto (W5)** — os:750, above.
+- **Standing-rest captured-floor license** — build:966-981 writes `standing_governing_floor_cents/receipt`; os:841 reads it as the hold's first authority. Stamped only on PLACE/REPRICE and only for the SAME_RECEIPT/EVIDENCED_FLOOR modes — **a DISAGREES placement at the traded low is never captured**, so its future holds ride the `?? floor` fallback at :844.
+- **Decision cadence machinery** — turning epochs + FILL_HANDOFF/ATOMIC_REARM triggers (build:784-812): determines when decisions can exist at all.
+- **Named-subset execution guard** — `window1_named_subset_guard.js`, FAIL_LOUD on unrequested/duplicate/incomplete games.
+- **Atomic pair-sum nulling** — os:896-900: when both held actives survive individually but sum > 99, **both are nulled** — the branch that turns one unlawful allocation into a two-leg cancel.
+- **Envelope-high provenance** — the coherent envelope's ceiling is the **drift reader's current reference level** (os:288, 337), which by `referenceOf`'s ladder can be a print, a book last-trade, **or a floored mid** — a "high" with a non-book source, Definition-Lock adjacent.
+
+**(c) Re-labelled:** the entire base pricing chain — touch pricing, mind-window vote, **V3 map re-keying, joint depth license**, base post-only/pair caps — is **displaced to telemetry**: `deriveJointActions` overwrites `row.action` on every emitted derivation (os:1163-1183). Dead at tip: `lineageTarget` (os:371-378), `supportingShapeIdsForLevel` (os:103-109), the full `similarity` variant, and — dormant with a **contradicting reduction rule** — `allocatePairActions` (fos:844-933, grade-proportional, exported, zero call sites) beside the live headroom-greedy `allocateUnderPar`. Floor-rest protection (os:802-819) fired **0 times** this run.
+
+**(d) C2 qualified:** one order per instant holds **per leg**. The 22 orders occupy **18 instants** — four instants carried sibling pairs (both legs of one game); pair-level simultaneity is governed only by the joint allocation sum. My F-VS-179/186 measurements were per (leg, instant) and stand.
+
+**(e) One lane claim REJECTED under the corrections law.** The audit's P11 claimed URSPAL's PAL fill landed 26.6 s past the span edge, citing c0056976's `span_end 1784042040`. **W1TT-C-002 governs and sets URSPAL's span_end to 1784042247** — the PAL fill at 1784042066.596 is *inside* the governing span by 180.4 s. Both the lane and its verifier read the uncorrected table — the seat's oldest named failure mode. The DANPRA half (bell 1784373060 consumed vs governing span_end 1784372160, 900 s tail) stands, as filed in F-VS-166.
+
+## B — A fifteenth pair, fired and unmanaged (P12)
+
+**The same-receipt floor law's violation detector fires where no writer can act.** Its writer is guarded on `Number.isInteger(active)` (:763); its detector is not (:990-995). Trace **ln41, ts 1783833752.027, GIU**: floor 70 established at this epoch, postable (< ask 71), **no active rest**, the DISAGREES lane lawfully refuses origination — and the row is stamped `floor_rest_protection.violation: true`, **the only violation=true row in the bed**. One technique's measurement brands unlawful an outcome the writers' guards make inevitable. Nothing routes it. Also noted: the law is **epoch-grain**, not receipt-grain (`timestamp_epoch === state.current_epoch`, :756) — a floor print at the same epoch under a different receipt still triggers it; and the arbitration serializes `winningLane: "SAME_RECEIPT_ESTABLISHED_FLOOR"`, a lane name absent from `laneEligibility` (:953-959), on 3 receipts that list all five named lanes as losers — a consumer keying winners to lane names drops those decisions.
+
+## C — Tenure now has three instruments giving three answers (extends F-VS-190)
+
+1. The **in-OS recorder** (:1077, requires `active === evidencedFloor`) says `NO_ACTIVE_EVIDENCED_FLOOR_TENURE` on **all 8 hold rows** (active 57, evidenced floor 58).
+2. The **harness table** (`EVIDENCED_FLOOR_TENURE_TABLE.json`) counts the identical URS episode as governing-floor tenure — `BELOW_RUNNING_TRADED_LOW, runlow 58, 2,827 s`.
+3. And the table **over-counts on a third axis**: DAN lv 52 (1784332553→1784339622) is `counted_as_governing_floor_tenure: true` for 315.2 s with `running_traded_low_at_stand: null` — build:1637-1643 falls back to *any print at or above the rest* to start "governing floor tenure", including when **no traded floor exists at all**.
+
+## D — Latent pairs added to the audit
+
+- **U1 — post-allocation writers vs the axis.** The par reduction (never fired — the reconciliation branch appears in 0 of 2,781 rows, so **the named floor bound has never actually reduced a target**) and the fill-handoff cap (never bound) both emit cents that are **never re-snapped to `candidate_final_floor_levels_cents`**. The first real squeeze breaks the traded-low-axis premise silently.
+- **U2** — floor protection (W7) zeroes headroom; if the pair then goes par-infeasible while DISAGREES, the atomic fallback's hold test requires a decision envelope DISAGREES never has → the "protected" rest is cancelled by machinery ranked junior to it.
+- **U3** — the carried lane's `: active` fallback (:706/:708) can hold a rest outside the carried envelope while the mode sits in the authoritative list → `VIOLATION_STALE_REST_SURVIVED` with no repair path.
+- **U4** — asymmetric consistency coverage: `HOLD_PREVIOUSLY_LICENSED_ENVELOPE_TARGET` and `SAME_RECEIPT_ESTABLISHED_FLOOR_GOVERNS` escape `activeInconsistent` entirely.
+- **U5** — a DISAGREES running-low above `99 − siblingEntry` would be capped into an unsupported level after licensing (GIU came within 5¢: target 67, cap 72).
+- **U6** — the dormant second allocator: two par arithmetics for one pair the day anything wires it.
+
+**And P5 sharpened into a sentence the frame was written for:** LAJ's rearm — opened by the coherent lane's lawful cancel — was resolved 4.5 hours later **by the DISAGREES lane's crossing 54-at-the-ask order (F-VS-191)**. The repair machinery delivered its repair through the one unguarded lane. Techniques not humming together is not an abstraction; it is the LAJ fill.

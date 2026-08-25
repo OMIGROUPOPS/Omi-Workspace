@@ -199,3 +199,51 @@ No prior build did this: 3c56730a had 60 orders and no repeated same-timestamp a
 CERTIFIED: floor has one producer and a print receipt on every row; the belief fallback is gone (0 of 3,509); the 286 non-trade rows are disclosed in the field and in the sentence; 201 changed orders and 151 changed targets reproduce, DAN 52→57 confirmed at `…PRA.csv.gz#row-966`; the named bound is emitted on 3,509/3,509 and never above the traded floor; the tenure claim holds over ALL rows, not just its filtered 307; five fills verified by trade_id with F-VS-107 clean; determinism byte-identical ×2; all typed pass-literals removed; **SVA's 41 captured, closing F-VS-160(b)**.
 
 FAULTED: (i) `can_fail` is a string comparison, and on the predicates themselves only four of ten checks are falsifiable; (ii) `TARGET_AUTHORITY_ACTUAL` and `PAR_BOUND_NAMED_AND_NOT_ABOVE_FLOOR` are new self-agreeing checks; (iii) tenure is capture-blind — BAR scores 22,975 s at its exact floor on a rest that could never fill; (iv) the un-armed-cancel route widened from a crossed book to an ordinary coherent-lane cancel, and it cost PRA 26,695 s; (v) GIUBAR is unchanged on both legs because the repaired floor is null on the rows that matter; (vi) orders went 60 → 309 with up to 10 at one instant.
+
+---
+
+# ADDENDUM — 12-lane counter-grade returned; four of my claims corrected, one new defect
+
+Filed as F-VS-177 … F-VS-178. Every figure below re-measured by me before filing.
+
+## A — Corrections to §1 and to the gate adjudication
+
+**(a) The 17 typed literals are not gone. They were relocated out of the gate object.**
+
+I wrote "every one of the 17 typed pass-literals from F-VS-167 is gone." Measured over `build_window1_v54_dual_belief.js`:
+
+| | 3c56730a | 453296b7 |
+|---|---:|---:|
+| literal-boolean assignments in the file | **130** | **130** |
+| of the 17 F-VS-167 names still literal | **17** | **17** |
+
+Identical multiplicities at both commits — `floor_rest_locks_retired` ×4, `ask_reachability_defines_target` ×3, `full_804_run` ×10, `same_receipt_write_then_read_removed` ×2, `live_bid_is_reference_only` ×1, and the rest. The `REPAIR_GATE_RECEIPT` object is clean; the file is not.
+
+**And the two I proved false are still false.** Re-measured at 453296b7: **218 of 289 PLACE/REPRICE actions (75 %) have `target_cents == live_bid_cents`, including 214 of 214 on `OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED`.** `live_bid_is_reference_only: true` survives untouched and is contradicted by three quarters of the run's orders. `same_receipt_write_then_read_removed: true` likewise survives (F-VS-162).
+
+**(b) `FLOOR_IS_OBSERVED_TRADE_LOW`'s `observed: 3509` overstates its population.** `build.js:2196-2198` returns `[]` for any row whose floor is not an integer, so the check runs on **3,223** derivations and **silently skips the 286** — precisely the non-trade rows the low-repair exists for. `observed` is `allDerivations.length`, not the tested count. It remains the best check in the gate; its denominator is not its population.
+
+**(c) My fail-capable count was one too low.** I said four of ten. The defensible figure is **five**: `LAW_VIOLATIONS` is a passthrough (`observed` and `failures` are the same array) but it did fire, so it can fail. `gate_fields_that_can_fail: 10` is wrong by **5**, not 6.
+
+**(d) The non-trade low stands behind 30 of the run's 309 orders, not 3.** The three I named were priced *directly* off it; **30** PLACE/REPRICE actions were taken while the leg's own evidence was a mid-quote with `true_trade_count: 0` — including **ln37 BAR PLACE 29, ln46 REPRICE 26, ln47 REPRICE 25** (the three that cost GIUBAR) and **ln215 URS PLACE 57 / PAL PLACE 33**. The disclosure is emitted on all 286 and read by nothing except the gate's own substring test.
+
+## B — A new defect: an unproduced receipt contradicting a produced one
+
+`git grep DEFINITION_REPAIR_SUMMARY` at 453296b7 returns **zero hits in any `.js` file** — not in `window1_v54_dual_belief_os.js`, `window1_v54_functionable_os.js`, `window1_v54_survivor_shape_elimination.js` or `build_window1_v54_dual_belief.js`. Its only occurrence in the tree is its own line in `ARTIFACT_HASH_MANIFEST.json`. **No committed code writes it.**
+
+And its numbers disagree with the receipt the code does write:
+
+| | `DEFINITION_REPAIR_SUMMARY.json` | `EVIDENCED_FLOOR_TENURE_TABLE.json` | my trace census |
+|---|---|---|---|
+| URSPAL \| URS tenure level | **57** | **58** | **58** (all 6 at-floor rows) |
+| tenure seconds | 251 | 1784031096 → 1784031347 = 251 | 251 |
+
+The table carries `start_receipt de8acb81…`, `first_row` receipt `…URSPAL-URS.csv.gz#row-4294`, `action: HOLD_REST 58`. **The table is right and the summary is wrong** — and the summary is the artefact that cannot be regenerated.
+
+This is a two-values-one-term defect on **"level"**, inside the package that implements the Definition Lock, and it is the same class as F-VS-170. The lock's own rule is the remedy: the summary must either be produced by the code that produces the table, or carry a source naming the store each number came from.
+
+## C — What the lanes confirmed
+
+The floor repair reproduces independently from `prints.jsonl`: every floor transition lands on a true-print epoch, and **SVA's floor receipt is the FIRST 41** (`95992e7f…` @1784020201.830), not the second — the seat's own prior error is not repeated by the build. PAL's tie at a shared epoch resolves correctly (seven prints at 1784021161.637; the 40 carries `038f03f3…`). `lowerBounds` is gone from the OS entirely and the named bound is emitted on 3,509/3,509 — **the one repair in the set that fully landed.**
+
+One scope note worth recording: **URS, PAL and LAJ leave the decision stream before their governing floors print** (last derivations 1784031347, 1784041639.585 and 1784028911 against prints at 1784032697.6, 1784042066.596 and 1784060123.219). Their fills are detected on the tape after the decision horizon closes, so the URS-57 and LAJ-51 stories cannot recur or be re-tested in this build. Only BAR 27, GIU 66, SVA 41, DAN 59 and PRA 41 are actually exercised by decisions.

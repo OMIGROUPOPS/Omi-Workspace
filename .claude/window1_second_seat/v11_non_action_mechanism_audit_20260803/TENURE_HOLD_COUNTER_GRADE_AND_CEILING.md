@@ -148,3 +148,50 @@ CERTIFIED: 22 orders, one per decision instant, reproduced over all orders; seve
 FAULTED: (i) the hold is given up at ln1372 — URS reprices its postable, filling 57 up to 58 and loses the cent the repair was written to save; (ii) the 14 counterexamples execute **twins** of the production predicates, three of which differ materially and one of which (`LAW_VIOLATIONS`) is a constant that runs no filter; (iii) tenure's two blind spots from F-VS-184 are unchanged — GIU's 1,589.227 s at its exact floor and PAL's 18,818.596 s at the governing floor both still score zero — and the durations still understate.
 
 **CORRECTED — my own F-VS-180 is wrong.** Δ7 and Δ6 are achievable. The ceilings are GIUBAR **93/Δ7**, URSPAL **96/Δ4**, LAJSVA **92/Δ8**, and DANPRA none. Five cents remain on the table, all of them reachable, none of them a DATA-GAP.
+
+---
+
+# ADDENDUM — 12 lanes returned; the ceiling table is confirmed, and a crossing-bid defect is found
+
+Filed as F-VS-191 … F-VS-192. Every figure re-measured by me before filing.
+
+## A — The ceiling table is confirmed verbatim
+
+An independent recompute from the same raw stores reproduced it exactly: **GIUBAR 27+66 = 93 (Δ7) · URSPAL 57+39 = 96 (Δ4) · LAJSVA 51+41 = 92 (Δ8) · DANPRA 59+41 = 100 (over par 99, no lawful completion)**. GIUBAR's ceiling is the bed spec; LAJSVA's is two beyond it; URSPAL's is one beyond it. Five cents remain achievable and unrealised.
+
+## B — Two of the twenty-two orders are crossing bids, and they are the two legs with the missing cents
+
+| ln | leg | ts | order | live bid | **live ask** | verdict |
+|---|---|---:|---|---:|---:|---|
+| **83** | **GIU** | 1783867786 | `PLACE_REST → 67` | 65 | **66** | **67 is ABOVE the offer** |
+| **2902** | **LAJ** | 1784036624.369 | `PLACE_REST → 54` | 53 | **54** | **54 is AT the offer** |
+
+Both on `OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED`. A bid at or above the ask is not a maker rest — it executes as a taker, which is exactly what F-VS-107's maker premise and this build's own post-only machinery forbid everywhere else.
+
+**The missing guard is one term.** `window1_v54_dual_belief_os.js:668-671`:
+```js
+const ownEvidenceTarget = runningTradeLow;
+const ownEvidenceComplete = Boolean(ownEvidenceTarget && liveBid && liveAsk && liveBid < liveAsk && book?.receipt);
+const survivorSupported  = ownEvidenceComplete && criterionSupportsLevel(criterion, ownEvidenceTarget);
+targets[legId] = survivorSupported ? ownEvidenceTarget : active;
+```
+`liveBid < liveAsk` validates that the **book** is uncrossed. **It never tests `ownEvidenceTarget < liveAsk`.** The coherent lane does exactly that test — `lawfulEnvelopeHigh = Math.min(envelope.high_cents, liveAsk - 1)` — and the new singleton guard blocked URS's 58 on 8 consecutive rows for precisely this reason (58 ≥ ask 58). The DISAGREES lane has no equivalent.
+
+**The raw tape makes GIU's row sharper still.** `fit-local/ticks/…GIUBAR-GIU.csv.gz` carries **two book rows at ts 1783867786** — the first `ask_1 = 67`, the second `ask_1 = 66`. The machine read the second. **67 crosses on the row it read and sits at the offer on the row before it, while 66 was postable on both.** 66 is postable on **392 of GIU's 2,886 in-span book rows**, and from the very first instant of the span (ask 76 at 1783831858).
+
+**The build cannot have it both ways.** Either those two orders are unlawful under its own post-only rule, or the fills are mispriced — **a crossing bid at ask 66 executes as a taker at 66**, which credits GIU at 66 and makes GIUBAR **27 + 66 = 93, Δ7 — the bed spec exactly**. Either reading gives GIUBAR its cent. (LAJ's 54 crosses at the same price it was credited, so that reading is price-neutral there.)
+
+## C — Three refinements to §1
+
+**(a)** The mode is `POSTABLE_FLOOR_REST_HELD_WHILE_SINGLETON_CROSSES` — I truncated the name at 32 characters.
+
+**(b) The held 57 is not an evidenced traded floor, and the mode name overclaims.** On all 8 hold rows the row carries `governing_captured_floor_cents: 57` with `governing_floor_source: STANDING_REST_CAPTURED_FLOOR_LICENSE`, while `evidenced_floor_cents` on the same rows is **58** — the running true trade low at that instant was 58, not 57. Calling it a *floor* rest asserts something the row's own evidence field denies. Under the Definition Lock that is a second producer for "floor" re-entering by the back door; it should carry its source in the name, or be renamed `CAPTURED_REST_LICENSE`.
+
+**(c) The repair is scoped to one lane and one leg, and two cancels still kill a postable rest.** Of the 10 rows where a rest was standing and the lawful envelope low sat at or above the ask, the guard covers **8 — all URS, all the singleton-crossing case**. The other two carry no singleton level, so `crossingSingletonBlocked` is false:
+
+| ln | leg | ts | active | bid / ask | postable? | consequence |
+|---|---|---:|---:|---|---|---|
+| 247 | PAL | 1784020558 | 38 | 35 / 39 | **yes** | harmless — PAL's in-span minimum print is 39, so a 38 rest could never fill; the re-place at 39 produced the fill |
+| 4526 | DAN | 1784342469 | 58 | 59 / 59 | **yes** | DAN re-places 58 4,786 s later and never fills |
+
+The law as written is "hold a postable rest **when a singleton crosses**", not "hold a postable rest".

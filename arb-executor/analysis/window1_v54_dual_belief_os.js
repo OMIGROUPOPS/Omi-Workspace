@@ -18,7 +18,7 @@ const LAYER_PROVENANCE = Object.freeze({
   spread_settle: "L16@LAW_INDEX:0591792d",
   v3_map: "ac68e3bc:.claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json",
   v3_source_key: "LIBRARY_CLOSE_CENTS",
-  v3_runtime_rekey: "CURRENT_CAUSAL_BEST_BID_CENTS",
+  v3_runtime_rekey: "NONE_LIBRARY_MEMBER_BOUNDED_CLOSE_CENTS_PRESERVED",
   micro_micro_store: "EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND",
   phase_conditioning_fix: "F-VS-111@3be11997",
   live_deadline_fix: "F-VS-112@3be11997",
@@ -270,9 +270,16 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
     && criterionSupportsRangeLevel(criterion, clearingTarget)
   );
   const target = staleQuotedBidDisproved ? clearingTarget : baseLawful ? baseTarget : null;
+  const authorityRestored = Boolean(baseRow && baseRow.derivation && baseRow.derivation.neighbor_specialist_composition?.vote_count > 0);
+  const targetFromLicensedRows = Boolean(
+    Number.isInteger(target)
+    && depthLicense?.lawful === true
+    && (baseRow.derivation.basis_availability?.observed_traded_floor === true
+      || baseRow.derivation.true_bell_cell_depth_map?.licensed === true)
+  );
   return {
     authority: "BASE_V3_MAP_JOINT_DEPTH_MIND_WINDOW_VOTE",
-    authority_restored_to_decision_path: true,
+    authority_restored_to_decision_path: authorityRestored,
     base_target_cents: baseTarget,
     target_cents: target,
     base_target_lawful: baseLawful,
@@ -287,7 +294,12 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
       : "SPREAD_EYE_RECORDED_NO_AUTHORITY_LEVEL_CHANGE",
     live_bid_cents: liveBid,
     live_ask_cents: liveAsk,
-    no_lane_may_replace_target: true,
+    target_from_licensed_rows: targetFromLicensedRows,
+    // The authority can lawfully be silent.  In that state lanes still may not
+    // invent a price; they can only hold an already licensed rest.  Derive the
+    // contract from the loaded specialist authority and either a licensed
+    // target or explicit silence, rather than stamping a literal.
+    no_lane_may_replace_target: Boolean(authorityRestored && (!Number.isInteger(target) || targetFromLicensedRows)),
     provenance: [LAYER_PROVENANCE.pricing_authority_restored, LAYER_PROVENANCE.spread_eye],
   };
 }
@@ -466,7 +478,7 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, l
   const envelopeHigh = observedTradeLow ?? liveBid;
   const envelopeHighBasis = observedTradeLow ? "OBSERVED_TRUE_TRADE_LOW" : liveBid ? "CAUSAL_DISPLAYED_BID" : null;
   const envelopeHighReceipt = observedTradeLow ? observedTradeLowReceipt : reads.books.value[legId]?.receipt ?? null;
-  const mapCell = baseRow.derivation.true_bell_cell_depth_map?.cell ?? null;
+  const mapVotes = baseRow.derivation.true_bell_cell_depth_map?.map_votes ?? [];
   // F-VS-120: the seen low is state, not the answer.  Members supply the
   // bell-bounded strict-future low relative to the low they had seen at the
   // same phase.  The existing own-evidence conditioning weights form the
@@ -494,9 +506,9 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, l
     && liveBid < liveAsk
     && Boolean(bookReceipt)
     && Boolean(topNeighbor?.citation_receipt_id);
-  const store = mapCell
-    ? `${state.category}|${mapCell.price_cell} (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS)`
-    : `UNMAPPED (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS)`;
+  const store = mapVotes.length
+    ? `${mapVotes.length} specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE)`
+    : `UNMAPPED (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE)`;
   const neighborName = topNeighbor
     ? `${topNeighbor.event_id}@${round2(topNeighbor.score)} [${topNeighbor.quality}/${topNeighbor.grain ?? "UNKNOWN"}; MACRO/MICRO; ${topNeighbor.citation_receipt_id}]`
     : "NO_GRADED_NEIGHBOR";
@@ -528,7 +540,7 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, l
       source_key: LAYER_PROVENANCE.v3_source_key,
       runtime_rekey: LAYER_PROVENANCE.v3_runtime_rekey,
       stated_verbatim: true,
-      cell: mapCell,
+      cells: mapVotes.map((row) => ({ event_id: row.event_id, category: row.category, price_cell: row.v3_price_cell, edge_p50_cents: row.map_cell?.edge_p50_cents ?? null })),
     },
     top_neighbor: topNeighbor ? { event_id: topNeighbor.event_id, score: topNeighbor.score, coverage: topNeighbor.coverage, quality: topNeighbor.quality, grain: topNeighbor.grain, licensed_layers: topNeighbor.licensed_layers, citation_receipt_id: topNeighbor.citation_receipt_id } : null,
     own_evidence: own,
@@ -975,6 +987,8 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
           ? "CARRIED_CONVICTION_WRITER"
           : "OWN_TOUCH_WRITER";
     targets[legId] = authorityTarget ?? active;
+    const laneLevelReplacedAuthority = Number.isInteger(authorityTarget)
+      && cent(targets[legId]) !== authorityTarget;
     envelopePlacement[legId] = {
       ...envelopePlacement[legId],
       mode: authorityTarget ? "PRICING_AUTHORITY_TARGET_EXECUTED" : active ? "PRICING_AUTHORITY_SILENT_HOLD_EXISTING_REST" : "PRICING_AUTHORITY_SILENT_NO_PLACEMENT",
@@ -982,7 +996,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       lane_proposal_before_authority_cents: laneProposalBeforeAuthority,
       pricing_authority: pricingAuthority,
       writer_lane: writerLane,
-      lane_level_replaced_authority: false,
+      lane_level_replaced_authority: laneLevelReplacedAuthority,
       live_bid_relation: authorityTarget === liveBid
         ? "PRICING_AUTHORITY_OUTPUT_EQUALS_LIVE_BID_NOT_LANE_DEFAULT"
         : "REFERENCE_EVIDENCE_NOT_FINAL_LEVEL",
@@ -1018,9 +1032,9 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     // same receipt. Pair conservation remains senior and is checked after this
     // proposal, but the pricing proposal itself must consume the new fact.
     if (floorEstablishedOnCurrentReceipt && targetBeforeSameReceiptFloorLaw !== evidencedFloor) {
-      const governedTarget = sameReceiptFloorPostable
-        ? Number.isInteger(active) && active <= evidencedFloor ? active : evidencedFloor
-        : active;
+      // A hold forbids chasing a weakening book downward. It never forbids
+      // lifting an under-priced rest toward a newly evidenced traded floor.
+      const governedTarget = sameReceiptFloorPostable ? evidencedFloor : active;
       targets[legId] = governedTarget;
       envelopePlacement[legId] = {
         ...envelopePlacement[legId],
@@ -1038,7 +1052,9 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         disposition: sameReceiptFloorPostable && !Number.isInteger(active)
           ? "HANDOFF_POSTABLE_FLOOR_TO_FLOOR_CAPABLE_WRITER"
           : sameReceiptFloorPostable
-            ? "EXISTING_REST_AT_OR_DEEPER_THAN_NEW_FLOOR_HELD"
+            ? active < evidencedFloor
+              ? "DENIED_DEEP_REST_LIFTED_TO_NEW_EVIDENCED_FLOOR"
+              : "EXISTING_REST_ALREADY_AT_NEW_EVIDENCED_FLOOR_HELD"
           : "HOLD_EXISTING_REST_NEW_FLOOR_NOT_POSTABLE_NO_AWAY_REPRICE",
         may_reprice_below_or_away_from_established_floor: false,
         provenance: LAYER_PROVENANCE.same_receipt_floor_hold,
@@ -1056,9 +1072,8 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       role: "MAXIMUM_LAWFUL_REDUCTION_FLOOR_FOR_PAIR_PAR_ALLOCATION",
       provenance: LAYER_PROVENANCE.definition_repair_headroom,
     };
-    const capturedLicensedLevel = cent(reads.half_pair_state.value.legs[legId].standing_captured_rest_level_cents);
     const floorSupportingShapes = Number.isInteger(active) && criterionSupportsRangeLevel(criterion, active) ? (survivor?.survivor_shapes ?? []) : [];
-    const activeAtSupportedEvidencedFloor = Boolean(active === capturedLicensedLevel && reads.half_pair_state.value.legs[legId].standing_captured_rest_license_receipt && floorSupportingShapes.length > 0 && liveAsk && active < liveAsk);
+    const activeAtSupportedEvidencedFloor = Boolean(active === evidencedFloor && evidencedFloorReceipt && floorSupportingShapes.length > 0 && liveAsk && active < liveAsk);
     const proposalBeforeFloorProtection = cent(targets[legId]);
     // The lawful protection is symmetric and exact: only a rest already standing
     // at the current evidenced traded floor may hold against a conflicting belief,
@@ -1074,7 +1089,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         evidenced_floor_source: "OBSERVED_TRUE_TRADE_PRINT_ONLY_NOT_DERIVED_FROM_REST",
         evidenced_floor_receipt: evidencedFloorReceipt,
         licensed_floor_level_cents: active,
-        licensed_floor_level_receipt: reads.half_pair_state.value.legs[legId].standing_captured_rest_license_receipt,
+        licensed_floor_level_receipt: evidencedFloorReceipt,
         proposed_conflicting_target_cents: proposalBeforeFloorProtection,
         supporting_shapes_still_alive: floorSupportingShapes,
         supporting_eliminations_overturned: false,
@@ -1293,8 +1308,10 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
               : "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL";
     const action = actionForTarget(active, target, reason);
     const explicitWriter = envelopePlacement[legId]?.writer_lane ?? null;
-    const derivedWinner = placementMode === "EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT"
-      ? "LICENSED_FLOOR_TENURE"
+    const derivedWinner = !Number.isInteger(target) && !Number.isInteger(active)
+      ? "NO_ACTION"
+      : placementMode === "EVIDENCED_FLOOR_REST_HELD_CURRENT_SURVIVOR_SUPPORT"
+        ? "LICENSED_FLOOR_TENURE"
       : placementMode === "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
         ? "ACTIVE_REST_HOLD"
         : placementMode === "CANCEL_REARM_RESTORES_PRIOR_LICENSED_PRICE"
@@ -1328,10 +1345,10 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const evidencedFloorReceipt = evidencedFloor === null
       ? null
       : [...state.legs[legId].prints].reverse().find((print) => cent(print.price_cents) === evidencedFloor)?.receipt ?? null;
-    const standingLicensedLevel = cent(reads.half_pair_state.value.legs[legId].standing_captured_rest_level_cents);
-    const standingLicensedReceipt = reads.half_pair_state.value.legs[legId].standing_captured_rest_license_receipt ?? null;
+    const standingLicensedLevel = evidencedFloor;
+    const standingLicensedReceipt = evidencedFloorReceipt;
     const floorSupportAlive = Number.isInteger(active) && criterionSupportsRangeLevel(survivor?.target_criterion, active) ? (survivor?.survivor_shapes ?? []) : [];
-    const activeAtSupportedFloor = Boolean(active === standingLicensedLevel && standingLicensedReceipt && floorSupportAlive.length > 0);
+    const activeAtSupportedFloor = Boolean(active === evidencedFloor && evidencedFloorReceipt && floorSupportAlive.length > 0);
     const floorPrint = evidencedFloor === null
       ? null
       : [...state.legs[legId].prints].reverse().find((print) => cent(print.price_cents) === evidencedFloor) ?? null;
@@ -1511,6 +1528,33 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.derivation.spread_eye = spreadEyes[legId];
     row.derivation.derived_target_cents = target;
     row.derivation.allocation = allocation;
+    const authorityTargetAtReceipt = cent(pricingAuthorities[legId]?.target_cents);
+    const authorityDiverged = Number.isInteger(authorityTargetAtReceipt) && target !== authorityTargetAtReceipt;
+    const seniorAuthorityReason = authorityDiverged
+      ? rearmReceipt?.status === "REARM_PENDING"
+        ? "C04_PAIR_CONSERVATION_CANCEL_REARM_PENDING"
+        : rearmReceipt?.status === "REARM_RESOLVED_WITH_LAWFUL_REST"
+          ? "C04_CANCEL_REARM_RESTORES_PRICE"
+          : envelopePlacement[legId]?.technique_contract !== "C01_PRICING_AUTHORITY_OVER_LANE_LEVEL_SELECTION"
+            ? envelopePlacement[legId]?.technique_contract
+            : allocation.fill_handoff_resnap
+              ? "PAIR_CAP_FILL_HANDOFF_RESNAP"
+              : Number.isInteger(allocation.excess_cents)
+                && allocation.excess_cents > 0
+                && cent(allocation.rejected_candidate_targets?.[legId]) === authorityTargetAtReceipt
+                && cent(allocation.targets?.[legId]) === target
+                ? "PAIR_CONSERVATION_ALLOCATION"
+              : allocation.reason?.includes("JOINT_TARGET") || allocation.reason?.includes("PAIR_ALLOCATION")
+                ? "PAIR_CONSERVATION_ALLOCATION"
+                : null
+      : null;
+    row.derivation.authority_target_divergence = {
+      authority_target_cents: authorityTargetAtReceipt,
+      final_target_cents: target,
+      diverged: authorityDiverged,
+      licensed_senior: !authorityDiverged || Boolean(seniorAuthorityReason),
+      senior_authority_reason: seniorAuthorityReason,
+    };
     const siblingLegId = state.leg_ids.find((id) => id !== legId);
     const siblingPlan = creditedId
       ? cent(reads.half_pair_state.value.legs[creditedId].entry_cents)

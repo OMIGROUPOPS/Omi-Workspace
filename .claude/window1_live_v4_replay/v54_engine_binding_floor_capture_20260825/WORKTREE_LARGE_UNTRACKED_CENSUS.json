@@ -1,0 +1,63 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/ATOMIC_REARM_RECEIPT.json",
+      "bytes": 48155544,
+      "sha256": "913df3025b7db4ef85cd4f43473915193c8e979f6feb158e0c33d19eb34c0a71"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 185919817,
+      "sha256": "dfbaad4d2f325e3eab7a7e27149af23395ba8025ff1943e62e6e0a4c86557b11"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 37356351,
+      "sha256": "58d82f7ad2ba4dd601fe23607c5234cb7a41957e95652224632d695aca479d7b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 240649904,
+      "sha256": "064a695ab7640e0a0fc768e0164c46fc27fc74e9576b42924a8c1c3dcb5a12e2"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 85511303,
+      "sha256": "08b2b175143df37d2ac716f41e823d0eec632275a0d2defe57f0f17e6ecf25c4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "bytes": 335450145,
+      "sha256": "b10f069798f8f33fe2547b47230ebd26b81e396108ded994b83f5af082c11119"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 110918495,
+      "sha256": "6322acbe41ac106b67901de5580fa0affb57dc7a688fce373aae1293785bff25"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 167167323,
+      "sha256": "aacef3988b5dc3f3577a6de6347d7b8f72735118f6b96820d573ebdd1fb25fa7"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/SMOKE_CRIJEA.md",
+      "bytes": 18525799,
+      "sha256": "640b3e77577c29db6579e532374a0d19febc27d40454fd6a941ee228ec017299"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_engine_binding_floor_capture_20260825/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 23301676,
+      "sha256": "24e33196b03c17b736bb4598b824fd1cc4e88e932b0dd072d802bd2b87df8b92"
+    }
+  ],
+  "count": 11,
+  "bytes": 1264331026
+}

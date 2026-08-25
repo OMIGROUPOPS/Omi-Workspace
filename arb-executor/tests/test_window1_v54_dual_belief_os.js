@@ -63,9 +63,9 @@ assert.match(derivation.sentence, /CR-[0-9a-f]{64}/);
 assert.equal(derivation.pair_conservation.at_or_below_99, true);
 assert.equal(derivation.resources_consulted.length, 0, "connectivity must not be mislabeled as consultation");
 assert.ok(Object.values(derivation.citation_receipts).every((row) => row.captured_at_receipt === state.receipt));
-assert.equal(derivation.derivation.target_basis, "EVIDENCED_TOUCH");
-assert.equal(derivation.derivation.evidence_rung, "EVIDENCED_TOUCH");
-assert.equal(derivation.derivation.proposed_target_cents, reads.books.value.AAA.bid_cents);
+assert.equal(derivation.derivation.target_basis, "OBSERVED_TRADED_FLOOR_AUTHORITY");
+assert.equal(derivation.derivation.evidence_rung, "OBSERVED_TRADED_FLOOR_AUTHORITY");
+assert.equal(derivation.derivation.proposed_target_cents, 38);
 assert.equal(derivation.derivation.stale_prior_path_used, false);
 assert.match(derivation.sentence, /TOUCH_RELATION=/);
 assert.match(derivation.sentence, /PRICE_AT_EVIDENCED_TOUCH=/);
@@ -75,17 +75,16 @@ assert.match(derivation.sentence, /MAP_MEMBERS=/);
 assert.match(derivation.sentence, /CHOSEN_DEPTH_CENTS=/);
 assert.match(derivation.sentence, /OWN_WINDOW=/);
 assert.match(derivation.sentence, /PAIR_STATE=/);
-assert.match(derivation.sentence, /EVIDENCE_RUNG=EVIDENCED_TOUCH/);
+assert.match(derivation.sentence, /EVIDENCE_RUNG=OBSERVED_TRADED_FLOOR_AUTHORITY/);
 
 const untimedNeighborhood = neighborhood.map((row) => ({ ...row, legs: row.legs.map((leg) => ({ ...leg, floor_fraction: null })) }));
 const rung2 = os.deriveAction({ state, reads, neighborhood: untimedNeighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r2" }, resources });
-assert.equal(rung2.derivation.evidence_rung, "EVIDENCED_TOUCH");
-assert.equal(rung2.derivation.proposed_target_cents, reads.books.value.AAA.bid_cents);
+assert.equal(rung2.derivation.evidence_rung, "OBSERVED_TRADED_FLOOR_AUTHORITY");
+assert.equal(rung2.derivation.proposed_target_cents, 38);
 
 const rung3 = os.deriveAction({ state, reads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r3" }, resources });
-assert.equal(rung3.derivation.evidence_rung, "EVIDENCED_TOUCH");
-assert.equal(rung3.derivation.distribution_depth_cents, 0);
-assert.equal(rung3.derivation.proposed_target_cents, reads.books.value.AAA.bid_cents);
+assert.equal(rung3.derivation.evidence_rung, "OBSERVED_TRADED_FLOOR_AUTHORITY");
+assert.equal(rung3.derivation.proposed_target_cents, 38);
 
 os.configureTrueBellCellDepthMap({
   kind: "TRUE_BELL_CELL_CONDITIONAL_DEPTH_MAP_V3",
@@ -96,10 +95,13 @@ os.configureTrueBellCellDepthMap({
 });
 const timedCorpus = corpus.map((row) => row.event_id === "TEST-EVENT" ? row : ({
   ...row,
-  legs: row.legs.map((leg) => ({ ...leg, specialist_record: { kind: "BOUNDED_TWO_BEHAVIOR_FLOOR_CAPTURE", floor_fraction: 0.5, source_receipt: `${row.event_id}|${leg.leg_id}|floor` } })),
+  legs: row.legs.map((leg) => ({ ...leg, specialist_record: { kind: "BOUNDED_TWO_BEHAVIOR_FLOOR_CAPTURE", floor_fraction: 0.5, library_close_cents: 37, library_floor_cents: 34, v3_price_cell: 37, source_receipt: `${row.event_id}|${leg.leg_id}|floor` } })),
 }));
-const timedNeighborhood = os.retrieveNeighborhood(timedCorpus, vector, "TEST-EVENT", 2, state.receipt);
-const mapped = os.deriveAction({ state, reads, neighborhood: timedNeighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-map" }, resources });
+const mappedState = os.createTapeState(meta);
+for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(mappedState, leg, { timestamp_epoch: ts, receipt: `mapped-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });
+const mappedReads = os.readAll(mappedState), mappedVector = os.vectorFromReads(mappedState, mappedReads);
+const timedNeighborhood = os.retrieveNeighborhood(timedCorpus, mappedVector, "TEST-EVENT", 2, mappedState.receipt);
+const mapped = os.deriveAction({ state: mappedState, reads: mappedReads, neighborhood: timedNeighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-map" }, resources });
 assert.equal(mapped.derivation.evidence_rung, "TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED");
 assert.equal(mapped.derivation.true_bell_cell_depth_map.licensed, true);
 assert.equal(mapped.derivation.proposed_target_cents, 34);
@@ -126,7 +128,7 @@ assert.match(blocked.sentence, /ACTION=HOLD_REST; TARGET_CENTS=NONE/);
 const noTape = os.createTapeState(meta);
 const noTapeReads = os.readAll(noTape);
 const rung4 = os.deriveAction({ state: noTape, reads: noTapeReads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r4" }, resources });
-assert.equal(rung4.derivation.evidence_rung, "EVIDENCED_TOUCH");
+assert.equal(rung4.derivation.evidence_rung, "INSUFFICIENT_EVIDENCE_NO_LICENSED_AUTHORITY_TARGET");
 assert.equal(rung4.derivation.proposed_target_cents, null);
 assert.equal(rung4.action.action, "HOLD_REST");
 assert.equal(rung4.action.target_cents, null);
@@ -163,8 +165,9 @@ os.observe(jointState, "AAA", { timestamp_epoch: 211, receipt: "joint-print-a", 
 os.observe(jointState, "BBB", { timestamp_epoch: 211, receipt: "joint-print-b", kind: "PRINT", price_cents: 62, size: 7 });
 const jointReads = os.readAll(jointState), jointVector = os.vectorFromReads(jointState, jointReads);
 const jointCorpus = [
-  { event_id: "JOINT-N1", event_date: "26JUN01", category: "ATP_MAIN", quality: "FOUNDATION_MINUTE_BELL_BOUNDED", grain: "MINUTE", licensed_layers: ["MACRO", "MICRO"], vector: jointVector, legs: [{ leg_id: "JA", anchor_cents: 40, observed_low_cents: 38, low_cents: 36, floor_fraction: 0.5, future_low_return_path: [{ window_fraction: 0, seen_true_trade_low_cents: 38, strict_future_true_trade_low_cents: 39, future_low_minus_seen_low_cents: 1, source_row_ref: "minute#ja" }], future_low_return_source: "future-low#ja" }, { leg_id: "JB", anchor_cents: 60, observed_low_cents: 58, low_cents: 58, floor_fraction: 0.5, future_low_return_path: [{ window_fraction: 0, seen_true_trade_low_cents: 58, strict_future_true_trade_low_cents: 57, future_low_minus_seen_low_cents: -1, source_row_ref: "minute#jb" }], future_low_return_source: "future-low#jb" }], source_receipts: [{ source_id: "FOUNDATION", row_ref: "foundation.jsonl#row-1" }] },
+  { event_id: "JOINT-N1", event_date: "26JUN01", category: "ATP_MAIN", quality: "FOUNDATION_MINUTE_BELL_BOUNDED", grain: "MINUTE", licensed_layers: ["MACRO", "MICRO"], vector: jointVector, legs: [{ leg_id: "JA", anchor_cents: 40, observed_low_cents: 38, low_cents: 36, floor_fraction: 0.5, specialist_record: { kind: "BOUNDED_TWO_BEHAVIOR_FLOOR_CAPTURE", floor_fraction: 0.5, library_close_cents: 40, library_floor_cents: 36, v3_price_cell: 40, source_receipt: "joint-ja-specialist" }, future_low_return_path: [{ window_fraction: 0, seen_true_trade_low_cents: 38, strict_future_true_trade_low_cents: 39, future_low_minus_seen_low_cents: 1, source_row_ref: "minute#ja" }], future_low_return_source: "future-low#ja" }, { leg_id: "JB", anchor_cents: 60, observed_low_cents: 58, low_cents: 58, floor_fraction: 0.5, specialist_record: { kind: "BOUNDED_TWO_BEHAVIOR_FLOOR_CAPTURE", floor_fraction: 0.5, library_close_cents: 60, library_floor_cents: 58, v3_price_cell: 60, source_receipt: "joint-jb-specialist" }, future_low_return_path: [{ window_fraction: 0, seen_true_trade_low_cents: 58, strict_future_true_trade_low_cents: 57, future_low_minus_seen_low_cents: -1, source_row_ref: "minute#jb" }], future_low_return_source: "future-low#jb" }], source_receipts: [{ source_id: "FOUNDATION", row_ref: "foundation.jsonl#row-1" }] },
 ];
+os.configureTrueBellCellDepthMap({ kind: "TRUE_BELL_CELL_CONDITIONAL_DEPTH_MAP_V3", commit: "ac68e3bc-test-joint", path: "TRUE_BELL_CELL_DEPTH_MAP.json", sha256: "joint-map-sha", cells: [{ category: "ATP_MAIN", price_cell: 40, edge_p50_cents: 4, n_legs: 20 }, { category: "ATP_MAIN", price_cell: 60, edge_p50_cents: 2, n_legs: 20 }] });
 const jointNeighborhood = os.retrieveNeighborhood(jointCorpus, jointVector, "TEST-EVENT", 1, jointState.receipt);
 const allMacroStates = ["ANCHOR_OR_UNMOVED", "AT_RISING_PEAK", "PULLBACK_ABOVE_ANCHOR", "RETURNED_TO_ANCHOR_FROM_PEAK", "AT_DESCENDING_LOW", "REBOUND_BELOW_ANCHOR"];
 const anyEnvelope = { macro_states: allMacroStates, ask_net: [-99, 99], ask_dip: [-99, 99], ask_peak: [-99, 99], ask_drawdown_from_peak: [-99, 99] };
@@ -220,7 +223,7 @@ assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placeme
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_restored_to_decision_path));
 assert(joint.derivations.every((row) => row.layered_dual_belief.decision_arbitration.lane_may_replace_authority === false));
 assert(joint.derivations.every((row) => row.sentence.includes("ENVELOPE_PLACEMENT=")));
-assert(joint.derivations.every((row) => row.sentence.includes("SOURCE_KEY=LIBRARY_CLOSE_CENTS") || row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS")));
+assert(joint.derivations.every((row) => row.sentence.includes("SOURCE_KEY=LIBRARY_CLOSE_CENTS") || row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->NONE_LIBRARY_MEMBER_BOUNDED_CLOSE_CENTS_PRESERVED")));
 assert(joint.derivations.every((row) => row.pair_conservation.at_or_below_99));
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.macro.conditioned_priors).every((prior) => prior.remaining_dip_distribution_cents.q50 <= prior.conditioned_total_dip_distribution_cents.q50)), "remaining travel must be total minus arrived");
 assert.equal(joint.derivations[0].layered_dual_belief.macro.conditioned_priors.AAA.remaining_dip_distribution_cents.q50, 2);
@@ -256,9 +259,9 @@ const disagrees = os.deriveJointActions({ state: jointState, reads: jointReads, 
 assert.equal(disagrees.coherence.status, "DISAGREES");
 assert(disagrees.derivations.every((row) => row.action.reason === "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"));
 assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
-assert(disagrees.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner.lane === "FLOOR_CAPABLE_WRITER"));
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner_regenerated_from_lane_eligibility));
 assert(disagrees.derivations.every((row) => row.layered_dual_belief.pricing_authority.no_lane_may_replace_target));
-assert(disagrees.derivations.every((row) => row.action.target_cents < row.layered_dual_belief.envelope_placement.live_ask_cents));
+assert(disagrees.derivations.filter((row) => Number.isInteger(row.action.target_cents)).every((row) => row.action.target_cents < row.layered_dual_belief.envelope_placement.live_ask_cents));
 
 const noOpinionState = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(noOpinionState, leg, { timestamp_epoch: ts, receipt: `noop-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });
@@ -266,10 +269,10 @@ const noOpinionReads = os.readAll(noOpinionState);
 assert.equal(noOpinionReads.lows_travel.value.AAA.observed_traded_low_cents, null, "book last/mid must never enter the traded-low field");
 assert.equal(noOpinionReads.lows_travel.value.AAA.book_path_low_cents, 38);
 const noOpinion = os.deriveJointActions({ state: noOpinionState, reads: noOpinionReads, neighborhood: [], lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
-assert.deepEqual(noOpinion.derivations.map((row) => row.action.target_cents), [37, 61]);
-assert(noOpinion.derivations.every((row) => row.action.action === "PLACE_REST"));
-assert(noOpinion.derivations.every((row) => row.action.reason === "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"));
-assert(noOpinion.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner.lane === "OWN_TOUCH_WRITER"));
-assert(noOpinion.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
+assert.deepEqual(noOpinion.derivations.map((row) => row.action.target_cents), [null, null]);
+assert(noOpinion.derivations.every((row) => row.action.action === "HOLD_REST"));
+assert(noOpinion.derivations.every((row) => !String(row.action.reason).includes("EXECUTED_BY_LANE")));
+assert(noOpinion.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner.lane === "NO_ACTION"));
+assert(noOpinion.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"));
 
 console.log("window1_v54_dual_belief_os: PASS");

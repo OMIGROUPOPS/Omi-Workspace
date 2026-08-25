@@ -1,0 +1,84 @@
+{
+  "label": "V54_ENGINE_BINDING_FLOOR_CAPTURE_DETERMINISM_X2",
+  "method": "Each four-game execution is replayed twice from the same materialized tape, corpus, resources, and policy bytes; execution, decision stages, rearm attempts, and fill receipts are compared byte-for-byte before any score receipt is emitted.",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "first_sha256": "04f292971eba71583e45595be4dbf1ecb6a0dbc92b57eabe2fece3fcfbecc056",
+      "second_sha256": "04f292971eba71583e45595be4dbf1ecb6a0dbc92b57eabe2fece3fcfbecc056",
+      "byte_identical": true,
+      "first_bytes": 77187539,
+      "second_bytes": 77187539,
+      "first_counts": {
+        "stage_reads": 214,
+        "rearm_attempts": 0,
+        "fill_events": 2
+      },
+      "second_counts": {
+        "stage_reads": 214,
+        "rearm_attempts": 0,
+        "fill_events": 2
+      },
+      "first_difference": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "first_sha256": "bd3c66face5d8adc0aa103c07089ceb530c133dffb261148432d84d755b31531",
+      "second_sha256": "bd3c66face5d8adc0aa103c07089ceb530c133dffb261148432d84d755b31531",
+      "byte_identical": true,
+      "first_bytes": 2193824286,
+      "second_bytes": 2193824286,
+      "first_counts": {
+        "stage_reads": 1515,
+        "rearm_attempts": 0,
+        "fill_events": 2
+      },
+      "second_counts": {
+        "stage_reads": 1515,
+        "rearm_attempts": 0,
+        "fill_events": 2
+      },
+      "first_difference": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "first_sha256": "5196f1cb8f1cdccea8fd51eaae8a37b77d8d35f0a994299f97477053834d74d5",
+      "second_sha256": "5196f1cb8f1cdccea8fd51eaae8a37b77d8d35f0a994299f97477053834d74d5",
+      "byte_identical": true,
+      "first_bytes": 68527937,
+      "second_bytes": 68527937,
+      "first_counts": {
+        "stage_reads": 78,
+        "rearm_attempts": 0,
+        "fill_events": 2
+      },
+      "second_counts": {
+        "stage_reads": 78,
+        "rearm_attempts": 0,
+        "fill_events": 2
+      },
+      "first_difference": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "first_sha256": "7e8529678b33ee7a5156c21e70b1bcb886db5584dcf69f3559c4523aee69e657",
+      "second_sha256": "7e8529678b33ee7a5156c21e70b1bcb886db5584dcf69f3559c4523aee69e657",
+      "byte_identical": true,
+      "first_bytes": 94911655,
+      "second_bytes": 94911655,
+      "first_counts": {
+        "stage_reads": 81,
+        "rearm_attempts": 0,
+        "fill_events": 0
+      },
+      "second_counts": {
+        "stage_reads": 81,
+        "rearm_attempts": 0,
+        "fill_events": 0
+      },
+      "first_difference": null
+    }
+  ],
+  "all_byte_identical": true,
+  "runs_per_game": 2
+}

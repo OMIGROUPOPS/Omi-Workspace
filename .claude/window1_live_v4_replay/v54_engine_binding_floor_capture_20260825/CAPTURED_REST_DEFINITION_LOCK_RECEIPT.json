@@ -1,0 +1,10 @@
+{
+  "label": "F_VS_192_CAPTURED_REST_LICENSE_IS_NOT_A_FLOOR_PRODUCER",
+  "provenance": [
+    "F-VS-192@2941cd15",
+    "DEFINITION_LOCK"
+  ],
+  "true_floor_source": "OBSERVED_TRUE_TRADE_PRINT_PREFIX_ONLY",
+  "rows": [],
+  "violations": []
+}

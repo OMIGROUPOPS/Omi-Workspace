@@ -1,0 +1,2208 @@
+{
+  "label": "V54_LITERAL_ORDER_RECEIPT_REPAIR_EXECUTABLE_SUMMARY",
+  "producer": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+  "run_source": "V54_ENGINE_BINDING_FLOOR_CAPTURE_20260825",
+  "scope": {
+    "games_executed": 4,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false
+  },
+  "definitions": {
+    "floor": {
+      "authority": "BELL_LAWFUL_OBSERVED_TRADED_LOW_ONLY",
+      "evaluated_receipts": 3388,
+      "trade_prefix_rows": 3143,
+      "no_trade_rows": 245,
+      "independent_check_failures": 0
+    },
+    "tenure": {
+      "at_floor_receipts": 2555,
+      "episodes": 320,
+      "episodes_by_leg": {
+        "26JUL12GIUBAR|BAR": [
+          {
+            "level_cents": 28,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 27,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 28,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 30,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 29,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 25,
+            "tenure_seconds": 0
+          },
+          {
+            "level_cents": 27,
+            "tenure_seconds": 0.11300015449523926
+          }
+        ],
+        "26JUL12GIUBAR|GIU": [
+          {
+            "level_cents": 65,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 62,
+            "tenure_seconds": 0
+          },
+          {
+            "level_cents": 62,
+            "tenure_seconds": 23
+          },
+          {
+            "level_cents": 62,
+            "tenure_seconds": 185
+          },
+          {
+            "level_cents": 69,
+            "tenure_seconds": 142
+          },
+          {
+            "level_cents": 68,
+            "tenure_seconds": 7868
+          },
+          {
+            "level_cents": 69,
+            "tenure_seconds": 0.7590000629425049
+          }
+        ],
+        "26JUL14URSPAL|PAL": [
+          {
+            "level_cents": 30,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 28,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 28,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 28,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 28,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 37,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 0.36299991607666016
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 288
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 190
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 594
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 5
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 576
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 15
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 226
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 110
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 49
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 8
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 9
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 8
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 8
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 19
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 7
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 6
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 5
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 8
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 12
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 12
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 7
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 6
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 6
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 8
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 5
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 7
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 13
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 14
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 7
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 20
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 11
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 9
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 5
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 5
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 10
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 5
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 6
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 5
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1.7860000133514404
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 40,
+            "tenure_seconds": 17736.986000061035
+          }
+        ],
+        "26JUL14URSPAL|URS": [
+          {
+            "level_cents": 59,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 64,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 60,
+            "tenure_seconds": 418.80599999427795
+          },
+          {
+            "level_cents": 64,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 63,
+            "tenure_seconds": 9896
+          },
+          {
+            "level_cents": 60,
+            "tenure_seconds": 9
+          },
+          {
+            "level_cents": 61,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 61,
+            "tenure_seconds": 1867
+          },
+          {
+            "level_cents": 63,
+            "tenure_seconds": 5161
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 7
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 30
+          },
+          {
+            "level_cents": 57,
+            "tenure_seconds": 103
+          },
+          {
+            "level_cents": 56,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 55,
+            "tenure_seconds": 444
+          },
+          {
+            "level_cents": 54,
+            "tenure_seconds": 269
+          },
+          {
+            "level_cents": 55,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 56,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 3
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 41
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 45
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 47
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 18
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 8
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 28
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 18
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 2
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 57,
+            "tenure_seconds": 149
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 24
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 618
+          },
+          {
+            "level_cents": 57,
+            "tenure_seconds": 416
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 8
+          },
+          {
+            "level_cents": 57,
+            "tenure_seconds": 263
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 204
+          },
+          {
+            "level_cents": 57,
+            "tenure_seconds": 600
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 13
+          },
+          {
+            "level_cents": 57,
+            "tenure_seconds": 600
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 10
+          },
+          {
+            "level_cents": 57,
+            "tenure_seconds": 2849
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 1601.5999999046326
+          }
+        ],
+        "26JUL14LAJSVA|LAJ": [
+          {
+            "level_cents": 59,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 52,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 55,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 52,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 55,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 52,
+            "tenure_seconds": 2.632999897003174
+          },
+          {
+            "level_cents": 61,
+            "tenure_seconds": 1275
+          },
+          {
+            "level_cents": 60,
+            "tenure_seconds": 2808
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 38
+          },
+          {
+            "level_cents": 57,
+            "tenure_seconds": 5
+          },
+          {
+            "level_cents": 56,
+            "tenure_seconds": 29
+          },
+          {
+            "level_cents": 55,
+            "tenure_seconds": 61
+          },
+          {
+            "level_cents": 54,
+            "tenure_seconds": 355
+          },
+          {
+            "level_cents": 55,
+            "tenure_seconds": 7
+          },
+          {
+            "level_cents": 56,
+            "tenure_seconds": 222
+          },
+          {
+            "level_cents": 54,
+            "tenure_seconds": 3973
+          },
+          {
+            "level_cents": 53,
+            "tenure_seconds": 11785
+          },
+          {
+            "level_cents": 54,
+            "tenure_seconds": 14331.06200003624
+          }
+        ],
+        "26JUL14LAJSVA|SVA": [
+          {
+            "level_cents": 29,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 34,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 34,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 36,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 32,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 31,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 34,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 36,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 34,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 40,
+            "tenure_seconds": 7.170000076293945
+          },
+          {
+            "level_cents": 41,
+            "tenure_seconds": 0.48399996757507324
+          }
+        ],
+        "26JUL18DANPRA|DAN": [
+          {
+            "level_cents": 44,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 44,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 44,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 44,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 56,
+            "tenure_seconds": null
+          },
+          {
+            "level_cents": 57,
+            "tenure_seconds": 2019.226000070572
+          },
+          {
+            "level_cents": 58,
+            "tenure_seconds": 5929
+          },
+          {
+            "level_cents": 59,
+            "tenure_seconds": 25801
+          }
+        ],
+        "26JUL18DANPRA|PRA": [
+          {
+            "level_cents": 44,
+            "tenure_seconds": 51
+          },
+          {
+            "level_cents": 43,
+            "tenure_seconds": 5
+          },
+          {
+            "level_cents": 42,
+            "tenure_seconds": 4
+          },
+          {
+            "level_cents": 43,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 42,
+            "tenure_seconds": 8712
+          },
+          {
+            "level_cents": 40,
+            "tenure_seconds": 19641
+          },
+          {
+            "level_cents": 40,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 40,
+            "tenure_seconds": 1
+          },
+          {
+            "level_cents": 40,
+            "tenure_seconds": 12084
+          },
+          {
+            "level_cents": 40,
+            "tenure_seconds": 0
+          }
+        ]
+      },
+      "urs_observed_episode": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "leg_id": "URS",
+        "truth_table_floor_cents": 57,
+        "decision_rows_total": 1510,
+        "sampling_status": "SAMPLED_SOMEWHERE_IN_WINDOW",
+        "at_floor_receipts": 1149,
+        "episodes": [
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784001495,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+            "standing_ended_at_epoch": 1784004251,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-57",
+            "full_standing_interval_seconds": 2756,
+            "governing_floor_tenure_started_at_epoch": null,
+            "governing_floor_tenure_started_at_receipt": null,
+            "tenure_seconds": null,
+            "running_traded_low_at_stand_cents": null,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "NO_TRADED_FLOOR_AT_STAND",
+            "counted_as_governing_floor_tenure": false,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 64,
+            "standing_started_at_epoch": 1784004251,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-57",
+            "standing_ended_at_epoch": 1784004782,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-524",
+            "full_standing_interval_seconds": 531,
+            "governing_floor_tenure_started_at_epoch": null,
+            "governing_floor_tenure_started_at_receipt": null,
+            "tenure_seconds": null,
+            "running_traded_low_at_stand_cents": null,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "NO_TRADED_FLOOR_AT_STAND",
+            "counted_as_governing_floor_tenure": false,
+            "decision_rows_inside_standing_interval": 2,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 60,
+            "standing_started_at_epoch": 1784004782,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-524",
+            "standing_ended_at_epoch": 1784006316,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-567",
+            "full_standing_interval_seconds": 1534,
+            "governing_floor_tenure_started_at_epoch": 1784005897.194,
+            "governing_floor_tenure_started_at_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+            "tenure_seconds": 418.80599999427795,
+            "running_traded_low_at_stand_cents": null,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "NO_TRADED_FLOOR_AT_STAND",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 3,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 64,
+            "standing_started_at_epoch": 1784006316,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-567",
+            "standing_ended_at_epoch": 1784006318,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-569",
+            "full_standing_interval_seconds": 2,
+            "governing_floor_tenure_started_at_epoch": 1784006316,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-567",
+            "tenure_seconds": 2,
+            "running_traded_low_at_stand_cents": 66,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 63,
+            "standing_started_at_epoch": 1784006318,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-569",
+            "standing_ended_at_epoch": 1784016214,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-719",
+            "full_standing_interval_seconds": 9896,
+            "governing_floor_tenure_started_at_epoch": 1784006318,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-569",
+            "tenure_seconds": 9896,
+            "running_traded_low_at_stand_cents": 66,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 14,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 60,
+            "standing_started_at_epoch": 1784016214,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-719",
+            "standing_ended_at_epoch": 1784016223,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-740",
+            "full_standing_interval_seconds": 9,
+            "governing_floor_tenure_started_at_epoch": 1784016214,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-719",
+            "tenure_seconds": 9,
+            "running_traded_low_at_stand_cents": 66,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 2,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 61,
+            "standing_started_at_epoch": 1784016223,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-740",
+            "standing_ended_at_epoch": 1784016225,
+            "standing_ended_by": "CANCEL_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-988",
+            "full_standing_interval_seconds": 2,
+            "governing_floor_tenure_started_at_epoch": 1784016223,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-740",
+            "tenure_seconds": 2,
+            "running_traded_low_at_stand_cents": 66,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 61,
+            "standing_started_at_epoch": 1784016226,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-744",
+            "standing_ended_at_epoch": 1784018093,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-818",
+            "full_standing_interval_seconds": 1867,
+            "governing_floor_tenure_started_at_epoch": 1784016226,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-744",
+            "tenure_seconds": 1867,
+            "running_traded_low_at_stand_cents": 66,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "CANCEL_REARM_RESTORES_PRIOR_LICENSED_PRICE"
+          },
+          {
+            "level_cents": 63,
+            "standing_started_at_epoch": 1784018093,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-818",
+            "standing_ended_at_epoch": 1784023254,
+            "standing_ended_by": "CANCEL_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3449",
+            "full_standing_interval_seconds": 5161,
+            "governing_floor_tenure_started_at_epoch": 1784018093,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-818",
+            "tenure_seconds": 5161,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 37,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784024261,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2904",
+            "standing_ended_at_epoch": 1784024268,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2930",
+            "full_standing_interval_seconds": 7,
+            "governing_floor_tenure_started_at_epoch": 1784024261,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2904",
+            "tenure_seconds": 7,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784024268,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2930",
+            "standing_ended_at_epoch": 1784024298,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3041",
+            "full_standing_interval_seconds": 30,
+            "governing_floor_tenure_started_at_epoch": 1784024268,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2930",
+            "tenure_seconds": 30,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 6,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 57,
+            "standing_started_at_epoch": 1784024298,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3041",
+            "standing_ended_at_epoch": 1784024401,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3061",
+            "full_standing_interval_seconds": 103,
+            "governing_floor_tenure_started_at_epoch": 1784024298,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3041",
+            "tenure_seconds": 103,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 33,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 56,
+            "standing_started_at_epoch": 1784024401,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3061",
+            "standing_ended_at_epoch": 1784024405,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3066",
+            "full_standing_interval_seconds": 4,
+            "governing_floor_tenure_started_at_epoch": 1784024401,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3061",
+            "tenure_seconds": 4,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 55,
+            "standing_started_at_epoch": 1784024405,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3066",
+            "standing_ended_at_epoch": 1784024849,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3167",
+            "full_standing_interval_seconds": 444,
+            "governing_floor_tenure_started_at_epoch": 1784024405,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3066",
+            "tenure_seconds": 444,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 178,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 54,
+            "standing_started_at_epoch": 1784024849,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3167",
+            "standing_ended_at_epoch": 1784025118,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3194",
+            "full_standing_interval_seconds": 269,
+            "governing_floor_tenure_started_at_epoch": 1784024849,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3167",
+            "tenure_seconds": 269,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 161,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 55,
+            "standing_started_at_epoch": 1784025118,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3194",
+            "standing_ended_at_epoch": 1784025119,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3202",
+            "full_standing_interval_seconds": 1,
+            "governing_floor_tenure_started_at_epoch": 1784025118,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3194",
+            "tenure_seconds": 1,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 56,
+            "standing_started_at_epoch": 1784025119,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3202",
+            "standing_ended_at_epoch": 1784025121,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3206",
+            "full_standing_interval_seconds": 2,
+            "governing_floor_tenure_started_at_epoch": 1784025119,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3202",
+            "tenure_seconds": 2,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784025121,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3206",
+            "standing_ended_at_epoch": 1784025124,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3208",
+            "full_standing_interval_seconds": 3,
+            "governing_floor_tenure_started_at_epoch": 1784025121,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3206",
+            "tenure_seconds": 3,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784025124,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3208",
+            "standing_ended_at_epoch": 1784025165,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3223",
+            "full_standing_interval_seconds": 41,
+            "governing_floor_tenure_started_at_epoch": 1784025124,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3208",
+            "tenure_seconds": 41,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 15,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784025165,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3223",
+            "standing_ended_at_epoch": 1784025167,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3228",
+            "full_standing_interval_seconds": 2,
+            "governing_floor_tenure_started_at_epoch": 1784025165,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3223",
+            "tenure_seconds": 2,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784025167,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3228",
+            "standing_ended_at_epoch": 1784025212,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3272",
+            "full_standing_interval_seconds": 45,
+            "governing_floor_tenure_started_at_epoch": 1784025167,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3228",
+            "tenure_seconds": 45,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 11,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784025212,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3272",
+            "standing_ended_at_epoch": 1784025213,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3273",
+            "full_standing_interval_seconds": 1,
+            "governing_floor_tenure_started_at_epoch": 1784025212,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3272",
+            "tenure_seconds": 1,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784025213,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3273",
+            "standing_ended_at_epoch": 1784025260,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3278",
+            "full_standing_interval_seconds": 47,
+            "governing_floor_tenure_started_at_epoch": 1784025213,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3273",
+            "tenure_seconds": 47,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 9,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784025260,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3278",
+            "standing_ended_at_epoch": 1784025261,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3279",
+            "full_standing_interval_seconds": 1,
+            "governing_floor_tenure_started_at_epoch": 1784025260,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3278",
+            "tenure_seconds": 1,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784025261,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3279",
+            "standing_ended_at_epoch": 1784025279,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3287",
+            "full_standing_interval_seconds": 18,
+            "governing_floor_tenure_started_at_epoch": 1784025261,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3279",
+            "tenure_seconds": 18,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 10,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784025279,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3287",
+            "standing_ended_at_epoch": 1784025281,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3288",
+            "full_standing_interval_seconds": 2,
+            "governing_floor_tenure_started_at_epoch": 1784025279,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3287",
+            "tenure_seconds": 2,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784025281,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3288",
+            "standing_ended_at_epoch": 1784025289,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3289",
+            "full_standing_interval_seconds": 8,
+            "governing_floor_tenure_started_at_epoch": 1784025281,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3288",
+            "tenure_seconds": 8,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 4,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784025289,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3289",
+            "standing_ended_at_epoch": 1784025291,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3290",
+            "full_standing_interval_seconds": 2,
+            "governing_floor_tenure_started_at_epoch": 1784025289,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3289",
+            "tenure_seconds": 2,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784025291,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3290",
+            "standing_ended_at_epoch": 1784025319,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3291",
+            "full_standing_interval_seconds": 28,
+            "governing_floor_tenure_started_at_epoch": 1784025291,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3290",
+            "tenure_seconds": 28,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 3,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784025319,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3291",
+            "standing_ended_at_epoch": 1784025321,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3294",
+            "full_standing_interval_seconds": 2,
+            "governing_floor_tenure_started_at_epoch": 1784025319,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3291",
+            "tenure_seconds": 2,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784025321,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3294",
+            "standing_ended_at_epoch": 1784025339,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3295",
+            "full_standing_interval_seconds": 18,
+            "governing_floor_tenure_started_at_epoch": 1784025321,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3294",
+            "tenure_seconds": 18,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 6,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784025339,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3295",
+            "standing_ended_at_epoch": 1784025341,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3296",
+            "full_standing_interval_seconds": 2,
+            "governing_floor_tenure_started_at_epoch": 1784025339,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3295",
+            "tenure_seconds": 2,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784025341,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3296",
+            "standing_ended_at_epoch": 1784025342,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3297",
+            "full_standing_interval_seconds": 1,
+            "governing_floor_tenure_started_at_epoch": 1784025341,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3296",
+            "tenure_seconds": 1,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 57,
+            "standing_started_at_epoch": 1784025342,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3297",
+            "standing_ended_at_epoch": 1784025491,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3455",
+            "full_standing_interval_seconds": 149,
+            "governing_floor_tenure_started_at_epoch": 1784025342,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3297",
+            "tenure_seconds": 149,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 64,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 59,
+            "standing_started_at_epoch": 1784025491,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3455",
+            "standing_ended_at_epoch": 1784025515,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3460",
+            "full_standing_interval_seconds": 24,
+            "governing_floor_tenure_started_at_epoch": 1784025491,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3455",
+            "tenure_seconds": 24,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 7,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784025515,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3460",
+            "standing_ended_at_epoch": 1784026133,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3519",
+            "full_standing_interval_seconds": 618,
+            "governing_floor_tenure_started_at_epoch": 1784025515,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3460",
+            "tenure_seconds": 618,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 250,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 57,
+            "standing_started_at_epoch": 1784026133,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3519",
+            "standing_ended_at_epoch": 1784026549,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3538",
+            "full_standing_interval_seconds": 416,
+            "governing_floor_tenure_started_at_epoch": 1784026133,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3519",
+            "tenure_seconds": 416,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 180,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784026549,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3538",
+            "standing_ended_at_epoch": 1784026557,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3549",
+            "full_standing_interval_seconds": 8,
+            "governing_floor_tenure_started_at_epoch": 1784026549,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3538",
+            "tenure_seconds": 8,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 57,
+            "standing_started_at_epoch": 1784026557,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3549",
+            "standing_ended_at_epoch": 1784026820,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3564",
+            "full_standing_interval_seconds": 263,
+            "governing_floor_tenure_started_at_epoch": 1784026557,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3549",
+            "tenure_seconds": 263,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 73,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784026820,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3564",
+            "standing_ended_at_epoch": 1784027024,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3571",
+            "full_standing_interval_seconds": 204,
+            "governing_floor_tenure_started_at_epoch": 1784026820,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3564",
+            "tenure_seconds": 204,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 10,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 57,
+            "standing_started_at_epoch": 1784027024,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3571",
+            "standing_ended_at_epoch": 1784027624,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3593",
+            "full_standing_interval_seconds": 600,
+            "governing_floor_tenure_started_at_epoch": 1784027024,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3571",
+            "tenure_seconds": 600,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784027624,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3593",
+            "standing_ended_at_epoch": 1784027637,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3598",
+            "full_standing_interval_seconds": 13,
+            "governing_floor_tenure_started_at_epoch": 1784027624,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3593",
+            "tenure_seconds": 13,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 57,
+            "standing_started_at_epoch": 1784027637,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3598",
+            "standing_ended_at_epoch": 1784028237,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3644",
+            "full_standing_interval_seconds": 600,
+            "governing_floor_tenure_started_at_epoch": 1784027637,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3598",
+            "tenure_seconds": 600,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784028237,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3644",
+            "standing_ended_at_epoch": 1784028247,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3647",
+            "full_standing_interval_seconds": 10,
+            "governing_floor_tenure_started_at_epoch": 1784028237,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3644",
+            "tenure_seconds": 10,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 1,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 57,
+            "standing_started_at_epoch": 1784028247,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3647",
+            "standing_ended_at_epoch": 1784031096,
+            "standing_ended_by": "REPRICE_REST:KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4294",
+            "full_standing_interval_seconds": 2849,
+            "governing_floor_tenure_started_at_epoch": 1784028247,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3647",
+            "tenure_seconds": 2849,
+            "running_traded_low_at_stand_cents": 64,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "BELOW_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 48,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          },
+          {
+            "level_cents": 58,
+            "standing_started_at_epoch": 1784031096,
+            "standing_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4294",
+            "standing_ended_at_epoch": 1784032697.6,
+            "standing_ended_by": "FILL:a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "full_standing_interval_seconds": 1601.5999999046326,
+            "governing_floor_tenure_started_at_epoch": 1784031096,
+            "governing_floor_tenure_started_at_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4294",
+            "tenure_seconds": 1601.5999999046326,
+            "running_traded_low_at_stand_cents": 58,
+            "truth_table_floor_cents": 57,
+            "relation_to_running_low_at_stand": "AT_RUNNING_TRADED_LOW",
+            "counted_as_governing_floor_tenure": true,
+            "decision_rows_inside_standing_interval": 5,
+            "sampling_status": "SAMPLED",
+            "supporting_order_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+          }
+        ]
+      },
+      "prior_orphan_summary_value_cents": 57,
+      "trace_produced_value_cents": 59,
+      "contradiction_resolution": "TRACE_PRODUCED_TENURE_TABLE_IS_AUTHORITATIVE; SUMMARY_NOW_DERIVES_FROM_THE_SAME_ROWS"
+    },
+    "order_emission": {
+      "prior_orders": 309,
+      "current_orders": 528,
+      "orders_per_decision_instant_distribution": {
+        "1": 528
+      },
+      "max_orders_per_decision_instant": 1
+    },
+    "literal_boolean_audit": {
+      "raw_literals": 167,
+      "named_literal_claims": 0,
+      "unexplained_literal_claims": 0
+    }
+  },
+  "four_game_outcomes": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "state": "COMPLETE",
+      "combined_entry_cents": 96,
+      "delta_cents": 4
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "state": "COMPLETE",
+      "combined_entry_cents": 98,
+      "delta_cents": 2
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "state": "COMPLETE",
+      "combined_entry_cents": 95,
+      "delta_cents": 5
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "state": "PARTIAL",
+      "combined_entry_cents": null,
+      "delta_cents": null
+    }
+  ],
+  "self_stop": {
+    "triggered": true,
+    "reasons": [
+      "CURRENT_BED_TRIPWIRE"
+    ]
+  }
+}

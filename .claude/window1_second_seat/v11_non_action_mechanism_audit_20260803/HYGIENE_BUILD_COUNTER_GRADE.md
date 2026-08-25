@@ -176,3 +176,51 @@ CERTIFIED: three completions with seven fills, every one verified by trade_id ag
 FAULTED: (i) `can_fail` is still `producer_store !== check_store` — the `counterexample_condition` strings are prose no predicate reads, so `gate_fields_that_can_fail: 14` is still a label count (F-VS-172 stands); (ii) `ATOMIC_REARM_RECEIPT.json` reports LAJ permanently pending when the trace shows it resolved, because its reducer reads only `REARM_ATTEMPT` rows — a third receipt-vs-trace contradiction; (iii) the singleton fallback still cancels a postable, floor-exact 57 instead of holding it, costing URSPAL a cent; (iv) the literal audit's "operational" classifier is a regex over line shape, so the 131 survivors are explained by pattern rather than derivation; (v) `DETERMINISM_RECEIPT.label` is stale from the prior build.
 
 NOT FAULTS: neither remaining cent was available. GIU's 66 was at the ask at the only instant the machine was awake; LAJ's 53 was below its own observed traded low at every instant it could have been placed, and printed 1,857 s after LAJ had already filled.
+
+---
+
+# ADDENDUM — 12-lane counter-grade returned; my tenure verdict corrected
+
+Filed as F-VS-184 … F-VS-185. Every figure re-measured by me before filing.
+
+## A — Tenure is partially closed, not closed. The blindness flipped sign.
+
+I wrote that at-floor tenure was repaired and that BAR and GIU have no episodes "because they filled instead." Half of that is right.
+
+**The false-positive half is genuinely closed.** All three recorded episodes — URS 58, LAJ 54, PRA 41 — begin before a qualifying print and all three end in fills. No episode now scores a rest that could never trade. That was F-VS-173's complaint and it is answered.
+
+**But GIU stood at its exact evidenced floor and scored zero.**
+
+| leg | last order | fill | standing at that level | tenure rows | DECISION rows in the window |
+|---|---|---|---:|---:|---:|
+| BAR | 27 @1783841801.304 | 1783841801.417152 | 0.113 s | 0 | 0 |
+| **GIU** | **67 @1783867786** | 1783869375.227061 | **1,589.227 s** | **0** | **0** |
+| URS | 58 @1784031046 | 1784032697.600949 | 1,651.601 s | 6 | 6 |
+| **PAL** | **39 @1784023248** | 1784042066.596112 | **18,818.596 s** | **0** | **1,125** |
+| SVA | 41 @1784020209 | 1784020209.484174 | 0.484 s | 0 | 0 |
+| LAJ | 54 @1784036624.369 | 1784050973.062825 | 14,348.694 s | 18 | 18 |
+| PRA | 41 @1784359388 | 1784369249.287716 | 9,861.288 s | 10 | 10 |
+
+GIU held its floor for **1,589.227 s** and the metric recorded nothing, because the trace contains **zero GIU `DECISION_STAGE` rows in (1783867786, 1783869375.227]**. Tenure is sampled at evaluation instants and GIU had none. **That is the same capture-blindness F-VS-173 named, surviving as a false negative instead of a false positive.** My "because they filled" explanation is true for BAR (0.113 s) and SVA (0.484 s) and false for GIU.
+
+**And it misses the run's best-executed leg.** PAL stood at **39 — the governing W1TT-C-002 floor, captured exactly — for 18,818.596 s across 1,125 evaluation instants** and scored zero, because 39 is one cent *below* its running low of 40, so `active === evidencedFloor` is false. DAN likewise held 58 against a running low of 59 for 25,805 s, scoring zero. The metric rewards standing **at** the floor and is silent on standing **below** it, which is strictly better for a buyer and is what PAL did.
+
+**The recorded durations understate the true standing intervals**, because `start_epoch` is the first receipt at which `active` is *already* at the floor — one evaluation instant after the order that created the rest:
+
+| leg | reported | true standing | under-reported by |
+|---|---:|---:|---:|
+| URS @58 | 251 s | **1,651.601 s** | 1,400.601 s (84.8 %) |
+| LAJ @54 | 14,188 s | 14,348.694 s | 160.694 s |
+| PRA @41 | 9,483 s | 9,861.288 s | 378.288 s |
+
+## B — SVA passed its own floor print
+
+At **ln3435, ts 1784020201.83** — the exact instant of SVA's governing floor print (41 @1784020201.830010, trade `95992e7f`, size 27) — the build **repriced SVA to 40**, one cent under the arriving print, while its own `evidenced_floor` on that very row already read **41** (bid 40, ask 41, coherent lane). The floor print passed unfilled. SVA reached 41 at ln3437 ts 1784020209 and took the **second** 41 print at 1784020209.484174 — same price, **7.654 s late**.
+
+Not a lost cent, but a lost 7.654 s of exposure at a level the machine had already named, and the one row in this build where a leg moved *away* from a floor its own evidence had established in the same object. It is why my §1 called SVA's capture clean: the price is right and the capture is real, but the first qualifying print was declined.
+
+Separately, **the fill attribution is arbitrary and undisclosed**: two true prints share the microsecond 1784020209.484174 — `d97f0682` (size 6) and `62c5acca` (size 10) — and the `FILL_EVENT` names `62c5acca` with no stated rule for choosing between same-price, same-microsecond prints. Immaterial to price, material to reproducibility.
+
+## C — What the lanes confirmed
+
+The seven fills, the 23 orders with an empty multi-order set, the 0-of-3 live-bid result, the 131 literals with zero named survivors, 61/61 producers, the 2,769/2,769 floor coverage, and both cent adjudications all reproduce independently. One framing the lanes sharpen usefully: **the credited pair sums are worse than the tape's trigger prints on two games** — GIUBAR credited 94 against a trigger-print sum of 27+66 = 93, URSPAL credited 97 against 57+39 = 96 — because `STANDING_REST_LIMIT_CENTS` credits the maker at its own rest, which errs against the book. That is F-VS-107 working as written, and it is the whole of GIUBAR's missing cent.

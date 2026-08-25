@@ -1,0 +1,163 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun2/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 37002272,
+      "sha256": "3a30fb850cd77ba55fef58dec32028d0e85b9ab0a87d313305d68dee4855156d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun2/FLOOR_REST_PROTECTION_RECEIPT.json",
+      "bytes": 23320176,
+      "sha256": "2074d6903b7244fc70cf0b17b335bbef31386b9682d494776520e548d5b2c237"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun2/GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "bytes": 17840217,
+      "sha256": "60e98676b5d3577f098981bf480b2baedcbc04b8c787f8ff5c41b51e30fb68d9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun2/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 40525187,
+      "sha256": "7e634dbcbdd9a4b279b34e11068a3d2bac8a8b26c4766f50d3ec31ad569f2f04"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun2/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun2/SMOKE_CRIJEA.md",
+      "bytes": 18747577,
+      "sha256": "c16e704e7a40032f6ea0535bb4edbde45c15be2e040ebc2335596a689003e226"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun2/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 19364625,
+      "sha256": "1f102f91aadd223634c54be34db91a8c2e73aa0b25e23f2a5613d8bc93a65c9e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun3/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 37090545,
+      "sha256": "79f30af680d1645977515f56a3a2a29259f8c18eef43eac810b9f5403a43340e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun3/FLOOR_REST_PROTECTION_RECEIPT.json",
+      "bytes": 25844558,
+      "sha256": "c42b2b518fe215b61c50756157d2098f02fe3749876506df63e442510bed3ead"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun3/GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "bytes": 17840217,
+      "sha256": "60e98676b5d3577f098981bf480b2baedcbc04b8c787f8ff5c41b51e30fb68d9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun3/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 26383378,
+      "sha256": "eb32da7a6137e368d6a6e115898933854f28c6e68daa8c5ed33adc91320f5b2d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun3/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun3/SMOKE_CRIJEA.md",
+      "bytes": 18747577,
+      "sha256": "c16e704e7a40032f6ea0535bb4edbde45c15be2e040ebc2335596a689003e226"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun3/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 21206321,
+      "sha256": "d52f6e5e308362283c9b860f618bb5cc77911237eb7811d702fa73a26c6d267c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 63389078,
+      "sha256": "5c0aa2498bc003f7f1289c7377ea6d8dde096343e9f26f042cfab2c6c035868d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 37091155,
+      "sha256": "0cda0610919319dfaefa02061645a6acdcd31e56189d94857e0b54c83967141b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 109545519,
+      "sha256": "278f7dffc4a105c97c29738b7ec57598f0ac28381818d5e63af8de8073bb003c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/FLOOR_REST_PROTECTION_RECEIPT.json",
+      "bytes": 25831578,
+      "sha256": "58bdebcdc5f51b723306ac0d89670e34b63032755a876b3ac155a42d36ae1961"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "bytes": 17840217,
+      "sha256": "60e98676b5d3577f098981bf480b2baedcbc04b8c787f8ff5c41b51e30fb68d9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 26186552,
+      "sha256": "ab8a4c5642c26a218d871883ec036f11ef6ccf7d01c75975a82ee4491d1f0a9b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "bytes": 92784767,
+      "sha256": "305890353eecc136bdcbb6b5aa2623c6d184eb36e8250a118189540cbcbac745"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 107644961,
+      "sha256": "ee7ed2447c96c3f2adca04f85f90841f781208a73cca0826bb59994caf598006"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 139041334,
+      "sha256": "0f24622c6262aec706ebf7ee3cf644b9392d5d8085c4dd10bf10abfa55200620"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/SMOKE_CRIJEA.md",
+      "bytes": 18747577,
+      "sha256": "c16e704e7a40032f6ea0535bb4edbde45c15be2e040ebc2335596a689003e226"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825_rerun4/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 21192346,
+      "sha256": "ee2ce611aab66c71d14c11416e446c028623a3a9387bf993a31812b2618b4427"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 17069810,
+      "sha256": "ddb71be4da9687897bd9d0f21c93fb688511db696ed05628026f4a87b239c0ba"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 37076627,
+      "sha256": "706e0586297ed50b9361de16f8d9309bb2972cf9c098ead53600651c03e81393"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825/SMOKE_CRIJEA.md",
+      "bytes": 18715231,
+      "sha256": "58e3e8b3027bf93d2ac2f9bed97ddfa05cc3f10b576cc33aa5e2a67ab1f7d834"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_one_author_cap_veto_no_vacuum_20260825/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 20086913,
+      "sha256": "3b0c7d7003233e9f854812d9c5f5ad2f393730765e99044cdf9cd8a7d8607ee3"
+    }
+  ],
+  "count": 31,
+  "bytes": 1101654991
+}

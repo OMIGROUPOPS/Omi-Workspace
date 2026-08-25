@@ -669,7 +669,6 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   const lineageTarget = cent(lineage?.target_cents);
   const neighborhoodMass = mean(neighborhood.map((row) => row.score * row.coverage)) ?? 0;
   const liveBid = cent(book?.bid_cents), liveAsk = cent(book?.ask_cents);
-  const postOnlyCap = liveAsk ? liveAsk - 1 : 99;
   const formationEnd = finite(state.legs[legId].formation_end_epoch);
   const windowEnd = finite(state.bell_epoch);
   const windowDuration = Number.isFinite(formationEnd) && Number.isFinite(windowEnd) && windowEnd > formationEnd ? windowEnd - formationEnd : null;
@@ -733,12 +732,17 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
       : "PAIR_CLOCK_TOUCH_WINDOW";
   const mapDepthLicensed = Boolean(mappedFloorTarget && specialistMapVotes.length > 0);
   const ownFloorLicensed = Boolean(boundedTradeLow && book?.receipt);
-  const evidenceRung = ownFloorLicensed
-    ? "OBSERVED_TRADED_FLOOR_AUTHORITY"
-    : mapDepthLicensed
-      ? "TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED"
+  // F-VS-207..214: price has one author.  Specialist votes and the licensed
+  // depth surface derive the level; the observed traded low conditions that
+  // derivation but is never copied into the order target.  Post-only and pair
+  // conservation are predicates applied by the joint engine after this
+  // derivation.  They are not price transforms.
+  const evidenceRung = mapDepthLicensed
+    ? "ENGINE_VOTES_LICENSED_DEPTH_CONDITIONED_BY_OWN_EVIDENCE"
+    : ownFloorLicensed
+      ? "INSUFFICIENT_ENGINE_DEPTH_OWN_EVIDENCE_AVAILABLE_FOR_VACUUM_FALLBACK"
       : "INSUFFICIENT_EVIDENCE_NO_LICENSED_AUTHORITY_TARGET";
-  const authorityTargetBeforePairCap = ownFloorLicensed ? boundedTradeLow : mapDepthLicensed ? mappedFloorTarget : null;
+  const authorityTargetBeforeVeto = mapDepthLicensed ? mappedFloorTarget : null;
   const basisRows = [
     {
       basis: "MIND_WINDOW_SELECTION",
@@ -771,20 +775,20 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   const weightedDepthCents = mappedDepth;
   const blendDistributionDepth = mappedDepth;
   const pairCap = siblingCommitment ? PAR_BUDGET_CENTS - siblingCommitment : PAR_BUDGET_CENTS - 1;
-  const pairRequiredDepth = Number.isInteger(authorityTargetBeforePairCap) && siblingCommitment ? Math.max(0, authorityTargetBeforePairCap - pairCap) : 0;
-  const proposedTarget = Number.isInteger(authorityTargetBeforePairCap) ? Math.max(1, Math.min(authorityTargetBeforePairCap, pairCap)) : null;
+  const pairRequiredDepth = Number.isInteger(authorityTargetBeforeVeto) && siblingCommitment ? Math.max(0, authorityTargetBeforeVeto - pairCap) : 0;
+  const proposedTarget = Number.isInteger(authorityTargetBeforeVeto) ? authorityTargetBeforeVeto : null;
   const targetBasis = evidenceRung;
   const targetAuthority = targetBasis;
-  const lawfulUnallocatedTarget = cent(proposedTarget) ? Math.max(1, Math.min(proposedTarget, postOnlyCap)) : null;
-  const belowBoundedTradeLow = Boolean(boundedTradeLow && cent(lawfulUnallocatedTarget) && lawfulUnallocatedTarget < boundedTradeLow);
-  const finalDepthBelowTouch = touchCents && cent(lawfulUnallocatedTarget) ? touchCents - lawfulUnallocatedTarget : null;
-  const blendLicensesDepth = Boolean(ownFloorLicensed || mapDepthLicensed);
+  const authorityTarget = cent(proposedTarget);
+  const belowBoundedTradeLow = Boolean(boundedTradeLow && authorityTarget && authorityTarget < boundedTradeLow);
+  const finalDepthBelowTouch = touchCents && authorityTarget ? touchCents - authorityTarget : null;
+  const blendLicensesDepth = Boolean(mapDepthLicensed);
   const blendLicenseReceipts = [...new Set(basisRows.flatMap((row) => row.license_receipts))];
   const jointDepthLicense = blendLicensesDepth
     ? { required: true, lawful: true, basis: evidenceRung, receipts: blendLicenseReceipts, below_bounded_trade_low: belowBoundedTradeLow }
     : { required: true, lawful: false, basis: "NO_OBSERVED_FLOOR_OR_REAL_V3_MAP_LICENSE", receipts: [] };
-  const evidenceLawfulTarget = jointDepthLicense.lawful ? lawfulUnallocatedTarget : null;
-  const derivedTarget = cent(evidenceLawfulTarget) ? Math.max(1, Math.min(evidenceLawfulTarget, pairCap)) : null;
+  const evidenceLawfulTarget = jointDepthLicense.lawful ? authorityTarget : null;
+  const derivedTarget = cent(evidenceLawfulTarget);
   const touchRelation = crossedBook
     ? "CROSSED_BOOK_NOT_A_TOUCH"
     : touchCents && cent(evidenceLawfulTarget)
@@ -814,7 +818,7 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   const windowStatement = ` OWN_WINDOW=formation ${formationEnd ?? "UNKNOWN"} to ${windowEnd ?? "UNKNOWN"} [${windowSource}], elapsed ${elapsedWindowSeconds ?? "UNKNOWN"}s, remaining ${remainingWindowSeconds ?? "UNKNOWN"}s, continuous fraction ${Number.isFinite(windowFraction) ? windowFraction.toFixed(9) : "UNKNOWN"}; the mind selects ${mindWindow} for this side on its own clock.`;
   const pairStateStatement = ` PAIR_STATE=${pairState}; LEG_STATE=${legState}; SPECIALIST_PHASE=${fitPhase.toFixed(9)}; CREDITED_SIBLING=${siblingCommitment ? `${siblingId}@${siblingCommitment}` : "NONE"}; PAIR_REQUIRED_DEPTH_CENTS=${pairRequiredDepth}; PAIR_CAP_CENTS=${pairCap}.`;
   const presenceStatement = ` TOUCH_RELATION=${touchRelation}; LIVE_BID_ASK=${liveBid ?? "UNKNOWN"}/${liveAsk ?? "UNKNOWN"}; JOINT_DEPTH_LICENSE=${jointDepthLicense.basis}; DEPTH_LICENSE_RECEIPTS=${jointDepthLicense.receipts.join(",") || "NONE"}.`;
-  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement}${windowStatement}${pairStateStatement}${presenceStatement} Frozen lineage receipt ${lineageStatement} remains provenance only; the connected pricing authority consumes the observed traded floor first and otherwise a real V3 license keyed by each bounded library member's close cell; post-only cap is ${postOnlyCap}.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
+  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement}${windowStatement}${pairStateStatement}${presenceStatement} Frozen lineage receipt ${lineageStatement} remains provenance only; the connected pricing authority derives one level from specialist votes, licensed V3 depth, and the observed traded low as conditioning evidence. Post-only is a later veto and never a price input.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
   if (!sentence.includes(actionStatement)) throw new Error(`SENTENCE_ACTION_MISMATCH ${state.event_id}|${legId}|${state.receipt}`);
   for (const row of neighborhood) if (!sentence.includes(`[${row.citation_receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_NOT_WELDED:${row.event_id}|${state.receipt}`);
   if (!sentence.includes(`[${readerReceipt.receipt_id}]`) || !sentence.includes(`[${lineageReceipt.receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION SENTENCE_RECEIPT_NOT_WELDED|${state.receipt}`);
@@ -829,7 +833,7 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     neighborhood,
     resources_consulted: [...new Set(neighborhood.filter((row) => row.quality === "FOUNDATION_MINUTE_BELL_BOUNDED").flatMap((row) => ["FOUNDATION_PER_MINUTE_UNIVERSE", ...(row.legs?.some((leg) => leg.spike_atlas) ? ["SPIKE_ATLAS"] : [])]))],
     citation_receipts: citationReceipts,
-    derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, mind_window: mindWindow, true_bell_cell_depth_map: { bound: Boolean(trueBellCellDepthMapBinding), commit: trueBellCellDepthMapBinding?.commit ?? null, path: trueBellCellDepthMapBinding?.path ?? null, sha256: trueBellCellDepthMapBinding?.sha256 ?? null, lookup_basis: "LIBRARY_MEMBER_BOUNDED_CLOSE_CENTS", map_votes: specialistMapVotes, mapped_cell_q50_cents: mappedCellPrice, mapped_floor_q50_cents: mappedFloorTarget, mapped_depth_cents: mappedDepth, licensed: mapDepthLicensed }, neighbor_specialist_composition: { kind: neighborSpecialistBinding?.kind ?? "UNBOUND_SPECIALIST_RECORDS", binding_sha256: neighborSpecialistBinding?.binding_sha256 ?? null, event_leave_self_out: true, leg_state: legState, pair_state: pairState, phase: fitPhase, vote_mass: timedNeighborLeg.specialist_vote_mass, vote_total: timedNeighborLeg.specialist_vote_total, vote_count: timedNeighborLeg.specialist_votes.length }, basis_availability: { observed_traded_floor: ownFloorLicensed, map_depth_license: mapDepthLicensed }, basis_weights: basisRows, blend_fitness_mass: blendFitnessMass, blend_evidence_grade: blendEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, weighted_depth_cents: weightedDepthCents, distribution_depth_cents: blendDistributionDepth, chosen_depth_cents: mappedDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: false, sibling_commitment_cents: siblingCommitment, pair_state: pairState, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, formation_complete: Number.isFinite(formationProgress) && formationProgress >= 1, formed_two_sided_book: formedTwoSidedBook, crossed_book: crossedBook, stale_prior_path_used: false, zero_depth_default_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
+    derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, mind_window: mindWindow, true_bell_cell_depth_map: { bound: Boolean(trueBellCellDepthMapBinding), commit: trueBellCellDepthMapBinding?.commit ?? null, path: trueBellCellDepthMapBinding?.path ?? null, sha256: trueBellCellDepthMapBinding?.sha256 ?? null, lookup_basis: "LIBRARY_MEMBER_BOUNDED_CLOSE_CENTS", map_votes: specialistMapVotes, mapped_cell_q50_cents: mappedCellPrice, mapped_floor_q50_cents: mappedFloorTarget, mapped_depth_cents: mappedDepth, licensed: mapDepthLicensed }, neighbor_specialist_composition: { kind: neighborSpecialistBinding?.kind ?? "UNBOUND_SPECIALIST_RECORDS", binding_sha256: neighborSpecialistBinding?.binding_sha256 ?? null, event_leave_self_out: true, leg_state: legState, pair_state: pairState, phase: fitPhase, vote_mass: timedNeighborLeg.specialist_vote_mass, vote_total: timedNeighborLeg.specialist_vote_total, vote_count: timedNeighborLeg.specialist_votes.length }, basis_availability: { observed_traded_floor: ownFloorLicensed, map_depth_license: mapDepthLicensed }, basis_weights: basisRows, blend_fitness_mass: blendFitnessMass, blend_evidence_grade: blendEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, weighted_depth_cents: weightedDepthCents, distribution_depth_cents: blendDistributionDepth, chosen_depth_cents: mappedDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: false, sibling_commitment_cents: siblingCommitment, pair_state: pairState, pair_cap_cents: pairCap, pair_cap_role: "VETO_ONLY_NOT_PRICE_AUTHOR", post_only_cap_cents: null, post_only_role: "VETO_ONLY_NOT_PRICE_AUTHOR", authority_recompute_inputs: { specialist_map_votes: specialistMapVotes.map((vote) => ({ event_id: vote.event_id, weight: vote.weight, value: vote.licensed_floor_cents, source_receipt: vote.source_receipt })), observed_traded_low_cents: boundedTradeLow, observed_traded_low_receipt: ownLowRead.true_trade_low_receipt ?? null, authority_method: "WEIGHTED_Q50_LICENSED_FLOOR_FROM_SPECIALIST_VOTES_CONDITIONED_BY_OWN_EVIDENCE" }, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, formation_complete: Number.isFinite(formationProgress) && formationProgress >= 1, formed_two_sided_book: formedTwoSidedBook, crossed_book: crossedBook, stale_prior_path_used: false, zero_depth_default_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
     action,
     sentence,
     sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },

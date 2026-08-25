@@ -1,0 +1,51 @@
+{
+  "label": "V54_ONE_AUTHOR_CAP_VETO_NO_VACUUM_FAILED_ATTEMPTS_EXTERNAL_CUSTODY",
+  "custody_root": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_one_author_cap_veto_no_vacuum_20260825_failed_attempt_packages",
+  "reason": "Three pre-score mechanical-repair attempts are retained for audit without committing duplicate multi-hundred-megabyte receipt packages. The final score-bearing package is rerun4.",
+  "attempts": [
+    {
+      "directory": "v54_one_author_cap_veto_no_vacuum_20260825",
+      "files": 72,
+      "bytes": 158854880,
+      "artifact_manifest_sha256": "97149ed5c4471293bbb966fed09fea4173c17259c50df2df1e3ce9ac9f4540ca",
+      "disposition": "MECHANICAL_FAILURE_INDEPENDENT_AUTHORITY_RECOMPUTE_FIELD_MISWIRED"
+    },
+    {
+      "directory": "v54_one_author_cap_veto_no_vacuum_20260825_rerun2",
+      "files": 77,
+      "bytes": 243082877,
+      "artifact_manifest_sha256": "7f2718ad54268d1be6b3056b684d1af114317313f522e2e342a793484369887d",
+      "disposition": "MECHANICAL_FAILURE_VETO_CHECK_AND_ASK_ONLY_REARM"
+    },
+    {
+      "directory": "v54_one_author_cap_veto_no_vacuum_20260825_rerun3",
+      "files": 77,
+      "bytes": 236028178,
+      "artifact_manifest_sha256": "d519c3d5577d61a4edfa5420aa86691e8631bc2f6aaed91ce71e4e91599e3dc1",
+      "disposition": "MECHANICAL_FAILURE_CAP_VETO_CANCELLED_EXISTING_LAWFUL_PLAN"
+    },
+    {
+      "directory": "lajsva_case_study_v26_20260825",
+      "files": 8,
+      "bytes": 1971850,
+      "artifact_manifest_sha256": "a7227e83281d2dd0001f1eec45aeb31e2d5733451ce88408166eda8fec48e210",
+      "disposition": "CASE_STUDY_FOR_FAILED_ATTEMPT_1"
+    },
+    {
+      "directory": "lajsva_case_study_v26_one_author_rerun2_20260825",
+      "files": 8,
+      "bytes": 4399182,
+      "artifact_manifest_sha256": "1d5ea0aafc2811dfc3bf96a3ece9572a109331973336bc673b5a647a91bfdc8f",
+      "disposition": "CASE_STUDY_FOR_FAILED_ATTEMPT_2"
+    },
+    {
+      "directory": "lajsva_case_study_v26_one_author_rerun3_20260825",
+      "files": 8,
+      "bytes": 4399182,
+      "artifact_manifest_sha256": "1d5ea0aafc2811dfc3bf96a3ece9572a109331973336bc673b5a647a91bfdc8f",
+      "disposition": "CASE_STUDY_FOR_FAILED_ATTEMPT_3"
+    }
+  ],
+  "final_score_bearing_package": "v54_one_author_cap_veto_no_vacuum_20260825_rerun4",
+  "failed_attempts_deleted": false
+}

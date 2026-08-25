@@ -1,0 +1,18 @@
+{
+  "label": "F_VS_192_CAPTURED_REST_LICENSE_IS_NOT_A_FLOOR_PRODUCER",
+  "provenance": [
+    "F-VS-192@2941cd15",
+    "DEFINITION_LOCK"
+  ],
+  "true_floor_source": "OBSERVED_TRUE_TRADE_PRINT_PREFIX_ONLY",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-81",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    }
+  ],
+  "violations": []
+}

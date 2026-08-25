@@ -1,0 +1,9 @@
+{
+  "label": "C04_CURRENT_AUTHORITY_SPAN_DIRECTION_PROTECTION_SINGLE_CANCEL_RESTORE",
+  "c04_current_authority_restore_rows": [],
+  "post_span_orders": [],
+  "away_from_floor_lift_violations": [],
+  "cancel_count": 0,
+  "cancel_without_rearm_count": 0,
+  "passed": true
+}

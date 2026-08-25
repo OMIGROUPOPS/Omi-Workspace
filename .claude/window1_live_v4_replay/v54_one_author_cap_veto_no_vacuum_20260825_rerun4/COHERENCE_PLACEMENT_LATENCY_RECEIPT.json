@@ -1,0 +1,4595 @@
+{
+  "label": "F_VS_118_COHERENCE_TO_PLACEMENT_SAME_RECEIPT",
+  "rule": "A new rest may originate only on a receipt whose current dual belief is coherent and whose post-allocation target is lawful. Already-licensed rests may hold through later disagreement but stale coherence never originates a placement.",
+  "provenance": "F-VS-118@c08ce381",
+  "per_leg": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "first_lawful_current_coherence_epoch": 1783873872,
+      "first_lawful_current_coherence_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+      "first_placement_or_replacement_epoch": 1783873872,
+      "first_placement_or_replacement_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "first_lawful_current_coherence_epoch": 1783873872,
+      "first_lawful_current_coherence_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+      "first_placement_or_replacement_epoch": 1783873872,
+      "first_placement_or_replacement_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "first_lawful_current_coherence_epoch": 1784016081.367,
+      "first_lawful_current_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "first_placement_or_replacement_epoch": 1784016081.367,
+      "first_placement_or_replacement_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "first_lawful_current_coherence_epoch": 1784016081.367,
+      "first_lawful_current_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "first_placement_or_replacement_epoch": 1784016081.367,
+      "first_placement_or_replacement_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "first_lawful_current_coherence_epoch": 1784005897.194,
+      "first_lawful_current_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "first_placement_or_replacement_epoch": 1784005897.194,
+      "first_placement_or_replacement_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "first_lawful_current_coherence_epoch": 1784005897.194,
+      "first_lawful_current_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "first_placement_or_replacement_epoch": 1784005897.194,
+      "first_placement_or_replacement_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "first_lawful_current_coherence_epoch": 1784332553,
+      "first_lawful_current_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "first_placement_or_replacement_epoch": 1784332553,
+      "first_placement_or_replacement_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "first_lawful_current_coherence_epoch": 1784332553,
+      "first_lawful_current_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "first_placement_or_replacement_epoch": 1784332553,
+      "first_placement_or_replacement_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "latency_seconds": 0,
+      "outcome": "ACTION_AT_CURRENT_COHERENCE"
+    }
+  ],
+  "placement_or_replacement_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831858,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 28,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 28,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783831858,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 65,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 65,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783833752,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-64",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 31,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 31,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783833752,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-64",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 62,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 62,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783833962,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-263",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 30,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 30,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783841772,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-431",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 25,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 25,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784001495,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 30,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 30,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784001495,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 59,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 59,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784004251,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-57",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 64,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 64,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784004782,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-524",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 28,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 28,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784004782,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-524",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 60,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 60,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784006433,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-587",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 37,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 535.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 37,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 34,
+        "high_cents": 36,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-587",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 34
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784006930,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-606",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 28,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 1032.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 28,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 34,
+        "high_cents": 35,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-606",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 34
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784006931,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-608",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 32,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 1033.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 32,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 34,
+        "high_cents": 35,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-608",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 34
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784006932,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-613",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 28,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 1034.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 28,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 34,
+        "high_cents": 34,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-613",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 34
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784007007,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-643",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 32,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 1109.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 32,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 34,
+        "high_cents": 35,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-643",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 34
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784016213,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 28,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 10315.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 28,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 35,
+        "high_cents": 36,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-716",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 35
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784016214,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-719",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 37,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 10316.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 37,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 35,
+        "high_cents": 36,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-719",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 35
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784016225,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-988",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 39,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 10327.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 39,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 35,
+        "high_cents": 35,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-988",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 35
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784018093,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-818",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 31,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 12195.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 31,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 35,
+        "high_cents": 35,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-818",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 35
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784020558,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 32,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 14660.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 32,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 35,
+        "high_cents": 35,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 35
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784021161,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1043",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 39,
+        "first_lawful_coherence_epoch": 1784005897.194,
+        "first_lawful_coherence_receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 15263.805999994278,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 39,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 35,
+        "high_cents": 35,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1043",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 35
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784007603,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 59,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 59,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784007603,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 29,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 29,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784007604,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-65",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 31,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 31,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784010254,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-95",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 52,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 52,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784010255,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-99",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 34,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 34,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784010487,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-119",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 55,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 55,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784010487,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-119",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 32,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 32,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784010972,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-123",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 52,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 52,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784010972,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-123",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 34,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 34,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784011052,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-131",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 36,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 36,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784011407,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-144",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 31,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 31,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784012624,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-154",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 55,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 55,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784012624,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-154",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 32,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 32,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784012635,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-167",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 52,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 52,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784012635,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-167",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 31,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 31,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784016081.367,
+      "receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 34,
+        "first_lawful_coherence_epoch": 1784016081.367,
+        "first_lawful_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 0,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 34,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 36,
+        "high_cents": 37,
+        "belief_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 41,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            27,
+            29,
+            30,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            44
+          ],
+          "candidate_depth_counts": {
+            "0": 43,
+            "1": 24,
+            "2": 26,
+            "3": 14,
+            "4": 6,
+            "5": 8,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 27,
+          "shallowest_supported_floor_cents": 44,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 35
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784020161,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-245",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 36,
+        "first_lawful_coherence_epoch": 1784016081.367,
+        "first_lawful_coherence_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 36,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332553,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 44,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 0,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 44,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 52,
+        "high_cents": 53,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 58,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            36
+          ],
+          "candidate_final_floor_levels_cents": [
+            22,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_depth_counts": {
+            "0": 15,
+            "1": 22,
+            "2": 14,
+            "3": 8,
+            "4": 5,
+            "5": 2,
+            "6": 1,
+            "36": 1
+          },
+          "deepest_supported_floor_cents": 22,
+          "shallowest_supported_floor_cents": 58,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+              "support_n": 27,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 3
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 6
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 28,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 36
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 46
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784332553,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 40,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 0,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 40,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 41,
+        "high_cents": 60,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 41,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6
+          ],
+          "candidate_final_floor_levels_cents": [
+            35,
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 12,
+            "1": 19,
+            "2": 21,
+            "3": 9,
+            "4": 3,
+            "6": 1
+          },
+          "deepest_supported_floor_cents": 35,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+              "support_n": 21,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 4
+            },
+            {
+              "shape_id": "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 6
+            },
+            {
+              "shape_id": "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 4
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 57
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332589,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-482",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 56,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 36,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 56,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 52,
+        "high_cents": 55,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-482",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 58,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            36
+          ],
+          "candidate_final_floor_levels_cents": [
+            22,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_depth_counts": {
+            "0": 15,
+            "1": 22,
+            "2": 14,
+            "3": 8,
+            "4": 5,
+            "5": 2,
+            "6": 1,
+            "36": 1
+          },
+          "deepest_supported_floor_cents": 22,
+          "shallowest_supported_floor_cents": 58,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+              "support_n": 27,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 3
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 6
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 28,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 36
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 46
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332590,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-488",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 44,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 37,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 44,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 52,
+        "high_cents": 54,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-488",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 58,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            36
+          ],
+          "candidate_final_floor_levels_cents": [
+            22,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_depth_counts": {
+            "0": 15,
+            "1": 22,
+            "2": 14,
+            "3": 8,
+            "4": 5,
+            "5": 2,
+            "6": 1,
+            "36": 1
+          },
+          "deepest_supported_floor_cents": 22,
+          "shallowest_supported_floor_cents": 58,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+              "support_n": 27,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 3
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 6
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 28,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 36
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 46
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332591,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-499",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 56,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 38,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 56,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 52,
+        "high_cents": 55,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-499",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 58,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            36
+          ],
+          "candidate_final_floor_levels_cents": [
+            22,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_depth_counts": {
+            "0": 15,
+            "1": 22,
+            "2": 14,
+            "3": 8,
+            "4": 5,
+            "5": 2,
+            "6": 1,
+            "36": 1
+          },
+          "deepest_supported_floor_cents": 22,
+          "shallowest_supported_floor_cents": 58,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+              "support_n": 27,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 3
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 6
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 28,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 36
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 46
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332593,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-507",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 44,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 40,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 44,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 52,
+        "high_cents": 53,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-507",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 58,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            36
+          ],
+          "candidate_final_floor_levels_cents": [
+            22,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_depth_counts": {
+            "0": 15,
+            "1": 22,
+            "2": 14,
+            "3": 8,
+            "4": 5,
+            "5": 2,
+            "6": 1,
+            "36": 1
+          },
+          "deepest_supported_floor_cents": 22,
+          "shallowest_supported_floor_cents": 58,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+              "support_n": 27,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 3
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 6
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 28,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 36
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 46
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332594,
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-516",
+      "coherence": "COHERENT",
+      "placement": {
+        "current_coherence": true,
+        "lawful_target_after_pair_allocation_cents": 56,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": 41,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 56,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": {
+        "low_cents": 52,
+        "high_cents": 56,
+        "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-516",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 58,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            36
+          ],
+          "candidate_final_floor_levels_cents": [
+            22,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_depth_counts": {
+            "0": 15,
+            "1": 22,
+            "2": 14,
+            "3": 8,
+            "4": 5,
+            "5": 2,
+            "6": 1,
+            "36": 1
+          },
+          "deepest_supported_floor_cents": 22,
+          "shallowest_supported_floor_cents": 58,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+              "support_n": 27,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 3
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 6
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 28,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 36
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 46
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784336963.017,
+      "receipt": "5c3e4f2c-cb1c-7a8a-c61c-2f6597821fb9",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 57,
+        "first_lawful_coherence_epoch": 1784332553,
+        "first_lawful_coherence_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "action_at_receipt": "REPRICE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 57,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    }
+  ],
+  "stale_envelope_originated_new_rest_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783831858,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 28,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 28,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783831858,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 65,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 65,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784001495,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 30,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 30,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784001495,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 59,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 59,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784007603,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 59,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 59,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784007603,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+      "coherence": "DISAGREES",
+      "placement": {
+        "current_coherence": false,
+        "lawful_target_after_pair_allocation_cents": 29,
+        "first_lawful_coherence_epoch": null,
+        "first_lawful_coherence_receipt": null,
+        "action_at_receipt": "PLACE_REST",
+        "placement_or_replacement_same_receipt": true,
+        "qualification_to_action_latency_seconds": null,
+        "stale_envelope_originated_new_rest": false,
+        "carried_conviction_originated_or_repriced_rest": false,
+        "carried_conviction_basis_re_stated": null,
+        "carried_conviction_prior_receipt": null,
+        "disagrees_own_evidence_originated_or_repriced_rest": false,
+        "observed_floor_originated_repriced_or_held_rest": false,
+        "live_touch_originated_new_rest": false,
+        "provenance": [
+          "F-VS-118@c08ce381",
+          "F-VS-134@e7081336"
+        ]
+      },
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 29,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "envelope": null
+    }
+  ],
+  "every_qualified_action_same_receipt": true
+}

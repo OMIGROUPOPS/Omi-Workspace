@@ -60,9 +60,9 @@ assert.match(derivation.sentence, /CR-[0-9a-f]{64}/);
 assert.equal(derivation.pair_conservation.at_or_below_99, true);
 assert.equal(derivation.resources_consulted.length, 0, "connectivity must not be mislabeled as consultation");
 assert.ok(Object.values(derivation.citation_receipts).every((row) => row.captured_at_receipt === state.receipt));
-assert.equal(derivation.derivation.target_basis, "OBSERVED_TRADED_FLOOR_AUTHORITY");
-assert.equal(derivation.derivation.evidence_rung, "OBSERVED_TRADED_FLOOR_AUTHORITY");
-assert.equal(derivation.derivation.proposed_target_cents, 38);
+assert.equal(derivation.derivation.target_basis, "INSUFFICIENT_ENGINE_DEPTH_OWN_EVIDENCE_AVAILABLE_FOR_VACUUM_FALLBACK");
+assert.equal(derivation.derivation.evidence_rung, "INSUFFICIENT_ENGINE_DEPTH_OWN_EVIDENCE_AVAILABLE_FOR_VACUUM_FALLBACK");
+assert.equal(derivation.derivation.proposed_target_cents, null);
 assert.equal(derivation.derivation.stale_prior_path_used, false);
 assert.match(derivation.sentence, /TOUCH_RELATION=/);
 assert.match(derivation.sentence, /PRICE_AT_EVIDENCED_TOUCH=/);
@@ -72,16 +72,18 @@ assert.match(derivation.sentence, /MAP_MEMBERS=/);
 assert.match(derivation.sentence, /CHOSEN_DEPTH_CENTS=/);
 assert.match(derivation.sentence, /OWN_WINDOW=/);
 assert.match(derivation.sentence, /PAIR_STATE=/);
-assert.match(derivation.sentence, /EVIDENCE_RUNG=OBSERVED_TRADED_FLOOR_AUTHORITY/);
+assert.match(derivation.sentence, /EVIDENCE_RUNG=INSUFFICIENT_ENGINE_DEPTH_OWN_EVIDENCE_AVAILABLE_FOR_VACUUM_FALLBACK/);
+assert.equal(derivation.derivation.post_only_cap_cents, null);
+assert.equal(derivation.derivation.post_only_role, "VETO_ONLY_NOT_PRICE_AUTHOR");
 
 const untimedNeighborhood = neighborhood.map((row) => ({ ...row, legs: row.legs.map((leg) => ({ ...leg, floor_fraction: null })) }));
 const rung2 = os.deriveAction({ state, reads, neighborhood: untimedNeighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r2" }, resources });
-assert.equal(rung2.derivation.evidence_rung, "OBSERVED_TRADED_FLOOR_AUTHORITY");
-assert.equal(rung2.derivation.proposed_target_cents, 38);
+assert.equal(rung2.derivation.evidence_rung, "INSUFFICIENT_ENGINE_DEPTH_OWN_EVIDENCE_AVAILABLE_FOR_VACUUM_FALLBACK");
+assert.equal(rung2.derivation.proposed_target_cents, null);
 
 const rung3 = os.deriveAction({ state, reads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r3" }, resources });
-assert.equal(rung3.derivation.evidence_rung, "OBSERVED_TRADED_FLOOR_AUTHORITY");
-assert.equal(rung3.derivation.proposed_target_cents, 38);
+assert.equal(rung3.derivation.evidence_rung, "INSUFFICIENT_ENGINE_DEPTH_OWN_EVIDENCE_AVAILABLE_FOR_VACUUM_FALLBACK");
+assert.equal(rung3.derivation.proposed_target_cents, null);
 
 os.configureTrueBellCellDepthMap({
   kind: "TRUE_BELL_CELL_CONDITIONAL_DEPTH_MAP_V3",
@@ -99,7 +101,7 @@ for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(ma
 const mappedReads = os.readAll(mappedState), mappedVector = os.vectorFromReads(mappedState, mappedReads);
 const timedNeighborhood = os.retrieveNeighborhood(timedCorpus, mappedVector, "TEST-EVENT", 2, mappedState.receipt);
 const mapped = os.deriveAction({ state: mappedState, reads: mappedReads, neighborhood: timedNeighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-map" }, resources });
-assert.equal(mapped.derivation.evidence_rung, "TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED");
+assert.equal(mapped.derivation.evidence_rung, "ENGINE_VOTES_LICENSED_DEPTH_CONDITIONED_BY_OWN_EVIDENCE");
 assert.equal(mapped.derivation.true_bell_cell_depth_map.licensed, true);
 assert.equal(mapped.derivation.proposed_target_cents, 34);
 assert.match(mapped.sentence, /MAP_CELL=ATP_MAIN\|37/);

@@ -658,10 +658,11 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     } else if (coherence.status === "DISAGREES") {
       // F-VS-138/142: disagreement blocks belief-priced origination, but it
       // cannot veto independent own-tape evidence that the surviving traded-low
-      // hypotheses support. The deepest current own evidence (true-trade low or
-      // live bid) names the rest; the disagreement remains explicit.
+      // hypotheses support.  Only the leg's receipt-pinned traded evidence may
+      // name a new level here.  The displayed bid is context, never the default
+      // price of a DISAGREES rest (F-VS-177).
       const runningTradeLow = cent(state.legs[legId].running_true_trade_low_cents);
-      const ownEvidenceTarget = [runningTradeLow, liveBid].filter(Number.isInteger).sort((a, b) => a - b)[0] ?? null;
+      const ownEvidenceTarget = runningTradeLow;
       const ownEvidenceComplete = Boolean(ownEvidenceTarget && liveBid && liveAsk && liveBid < liveAsk && book?.receipt);
       const survivorSupported = ownEvidenceComplete && criterionSupportsLevel(criterion, ownEvidenceTarget);
       targets[legId] = survivorSupported ? ownEvidenceTarget : active;
@@ -672,6 +673,8 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         live_bid_cents: liveBid,
         live_ask_cents: liveAsk,
         book_receipt: book?.receipt ?? null,
+        live_bid_consumed_as_price: Boolean(survivorSupported && ownEvidenceTarget === liveBid),
+        live_bid_relation: survivorSupported && ownEvidenceTarget === liveBid ? "EVIDENCED_TRADE_LOW_HAPPENS_TO_EQUAL_LIVE_BID" : "REFERENCE_ONLY_NOT_LEVEL_AUTHORITY",
         running_true_trade_low_cents: runningTradeLow,
         own_evidence_target_cents: ownEvidenceTarget,
         own_evidence_complete: ownEvidenceComplete,
@@ -861,6 +864,29 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
               ? "CARRIED_CONVICTION_Q75_BASIS_RESTATED_SURVIVORS_HOLD"
               : "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL";
     const action = actionForTarget(active, target, reason);
+    const laneEligibility = {
+      COHERENT_ENVELOPE: Boolean(decisionEnvelopes[legId] && coherentNow),
+      DISAGREES_OWN_EVIDENCE: Boolean(coherence.status === "DISAGREES" && envelopePlacement[legId]?.survivor_target_supported),
+      CARRIED_CONVICTION: Boolean(decisionEnvelopes[legId] && !coherentNow && coherence.status !== "DISAGREES"),
+      NULL_ENVELOPE_OWN_TOUCH: Boolean(!decisionEnvelopes[legId] && coherence.status !== "DISAGREES"),
+      ACTIVE_REST_HOLD: Number.isInteger(active),
+    };
+    const winningLane = placementMode === "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED"
+      ? "DISAGREES_OWN_EVIDENCE"
+      : placementMode === "CARRIED_PRIOR_RECEIPT_CONVICTION_Q75_BASIS_RESTATED"
+        ? "CARRIED_CONVICTION"
+        : placementMode === "CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_NULL"
+          ? "NULL_ENVELOPE_OWN_TOUCH"
+          : placementMode === "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT"
+            ? "ACTIVE_REST_HOLD"
+            : "COHERENT_ENVELOPE";
+    const decisionArbitration = {
+      decision_instant_epoch: state.current_epoch,
+      source_receipt: state.receipt,
+      winner: { lane: winningLane, action: action.action, target_cents: action.target_cents, reason: action.reason },
+      losers: Object.entries(laneEligibility).filter(([lane]) => lane !== winningLane).map(([lane, eligible]) => ({ lane, eligible, disposition: eligible ? "LOST_PRECEDENCE_TO_WINNER" : "INELIGIBLE_AT_RECEIPT" })),
+      emitted_order_count: ["PLACE_REST", "REPRICE_REST", "CANCEL_REST"].includes(action.action) ? 1 : 0,
+    };
     const survivor = survivorUpdate.legs[legId];
     const evidencedFloor = cent(state.legs[legId].running_true_trade_low_cents);
     const evidencedFloorReceipt = evidencedFloor === null
@@ -905,7 +931,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       provenance: [LAYER_PROVENANCE.coherence_placement_fix, LAYER_PROVENANCE.carried_conviction],
     };
     let rearmReceipt;
-    if (action.action === "CANCEL_REST" && noLawfulReplacement) {
+    if (action.action === "CANCEL_REST" && Number.isInteger(active)) {
       const prior = pendingRearmBefore;
       rearmReceipt = {
         status: "REARM_PENDING",
@@ -914,7 +940,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         latest_attempt_epoch: state.current_epoch,
         latest_attempt_receipt: state.receipt,
         attempts: (prior?.attempts ?? 0) + 1,
-        trigger: noLawfulReplacement ? envelopeConsistency.no_lawful_replacement_reason : "NO_LAWFUL_REPLACEMENT",
+        trigger: noLawfulReplacement ? envelopeConsistency.no_lawful_replacement_reason : "ORDINARY_BOOK_CANCEL_WITHOUT_SAME_RECEIPT_REPLACEMENT",
         permanent_silence_allowed: false,
         provenance: LAYER_PROVENANCE.atomic_rearm_fix,
       };
@@ -974,7 +1000,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       floorRestTenure = { status: "NO_ACTIVE_EVIDENCED_FLOOR_TENURE", ended_by: null };
     }
     const floorRestProtection = {
-      floor_rest_locks_retired: true,
+      floor_rest_lock_state: Object.prototype.hasOwnProperty.call(state.dual_belief, "floor_rest_locks") ? "PRESENT_DEFECT" : "ABSENT_RETIRED",
       evidenced_floor_cents: evidencedFloor,
       evidenced_floor_source: evidencedFloor ? "OBSERVED_TRUE_TRADE_PRINT" : null,
       evidenced_floor_receipt: evidencedFloorReceipt,
@@ -1029,7 +1055,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       : "";
     const floorCriterion = survivor?.target_criterion ?? null;
     const allocationBound = allocation.par_allocation_floor_bounds?.[legId] ?? parAllocationFloorBounds[legId] ?? null;
-    const sentence = `${beliefText}. MACRO: family=${macroFamilies[legId].family}, SURVIVOR_SHAPES=${JSON.stringify(survivorUpdate.legs[legId])}, conditioned-total-dip=${JSON.stringify(conditionedPriors[legId]?.conditioned_total_dip_distribution_cents ?? null)}, arrived-dip=${JSON.stringify(conditionedPriors[legId]?.arrived_dip_distribution_cents ?? null)}, remaining-dip=total-minus-arrived=${JSON.stringify(conditionedPriors[legId]?.remaining_dip_distribution_cents ?? null)}, conditioning-method=${conditionedPriors[legId]?.method ?? "NONE"}, stores=${coarseNeighbors.map((neighbor) => `${neighbor.quality}/${neighbor.grain ?? "UNKNOWN"}@${neighbor.citation_receipt_id}`).join(",") || "NONE"} [${macroReceipt.receipt_id}]. MICRO: own-window=${JSON.stringify(beliefs[legId]?.own_evidence ?? null)}, rows=${[beliefs[legId]?.book_receipt, beliefs[legId]?.top_neighbor?.citation_receipt_id].filter(Boolean).join(",") || "NONE"}, V3_KEY=${LAYER_PROVENANCE.v3_source_key}->${LAYER_PROVENANCE.v3_runtime_rekey} [${microReceipt.receipt_id}]. MICRO-MICRO: tick=${state.receipt}, book=${beliefs[legId]?.book_receipt ?? "NONE"}, store=${LAYER_PROVENANCE.micro_micro_store} [${microMicroReceipt.receipt_id}]. ORDER=${upstream}. COHERENCE=${coherence.status}; MIRROR_GAP=${coherence.absolute_mirror_gap_cents ?? "UNKNOWN"}; SPREAD_BOUND=${spread ?? "UNKNOWN"}/${SPREAD_SETTLE_COHERENCE_MAX_CENTS}; OBSERVED_TRADED_FLOOR=${evidencedFloor ?? "NONE"}@${evidencedFloorReceipt ?? "NONE"}; TRADED_LOW_TARGET_CRITERION=${JSON.stringify(floorCriterion)}; NON_TRADED_LOW_DISCLOSURE=${beliefs[legId]?.own_evidence?.non_traded_low_disclosure ?? "NOT_CONSUMED"}; CONVICTION_EVOLUTION=${JSON.stringify(convictionEvolution[legId])}; FLOOR_REST_PROTECTION=${JSON.stringify(floorRestProtection)}; PROPOSAL_SUPERVISOR=${JSON.stringify(proposalSupervisor)}; PAR_ALLOCATION_FLOOR_BOUND=${JSON.stringify(allocationBound)}; PAR_ALLOCATION_HEADROOM_CENTS=${allocation.headroom_cents?.[legId] ?? "NONE"}; ENVELOPE=${JSON.stringify(currentEnvelope)}; ENVELOPE_PLACEMENT=${JSON.stringify(envelopePlacement[legId])}; ALLOCATION=${allocation.reason}.${fillHandoffText} ${actionStatement}`;
+    const sentence = `${beliefText}. MACRO: family=${macroFamilies[legId].family}, SURVIVOR_SHAPES=${JSON.stringify(survivorUpdate.legs[legId])}, conditioned-total-dip=${JSON.stringify(conditionedPriors[legId]?.conditioned_total_dip_distribution_cents ?? null)}, arrived-dip=${JSON.stringify(conditionedPriors[legId]?.arrived_dip_distribution_cents ?? null)}, remaining-dip=total-minus-arrived=${JSON.stringify(conditionedPriors[legId]?.remaining_dip_distribution_cents ?? null)}, conditioning-method=${conditionedPriors[legId]?.method ?? "NONE"}, stores=${coarseNeighbors.map((neighbor) => `${neighbor.quality}/${neighbor.grain ?? "UNKNOWN"}@${neighbor.citation_receipt_id}`).join(",") || "NONE"} [${macroReceipt.receipt_id}]. MICRO: own-window=${JSON.stringify(beliefs[legId]?.own_evidence ?? null)}, rows=${[beliefs[legId]?.book_receipt, beliefs[legId]?.top_neighbor?.citation_receipt_id].filter(Boolean).join(",") || "NONE"}, V3_KEY=${LAYER_PROVENANCE.v3_source_key}->${LAYER_PROVENANCE.v3_runtime_rekey} [${microReceipt.receipt_id}]. MICRO-MICRO: tick=${state.receipt}, book=${beliefs[legId]?.book_receipt ?? "NONE"}, store=${LAYER_PROVENANCE.micro_micro_store} [${microMicroReceipt.receipt_id}]. ORDER=${upstream}. COHERENCE=${coherence.status}; MIRROR_GAP=${coherence.absolute_mirror_gap_cents ?? "UNKNOWN"}; SPREAD_BOUND=${spread ?? "UNKNOWN"}/${SPREAD_SETTLE_COHERENCE_MAX_CENTS}; OBSERVED_TRADED_FLOOR=${evidencedFloor ?? "NONE"}@${evidencedFloorReceipt ?? "NONE"}; TRADED_LOW_TARGET_CRITERION=${JSON.stringify(floorCriterion)}; NON_TRADED_LOW_DISCLOSURE=${beliefs[legId]?.own_evidence?.non_traded_low_disclosure ?? "NOT_CONSUMED"}; CONVICTION_EVOLUTION=${JSON.stringify(convictionEvolution[legId])}; FLOOR_REST_PROTECTION=${JSON.stringify(floorRestProtection)}; PROPOSAL_SUPERVISOR=${JSON.stringify(proposalSupervisor)}; DECISION_ARBITRATION=${JSON.stringify(decisionArbitration)}; PAR_ALLOCATION_FLOOR_BOUND=${JSON.stringify(allocationBound)}; PAR_ALLOCATION_HEADROOM_CENTS=${allocation.headroom_cents?.[legId] ?? "NONE"}; ENVELOPE=${JSON.stringify(currentEnvelope)}; ENVELOPE_PLACEMENT=${JSON.stringify(envelopePlacement[legId])}; ALLOCATION=${allocation.reason}.${fillHandoffText} ${actionStatement}`;
     row.citation_receipts[macroReceipt.receipt_id] = macroReceipt;
     row.citation_receipts[microReceipt.receipt_id] = microReceipt;
     row.citation_receipts[microMicroReceipt.receipt_id] = microMicroReceipt;
@@ -1037,7 +1063,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.sentence = sentence;
     row.sentence_action_assertion = { hard_assert: true, expected_statement: actionStatement, equal: sentence.includes(actionStatement) };
     row.citation_receipt_assertion = { hard_assert: true, receipt_count: Object.keys(row.citation_receipts).length, equal: [macroReceipt, microReceipt, microMicroReceipt].every((receipt) => sentence.includes(receipt.receipt_id)) };
-    row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, survivor_shapes: survivorUpdate, conditioned_priors: conditionedPriors, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, belief_mode: beliefMode, conviction_evolution: convictionEvolution[legId], carried_conviction_consumed_for_action: carriedPlacement, independent_lane_may_complete: true, independent_lane_license: [LAYER_PROVENANCE.consume_live_touch_fix, LAYER_PROVENANCE.own_evidence_sufficiency, LAYER_PROVENANCE.disagrees_own_evidence_release], first_coherence: state.dual_belief.first_coherence, envelope_history_count: state.dual_belief.envelope_history.length, envelope_migration_at_receipt: envelopeMigrations[legId] ?? null, envelope_consistency: envelopeConsistency, coherence_placement: coherencePlacement, floor_rest_protection: floorRestProtection, proposal_supervisor: proposalSupervisor, par_allocation_floor_bound: allocationBound, envelope: currentEnvelope, envelope_placement: envelopePlacement[legId], v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
+    row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, survivor_shapes: survivorUpdate, conditioned_priors: conditionedPriors, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, belief_mode: beliefMode, conviction_evolution: convictionEvolution[legId], carried_conviction_consumed_for_action: carriedPlacement, independent_lane_license: [LAYER_PROVENANCE.consume_live_touch_fix, LAYER_PROVENANCE.own_evidence_sufficiency, LAYER_PROVENANCE.disagrees_own_evidence_release], decision_arbitration: decisionArbitration, atomic_rearm: rearmReceipt, first_coherence: state.dual_belief.first_coherence, envelope_history_count: state.dual_belief.envelope_history.length, envelope_migration_at_receipt: envelopeMigrations[legId] ?? null, envelope_consistency: envelopeConsistency, coherence_placement: coherencePlacement, floor_rest_protection: floorRestProtection, proposal_supervisor: proposalSupervisor, par_allocation_floor_bound: allocationBound, envelope: currentEnvelope, envelope_placement: envelopePlacement[legId], v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
     delete row.derivation.stale_prior_path_used;
     row.derivation.carried_conviction = convictionEvolution[legId];
     row.derivation.target_basis = reason;

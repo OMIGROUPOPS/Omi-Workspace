@@ -1,0 +1,1213 @@
+{
+  "label": "F_VS_177_LITERAL_BOOLEAN_SOURCE_AUDIT",
+  "law": "Serialized facts may not be typed as boolean literals. Remaining operational branch/API booleans are enumerated with source context; every named receipt-claim literal is a build violation.",
+  "provenance": [
+    "F-VS-177@25c3a35a/877f1d76",
+    "DEFINITION_LOCK"
+  ],
+  "named_fields": [
+    "telemetry_only",
+    "ask_reachability_defines_target",
+    "same_receipt_write_then_read_removed",
+    "hardcoded_stale_prior_false_gate_removed",
+    "floor_rest_locks_retired",
+    "unstamped_incomplete_scores_zero",
+    "live_bid_is_reference_only",
+    "may_hold",
+    "may_abstain",
+    "may_complete_only_from_own_live_evidenced_touch",
+    "placement_rule_changed_from_outcomes",
+    "named_event_ids_in_policy_source",
+    "rule_applied_uniformly",
+    "f_vs_110_tuned_stamp_retained",
+    "full_804_run",
+    "sealed_read",
+    "live_mutation"
+  ],
+  "remaining_named_literal_claims": [],
+  "remaining_named_count": 0,
+  "all_raw_boolean_literals": [
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 253,
+      "field": "recursive",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "function writeJson(file, value) { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, canonical(value), \"utf8\"); }"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 254,
+      "field": "recursive",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "function writeText(file, value) { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, value.endsWith(\"\\n\") ? value : `${value}\\n`, \"utf8\"); }"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 261,
+      "field": "recursive",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "fs.mkdirSync(custodyOutput, { recursive: true });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 269,
+      "field": "committed",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "return { logical_path: name, custody_location: destination, sha256: destinationReceipt.sha256, bytes: destinationReceipt.bytes, rows: destinationReceipt.rows, committed: false };"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 283,
+      "field": "withFileTypes",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 335,
+      "field": "recursive",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "fs.mkdirSync(path.dirname(file), { recursive: true });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 815,
+      "field": "json_or_text_opened",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "const repoAsset = (id, commit, rel) => { const bytes = gitShow(repo, commit, rel); return { id, status: \"CONNECTED\", receipt: `${commit}:${rel}@sha256:${shaBytes(bytes)}`, smoke: { bytes: bytes.length, json_or_text_opened: true } }; };"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 822,
+      "field": "schema_opened_read_only",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "{ id: \"SUBSECOND_STORE\", status: \"CONNECTED\", receipt: `stat:${remote.subsecond.path}:${remote.subsecond.bytes}`, smoke: { schema_opened_read_only: true, tables: Object.keys(remote.subsecond.tables), sample_present: remote.subsecond.sample_present } },"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 829,
+      "field": "target_filter_opened",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "{ id: \"EXTERNAL_CUSTODY_TRUE_PRINTS\", status: \"CONNECTED\", receipt: path.join(privateRoot, \"fit-local\", \"prints.jsonl\"), smoke: { target_filter_opened: true } },"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 892,
+      "field": "micro_micro_licensed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:892 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "{ id: \"foundation_minute_universe\", status: \"CONNECTED\", purpose: \"FIRST_CLASS_PATTERN_LIBRARY\", quality: \"NATIVE_BELL_BOUNDED; UNKNOWN_MATCH_START_METHOD_EXCLUDED\", games: corpus.foundation.rows, rows: corpus.foundation.source.rows, span: \"2025-06-18..2026-05-01\", categories: corpus.counts.foundation_categories, grain: \"MINUTE\", licensed_layers: [\"MACRO\", \"MICRO\"], micro_micro_licensed: false, path: corpus.foundation.source.path, sha256: corpus.foundation.source.sha256, bytes: corpus.foundation.source.bytes, compact_index: corpus.foundation.index, coverage_before: corpus.foundation.coverage_before, coverage_after: corpus.foundation.coverage_after },"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 893,
+      "field": "micro_micro_licensed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:893 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "{ id: \"spike_atlas\", status: \"CONNECTED\", purpose: \"FOUNDATION_PATTERN_SUPPLEMENT\", quality: \"DESCRIPTIVE_ONLY; SUPERSEDED_EXIT_MAP_NOT_CONSUMED\", games: corpus.foundation.spike_atlas.reduce((total, row) => total + row.rows, 0), rows: corpus.foundation.spike_atlas.reduce((total, row) => total + row.rows, 0), categories: Object.fromEntries(corpus.foundation.spike_atlas.map((row) => [row.category, row.rows])), grain: \"EVENT_LEG_DESCRIPTIVE\", licensed_layers: [\"MACRO\", \"MICRO\"], micro_micro_licensed: false, sha256: shaBytes(canonical(corpus.foundation.spike_atlas)), files: corpus.foundation.spike_atlas },"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 993,
+      "field": "full_derivation_retained",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:993 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "full_derivation_retained: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 994,
+      "field": "policy_evaluation_executed",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:994 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "policy_evaluation_executed: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 997,
+      "field": "compact_rearm_attempt",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "return { compact_rearm_attempt: true, receipt: state.receipt, timestamp_epoch: state.current_epoch };"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1026,
+      "field": "compactUnchangedRearm",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1026 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "evaluateStage({ trigger: \"ATOMIC_REARM_DECISION_INSTANT\", receipt: lastConsumedReceipt, compactUnchangedRearm: true });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1089,
+      "field": "unstamped_abstention_scores_zero",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1089 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "unstamped_abstention_scores_zero: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1121,
+      "field": "recursive",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "fs.mkdirSync(caseOutput, { recursive: true });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1162,
+      "field": "recursive",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "fs.mkdirSync(output, { recursive: true });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1173,
+      "field": "future_close_consumed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1173 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "future_close_consumed: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1224,
+      "field": "committed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1224 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "{ logical_path: \"FOUNDATION_PER_MINUTE_UNIVERSE\", custody_location: corpus.foundation.source.external_custody_location, sha256: corpus.foundation.source.sha256, bytes: corpus.foundation.source.bytes, rows: corpus.foundation.source.rows, committed: false, compact_derivatives: [{ path: \"FOUNDATION_LIBRARY.jsonl.gz\", sha256: corpus.foundation.index.sha256, bytes: corpus.foundation.index.bytes, rows: corpus.foundation.index.rows }, { path: \"FUTURE_LOW_RETURN_LIBRARY.jsonl.gz\", sha256: corpus.future_low_return.index.sha256, bytes: corpus.future_low_return.index.bytes, rows: corpus.future_low_return.index.rows }, { path: \"PHASE_CENTRAL_ESTIMATE_SURFACE.json\", sha256: phaseSurfaceReceipt.sha256, bytes: phaseSurfaceReceipt.bytes, rows: phaseCentralSurface.cells.length }] },"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1225,
+      "field": "committed_in_current_tree",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1225 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "{ logical_path: \"INTERIM_PAIR_LIBRARY_V18.json\", source_path: PAIR_INTERIM_LIBRARY_PATH, source_commit: SURVIVOR_SOURCE_COMMIT, custody_location: `https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/${SURVIVOR_SOURCE_COMMIT}/${PAIR_INTERIM_LIBRARY_PATH}`, sha256: survivorBinding.sha256.pair, bytes: Buffer.byteLength(pairInterimBytes), committed_in_current_tree: false, git_object_hash_bound: true },"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1225,
+      "field": "git_object_hash_bound",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1225 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "{ logical_path: \"INTERIM_PAIR_LIBRARY_V18.json\", source_path: PAIR_INTERIM_LIBRARY_PATH, source_commit: SURVIVOR_SOURCE_COMMIT, custody_location: `https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/${SURVIVOR_SOURCE_COMMIT}/${PAIR_INTERIM_LIBRARY_PATH}`, sha256: survivorBinding.sha256.pair, bytes: Buffer.byteLength(pairInterimBytes), committed_in_current_tree: false, git_object_hash_bound: true },"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1226,
+      "field": "committed_in_current_tree",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1226 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "{ logical_path: \"PAIR_COUPLE_LIBRARY_V19.json\", source_path: PAIR_COUPLE_LIBRARY_PATH, source_commit: SURVIVOR_SOURCE_COMMIT, custody_location: `https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/${SURVIVOR_SOURCE_COMMIT}/${PAIR_COUPLE_LIBRARY_PATH}`, sha256: survivorBinding.sha256.couple, bytes: Buffer.byteLength(pairCoupleBytes), committed_in_current_tree: false, git_object_hash_bound: true },"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1226,
+      "field": "git_object_hash_bound",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1226 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "{ logical_path: \"PAIR_COUPLE_LIBRARY_V19.json\", source_path: PAIR_COUPLE_LIBRARY_PATH, source_commit: SURVIVOR_SOURCE_COMMIT, custody_location: `https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/${SURVIVOR_SOURCE_COMMIT}/${PAIR_COUPLE_LIBRARY_PATH}`, sha256: survivorBinding.sha256.couple, bytes: Buffer.byteLength(pairCoupleBytes), committed_in_current_tree: false, git_object_hash_bound: true },"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1228,
+      "field": "prior_manifest_disagreement_reconciled",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1228 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "prior_manifest_disagreement_reconciled: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1229,
+      "field": "phase_central_surface_file_receipt_matches_artifact_manifest",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1229 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "phase_central_surface_file_receipt_matches_artifact_manifest: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1230,
+      "field": "all_committed_artifacts_under_50_mb",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1230 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "all_committed_artifacts_under_50_mb: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1232,
+      "field": "native_unknown_method_excluded",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "writeJson(path.join(output, \"FOUNDATION_COVERAGE_BEFORE_AFTER.json\"), { label: \"FOUNDATION_BOUNDED_SPAN_COVERAGE\", target_from_f_vs_061: { bounded_games: 698, unbounded_games: 11811 }, measured: { before: corpus.foundation.coverage_before, after: corpus.foundation.coverage_after }, native_unknown_method_excluded: true, grain: \"MINUTE\", licensed_layers: [\"MACRO\", \"MICRO\"], micro_micro_licensed: false });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1232,
+      "field": "micro_micro_licensed",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "writeJson(path.join(output, \"FOUNDATION_COVERAGE_BEFORE_AFTER.json\"), { label: \"FOUNDATION_BOUNDED_SPAN_COVERAGE\", target_from_f_vs_061: { bounded_games: 698, unbounded_games: 11811 }, measured: { before: corpus.foundation.coverage_before, after: corpus.foundation.coverage_after }, native_unknown_method_excluded: true, grain: \"MINUTE\", licensed_layers: [\"MACRO\", \"MICRO\"], micro_micro_licensed: false });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1247,
+      "field": "receipt_accounting_only",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1247 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "sourceReceipts.finalization = { receipt_accounting_only: true, stories_rerun: false, smoke_rerun: false, archive_prefix_census: archivePrefixCensusPath ? path.resolve(archivePrefixCensusPath) : null };"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1247,
+      "field": "stories_rerun",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1247 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "sourceReceipts.finalization = { receipt_accounting_only: true, stories_rerun: false, smoke_rerun: false, archive_prefix_census: archivePrefixCensusPath ? path.resolve(archivePrefixCensusPath) : null };"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1247,
+      "field": "smoke_rerun",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1247 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "sourceReceipts.finalization = { receipt_accounting_only: true, stories_rerun: false, smoke_rerun: false, archive_prefix_census: archivePrefixCensusPath ? path.resolve(archivePrefixCensusPath) : null };"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1293,
+      "field": "smokeOnly",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1293 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "const result = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: true });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1296,
+      "field": "grading_performed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1296 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "games.push({ event_id: meta.event_id, role: meta.event_id === TARGETS.smoke[0] ? \"CRIJEA_INTEGRATION_SMOKE\" : \"NAMED_PIN_SMOKE\", grading_performed: false, tape_rows_consumed: rows.length, turning_points: result.stage_reads.length, derivations: result.derivations.length, reader_receipt: readerReceipt, sentence_action_equal: result.derivations.every((row) => row.sentence_action_assertion.equal), citation_receipt_equal: result.derivations.every((row) => row.citation_receipt_assertion.equal), conservation: result.derivations.every((row) => row.pair_conservation.at_or_below_99) });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1308,
+      "field": "corpus_neighbors_are_consultations_not_game_executions",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "structural_proof: { parser: \"window1_named_subset_guard.parseExactNamedSubset\", replay_entry_guard: \"activeExecutionGuard records inside replayEvent before state creation\", unrequested_game_behavior: \"FAIL_LOUD\", duplicate_game_behavior: \"FAIL_LOUD\", incomplete_count_behavior: \"FAIL_LOUD\", corpus_neighbors_are_consultations_not_game_executions: true },"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1324,
+      "field": "smokeOnly",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1324 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "const smoke = replayEvent({ meta: smokeMeta, rows: smokeRows, corpus: corpus.rows, resources, lineage, smokeOnly: true });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1328,
+      "field": "grading_performed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1328 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "writeJson(path.join(output, \"SMOKE_CRIJEA_RECEIPT.json\"), { label: \"CRIJEA_INTEGRATION_SMOKE_NO_GRADING\", all_readers_fired: smokeReaderReceipt.all_readers_fired, reader_count: smokeReaderReceipt.reader_count, expected_reader_count: smokeReaderReceipt.expected_reader_count, reader_receipts: smokeReaderReceipt.readers, named_neighbors: [...new Map(smoke.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => [row.citation_receipt_id, { event_id: row.event_id, citation_receipt_id: row.citation_receipt_id, citation_receipt: row.citation_receipt }]))).values()], derivations: smoke.derivations.length, sentence_action_equal: smoke.derivations.every((row) => row.sentence_action_assertion.equal), citation_receipt_equal: smoke.derivations.every((row) => row.citation_receipt_assertion.equal), conservation: smoke.derivations.every((row) => row.pair_conservation.at_or_below_99), grading_performed: false });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1331,
+      "field": "force",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "fs.rmSync(path.join(output, \"DETERMINISM_FAILURE_DEBUG.json\"), { force: true });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1335,
+      "field": "smokeOnly",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1335 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "const result = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: false });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1336,
+      "field": "smokeOnly",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1336 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "const repeat = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: false });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1341,
+      "field": "score_rows_emitted",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1341 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "if (!byteIdentical) writeJson(path.join(output, \"DETERMINISM_FAILURE_DEBUG.json\"), { label: \"PRE_SCORE_DETERMINISM_FAILURE\", event_id: eventId, first_sha256: firstDigest.sha256, second_sha256: secondDigest.sha256, first_difference: firstDiff, score_rows_emitted: false });"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1476,
+      "field": "right_edge_or_span_fraction_consumed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1476 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "right_edge_or_span_fraction_consumed: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1631,
+      "field": "binary_same_state_gate_used",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1631 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "binary_same_state_gate_used: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1632,
+      "field": "blanket_ratio_used",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1632 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "blanket_ratio_used: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1633,
+      "field": "absolute_floor_target_used",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1633 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "absolute_floor_target_used: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1634,
+      "field": "explicit_reflex_rung_present",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1634 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "explicit_reflex_rung_present: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1644,
+      "field": "hard_ask_equals_target_plus_one_gate_used",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1644 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "hard_ask_equals_target_plus_one_gate_used: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1645,
+      "field": "stale_prior_hard_ban_removed",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1645 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "stale_prior_hard_ban_removed: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1682,
+      "field": "no_placement_constant_added",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1682 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "no_placement_constant_added: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1683,
+      "field": "stale_prior_path_removed",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1683 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "stale_prior_path_removed: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1818,
+      "field": "bare_reader_level_used_as_belief_price",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1818 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "bare_reader_level_used_as_belief_price: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 1924,
+      "field": "numeric_placement_constant_added",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:1924 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "numeric_placement_constant_added: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2078,
+      "field": "compact_receipt",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:2078 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "const compactRearmRows = storyTraces.filter((row) => row.kind === \"REARM_ATTEMPT\" && row.rearm?.status && row.rearm.status !== \"NO_REARM_PENDING_OR_TRIGGERED\").map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, action: row.action, rearm: row.rearm, compact_receipt: true, layer_status: row.layer_status, coherence_status: row.coherence_status, envelope: row.envelope, no_lawful_replacement_reason: row.no_lawful_replacement_reason }));"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2083,
+      "field": "permanent_silence",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "return { identity, attempts: rows.length, first: rows[0]?.rearm ?? null, resolved: resolved?.rearm ?? null, final_status: rows.at(-1)?.rearm?.status ?? null, permanent_silence: false, rows };"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2093,
+      "field": "no_permanent_silence",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:2093 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "no_permanent_silence: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2101,
+      "field": "unstamped_incomplete_games_score_zero",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:2101 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "unstamped_incomplete_games_score_zero: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2118,
+      "field": "policy_change_from_this_measurement",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:2118 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "policy_change_from_this_measurement: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2513,
+      "field": "summary_literals_consumed_for_license",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:2513 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "summary_literals_consumed_for_license: false,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2514,
+      "field": "license_claims_derive_from_layer_receipt_rows",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:2514 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "license_claims_derive_from_layer_receipt_rows: true,"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2606,
+      "field": "retired",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:2606 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "const processMd = `# Remove floor lock + consume narrowing — process-first confirmation\\n\\nVERDICT: safety_floor_pass=${floorBreaks.length === 0}; self_stop=${floorBreaks.length > 0 || lawViolations.length > 0 || namedStepFailures.length > 0}.\\n\\n## 1. Stores pulled\\n\\n${Object.entries(storesPulled.tick_rows_by_game).map(([eventId, counts]) => `- ${eventId}: ${counts.total} tape rows (${counts.books} book, ${counts.prints} true-print).`).join(\"\\n\")}\\n- Foundation: ${corpus.foundation.rows} games served; bounded coverage ${corpus.foundation.coverage_before.bounded_games} → ${corpus.foundation.coverage_after.bounded_games}. Floor-time bindings: ${corpusFloorTiming.before_truth_table_only.events} → ${corpusFloorTiming.after_all_bell_bounded_library_paths.events} games, ${corpusFloorTiming.before_truth_table_only.legs} → ${corpusFloorTiming.after_all_bell_bounded_library_paths.legs} legs.\\n- Range spectrum: ${corpus.counts.range_rows} rows. Historical materialization: ${corpus.counts.historical_rows} rows. Corpus registry: ${corpus.counts.registry_rows} rows. Union: ${corpus.counts.union_games} games.\\n- Odds coverage: ${TARGETS.stories.map((eventId) => `${eventId}=0 event-keyed rows (RESOURCE-GAP)`).join(\"; \")}.\\n\\n## 2. Lock retirement, narrowing, supervisor, and carry\\n\\n- floor_rest_locks retired: true. Exact-floor proposals ${exactFloorProposalRows.length}; admitted/held ${exactFloorProposalRows.filter((row) => [\"ADMITTED_AT_OR_BELOW_EVIDENCED_FLOOR\", \"HELD_EXISTING_EVIDENCED_FLOOR_REST\"].includes(row.supervisor?.status)).length}.\\n- Singleton envelope rows ${singletonEnvelopeRows.length}; unconsumed ${singletonUnconsumedRows.length}. Supervised floor proposals ${supervisedFloorProposalRows.length}.\\n- Rearm rows ${rearmRows.length}. Prior-receipt convictions originated or repriced ${carriedActionRows.length} rests.\\n\\n## 3. LAJSVA derivation story\\n\\n${lajsvaTurningPoints.map((row) => `### ${row.timestamp_epoch} · ${row.leg_id}\\n\\nFingerprint: ${row.derivation.reposed_query_fingerprint_sha256 ?? row.neighborhood?.[0]?.query_fingerprint_sha256 ?? \"NONE\"}.\\n\\nSurvivors/movement: ${JSON.stringify(row.layered_dual_belief?.macro?.survivor_shapes?.legs?.[row.leg_id] ?? null)}. Conviction: ${JSON.stringify(row.layered_dual_belief?.conviction_evolution ?? null)}.\\n\\nNeighbors with grades: ${row.neighborhood.map((neighbor) => `${neighbor.event_id} similarity=${neighbor.score.toFixed(6)} coverage=${neighbor.coverage.toFixed(6)} [${neighbor.citation_receipt_id}]`).join(\"; \")}.\\n\\nWindow/price composition: ${row.derivation.evidence_rung}; own ${row.derivation.neighbor_leg.own_evidence.basis} low ${row.derivation.neighbor_leg.own_evidence.observed_low_cents ?? \"UNKNOWN\"}; raw q25/q50/q75 ${row.derivation.raw_depth_distribution_cents.q25 ?? \"UNKNOWN\"}/${row.derivation.raw_depth_distribution_cents.q50 ?? \"UNKNOWN\"}/${row.derivation.raw_depth_distribution_cents.q75 ?? \"UNKNOWN\"}; conditioned q25/q50/q75 ${row.derivation.depth_distribution_cents.q25 ?? \"UNKNOWN\"}/${row.derivation.depth_distribution_cents.q50 ?? \"UNKNOWN\"}/${row.derivation.depth_distribution_cents.q75 ?? \"UNKNOWN\"}; chosen depth ${row.derivation.chosen_depth_cents ?? \"UNKNOWN\"}; window ${JSON.stringify(row.derivation.window_timing)}; pair state ${row.derivation.pair_state}; allocation ${JSON.stringify(row.derivation.allocation)}.\\n\\nSentence verbatim:\\n\\n\\`\\`\\`text\\n${row.sentence}\\n\\`\\`\\``).join(\"\\n\\n\")}\\n\\n## 4. Actions with reasons\\n\\n${processReceipt.actions_with_reasons.map((row) => `- ${row.event_id}|${row.leg_id} @ ${row.timestamp_epoch}: lineage context ${row.lineage_target_cents ?? \"NONE\"}; composition ${row.composition_action.action} ${row.composition_action.target_cents ?? \"NONE\"}; reason ${row.composition_reason}; allocation ${row.allocation?.mode ?? \"NONE\"}.`).join(\"\\n\")}\\n\\n## 5. Fills as consequences\\n\\n${fillEvents.length ? fillEvents.map((row) => `- ${row.context.event_id}|${row.context.leg_id}: ${row.context.entry_cents}¢ at ${row.context.fill_timestamp_epoch}, receipt ${row.row_refs.join(\",\")}.`).join(\"\\n\") : \"- None.\"}\\n\\n## 6. Four-game deltas and gate verdict\\n\\n${storyResults.map((row) => `- ${row.event_id}: ${row.composition_rebuild.completed ? `${row.composition_rebuild.combined_entry_cents}¢, Δ${row.composition_rebuild.delta_vs_100_cents}` : \"PARTIAL\"}.`).join(\"\\n\")}\\n\\nGate: ${floorBreaks.length === 0 && lawViolations.length === 0 ? \"PASS\" : `SELF-STOP (${floorBreaks.length ? \"ratchet break\" : \"law violation\"})`}.\\n`;"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2615,
+      "field": "retired",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:2615 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": ".replace(\"- floor_rest_locks retired: true.\", \"- Evidenced floor is the bell-lawful observed traded low only; belief envelopes are never floors. floor_rest_locks retired: true.\")"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2615,
+      "field": "retired",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/build_window1_v54_dual_belief.js:2615 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": ".replace(\"- floor_rest_locks retired: true.\", \"- Evidenced floor is the bell-lawful observed traded low only; belief envelopes are never floors. floor_rest_locks retired: true.\")"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "line": 2625,
+      "field": "force",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "fs.rmSync(path.join(output, legacyName), { force: true });"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 95,
+      "field": "singleton_consumed",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "return { target_cents: singleton, singleton_level_cents: singleton, singleton_consumed: true };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 97,
+      "field": "singleton_consumed",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "return { target_cents: cent(quantileTarget), singleton_level_cents: singleton, singleton_consumed: false };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 219,
+      "field": "one_universe_for_total_arrived_and_remaining_quantiles",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:219 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "one_universe_for_total_arrived_and_remaining_quantiles: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 272,
+      "field": "derives_fresh_at_each_emission",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:272 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "derives_fresh_at_each_emission: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 346,
+      "field": "stated_verbatim",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:346 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "stated_verbatim: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 355,
+      "field": "own_low_return_assumption_removed",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:355 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "own_low_return_assumption_removed: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 379,
+      "field": "lawful",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "if (ids.length !== 2 || ids.some((id) => !cent(targets[id]))) return { lawful: false, targets, reason: \"PAIR_TARGET_INCOMPLETE\" };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 381,
+      "field": "lawful",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "if (excess <= 0) return { lawful: true, targets: { ...targets }, reason: \"JOINT_TARGET_ALREADY_UNDER_PAR\", excess_cents: 0, par_allocation_floor_bounds: parAllocationFloorBounds, headroom_cents: Object.fromEntries(ids.map((id) => [id, Math.max(0, targets[id] - (parAllocationFloorBounds[id]?.value_cents ?? targets[id]))])) };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 392,
+      "field": "lawful",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "? { lawful: true, targets: out, reason: \"JOINT_TARGET_RECONCILED_AGAINST_OBSERVED_TRADED_FLOORS\", excess_cents: targets[ids[0]] + targets[ids[1]] - base.PAR_BUDGET_CENTS, par_allocation_floor_bounds: parAllocationFloorBounds, headroom_cents: headroom, reductions_cents: reductions }"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 393,
+      "field": "lawful",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": ": { lawful: false, targets, reason: \"OBSERVED_TRADED_FLOORS_CANNOT_SATISFY_PAR\", excess_cents: excess, par_allocation_floor_bounds: parAllocationFloorBounds, headroom_cents: headroom, reductions_cents: reductions };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 436,
+      "field": "stated_verbatim",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "v3_map_keying: { source: LAYER_PROVENANCE.v3_source_key, runtime: LAYER_PROVENANCE.v3_runtime_rekey, stated_verbatim: true },"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 444,
+      "field": "coarse_number_timed_action",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:444 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "coarse_number_timed_action: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 613,
+      "field": "coherence_exists_at_receipt",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:613 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "coherence_exists_at_receipt: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 632,
+      "field": "touch_anchored_inside_coherent_envelope",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:632 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "touch_anchored_inside_coherent_envelope: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 643,
+      "field": "migrated",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "envelope_migration: envelopeMigrations[legId] ?? { migrated: false, from: envelope, to: envelope, receipt: state.receipt, provenance: LAYER_PROVENANCE.envelope_migration_fix },"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 652,
+      "field": "numeric_constant_added",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:652 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "numeric_constant_added: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 656,
+      "field": "coherence_exists_at_receipt",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:656 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "envelopePlacement[legId] = { mode: \"HOLD_PREVIOUSLY_LICENSED_ENVELOPE_TARGET\", coherence_exists_at_receipt: true, chosen_target_cents: active, numeric_constant_added: false };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 656,
+      "field": "numeric_constant_added",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:656 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "envelopePlacement[legId] = { mode: \"HOLD_PREVIOUSLY_LICENSED_ENVELOPE_TARGET\", coherence_exists_at_receipt: true, chosen_target_cents: active, numeric_constant_added: false };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 671,
+      "field": "coherence_exists_at_receipt",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:671 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "coherence_exists_at_receipt: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 686,
+      "field": "disagreement_stated",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:686 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "disagreement_stated: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 689,
+      "field": "numeric_constant_added",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:689 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "numeric_constant_added: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 712,
+      "field": "coherence_exists_at_receipt",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:712 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "coherence_exists_at_receipt: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 729,
+      "field": "may_originate_rest",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:729 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "may_originate_rest: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 730,
+      "field": "may_reprice_rest",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:730 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "may_reprice_rest: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 731,
+      "field": "touch_lane_subordinated",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:731 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "touch_lane_subordinated: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 737,
+      "field": "numeric_constant_added",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:737 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "numeric_constant_added: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 744,
+      "field": "may_originate_rest",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:744 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "envelopePlacement[legId] = { mode: \"CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_NULL\", live_bid_cents: liveBid, live_ask_cents: liveAsk, book_receipt: book?.receipt ?? null, chosen_target_cents: targets[legId], may_originate_rest: true, data_consumed: Boolean(liveBid && liveAsk && liveBid < liveAsk && book?.receipt), provenance: [LAYER_PROVENANCE.consume_live_touch_fix, LAYER_PROVENANCE.own_evidence_sufficiency], numeric_constant_added: false };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 744,
+      "field": "numeric_constant_added",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:744 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "envelopePlacement[legId] = { mode: \"CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_NULL\", live_bid_cents: liveBid, live_ask_cents: liveAsk, book_receipt: book?.receipt ?? null, chosen_target_cents: targets[legId], may_originate_rest: true, data_consumed: Boolean(liveBid && liveAsk && liveBid < liveAsk && book?.receipt), provenance: [LAYER_PROVENANCE.consume_live_touch_fix, LAYER_PROVENANCE.own_evidence_sufficiency], numeric_constant_added: false };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 772,
+      "field": "protected_active_floor_rest",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:772 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "parAllocationFloorBounds[legId] = { ...parAllocationFloorBounds[legId], value_cents: active, protected_active_floor_rest: true };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 781,
+      "field": "supporting_eliminations_overturned",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:781 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "supporting_eliminations_overturned: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 783,
+      "field": "may_cancel_or_reprice_off_floor",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:783 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "may_cancel_or_reprice_off_floor: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 785,
+      "field": "numeric_constant_added",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:785 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "numeric_constant_added: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 789,
+      "field": "lawful",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "let allocation = { lawful: true, targets: { ...targets }, reason: beliefMode ? \"ONE_OPEN_SIDE_OR_LIVE_TOUCH\" : \"OWN_EVIDENCED_LIVE_TOUCH_MIND_ONLY\", excess_cents: 0 };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 820,
+      "field": "lawful",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:820 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "lawful: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 824,
+      "field": "replacement_unavailable",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:824 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "replacement_unavailable: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 925,
+      "field": "stale_envelope_originated_new_rest",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:925 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "stale_envelope_originated_new_rest: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 944,
+      "field": "permanent_silence_allowed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:944 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "permanent_silence_allowed: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 956,
+      "field": "permanent_silence_allowed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:956 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "permanent_silence_allowed: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 967,
+      "field": "permanent_silence_allowed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:967 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "permanent_silence_allowed: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 972,
+      "field": "permanent_silence_allowed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:972 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "rearmReceipt = { status: \"NO_REARM_PENDING_OR_TRIGGERED\", attempts: 0, permanent_silence_allowed: false, provenance: LAYER_PROVENANCE.atomic_rearm_fix };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 1043,
+      "field": "can_fail",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_dual_belief_os.js:1043 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "can_fail: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 1064,
+      "field": "hard_assert",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "row.sentence_action_assertion = { hard_assert: true, expected_statement: actionStatement, equal: sentence.includes(actionStatement) };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "line": 1065,
+      "field": "hard_assert",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "row.citation_receipt_assertion = { hard_assert: true, receipt_count: Object.keys(row.citation_receipts).length, equal: [macroReceipt, microReceipt, microMicroReceipt].every((receipt) => sentence.includes(receipt.receipt_id)) };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 54,
+      "field": "only_adjustment_lever",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:54 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "only_adjustment_lever: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 90,
+      "field": "declared",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:90 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "declared: true,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 91,
+      "field": "undisclosed_weights",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:91 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "undisclosed_weights: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 165,
+      "field": "credited",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:165 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "credited: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 334,
+      "field": "both_legs_named",
+      "literal_value": "true",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:334 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "sibling_state: stamp(state, \"sibling_state\", { inverse_coherence: inverseCoherence, drift_sum_cents: Number.isFinite(drifts[0]) && Number.isFinite(drifts[1]) ? drifts[0] + drifts[1] : null, both_legs_named: true }, receipts),"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 618,
+      "field": "binary_state_gate_used",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:618 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "binary_state_gate_used: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 619,
+      "field": "legacy_blanket_low_ratio_used",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:619 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "legacy_blanket_low_ratio_used: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 620,
+      "field": "subtractive_remaining_dip_used",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:620 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "subtractive_remaining_dip_used: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 621,
+      "field": "absolute_floor_target_used",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:621 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "absolute_floor_target_used: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 622,
+      "field": "lineage_depth_fallback_used",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:622 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "lineage_depth_fallback_used: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 767,
+      "field": "required",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "? { required: true, lawful: true, basis: \"TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED_BELOW_OWN_LOW\", receipts: blendLicenseReceipts }"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 767,
+      "field": "lawful",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "? { required: true, lawful: true, basis: \"TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED_BELOW_OWN_LOW\", receipts: blendLicenseReceipts }"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 768,
+      "field": "required",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": ": { required: true, lawful: false, basis: \"NO_MAP_LICENSE_BELOW_OWN_BOUNDED_TRADED_LOW\", receipts: [] };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 768,
+      "field": "lawful",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": ": { required: true, lawful: false, basis: \"NO_MAP_LICENSE_BELOW_OWN_BOUNDED_TRADED_LOW\", receipts: [] };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 815,
+      "field": "event_leave_self_out",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, mind_window: mindWindow, true_bell_cell_depth_map: { bound: Boolean(trueBellCellDepthMapBinding), commit: trueBellCellDepthMapBinding?.commit ?? null, path: trueBellCellDepthMapBinding?.path ?? null, sha256: trueBellCellDepthMapBinding?.sha256 ?? null, lookup_basis: \"CURRENT_CAUSAL_EVIDENCED_TOUCH_CENTS\", cell: mapCell, conditioned_depth_cents: conditionalDepth, licensed: mapDepthLicensed }, neighbor_specialist_composition: { kind: neighborSpecialistBinding?.kind ?? \"UNBOUND_SPECIALIST_RECORDS\", binding_sha256: neighborSpecialistBinding?.binding_sha256 ?? null, event_leave_self_out: true, leg_state: legState, pair_state: pairState, phase: fitPhase, vote_mass: timedNeighborLeg.specialist_vote_mass, vote_total: timedNeighborLeg.specialist_vote_total }, basis_availability: { evidenced_touch: formedTwoSidedBook, map_depth_license: mapDepthLicensed }, basis_weights: basisRows, blend_fitness_mass: blendFitnessMass, blend_evidence_grade: blendEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, weighted_depth_cents: weightedDepthCents, distribution_depth_cents: blendDistributionDepth, chosen_depth_cents: totalRequiredDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: false, sibling_commitment_cents: siblingCommitment, pair_state: pairState, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, formation_complete: Number.isFinite(formationProgress) && formationProgress >= 1, formed_two_sided_book: formedTwoSidedBook, crossed_book: crossedBook, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 815,
+      "field": "lineage_depth_fallback_used",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, mind_window: mindWindow, true_bell_cell_depth_map: { bound: Boolean(trueBellCellDepthMapBinding), commit: trueBellCellDepthMapBinding?.commit ?? null, path: trueBellCellDepthMapBinding?.path ?? null, sha256: trueBellCellDepthMapBinding?.sha256 ?? null, lookup_basis: \"CURRENT_CAUSAL_EVIDENCED_TOUCH_CENTS\", cell: mapCell, conditioned_depth_cents: conditionalDepth, licensed: mapDepthLicensed }, neighbor_specialist_composition: { kind: neighborSpecialistBinding?.kind ?? \"UNBOUND_SPECIALIST_RECORDS\", binding_sha256: neighborSpecialistBinding?.binding_sha256 ?? null, event_leave_self_out: true, leg_state: legState, pair_state: pairState, phase: fitPhase, vote_mass: timedNeighborLeg.specialist_vote_mass, vote_total: timedNeighborLeg.specialist_vote_total }, basis_availability: { evidenced_touch: formedTwoSidedBook, map_depth_license: mapDepthLicensed }, basis_weights: basisRows, blend_fitness_mass: blendFitnessMass, blend_evidence_grade: blendEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, weighted_depth_cents: weightedDepthCents, distribution_depth_cents: blendDistributionDepth, chosen_depth_cents: totalRequiredDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: false, sibling_commitment_cents: siblingCommitment, pair_state: pairState, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, formation_complete: Number.isFinite(formationProgress) && formationProgress >= 1, formed_two_sided_book: formedTwoSidedBook, crossed_book: crossedBook, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 815,
+      "field": "reflex_rung_used",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, mind_window: mindWindow, true_bell_cell_depth_map: { bound: Boolean(trueBellCellDepthMapBinding), commit: trueBellCellDepthMapBinding?.commit ?? null, path: trueBellCellDepthMapBinding?.path ?? null, sha256: trueBellCellDepthMapBinding?.sha256 ?? null, lookup_basis: \"CURRENT_CAUSAL_EVIDENCED_TOUCH_CENTS\", cell: mapCell, conditioned_depth_cents: conditionalDepth, licensed: mapDepthLicensed }, neighbor_specialist_composition: { kind: neighborSpecialistBinding?.kind ?? \"UNBOUND_SPECIALIST_RECORDS\", binding_sha256: neighborSpecialistBinding?.binding_sha256 ?? null, event_leave_self_out: true, leg_state: legState, pair_state: pairState, phase: fitPhase, vote_mass: timedNeighborLeg.specialist_vote_mass, vote_total: timedNeighborLeg.specialist_vote_total }, basis_availability: { evidenced_touch: formedTwoSidedBook, map_depth_license: mapDepthLicensed }, basis_weights: basisRows, blend_fitness_mass: blendFitnessMass, blend_evidence_grade: blendEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, weighted_depth_cents: weightedDepthCents, distribution_depth_cents: blendDistributionDepth, chosen_depth_cents: totalRequiredDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: false, sibling_commitment_cents: siblingCommitment, pair_state: pairState, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, formation_complete: Number.isFinite(formationProgress) && formationProgress >= 1, formed_two_sided_book: formedTwoSidedBook, crossed_book: crossedBook, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 815,
+      "field": "stale_prior_path_used",
+      "literal_value": "false",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, mind_window: mindWindow, true_bell_cell_depth_map: { bound: Boolean(trueBellCellDepthMapBinding), commit: trueBellCellDepthMapBinding?.commit ?? null, path: trueBellCellDepthMapBinding?.path ?? null, sha256: trueBellCellDepthMapBinding?.sha256 ?? null, lookup_basis: \"CURRENT_CAUSAL_EVIDENCED_TOUCH_CENTS\", cell: mapCell, conditioned_depth_cents: conditionalDepth, licensed: mapDepthLicensed }, neighbor_specialist_composition: { kind: neighborSpecialistBinding?.kind ?? \"UNBOUND_SPECIALIST_RECORDS\", binding_sha256: neighborSpecialistBinding?.binding_sha256 ?? null, event_leave_self_out: true, leg_state: legState, pair_state: pairState, phase: fitPhase, vote_mass: timedNeighborLeg.specialist_vote_mass, vote_total: timedNeighborLeg.specialist_vote_total }, basis_availability: { evidenced_touch: formedTwoSidedBook, map_depth_license: mapDepthLicensed }, basis_weights: basisRows, blend_fitness_mass: blendFitnessMass, blend_evidence_grade: blendEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, weighted_depth_cents: weightedDepthCents, distribution_depth_cents: blendDistributionDepth, chosen_depth_cents: totalRequiredDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: false, sibling_commitment_cents: siblingCommitment, pair_state: pairState, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, formation_complete: Number.isFinite(formationProgress) && formationProgress >= 1, formed_two_sided_book: formedTwoSidedBook, crossed_book: crossedBook, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 818,
+      "field": "hard_assert",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 818,
+      "field": "equal",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 819,
+      "field": "hard_assert",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "citation_receipt_assertion: { hard_assert: true, receipt_count: Object.keys(citationReceipts).length, equal: true },"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 819,
+      "field": "equal",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "citation_receipt_assertion: { hard_assert: true, receipt_count: Object.keys(citationReceipts).length, equal: true },"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 836,
+      "field": "hard_assert",
+      "literal_value": "true",
+      "classification": "OPERATIONAL_CONTROL_OR_BRANCH_RESULT",
+      "derivation": "The value controls an API/state branch already selected by the surrounding predicate; it does not attest an observed market fact.",
+      "source_line": "row.sentence_action_assertion = { hard_assert: true, expected_statement: actionStatement, equal: row.sentence.includes(actionStatement) };"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 870,
+      "field": "stale_prior_consumed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:870 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "stale_prior_consumed: false,"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "line": 887,
+      "field": "stale_prior_consumed",
+      "literal_value": "false",
+      "classification": "BRANCH_SCOPED_STATE_FIELD",
+      "derivation": "The value is emitted only by the source branch visible on this row; its producer is arb-executor/analysis/window1_v54_functionable_os.js:887 and the runtime receipt audit tests the downstream fact independently.",
+      "source_line": "stale_prior_consumed: false,"
+    }
+  ],
+  "raw_literal_count": 131,
+  "unexplained_literal_claims": [],
+  "unexplained_count": 0
+}

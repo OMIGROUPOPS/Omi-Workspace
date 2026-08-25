@@ -1,0 +1,137 @@
+{
+  "label": "V54_LITERAL_ORDER_RECEIPT_REPAIR_EXECUTABLE_SUMMARY",
+  "producer": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+  "run_source": "V54_LITERALS_ONE_ORDER_UNGUARDED_20260824",
+  "scope": {
+    "games_executed": 4,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false
+  },
+  "definitions": {
+    "floor": {
+      "authority": "BELL_LAWFUL_OBSERVED_TRADED_LOW_ONLY",
+      "evaluated_receipts": 2769,
+      "trade_prefix_rows": 2490,
+      "no_trade_rows": 279,
+      "independent_check_failures": 0
+    },
+    "tenure": {
+      "at_floor_receipts": 34,
+      "episodes": 3,
+      "episodes_by_leg": {
+        "26JUL12GIUBAR|BAR": [],
+        "26JUL12GIUBAR|GIU": [],
+        "26JUL14URSPAL|PAL": [],
+        "26JUL14URSPAL|URS": [
+          {
+            "level_cents": 58,
+            "tenure_seconds": 251
+          }
+        ],
+        "26JUL14LAJSVA|LAJ": [
+          {
+            "level_cents": 54,
+            "tenure_seconds": 14188
+          }
+        ],
+        "26JUL14LAJSVA|SVA": [],
+        "26JUL18DANPRA|DAN": [],
+        "26JUL18DANPRA|PRA": [
+          {
+            "level_cents": 41,
+            "tenure_seconds": 9483
+          }
+        ]
+      },
+      "urs_observed_episode": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "leg_id": "URS",
+        "at_floor_receipts": 6,
+        "episodes": [
+          {
+            "level_cents": 58,
+            "start_epoch": 1784031096,
+            "start_receipt": "de8acb81-1259-6081-ed5a-a11461e5f45b",
+            "first_row": {
+              "timestamp_epoch": 1784031096,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4294",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 58,
+                "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+              },
+              "status": "AT_OBSERVED_TRADED_FLOOR_HOLDING"
+            },
+            "last_row": {
+              "timestamp_epoch": 1784031347,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-30675",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 58,
+                "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+              },
+              "status": "AT_OBSERVED_TRADED_FLOOR_HOLDING",
+              "ended_by": null
+            },
+            "supporting_shapes": [
+              "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+              "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+              "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+            ],
+            "tenure_seconds": 251
+          }
+        ]
+      },
+      "prior_orphan_summary_value_cents": 57,
+      "trace_produced_value_cents": 58,
+      "contradiction_resolution": "TRACE_PRODUCED_TENURE_TABLE_IS_AUTHORITATIVE; SUMMARY_NOW_DERIVES_FROM_THE_SAME_ROWS"
+    },
+    "order_emission": {
+      "prior_orders": 309,
+      "current_orders": 23,
+      "orders_per_decision_instant_distribution": {
+        "1": 23
+      },
+      "max_orders_per_decision_instant": 1
+    },
+    "literal_boolean_audit": {
+      "raw_literals": 131,
+      "named_literal_claims": 0,
+      "unexplained_literal_claims": 0
+    }
+  },
+  "four_game_outcomes": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "state": "COMPLETE",
+      "combined_entry_cents": 94,
+      "delta_cents": 6
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "state": "COMPLETE",
+      "combined_entry_cents": 97,
+      "delta_cents": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "state": "COMPLETE",
+      "combined_entry_cents": 95,
+      "delta_cents": 5
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "state": "PARTIAL",
+      "combined_entry_cents": null,
+      "delta_cents": null
+    }
+  ],
+  "self_stop": {
+    "triggered": true,
+    "reasons": [
+      "CURRENT_BED_TRIPWIRE",
+      "LAW_VIOLATIONS"
+    ]
+  }
+}

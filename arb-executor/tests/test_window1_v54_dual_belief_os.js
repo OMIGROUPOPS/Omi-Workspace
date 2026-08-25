@@ -269,7 +269,7 @@ assert(joint.derivations.every((row) => row.layered_dual_belief.coherence_placem
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.deadline.deadline_epoch >= belief.deadline.emitted_at_epoch && belief.deadline.derives_fresh_at_each_emission)));
 assert(joint.derivations.every((row) => row.sentence.includes("remaining-dip=total-minus-arrived=") && row.sentence.includes("deadline-emitted-now=")));
 assert.equal(Object.prototype.hasOwnProperty.call(jointState.dual_belief, "floor_rest_locks"), false, "persistent first-guess floor locks must be retired");
-assert(joint.derivations.every((row) => row.layered_dual_belief.floor_rest_protection.floor_rest_locks_retired === true));
+assert(joint.derivations.every((row) => row.layered_dual_belief.floor_rest_protection.floor_rest_lock_state === "ABSENT_RETIRED"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.floor_rest_protection.evidenced_floor_source === "OBSERVED_TRUE_TRADE_PRINT"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.par_allocation_floor_bound.name === "PAR_ALLOCATION_OBSERVED_TRADED_FLOOR_BOUND"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.par_allocation_floor_bound.value_cents <= row.layered_dual_belief.par_allocation_floor_bound.evidenced_floor_cents));
@@ -290,8 +290,12 @@ assert.equal(disagrees.coherence.status, "DISAGREES");
 assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").action.reason, "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED");
 assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.mode, "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED");
 assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.may_originate_rest, true);
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").action.reason, "DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").layered_dual_belief.envelope_placement.survivor_target_supported, false);
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.live_bid_consumed_as_price, false);
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.live_bid_relation, "REFERENCE_ONLY_NOT_LEVEL_AUTHORITY");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.decision_arbitration.winner.lane, "DISAGREES_OWN_EVIDENCE");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").action.reason, "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").layered_dual_belief.envelope_placement.survivor_target_supported, true);
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.own_evidence_target_cents === row.layered_dual_belief.envelope_placement.running_true_trade_low_cents));
 
 const noOpinionState = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(noOpinionState, leg, { timestamp_epoch: ts, receipt: `noop-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });
@@ -302,7 +306,7 @@ const noOpinion = os.deriveJointActions({ state: noOpinionState, reads: noOpinio
 assert.deepEqual(noOpinion.derivations.map((row) => row.action.target_cents), [37, 61]);
 assert(noOpinion.derivations.every((row) => row.action.action === "PLACE_REST"));
 assert(noOpinion.derivations.every((row) => row.action.reason === "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL"));
-assert(noOpinion.derivations.every((row) => row.layered_dual_belief.independent_lane_may_complete === true));
+assert(noOpinion.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner.lane === "NULL_ENVELOPE_OWN_TOUCH"));
 assert(noOpinion.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_NULL"));
 
 console.log("window1_v54_dual_belief_os: PASS");

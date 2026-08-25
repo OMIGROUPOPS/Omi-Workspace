@@ -178,7 +178,7 @@ function targetCriterion(group, shapeIds, row) {
     shallowest_supported_floor_cents: levels.length ? Math.max(...levels) : null,
     signable: levels.length > 0,
     shape_supports: shapeSupports,
-    ask_reachability_defines_target: false,
+    ask_reachability_role: "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET",
   };
 }
 

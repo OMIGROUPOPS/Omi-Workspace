@@ -1,0 +1,1036 @@
+{
+  "label": "F_VS_176_ONE_DECISION_PER_RECEIPT_AND_INSTANT",
+  "law": "All eligible lanes resolve before emission. One leg emits at most one order for a machine decision instant; the selected lane and every losing lane are carried on the decision row.",
+  "prior_orders": 309,
+  "current_orders": 23,
+  "action_counts": {
+    "PLACE_REST": 13,
+    "CANCEL_REST": 5,
+    "REPRICE_REST": 5
+  },
+  "orders_per_source_receipt_distribution": {
+    "1": 23
+  },
+  "orders_per_decision_instant_distribution": {
+    "1": 23
+  },
+  "source_receipt_groups_over_one": [],
+  "decision_instant_groups_over_one": [],
+  "max_orders_per_source_receipt": 1,
+  "max_orders_per_decision_instant": 1,
+  "arbitration_missing_rows": [],
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783841801.304,
+      "source_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 27,
+        "reason": "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1783841801.304,
+        "source_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+        "winner": {
+          "lane": "DISAGREES_OWN_EVIDENCE",
+          "action": "PLACE_REST",
+          "target_cents": 27,
+          "reason": "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED"
+        },
+        "losers": [
+          {
+            "lane": "COHERENT_ENVELOPE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783867786,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2443",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 67,
+        "reason": "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1783867786,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2443",
+        "winner": {
+          "lane": "DISAGREES_OWN_EVIDENCE",
+          "action": "PLACE_REST",
+          "target_cents": 67,
+          "reason": "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED"
+        },
+        "losers": [
+          {
+            "lane": "COHERENT_ENVELOPE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784016214,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-719",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 38,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784016214,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-719",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "PLACE_REST",
+          "target_cents": 38,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784020558,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784020558,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "CANCEL_REST",
+          "target_cents": null,
+          "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": true,
+            "disposition": "LOST_PRECEDENCE_TO_WINNER"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784023248,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2092",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 39,
+        "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784023248,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2092",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "PLACE_REST",
+          "target_cents": 39,
+          "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784028269,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-28036",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 57,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784028269,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-28036",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "PLACE_REST",
+          "target_cents": 57,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784030027,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766",
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784030027,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "CANCEL_REST",
+          "target_cents": null,
+          "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": true,
+            "disposition": "LOST_PRECEDENCE_TO_WINNER"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784031046,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4291",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 58,
+        "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784031046,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4291",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "PLACE_REST",
+          "target_cents": 58,
+          "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784016081.367,
+      "source_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 60,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784016081.367,
+        "source_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "PLACE_REST",
+          "target_cents": 60,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784016081.367,
+      "source_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 38,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784016081.367,
+        "source_receipt": "51ffb46a-c62c-6890-aa69-cd9970de51c6",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "PLACE_REST",
+          "target_cents": 38,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784020201.83,
+      "source_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 59,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784020201.83,
+        "source_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "REPRICE_REST",
+          "target_cents": 59,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": true,
+            "disposition": "LOST_PRECEDENCE_TO_WINNER"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784020201.83,
+      "source_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 40,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784020201.83,
+        "source_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "REPRICE_REST",
+          "target_cents": 40,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": true,
+            "disposition": "LOST_PRECEDENCE_TO_WINNER"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784020205,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-327",
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784020205,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-327",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "CANCEL_REST",
+          "target_cents": null,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": true,
+            "disposition": "LOST_PRECEDENCE_TO_WINNER"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784020209,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-355",
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 41,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784020209,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-355",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "REPRICE_REST",
+          "target_cents": 41,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": true,
+            "disposition": "LOST_PRECEDENCE_TO_WINNER"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784036624.369,
+      "source_receipt": "d2b2edfa-5b0e-5afc-6f15-a9dc9fe4d9fa",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 54,
+        "reason": "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784036624.369,
+        "source_receipt": "d2b2edfa-5b0e-5afc-6f15-a9dc9fe4d9fa",
+        "winner": {
+          "lane": "DISAGREES_OWN_EVIDENCE",
+          "action": "PLACE_REST",
+          "target_cents": 54,
+          "reason": "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED"
+        },
+        "losers": [
+          {
+            "lane": "COHERENT_ENVELOPE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784332553,
+      "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 52,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784332553,
+        "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "PLACE_REST",
+          "target_cents": 52,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784332553,
+      "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 41,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784332553,
+        "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-466",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "PLACE_REST",
+          "target_cents": 41,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784339306.774,
+      "source_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 58,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784339306.774,
+        "source_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "REPRICE_REST",
+          "target_cents": 58,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": true,
+            "disposition": "LOST_PRECEDENCE_TO_WINNER"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784341326,
+      "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355",
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784341326,
+        "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1355",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "CANCEL_REST",
+          "target_cents": null,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": true,
+            "disposition": "LOST_PRECEDENCE_TO_WINNER"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784342469,
+      "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1570",
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784342469,
+        "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1570",
+        "winner": {
+          "lane": "NULL_ENVELOPE_OWN_TOUCH",
+          "action": "CANCEL_REST",
+          "target_cents": null,
+          "reason": "OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL"
+        },
+        "losers": [
+          {
+            "lane": "COHERENT_ENVELOPE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": true,
+            "disposition": "LOST_PRECEDENCE_TO_WINNER"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784347255,
+      "source_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9650",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 58,
+        "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784347255,
+        "source_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9650",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "PLACE_REST",
+          "target_cents": 58,
+          "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784347255,
+      "source_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9650",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 40,
+        "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784347255,
+        "source_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9650",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "PLACE_REST",
+          "target_cents": 40,
+          "reason": "ATOMIC_REARM_LAWFUL_REPLACEMENT"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "timestamp_epoch": 1784359388,
+      "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2877",
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 41,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "arbitration": {
+        "decision_instant_epoch": 1784359388,
+        "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2877",
+        "winner": {
+          "lane": "COHERENT_ENVELOPE",
+          "action": "REPRICE_REST",
+          "target_cents": 41,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "losers": [
+          {
+            "lane": "DISAGREES_OWN_EVIDENCE",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "CARRIED_CONVICTION",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "NULL_ENVELOPE_OWN_TOUCH",
+            "eligible": false,
+            "disposition": "INELIGIBLE_AT_RECEIPT"
+          },
+          {
+            "lane": "ACTIVE_REST_HOLD",
+            "eligible": true,
+            "disposition": "LOST_PRECEDENCE_TO_WINNER"
+          }
+        ],
+        "emitted_order_count": 1
+      }
+    }
+  ]
+}

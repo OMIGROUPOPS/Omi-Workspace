@@ -1,0 +1,264 @@
+{
+  "label": "V54_LITERALS_ONE_ORDER_UNGUARDED_RECEIPTS_HONEST_GATE",
+  "run_source": "V54_LITERALS_ONE_ORDER_UNGUARDED_20260824",
+  "law_index_read_at": "877f1d76",
+  "law_index_sha256": "41784e6a…",
+  "cc_forensics": [
+    "25c3a35a:F-VS-171..178",
+    "877f1d76:F-VS-171..178"
+  ],
+  "contract": "Every check reads a store distinct from the producer it checks; every pass value is computed from failures, not typed as a literal.",
+  "checks": [
+    {
+      "id": "BASELINE_PINS",
+      "producer_store": "FROZEN_LINEAGE_PER_GAME_L1_L8",
+      "check_store": "BED_SAFETY_FLOOR_SPEC",
+      "counterexample_condition": "A frozen baseline pin is incomplete or differs from its filed delta.",
+      "observed": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+          "completed": true,
+          "delta_vs_100_cents": 3
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "completed": true,
+          "delta_vs_100_cents": 6
+        }
+      ],
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "CURRENT_BED_TRIPWIRE",
+      "producer_store": "V54_LITERAL_ORDER_RECEIPT_REPAIR_EXECUTION",
+      "check_store": "BED_SAFETY_FLOOR_SPEC",
+      "counterexample_condition": "A named bed game fails its filed 7/3/6 completion floor.",
+      "observed": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+          "run_source": "V54_LITERALS_ONE_ORDER_UNGUARDED_20260824",
+          "completed": true,
+          "delta_vs_100_cents": 6
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+          "run_source": "V54_LITERALS_ONE_ORDER_UNGUARDED_20260824",
+          "completed": true,
+          "delta_vs_100_cents": 3
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "run_source": "V54_LITERALS_ONE_ORDER_UNGUARDED_20260824",
+          "completed": true,
+          "delta_vs_100_cents": 5
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18DANPRA",
+          "run_source": "V54_LITERALS_ONE_ORDER_UNGUARDED_20260824",
+          "completed": false,
+          "delta_vs_100_cents": null
+        }
+      ],
+      "failures": [
+        "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "KXATPCHALLENGERMATCH-26JUL14LAJSVA"
+      ],
+      "can_fail": true,
+      "passed": false
+    },
+    {
+      "id": "FLOOR_IS_OBSERVED_TRADE_LOW_ALL_ROWS",
+      "producer_store": "V54_POLICY_FLOOR_FIELDS",
+      "check_store": "MATERIALIZED_TRUE_PRINT_PREFIX",
+      "counterexample_condition": "The emitted floor differs from the causal true-print minimum, including null-vs-null rows before the first print.",
+      "observed": {
+        "tested": 2769,
+        "total": 2769,
+        "no_trade_rows": 279
+      },
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "ONE_DECISION_PER_RECEIPT",
+      "producer_store": "V54_LANE_ARBITRATION",
+      "check_store": "SERIALIZED_ACTION_TRACE_GROUPED_BY_DECISION_INSTANT",
+      "counterexample_condition": "A leg emits multiple orders for one machine decision instant or an emitted order lacks winner/loser arbitration.",
+      "observed": {
+        "orders": 23,
+        "distribution": {
+          "1": 23
+        }
+      },
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "DISAGREES_DOES_NOT_DEFAULT_TO_LIVE_BID",
+      "producer_store": "V54_DISAGREES_LEVEL_DERIVATION",
+      "check_store": "SERIALIZED_ACTION_PLUS_CAUSAL_TRADE_PREFIX",
+      "counterexample_condition": "A DISAGREES action prices at live bid while the bid is reference-only and lacks independently supported true-trade evidence.",
+      "observed": 222,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "EVERY_CANCEL_REARMS",
+      "producer_store": "V54_REST_STATE_MACHINE",
+      "check_store": "SERIALIZED_CANCEL_AND_REARM_TRANSITIONS",
+      "counterexample_condition": "Any cancel lacks a REARM_* state on the same decision receipt.",
+      "observed": 5,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "NO_UNEXPLAINED_LITERAL_CLAIMS",
+      "producer_store": "ACTIVE_BUILD_SOURCE",
+      "check_store": "INDEPENDENT_SOURCE_LITERAL_SCANNER",
+      "counterexample_condition": "A named serialized claim remains a typed boolean literal or a raw literal has no operational derivation.",
+      "observed": {
+        "raw_literals": 131,
+        "named_literals": 0
+      },
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "NON_TRADED_LOW_DISCLOSED",
+      "producer_store": "V54_POLICY_LOW_CONSUMPTION_FIELDS",
+      "check_store": "SERIALIZED_DECISION_SENTENCES",
+      "observed": 279,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "PAR_BOUND_NAMED_AND_NOT_ABOVE_FLOOR",
+      "producer_store": "V54_PAIR_ALLOCATOR",
+      "check_store": "OBSERVED_TRUE_PRINT_PREFIX",
+      "observed": 2769,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "AT_FLOOR_TENURE",
+      "producer_store": "V54_REST_STATE_MACHINE",
+      "check_store": "SURVIVOR_ELIMINATION_TRAJECTORY_PLUS_TRUE_PRINTS",
+      "observed": 34,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "TARGET_AUTHORITY_ACTUAL",
+      "producer_store": "V54_DERIVATION_TARGET_AUTHORITY",
+      "check_store": "ENVELOPE_PLACEMENT_MODE",
+      "observed": 2769,
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "RUN_SOURCE_EXPLICIT",
+      "producer_store": "FOUR_GAME_SCORE_OBJECTS",
+      "check_store": "RUN_SOURCE_CONTRACT",
+      "observed": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+          "current": "V54_LITERALS_ONE_ORDER_UNGUARDED_20260824",
+          "lineage": "FROZEN_LINEAGE_PER_GAME_L1_L8"
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+          "current": "V54_LITERALS_ONE_ORDER_UNGUARDED_20260824",
+          "lineage": "FROZEN_LINEAGE_PER_GAME_L1_L8"
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "current": "V54_LITERALS_ONE_ORDER_UNGUARDED_20260824",
+          "lineage": "FROZEN_LINEAGE_PER_GAME_L1_L8"
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18DANPRA",
+          "current": "V54_LITERALS_ONE_ORDER_UNGUARDED_20260824",
+          "lineage": "FROZEN_LINEAGE_PER_GAME_L1_L8"
+        }
+      ],
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "DETERMINISM_X2",
+      "producer_store": "REPLAY_BUILD_ONE",
+      "check_store": "REPLAY_BUILD_TWO",
+      "observed": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+          "first_sha256": "c9bc549d79fb2dbc2df5edd1de6db10c9a893235829285a76c15d5f2832bb76e",
+          "second_sha256": "c9bc549d79fb2dbc2df5edd1de6db10c9a893235829285a76c15d5f2832bb76e"
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+          "first_sha256": "75dcddd21bec63199e5e9eee44616238233211ad26c7f4b1fd2305b8b724f574",
+          "second_sha256": "75dcddd21bec63199e5e9eee44616238233211ad26c7f4b1fd2305b8b724f574"
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "first_sha256": "3548a18c6001a5bbe14e722c25cd3c70e7e05b3557ef050aa11c896d137c48ed",
+          "second_sha256": "3548a18c6001a5bbe14e722c25cd3c70e7e05b3557ef050aa11c896d137c48ed"
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18DANPRA",
+          "first_sha256": "c5b81aff4a12b283d0c377121a4cb06560d2e8b31db2119b005a7fdfc22d7a2c",
+          "second_sha256": "c5b81aff4a12b283d0c377121a4cb06560d2e8b31db2119b005a7fdfc22d7a2c"
+        }
+      ],
+      "failures": [],
+      "can_fail": true,
+      "passed": true
+    },
+    {
+      "id": "LAW_VIOLATIONS",
+      "producer_store": "SERIALIZED_DECISION_TRACE",
+      "check_store": "INDEPENDENT_LAW_CHECK_REGISTRY",
+      "observed": [
+        "SINGLETON_SURVIVOR_ENVELOPE_NOT_CONSUMED"
+      ],
+      "failures": [
+        "SINGLETON_SURVIVOR_ENVELOPE_NOT_CONSUMED"
+      ],
+      "can_fail": true,
+      "passed": false
+    }
+  ],
+  "check_count": 14,
+  "gate_fields_that_can_fail": 14,
+  "failures": [
+    {
+      "id": "CURRENT_BED_TRIPWIRE",
+      "failures": [
+        "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "KXATPCHALLENGERMATCH-26JUL14LAJSVA"
+      ]
+    },
+    {
+      "id": "LAW_VIOLATIONS",
+      "failures": [
+        "SINGLETON_SURVIVOR_ENVELOPE_NOT_CONSUMED"
+      ]
+    }
+  ],
+  "zero_measured_law_violations": false,
+  "safety_floor_pass": false,
+  "self_stop": true,
+  "stop_reason": "CURRENT_BED_TRIPWIRE+LAW_VIOLATIONS"
+}

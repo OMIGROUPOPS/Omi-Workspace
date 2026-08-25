@@ -1,0 +1,2820 @@
+{
+  "label": "F_VS_118_CANCEL_AND_REPLACE_ATOMIC",
+  "rule": "An inconsistent rest is replaced inside the current envelope on the same receipt when a lawful joint replacement exists. Only that inconsistent rest cancels fail-loud when no lawful replacement exists; a consistent sibling rest is not globally cleared.",
+  "provenance": "F-VS-118@c08ce381",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784020558,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+      "envelope": {
+        "low_cents": 35,
+        "high_cents": 37,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 35
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 35,
+        "live_ask_cents": 39,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 37,
+        "lawful_envelope_exists": true,
+        "conditioned_expected_future_low_cents": 35,
+        "future_low_minus_seen_low_distribution_cents": {
+          "q25": 0,
+          "q50": 0,
+          "q75": 0
+        },
+        "expected_future_low_minus_seen_low_cents": -2,
+        "placement_quantile": "Q75",
+        "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+        "placement_population_members": 1121,
+        "placement_population_cell": "P30_50",
+        "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+        "causal_seen_low_cents": 37,
+        "selected_quantile_offset_cents": 1,
+        "selected_quantile_raw_cents": 38,
+        "selected_quantile_inside_envelope_cents": 37,
+        "pre_axis_quantile_inside_envelope_cents": 37,
+        "traded_low_target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 38,
+          "observed_traded_low_cents": null,
+          "observed_traded_low_depth_cents": null,
+          "candidate_final_depth_bins_cents": [
+            -3,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            14
+          ],
+          "candidate_final_floor_levels_cents": [
+            24,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            41
+          ],
+          "candidate_depth_counts": {
+            "0": 49,
+            "1": 27,
+            "2": 29,
+            "3": 17,
+            "4": 9,
+            "5": 12,
+            "6": 2,
+            "7": 2,
+            "8": 1,
+            "9": 2,
+            "11": 1,
+            "12": 1,
+            "14": 1,
+            "-3": 1,
+            "-1": 2
+          },
+          "deepest_supported_floor_cents": 24,
+          "shallowest_supported_floor_cents": 41,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 114,
+              "depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                12,
+                14
+              ],
+              "min_depth_cents": -3,
+              "max_depth_cents": 14
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                11
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 11
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+              "support_n": 22,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 8
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 7,
+              "depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                2,
+                3,
+                4,
+                9
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 9
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "conditioned_q50_reference_cents": 35,
+        "live_bid_reference_only_cents": 35,
+        "touch_anchored_inside_coherent_envelope": false,
+        "singleton_survivor_envelope_level_cents": null,
+        "singleton_envelope_consumed": false,
+        "chosen_candidate_rule": "CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN",
+        "chosen_before_migration_discipline_cents": 37,
+        "active_target_before_cents": 38,
+        "chosen_target_cents": 37,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 35,
+            "high_cents": 38,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-911",
+            "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "target_criterion": {
+              "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+              "anchor_cents": 38,
+              "observed_traded_low_cents": null,
+              "observed_traded_low_depth_cents": null,
+              "candidate_final_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                11,
+                12,
+                14
+              ],
+              "candidate_final_floor_levels_cents": [
+                24,
+                26,
+                27,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                41
+              ],
+              "candidate_depth_counts": {
+                "0": 49,
+                "1": 27,
+                "2": 29,
+                "3": 17,
+                "4": 9,
+                "5": 12,
+                "6": 2,
+                "7": 2,
+                "8": 1,
+                "9": 2,
+                "11": 1,
+                "12": 1,
+                "14": 1,
+                "-3": 1,
+                "-1": 2
+              },
+              "deepest_supported_floor_cents": 24,
+              "shallowest_supported_floor_cents": 41,
+              "signable": true,
+              "shape_supports": [
+                {
+                  "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                  "support_n": 114,
+                  "depth_bins_cents": [
+                    -3,
+                    -1,
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    12,
+                    14
+                  ],
+                  "remaining_depth_bins_cents": [
+                    -3,
+                    -1,
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    12,
+                    14
+                  ],
+                  "min_depth_cents": -3,
+                  "max_depth_cents": 14
+                },
+                {
+                  "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                  "support_n": 13,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    11
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    11
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 11
+                },
+                {
+                  "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                  "support_n": 22,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 8
+                },
+                {
+                  "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+                  "support_n": 7,
+                  "depth_bins_cents": [
+                    0,
+                    2,
+                    3,
+                    4,
+                    9
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    2,
+                    3,
+                    4,
+                    9
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 9
+                }
+              ],
+              "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+            },
+            "belief_prediction_reference_cents": 35
+          },
+          "to": {
+            "low_cents": 35,
+            "high_cents": 37,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+            "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "target_criterion": {
+              "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+              "anchor_cents": 38,
+              "observed_traded_low_cents": null,
+              "observed_traded_low_depth_cents": null,
+              "candidate_final_depth_bins_cents": [
+                -3,
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                11,
+                12,
+                14
+              ],
+              "candidate_final_floor_levels_cents": [
+                24,
+                26,
+                27,
+                29,
+                30,
+                31,
+                32,
+                33,
+                34,
+                35,
+                36,
+                37,
+                38,
+                39,
+                41
+              ],
+              "candidate_depth_counts": {
+                "0": 49,
+                "1": 27,
+                "2": 29,
+                "3": 17,
+                "4": 9,
+                "5": 12,
+                "6": 2,
+                "7": 2,
+                "8": 1,
+                "9": 2,
+                "11": 1,
+                "12": 1,
+                "14": 1,
+                "-3": 1,
+                "-1": 2
+              },
+              "deepest_supported_floor_cents": 24,
+              "shallowest_supported_floor_cents": 41,
+              "signable": true,
+              "shape_supports": [
+                {
+                  "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                  "support_n": 114,
+                  "depth_bins_cents": [
+                    -3,
+                    -1,
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    12,
+                    14
+                  ],
+                  "remaining_depth_bins_cents": [
+                    -3,
+                    -1,
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    12,
+                    14
+                  ],
+                  "min_depth_cents": -3,
+                  "max_depth_cents": 14
+                },
+                {
+                  "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                  "support_n": 13,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    11
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    11
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 11
+                },
+                {
+                  "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                  "support_n": 22,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 8
+                },
+                {
+                  "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+                  "support_n": 7,
+                  "depth_bins_cents": [
+                    0,
+                    2,
+                    3,
+                    4,
+                    9
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    2,
+                    3,
+                    4,
+                    9
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 9
+                }
+              ],
+              "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+            },
+            "belief_prediction_reference_cents": 35
+          },
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": false,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": "PAIR_ALLOCATION_INFEASIBLE_INSIDE_ENVELOPES",
+        "current_envelope": {
+          "low_cents": 35,
+          "high_cents": 37,
+          "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+          "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "target_criterion": {
+            "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "anchor_cents": 38,
+            "observed_traded_low_cents": null,
+            "observed_traded_low_depth_cents": null,
+            "candidate_final_depth_bins_cents": [
+              -3,
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              11,
+              12,
+              14
+            ],
+            "candidate_final_floor_levels_cents": [
+              24,
+              26,
+              27,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              41
+            ],
+            "candidate_depth_counts": {
+              "0": 49,
+              "1": 27,
+              "2": 29,
+              "3": 17,
+              "4": 9,
+              "5": 12,
+              "6": 2,
+              "7": 2,
+              "8": 1,
+              "9": 2,
+              "11": 1,
+              "12": 1,
+              "14": 1,
+              "-3": 1,
+              "-1": 2
+            },
+            "deepest_supported_floor_cents": 24,
+            "shallowest_supported_floor_cents": 41,
+            "signable": true,
+            "shape_supports": [
+              {
+                "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                "support_n": 114,
+                "depth_bins_cents": [
+                  -3,
+                  -1,
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  12,
+                  14
+                ],
+                "remaining_depth_bins_cents": [
+                  -3,
+                  -1,
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  12,
+                  14
+                ],
+                "min_depth_cents": -3,
+                "max_depth_cents": 14
+              },
+              {
+                "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                "support_n": 13,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  11
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  11
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 11
+              },
+              {
+                "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                "support_n": 22,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 8
+              },
+              {
+                "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+                "support_n": 7,
+                "depth_bins_cents": [
+                  0,
+                  2,
+                  3,
+                  4,
+                  9
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  2,
+                  3,
+                  4,
+                  9
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 9
+              }
+            ],
+            "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+          },
+          "belief_prediction_reference_cents": 35
+        },
+        "envelope_authoritative_at_receipt": true,
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "sentence_verbatim": "believes PAL at 37¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=35¢; ask=39¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563] at 361min-to-bell with 3.31 vol_log1p in ATP_CHALL, using ATP_CHALL|35 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.84 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-2de8b6579447baa3310b9589fa76acdfb80085d676089cf2e37d7fed07dfd0f6], SHOULD drift to 35¢ by 13min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.471454; CENTRAL_MEMBERS=1121; CENTRAL_CELL=P30_50; deadline-epoch=1784041467.9892473; deadline-emitted-now=1784020558; deadline-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563] || SIBLING-INVERSE: believes URS at 62¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=61¢; ask=64¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-972] at 361min-to-bell with 3.31 vol_log1p in ATP_CHALL, using ATP_CHALL|61 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.84 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-2de8b6579447baa3310b9589fa76acdfb80085d676089cf2e37d7fed07dfd0f6], SHOULD drift to 62¢ by 215min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.471454; CENTRAL_MEMBERS=1121; CENTRAL_CELL=P30_50; deadline-epoch=1784029355.517647; deadline-emitted-now=1784020558; deadline-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563]. MACRO: family=INTERIM_DOWN_TRAVEL, SURVIVOR_SHAPES={\"all_shape_ids\":[\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"survivor_shapes\":[\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"eliminated_shape_ids\":[],\"eliminations\":[],\"eliminated_now\":[],\"reinstated_now\":[],\"movement\":{\"prior_cents\":null,\"current_cents\":null,\"move_cents\":null,\"material_two_cent_move\":false,\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"effect\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS\",\"eliminated_shape_ids\":[],\"reinstated_shape_ids\":[]},\"trajectory_count\":0,\"price_region\":\"26_50\",\"modules\":{\"single\":\"INSUFFICIENT_EVIDENCE_NO_POST_FORMATION_TRUE_TRADE_LOW\",\"pair\":\"PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT\",\"couple\":\"NO_SIGNABLE_PAIR_COUPLE_ABSTAIN\"},\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":38,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,6,7,8,9,11,12,14],\"candidate_final_floor_levels_cents\":[24,26,27,29,30,31,32,33,34,35,36,37,38,39,41],\"candidate_depth_counts\":{\"0\":49,\"1\":27,\"2\":29,\"3\":17,\"4\":9,\"5\":12,\"6\":2,\"7\":2,\"8\":1,\"9\":2,\"11\":1,\"12\":1,\"14\":1,\"-3\":1,\"-1\":2},\"deepest_supported_floor_cents\":24,\"shallowest_supported_floor_cents\":41,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"support_n\":114,\"depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"remaining_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"min_depth_cents\":-3,\"max_depth_cents\":14},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,4,5,11],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,11],\"min_depth_cents\":0,\"max_depth_cents\":11},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"support_n\":22,\"depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"min_depth_cents\":0,\"max_depth_cents\":8},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":7,\"depth_bins_cents\":[0,2,3,4,9],\"remaining_depth_bins_cents\":[0,2,3,4,9],\"min_depth_cents\":0,\"max_depth_cents\":9}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\"}, conditioned-total-dip={\"q25\":10,\"q50\":18,\"q75\":26}, arrived-dip={\"q25\":5,\"q50\":10,\"q75\":12}, remaining-dip=total-minus-arrived={\"q25\":5,\"q50\":8,\"q75\":14}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-2de8b6579447baa3310b9589fa76acdfb80085d676089cf2e37d7fed07dfd0f6,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-821983e6ad6591d40d7d82bebc24af64c4cee2295674ebf11636441840b8bc5b,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-af2f5e8d1fb691de5b6162c7c2e669f7fb6dc7847591e48c41326c25b929ae51,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-72239f24ebb22727c250f3830a8c4d8e745c5f4d592b1d0cbd8c4b23af5e2141,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-05db4ff36bb55513fbf47192ed4e45e8df13a554ccb40e50e73cc96c081ecba2,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d5a8f4e90dab8d394be492d23a258414d00cf5aeecf30b2b1acb54ce2df1dee4,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-96425786e5d7bd752786150163abd9ce105b566f1d4142d0a4137a9878bfa949 [CR-338bce3347819a1cf7426c6dc10534b8c88e77bee02cbadb34d74b083e83971a]. MICRO: own-window={\"basis\":\"BOOK_PATH\",\"anchor_cents\":38,\"conditioning_low_cents\":37,\"observed_traded_low_cents\":null,\"observed_book_path_low_cents\":37,\"book_path_low_source\":{\"source\":\"BOOK_BID_ASK_MID_SERIES_FLOORED_NON_TRADE\",\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29\",\"timestamp_epoch\":1784004251},\"non_traded_low_consumed\":true,\"non_traded_low_disclosure\":\"BOOK_PATH_REFERENCE_NOT_A_TRADE:BOOK_BID_ASK_MID_SERIES_FLOORED_NON_TRADE\",\"observed_dip_cents\":1,\"dip_state\":\"DIP_OBSERVED\",\"true_trade_count\":0,\"formation_end_epoch\":1784001495,\"window_end_epoch\":1784042247,\"elapsed_window_seconds\":19063,\"remaining_window_seconds\":21689,\"window_fraction\":0.4677807224185316,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_SIGNATURE_OPERATOR_RULED\"}, rows=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563,CR-2de8b6579447baa3310b9589fa76acdfb80085d676089cf2e37d7fed07dfd0f6, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-b6c0f7a7f57e5aec38cf2ac37ae1820ca3a7004e1e54a58398f7d20093b127c3]. MICRO-MICRO: tick=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563, book=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-204e3aac07f08fd771f678def97aff1a9ee38fe07744cefa3bb62d578e2e57fc]. ORDER=MACRO=RESOLVED[CR-338bce3347819a1cf7426c6dc10534b8c88e77bee02cbadb34d74b083e83971a] · MICRO=RESOLVED[CR-b6c0f7a7f57e5aec38cf2ac37ae1820ca3a7004e1e54a58398f7d20093b127c3] · MICRO_MICRO=RESOLVED[CR-204e3aac07f08fd771f678def97aff1a9ee38fe07744cefa3bb62d578e2e57fc]. COHERENCE=COHERENT; MIRROR_GAP=3; SPREAD_BOUND=7/20; OBSERVED_TRADED_FLOOR=NONE@NONE; TRADED_LOW_TARGET_CRITERION={\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":38,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,6,7,8,9,11,12,14],\"candidate_final_floor_levels_cents\":[24,26,27,29,30,31,32,33,34,35,36,37,38,39,41],\"candidate_depth_counts\":{\"0\":49,\"1\":27,\"2\":29,\"3\":17,\"4\":9,\"5\":12,\"6\":2,\"7\":2,\"8\":1,\"9\":2,\"11\":1,\"12\":1,\"14\":1,\"-3\":1,\"-1\":2},\"deepest_supported_floor_cents\":24,\"shallowest_supported_floor_cents\":41,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"support_n\":114,\"depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"remaining_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"min_depth_cents\":-3,\"max_depth_cents\":14},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,4,5,11],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,11],\"min_depth_cents\":0,\"max_depth_cents\":11},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"support_n\":22,\"depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"min_depth_cents\":0,\"max_depth_cents\":8},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":7,\"depth_bins_cents\":[0,2,3,4,9],\"remaining_depth_bins_cents\":[0,2,3,4,9],\"min_depth_cents\":0,\"max_depth_cents\":9}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"}; NON_TRADED_LOW_DISCLOSURE=BOOK_PATH_REFERENCE_NOT_A_TRADE:BOOK_BID_ASK_MID_SERIES_FLOORED_NON_TRADE; CONVICTION_EVOLUTION={\"update\":\"TIGHTENED_CARRIED_CONVICTION\",\"prior_envelope\":{\"low_cents\":35,\"high_cents\":38,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-911\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":38,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,6,7,8,9,11,12,14],\"candidate_final_floor_levels_cents\":[24,26,27,29,30,31,32,33,34,35,36,37,38,39,41],\"candidate_depth_counts\":{\"0\":49,\"1\":27,\"2\":29,\"3\":17,\"4\":9,\"5\":12,\"6\":2,\"7\":2,\"8\":1,\"9\":2,\"11\":1,\"12\":1,\"14\":1,\"-3\":1,\"-1\":2},\"deepest_supported_floor_cents\":24,\"shallowest_supported_floor_cents\":41,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"support_n\":114,\"depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"remaining_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"min_depth_cents\":-3,\"max_depth_cents\":14},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,4,5,11],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,11],\"min_depth_cents\":0,\"max_depth_cents\":11},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"support_n\":22,\"depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"min_depth_cents\":0,\"max_depth_cents\":8},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":7,\"depth_bins_cents\":[0,2,3,4,9],\"remaining_depth_bins_cents\":[0,2,3,4,9],\"min_depth_cents\":0,\"max_depth_cents\":9}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":35},\"proposed_envelope\":{\"low_cents\":35,\"high_cents\":37,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":38,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,6,7,8,9,11,12,14],\"candidate_final_floor_levels_cents\":[24,26,27,29,30,31,32,33,34,35,36,37,38,39,41],\"candidate_depth_counts\":{\"0\":49,\"1\":27,\"2\":29,\"3\":17,\"4\":9,\"5\":12,\"6\":2,\"7\":2,\"8\":1,\"9\":2,\"11\":1,\"12\":1,\"14\":1,\"-3\":1,\"-1\":2},\"deepest_supported_floor_cents\":24,\"shallowest_supported_floor_cents\":41,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"support_n\":114,\"depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"remaining_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"min_depth_cents\":-3,\"max_depth_cents\":14},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,4,5,11],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,11],\"min_depth_cents\":0,\"max_depth_cents\":11},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"support_n\":22,\"depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"min_depth_cents\":0,\"max_depth_cents\":8},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":7,\"depth_bins_cents\":[0,2,3,4,9],\"remaining_depth_bins_cents\":[0,2,3,4,9],\"min_depth_cents\":0,\"max_depth_cents\":9}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":35},\"effective_envelope\":{\"low_cents\":35,\"high_cents\":37,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":38,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,6,7,8,9,11,12,14],\"candidate_final_floor_levels_cents\":[24,26,27,29,30,31,32,33,34,35,36,37,38,39,41],\"candidate_depth_counts\":{\"0\":49,\"1\":27,\"2\":29,\"3\":17,\"4\":9,\"5\":12,\"6\":2,\"7\":2,\"8\":1,\"9\":2,\"11\":1,\"12\":1,\"14\":1,\"-3\":1,\"-1\":2},\"deepest_supported_floor_cents\":24,\"shallowest_supported_floor_cents\":41,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"support_n\":114,\"depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"remaining_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"min_depth_cents\":-3,\"max_depth_cents\":14},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,4,5,11],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,11],\"min_depth_cents\":0,\"max_depth_cents\":11},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"support_n\":22,\"depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"min_depth_cents\":0,\"max_depth_cents\":8},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":7,\"depth_bins_cents\":[0,2,3,4,9],\"remaining_depth_bins_cents\":[0,2,3,4,9],\"min_depth_cents\":0,\"max_depth_cents\":9}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":35},\"prior_conviction_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-911\",\"prior_receipt_genuinely_readable\":true,\"basis_re_stated_at_current_receipt\":true,\"basis_book_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563\",\"supporting_shape_ids_before\":[\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"surviving_shape_ids_now\":[\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"supporting_shape_ids_still_alive\":[\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"eliminations_still_hold\":true,\"movement_evidence\":{\"prior_cents\":null,\"current_cents\":null,\"move_cents\":null,\"material_two_cent_move\":false,\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"effect\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS\",\"eliminated_shape_ids\":[],\"reinstated_shape_ids\":[]},\"movement_statement\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS: move=UNKNOWNc; eliminated=NONE; reinstated=NONE\",\"carried_conviction_law\":\"F-VS-134@e7081336\"}; FLOOR_REST_PROTECTION={\"floor_rest_lock_state\":\"ABSENT_RETIRED\",\"evidenced_floor_cents\":null,\"evidenced_floor_source\":null,\"evidenced_floor_receipt\":null,\"active_target_before_cents\":38,\"active_was_at_evidenced_floor\":false,\"supporting_shapes_still_alive\":[],\"proposed_target_before_protection_cents\":37,\"protected_from_conflicting_belief_or_cancel\":false,\"violation\":false,\"tenure\":{\"status\":\"NO_ACTIVE_EVIDENCED_FLOOR_TENURE\",\"ended_by\":null},\"provenance\":\"F-VS-138/F-VS-142@f4752720; lock retirement F-VS-148..152@d079687f\"}; PROPOSAL_SUPERVISOR={\"proposal_cents\":37,\"evidenced_floor_cents\":null,\"proposal_at_or_below_evidenced_floor\":false,\"final_target_cents\":null,\"status\":\"NO_AT_OR_BELOW_FLOOR_PROPOSAL\",\"reason\":\"PROPOSAL_NOT_AT_OR_BELOW_CURRENT_EVIDENCED_FLOOR\",\"supervisor_required\":false,\"independent_check\":{\"producer_store\":\"DERIVED_ACTION_AND_PAIR_ALLOCATION\",\"check_store\":\"NO_OBSERVED_TRADE_FLOOR\",\"check_receipt\":null,\"can_fail\":true,\"passed\":true},\"provenance\":\"F-VS-149@d079687f\"}; DECISION_ARBITRATION={\"decision_instant_epoch\":1784020558,\"source_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563\",\"winner\":{\"lane\":\"COHERENT_ENVELOPE\",\"action\":\"CANCEL_REST\",\"target_cents\":null,\"reason\":\"FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT\"},\"losers\":[{\"lane\":\"DISAGREES_OWN_EVIDENCE\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"CARRIED_CONVICTION\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"NULL_ENVELOPE_OWN_TOUCH\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"ACTIVE_REST_HOLD\",\"eligible\":true,\"disposition\":\"LOST_PRECEDENCE_TO_WINNER\"}],\"emitted_order_count\":1}; PAR_ALLOCATION_FLOOR_BOUND={\"name\":\"PAR_ALLOCATION_OBSERVED_TRADED_FLOOR_BOUND\",\"value_cents\":37,\"evidenced_floor_cents\":null,\"source\":\"NO_TRADED_FLOOR_NO_REDUCTION_AUTHORITY\",\"source_receipt\":null,\"never_above_evidenced_floor\":true,\"role\":\"MAXIMUM_LAWFUL_REDUCTION_FLOOR_FOR_PAIR_PAR_ALLOCATION\",\"provenance\":\"F-VS-160/F-VS-169@a2a6a25d/44559ebc\"}; PAR_ALLOCATION_HEADROOM_CENTS=NONE; ENVELOPE={\"low_cents\":35,\"high_cents\":37,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":38,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,6,7,8,9,11,12,14],\"candidate_final_floor_levels_cents\":[24,26,27,29,30,31,32,33,34,35,36,37,38,39,41],\"candidate_depth_counts\":{\"0\":49,\"1\":27,\"2\":29,\"3\":17,\"4\":9,\"5\":12,\"6\":2,\"7\":2,\"8\":1,\"9\":2,\"11\":1,\"12\":1,\"14\":1,\"-3\":1,\"-1\":2},\"deepest_supported_floor_cents\":24,\"shallowest_supported_floor_cents\":41,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"support_n\":114,\"depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"remaining_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"min_depth_cents\":-3,\"max_depth_cents\":14},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,4,5,11],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,11],\"min_depth_cents\":0,\"max_depth_cents\":11},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"support_n\":22,\"depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"min_depth_cents\":0,\"max_depth_cents\":8},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":7,\"depth_bins_cents\":[0,2,3,4,9],\"remaining_depth_bins_cents\":[0,2,3,4,9],\"min_depth_cents\":0,\"max_depth_cents\":9}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":35}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":35,\"live_ask_cents\":39,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":37,\"lawful_envelope_exists\":true,\"conditioned_expected_future_low_cents\":35,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":0},\"expected_future_low_minus_seen_low_cents\":-2,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":1121,\"placement_population_cell\":\"P30_50\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":37,\"selected_quantile_offset_cents\":1,\"selected_quantile_raw_cents\":38,\"selected_quantile_inside_envelope_cents\":37,\"pre_axis_quantile_inside_envelope_cents\":37,\"traded_low_target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":38,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,6,7,8,9,11,12,14],\"candidate_final_floor_levels_cents\":[24,26,27,29,30,31,32,33,34,35,36,37,38,39,41],\"candidate_depth_counts\":{\"0\":49,\"1\":27,\"2\":29,\"3\":17,\"4\":9,\"5\":12,\"6\":2,\"7\":2,\"8\":1,\"9\":2,\"11\":1,\"12\":1,\"14\":1,\"-3\":1,\"-1\":2},\"deepest_supported_floor_cents\":24,\"shallowest_supported_floor_cents\":41,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"support_n\":114,\"depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"remaining_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"min_depth_cents\":-3,\"max_depth_cents\":14},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,4,5,11],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,11],\"min_depth_cents\":0,\"max_depth_cents\":11},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"support_n\":22,\"depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"min_depth_cents\":0,\"max_depth_cents\":8},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":7,\"depth_bins_cents\":[0,2,3,4,9],\"remaining_depth_bins_cents\":[0,2,3,4,9],\"min_depth_cents\":0,\"max_depth_cents\":9}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"conditioned_q50_reference_cents\":35,\"live_bid_reference_only_cents\":35,\"touch_anchored_inside_coherent_envelope\":false,\"singleton_survivor_envelope_level_cents\":null,\"singleton_envelope_consumed\":false,\"chosen_candidate_rule\":\"CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN\",\"chosen_before_migration_discipline_cents\":37,\"active_target_before_cents\":38,\"chosen_target_cents\":37,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":35,\"high_cents\":38,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-911\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":38,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,6,7,8,9,11,12,14],\"candidate_final_floor_levels_cents\":[24,26,27,29,30,31,32,33,34,35,36,37,38,39,41],\"candidate_depth_counts\":{\"0\":49,\"1\":27,\"2\":29,\"3\":17,\"4\":9,\"5\":12,\"6\":2,\"7\":2,\"8\":1,\"9\":2,\"11\":1,\"12\":1,\"14\":1,\"-3\":1,\"-1\":2},\"deepest_supported_floor_cents\":24,\"shallowest_supported_floor_cents\":41,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"support_n\":114,\"depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"remaining_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"min_depth_cents\":-3,\"max_depth_cents\":14},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,4,5,11],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,11],\"min_depth_cents\":0,\"max_depth_cents\":11},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"support_n\":22,\"depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"min_depth_cents\":0,\"max_depth_cents\":8},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":7,\"depth_bins_cents\":[0,2,3,4,9],\"remaining_depth_bins_cents\":[0,2,3,4,9],\"min_depth_cents\":0,\"max_depth_cents\":9}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":35},\"to\":{\"low_cents\":35,\"high_cents\":37,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":38,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,6,7,8,9,11,12,14],\"candidate_final_floor_levels_cents\":[24,26,27,29,30,31,32,33,34,35,36,37,38,39,41],\"candidate_depth_counts\":{\"0\":49,\"1\":27,\"2\":29,\"3\":17,\"4\":9,\"5\":12,\"6\":2,\"7\":2,\"8\":1,\"9\":2,\"11\":1,\"12\":1,\"14\":1,\"-3\":1,\"-1\":2},\"deepest_supported_floor_cents\":24,\"shallowest_supported_floor_cents\":41,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1\",\"support_n\":114,\"depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"remaining_depth_bins_cents\":[-3,-1,0,1,2,3,4,5,12,14],\"min_depth_cents\":-3,\"max_depth_cents\":14},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,4,5,11],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,11],\"min_depth_cents\":0,\"max_depth_cents\":11},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4\",\"support_n\":22,\"depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,6,7,8],\"min_depth_cents\":0,\"max_depth_cents\":8},{\"shape_id\":\"ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":7,\"depth_bins_cents\":[0,2,3,4,9],\"remaining_depth_bins_cents\":[0,2,3,4,9],\"min_depth_cents\":0,\"max_depth_cents\":9}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":35},\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ATOMIC_REPLACEMENT_UNAVAILABLE_FAIL_LOUD_INCONSISTENT_ONLY. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=38."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784030027,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766",
+      "envelope": {
+        "low_cents": 58,
+        "high_cents": 58,
+        "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 62,
+          "observed_traded_low_cents": 58,
+          "observed_traded_low_depth_cents": 4,
+          "candidate_final_depth_bins_cents": [
+            4,
+            5,
+            8,
+            9,
+            10,
+            14,
+            15,
+            21
+          ],
+          "candidate_final_floor_levels_cents": [
+            41,
+            47,
+            48,
+            52,
+            53,
+            54,
+            57,
+            58
+          ],
+          "candidate_depth_counts": {
+            "4": 10,
+            "5": 4,
+            "8": 1,
+            "9": 2,
+            "10": 1,
+            "14": 1,
+            "15": 1,
+            "21": 1
+          },
+          "deepest_supported_floor_cents": 41,
+          "shallowest_supported_floor_cents": 58,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 113,
+              "depth_bins_cents": [
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                9,
+                10,
+                15,
+                21
+              ],
+              "remaining_depth_bins_cents": [
+                4,
+                5,
+                9,
+                10,
+                15,
+                21
+              ],
+              "min_depth_cents": -1,
+              "max_depth_cents": 21
+            },
+            {
+              "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+              "support_n": 23,
+              "depth_bins_cents": [
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "remaining_depth_bins_cents": [
+                4,
+                5
+              ],
+              "min_depth_cents": -1,
+              "max_depth_cents": 5
+            },
+            {
+              "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 15,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                8,
+                9,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                4,
+                8,
+                9,
+                14
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 14
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 58
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 54,
+        "live_ask_cents": 58,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 57,
+        "lawful_envelope_exists": false,
+        "conditioned_expected_future_low_cents": 58,
+        "future_low_minus_seen_low_distribution_cents": {
+          "q25": 0,
+          "q50": 0,
+          "q75": 1
+        },
+        "expected_future_low_minus_seen_low_cents": 0,
+        "placement_quantile": "Q75",
+        "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+        "placement_population_members": 2091,
+        "placement_population_cell": "P70_90",
+        "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+        "causal_seen_low_cents": 58,
+        "selected_quantile_offset_cents": 3,
+        "selected_quantile_raw_cents": 61,
+        "selected_quantile_inside_envelope_cents": null,
+        "pre_axis_quantile_inside_envelope_cents": null,
+        "traded_low_target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 62,
+          "observed_traded_low_cents": 58,
+          "observed_traded_low_depth_cents": 4,
+          "candidate_final_depth_bins_cents": [
+            4,
+            5,
+            8,
+            9,
+            10,
+            14,
+            15,
+            21
+          ],
+          "candidate_final_floor_levels_cents": [
+            41,
+            47,
+            48,
+            52,
+            53,
+            54,
+            57,
+            58
+          ],
+          "candidate_depth_counts": {
+            "4": 10,
+            "5": 4,
+            "8": 1,
+            "9": 2,
+            "10": 1,
+            "14": 1,
+            "15": 1,
+            "21": 1
+          },
+          "deepest_supported_floor_cents": 41,
+          "shallowest_supported_floor_cents": 58,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+              "support_n": 113,
+              "depth_bins_cents": [
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                9,
+                10,
+                15,
+                21
+              ],
+              "remaining_depth_bins_cents": [
+                4,
+                5,
+                9,
+                10,
+                15,
+                21
+              ],
+              "min_depth_cents": -1,
+              "max_depth_cents": 21
+            },
+            {
+              "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+              "support_n": 23,
+              "depth_bins_cents": [
+                -1,
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "remaining_depth_bins_cents": [
+                4,
+                5
+              ],
+              "min_depth_cents": -1,
+              "max_depth_cents": 5
+            },
+            {
+              "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 15,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                8,
+                9,
+                14
+              ],
+              "remaining_depth_bins_cents": [
+                4,
+                8,
+                9,
+                14
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 14
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "conditioned_q50_reference_cents": 58,
+        "live_bid_reference_only_cents": 54,
+        "touch_anchored_inside_coherent_envelope": false,
+        "singleton_survivor_envelope_level_cents": 58,
+        "singleton_envelope_consumed": false,
+        "chosen_candidate_rule": "NO_LAWFUL_TRADED_LOW_SUPPORTED_Q75_INSIDE_ENVELOPE",
+        "chosen_before_migration_discipline_cents": null,
+        "active_target_before_cents": 57,
+        "chosen_target_cents": null,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 57,
+            "high_cents": 58,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4046",
+            "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "target_criterion": {
+              "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+              "anchor_cents": 62,
+              "observed_traded_low_cents": 58,
+              "observed_traded_low_depth_cents": 4,
+              "candidate_final_depth_bins_cents": [
+                4,
+                5,
+                8,
+                9,
+                10,
+                14,
+                15,
+                21
+              ],
+              "candidate_final_floor_levels_cents": [
+                41,
+                47,
+                48,
+                52,
+                53,
+                54,
+                57,
+                58
+              ],
+              "candidate_depth_counts": {
+                "4": 10,
+                "5": 4,
+                "8": 1,
+                "9": 2,
+                "10": 1,
+                "14": 1,
+                "15": 1,
+                "21": 1
+              },
+              "deepest_supported_floor_cents": 41,
+              "shallowest_supported_floor_cents": 58,
+              "signable": true,
+              "shape_supports": [
+                {
+                  "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+                  "support_n": 113,
+                  "depth_bins_cents": [
+                    -1,
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    15,
+                    21
+                  ],
+                  "remaining_depth_bins_cents": [
+                    4,
+                    5,
+                    9,
+                    10,
+                    15,
+                    21
+                  ],
+                  "min_depth_cents": -1,
+                  "max_depth_cents": 21
+                },
+                {
+                  "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+                  "support_n": 23,
+                  "depth_bins_cents": [
+                    -1,
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "remaining_depth_bins_cents": [
+                    4,
+                    5
+                  ],
+                  "min_depth_cents": -1,
+                  "max_depth_cents": 5
+                },
+                {
+                  "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                  "support_n": 15,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    8,
+                    9,
+                    14
+                  ],
+                  "remaining_depth_bins_cents": [
+                    4,
+                    8,
+                    9,
+                    14
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 14
+                }
+              ],
+              "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+            },
+            "belief_prediction_reference_cents": 57
+          },
+          "to": {
+            "low_cents": 58,
+            "high_cents": 58,
+            "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766",
+            "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "target_criterion": {
+              "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+              "anchor_cents": 62,
+              "observed_traded_low_cents": 58,
+              "observed_traded_low_depth_cents": 4,
+              "candidate_final_depth_bins_cents": [
+                4,
+                5,
+                8,
+                9,
+                10,
+                14,
+                15,
+                21
+              ],
+              "candidate_final_floor_levels_cents": [
+                41,
+                47,
+                48,
+                52,
+                53,
+                54,
+                57,
+                58
+              ],
+              "candidate_depth_counts": {
+                "4": 10,
+                "5": 4,
+                "8": 1,
+                "9": 2,
+                "10": 1,
+                "14": 1,
+                "15": 1,
+                "21": 1
+              },
+              "deepest_supported_floor_cents": 41,
+              "shallowest_supported_floor_cents": 58,
+              "signable": true,
+              "shape_supports": [
+                {
+                  "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+                  "support_n": 113,
+                  "depth_bins_cents": [
+                    -1,
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    9,
+                    10,
+                    15,
+                    21
+                  ],
+                  "remaining_depth_bins_cents": [
+                    4,
+                    5,
+                    9,
+                    10,
+                    15,
+                    21
+                  ],
+                  "min_depth_cents": -1,
+                  "max_depth_cents": 21
+                },
+                {
+                  "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+                  "support_n": 23,
+                  "depth_bins_cents": [
+                    -1,
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                  ],
+                  "remaining_depth_bins_cents": [
+                    4,
+                    5
+                  ],
+                  "min_depth_cents": -1,
+                  "max_depth_cents": 5
+                },
+                {
+                  "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                  "support_n": 15,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    8,
+                    9,
+                    14
+                  ],
+                  "remaining_depth_bins_cents": [
+                    4,
+                    8,
+                    9,
+                    14
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 14
+                }
+              ],
+              "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+            },
+            "belief_prediction_reference_cents": 58
+          },
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "CANCEL_REQUIRED_FAIL_LOUD",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "FAIL_LOUD_NO_LAWFUL_REPLACEMENT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": false,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": "ENVELOPE_POINT_AT_OR_ABOVE_LIVE_ASK",
+        "current_envelope": {
+          "low_cents": 58,
+          "high_cents": 58,
+          "belief_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766",
+          "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "target_criterion": {
+            "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "anchor_cents": 62,
+            "observed_traded_low_cents": 58,
+            "observed_traded_low_depth_cents": 4,
+            "candidate_final_depth_bins_cents": [
+              4,
+              5,
+              8,
+              9,
+              10,
+              14,
+              15,
+              21
+            ],
+            "candidate_final_floor_levels_cents": [
+              41,
+              47,
+              48,
+              52,
+              53,
+              54,
+              57,
+              58
+            ],
+            "candidate_depth_counts": {
+              "4": 10,
+              "5": 4,
+              "8": 1,
+              "9": 2,
+              "10": 1,
+              "14": 1,
+              "15": 1,
+              "21": 1
+            },
+            "deepest_supported_floor_cents": 41,
+            "shallowest_supported_floor_cents": 58,
+            "signable": true,
+            "shape_supports": [
+              {
+                "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+                "support_n": 113,
+                "depth_bins_cents": [
+                  -1,
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  9,
+                  10,
+                  15,
+                  21
+                ],
+                "remaining_depth_bins_cents": [
+                  4,
+                  5,
+                  9,
+                  10,
+                  15,
+                  21
+                ],
+                "min_depth_cents": -1,
+                "max_depth_cents": 21
+              },
+              {
+                "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+                "support_n": 23,
+                "depth_bins_cents": [
+                  -1,
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "remaining_depth_bins_cents": [
+                  4,
+                  5
+                ],
+                "min_depth_cents": -1,
+                "max_depth_cents": 5
+              },
+              {
+                "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                "support_n": 15,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  8,
+                  9,
+                  14
+                ],
+                "remaining_depth_bins_cents": [
+                  4,
+                  8,
+                  9,
+                  14
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 14
+              }
+            ],
+            "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+          },
+          "belief_prediction_reference_cents": 58
+        },
+        "envelope_authoritative_at_receipt": true,
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT"
+      },
+      "sentence_verbatim": "believes PAL at 44¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=41¢; ask=47¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766] at 204min-to-bell with 5.69 vol_log1p in ATP_CHALL, using ATP_CHALL|41 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-b330685055d992596c8a570778cc0ab420b4e2b46056c5c8457c5de4c3e6fd36], SHOULD drift to 40¢ by 55min-to-bell [PHASE_CENTRAL_ESTIMATE=0¢; CENTRAL_ESTIMATE_RANK=0.51363; CENTRAL_MEMBERS=2091; CENTRAL_CELL=P70_90; deadline-epoch=1784038937.1928935; deadline-emitted-now=1784030027; deadline-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766] || SIBLING-INVERSE: believes URS at 56¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=54¢; ask=58¢; book-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4052] at 204min-to-bell with 5.69 vol_log1p in ATP_CHALL, using ATP_CHALL|54 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.81 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-b330685055d992596c8a570778cc0ab420b4e2b46056c5c8457c5de4c3e6fd36], SHOULD drift to 58¢ by 104min-to-bell [PHASE_CENTRAL_ESTIMATE=0¢; CENTRAL_ESTIMATE_RANK=0.51363; CENTRAL_MEMBERS=2091; CENTRAL_CELL=P70_90; deadline-epoch=1784035977.4615386; deadline-emitted-now=1784030027; deadline-receipt=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766]. MACRO: family=INTERIM_DOWN_TRAVEL, SURVIVOR_SHAPES={\"all_shape_ids\":[\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"survivor_shapes\":[\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"eliminated_shape_ids\":[],\"eliminations\":[],\"eliminated_now\":[],\"reinstated_now\":[],\"movement\":{\"prior_cents\":58,\"current_cents\":58,\"move_cents\":0,\"material_two_cent_move\":false,\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"effect\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS\",\"eliminated_shape_ids\":[],\"reinstated_shape_ids\":[]},\"trajectory_count\":2,\"price_region\":\"51_75\",\"modules\":{\"single\":\"EXACT_MEMBER_TRADED_LOW_DEPTH_BINS_NARROWED\",\"pair\":\"PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT\",\"couple\":\"NO_SIGNABLE_PAIR_COUPLE_ABSTAIN\"},\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":62,\"observed_traded_low_cents\":58,\"observed_traded_low_depth_cents\":4,\"candidate_final_depth_bins_cents\":[4,5,8,9,10,14,15,21],\"candidate_final_floor_levels_cents\":[41,47,48,52,53,54,57,58],\"candidate_depth_counts\":{\"4\":10,\"5\":4,\"8\":1,\"9\":2,\"10\":1,\"14\":1,\"15\":1,\"21\":1},\"deepest_supported_floor_cents\":41,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"support_n\":113,\"depth_bins_cents\":[-1,0,1,2,3,4,5,9,10,15,21],\"remaining_depth_bins_cents\":[4,5,9,10,15,21],\"min_depth_cents\":-1,\"max_depth_cents\":21},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"support_n\":23,\"depth_bins_cents\":[-1,0,1,2,3,4,5],\"remaining_depth_bins_cents\":[4,5],\"min_depth_cents\":-1,\"max_depth_cents\":5},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":15,\"depth_bins_cents\":[0,1,2,3,4,8,9,14],\"remaining_depth_bins_cents\":[4,8,9,14],\"min_depth_cents\":0,\"max_depth_cents\":14}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\"}, conditioned-total-dip={\"q25\":17,\"q50\":27,\"q75\":34}, arrived-dip={\"q25\":14,\"q50\":20,\"q75\":31}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":3,\"q75\":7}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-b330685055d992596c8a570778cc0ab420b4e2b46056c5c8457c5de4c3e6fd36,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-6f9d04ab90e3203f152e21ec29fa610ef7721c5a01f673801a6eacc17c53b0f3,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-123298a163aab0f5911928fda2ecc31d53d4d38cd933358b05a915db935975ed,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-e49520d9b6a94c83dafb9d00db5a16e6a1374343c24ded2219927046e0e24d98,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-fbec6aa256985f1fd8ade2d6740e6297b1c54db188cf2a53b204d3040076832d,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-dceba0d046f9e1cd9773d12b73506c660620b322e4c22f695021429a42a4d79a,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-bba6790e441f974a737cfa97b1d2e938e85ce5c83c152bbcbc68ecec4f0acd16 [CR-a99e2be90c2ad8b7a32b7381385565ef659377d56c2b311d12d91dd2a27f7e31]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":62,\"conditioning_low_cents\":58,\"observed_traded_low_cents\":58,\"observed_book_path_low_cents\":49,\"book_path_low_source\":{\"source\":\"BOOK_BID_ASK_MID_SERIES_FLOORED_NON_TRADE\",\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1\",\"timestamp_epoch\":1783998959},\"non_traded_low_consumed\":false,\"non_traded_low_disclosure\":null,\"observed_dip_cents\":4,\"dip_state\":\"DIP_OBSERVED\",\"true_trade_count\":5,\"formation_end_epoch\":1784001495,\"window_end_epoch\":1784042247,\"elapsed_window_seconds\":28532,\"remaining_window_seconds\":12220,\"window_fraction\":0.700137416568512,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_SIGNATURE_OPERATOR_RULED\"}, rows=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4052,CR-b330685055d992596c8a570778cc0ab420b4e2b46056c5c8457c5de4c3e6fd36, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-934116a86738711c614fe5e077b14c291a44948bb3d494c45b5b6acf50e08468]. MICRO-MICRO: tick=KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766, book=KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4052, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-2afefdf29ae1391c8a96f98e516239201040b33390f9f2e1dcacfabe1d8abaea]. ORDER=MACRO=RESOLVED[CR-a99e2be90c2ad8b7a32b7381385565ef659377d56c2b311d12d91dd2a27f7e31] · MICRO=RESOLVED[CR-934116a86738711c614fe5e077b14c291a44948bb3d494c45b5b6acf50e08468] · MICRO_MICRO=RESOLVED[CR-2afefdf29ae1391c8a96f98e516239201040b33390f9f2e1dcacfabe1d8abaea]. COHERENCE=COHERENT; MIRROR_GAP=2; SPREAD_BOUND=10/20; OBSERVED_TRADED_FLOOR=58@de8acb81-1259-6081-ed5a-a11461e5f45b; TRADED_LOW_TARGET_CRITERION={\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":62,\"observed_traded_low_cents\":58,\"observed_traded_low_depth_cents\":4,\"candidate_final_depth_bins_cents\":[4,5,8,9,10,14,15,21],\"candidate_final_floor_levels_cents\":[41,47,48,52,53,54,57,58],\"candidate_depth_counts\":{\"4\":10,\"5\":4,\"8\":1,\"9\":2,\"10\":1,\"14\":1,\"15\":1,\"21\":1},\"deepest_supported_floor_cents\":41,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"support_n\":113,\"depth_bins_cents\":[-1,0,1,2,3,4,5,9,10,15,21],\"remaining_depth_bins_cents\":[4,5,9,10,15,21],\"min_depth_cents\":-1,\"max_depth_cents\":21},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"support_n\":23,\"depth_bins_cents\":[-1,0,1,2,3,4,5],\"remaining_depth_bins_cents\":[4,5],\"min_depth_cents\":-1,\"max_depth_cents\":5},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":15,\"depth_bins_cents\":[0,1,2,3,4,8,9,14],\"remaining_depth_bins_cents\":[4,8,9,14],\"min_depth_cents\":0,\"max_depth_cents\":14}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"}; NON_TRADED_LOW_DISCLOSURE=NOT_CONSUMED; CONVICTION_EVOLUTION={\"update\":\"TIGHTENED_CARRIED_CONVICTION\",\"prior_envelope\":{\"low_cents\":57,\"high_cents\":58,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4046\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":62,\"observed_traded_low_cents\":58,\"observed_traded_low_depth_cents\":4,\"candidate_final_depth_bins_cents\":[4,5,8,9,10,14,15,21],\"candidate_final_floor_levels_cents\":[41,47,48,52,53,54,57,58],\"candidate_depth_counts\":{\"4\":10,\"5\":4,\"8\":1,\"9\":2,\"10\":1,\"14\":1,\"15\":1,\"21\":1},\"deepest_supported_floor_cents\":41,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"support_n\":113,\"depth_bins_cents\":[-1,0,1,2,3,4,5,9,10,15,21],\"remaining_depth_bins_cents\":[4,5,9,10,15,21],\"min_depth_cents\":-1,\"max_depth_cents\":21},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"support_n\":23,\"depth_bins_cents\":[-1,0,1,2,3,4,5],\"remaining_depth_bins_cents\":[4,5],\"min_depth_cents\":-1,\"max_depth_cents\":5},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":15,\"depth_bins_cents\":[0,1,2,3,4,8,9,14],\"remaining_depth_bins_cents\":[4,8,9,14],\"min_depth_cents\":0,\"max_depth_cents\":14}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":57},\"proposed_envelope\":{\"low_cents\":58,\"high_cents\":58,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":62,\"observed_traded_low_cents\":58,\"observed_traded_low_depth_cents\":4,\"candidate_final_depth_bins_cents\":[4,5,8,9,10,14,15,21],\"candidate_final_floor_levels_cents\":[41,47,48,52,53,54,57,58],\"candidate_depth_counts\":{\"4\":10,\"5\":4,\"8\":1,\"9\":2,\"10\":1,\"14\":1,\"15\":1,\"21\":1},\"deepest_supported_floor_cents\":41,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"support_n\":113,\"depth_bins_cents\":[-1,0,1,2,3,4,5,9,10,15,21],\"remaining_depth_bins_cents\":[4,5,9,10,15,21],\"min_depth_cents\":-1,\"max_depth_cents\":21},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"support_n\":23,\"depth_bins_cents\":[-1,0,1,2,3,4,5],\"remaining_depth_bins_cents\":[4,5],\"min_depth_cents\":-1,\"max_depth_cents\":5},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":15,\"depth_bins_cents\":[0,1,2,3,4,8,9,14],\"remaining_depth_bins_cents\":[4,8,9,14],\"min_depth_cents\":0,\"max_depth_cents\":14}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":58},\"effective_envelope\":{\"low_cents\":58,\"high_cents\":58,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":62,\"observed_traded_low_cents\":58,\"observed_traded_low_depth_cents\":4,\"candidate_final_depth_bins_cents\":[4,5,8,9,10,14,15,21],\"candidate_final_floor_levels_cents\":[41,47,48,52,53,54,57,58],\"candidate_depth_counts\":{\"4\":10,\"5\":4,\"8\":1,\"9\":2,\"10\":1,\"14\":1,\"15\":1,\"21\":1},\"deepest_supported_floor_cents\":41,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"support_n\":113,\"depth_bins_cents\":[-1,0,1,2,3,4,5,9,10,15,21],\"remaining_depth_bins_cents\":[4,5,9,10,15,21],\"min_depth_cents\":-1,\"max_depth_cents\":21},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"support_n\":23,\"depth_bins_cents\":[-1,0,1,2,3,4,5],\"remaining_depth_bins_cents\":[4,5],\"min_depth_cents\":-1,\"max_depth_cents\":5},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":15,\"depth_bins_cents\":[0,1,2,3,4,8,9,14],\"remaining_depth_bins_cents\":[4,8,9,14],\"min_depth_cents\":0,\"max_depth_cents\":14}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":58},\"prior_conviction_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4046\",\"prior_receipt_genuinely_readable\":true,\"basis_re_stated_at_current_receipt\":true,\"basis_book_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4052\",\"supporting_shape_ids_before\":[\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"surviving_shape_ids_now\":[\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"supporting_shape_ids_still_alive\":[\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"eliminations_still_hold\":true,\"movement_evidence\":{\"prior_cents\":58,\"current_cents\":58,\"move_cents\":0,\"material_two_cent_move\":false,\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"effect\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS\",\"eliminated_shape_ids\":[],\"reinstated_shape_ids\":[]},\"movement_statement\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS: move=0c; eliminated=NONE; reinstated=NONE\",\"carried_conviction_law\":\"F-VS-134@e7081336\"}; FLOOR_REST_PROTECTION={\"floor_rest_lock_state\":\"ABSENT_RETIRED\",\"evidenced_floor_cents\":58,\"evidenced_floor_source\":\"OBSERVED_TRUE_TRADE_PRINT\",\"evidenced_floor_receipt\":\"de8acb81-1259-6081-ed5a-a11461e5f45b\",\"active_target_before_cents\":57,\"active_was_at_evidenced_floor\":false,\"supporting_shapes_still_alive\":[],\"proposed_target_before_protection_cents\":null,\"protected_from_conflicting_belief_or_cancel\":false,\"violation\":false,\"tenure\":{\"status\":\"NO_ACTIVE_EVIDENCED_FLOOR_TENURE\",\"ended_by\":null},\"provenance\":\"F-VS-138/F-VS-142@f4752720; lock retirement F-VS-148..152@d079687f\"}; PROPOSAL_SUPERVISOR={\"proposal_cents\":null,\"evidenced_floor_cents\":58,\"proposal_at_or_below_evidenced_floor\":false,\"final_target_cents\":null,\"status\":\"NO_AT_OR_BELOW_FLOOR_PROPOSAL\",\"reason\":\"PROPOSAL_NOT_AT_OR_BELOW_CURRENT_EVIDENCED_FLOOR\",\"supervisor_required\":false,\"independent_check\":{\"producer_store\":\"DERIVED_ACTION_AND_PAIR_ALLOCATION\",\"check_store\":\"OBSERVED_TRUE_TRADE_PRINT_RECEIPT\",\"check_receipt\":\"de8acb81-1259-6081-ed5a-a11461e5f45b\",\"can_fail\":true,\"passed\":true},\"provenance\":\"F-VS-149@d079687f\"}; DECISION_ARBITRATION={\"decision_instant_epoch\":1784030027,\"source_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766\",\"winner\":{\"lane\":\"COHERENT_ENVELOPE\",\"action\":\"CANCEL_REST\",\"target_cents\":null,\"reason\":\"FAIL_LOUD_NO_LAWFUL_ATOMIC_REPLACEMENT\"},\"losers\":[{\"lane\":\"DISAGREES_OWN_EVIDENCE\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"CARRIED_CONVICTION\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"NULL_ENVELOPE_OWN_TOUCH\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"ACTIVE_REST_HOLD\",\"eligible\":true,\"disposition\":\"LOST_PRECEDENCE_TO_WINNER\"}],\"emitted_order_count\":1}; PAR_ALLOCATION_FLOOR_BOUND={\"name\":\"PAR_ALLOCATION_OBSERVED_TRADED_FLOOR_BOUND\",\"value_cents\":null,\"evidenced_floor_cents\":58,\"source\":\"OBSERVED_TRUE_TRADE_PRINT\",\"source_receipt\":\"de8acb81-1259-6081-ed5a-a11461e5f45b\",\"never_above_evidenced_floor\":true,\"role\":\"MAXIMUM_LAWFUL_REDUCTION_FLOOR_FOR_PAIR_PAR_ALLOCATION\",\"provenance\":\"F-VS-160/F-VS-169@a2a6a25d/44559ebc\"}; PAR_ALLOCATION_HEADROOM_CENTS=NONE; ENVELOPE={\"low_cents\":58,\"high_cents\":58,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":62,\"observed_traded_low_cents\":58,\"observed_traded_low_depth_cents\":4,\"candidate_final_depth_bins_cents\":[4,5,8,9,10,14,15,21],\"candidate_final_floor_levels_cents\":[41,47,48,52,53,54,57,58],\"candidate_depth_counts\":{\"4\":10,\"5\":4,\"8\":1,\"9\":2,\"10\":1,\"14\":1,\"15\":1,\"21\":1},\"deepest_supported_floor_cents\":41,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"support_n\":113,\"depth_bins_cents\":[-1,0,1,2,3,4,5,9,10,15,21],\"remaining_depth_bins_cents\":[4,5,9,10,15,21],\"min_depth_cents\":-1,\"max_depth_cents\":21},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"support_n\":23,\"depth_bins_cents\":[-1,0,1,2,3,4,5],\"remaining_depth_bins_cents\":[4,5],\"min_depth_cents\":-1,\"max_depth_cents\":5},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":15,\"depth_bins_cents\":[0,1,2,3,4,8,9,14],\"remaining_depth_bins_cents\":[4,8,9,14],\"min_depth_cents\":0,\"max_depth_cents\":14}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":58}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":54,\"live_ask_cents\":58,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":57,\"lawful_envelope_exists\":false,\"conditioned_expected_future_low_cents\":58,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":1},\"expected_future_low_minus_seen_low_cents\":0,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":2091,\"placement_population_cell\":\"P70_90\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":58,\"selected_quantile_offset_cents\":3,\"selected_quantile_raw_cents\":61,\"selected_quantile_inside_envelope_cents\":null,\"pre_axis_quantile_inside_envelope_cents\":null,\"traded_low_target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":62,\"observed_traded_low_cents\":58,\"observed_traded_low_depth_cents\":4,\"candidate_final_depth_bins_cents\":[4,5,8,9,10,14,15,21],\"candidate_final_floor_levels_cents\":[41,47,48,52,53,54,57,58],\"candidate_depth_counts\":{\"4\":10,\"5\":4,\"8\":1,\"9\":2,\"10\":1,\"14\":1,\"15\":1,\"21\":1},\"deepest_supported_floor_cents\":41,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"support_n\":113,\"depth_bins_cents\":[-1,0,1,2,3,4,5,9,10,15,21],\"remaining_depth_bins_cents\":[4,5,9,10,15,21],\"min_depth_cents\":-1,\"max_depth_cents\":21},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"support_n\":23,\"depth_bins_cents\":[-1,0,1,2,3,4,5],\"remaining_depth_bins_cents\":[4,5],\"min_depth_cents\":-1,\"max_depth_cents\":5},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":15,\"depth_bins_cents\":[0,1,2,3,4,8,9,14],\"remaining_depth_bins_cents\":[4,8,9,14],\"min_depth_cents\":0,\"max_depth_cents\":14}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"conditioned_q50_reference_cents\":58,\"live_bid_reference_only_cents\":54,\"touch_anchored_inside_coherent_envelope\":false,\"singleton_survivor_envelope_level_cents\":58,\"singleton_envelope_consumed\":false,\"chosen_candidate_rule\":\"NO_LAWFUL_TRADED_LOW_SUPPORTED_Q75_INSIDE_ENVELOPE\",\"chosen_before_migration_discipline_cents\":null,\"active_target_before_cents\":57,\"chosen_target_cents\":null,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":57,\"high_cents\":58,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4046\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":62,\"observed_traded_low_cents\":58,\"observed_traded_low_depth_cents\":4,\"candidate_final_depth_bins_cents\":[4,5,8,9,10,14,15,21],\"candidate_final_floor_levels_cents\":[41,47,48,52,53,54,57,58],\"candidate_depth_counts\":{\"4\":10,\"5\":4,\"8\":1,\"9\":2,\"10\":1,\"14\":1,\"15\":1,\"21\":1},\"deepest_supported_floor_cents\":41,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"support_n\":113,\"depth_bins_cents\":[-1,0,1,2,3,4,5,9,10,15,21],\"remaining_depth_bins_cents\":[4,5,9,10,15,21],\"min_depth_cents\":-1,\"max_depth_cents\":21},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"support_n\":23,\"depth_bins_cents\":[-1,0,1,2,3,4,5],\"remaining_depth_bins_cents\":[4,5],\"min_depth_cents\":-1,\"max_depth_cents\":5},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":15,\"depth_bins_cents\":[0,1,2,3,4,8,9,14],\"remaining_depth_bins_cents\":[4,8,9,14],\"min_depth_cents\":0,\"max_depth_cents\":14}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":57},\"to\":{\"low_cents\":58,\"high_cents\":58,\"belief_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":62,\"observed_traded_low_cents\":58,\"observed_traded_low_depth_cents\":4,\"candidate_final_depth_bins_cents\":[4,5,8,9,10,14,15,21],\"candidate_final_floor_levels_cents\":[41,47,48,52,53,54,57,58],\"candidate_depth_counts\":{\"4\":10,\"5\":4,\"8\":1,\"9\":2,\"10\":1,\"14\":1,\"15\":1,\"21\":1},\"deepest_supported_floor_cents\":41,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1\",\"support_n\":113,\"depth_bins_cents\":[-1,0,1,2,3,4,5,9,10,15,21],\"remaining_depth_bins_cents\":[4,5,9,10,15,21],\"min_depth_cents\":-1,\"max_depth_cents\":21},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3\",\"support_n\":23,\"depth_bins_cents\":[-1,0,1,2,3,4,5],\"remaining_depth_bins_cents\":[4,5],\"min_depth_cents\":-1,\"max_depth_cents\":5},{\"shape_id\":\"ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":15,\"depth_bins_cents\":[0,1,2,3,4,8,9,14],\"remaining_depth_bins_cents\":[4,8,9,14],\"min_depth_cents\":0,\"max_depth_cents\":14}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":58},\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29766\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"CANCEL_REQUIRED_FAIL_LOUD\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=ONE_OPEN_SIDE_OR_LIVE_TOUCH. ACTION=CANCEL_REST; TARGET_CENTS=NONE; ACTIVE_TARGET_BEFORE_CENTS=57."
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784339306.774,
+      "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+      "envelope": {
+        "low_cents": 57,
+        "high_cents": 59,
+        "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+        "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 58,
+          "observed_traded_low_cents": 59,
+          "observed_traded_low_depth_cents": -1,
+          "candidate_final_depth_bins_cents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            36
+          ],
+          "candidate_final_floor_levels_cents": [
+            22,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_depth_counts": {
+            "0": 15,
+            "1": 22,
+            "2": 14,
+            "3": 8,
+            "4": 5,
+            "5": 2,
+            "6": 1,
+            "36": 1
+          },
+          "deepest_supported_floor_cents": 22,
+          "shallowest_supported_floor_cents": 58,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+              "support_n": 27,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 3
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 6
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 28,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 36
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "belief_prediction_reference_cents": 57
+      },
+      "placement": {
+        "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+        "live_bid_cents": 58,
+        "live_ask_cents": 59,
+        "coherence_exists_at_receipt": true,
+        "lawful_envelope_high_cents": 58,
+        "lawful_envelope_exists": true,
+        "conditioned_expected_future_low_cents": 57,
+        "future_low_minus_seen_low_distribution_cents": {
+          "q25": 0,
+          "q50": 0,
+          "q75": 0
+        },
+        "expected_future_low_minus_seen_low_cents": -2,
+        "placement_quantile": "Q75",
+        "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+        "placement_population_members": 1298,
+        "placement_population_cell": "P10_30",
+        "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+        "causal_seen_low_cents": 59,
+        "selected_quantile_offset_cents": 1,
+        "selected_quantile_raw_cents": 60,
+        "selected_quantile_inside_envelope_cents": 58,
+        "pre_axis_quantile_inside_envelope_cents": 58,
+        "traded_low_target_criterion": {
+          "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "anchor_cents": 58,
+          "observed_traded_low_cents": 59,
+          "observed_traded_low_depth_cents": -1,
+          "candidate_final_depth_bins_cents": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            36
+          ],
+          "candidate_final_floor_levels_cents": [
+            22,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58
+          ],
+          "candidate_depth_counts": {
+            "0": 15,
+            "1": 22,
+            "2": 14,
+            "3": 8,
+            "4": 5,
+            "5": 2,
+            "6": 1,
+            "36": 1
+          },
+          "deepest_supported_floor_cents": 22,
+          "shallowest_supported_floor_cents": 58,
+          "signable": true,
+          "shape_supports": [
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+              "support_n": 27,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 3
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+              "support_n": 13,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                6
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 6
+            },
+            {
+              "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+              "support_n": 28,
+              "depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "remaining_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                36
+              ],
+              "min_depth_cents": 0,
+              "max_depth_cents": 36
+            }
+          ],
+          "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+        },
+        "conditioned_q50_reference_cents": 57,
+        "live_bid_reference_only_cents": 58,
+        "touch_anchored_inside_coherent_envelope": false,
+        "singleton_survivor_envelope_level_cents": null,
+        "singleton_envelope_consumed": false,
+        "chosen_candidate_rule": "CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN",
+        "chosen_before_migration_discipline_cents": 58,
+        "active_target_before_cents": 52,
+        "chosen_target_cents": 58,
+        "envelope_migration": {
+          "migrated": true,
+          "from": {
+            "low_cents": 52,
+            "high_cents": 58,
+            "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964",
+            "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "target_criterion": {
+              "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+              "anchor_cents": 58,
+              "observed_traded_low_cents": null,
+              "observed_traded_low_depth_cents": null,
+              "candidate_final_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                36
+              ],
+              "candidate_final_floor_levels_cents": [
+                22,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58
+              ],
+              "candidate_depth_counts": {
+                "0": 15,
+                "1": 22,
+                "2": 14,
+                "3": 8,
+                "4": 5,
+                "5": 2,
+                "6": 1,
+                "36": 1
+              },
+              "deepest_supported_floor_cents": 22,
+              "shallowest_supported_floor_cents": 58,
+              "signable": true,
+              "shape_supports": [
+                {
+                  "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+                  "support_n": 27,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 3
+                },
+                {
+                  "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+                  "support_n": 13,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 6
+                },
+                {
+                  "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                  "support_n": 28,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    36
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    36
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 36
+                }
+              ],
+              "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+            },
+            "belief_prediction_reference_cents": 46
+          },
+          "to": {
+            "low_cents": 57,
+            "high_cents": 59,
+            "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+            "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "target_criterion": {
+              "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+              "anchor_cents": 58,
+              "observed_traded_low_cents": 59,
+              "observed_traded_low_depth_cents": -1,
+              "candidate_final_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                36
+              ],
+              "candidate_final_floor_levels_cents": [
+                22,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58
+              ],
+              "candidate_depth_counts": {
+                "0": 15,
+                "1": 22,
+                "2": 14,
+                "3": 8,
+                "4": 5,
+                "5": 2,
+                "6": 1,
+                "36": 1
+              },
+              "deepest_supported_floor_cents": 22,
+              "shallowest_supported_floor_cents": 58,
+              "signable": true,
+              "shape_supports": [
+                {
+                  "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+                  "support_n": 27,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 3
+                },
+                {
+                  "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+                  "support_n": 13,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 6
+                },
+                {
+                  "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                  "support_n": 28,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    36
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    36
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 36
+                }
+              ],
+              "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+            },
+            "belief_prediction_reference_cents": 57
+          },
+          "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+          "provenance": "F-VS-114(c)@9ff83002"
+        },
+        "active_inconsistent_with_current_envelope": true,
+        "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+        "placement_provenance": "F-VS-114(a)@9ff83002",
+        "coherence_placement_provenance": "F-VS-118@c08ce381",
+        "numeric_constant_added": false
+      },
+      "consistency": {
+        "active_inconsistent_before_action": true,
+        "resolution": "CANCEL_AND_REPLACE_ATOMIC_SAME_RECEIPT",
+        "resolved_same_receipt": true,
+        "cancel_and_replace_atomic": true,
+        "fail_loud_only_without_lawful_replacement": true,
+        "no_lawful_replacement_reason": null,
+        "current_envelope": {
+          "low_cents": 57,
+          "high_cents": 59,
+          "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+          "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "target_criterion": {
+            "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "anchor_cents": 58,
+            "observed_traded_low_cents": 59,
+            "observed_traded_low_depth_cents": -1,
+            "candidate_final_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              36
+            ],
+            "candidate_final_floor_levels_cents": [
+              22,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58
+            ],
+            "candidate_depth_counts": {
+              "0": 15,
+              "1": 22,
+              "2": 14,
+              "3": 8,
+              "4": 5,
+              "5": 2,
+              "6": 1,
+              "36": 1
+            },
+            "deepest_supported_floor_cents": 22,
+            "shallowest_supported_floor_cents": 58,
+            "signable": true,
+            "shape_supports": [
+              {
+                "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+                "support_n": 27,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 3
+              },
+              {
+                "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+                "support_n": 13,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  6
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  6
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 6
+              },
+              {
+                "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                "support_n": 28,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  36
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  36
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 36
+              }
+            ],
+            "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+          },
+          "belief_prediction_reference_cents": 57
+        },
+        "envelope_authoritative_at_receipt": true,
+        "provenance": [
+          "F-VS-114(c)@9ff83002",
+          "F-VS-118@c08ce381"
+        ]
+      },
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 58,
+        "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+      },
+      "sentence_verbatim": "believes DAN at 58¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=58¢; ask=59¢; book-receipt=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 57¢ by 563min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784339306.774; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2] || SIBLING-INVERSE: believes PRA at 42¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=42¢; ask=43¢; book-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1254] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|42 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 41¢ by 4min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784372805.2389936; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2]. MACRO: family=INTERIM_UP_TRAVEL, SURVIVOR_SHAPES={\"all_shape_ids\":[\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"survivor_shapes\":[\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"eliminated_shape_ids\":[],\"eliminations\":[],\"eliminated_now\":[],\"reinstated_now\":[],\"movement\":{\"prior_cents\":null,\"current_cents\":59,\"move_cents\":null,\"material_two_cent_move\":false,\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"effect\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS\",\"eliminated_shape_ids\":[],\"reinstated_shape_ids\":[]},\"trajectory_count\":0,\"price_region\":\"51_75\",\"modules\":{\"single\":\"EXACT_MEMBER_TRADED_LOW_DEPTH_BINS_NARROWED\",\"pair\":\"PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT\",\"couple\":\"NO_SIGNABLE_PAIR_COUPLE_ABSTAIN\"},\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\"}, conditioned-total-dip={\"q25\":2,\"q50\":7,\"q75\":30}, arrived-dip={\"q25\":2,\"q50\":3,\"q75\":30}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":0,\"q75\":4}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-767aca1da7310a48e6136840b781b7da639700b540b85b2d5c439dd8435bf044,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-802f4b2a2c44f3dce4eb3e0b4ddc5cd91304a103452f13d21bcd21f14e1675c2,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-8f07d4d8d8f59ba47454b90f8c8a75cb91c546381418afdfc36438a6624ac2f5,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d3d671247270fe5fa66c7a615bcb2edff5838fff8b172a8e992d1f5c6cda4afe,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-11dbbc46e62b48048e70ccf9fff720567e9b1af10bd8f47d1e0cca0e7e706412,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-7fc1c51391b4db89af48d08814bdf19cbf855238b140c07c39c9c33e17a3848f [CR-85e94c9a5c3d5994330bfb3df4ae4e156d244e7ac982a09ca256099e4641bf40]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":58,\"conditioning_low_cents\":59,\"observed_traded_low_cents\":59,\"observed_book_path_low_cents\":49,\"book_path_low_source\":{\"source\":\"BOOK_BID_ASK_MID_SERIES_FLOORED_NON_TRADE\",\"receipt\":\"KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-3\",\"timestamp_epoch\":1784317958},\"non_traded_low_consumed\":false,\"non_traded_low_disclosure\":null,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1784332553,\"window_end_epoch\":1784373060,\"elapsed_window_seconds\":6753.773999929428,\"remaining_window_seconds\":33753.22600007057,\"window_fraction\":0.1667310341405048,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_INFERENCE\"}, rows=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485,CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-97b3665e416f4375f3eddc50cc940ec823e48d1dd5036891633afb324316e2ce]. MICRO-MICRO: tick=868ebd99-045b-41ce-52f3-d6ed304390d2, book=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. ORDER=MACRO=RESOLVED[CR-85e94c9a5c3d5994330bfb3df4ae4e156d244e7ac982a09ca256099e4641bf40] · MICRO=RESOLVED[CR-97b3665e416f4375f3eddc50cc940ec823e48d1dd5036891633afb324316e2ce] · MICRO_MICRO=RESOLVED[CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. COHERENCE=COHERENT; MIRROR_GAP=2; SPREAD_BOUND=2/20; OBSERVED_TRADED_FLOOR=59@868ebd99-045b-41ce-52f3-d6ed304390d2; TRADED_LOW_TARGET_CRITERION={\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"}; NON_TRADED_LOW_DISCLOSURE=NOT_CONSUMED; CONVICTION_EVOLUTION={\"update\":\"SHIFTED_CARRIED_CONVICTION\",\"prior_envelope\":{\"low_cents\":52,\"high_cents\":58,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":46},\"proposed_envelope\":{\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":57},\"effective_envelope\":{\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":57},\"prior_conviction_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964\",\"prior_receipt_genuinely_readable\":true,\"basis_re_stated_at_current_receipt\":true,\"basis_book_receipt\":\"KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485\",\"supporting_shape_ids_before\":[\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"surviving_shape_ids_now\":[\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"supporting_shape_ids_still_alive\":[\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"eliminations_still_hold\":true,\"movement_evidence\":{\"prior_cents\":null,\"current_cents\":59,\"move_cents\":null,\"material_two_cent_move\":false,\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"effect\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS\",\"eliminated_shape_ids\":[],\"reinstated_shape_ids\":[]},\"movement_statement\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS: move=UNKNOWNc; eliminated=NONE; reinstated=NONE\",\"carried_conviction_law\":\"F-VS-134@e7081336\"}; FLOOR_REST_PROTECTION={\"floor_rest_lock_state\":\"ABSENT_RETIRED\",\"evidenced_floor_cents\":59,\"evidenced_floor_source\":\"OBSERVED_TRUE_TRADE_PRINT\",\"evidenced_floor_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"active_target_before_cents\":52,\"active_was_at_evidenced_floor\":false,\"supporting_shapes_still_alive\":[],\"proposed_target_before_protection_cents\":58,\"protected_from_conflicting_belief_or_cancel\":false,\"violation\":false,\"tenure\":{\"status\":\"NO_ACTIVE_EVIDENCED_FLOOR_TENURE\",\"ended_by\":null},\"provenance\":\"F-VS-138/F-VS-142@f4752720; lock retirement F-VS-148..152@d079687f\"}; PROPOSAL_SUPERVISOR={\"proposal_cents\":58,\"evidenced_floor_cents\":59,\"proposal_at_or_below_evidenced_floor\":true,\"final_target_cents\":58,\"status\":\"ADMITTED_AT_OR_BELOW_EVIDENCED_FLOOR\",\"reason\":\"LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH\",\"supervisor_required\":true,\"independent_check\":{\"producer_store\":\"DERIVED_ACTION_AND_PAIR_ALLOCATION\",\"check_store\":\"OBSERVED_TRUE_TRADE_PRINT_RECEIPT\",\"check_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"can_fail\":true,\"passed\":true},\"provenance\":\"F-VS-149@d079687f\"}; DECISION_ARBITRATION={\"decision_instant_epoch\":1784339306.774,\"source_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"winner\":{\"lane\":\"COHERENT_ENVELOPE\",\"action\":\"REPRICE_REST\",\"target_cents\":58,\"reason\":\"LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH\"},\"losers\":[{\"lane\":\"DISAGREES_OWN_EVIDENCE\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"CARRIED_CONVICTION\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"NULL_ENVELOPE_OWN_TOUCH\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"ACTIVE_REST_HOLD\",\"eligible\":true,\"disposition\":\"LOST_PRECEDENCE_TO_WINNER\"}],\"emitted_order_count\":1}; PAR_ALLOCATION_FLOOR_BOUND={\"name\":\"PAR_ALLOCATION_OBSERVED_TRADED_FLOOR_BOUND\",\"value_cents\":58,\"evidenced_floor_cents\":59,\"source\":\"OBSERVED_TRUE_TRADE_PRINT\",\"source_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"never_above_evidenced_floor\":true,\"role\":\"MAXIMUM_LAWFUL_REDUCTION_FLOOR_FOR_PAIR_PAR_ALLOCATION\",\"provenance\":\"F-VS-160/F-VS-169@a2a6a25d/44559ebc\"}; PAR_ALLOCATION_HEADROOM_CENTS=0; ENVELOPE={\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":57}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":58,\"live_ask_cents\":59,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":58,\"lawful_envelope_exists\":true,\"conditioned_expected_future_low_cents\":57,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":0},\"expected_future_low_minus_seen_low_cents\":-2,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":1298,\"placement_population_cell\":\"P10_30\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":59,\"selected_quantile_offset_cents\":1,\"selected_quantile_raw_cents\":60,\"selected_quantile_inside_envelope_cents\":58,\"pre_axis_quantile_inside_envelope_cents\":58,\"traded_low_target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"conditioned_q50_reference_cents\":57,\"live_bid_reference_only_cents\":58,\"touch_anchored_inside_coherent_envelope\":false,\"singleton_survivor_envelope_level_cents\":null,\"singleton_envelope_consumed\":false,\"chosen_candidate_rule\":\"CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN\",\"chosen_before_migration_discipline_cents\":58,\"active_target_before_cents\":52,\"chosen_target_cents\":58,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":52,\"high_cents\":58,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":46},\"to\":{\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":57},\"receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=JOINT_TARGET_ALREADY_UNDER_PAR. ACTION=REPRICE_REST; TARGET_CENTS=58; ACTIVE_TARGET_BEFORE_CENTS=52."
+    }
+  ],
+  "cancel_and_replace_atomic_rows": 1,
+  "fail_loud_no_replacement_rows": 2,
+  "danpra": {
+    "prior_distinct_fail_loud_cancel_receipts_cc": 15,
+    "repaired_distinct_cancel_receipts": 0,
+    "cancel_storm_disappeared": true,
+    "receipts": [],
+    "rows": [
+      {
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "leg_id": "DAN",
+        "timestamp_epoch": 1784339306.774,
+        "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+        "envelope": {
+          "low_cents": 57,
+          "high_cents": 59,
+          "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+          "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+          "target_criterion": {
+            "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "anchor_cents": 58,
+            "observed_traded_low_cents": 59,
+            "observed_traded_low_depth_cents": -1,
+            "candidate_final_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              36
+            ],
+            "candidate_final_floor_levels_cents": [
+              22,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58
+            ],
+            "candidate_depth_counts": {
+              "0": 15,
+              "1": 22,
+              "2": 14,
+              "3": 8,
+              "4": 5,
+              "5": 2,
+              "6": 1,
+              "36": 1
+            },
+            "deepest_supported_floor_cents": 22,
+            "shallowest_supported_floor_cents": 58,
+            "signable": true,
+            "shape_supports": [
+              {
+                "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+                "support_n": 27,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 3
+              },
+              {
+                "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+                "support_n": 13,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  6
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  6
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 6
+              },
+              {
+                "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                "support_n": 28,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  36
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  36
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 36
+              }
+            ],
+            "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+          },
+          "belief_prediction_reference_cents": 57
+        },
+        "placement": {
+          "mode": "CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE",
+          "live_bid_cents": 58,
+          "live_ask_cents": 59,
+          "coherence_exists_at_receipt": true,
+          "lawful_envelope_high_cents": 58,
+          "lawful_envelope_exists": true,
+          "conditioned_expected_future_low_cents": 57,
+          "future_low_minus_seen_low_distribution_cents": {
+            "q25": 0,
+            "q50": 0,
+            "q75": 0
+          },
+          "expected_future_low_minus_seen_low_cents": -2,
+          "placement_quantile": "Q75",
+          "placement_quantile_reason": "UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING",
+          "placement_population_members": 1298,
+          "placement_population_cell": "P10_30",
+          "placement_population_source_sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd",
+          "causal_seen_low_cents": 59,
+          "selected_quantile_offset_cents": 1,
+          "selected_quantile_raw_cents": 60,
+          "selected_quantile_inside_envelope_cents": 58,
+          "pre_axis_quantile_inside_envelope_cents": 58,
+          "traded_low_target_criterion": {
+            "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "anchor_cents": 58,
+            "observed_traded_low_cents": 59,
+            "observed_traded_low_depth_cents": -1,
+            "candidate_final_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              36
+            ],
+            "candidate_final_floor_levels_cents": [
+              22,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58
+            ],
+            "candidate_depth_counts": {
+              "0": 15,
+              "1": 22,
+              "2": 14,
+              "3": 8,
+              "4": 5,
+              "5": 2,
+              "6": 1,
+              "36": 1
+            },
+            "deepest_supported_floor_cents": 22,
+            "shallowest_supported_floor_cents": 58,
+            "signable": true,
+            "shape_supports": [
+              {
+                "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+                "support_n": 27,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 3
+              },
+              {
+                "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+                "support_n": 13,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  6
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  6
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 6
+              },
+              {
+                "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                "support_n": 28,
+                "depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  36
+                ],
+                "remaining_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  36
+                ],
+                "min_depth_cents": 0,
+                "max_depth_cents": 36
+              }
+            ],
+            "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+          },
+          "conditioned_q50_reference_cents": 57,
+          "live_bid_reference_only_cents": 58,
+          "touch_anchored_inside_coherent_envelope": false,
+          "singleton_survivor_envelope_level_cents": null,
+          "singleton_envelope_consumed": false,
+          "chosen_candidate_rule": "CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN",
+          "chosen_before_migration_discipline_cents": 58,
+          "active_target_before_cents": 52,
+          "chosen_target_cents": 58,
+          "envelope_migration": {
+            "migrated": true,
+            "from": {
+              "low_cents": 52,
+              "high_cents": 58,
+              "belief_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964",
+              "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+              "target_criterion": {
+                "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+                "anchor_cents": 58,
+                "observed_traded_low_cents": null,
+                "observed_traded_low_depth_cents": null,
+                "candidate_final_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  36
+                ],
+                "candidate_final_floor_levels_cents": [
+                  22,
+                  52,
+                  53,
+                  54,
+                  55,
+                  56,
+                  57,
+                  58
+                ],
+                "candidate_depth_counts": {
+                  "0": 15,
+                  "1": 22,
+                  "2": 14,
+                  "3": 8,
+                  "4": 5,
+                  "5": 2,
+                  "6": 1,
+                  "36": 1
+                },
+                "deepest_supported_floor_cents": 22,
+                "shallowest_supported_floor_cents": 58,
+                "signable": true,
+                "shape_supports": [
+                  {
+                    "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+                    "support_n": 27,
+                    "depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3
+                    ],
+                    "remaining_depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3
+                    ],
+                    "min_depth_cents": 0,
+                    "max_depth_cents": 3
+                  },
+                  {
+                    "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+                    "support_n": 13,
+                    "depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3,
+                      6
+                    ],
+                    "remaining_depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3,
+                      6
+                    ],
+                    "min_depth_cents": 0,
+                    "max_depth_cents": 6
+                  },
+                  {
+                    "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                    "support_n": 28,
+                    "depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3,
+                      4,
+                      5,
+                      36
+                    ],
+                    "remaining_depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3,
+                      4,
+                      5,
+                      36
+                    ],
+                    "min_depth_cents": 0,
+                    "max_depth_cents": 36
+                  }
+                ],
+                "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+              },
+              "belief_prediction_reference_cents": 46
+            },
+            "to": {
+              "low_cents": 57,
+              "high_cents": 59,
+              "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+              "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+              "target_criterion": {
+                "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+                "anchor_cents": 58,
+                "observed_traded_low_cents": 59,
+                "observed_traded_low_depth_cents": -1,
+                "candidate_final_depth_bins_cents": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  36
+                ],
+                "candidate_final_floor_levels_cents": [
+                  22,
+                  52,
+                  53,
+                  54,
+                  55,
+                  56,
+                  57,
+                  58
+                ],
+                "candidate_depth_counts": {
+                  "0": 15,
+                  "1": 22,
+                  "2": 14,
+                  "3": 8,
+                  "4": 5,
+                  "5": 2,
+                  "6": 1,
+                  "36": 1
+                },
+                "deepest_supported_floor_cents": 22,
+                "shallowest_supported_floor_cents": 58,
+                "signable": true,
+                "shape_supports": [
+                  {
+                    "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+                    "support_n": 27,
+                    "depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3
+                    ],
+                    "remaining_depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3
+                    ],
+                    "min_depth_cents": 0,
+                    "max_depth_cents": 3
+                  },
+                  {
+                    "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+                    "support_n": 13,
+                    "depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3,
+                      6
+                    ],
+                    "remaining_depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3,
+                      6
+                    ],
+                    "min_depth_cents": 0,
+                    "max_depth_cents": 6
+                  },
+                  {
+                    "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                    "support_n": 28,
+                    "depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3,
+                      4,
+                      5,
+                      36
+                    ],
+                    "remaining_depth_bins_cents": [
+                      0,
+                      1,
+                      2,
+                      3,
+                      4,
+                      5,
+                      36
+                    ],
+                    "min_depth_cents": 0,
+                    "max_depth_cents": 36
+                  }
+                ],
+                "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+              },
+              "belief_prediction_reference_cents": 57
+            },
+            "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+            "provenance": "F-VS-114(c)@9ff83002"
+          },
+          "active_inconsistent_with_current_envelope": true,
+          "inconsistent_active_preallocation_resolution": "REDERIVED_INSIDE_CURRENT_ENVELOPE",
+          "placement_provenance": "F-VS-114(a)@9ff83002",
+          "coherence_placement_provenance": "F-VS-118@c08ce381",
+          "numeric_constant_added": false
+        },
+        "consistency": {
+          "active_inconsistent_before_action": true,
+          "resolution": "CANCEL_AND_REPLACE_ATOMIC_SAME_RECEIPT",
+          "resolved_same_receipt": true,
+          "cancel_and_replace_atomic": true,
+          "fail_loud_only_without_lawful_replacement": true,
+          "no_lawful_replacement_reason": null,
+          "current_envelope": {
+            "low_cents": 57,
+            "high_cents": 59,
+            "belief_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+            "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+            "target_criterion": {
+              "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+              "anchor_cents": 58,
+              "observed_traded_low_cents": 59,
+              "observed_traded_low_depth_cents": -1,
+              "candidate_final_depth_bins_cents": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                36
+              ],
+              "candidate_final_floor_levels_cents": [
+                22,
+                52,
+                53,
+                54,
+                55,
+                56,
+                57,
+                58
+              ],
+              "candidate_depth_counts": {
+                "0": 15,
+                "1": 22,
+                "2": 14,
+                "3": 8,
+                "4": 5,
+                "5": 2,
+                "6": 1,
+                "36": 1
+              },
+              "deepest_supported_floor_cents": 22,
+              "shallowest_supported_floor_cents": 58,
+              "signable": true,
+              "shape_supports": [
+                {
+                  "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+                  "support_n": 27,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 3
+                },
+                {
+                  "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+                  "support_n": 13,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    6
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 6
+                },
+                {
+                  "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+                  "support_n": 28,
+                  "depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    36
+                  ],
+                  "remaining_depth_bins_cents": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    36
+                  ],
+                  "min_depth_cents": 0,
+                  "max_depth_cents": 36
+                }
+              ],
+              "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+            },
+            "belief_prediction_reference_cents": 57
+          },
+          "envelope_authoritative_at_receipt": true,
+          "provenance": [
+            "F-VS-114(c)@9ff83002",
+            "F-VS-118@c08ce381"
+          ]
+        },
+        "action": {
+          "action": "REPRICE_REST",
+          "target_cents": 58,
+          "reason": "LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH"
+        },
+        "sentence_verbatim": "believes DAN at 58¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=58¢; ask=59¢; book-receipt=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|58 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 57¢ by 563min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784339306.774; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2] || SIBLING-INVERSE: believes PRA at 42¢ [SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK; bid=42¢; ask=43¢; book-receipt=KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1254] at 563min-to-bell with 3.93 vol_log1p in ATP_MAIN, using ATP_MAIN|42 (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; CAUSAL_REKEY=CURRENT_BEST_BID_CENTS) + KXATPMATCH-26APR04CHOMUL@0.79 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e], SHOULD drift to 41¢ by 4min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784372805.2389936; deadline-emitted-now=1784339306.774; deadline-receipt=868ebd99-045b-41ce-52f3-d6ed304390d2]. MACRO: family=INTERIM_UP_TRAVEL, SURVIVOR_SHAPES={\"all_shape_ids\":[\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"survivor_shapes\":[\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"eliminated_shape_ids\":[],\"eliminations\":[],\"eliminated_now\":[],\"reinstated_now\":[],\"movement\":{\"prior_cents\":null,\"current_cents\":59,\"move_cents\":null,\"material_two_cent_move\":false,\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"effect\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS\",\"eliminated_shape_ids\":[],\"reinstated_shape_ids\":[]},\"trajectory_count\":0,\"price_region\":\"51_75\",\"modules\":{\"single\":\"EXACT_MEMBER_TRADED_LOW_DEPTH_BINS_NARROWED\",\"pair\":\"PAIR_INTERIM_ABSTAINS_NO_SIGNABLE_CURRENT_SUPPORT\",\"couple\":\"NO_SIGNABLE_PAIR_COUPLE_ABSTAIN\"},\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\"}, conditioned-total-dip={\"q25\":2,\"q50\":7,\"q75\":30}, arrived-dip={\"q25\":2,\"q50\":3,\"q75\":30}, remaining-dip=total-minus-arrived={\"q25\":0,\"q50\":0,\"q75\":4}, conditioning-method=EXPECTED_FUTURE_LOW_EQUALS_CAUSAL_OWN_SEEN_LOW_PLUS_PHASE_CATEGORY_POPULATION_Q50; TERMINAL_PATH_POINT_EXCLUDED; F_VS_124_PHASE_BANDS; SEVEN_NEIGHBOR_TAIL_RETAINED_AS_TELEMETRY_NOT_CENTRAL, stores=FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-767aca1da7310a48e6136840b781b7da639700b540b85b2d5c439dd8435bf044,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-802f4b2a2c44f3dce4eb3e0b4ddc5cd91304a103452f13d21bcd21f14e1675c2,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-8f07d4d8d8f59ba47454b90f8c8a75cb91c546381418afdfc36438a6624ac2f5,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-d3d671247270fe5fa66c7a615bcb2edff5838fff8b172a8e992d1f5c6cda4afe,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-11dbbc46e62b48048e70ccf9fff720567e9b1af10bd8f47d1e0cca0e7e706412,FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE@CR-7fc1c51391b4db89af48d08814bdf19cbf855238b140c07c39c9c33e17a3848f [CR-85e94c9a5c3d5994330bfb3df4ae4e156d244e7ac982a09ca256099e4641bf40]. MICRO: own-window={\"basis\":\"TRUE_TRADE\",\"anchor_cents\":58,\"conditioning_low_cents\":59,\"observed_traded_low_cents\":59,\"observed_book_path_low_cents\":49,\"book_path_low_source\":{\"source\":\"BOOK_BID_ASK_MID_SERIES_FLOORED_NON_TRADE\",\"receipt\":\"KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-3\",\"timestamp_epoch\":1784317958},\"non_traded_low_consumed\":false,\"non_traded_low_disclosure\":null,\"observed_dip_cents\":0,\"dip_state\":\"NO_DIP_OBSERVED\",\"true_trade_count\":1,\"formation_end_epoch\":1784332553,\"window_end_epoch\":1784373060,\"elapsed_window_seconds\":6753.773999929428,\"remaining_window_seconds\":33753.22600007057,\"window_fraction\":0.1667310341405048,\"window_source\":\"L11_VERIFIED_REPLAY_WINDOW:TAPE_INFERENCE\"}, rows=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485,CR-09a090e9fd7908743df904fb4b57c7a6ddc92f5f55a9055b95b93bd112b65c9e, V3_KEY=LIBRARY_CLOSE_CENTS->CURRENT_CAUSAL_BEST_BID_CENTS [CR-97b3665e416f4375f3eddc50cc940ec823e48d1dd5036891633afb324316e2ce]. MICRO-MICRO: tick=868ebd99-045b-41ce-52f3-d6ed304390d2, book=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485, store=EXTERNAL_CUSTODY_DUAL_BOOK+EXTERNAL_CUSTODY_TRUE_PRINTS:SUBSECOND [CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. ORDER=MACRO=RESOLVED[CR-85e94c9a5c3d5994330bfb3df4ae4e156d244e7ac982a09ca256099e4641bf40] · MICRO=RESOLVED[CR-97b3665e416f4375f3eddc50cc940ec823e48d1dd5036891633afb324316e2ce] · MICRO_MICRO=RESOLVED[CR-6453f9a92ad9f0cac53168764faa0ab47a630757bd28f1598da457f22d49504a]. COHERENCE=COHERENT; MIRROR_GAP=2; SPREAD_BOUND=2/20; OBSERVED_TRADED_FLOOR=59@868ebd99-045b-41ce-52f3-d6ed304390d2; TRADED_LOW_TARGET_CRITERION={\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"}; NON_TRADED_LOW_DISCLOSURE=NOT_CONSUMED; CONVICTION_EVOLUTION={\"update\":\"SHIFTED_CARRIED_CONVICTION\",\"prior_envelope\":{\"low_cents\":52,\"high_cents\":58,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":46},\"proposed_envelope\":{\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":57},\"effective_envelope\":{\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":57},\"prior_conviction_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964\",\"prior_receipt_genuinely_readable\":true,\"basis_re_stated_at_current_receipt\":true,\"basis_book_receipt\":\"KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1485\",\"supporting_shape_ids_before\":[\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"surviving_shape_ids_now\":[\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"supporting_shape_ids_still_alive\":[\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\"],\"eliminations_still_hold\":true,\"movement_evidence\":{\"prior_cents\":null,\"current_cents\":59,\"move_cents\":null,\"material_two_cent_move\":false,\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"effect\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS\",\"eliminated_shape_ids\":[],\"reinstated_shape_ids\":[]},\"movement_statement\":\"TIGHTENED_OR_HELD_ON_TRADED_LOW_AXIS: move=UNKNOWNc; eliminated=NONE; reinstated=NONE\",\"carried_conviction_law\":\"F-VS-134@e7081336\"}; FLOOR_REST_PROTECTION={\"floor_rest_lock_state\":\"ABSENT_RETIRED\",\"evidenced_floor_cents\":59,\"evidenced_floor_source\":\"OBSERVED_TRUE_TRADE_PRINT\",\"evidenced_floor_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"active_target_before_cents\":52,\"active_was_at_evidenced_floor\":false,\"supporting_shapes_still_alive\":[],\"proposed_target_before_protection_cents\":58,\"protected_from_conflicting_belief_or_cancel\":false,\"violation\":false,\"tenure\":{\"status\":\"NO_ACTIVE_EVIDENCED_FLOOR_TENURE\",\"ended_by\":null},\"provenance\":\"F-VS-138/F-VS-142@f4752720; lock retirement F-VS-148..152@d079687f\"}; PROPOSAL_SUPERVISOR={\"proposal_cents\":58,\"evidenced_floor_cents\":59,\"proposal_at_or_below_evidenced_floor\":true,\"final_target_cents\":58,\"status\":\"ADMITTED_AT_OR_BELOW_EVIDENCED_FLOOR\",\"reason\":\"LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH\",\"supervisor_required\":true,\"independent_check\":{\"producer_store\":\"DERIVED_ACTION_AND_PAIR_ALLOCATION\",\"check_store\":\"OBSERVED_TRUE_TRADE_PRINT_RECEIPT\",\"check_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"can_fail\":true,\"passed\":true},\"provenance\":\"F-VS-149@d079687f\"}; DECISION_ARBITRATION={\"decision_instant_epoch\":1784339306.774,\"source_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"winner\":{\"lane\":\"COHERENT_ENVELOPE\",\"action\":\"REPRICE_REST\",\"target_cents\":58,\"reason\":\"LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH\"},\"losers\":[{\"lane\":\"DISAGREES_OWN_EVIDENCE\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"CARRIED_CONVICTION\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"NULL_ENVELOPE_OWN_TOUCH\",\"eligible\":false,\"disposition\":\"INELIGIBLE_AT_RECEIPT\"},{\"lane\":\"ACTIVE_REST_HOLD\",\"eligible\":true,\"disposition\":\"LOST_PRECEDENCE_TO_WINNER\"}],\"emitted_order_count\":1}; PAR_ALLOCATION_FLOOR_BOUND={\"name\":\"PAR_ALLOCATION_OBSERVED_TRADED_FLOOR_BOUND\",\"value_cents\":58,\"evidenced_floor_cents\":59,\"source\":\"OBSERVED_TRUE_TRADE_PRINT\",\"source_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"never_above_evidenced_floor\":true,\"role\":\"MAXIMUM_LAWFUL_REDUCTION_FLOOR_FOR_PAIR_PAR_ALLOCATION\",\"provenance\":\"F-VS-160/F-VS-169@a2a6a25d/44559ebc\"}; PAR_ALLOCATION_HEADROOM_CENTS=0; ENVELOPE={\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":57}; ENVELOPE_PLACEMENT={\"mode\":\"CONDITIONED_DISTRIBUTION_FLOOR_SIDE_INSIDE_COHERENT_ENVELOPE\",\"live_bid_cents\":58,\"live_ask_cents\":59,\"coherence_exists_at_receipt\":true,\"lawful_envelope_high_cents\":58,\"lawful_envelope_exists\":true,\"conditioned_expected_future_low_cents\":57,\"future_low_minus_seen_low_distribution_cents\":{\"q25\":0,\"q50\":0,\"q75\":0},\"expected_future_low_minus_seen_low_cents\":-2,\"placement_quantile\":\"Q75\",\"placement_quantile_reason\":\"UPPER_CONDITIONED_FUTURE_LOW_QUANTILE_CAPTURES_INSIDE_SPREAD_REACH_WITHOUT_TOUCH_ANCHORING\",\"placement_population_members\":1298,\"placement_population_cell\":\"P10_30\",\"placement_population_source_sha256\":\"f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd\",\"causal_seen_low_cents\":59,\"selected_quantile_offset_cents\":1,\"selected_quantile_raw_cents\":60,\"selected_quantile_inside_envelope_cents\":58,\"pre_axis_quantile_inside_envelope_cents\":58,\"traded_low_target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"conditioned_q50_reference_cents\":57,\"live_bid_reference_only_cents\":58,\"touch_anchored_inside_coherent_envelope\":false,\"singleton_survivor_envelope_level_cents\":null,\"singleton_envelope_consumed\":false,\"chosen_candidate_rule\":\"CONDITIONED_Q75_RECONCILED_TO_EXACT_SURVIVOR_TRADED_LOW_DEPTH_BIN\",\"chosen_before_migration_discipline_cents\":58,\"active_target_before_cents\":52,\"chosen_target_cents\":58,\"envelope_migration\":{\"migrated\":true,\"from\":{\"low_cents\":52,\"high_cents\":58,\"belief_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-964\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":null,\"observed_traded_low_depth_cents\":null,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":46},\"to\":{\"low_cents\":57,\"high_cents\":59,\"belief_receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"target_axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"target_criterion\":{\"axis\":\"POST_FORMATION_TRUE_TRADE_LOW_CENTS\",\"anchor_cents\":58,\"observed_traded_low_cents\":59,\"observed_traded_low_depth_cents\":-1,\"candidate_final_depth_bins_cents\":[0,1,2,3,4,5,6,36],\"candidate_final_floor_levels_cents\":[22,52,53,54,55,56,57,58],\"candidate_depth_counts\":{\"0\":15,\"1\":22,\"2\":14,\"3\":8,\"4\":5,\"5\":2,\"6\":1,\"36\":1},\"deepest_supported_floor_cents\":22,\"shallowest_supported_floor_cents\":58,\"signable\":true,\"shape_supports\":[{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0\",\"support_n\":27,\"depth_bins_cents\":[0,1,2,3],\"remaining_depth_bins_cents\":[0,1,2,3],\"min_depth_cents\":0,\"max_depth_cents\":3},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2\",\"support_n\":13,\"depth_bins_cents\":[0,1,2,3,6],\"remaining_depth_bins_cents\":[0,1,2,3,6],\"min_depth_cents\":0,\"max_depth_cents\":6},{\"shape_id\":\"ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER\",\"support_n\":28,\"depth_bins_cents\":[0,1,2,3,4,5,36],\"remaining_depth_bins_cents\":[0,1,2,3,4,5,36],\"min_depth_cents\":0,\"max_depth_cents\":36}],\"ask_reachability_role\":\"INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET\"},\"belief_prediction_reference_cents\":57},\"receipt\":\"868ebd99-045b-41ce-52f3-d6ed304390d2\",\"provenance\":\"F-VS-114(c)@9ff83002\"},\"active_inconsistent_with_current_envelope\":true,\"inconsistent_active_preallocation_resolution\":\"REDERIVED_INSIDE_CURRENT_ENVELOPE\",\"placement_provenance\":\"F-VS-114(a)@9ff83002\",\"coherence_placement_provenance\":\"F-VS-118@c08ce381\",\"numeric_constant_added\":false}; ALLOCATION=JOINT_TARGET_ALREADY_UNDER_PAR. ACTION=REPRICE_REST; TARGET_CENTS=58; ACTIVE_TARGET_BEFORE_CENTS=52."
+      }
+    ]
+  }
+}

@@ -287,15 +287,16 @@ os.configurePhaseCentralSurface({
 });
 const disagrees = os.deriveJointActions({ state: jointState, reads: jointReads, neighborhood: jointNeighborhood, lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
 assert.equal(disagrees.coherence.status, "DISAGREES");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").action.reason, "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.mode, "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").action.reason, "FLOOR_CAPABLE_OWN_BOOK_LEVEL_BELOW_PRIOR_TRADE_LOW");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.mode, "FLOOR_CAPABLE_OWN_BOOK_LEVEL_BELOW_PRIOR_TRADE_LOW");
 assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.may_originate_rest, true);
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.live_bid_consumed_as_price, false);
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.live_bid_relation, "REFERENCE_ONLY_NOT_LEVEL_AUTHORITY");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.decision_arbitration.winner.lane, "DISAGREES_OWN_EVIDENCE");
-assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").action.reason, "DISAGREES_STATED_OWN_EVIDENCE_SURVIVOR_SUPPORTED");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.live_bid_consumed_as_price, true);
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.envelope_placement.live_bid_relation, "OWN_BOOK_LEVEL_BELOW_PRIOR_TRADE_LOW_LICENSED_BY_SIGNABLE_SURVIVOR_RANGE");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "AAA").layered_dual_belief.decision_arbitration.winner.lane, "FLOOR_CAPABLE_OWN_BOOK_LEVEL");
+assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").action.reason, "FLOOR_CAPABLE_OWN_BOOK_LEVEL_BELOW_PRIOR_TRADE_LOW");
 assert.equal(disagrees.derivations.find((row) => row.leg_id === "BBB").layered_dual_belief.envelope_placement.survivor_target_supported, true);
-assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.own_evidence_target_cents === row.layered_dual_belief.envelope_placement.running_true_trade_low_cents));
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.lower_lawful_level_existed));
+assert(disagrees.derivations.every((row) => row.action.target_cents < row.layered_dual_belief.envelope_placement.live_ask_cents));
 
 const noOpinionState = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(noOpinionState, leg, { timestamp_epoch: ts, receipt: `noop-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });

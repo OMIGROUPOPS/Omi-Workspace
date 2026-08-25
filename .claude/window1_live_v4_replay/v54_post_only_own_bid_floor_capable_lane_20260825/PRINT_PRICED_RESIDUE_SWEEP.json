@@ -1,0 +1,33 @@
+{
+  "label": "ACTIVE_EXECUTION_SURFACE_PRINT_PRICED_RESIDUE_SWEEP",
+  "scope": "The four files executed by this repair: crediting OS, layered OS, builder/grader, and story/process reporter.",
+  "source_files": [
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "sha256": "b736af9011c40a277a21517b257e8c99ba218a8b53ce0e8684304d9565052752",
+      "matches": [],
+      "active_print_priced_residue_count": 0
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "sha256": "7f8e8a9f50164d5a8488a4f03361dc43a5e0d66b55312ffaec143a17fa31319b",
+      "matches": [],
+      "active_print_priced_residue_count": 0
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "sha256": "46d20b0051a8fe794a4f99dbbaf15c5123e3a8e84a189a58a605b26a66b6a9a0",
+      "matches": [],
+      "active_print_priced_residue_count": 0
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_reporter.js",
+      "sha256": "99a6b9df10a5d67ed8fbf7da12666bf6f6b043c445a7ec95047e732254270189",
+      "matches": [],
+      "active_print_priced_residue_count": 0
+    }
+  ],
+  "active_print_priced_residue_count": 0,
+  "fill_receipt_mismatch_count": 0,
+  "report_or_gate_input": "All stories, reports, gates, and score rows consume the position entry produced by the active crediting OS."
+}

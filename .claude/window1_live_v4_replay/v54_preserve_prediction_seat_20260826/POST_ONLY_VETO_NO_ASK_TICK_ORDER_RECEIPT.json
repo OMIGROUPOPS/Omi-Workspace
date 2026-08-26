@@ -1,0 +1,11 @@
+{
+  "label": "C03_POST_ONLY_IS_VETO_NOT_PRICE_AUTHOR",
+  "candidate_rows": 2817,
+  "veto_rows": 0,
+  "veto_price_rewrites": [],
+  "ask_only_tick_postability_act_rows": [],
+  "unlicensed_ask_only_tick_order_rows": [],
+  "crossed_standing_rest_hold_rows": [],
+  "passed": true,
+  "rows": []
+}

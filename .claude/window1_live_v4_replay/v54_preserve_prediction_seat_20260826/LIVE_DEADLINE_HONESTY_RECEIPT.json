@@ -1,0 +1,15 @@
+{
+  "label": "F_VS_112_LIVE_FUTURE_DEADLINE_HONESTY",
+  "source_table": "BELIEF_DEADLINE_SCORING_TABLE.json",
+  "resolved_prediction_rows": 2788,
+  "stale_or_zero_width_rows": 0,
+  "every_deadline_strictly_future": true,
+  "every_prediction_graded_regardless_of_fill": true,
+  "prior_defect": {
+    "rows": 2020,
+    "denominator": 5609,
+    "share": 0.36013549652344445,
+    "provenance": "F-VS-240@20a8a610",
+    "disposition": "REJECTED_NOT_CLAMPED"
+  }
+}

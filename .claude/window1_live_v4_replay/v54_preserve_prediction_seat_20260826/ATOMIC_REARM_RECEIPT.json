@@ -1,0 +1,10 @@
+{
+  "label": "F_VS_120_ATOMICITY_COMPLETE_REARM_EVERY_SUBSEQUENT_RECEIPT",
+  "law": "No inconsistent rest cancels without a same-receipt lawful replacement when one exists. When none exists, the leg enters REARM_PENDING and re-derives on every subsequent consumed receipt until a lawful rest stands or the lawful window ends.",
+  "provenance": "F-VS-120@97411938",
+  "per_leg": [],
+  "resolved_legs": 0,
+  "pending_at_edge_legs": 0,
+  "permanent_silence_rows": [],
+  "no_permanent_silence": true
+}

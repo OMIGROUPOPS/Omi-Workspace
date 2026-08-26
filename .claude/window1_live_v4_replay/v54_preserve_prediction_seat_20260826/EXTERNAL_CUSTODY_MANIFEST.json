@@ -1,0 +1,90 @@
+{
+  "label": "V54_CONVICTION_SEATS_THE_BID_CUSTODY_RECONCILED",
+  "files": [
+    {
+      "logical_path": "FOUNDATION_PER_MINUTE_UNIVERSE",
+      "custody_location": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+      "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+      "bytes": 406637058,
+      "rows": 9330878,
+      "committed": false,
+      "compact_derivatives": [
+        {
+          "path": "FOUNDATION_LIBRARY.jsonl.gz",
+          "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+          "bytes": 2159635,
+          "rows": 9000
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+          "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+          "bytes": 1668883,
+          "rows": 5260
+        },
+        {
+          "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+          "sha256": "52667e215dc0ef6bf393e23d3acd6c78d24809cbabc5b0e0aa82088fc5a5f557",
+          "bytes": 8497,
+          "rows": 24
+        }
+      ]
+    },
+    {
+      "logical_path": "INTERIM_PAIR_LIBRARY_V18.json",
+      "source_path": ".claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "source_commit": "189eaa20",
+      "custody_location": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/189eaa20/.claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "sha256": "4542b46d29b9d55dd97775ef3d8f8f3d971b899cf00e375189b15d08609849e2",
+      "bytes": 4711921,
+      "committed_in_current_tree": false,
+      "git_object_hash_bound": true
+    },
+    {
+      "logical_path": "PAIR_COUPLE_LIBRARY_V19.json",
+      "source_path": ".claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "source_commit": "189eaa20",
+      "custody_location": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/189eaa20/.claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b",
+      "bytes": 3485183,
+      "committed_in_current_tree": false,
+      "git_object_hash_bound": true
+    },
+    {
+      "logical_path": "CARRIED_CONVICTION_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_preserve_prediction_seat_20260826\\CARRIED_CONVICTION_RECEIPT.json",
+      "sha256": "3cb5bbea88d43f8d84703de93ef6368448dab832316780a7e70bbd1acb97fd31",
+      "bytes": 273614190,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "PRICING_AUTHORITY_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_preserve_prediction_seat_20260826\\PRICING_AUTHORITY_RECEIPT.json",
+      "sha256": "ae446db684cebc3adbefbc7f2d802c0da2cef42226076895407ce94c017ef8ce",
+      "bytes": 224734322,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_preserve_prediction_seat_20260826\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "12a14e6541c353e47e223f5810bc73918202c1104d5a932712adcc06005ada17",
+      "bytes": 218308124,
+      "rows": 1714,
+      "committed": false
+    },
+    {
+      "logical_path": "SMOKE_CRIJEA.md",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_preserve_prediction_seat_20260826\\SMOKE_CRIJEA.md",
+      "sha256": "7cec21af1767fe523eb7ee94be64401724aeb27ae56e3c2dd9866ed2a63194be",
+      "bytes": 213305999,
+      "rows": null,
+      "committed": false
+    }
+  ],
+  "prior_manifest_disagreement_reconciled": true,
+  "phase_central_surface_file_receipt_matches_artifact_manifest": true,
+  "all_committed_artifacts_under_50_mb": true,
+  "committed_artifact_cap_bytes": 52428800,
+  "oversized_artifacts_moved_to_external_custody": 4
+}

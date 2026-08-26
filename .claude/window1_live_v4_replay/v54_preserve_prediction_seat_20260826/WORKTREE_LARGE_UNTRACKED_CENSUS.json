@@ -1,0 +1,93 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/AUTHORITY_VACUUM_RECEIPT.json",
+      "bytes": 13182644,
+      "sha256": "4910727017176633545ae634f24a032626c25407d9da86b85740d6443495ddfc"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 273614190,
+      "sha256": "3cb5bbea88d43f8d84703de93ef6368448dab832316780a7e70bbd1acb97fd31"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+      "bytes": 30348390,
+      "sha256": "c24f96b1f9462dee769e9e80378957e269f810f02e7ca481e207a2a1c2b557d4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 27254115,
+      "sha256": "1d917aa27a6b6009e1cee0b88144bfc141885db79205fec66f20741795cb02c2"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 36076023,
+      "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "bytes": 21103098,
+      "sha256": "57ec9a2e09eb5361bfc83a50e9394df4591981115dc7e09fd776691f0ab4fd57"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/FLOOR_REST_PROTECTION_RECEIPT.json",
+      "bytes": 32651652,
+      "sha256": "a8ca16ecf1f051251934d55d7e6c57cbbdad9fcc199aca8e282e80f298ad2dfb"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "bytes": 29002556,
+      "sha256": "a527a85f1eb1ad4e4271e5b5f5c95f112a0e7cbd8b2b08387d48653f0cfdbf78"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "bytes": 21042790,
+      "sha256": "3c8589144a3aa61c0b1ba7e95348d6119289ed67bc610ac5206bc1cc225084e3"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+      "bytes": 16676960,
+      "sha256": "2fecec9a26bfc9e1e7a0f2c985b6378ac067737179b5a9d8f750f794bfdc5c76"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "bytes": 24736780,
+      "sha256": "9ed5f26c91516e9bba76e9230d9493a21b7e1cae0116d9c06d01c533a47b5de5"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 224734322,
+      "sha256": "ae446db684cebc3adbefbc7f2d802c0da2cef42226076895407ce94c017ef8ce"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 218308124,
+      "sha256": "12a14e6541c353e47e223f5810bc73918202c1104d5a932712adcc06005ada17"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/SMOKE_CRIJEA.md",
+      "bytes": 213305999,
+      "sha256": "7cec21af1767fe523eb7ee94be64401724aeb27ae56e3c2dd9866ed2a63194be"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 22051441,
+      "sha256": "00682bfd0bd27f3feb23fd08ed3c84dc6ec38c320eae9147e0d459a9b20cf247"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_preserve_prediction_seat_20260826/TRUE_CONDITIONING_RECEIPT.json",
+      "bytes": 29054435,
+      "sha256": "3a7b6284c9c53e1147ddeacf1fd150ea2b700a6765aec9684adaeba12c1b94f1"
+    }
+  ],
+  "count": 17,
+  "bytes": 1244518188
+}

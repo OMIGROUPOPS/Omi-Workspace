@@ -221,7 +221,7 @@ assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.mi
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.prediction_seat.seat?.aim_equals_conduct === true));
-assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_source === "UNIFIED_CONDITIONED_BELIEF_POSTERIOR_FOR_AIM_AND_CONDUCT"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_source === "IMMUNE_PREDICTION_SEAT_FROM_UNIFIED_CONDITIONED_BELIEF_POSTERIOR"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.target_cents === row.layered_dual_belief.micro.beliefs[row.leg_id].predicted_cents));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_restored_to_decision_path));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method.includes("ONE_PER_LEG_CLASSIFIER")));
@@ -341,5 +341,23 @@ const clockRows = causalClock.materializeCausalClock([
 assert.deepEqual(clockRows.map((row) => row.receipt), ["book#row-1", "trade-27", "book#row-2"]);
 assert.equal(clockRows[2].causal_clock.relation, "AFTER_MATCHED_TRUE_PRINT_LAST_TRADE_TRANSITION");
 assert(clockRows[0].timestamp_epoch < clockRows[1].timestamp_epoch && clockRows[1].timestamp_epoch < clockRows[2].timestamp_epoch);
+
+// PRESERVE THE SEAT: the production predicate rejects every parent mover while
+// keeping the two operator-ruled exits executable.
+const seatedFixture = {
+  target_cents: 41,
+  deadline_epoch: 200,
+  supporting_shape_ids: ["SURVIVOR_A"],
+  seated_at_epoch: 90,
+  seated_at_receipt: "seat#1",
+};
+for (const mover of ["DISAGREES_EMBARGO", "CURRENT_BELIEF_REPRICER", "MULTI_LANE_ARBITRATION", "PAIR_ALLOCATOR", "RESTORE_OR_POST_ONLY_GUARD"]) {
+  const decision = os.predictionSeatImmunityDecision({ seat: seatedFixture, current_epoch: 100, surviving_supporting_shape_ids: ["SURVIVOR_A"], active_target_cents: 41, proposed_target_cents: 48, mover });
+  assert.equal(decision.disposition, "IMMUNE_HOLD_FROM_SEATING");
+  assert.equal(decision.target_cents, 41);
+  assert.equal(decision.mover_suppressed, true);
+}
+assert.equal(os.predictionSeatImmunityDecision({ seat: seatedFixture, current_epoch: 200, surviving_supporting_shape_ids: ["SURVIVOR_A"], active_target_cents: 41, proposed_target_cents: 48, mover: "DEADLINE_PROBE" }).disposition, "EXIT_DEADLINE_EXPIRED_UNMET");
+assert.equal(os.predictionSeatImmunityDecision({ seat: seatedFixture, current_epoch: 100, surviving_supporting_shape_ids: [], active_target_cents: 41, proposed_target_cents: 48, mover: "SUPPORT_OVERTURN_PROBE" }).disposition, "EXIT_SUPPORTING_ELIMINATIONS_OVERTURNED");
 
 console.log("window1_v54_dual_belief_os: PASS");

@@ -1,0 +1,594 @@
+{
+  "label": "F_VS_234_CUSTODY_AGGREGATE_DIGEST_DERIVATION_FORMULA",
+  "law": "An aggregate custody digest is independently derivable from a canonical, sorted per-file path+sha256+bytes manifest. The prior undocumented aggregate strings are retained as historical references but carry no authority.",
+  "formula": "sha256(UTF8(JSON.stringify(SORTED_RELATIVE_PATH_SHA256_BYTES_ROWS, null, 2) + NEWLINE))",
+  "canonicalization": {
+    "path_separator": "/",
+    "sort": "RELATIVE_PATH_ASCENDING",
+    "json_indent_spaces": 2,
+    "terminal_newline": true,
+    "fields_in_order": [
+      "path",
+      "sha256",
+      "bytes"
+    ]
+  },
+  "historical_undocumented_digests": [
+    {
+      "attempt": "attempt_1",
+      "sha256": "de5c28e2",
+      "status": "SUPERSEDED_UNDOCUMENTED_PREFIX_ONLY"
+    },
+    {
+      "attempt": "attempt_2",
+      "sha256": "4cd49c0c",
+      "status": "SUPERSEDED_UNDOCUMENTED_PREFIX_ONLY"
+    }
+  ],
+  "attempts": [
+    {
+      "directory": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_floor_decisiveness_pre_score_failures_20260826\\attempt_1",
+      "status": "DERIVABLE",
+      "formula": "sha256(UTF8(JSON.stringify(SORTED_RELATIVE_PATH_SHA256_BYTES_ROWS, null, 2) + NEWLINE))",
+      "sort": "RELATIVE_PATH_ASCENDING",
+      "files": [
+        {
+          "path": "AT_FLOOR_IMMUNITY_RECEIPT.json",
+          "sha256": "cb49cc5e0591fc0cae80f453f41b3db5a8f8521a1f9731b3e0d4e630e416782a",
+          "bytes": 1156168
+        },
+        {
+          "path": "CARRIED_CONVICTION_RECEIPT.json",
+          "sha256": "dff6868ed6aa5e806b83dd79330baf351e907eb342e4acd90730fc49aab9de82",
+          "bytes": 487578893
+        },
+        {
+          "path": "CAUSAL_CLOCK_RECEIPT.json",
+          "sha256": "3168430066d8a2fe2a14b02bbd4c60f0491c63aa8720a2d5497a757a80ceabf2",
+          "bytes": 1646771
+        },
+        {
+          "path": "CONTRACT_EXECUTION_RECEIPT.json",
+          "sha256": "e7fd10e10e61986686e117d38451c091da0389d20dfa3361500b1a9f29564c7d",
+          "bytes": 51572
+        },
+        {
+          "path": "CORPUS_CENSUS.json",
+          "sha256": "e17b8129f5f38080bed21d0d2c624b0e74519a62c4d0265f717cb57e75183a9e",
+          "bytes": 14140
+        },
+        {
+          "path": "CORPUS_INDEX.jsonl.gz",
+          "sha256": "95bf613072446aa5d159255fa81515a25a7b629e287b7356acde62c952792fd8",
+          "bytes": 4892299
+        },
+        {
+          "path": "CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+          "sha256": "d9d075280bc63e7cf135da470ee882f8e8dfe40938ed92a28ed0743dc53317c7",
+          "bytes": 22307320
+        },
+        {
+          "path": "DETERMINISM_RECEIPT.json",
+          "sha256": "17092234f8fa003f7eb49aaeb7ac835e31e887f163cf1d2c53ae8701834d61ec",
+          "bytes": 2841
+        },
+        {
+          "path": "DIRECTIONAL_ROUNDING_RECEIPT.json",
+          "sha256": "9cf88465b4313bbed0375c8bad459096e50866e106f09101d23eda800171806a",
+          "bytes": 3123695
+        },
+        {
+          "path": "DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+          "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089",
+          "bytes": 36076023
+        },
+        {
+          "path": "ENVELOPE_HIGH_PROVENANCE_RECEIPT.json",
+          "sha256": "9568d34f5f55176d48cdd4395360a7f559994ad5221ea13f7b2b225078046e44",
+          "bytes": 5227292
+        },
+        {
+          "path": "EVIDENCE_ONLY_LEVEL_MOVEMENT_RECEIPT.json",
+          "sha256": "b79ce753649b1571bf46b641fd9e5ecfeb884d384bae48cc767cf09268c55d8b",
+          "bytes": 9714473
+        },
+        {
+          "path": "EVIDENCED_FLOOR_TENURE_TABLE.json",
+          "sha256": "478a3630c64ef2176f8eeb2e26461c055f6657a3d95a0e717379d0ee27328259",
+          "bytes": 1980187
+        },
+        {
+          "path": "EXTERNAL_CUSTODY_MANIFEST.json",
+          "sha256": "2cc437d1d4ec7450309654360e42bf23af3f0eec0745af1770769ac3733c2fc7",
+          "bytes": 2463
+        },
+        {
+          "path": "FLOOR_REST_PROTECTION_RECEIPT.json",
+          "sha256": "8b9faf97ee08dfaaf9f0062b379ac6ca923c3db247320e4049aedc2f67abc55d",
+          "bytes": 1523796
+        },
+        {
+          "path": "FLOOR_TIME_BINDING_COVERAGE.json",
+          "sha256": "68a7fb7501068cb25d4a1533c1ff195982689466c76dc4d7b02bdd0c79c87811",
+          "bytes": 2345
+        },
+        {
+          "path": "FOUNDATION_COVERAGE_BEFORE_AFTER.json",
+          "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+          "bytes": 593
+        },
+        {
+          "path": "FOUNDATION_LIBRARY_RECEIPT.json",
+          "sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5",
+          "bytes": 3558
+        },
+        {
+          "path": "FOUNDATION_LIBRARY.jsonl.gz",
+          "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+          "bytes": 2159635
+        },
+        {
+          "path": "FOUR_STORIES_RECEIPT.json",
+          "sha256": "484fd37404e7e1e431626f5c4a18ad8923e9f0c65d33ef3b5abeacf507440e84",
+          "bytes": 675470
+        },
+        {
+          "path": "FOUR_STORIES.md",
+          "sha256": "df3ad784ec81702cebc0ef9f377fe264fca4f1a7084142022effc960b8d116fb",
+          "bytes": 4887125
+        },
+        {
+          "path": "FUNCTIONALITY_RECEIPT.json",
+          "sha256": "df6b15f1546ef5983c8efb2fa6fb92c4265a5b1e52e56bd5a68b396a6c82c025",
+          "bytes": 24194
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json",
+          "sha256": "cfe59471d2df7fb9a5d18440099c4df1e5f2fed0cf351e9b4f9ede24739666e1",
+          "bytes": 1112
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+          "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+          "bytes": 1668883
+        },
+        {
+          "path": "LIBRARY_BELL_BOUND_RECEIPT.json",
+          "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+          "bytes": 15882
+        },
+        {
+          "path": "LITERAL_BOOLEAN_AUDIT.json",
+          "sha256": "5f1bfb6997afd5d40405c11f6e95e7980171daa6417a3ab247b490b6f9be1ef9",
+          "bytes": 190220
+        },
+        {
+          "path": "LOW_SOURCE_REPRICE_RECEIPT.json",
+          "sha256": "99f7be039cee93aaaf4f876f89f418c4119b592a98125b26c492d6fd77b1bc58",
+          "bytes": 727
+        },
+        {
+          "path": "NEIGHBOR_SPECIALIST_BINDING.json",
+          "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13",
+          "bytes": 11374669
+        },
+        {
+          "path": "NO_ENVELOPE_TOUCH_LANE_CENSUS.json",
+          "sha256": "07e00d5ecf01b80516c852ccb218e98057fc08b9494ae2e1f7cc45e87846bcd8",
+          "bytes": 2731
+        },
+        {
+          "path": "ONE_DECISION_PER_RECEIPT.json",
+          "sha256": "32e45e66ff3c95100baa43e6098574f6af2bcee76560273fdd9b1d39a7e561ac",
+          "bytes": 4088901
+        },
+        {
+          "path": "OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+          "sha256": "9553593e8f0e2ed1849a3bb8847b4d715eaca073cc6d74ef045755dcfa36662d",
+          "bytes": 12045241
+        },
+        {
+          "path": "OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+          "sha256": "2e13c51c33b48dfa6064a27b0da19803f2f15e63b0cca0283ed6b8cfc01101e7",
+          "bytes": 34319068
+        },
+        {
+          "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+          "sha256": "52667e215dc0ef6bf393e23d3acd6c78d24809cbabc5b0e0aa82088fc5a5f557",
+          "bytes": 8497
+        },
+        {
+          "path": "PRICING_AUTHORITY_RECEIPT.json",
+          "sha256": "7af2eaa4737e8dde60b38ca0c1c0d575cf93ada8b6156f7161f337d74f73a5cc",
+          "bytes": 343921465
+        },
+        {
+          "path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "sha256": "ae8ec06a49c6f470a1b350ca9ae37812bf0f7b3659047e7ed33bca94c8c55ff1",
+          "bytes": 379459692
+        },
+        {
+          "path": "SAME_RECEIPT_ACT_RECEIPT.json",
+          "sha256": "f7487f7c8b15c41d0af96bc4cdc68e7af487d73fcd3bba8620687f6fe132a2f2",
+          "bytes": 6369771
+        },
+        {
+          "path": "SMOKE_CRIJEA_RECEIPT.json",
+          "sha256": "6298ef1bd8f014ef92bdba8c182f5d6d261013522fb39fa4fd9b9fc2d4e1bbf5",
+          "bytes": 1244540
+        },
+        {
+          "path": "SMOKE_CRIJEA.md",
+          "sha256": "038c66260efd59af3f1b174278f0dce8ba6139b025f8e18bc2284537869cfa19",
+          "bytes": 27641321
+        },
+        {
+          "path": "SPREAD_EYE_RECEIPT.json",
+          "sha256": "25130f753bb9579e48d27ff015fae14ab788248e5fa8d98b31d9cd64f6e040df",
+          "bytes": 13477661
+        },
+        {
+          "path": "SURVIVOR_FLOOR_MOMENT_SEPARATION.json",
+          "sha256": "34d7660146b12afeeefefd846bd4963baae7bc9546585f9027047720b02837e8",
+          "bytes": 26360
+        },
+        {
+          "path": "SURVIVOR_SHAPE_LIBRARY_BINDING.json",
+          "sha256": "774d07d4f110a7b39fd1995c9d82f0704a3a1d1198c945ec63e5d5d21e085620",
+          "bytes": 1587
+        },
+        {
+          "path": "SURVIVOR_SHAPE_TRAJECTORIES.json",
+          "sha256": "b7462d83a273d86b3520b2dfcc744cb0796bd08cc411af18e66ef3fef578b8a7",
+          "bytes": 53349
+        },
+        {
+          "path": "TARGET_PRINTS_5.jsonl.gz",
+          "sha256": "e685bf23bb1d75a1299f27aa0ea09d8ef5f87e35128801615024fa35a0a9afb5",
+          "bytes": 1326936
+        },
+        {
+          "path": "TECHNIQUE_CONTRACTS_RECEIPT.json",
+          "sha256": "89c827db8825cb7e55e07ec5443caaff1ca27b322ffd5f7900e7471622d93a7d",
+          "bytes": 42241356
+        },
+        {
+          "path": "TRADED_LOW_SHAPE_SUPPORT_BINDING.json",
+          "sha256": "95c8fcecbf3cc095bd153039d0fa6b48fddee6f28b9a221f464d250f8423fb79",
+          "bytes": 28093
+        },
+        {
+          "path": "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json",
+          "sha256": "5d8a72fb88d1ce35b66828d675a98fd96fd21d4324f0ebf7c1e5c811a8e4b5f4",
+          "bytes": 3232
+        },
+        {
+          "path": "TRUE_CONDITIONING_RECEIPT.json",
+          "sha256": "1b72f7ccfdfe0973ecfae4bbb65f98d4c93e2d11c79f24ea57becd7719347c96",
+          "bytes": 47767730
+        }
+      ],
+      "file_count": 47,
+      "bytes": 1510329877,
+      "aggregate_sha256": "3f48aa0f00ca1a81f2d23134b4a06047d08037dfda6c96df12e2843a1ae64569"
+    },
+    {
+      "directory": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_floor_decisiveness_pre_score_failures_20260826\\attempt_2",
+      "status": "DERIVABLE",
+      "formula": "sha256(UTF8(JSON.stringify(SORTED_RELATIVE_PATH_SHA256_BYTES_ROWS, null, 2) + NEWLINE))",
+      "sort": "RELATIVE_PATH_ASCENDING",
+      "files": [
+        {
+          "path": "AT_FLOOR_IMMUNITY_RECEIPT.json",
+          "sha256": "cb49cc5e0591fc0cae80f453f41b3db5a8f8521a1f9731b3e0d4e630e416782a",
+          "bytes": 1156168
+        },
+        {
+          "path": "BELIEF_DEADLINE_SCORING_TABLE.json",
+          "sha256": "3e3a0d3fc80d3d7eeb2185b5e5445c949d93a15aa9356180c1f8c244a53350ef",
+          "bytes": 13775226
+        },
+        {
+          "path": "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json",
+          "sha256": "79e5943e6b7d103ccbceb751b05d0a556a64b4dd2dda02e55908df6b2fcab651",
+          "bytes": 6476879
+        },
+        {
+          "path": "CARRIED_CONVICTION_RECEIPT.json",
+          "sha256": "dff6868ed6aa5e806b83dd79330baf351e907eb342e4acd90730fc49aab9de82",
+          "bytes": 487578893
+        },
+        {
+          "path": "CAUSAL_CLOCK_RECEIPT.json",
+          "sha256": "3168430066d8a2fe2a14b02bbd4c60f0491c63aa8720a2d5497a757a80ceabf2",
+          "bytes": 1646771
+        },
+        {
+          "path": "COMPOSITION_PRESENCE_RECEIPT.json",
+          "sha256": "5b88d074500f5b3183b5bced64269cfddbbdefa3ee0ddd79e9c4e7401769663c",
+          "bytes": 10985867
+        },
+        {
+          "path": "CONTRACT_EXECUTION_RECEIPT.json",
+          "sha256": "e7fd10e10e61986686e117d38451c091da0389d20dfa3361500b1a9f29564c7d",
+          "bytes": 51572
+        },
+        {
+          "path": "CORPUS_CENSUS.json",
+          "sha256": "e17b8129f5f38080bed21d0d2c624b0e74519a62c4d0265f717cb57e75183a9e",
+          "bytes": 14140
+        },
+        {
+          "path": "CORPUS_INDEX.jsonl.gz",
+          "sha256": "95bf613072446aa5d159255fa81515a25a7b629e287b7356acde62c952792fd8",
+          "bytes": 4892299
+        },
+        {
+          "path": "CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+          "sha256": "d9d075280bc63e7cf135da470ee882f8e8dfe40938ed92a28ed0743dc53317c7",
+          "bytes": 22307320
+        },
+        {
+          "path": "DETERMINISM_RECEIPT.json",
+          "sha256": "17092234f8fa003f7eb49aaeb7ac835e31e887f163cf1d2c53ae8701834d61ec",
+          "bytes": 2841
+        },
+        {
+          "path": "DIRECTIONAL_ROUNDING_RECEIPT.json",
+          "sha256": "9cf88465b4313bbed0375c8bad459096e50866e106f09101d23eda800171806a",
+          "bytes": 3123695
+        },
+        {
+          "path": "DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+          "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089",
+          "bytes": 36076023
+        },
+        {
+          "path": "ENVELOPE_HIGH_PROVENANCE_RECEIPT.json",
+          "sha256": "9568d34f5f55176d48cdd4395360a7f559994ad5221ea13f7b2b225078046e44",
+          "bytes": 5227292
+        },
+        {
+          "path": "EVIDENCE_LADDER_RECEIPT.json",
+          "sha256": "955e2fdaff1d97e0d2176dc37b7abd3ef845c3fe5c149aa3a1500baade8ee2fc",
+          "bytes": 23825988
+        },
+        {
+          "path": "EVIDENCE_ONLY_LEVEL_MOVEMENT_RECEIPT.json",
+          "sha256": "b79ce753649b1571bf46b641fd9e5ecfeb884d384bae48cc767cf09268c55d8b",
+          "bytes": 9714473
+        },
+        {
+          "path": "EVIDENCED_FLOOR_TENURE_TABLE.json",
+          "sha256": "478a3630c64ef2176f8eeb2e26461c055f6657a3d95a0e717379d0ee27328259",
+          "bytes": 1980187
+        },
+        {
+          "path": "EXTERNAL_CUSTODY_MANIFEST.json",
+          "sha256": "2cc437d1d4ec7450309654360e42bf23af3f0eec0745af1770769ac3733c2fc7",
+          "bytes": 2463
+        },
+        {
+          "path": "FILL_HANDOFF_RECEIPT.json",
+          "sha256": "6a47e8701522eb9d5381ae50803992aa6895efe3c5ca745304d0b07f33c9c94d",
+          "bytes": 143344
+        },
+        {
+          "path": "FLOOR_REST_PROTECTION_RECEIPT.json",
+          "sha256": "8b9faf97ee08dfaaf9f0062b379ac6ca923c3db247320e4049aedc2f67abc55d",
+          "bytes": 1523796
+        },
+        {
+          "path": "FLOOR_TIME_BINDING_COVERAGE.json",
+          "sha256": "68a7fb7501068cb25d4a1533c1ff195982689466c76dc4d7b02bdd0c79c87811",
+          "bytes": 2345
+        },
+        {
+          "path": "FOUNDATION_COVERAGE_BEFORE_AFTER.json",
+          "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+          "bytes": 593
+        },
+        {
+          "path": "FOUNDATION_LIBRARY_RECEIPT.json",
+          "sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5",
+          "bytes": 3558
+        },
+        {
+          "path": "FOUNDATION_LIBRARY.jsonl.gz",
+          "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+          "bytes": 2159635
+        },
+        {
+          "path": "FOUNDATION_SERVING_FIX_RECEIPT.json",
+          "sha256": "74555da8c8135f676bff1401856efed0f5d08480dd45d848c1d5dccb5f0c74e6",
+          "bytes": 2873
+        },
+        {
+          "path": "FOUR_STORIES_RECEIPT.json",
+          "sha256": "484fd37404e7e1e431626f5c4a18ad8923e9f0c65d33ef3b5abeacf507440e84",
+          "bytes": 675470
+        },
+        {
+          "path": "FOUR_STORIES.md",
+          "sha256": "df3ad784ec81702cebc0ef9f377fe264fca4f1a7084142022effc960b8d116fb",
+          "bytes": 4887125
+        },
+        {
+          "path": "FUNCTIONALITY_RECEIPT.json",
+          "sha256": "df6b15f1546ef5983c8efb2fa6fb92c4265a5b1e52e56bd5a68b396a6c82c025",
+          "bytes": 24194
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json",
+          "sha256": "cfe59471d2df7fb9a5d18440099c4df1e5f2fed0cf351e9b4f9ede24739666e1",
+          "bytes": 1112
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+          "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+          "bytes": 1668883
+        },
+        {
+          "path": "LIBRARY_BELL_BOUND_RECEIPT.json",
+          "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+          "bytes": 15882
+        },
+        {
+          "path": "LITERAL_BOOLEAN_AUDIT.json",
+          "sha256": "3e763fe529c0f3df98d4d02a69accb39c0098ccf1171ba0bd47b563a1553b2b4",
+          "bytes": 190220
+        },
+        {
+          "path": "LOW_SOURCE_REPRICE_RECEIPT.json",
+          "sha256": "99f7be039cee93aaaf4f876f89f418c4119b592a98125b26c492d6fd77b1bc58",
+          "bytes": 727
+        },
+        {
+          "path": "NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+          "sha256": "6ffbe13da021deed74b0b2a50d68d59d4203dd0dce1a89062022aaf21e222b9e",
+          "bytes": 610
+        },
+        {
+          "path": "NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+          "sha256": "0dba7d0a551cbde8663626c3262093abefbb420d91badfbf329f0c1208f8c29e",
+          "bytes": 33113908
+        },
+        {
+          "path": "NEIGHBOR_SPECIALIST_BINDING.json",
+          "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13",
+          "bytes": 11374669
+        },
+        {
+          "path": "NO_ENVELOPE_TOUCH_LANE_CENSUS.json",
+          "sha256": "07e00d5ecf01b80516c852ccb218e98057fc08b9494ae2e1f7cc45e87846bcd8",
+          "bytes": 2731
+        },
+        {
+          "path": "ONE_DECISION_PER_RECEIPT.json",
+          "sha256": "32e45e66ff3c95100baa43e6098574f6af2bcee76560273fdd9b1d39a7e561ac",
+          "bytes": 4088901
+        },
+        {
+          "path": "OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+          "sha256": "9553593e8f0e2ed1849a3bb8847b4d715eaca073cc6d74ef045755dcfa36662d",
+          "bytes": 12045241
+        },
+        {
+          "path": "OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+          "sha256": "2e13c51c33b48dfa6064a27b0da19803f2f15e63b0cca0283ed6b8cfc01101e7",
+          "bytes": 34319068
+        },
+        {
+          "path": "PAR_ALLOCATION_HEADROOM_RECEIPT.json",
+          "sha256": "467e61bb03d590c44a65e2c0dc071b9727de39044a21041d67370a4bc896e0dc",
+          "bytes": 6309266
+        },
+        {
+          "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+          "sha256": "52667e215dc0ef6bf393e23d3acd6c78d24809cbabc5b0e0aa82088fc5a5f557",
+          "bytes": 8497
+        },
+        {
+          "path": "PRICING_AUTHORITY_RECEIPT.json",
+          "sha256": "7af2eaa4737e8dde60b38ca0c1c0d575cf93ada8b6156f7161f337d74f73a5cc",
+          "bytes": 343921465
+        },
+        {
+          "path": "PRINT_PRICED_RESIDUE_SWEEP.json",
+          "sha256": "167819b19deed600c92a626867b849bab2c306702b5b95e2ca5917a744d9a245",
+          "bytes": 1370
+        },
+        {
+          "path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "sha256": "ae8ec06a49c6f470a1b350ca9ae37812bf0f7b3659047e7ed33bca94c8c55ff1",
+          "bytes": 379459692
+        },
+        {
+          "path": "REST_PRICED_CREDITING_RECEIPT.json",
+          "sha256": "890446748eb728b2710db929e354d199e0b75a6722605bb0575e2c472c6728a6",
+          "bytes": 2813
+        },
+        {
+          "path": "SAME_RECEIPT_ACT_RECEIPT.json",
+          "sha256": "f7487f7c8b15c41d0af96bc4cdc68e7af487d73fcd3bba8620687f6fe132a2f2",
+          "bytes": 6369771
+        },
+        {
+          "path": "SMOKE_CRIJEA_RECEIPT.json",
+          "sha256": "6298ef1bd8f014ef92bdba8c182f5d6d261013522fb39fa4fd9b9fc2d4e1bbf5",
+          "bytes": 1244540
+        },
+        {
+          "path": "SMOKE_CRIJEA.md",
+          "sha256": "038c66260efd59af3f1b174278f0dce8ba6139b025f8e18bc2284537869cfa19",
+          "bytes": 27641321
+        },
+        {
+          "path": "SPLIT_ALLOCATION_RECEIPT.json",
+          "sha256": "d2fdf987f44ff50b55dfad86c539464400cfbd6caad735e391cca0bab3480679",
+          "bytes": 6321496
+        },
+        {
+          "path": "SPREAD_EYE_RECEIPT.json",
+          "sha256": "25130f753bb9579e48d27ff015fae14ab788248e5fa8d98b31d9cd64f6e040df",
+          "bytes": 13477661
+        },
+        {
+          "path": "SURVIVOR_FLOOR_MOMENT_SEPARATION.json",
+          "sha256": "34d7660146b12afeeefefd846bd4963baae7bc9546585f9027047720b02837e8",
+          "bytes": 26360
+        },
+        {
+          "path": "SURVIVOR_SHAPE_LIBRARY_BINDING.json",
+          "sha256": "774d07d4f110a7b39fd1995c9d82f0704a3a1d1198c945ec63e5d5d21e085620",
+          "bytes": 1587
+        },
+        {
+          "path": "SURVIVOR_SHAPE_TRAJECTORIES.json",
+          "sha256": "b7462d83a273d86b3520b2dfcc744cb0796bd08cc411af18e66ef3fef578b8a7",
+          "bytes": 53349
+        },
+        {
+          "path": "TARGET_PRINTS_5.jsonl.gz",
+          "sha256": "e685bf23bb1d75a1299f27aa0ea09d8ef5f87e35128801615024fa35a0a9afb5",
+          "bytes": 1326936
+        },
+        {
+          "path": "TECHNIQUE_CONTRACTS_RECEIPT.json",
+          "sha256": "89c827db8825cb7e55e07ec5443caaff1ca27b322ffd5f7900e7471622d93a7d",
+          "bytes": 42241356
+        },
+        {
+          "path": "TRADE_REPORT_FOUR.json",
+          "sha256": "381a58f098fed1a4bd9afe2b2f16f102de502cecec009ecb1de6317a59a6625c",
+          "bytes": 2972503
+        },
+        {
+          "path": "TRADE_REPORT_FOUR.md",
+          "sha256": "64373a36f800937276165c0aa3dfe4546369b59bd6f97e6c5d266c9d9dff1216",
+          "bytes": 1850261
+        },
+        {
+          "path": "TRADED_LOW_SHAPE_SUPPORT_BINDING.json",
+          "sha256": "95c8fcecbf3cc095bd153039d0fa6b48fddee6f28b9a221f464d250f8423fb79",
+          "bytes": 28093
+        },
+        {
+          "path": "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json",
+          "sha256": "5d8a72fb88d1ce35b66828d675a98fd96fd21d4324f0ebf7c1e5c811a8e4b5f4",
+          "bytes": 3232
+        },
+        {
+          "path": "TRUE_CONDITIONING_RECEIPT.json",
+          "sha256": "1b72f7ccfdfe0973ecfae4bbb65f98d4c93e2d11c79f24ea57becd7719347c96",
+          "bytes": 47767730
+        }
+      ],
+      "file_count": 61,
+      "bytes": 1616112281,
+      "aggregate_sha256": "c5cb77de161133b898085adaa7d7fdbdbf3e4bc054336ab45ad6c540e20b910e"
+    }
+  ],
+  "every_present_attempt_derivable": true,
+  "source": "F-VS-238@20a8a610"
+}

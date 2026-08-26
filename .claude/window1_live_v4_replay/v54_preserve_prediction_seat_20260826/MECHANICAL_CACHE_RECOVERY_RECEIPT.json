@@ -1,0 +1,31 @@
+{
+  "label": "V54_MECHANICAL_UNBOUNDED_HISTORICAL_CACHE_RECOVERY",
+  "trigger": "ORIGINAL_EVENT_GRAIN_CSV_ABSENT_FROM_HOST_BEFORE_SCORE_EMISSION",
+  "original_source_receipt": {
+    "sha256": "46741cded0ccb0a24302da4bc7b77f1bb3b82707a8cceaa272a902bae683339a",
+    "bytes": 1041339,
+    "rows": 5879
+  },
+  "recovery_source": {
+    "path": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_directional_floor_admission_20260826\\CORPUS_INDEX.jsonl.gz",
+    "sha256": "680a6f06ab542307d52e7704d536f00bd64fd41ceab5ca6a72b4b3b3f141e625",
+    "bytes": 4888671,
+    "rows": 15367
+  },
+  "recovered_source": {
+    "path": "C:\\tmp\\v54-corpus-cache-recovered-20260826\\historical_events_materialized.csv",
+    "sha256": "2cf86173000629e93a83acd81c6e3b23fe4f6cdaeaa69a14c41ddf383ea78fc9",
+    "bytes": 418510,
+    "rows": 5879
+  },
+  "method": "Recovered all 5,879 historical line identities from the prior hash-bound corpus derivative and re-materialized the event-grain CSV. Registry and range inputs remained byte-identical to their filed hashes.",
+  "eligibility": "HISTORICAL_ROWS_ARE_UNBOUNDED_EVENT_GRAIN_AGGREGATES_AND NEVER ENTER THE BOUNDED NEIGHBOR SPECIALIST OR DECISION PATH",
+  "decision_eligible_specialist_binding": {
+    "rows": 18000,
+    "games": 9000,
+    "binding_sha256": "4f4d9e628fe97eaf46086f2c36eefa469dc466e38b449876a21b8c79802676d3",
+    "parent_binding_sha256": "4f4d9e628fe97eaf46086f2c36eefa469dc466e38b449876a21b8c79802676d3",
+    "byte_identical_to_parent": true
+  },
+  "score_emission_before_recovery": false
+}

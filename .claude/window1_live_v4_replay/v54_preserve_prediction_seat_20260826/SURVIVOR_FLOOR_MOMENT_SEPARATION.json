@@ -1,0 +1,1112 @@
+{
+  "label": "F_VS_139_TRADED_LOW_AXIS_SURVIVOR_PREDICTIVE_SEPARATION_AT_FLOOR",
+  "law": "Shape matching, elimination, and the target criterion resolve on exact member-backed traded-low depth bins. Ask reachability informs execution only.",
+  "provenance": [
+    "F-VS-139/F-VS-143@f4752720",
+    "TRADED_LOW_SHAPE_SUPPORT_BINDING.json"
+  ],
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "truth_floor_cents": 27,
+      "truth_floor_epoch": 1783841801.305,
+      "evaluated_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+      "evaluated_epoch": 1783841801.304,
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "target_criterion": {
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "anchor_cents": 31,
+        "observed_traded_low_cents": 27,
+        "observed_traded_low_depth_cents": 4,
+        "candidate_final_depth_bins_cents": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          14
+        ],
+        "candidate_final_floor_levels_cents": [
+          17,
+          19,
+          20,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "candidate_depth_counts": {
+          "4": 9,
+          "5": 12,
+          "6": 2,
+          "7": 2,
+          "8": 1,
+          "9": 2,
+          "11": 1,
+          "12": 1,
+          "14": 1
+        },
+        "deepest_supported_floor_cents": 17,
+        "shallowest_supported_floor_cents": 27,
+        "signable": true,
+        "shape_supports": [
+          {
+            "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+            "support_n": 114,
+            "depth_bins_cents": [
+              -3,
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              12,
+              14
+            ],
+            "remaining_depth_bins_cents": [
+              4,
+              5,
+              12,
+              14
+            ],
+            "min_depth_cents": -3,
+            "max_depth_cents": 14
+          },
+          {
+            "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+            "support_n": 13,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              11
+            ],
+            "remaining_depth_bins_cents": [
+              4,
+              5,
+              11
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 11
+          },
+          {
+            "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+            "support_n": 22,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "remaining_depth_bins_cents": [
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 8
+          },
+          {
+            "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+            "support_n": 7,
+            "depth_bins_cents": [
+              0,
+              2,
+              3,
+              4,
+              9
+            ],
+            "remaining_depth_bins_cents": [
+              4,
+              9
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 9
+          }
+        ],
+        "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+      },
+      "exact_truth_floor_supported": true,
+      "nearest_supported_gap_cents": 0,
+      "candidate_level_count": 9,
+      "predictive_separation": "9_EXACT_MEMBER_BACKED_LEVELS"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "truth_floor_cents": 66,
+      "truth_floor_epoch": 1783869375.227,
+      "evaluated_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2395",
+      "evaluated_epoch": 1783867224.000006,
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "target_criterion": {
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "anchor_cents": 67,
+        "observed_traded_low_cents": 69,
+        "observed_traded_low_depth_cents": -2,
+        "candidate_final_depth_bins_cents": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          9,
+          10,
+          14,
+          15,
+          21
+        ],
+        "candidate_final_floor_levels_cents": [
+          46,
+          52,
+          53,
+          57,
+          58,
+          59,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "candidate_depth_counts": {
+          "0": 48,
+          "1": 31,
+          "2": 31,
+          "3": 18,
+          "4": 10,
+          "5": 4,
+          "8": 1,
+          "9": 2,
+          "10": 1,
+          "14": 1,
+          "15": 1,
+          "21": 1,
+          "-1": 2
+        },
+        "deepest_supported_floor_cents": 46,
+        "shallowest_supported_floor_cents": 68,
+        "signable": true,
+        "shape_supports": [
+          {
+            "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+            "support_n": 113,
+            "depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              9,
+              10,
+              15,
+              21
+            ],
+            "remaining_depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              9,
+              10,
+              15,
+              21
+            ],
+            "min_depth_cents": -1,
+            "max_depth_cents": 21
+          },
+          {
+            "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+            "support_n": 23,
+            "depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "remaining_depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "min_depth_cents": -1,
+            "max_depth_cents": 5
+          },
+          {
+            "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+            "support_n": 15,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              8,
+              9,
+              14
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              8,
+              9,
+              14
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 14
+          }
+        ],
+        "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+      },
+      "exact_truth_floor_supported": true,
+      "nearest_supported_gap_cents": 0,
+      "candidate_level_count": 13,
+      "predictive_separation": "13_EXACT_MEMBER_BACKED_LEVELS"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "truth_floor_cents": 39,
+      "truth_floor_epoch": 1784042066.596,
+      "evaluated_receipt": "11b32855-2577-5868-896c-0afb9e64bb69",
+      "evaluated_epoch": 1784042066.596,
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+        "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+        "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "target_criterion": {
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "anchor_cents": 38,
+        "observed_traded_low_cents": 39,
+        "observed_traded_low_depth_cents": -1,
+        "candidate_final_depth_bins_cents": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          14
+        ],
+        "candidate_final_floor_levels_cents": [
+          24,
+          26,
+          27,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39
+        ],
+        "candidate_depth_counts": {
+          "0": 49,
+          "1": 27,
+          "2": 29,
+          "3": 17,
+          "4": 9,
+          "5": 12,
+          "6": 2,
+          "7": 2,
+          "8": 1,
+          "9": 2,
+          "11": 1,
+          "12": 1,
+          "14": 1,
+          "-1": 2
+        },
+        "deepest_supported_floor_cents": 24,
+        "shallowest_supported_floor_cents": 39,
+        "signable": true,
+        "shape_supports": [
+          {
+            "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+            "support_n": 114,
+            "depth_bins_cents": [
+              -3,
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              12,
+              14
+            ],
+            "remaining_depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              12,
+              14
+            ],
+            "min_depth_cents": -3,
+            "max_depth_cents": 14
+          },
+          {
+            "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+            "support_n": 13,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              11
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              11
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 11
+          },
+          {
+            "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+            "support_n": 22,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 8
+          },
+          {
+            "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+            "support_n": 7,
+            "depth_bins_cents": [
+              0,
+              2,
+              3,
+              4,
+              9
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              2,
+              3,
+              4,
+              9
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 9
+          }
+        ],
+        "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+      },
+      "exact_truth_floor_supported": true,
+      "nearest_supported_gap_cents": 0,
+      "candidate_level_count": 14,
+      "predictive_separation": "14_EXACT_MEMBER_BACKED_LEVELS"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "truth_floor_cents": 57,
+      "truth_floor_epoch": 1784032697.601,
+      "evaluated_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3646",
+      "evaluated_epoch": 1784028246.000001,
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "target_criterion": {
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "anchor_cents": 62,
+        "observed_traded_low_cents": 64,
+        "observed_traded_low_depth_cents": -2,
+        "candidate_final_depth_bins_cents": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          8,
+          9,
+          10,
+          14,
+          15,
+          21
+        ],
+        "candidate_final_floor_levels_cents": [
+          41,
+          47,
+          48,
+          52,
+          53,
+          54,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63
+        ],
+        "candidate_depth_counts": {
+          "0": 48,
+          "1": 31,
+          "2": 31,
+          "3": 18,
+          "4": 10,
+          "5": 4,
+          "8": 1,
+          "9": 2,
+          "10": 1,
+          "14": 1,
+          "15": 1,
+          "21": 1,
+          "-1": 2
+        },
+        "deepest_supported_floor_cents": 41,
+        "shallowest_supported_floor_cents": 63,
+        "signable": true,
+        "shape_supports": [
+          {
+            "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+            "support_n": 113,
+            "depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              9,
+              10,
+              15,
+              21
+            ],
+            "remaining_depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              9,
+              10,
+              15,
+              21
+            ],
+            "min_depth_cents": -1,
+            "max_depth_cents": 21
+          },
+          {
+            "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+            "support_n": 23,
+            "depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "remaining_depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "min_depth_cents": -1,
+            "max_depth_cents": 5
+          },
+          {
+            "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+            "support_n": 15,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              8,
+              9,
+              14
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              8,
+              9,
+              14
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 14
+          }
+        ],
+        "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+      },
+      "exact_truth_floor_supported": true,
+      "nearest_supported_gap_cents": 0,
+      "candidate_level_count": 13,
+      "predictive_separation": "13_EXACT_MEMBER_BACKED_LEVELS"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "truth_floor_cents": 51,
+      "truth_floor_epoch": 1784060123.2,
+      "evaluated_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2518",
+      "evaluated_epoch": 1784028911.000001,
+      "survivor_shapes": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1"
+      ],
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "target_criterion": {
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "anchor_cents": 59,
+        "observed_traded_low_cents": 62,
+        "observed_traded_low_depth_cents": -3,
+        "candidate_final_depth_bins_cents": [
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          9,
+          10,
+          15,
+          21
+        ],
+        "candidate_final_floor_levels_cents": [
+          38,
+          44,
+          49,
+          50,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60
+        ],
+        "candidate_depth_counts": {
+          "0": 43,
+          "1": 27,
+          "2": 22,
+          "3": 9,
+          "4": 6,
+          "5": 1,
+          "9": 1,
+          "10": 1,
+          "15": 1,
+          "21": 1,
+          "-1": 1
+        },
+        "deepest_supported_floor_cents": 38,
+        "shallowest_supported_floor_cents": 60,
+        "signable": true,
+        "shape_supports": [
+          {
+            "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+            "support_n": 113,
+            "depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              9,
+              10,
+              15,
+              21
+            ],
+            "remaining_depth_bins_cents": [
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              9,
+              10,
+              15,
+              21
+            ],
+            "min_depth_cents": -1,
+            "max_depth_cents": 21
+          }
+        ],
+        "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+      },
+      "exact_truth_floor_supported": false,
+      "nearest_supported_gap_cents": 1,
+      "candidate_level_count": 11,
+      "predictive_separation": "11_EXACT_MEMBER_BACKED_LEVELS"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "truth_floor_cents": 41,
+      "truth_floor_epoch": 1784020201.8,
+      "evaluated_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-377",
+      "evaluated_epoch": 1784020196.000015,
+      "survivor_shapes": [
+        "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2"
+      ],
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "target_criterion": {
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "anchor_cents": 41,
+        "observed_traded_low_cents": null,
+        "observed_traded_low_depth_cents": null,
+        "candidate_final_depth_bins_cents": [
+          -3,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          11,
+          12,
+          14
+        ],
+        "candidate_final_floor_levels_cents": [
+          27,
+          29,
+          30,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          44
+        ],
+        "candidate_depth_counts": {
+          "0": 43,
+          "1": 24,
+          "2": 26,
+          "3": 14,
+          "4": 6,
+          "5": 8,
+          "11": 1,
+          "12": 1,
+          "14": 1,
+          "-3": 1,
+          "-1": 2
+        },
+        "deepest_supported_floor_cents": 27,
+        "shallowest_supported_floor_cents": 44,
+        "signable": true,
+        "shape_supports": [
+          {
+            "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+            "support_n": 114,
+            "depth_bins_cents": [
+              -3,
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              12,
+              14
+            ],
+            "remaining_depth_bins_cents": [
+              -3,
+              -1,
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              12,
+              14
+            ],
+            "min_depth_cents": -3,
+            "max_depth_cents": 14
+          },
+          {
+            "shape_id": "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+            "support_n": 13,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              11
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              11
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 11
+          }
+        ],
+        "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+      },
+      "exact_truth_floor_supported": true,
+      "nearest_supported_gap_cents": 0,
+      "candidate_level_count": 11,
+      "predictive_separation": "11_EXACT_MEMBER_BACKED_LEVELS"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "truth_floor_cents": 59,
+      "truth_floor_epoch": 1784339306.8,
+      "evaluated_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+      "evaluated_epoch": 1784339306.774,
+      "survivor_shapes": [
+        "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "target_criterion": {
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "anchor_cents": 58,
+        "observed_traded_low_cents": 59,
+        "observed_traded_low_depth_cents": -1,
+        "candidate_final_depth_bins_cents": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          36
+        ],
+        "candidate_final_floor_levels_cents": [
+          22,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58
+        ],
+        "candidate_depth_counts": {
+          "0": 15,
+          "1": 22,
+          "2": 14,
+          "3": 8,
+          "4": 5,
+          "5": 2,
+          "6": 1,
+          "36": 1
+        },
+        "deepest_supported_floor_cents": 22,
+        "shallowest_supported_floor_cents": 58,
+        "signable": true,
+        "shape_supports": [
+          {
+            "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0",
+            "support_n": 27,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 3
+          },
+          {
+            "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_02_ORD_1_2",
+            "support_n": 13,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              6
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              6
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 6
+          },
+          {
+            "shape_id": "ATP_MAIN_51_75_INTERIM_PATH_UNUSABLE_REMAINDER",
+            "support_n": 28,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              36
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              36
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 36
+          }
+        ],
+        "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+      },
+      "exact_truth_floor_supported": false,
+      "nearest_supported_gap_cents": 1,
+      "candidate_level_count": 8,
+      "predictive_separation": "8_EXACT_MEMBER_BACKED_LEVELS"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "truth_floor_cents": 41,
+      "truth_floor_epoch": 1784342554,
+      "evaluated_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+      "evaluated_epoch": 1784342267.086,
+      "survivor_shapes": [
+        "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+        "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+        "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+      "target_criterion": {
+        "axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+        "anchor_cents": 41,
+        "observed_traded_low_cents": 42,
+        "observed_traded_low_depth_cents": -1,
+        "candidate_final_depth_bins_cents": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "candidate_final_floor_levels_cents": [
+          35,
+          37,
+          38,
+          39,
+          40,
+          41
+        ],
+        "candidate_depth_counts": {
+          "0": 12,
+          "1": 19,
+          "2": 21,
+          "3": 9,
+          "4": 3,
+          "6": 1
+        },
+        "deepest_supported_floor_cents": 35,
+        "shallowest_supported_floor_cents": 41,
+        "signable": true,
+        "shape_supports": [
+          {
+            "shape_id": "ATP_MAIN_26_50_INTERIM_PATH_01_ORD_0",
+            "support_n": 21,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 4
+          },
+          {
+            "shape_id": "ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+            "support_n": 22,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              6
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              6
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 6
+          },
+          {
+            "shape_id": "ATP_MAIN_26_50_INTERIM_PATH_UNUSABLE_REMAINDER",
+            "support_n": 22,
+            "depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "remaining_depth_bins_cents": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "min_depth_cents": 0,
+            "max_depth_cents": 4
+          }
+        ],
+        "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET"
+      },
+      "exact_truth_floor_supported": true,
+      "nearest_supported_gap_cents": 0,
+      "candidate_level_count": 6,
+      "predictive_separation": "6_EXACT_MEMBER_BACKED_LEVELS"
+    }
+  ],
+  "exact_floor_supported_legs": 6,
+  "separated_to_one_exact_level_legs": 0
+}

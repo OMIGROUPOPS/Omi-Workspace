@@ -1,0 +1,1878 @@
+{
+  "label": "V54_FIRED_CONTRACT_EXECUTION",
+  "locked_book_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1024",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 27,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "active_target_before_cents": 27,
+      "placement": {
+        "mode": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS",
+        "live_bid_cents": 28,
+        "live_ask_cents": 28,
+        "book_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1024",
+        "chosen_target_cents": 27,
+        "may_originate_rest": true,
+        "data_consumed": false,
+        "provenance": [
+          "F-VS-228@737e3c2b; F-VS-134",
+          "F-VS-138/F-VS-142@f4752720; lock retirement F-VS-148..152@d079687f"
+        ],
+        "numeric_constant_added": false,
+        "prior_lane_mode": "CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_NULL",
+        "lane_proposal_before_authority_cents": 27,
+        "pricing_authority": {
+          "authority": "BASE_V3_MAP_JOINT_DEPTH_MIND_WINDOW_VOTE",
+          "authority_restored_to_decision_path": true,
+          "base_target_cents": 29,
+          "target_cents": null,
+          "base_target_lawful": false,
+          "v3_map": {
+            "bound": true,
+            "commit": "ac68e3bc8d2c2018ba883c131b8b4101ae4cd257",
+            "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json",
+            "sha256": "72751efe0386bffe0d41e43fb680aaf2e30516b213c7a6371811725bbf67cef9",
+            "lookup_basis": "LIBRARY_MEMBER_BOUNDED_CLOSE_CENTS",
+            "map_votes": [
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26MAR10WONLAN",
+                "leg_id": "LAN",
+                "category": "ATP_CHALL",
+                "weight": 0.15792731495054943,
+                "library_close_cents": 30,
+                "library_floor_cents": 10,
+                "v3_price_cell": 30,
+                "map_cell": {
+                  "category": "ATP_CHALL",
+                  "price_cell": 30,
+                  "n_legs": 96,
+                  "n_games": 96,
+                  "edge_p25_raw_cents": 2,
+                  "edge_p50_raw_cents": 5,
+                  "edge_p75_raw_cents": 11,
+                  "edge_p25_cents": 2,
+                  "edge_p50_cents": 5,
+                  "edge_p75_cents": 11,
+                  "edge_min_cents": 0,
+                  "edge_max_cents": 26,
+                  "edge_ge_5_share": 0.5104166666666666,
+                  "grains": {
+                    "MINUTE": 89,
+                    "UNKNOWN": 7
+                  },
+                  "bell_methods": {
+                    "both_sides_price_discovery": 89,
+                    "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 5,
+                    "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1,
+                    "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 1
+                  }
+                },
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26MAR10WONLAN-LAN@minute_ts=1773172560"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26APR19SHEVAN",
+                "leg_id": "SHE",
+                "category": "ATP_CHALL",
+                "weight": 0.043102451813354425,
+                "library_close_cents": 29,
+                "library_floor_cents": 9,
+                "v3_price_cell": 29,
+                "map_cell": {
+                  "category": "ATP_CHALL",
+                  "price_cell": 29,
+                  "n_legs": 80,
+                  "n_games": 80,
+                  "edge_p25_raw_cents": 1.75,
+                  "edge_p50_raw_cents": 4,
+                  "edge_p75_raw_cents": 10.25,
+                  "edge_p25_cents": 2,
+                  "edge_p50_cents": 4,
+                  "edge_p75_cents": 10,
+                  "edge_min_cents": 0,
+                  "edge_max_cents": 27,
+                  "edge_ge_5_share": 0.4875,
+                  "grains": {
+                    "MINUTE": 75,
+                    "UNKNOWN": 5
+                  },
+                  "bell_methods": {
+                    "both_sides_price_discovery": 75,
+                    "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 4,
+                    "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1
+                  }
+                },
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26APR19SHEVAN-SHE@minute_ts=1776576240"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26MAR01BITGUL",
+                "leg_id": "BIT",
+                "category": "ATP_CHALL",
+                "weight": 0.03205230944155517,
+                "library_close_cents": 50,
+                "library_floor_cents": 4,
+                "v3_price_cell": 50,
+                "map_cell": {
+                  "category": "ATP_CHALL",
+                  "price_cell": 50,
+                  "n_legs": 103,
+                  "n_games": 98,
+                  "edge_p25_raw_cents": 3,
+                  "edge_p50_raw_cents": 7,
+                  "edge_p75_raw_cents": 14,
+                  "edge_p25_cents": 3,
+                  "edge_p50_cents": 7,
+                  "edge_p75_cents": 14,
+                  "edge_min_cents": 0,
+                  "edge_max_cents": 46,
+                  "edge_ge_5_share": 0.6601941747572816,
+                  "grains": {
+                    "MINUTE": 98,
+                    "UNKNOWN": 5
+                  },
+                  "bell_methods": {
+                    "both_sides_price_discovery": 98,
+                    "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 3,
+                    "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 2
+                  }
+                },
+                "licensed_floor_cents": 43,
+                "source_receipt": "KXATPCHALLENGERMATCH-26MAR01BITGUL-BIT@minute_ts=1772322360"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB28GILBUT",
+                "leg_id": "GIL",
+                "category": "ATP_CHALL",
+                "weight": 0.032012870392468896,
+                "library_close_cents": 34,
+                "library_floor_cents": 5,
+                "v3_price_cell": 34,
+                "map_cell": {
+                  "category": "ATP_CHALL",
+                  "price_cell": 34,
+                  "n_legs": 103,
+                  "n_games": 103,
+                  "edge_p25_raw_cents": 2,
+                  "edge_p50_raw_cents": 4,
+                  "edge_p75_raw_cents": 9,
+                  "edge_p25_cents": 2,
+                  "edge_p50_cents": 4,
+                  "edge_p75_cents": 9,
+                  "edge_min_cents": 0,
+                  "edge_max_cents": 30,
+                  "edge_ge_5_share": 0.49514563106796117,
+                  "grains": {
+                    "MINUTE": 98,
+                    "UNKNOWN": 5
+                  },
+                  "bell_methods": {
+                    "both_sides_price_discovery": 97,
+                    "expected_expiration_fallback": 1,
+                    "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 4,
+                    "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1
+                  }
+                },
+                "licensed_floor_cents": 30,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB28GILBUT-GIL@minute_ts=1772223360"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB21KOUVAN",
+                "leg_id": "KOU",
+                "category": "ATP_CHALL",
+                "weight": 0.15228016322751847,
+                "library_close_cents": 33,
+                "library_floor_cents": 29,
+                "v3_price_cell": 33,
+                "map_cell": {
+                  "category": "ATP_CHALL",
+                  "price_cell": 33,
+                  "n_legs": 108,
+                  "n_games": 108,
+                  "edge_p25_raw_cents": 2,
+                  "edge_p50_raw_cents": 4,
+                  "edge_p75_raw_cents": 9.25,
+                  "edge_p25_cents": 2,
+                  "edge_p50_cents": 4,
+                  "edge_p75_cents": 9,
+                  "edge_min_cents": 0,
+                  "edge_max_cents": 29,
+                  "edge_ge_5_share": 0.42592592592592593,
+                  "grains": {
+                    "MINUTE": 102,
+                    "UNKNOWN": 6
+                  },
+                  "bell_methods": {
+                    "both_sides_price_discovery": 101,
+                    "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 4,
+                    "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 2,
+                    "expected_expiration_fallback": 1
+                  }
+                },
+                "licensed_floor_cents": 29,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB21KOUVAN-KOU@minute_ts=1771686180"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB26MORSTR",
+                "leg_id": "MOR",
+                "category": "ATP_CHALL",
+                "weight": 0.15223179337005652,
+                "library_close_cents": 34,
+                "library_floor_cents": 29,
+                "v3_price_cell": 34,
+                "map_cell": {
+                  "category": "ATP_CHALL",
+                  "price_cell": 34,
+                  "n_legs": 103,
+                  "n_games": 103,
+                  "edge_p25_raw_cents": 2,
+                  "edge_p50_raw_cents": 4,
+                  "edge_p75_raw_cents": 9,
+                  "edge_p25_cents": 2,
+                  "edge_p50_cents": 4,
+                  "edge_p75_cents": 9,
+                  "edge_min_cents": 0,
+                  "edge_max_cents": 30,
+                  "edge_ge_5_share": 0.49514563106796117,
+                  "grains": {
+                    "MINUTE": 98,
+                    "UNKNOWN": 5
+                  },
+                  "bell_methods": {
+                    "both_sides_price_discovery": 97,
+                    "expected_expiration_fallback": 1,
+                    "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 4,
+                    "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1
+                  }
+                },
+                "licensed_floor_cents": 30,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB26MORSTR-MOR@minute_ts=1772127480"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26APR20CHIWON",
+                "leg_id": "CHI",
+                "category": "ATP_CHALL",
+                "weight": 0.15187933473961562,
+                "library_close_cents": 30,
+                "library_floor_cents": 29,
+                "v3_price_cell": 30,
+                "map_cell": {
+                  "category": "ATP_CHALL",
+                  "price_cell": 30,
+                  "n_legs": 96,
+                  "n_games": 96,
+                  "edge_p25_raw_cents": 2,
+                  "edge_p50_raw_cents": 5,
+                  "edge_p75_raw_cents": 11,
+                  "edge_p25_cents": 2,
+                  "edge_p50_cents": 5,
+                  "edge_p75_cents": 11,
+                  "edge_min_cents": 0,
+                  "edge_max_cents": 26,
+                  "edge_ge_5_share": 0.5104166666666666,
+                  "grains": {
+                    "MINUTE": 89,
+                    "UNKNOWN": 7
+                  },
+                  "bell_methods": {
+                    "both_sides_price_discovery": 89,
+                    "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 5,
+                    "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1,
+                    "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 1
+                  }
+                },
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26APR20CHIWON-CHI@minute_ts=1776662460"
+              }
+            ],
+            "mapped_cell_q50_cents": 33,
+            "mapped_floor_q50_cents": 29,
+            "mapped_depth_cents": 4,
+            "licensed": true
+          },
+          "joint_depth_license": {
+            "required": true,
+            "lawful": true,
+            "basis": "ENGINE_VOTES_LICENSED_DEPTH_CONDITIONED_BY_OWN_EVIDENCE",
+            "receipts": [
+              "KXATPCHALLENGERMATCH-26MAR10WONLAN-LAN@minute_ts=1773172560",
+              "KXATPCHALLENGERMATCH-26APR19SHEVAN-SHE@minute_ts=1776576240",
+              "KXATPCHALLENGERMATCH-26MAR01BITGUL-BIT@minute_ts=1772322360",
+              "KXATPCHALLENGERMATCH-26FEB28GILBUT-GIL@minute_ts=1772223360",
+              "KXATPCHALLENGERMATCH-26FEB21KOUVAN-KOU@minute_ts=1771686180",
+              "KXATPCHALLENGERMATCH-26FEB26MORSTR-MOR@minute_ts=1772127480",
+              "KXATPCHALLENGERMATCH-26APR20CHIWON-CHI@minute_ts=1776662460",
+              "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1024",
+              "ac68e3bc8d2c2018ba883c131b8b4101ae4cd257:.claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json@sha256:72751efe0386bffe0d41e43fb680aaf2e30516b213c7a6371811725bbf67cef9"
+            ],
+            "below_bounded_trade_low": false
+          },
+          "mind_window": "SHAPE_FLOOR_TIMING_WINDOW",
+          "basis_weights": [
+            {
+              "basis": "MIND_WINDOW_SELECTION",
+              "available": true,
+              "depth_cents": null,
+              "vote_mass": 0.7214862379351186,
+              "raw_fitness": 0.7214862379351186,
+              "normalized_weight": 1,
+              "fitness_reason": "window=SHAPE_FLOOR_TIMING_WINDOW; timing_vote_mass=0.45639129133719064; touch_vote_mass=0.2650949465979279; own_clock_fraction=0.5217944489174327",
+              "license_receipts": [
+                "KXATPCHALLENGERMATCH-26MAR10WONLAN-LAN@minute_ts=1773172560",
+                "KXATPCHALLENGERMATCH-26APR19SHEVAN-SHE@minute_ts=1776576240",
+                "KXATPCHALLENGERMATCH-26MAR01BITGUL-BIT@minute_ts=1772322360",
+                "KXATPCHALLENGERMATCH-26FEB28GILBUT-GIL@minute_ts=1772223360",
+                "KXATPCHALLENGERMATCH-26FEB21KOUVAN-KOU@minute_ts=1771686180",
+                "KXATPCHALLENGERMATCH-26FEB26MORSTR-MOR@minute_ts=1772127480",
+                "KXATPCHALLENGERMATCH-26APR20CHIWON-CHI@minute_ts=1776662460"
+              ],
+              "voters": [
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26MAR10WONLAN",
+                  "category": "ATP_CHALL",
+                  "leg_id": "LAN",
+                  "behavior": "OWN_TAPE_PRESENCE_AT_TOUCH",
+                  "weight": 0.15792731495054943,
+                  "similarity_grade": 0.8354126080717469,
+                  "coverage_grade": 0.9452054794520548,
+                  "evidence_match_grade": 0.2,
+                  "evidence_distance_cents": 4,
+                  "member_floor_fraction": 0.36923076923076925,
+                  "own_window_fraction": 0.5217944489174327,
+                  "capture_depth_cents": 0,
+                  "library_close_cents": 30,
+                  "library_floor_cents": 10,
+                  "v3_price_cell": 30,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26MAR10WONLAN-LAN@minute_ts=1773172560"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26APR19SHEVAN",
+                  "category": "ATP_CHALL",
+                  "leg_id": "SHE",
+                  "behavior": "OWN_TAPE_PRESENCE_AT_TOUCH",
+                  "weight": 0.043102451813354425,
+                  "similarity_grade": 0.820820604097793,
+                  "coverage_grade": 0.9452054794520548,
+                  "evidence_match_grade": 0.05555555555555555,
+                  "evidence_distance_cents": 17,
+                  "member_floor_fraction": 0,
+                  "own_window_fraction": 0.5217944489174327,
+                  "capture_depth_cents": 0,
+                  "library_close_cents": 29,
+                  "library_floor_cents": 9,
+                  "v3_price_cell": 29,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26APR19SHEVAN-SHE@minute_ts=1776576240"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26MAR01BITGUL",
+                  "category": "ATP_CHALL",
+                  "leg_id": "BIT",
+                  "behavior": "OWN_TAPE_PRESENCE_AT_TOUCH",
+                  "weight": 0.03205230944155517,
+                  "similarity_grade": 0.813849944081227,
+                  "coverage_grade": 0.9452054794520548,
+                  "evidence_match_grade": 0.041666666666666664,
+                  "evidence_distance_cents": 23,
+                  "member_floor_fraction": 0,
+                  "own_window_fraction": 0.5217944489174327,
+                  "capture_depth_cents": 0,
+                  "library_close_cents": 50,
+                  "library_floor_cents": 4,
+                  "v3_price_cell": 50,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26MAR01BITGUL-BIT@minute_ts=1772322360"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26FEB28GILBUT",
+                  "category": "ATP_CHALL",
+                  "leg_id": "GIL",
+                  "behavior": "OWN_TAPE_PRESENCE_AT_TOUCH",
+                  "weight": 0.032012870392468896,
+                  "similarity_grade": 0.8128485351826885,
+                  "coverage_grade": 0.9452054794520548,
+                  "evidence_match_grade": 0.041666666666666664,
+                  "evidence_distance_cents": 23,
+                  "member_floor_fraction": 0,
+                  "own_window_fraction": 0.5217944489174327,
+                  "capture_depth_cents": 0,
+                  "library_close_cents": 34,
+                  "library_floor_cents": 5,
+                  "v3_price_cell": 34,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26FEB28GILBUT-GIL@minute_ts=1772223360"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26FEB21KOUVAN",
+                  "category": "ATP_CHALL",
+                  "leg_id": "KOU",
+                  "behavior": "DERIVED_TIMING_DEPTH",
+                  "weight": 0.15228016322751847,
+                  "similarity_grade": 0.805539993884699,
+                  "coverage_grade": 0.9452054794520548,
+                  "evidence_match_grade": 0.2,
+                  "evidence_distance_cents": 4,
+                  "member_floor_fraction": 0.9777777777777777,
+                  "own_window_fraction": 0.5217944489174327,
+                  "capture_depth_cents": 6,
+                  "library_close_cents": 33,
+                  "library_floor_cents": 29,
+                  "v3_price_cell": 33,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26FEB21KOUVAN-KOU@minute_ts=1771686180"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26FEB26MORSTR",
+                  "category": "ATP_CHALL",
+                  "leg_id": "MOR",
+                  "behavior": "DERIVED_TIMING_DEPTH",
+                  "weight": 0.15223179337005652,
+                  "similarity_grade": 0.8052841243488496,
+                  "coverage_grade": 0.9452054794520548,
+                  "evidence_match_grade": 0.2,
+                  "evidence_distance_cents": 4,
+                  "member_floor_fraction": 0.9700315457413249,
+                  "own_window_fraction": 0.5217944489174327,
+                  "capture_depth_cents": 5,
+                  "library_close_cents": 34,
+                  "library_floor_cents": 29,
+                  "v3_price_cell": 34,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26FEB26MORSTR-MOR@minute_ts=1772127480"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26APR20CHIWON",
+                  "category": "ATP_CHALL",
+                  "leg_id": "CHI",
+                  "behavior": "DERIVED_TIMING_DEPTH",
+                  "weight": 0.15187933473961562,
+                  "similarity_grade": 0.8034196692747783,
+                  "coverage_grade": 0.9452054794520548,
+                  "evidence_match_grade": 0.2,
+                  "evidence_distance_cents": 4,
+                  "member_floor_fraction": 0.9984301412872841,
+                  "own_window_fraction": 0.5217944489174327,
+                  "capture_depth_cents": 5,
+                  "library_close_cents": 30,
+                  "library_floor_cents": 29,
+                  "v3_price_cell": 30,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26APR20CHIWON-CHI@minute_ts=1776662460"
+                }
+              ]
+            },
+            {
+              "basis": "OBSERVED_TRADED_FLOOR",
+              "available": true,
+              "depth_cents": 4,
+              "vote_mass": 7,
+              "raw_fitness": 0.7214862379351186,
+              "normalized_weight": 1,
+              "fitness_reason": "observed_traded_floor=27; receipt=IN_READER_RECEIPTS; specialist_map_votes=7",
+              "license_receipts": [
+                "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1024",
+                "ac68e3bc8d2c2018ba883c131b8b4101ae4cd257:.claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json@sha256:72751efe0386bffe0d41e43fb680aaf2e30516b213c7a6371811725bbf67cef9",
+                "KXATPCHALLENGERMATCH-26MAR10WONLAN-LAN@minute_ts=1773172560",
+                "KXATPCHALLENGERMATCH-26APR19SHEVAN-SHE@minute_ts=1776576240",
+                "KXATPCHALLENGERMATCH-26MAR01BITGUL-BIT@minute_ts=1772322360",
+                "KXATPCHALLENGERMATCH-26FEB28GILBUT-GIL@minute_ts=1772223360",
+                "KXATPCHALLENGERMATCH-26FEB21KOUVAN-KOU@minute_ts=1771686180",
+                "KXATPCHALLENGERMATCH-26FEB26MORSTR-MOR@minute_ts=1772127480",
+                "KXATPCHALLENGERMATCH-26APR20CHIWON-CHI@minute_ts=1776662460"
+              ],
+              "voters": [
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26MAR10WONLAN",
+                  "leg_id": "LAN",
+                  "category": "ATP_CHALL",
+                  "weight": 0.15792731495054943,
+                  "library_close_cents": 30,
+                  "library_floor_cents": 10,
+                  "v3_price_cell": 30,
+                  "map_cell": {
+                    "category": "ATP_CHALL",
+                    "price_cell": 30,
+                    "n_legs": 96,
+                    "n_games": 96,
+                    "edge_p25_raw_cents": 2,
+                    "edge_p50_raw_cents": 5,
+                    "edge_p75_raw_cents": 11,
+                    "edge_p25_cents": 2,
+                    "edge_p50_cents": 5,
+                    "edge_p75_cents": 11,
+                    "edge_min_cents": 0,
+                    "edge_max_cents": 26,
+                    "edge_ge_5_share": 0.5104166666666666,
+                    "grains": {
+                      "MINUTE": 89,
+                      "UNKNOWN": 7
+                    },
+                    "bell_methods": {
+                      "both_sides_price_discovery": 89,
+                      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 5,
+                      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1,
+                      "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 1
+                    }
+                  },
+                  "licensed_floor_cents": 25,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26MAR10WONLAN-LAN@minute_ts=1773172560"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26APR19SHEVAN",
+                  "leg_id": "SHE",
+                  "category": "ATP_CHALL",
+                  "weight": 0.043102451813354425,
+                  "library_close_cents": 29,
+                  "library_floor_cents": 9,
+                  "v3_price_cell": 29,
+                  "map_cell": {
+                    "category": "ATP_CHALL",
+                    "price_cell": 29,
+                    "n_legs": 80,
+                    "n_games": 80,
+                    "edge_p25_raw_cents": 1.75,
+                    "edge_p50_raw_cents": 4,
+                    "edge_p75_raw_cents": 10.25,
+                    "edge_p25_cents": 2,
+                    "edge_p50_cents": 4,
+                    "edge_p75_cents": 10,
+                    "edge_min_cents": 0,
+                    "edge_max_cents": 27,
+                    "edge_ge_5_share": 0.4875,
+                    "grains": {
+                      "MINUTE": 75,
+                      "UNKNOWN": 5
+                    },
+                    "bell_methods": {
+                      "both_sides_price_discovery": 75,
+                      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 4,
+                      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1
+                    }
+                  },
+                  "licensed_floor_cents": 25,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26APR19SHEVAN-SHE@minute_ts=1776576240"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26MAR01BITGUL",
+                  "leg_id": "BIT",
+                  "category": "ATP_CHALL",
+                  "weight": 0.03205230944155517,
+                  "library_close_cents": 50,
+                  "library_floor_cents": 4,
+                  "v3_price_cell": 50,
+                  "map_cell": {
+                    "category": "ATP_CHALL",
+                    "price_cell": 50,
+                    "n_legs": 103,
+                    "n_games": 98,
+                    "edge_p25_raw_cents": 3,
+                    "edge_p50_raw_cents": 7,
+                    "edge_p75_raw_cents": 14,
+                    "edge_p25_cents": 3,
+                    "edge_p50_cents": 7,
+                    "edge_p75_cents": 14,
+                    "edge_min_cents": 0,
+                    "edge_max_cents": 46,
+                    "edge_ge_5_share": 0.6601941747572816,
+                    "grains": {
+                      "MINUTE": 98,
+                      "UNKNOWN": 5
+                    },
+                    "bell_methods": {
+                      "both_sides_price_discovery": 98,
+                      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 3,
+                      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 2
+                    }
+                  },
+                  "licensed_floor_cents": 43,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26MAR01BITGUL-BIT@minute_ts=1772322360"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26FEB28GILBUT",
+                  "leg_id": "GIL",
+                  "category": "ATP_CHALL",
+                  "weight": 0.032012870392468896,
+                  "library_close_cents": 34,
+                  "library_floor_cents": 5,
+                  "v3_price_cell": 34,
+                  "map_cell": {
+                    "category": "ATP_CHALL",
+                    "price_cell": 34,
+                    "n_legs": 103,
+                    "n_games": 103,
+                    "edge_p25_raw_cents": 2,
+                    "edge_p50_raw_cents": 4,
+                    "edge_p75_raw_cents": 9,
+                    "edge_p25_cents": 2,
+                    "edge_p50_cents": 4,
+                    "edge_p75_cents": 9,
+                    "edge_min_cents": 0,
+                    "edge_max_cents": 30,
+                    "edge_ge_5_share": 0.49514563106796117,
+                    "grains": {
+                      "MINUTE": 98,
+                      "UNKNOWN": 5
+                    },
+                    "bell_methods": {
+                      "both_sides_price_discovery": 97,
+                      "expected_expiration_fallback": 1,
+                      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 4,
+                      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1
+                    }
+                  },
+                  "licensed_floor_cents": 30,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26FEB28GILBUT-GIL@minute_ts=1772223360"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26FEB21KOUVAN",
+                  "leg_id": "KOU",
+                  "category": "ATP_CHALL",
+                  "weight": 0.15228016322751847,
+                  "library_close_cents": 33,
+                  "library_floor_cents": 29,
+                  "v3_price_cell": 33,
+                  "map_cell": {
+                    "category": "ATP_CHALL",
+                    "price_cell": 33,
+                    "n_legs": 108,
+                    "n_games": 108,
+                    "edge_p25_raw_cents": 2,
+                    "edge_p50_raw_cents": 4,
+                    "edge_p75_raw_cents": 9.25,
+                    "edge_p25_cents": 2,
+                    "edge_p50_cents": 4,
+                    "edge_p75_cents": 9,
+                    "edge_min_cents": 0,
+                    "edge_max_cents": 29,
+                    "edge_ge_5_share": 0.42592592592592593,
+                    "grains": {
+                      "MINUTE": 102,
+                      "UNKNOWN": 6
+                    },
+                    "bell_methods": {
+                      "both_sides_price_discovery": 101,
+                      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 4,
+                      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 2,
+                      "expected_expiration_fallback": 1
+                    }
+                  },
+                  "licensed_floor_cents": 29,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26FEB21KOUVAN-KOU@minute_ts=1771686180"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26FEB26MORSTR",
+                  "leg_id": "MOR",
+                  "category": "ATP_CHALL",
+                  "weight": 0.15223179337005652,
+                  "library_close_cents": 34,
+                  "library_floor_cents": 29,
+                  "v3_price_cell": 34,
+                  "map_cell": {
+                    "category": "ATP_CHALL",
+                    "price_cell": 34,
+                    "n_legs": 103,
+                    "n_games": 103,
+                    "edge_p25_raw_cents": 2,
+                    "edge_p50_raw_cents": 4,
+                    "edge_p75_raw_cents": 9,
+                    "edge_p25_cents": 2,
+                    "edge_p50_cents": 4,
+                    "edge_p75_cents": 9,
+                    "edge_min_cents": 0,
+                    "edge_max_cents": 30,
+                    "edge_ge_5_share": 0.49514563106796117,
+                    "grains": {
+                      "MINUTE": 98,
+                      "UNKNOWN": 5
+                    },
+                    "bell_methods": {
+                      "both_sides_price_discovery": 97,
+                      "expected_expiration_fallback": 1,
+                      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 4,
+                      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1
+                    }
+                  },
+                  "licensed_floor_cents": 30,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26FEB26MORSTR-MOR@minute_ts=1772127480"
+                },
+                {
+                  "event_id": "KXATPCHALLENGERMATCH-26APR20CHIWON",
+                  "leg_id": "CHI",
+                  "category": "ATP_CHALL",
+                  "weight": 0.15187933473961562,
+                  "library_close_cents": 30,
+                  "library_floor_cents": 29,
+                  "v3_price_cell": 30,
+                  "map_cell": {
+                    "category": "ATP_CHALL",
+                    "price_cell": 30,
+                    "n_legs": 96,
+                    "n_games": 96,
+                    "edge_p25_raw_cents": 2,
+                    "edge_p50_raw_cents": 5,
+                    "edge_p75_raw_cents": 11,
+                    "edge_p25_cents": 2,
+                    "edge_p50_cents": 5,
+                    "edge_p75_cents": 11,
+                    "edge_min_cents": 0,
+                    "edge_max_cents": 26,
+                    "edge_ge_5_share": 0.5104166666666666,
+                    "grains": {
+                      "MINUTE": 89,
+                      "UNKNOWN": 7
+                    },
+                    "bell_methods": {
+                      "both_sides_price_discovery": 89,
+                      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 5,
+                      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 1,
+                      "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 1
+                    }
+                  },
+                  "licensed_floor_cents": 25,
+                  "source_receipt": "KXATPCHALLENGERMATCH-26APR20CHIWON-CHI@minute_ts=1776662460"
+                }
+              ]
+            }
+          ],
+          "authority_source": "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET",
+          "panel_prior_cents": 29,
+          "cross_category_cell_borrow": {
+            "status": "NOT_NEEDED_DIRECT_CELL_HAS_BELOW_ANCHOR_MEMBER",
+            "current_category": "ATP_CHALL",
+            "criterion_anchor_cents": 31,
+            "direct_vote_count": 7,
+            "direct_supports_below_anchor": true,
+            "cross_category_population": 149,
+            "cross_category_below_anchor_members": 119,
+            "empirical_grade": 0.7986577181208053,
+            "borrowed_votes": [],
+            "silent_ceiling_allowed": false,
+            "provenance": "F-VS-241@20a8a610; LOW_GRADE_CROSS_CATEGORY_MEMBERS_MISSING_DISCLOSURE"
+          },
+          "own_evidence_rows": [
+            {
+              "source": "OBSERVED_TRUE_TRADE_LOW",
+              "value_cents": 27,
+              "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+              "evidence_class": "TRADED",
+              "floor_decisiveness": 1,
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 9,
+              "lower_support_count": 22,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0.2903225806451613,
+              "supporting_shape_ids": [
+                "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+              ],
+              "elimination_support_share": 1,
+              "criterion_anchor_cents": 31,
+              "lowest_supported_floor_cents": 17,
+              "highest_supported_floor_cents": 27,
+              "per_leg_classification": {
+                "class_id": "PRINTED_FLOOR_WITH_EXACT_SHAPE_SUPPORT",
+                "leg_id": "BAR",
+                "value_cents": 27,
+                "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "depth_cents": 4,
+                "depth_sign": "BELOW_ANCHOR",
+                "descent_state": "OBSERVED_HIGH_ABOVE_PRINTED_LOW",
+                "evidenced_floor_source": "OBSERVED_TRUE_TRADE_LOW",
+                "observed_traded_high_cents": 28,
+                "observed_descent_cents": 1,
+                "above_anchor_excursion_cents": 0,
+                "observed_descent_satisfies_directional_depth": true,
+                "exact_shape_support": true,
+                "highest_supported_floor_cents": 27,
+                "distance_above_descent_path_cents": 0,
+                "descent_state_open": false,
+                "print_above_open_descent_path": false,
+                "prior_floor_predicate_passed": true,
+                "per_leg_grade_passed": true,
+                "admission_gate_passed": true,
+                "binding_floor_candidate": true,
+                "pricing_eligible": true,
+                "immunity_eligible": true,
+                "refusal_reason": null,
+                "provenance": "F-VS-234..237@85b940ff; DISPATCH_READ_THE_CLASSIFIER@2026-08-26; DISPATCH_ADMISSION_HAS_DIRECTION@2026-08-26; CC@85b940ff; F-VS-224/F-VS-229"
+              }
+            },
+            {
+              "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+              "value_cents": 27,
+              "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+              "evidence_class": "TRADE_BACKED_SPREAD_CLEARING",
+              "floor_decisiveness": 0.2903225806451613,
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 9,
+              "lower_support_count": 22,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0.2903225806451613,
+              "supporting_shape_ids": [
+                "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+              ],
+              "elimination_support_share": 1,
+              "criterion_anchor_cents": 31,
+              "lowest_supported_floor_cents": 17,
+              "highest_supported_floor_cents": 27,
+              "per_leg_classification": {
+                "class_id": "NON_PRINT_EVIDENCE_GRADED_NOT_BINDING",
+                "leg_id": "BAR",
+                "value_cents": 27,
+                "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "depth_cents": 4,
+                "depth_sign": "BELOW_ANCHOR",
+                "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                "evidenced_floor_source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                "observed_traded_high_cents": 28,
+                "observed_descent_cents": 0,
+                "above_anchor_excursion_cents": 0,
+                "observed_descent_satisfies_directional_depth": false,
+                "exact_shape_support": true,
+                "highest_supported_floor_cents": 27,
+                "distance_above_descent_path_cents": 0,
+                "descent_state_open": false,
+                "print_above_open_descent_path": false,
+                "prior_floor_predicate_passed": false,
+                "per_leg_grade_passed": true,
+                "admission_gate_passed": false,
+                "binding_floor_candidate": false,
+                "pricing_eligible": false,
+                "immunity_eligible": false,
+                "refusal_reason": "NON_PRINT_CHANNEL_NEVER_BINDS_FLOOR",
+                "provenance": "F-VS-234..237@85b940ff; DISPATCH_READ_THE_CLASSIFIER@2026-08-26; DISPATCH_ADMISSION_HAS_DIRECTION@2026-08-26; CC@85b940ff; F-VS-224/F-VS-229"
+              }
+            }
+          ],
+          "own_evidence_central_cents": 27,
+          "true_conditioning": {
+            "posterior_rows": [
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26MAR10WONLAN",
+                "conditioning_weight": 0.053038211579274394,
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26MAR10WONLAN-LAN@minute_ts=1773172560",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.2188916526010735,
+                "prior_weight": 0.2188916526010735,
+                "channel_updates": [
+                  {
+                    "source": "OBSERVED_TRUE_TRADE_LOW",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 2,
+                    "floor_decisiveness": 1,
+                    "one_tick_likelihood": 0.3333333333333333,
+                    "multiplier": 0.3333333333333333
+                  },
+                  {
+                    "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 2,
+                    "floor_decisiveness": 0.2903225806451613,
+                    "one_tick_likelihood": 0.3333333333333333,
+                    "multiplier": 0.7269104730448861
+                  }
+                ]
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26APR19SHEVAN",
+                "conditioning_weight": 0.014475500704726052,
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26APR19SHEVAN-SHE@minute_ts=1776576240",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.05974119747136538,
+                "prior_weight": 0.05974119747136538,
+                "channel_updates": [
+                  {
+                    "source": "OBSERVED_TRUE_TRADE_LOW",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 2,
+                    "floor_decisiveness": 1,
+                    "one_tick_likelihood": 0.3333333333333333,
+                    "multiplier": 0.3333333333333333
+                  },
+                  {
+                    "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 2,
+                    "floor_decisiveness": 0.2903225806451613,
+                    "one_tick_likelihood": 0.3333333333333333,
+                    "multiplier": 0.7269104730448861
+                  }
+                ]
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26MAR01BITGUL",
+                "conditioning_weight": 0.001148035315207034,
+                "licensed_floor_cents": 43,
+                "source_receipt": "KXATPCHALLENGERMATCH-26MAR01BITGUL-BIT@minute_ts=1772322360",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.04442539269118748,
+                "prior_weight": 0.04442539269118748,
+                "channel_updates": [
+                  {
+                    "source": "OBSERVED_TRUE_TRADE_LOW",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 16,
+                    "floor_decisiveness": 1,
+                    "one_tick_likelihood": 0.058823529411764705,
+                    "multiplier": 0.058823529411764705
+                  },
+                  {
+                    "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 16,
+                    "floor_decisiveness": 0.2903225806451613,
+                    "one_tick_likelihood": 0.058823529411764705,
+                    "multiplier": 0.4393118254279612
+                  }
+                ]
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB28GILBUT",
+                "conditioning_weight": 0.007417284941146098,
+                "licensed_floor_cents": 30,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB28GILBUT-GIL@minute_ts=1772223360",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.04437072907182428,
+                "prior_weight": 0.04437072907182428,
+                "channel_updates": [
+                  {
+                    "source": "OBSERVED_TRUE_TRADE_LOW",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 3,
+                    "floor_decisiveness": 1,
+                    "one_tick_likelihood": 0.25,
+                    "multiplier": 0.25
+                  },
+                  {
+                    "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 3,
+                    "floor_decisiveness": 0.2903225806451613,
+                    "one_tick_likelihood": 0.25,
+                    "multiplier": 0.6686646892044085
+                  }
+                ]
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB21KOUVAN",
+                "conditioning_weight": 0.051141675644371914,
+                "licensed_floor_cents": 29,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB21KOUVAN-KOU@minute_ts=1771686180",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.21106454318982124,
+                "prior_weight": 0.21106454318982124,
+                "channel_updates": [
+                  {
+                    "source": "OBSERVED_TRUE_TRADE_LOW",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 2,
+                    "floor_decisiveness": 1,
+                    "one_tick_likelihood": 0.3333333333333333,
+                    "multiplier": 0.3333333333333333
+                  },
+                  {
+                    "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 2,
+                    "floor_decisiveness": 0.2903225806451613,
+                    "one_tick_likelihood": 0.3333333333333333,
+                    "multiplier": 0.7269104730448861
+                  }
+                ]
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB26MORSTR",
+                "conditioning_weight": 0.035271644644305905,
+                "licensed_floor_cents": 30,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB26MORSTR-MOR@minute_ts=1772127480",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.2109975012215636,
+                "prior_weight": 0.2109975012215636,
+                "channel_updates": [
+                  {
+                    "source": "OBSERVED_TRUE_TRADE_LOW",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 3,
+                    "floor_decisiveness": 1,
+                    "one_tick_likelihood": 0.25,
+                    "multiplier": 0.25
+                  },
+                  {
+                    "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 3,
+                    "floor_decisiveness": 0.2903225806451613,
+                    "one_tick_likelihood": 0.25,
+                    "multiplier": 0.6686646892044085
+                  }
+                ]
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26APR20CHIWON",
+                "conditioning_weight": 0.051007061653403664,
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26APR20CHIWON-CHI@minute_ts=1776662460",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.21050898375316446,
+                "prior_weight": 0.21050898375316446,
+                "channel_updates": [
+                  {
+                    "source": "OBSERVED_TRUE_TRADE_LOW",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 2,
+                    "floor_decisiveness": 1,
+                    "one_tick_likelihood": 0.3333333333333333,
+                    "multiplier": 0.3333333333333333
+                  },
+                  {
+                    "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                    "evidence_value_cents": 27,
+                    "distance_cents": 2,
+                    "floor_decisiveness": 0.2903225806451613,
+                    "one_tick_likelihood": 0.3333333333333333,
+                    "multiplier": 0.7269104730448861
+                  }
+                ]
+              },
+              {
+                "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "source_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "conditioning_weight": 1,
+                "initial_support_weight": 1,
+                "licensed_floor_cents": 27,
+                "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+                "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+                "evidence_class": "TRADED",
+                "floor_decisiveness": 1,
+                "floor_decisiveness_basis": {
+                  "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                  "exact_support_count": 9,
+                  "lower_support_count": 22,
+                  "upper_support_count": 0,
+                  "exact_given_candidate_or_lower": 0.2903225806451613,
+                  "supporting_shape_ids": [
+                    "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                    "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                    "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                    "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                  ],
+                  "elimination_support_share": 1
+                },
+                "prior_weight": 1,
+                "channel_updates": []
+              },
+              {
+                "event_id": "OWN_EVIDENCE|SPREAD_EYE_EFFECTIVE_CLEARING_PRICE|4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "source_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "conditioning_weight": 0.2903225806451613,
+                "initial_support_weight": 0.2903225806451613,
+                "licensed_floor_cents": 27,
+                "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+                "evidence_source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                "evidence_class": "TRADE_BACKED_SPREAD_CLEARING",
+                "floor_decisiveness": 0.2903225806451613,
+                "floor_decisiveness_basis": {
+                  "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                  "exact_support_count": 9,
+                  "lower_support_count": 22,
+                  "upper_support_count": 0,
+                  "exact_given_candidate_or_lower": 0.2903225806451613,
+                  "supporting_shape_ids": [
+                    "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                    "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                    "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                    "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                  ],
+                  "elimination_support_share": 1
+                },
+                "prior_weight": 0.2903225806451613,
+                "channel_updates": []
+              }
+            ],
+            "panel_rows": [
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26MAR10WONLAN",
+                "conditioning_weight": 0.15792731495054943,
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26MAR10WONLAN-LAN@minute_ts=1773172560",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.2188916526010735
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26APR19SHEVAN",
+                "conditioning_weight": 0.043102451813354425,
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26APR19SHEVAN-SHE@minute_ts=1776576240",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.05974119747136538
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26MAR01BITGUL",
+                "conditioning_weight": 0.03205230944155517,
+                "licensed_floor_cents": 43,
+                "source_receipt": "KXATPCHALLENGERMATCH-26MAR01BITGUL-BIT@minute_ts=1772322360",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.04442539269118748
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB28GILBUT",
+                "conditioning_weight": 0.032012870392468896,
+                "licensed_floor_cents": 30,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB28GILBUT-GIL@minute_ts=1772223360",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.04437072907182428
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB21KOUVAN",
+                "conditioning_weight": 0.15228016322751847,
+                "licensed_floor_cents": 29,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB21KOUVAN-KOU@minute_ts=1771686180",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.21106454318982124
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB26MORSTR",
+                "conditioning_weight": 0.15223179337005652,
+                "licensed_floor_cents": 30,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB26MORSTR-MOR@minute_ts=1772127480",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.2109975012215636
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26APR20CHIWON",
+                "conditioning_weight": 0.15187933473961562,
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26APR20CHIWON-CHI@minute_ts=1776662460",
+                "support_source": "GRADED_PANEL_HYPOTHESIS",
+                "initial_support_weight": 0.21050898375316446
+              }
+            ],
+            "evidence_support_rows": [
+              {
+                "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "source_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "conditioning_weight": 1,
+                "initial_support_weight": 1,
+                "licensed_floor_cents": 27,
+                "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+                "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+                "evidence_class": "TRADED",
+                "floor_decisiveness": 1,
+                "floor_decisiveness_basis": {
+                  "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                  "exact_support_count": 9,
+                  "lower_support_count": 22,
+                  "upper_support_count": 0,
+                  "exact_given_candidate_or_lower": 0.2903225806451613,
+                  "supporting_shape_ids": [
+                    "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                    "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                    "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                    "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                  ],
+                  "elimination_support_share": 1
+                }
+              },
+              {
+                "event_id": "OWN_EVIDENCE|SPREAD_EYE_EFFECTIVE_CLEARING_PRICE|4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "source_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "conditioning_weight": 0.2903225806451613,
+                "initial_support_weight": 0.2903225806451613,
+                "licensed_floor_cents": 27,
+                "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+                "evidence_source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                "evidence_class": "TRADE_BACKED_SPREAD_CLEARING",
+                "floor_decisiveness": 0.2903225806451613,
+                "floor_decisiveness_basis": {
+                  "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                  "exact_support_count": 9,
+                  "lower_support_count": 22,
+                  "upper_support_count": 0,
+                  "exact_given_candidate_or_lower": 0.2903225806451613,
+                  "supporting_shape_ids": [
+                    "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                    "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                    "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                    "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                  ],
+                  "elimination_support_share": 1
+                }
+              }
+            ],
+            "channels_applied": [
+              {
+                "source": "OBSERVED_TRUE_TRADE_LOW",
+                "value_cents": 27,
+                "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "evidence_class": "TRADED",
+                "floor_decisiveness": 1,
+                "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                "exact_support_count": 9,
+                "lower_support_count": 22,
+                "upper_support_count": 0,
+                "exact_given_candidate_or_lower": 0.2903225806451613,
+                "supporting_shape_ids": [
+                  "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                  "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                  "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                  "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                ],
+                "elimination_support_share": 1,
+                "criterion_anchor_cents": 31,
+                "lowest_supported_floor_cents": 17,
+                "highest_supported_floor_cents": 27,
+                "per_leg_classification": {
+                  "class_id": "PRINTED_FLOOR_WITH_EXACT_SHAPE_SUPPORT",
+                  "leg_id": "BAR",
+                  "value_cents": 27,
+                  "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                  "depth_cents": 4,
+                  "depth_sign": "BELOW_ANCHOR",
+                  "descent_state": "OBSERVED_HIGH_ABOVE_PRINTED_LOW",
+                  "evidenced_floor_source": "OBSERVED_TRUE_TRADE_LOW",
+                  "observed_traded_high_cents": 28,
+                  "observed_descent_cents": 1,
+                  "above_anchor_excursion_cents": 0,
+                  "observed_descent_satisfies_directional_depth": true,
+                  "exact_shape_support": true,
+                  "highest_supported_floor_cents": 27,
+                  "distance_above_descent_path_cents": 0,
+                  "descent_state_open": false,
+                  "print_above_open_descent_path": false,
+                  "prior_floor_predicate_passed": true,
+                  "per_leg_grade_passed": true,
+                  "admission_gate_passed": true,
+                  "binding_floor_candidate": true,
+                  "pricing_eligible": true,
+                  "immunity_eligible": true,
+                  "refusal_reason": null,
+                  "provenance": "F-VS-234..237@85b940ff; DISPATCH_READ_THE_CLASSIFIER@2026-08-26; DISPATCH_ADMISSION_HAS_DIRECTION@2026-08-26; CC@85b940ff; F-VS-224/F-VS-229"
+                }
+              },
+              {
+                "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                "value_cents": 27,
+                "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "evidence_class": "TRADE_BACKED_SPREAD_CLEARING",
+                "floor_decisiveness": 0.2903225806451613,
+                "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                "exact_support_count": 9,
+                "lower_support_count": 22,
+                "upper_support_count": 0,
+                "exact_given_candidate_or_lower": 0.2903225806451613,
+                "supporting_shape_ids": [
+                  "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                  "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                  "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                  "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                ],
+                "elimination_support_share": 1,
+                "criterion_anchor_cents": 31,
+                "lowest_supported_floor_cents": 17,
+                "highest_supported_floor_cents": 27,
+                "per_leg_classification": {
+                  "class_id": "NON_PRINT_EVIDENCE_GRADED_NOT_BINDING",
+                  "leg_id": "BAR",
+                  "value_cents": 27,
+                  "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                  "depth_cents": 4,
+                  "depth_sign": "BELOW_ANCHOR",
+                  "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                  "evidenced_floor_source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                  "observed_traded_high_cents": 28,
+                  "observed_descent_cents": 0,
+                  "above_anchor_excursion_cents": 0,
+                  "observed_descent_satisfies_directional_depth": false,
+                  "exact_shape_support": true,
+                  "highest_supported_floor_cents": 27,
+                  "distance_above_descent_path_cents": 0,
+                  "descent_state_open": false,
+                  "print_above_open_descent_path": false,
+                  "prior_floor_predicate_passed": false,
+                  "per_leg_grade_passed": true,
+                  "admission_gate_passed": false,
+                  "binding_floor_candidate": false,
+                  "pricing_eligible": false,
+                  "immunity_eligible": false,
+                  "refusal_reason": "NON_PRINT_CHANNEL_NEVER_BINDS_FLOOR",
+                  "provenance": "F-VS-234..237@85b940ff; DISPATCH_READ_THE_CLASSIFIER@2026-08-26; DISPATCH_ADMISSION_HAS_DIRECTION@2026-08-26; CC@85b940ff; F-VS-224/F-VS-229"
+                }
+              }
+            ],
+            "posterior_q50_cents": 27,
+            "posterior_mode_floor_side_cents": 27,
+            "posterior_continuous_cents": 27.007764986315824,
+            "floor_side_rounded_cents": 27,
+            "level_cents": 27,
+            "binding_floor_channel": {
+              "source": "OBSERVED_TRUE_TRADE_LOW",
+              "value_cents": 27,
+              "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+              "evidence_class": "TRADED",
+              "floor_decisiveness": 1,
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 9,
+              "lower_support_count": 22,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0.2903225806451613,
+              "supporting_shape_ids": [
+                "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+              ],
+              "elimination_support_share": 1,
+              "criterion_anchor_cents": 31,
+              "lowest_supported_floor_cents": 17,
+              "highest_supported_floor_cents": 27,
+              "per_leg_classification": {
+                "class_id": "PRINTED_FLOOR_WITH_EXACT_SHAPE_SUPPORT",
+                "leg_id": "BAR",
+                "value_cents": 27,
+                "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "depth_cents": 4,
+                "depth_sign": "BELOW_ANCHOR",
+                "descent_state": "OBSERVED_HIGH_ABOVE_PRINTED_LOW",
+                "evidenced_floor_source": "OBSERVED_TRUE_TRADE_LOW",
+                "observed_traded_high_cents": 28,
+                "observed_descent_cents": 1,
+                "above_anchor_excursion_cents": 0,
+                "observed_descent_satisfies_directional_depth": true,
+                "exact_shape_support": true,
+                "highest_supported_floor_cents": 27,
+                "distance_above_descent_path_cents": 0,
+                "descent_state_open": false,
+                "print_above_open_descent_path": false,
+                "prior_floor_predicate_passed": true,
+                "per_leg_grade_passed": true,
+                "admission_gate_passed": true,
+                "binding_floor_candidate": true,
+                "pricing_eligible": true,
+                "immunity_eligible": true,
+                "refusal_reason": null,
+                "provenance": "F-VS-234..237@85b940ff; DISPATCH_READ_THE_CLASSIFIER@2026-08-26; DISPATCH_ADMISSION_HAS_DIRECTION@2026-08-26; CC@85b940ff; F-VS-224/F-VS-229"
+              }
+            },
+            "unprinted_hypothesis_may_outvote_printed_descent_supported_floor": false,
+            "evidence_enters_once": true,
+            "self_echo_channel_present": false,
+            "method": "ONE_PER_LEG_CLASSIFIER; ONE_NORMALIZED_PANEL_PLUS_EXACT_PRICE_SUPPORT; PRINTED_DESCENT_SUPPORTED_FLOOR_BINDS_OVER_UNPRINTED_HYPOTHESES; PANEL_CANDIDATES_CONSULT_EACH_CHANNEL_ONCE; EVIDENCE_CANDIDATES_ARE_NOT_REWEIGHTED_BY_THEMSELVES; OTHERWISE_EMITTED_INTEGER_IS_WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK"
+          },
+          "exact_price_support": [
+            {
+              "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+              "source_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+              "conditioning_weight": 1,
+              "initial_support_weight": 1,
+              "licensed_floor_cents": 27,
+              "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+              "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+              "evidence_class": "TRADED",
+              "floor_decisiveness": 1,
+              "floor_decisiveness_basis": {
+                "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                "exact_support_count": 9,
+                "lower_support_count": 22,
+                "upper_support_count": 0,
+                "exact_given_candidate_or_lower": 0.2903225806451613,
+                "supporting_shape_ids": [
+                  "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                  "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                  "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                  "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                ],
+                "elimination_support_share": 1
+              }
+            },
+            {
+              "event_id": "OWN_EVIDENCE|SPREAD_EYE_EFFECTIVE_CLEARING_PRICE|4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+              "source_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+              "conditioning_weight": 0.2903225806451613,
+              "initial_support_weight": 0.2903225806451613,
+              "licensed_floor_cents": 27,
+              "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+              "evidence_source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+              "evidence_class": "TRADE_BACKED_SPREAD_CLEARING",
+              "floor_decisiveness": 0.2903225806451613,
+              "floor_decisiveness_basis": {
+                "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                "exact_support_count": 9,
+                "lower_support_count": 22,
+                "upper_support_count": 0,
+                "exact_given_candidate_or_lower": 0.2903225806451613,
+                "supporting_shape_ids": [
+                  "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                  "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                  "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                  "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                ],
+                "elimination_support_share": 1
+              }
+            }
+          ],
+          "decisive_evidence": {
+            "source": "OBSERVED_TRUE_TRADE_LOW",
+            "value_cents": 27,
+            "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+            "floor_decisiveness": 1,
+            "decisiveness_weight": 1,
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 9,
+            "lower_support_count": 22,
+            "elimination_support_share": 1
+          },
+          "per_leg_classification": {
+            "class_id": "PRINTED_FLOOR_WITH_EXACT_SHAPE_SUPPORT",
+            "leg_id": "BAR",
+            "value_cents": 27,
+            "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+            "depth_cents": 4,
+            "depth_sign": "BELOW_ANCHOR",
+            "descent_state": "OBSERVED_HIGH_ABOVE_PRINTED_LOW",
+            "evidenced_floor_source": "OBSERVED_TRUE_TRADE_LOW",
+            "observed_traded_high_cents": 28,
+            "observed_descent_cents": 1,
+            "above_anchor_excursion_cents": 0,
+            "observed_descent_satisfies_directional_depth": true,
+            "exact_shape_support": true,
+            "highest_supported_floor_cents": 27,
+            "distance_above_descent_path_cents": 0,
+            "descent_state_open": false,
+            "print_above_open_descent_path": false,
+            "prior_floor_predicate_passed": true,
+            "per_leg_grade_passed": true,
+            "admission_gate_passed": true,
+            "binding_floor_candidate": true,
+            "pricing_eligible": true,
+            "immunity_eligible": true,
+            "refusal_reason": null,
+            "provenance": "F-VS-234..237@85b940ff; DISPATCH_READ_THE_CLASSIFIER@2026-08-26; DISPATCH_ADMISSION_HAS_DIRECTION@2026-08-26; CC@85b940ff; F-VS-224/F-VS-229"
+          },
+          "classifier_consumed_by_pricing": true,
+          "conditioning_chain": {
+            "prior_cents": 29,
+            "prior_distribution": [
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26MAR10WONLAN",
+                "conditioning_weight": 0.15792731495054943,
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26MAR10WONLAN-LAN@minute_ts=1773172560"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26APR19SHEVAN",
+                "conditioning_weight": 0.043102451813354425,
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26APR19SHEVAN-SHE@minute_ts=1776576240"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26MAR01BITGUL",
+                "conditioning_weight": 0.03205230944155517,
+                "licensed_floor_cents": 43,
+                "source_receipt": "KXATPCHALLENGERMATCH-26MAR01BITGUL-BIT@minute_ts=1772322360"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB28GILBUT",
+                "conditioning_weight": 0.032012870392468896,
+                "licensed_floor_cents": 30,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB28GILBUT-GIL@minute_ts=1772223360"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB21KOUVAN",
+                "conditioning_weight": 0.15228016322751847,
+                "licensed_floor_cents": 29,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB21KOUVAN-KOU@minute_ts=1771686180"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB26MORSTR",
+                "conditioning_weight": 0.15223179337005652,
+                "licensed_floor_cents": 30,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB26MORSTR-MOR@minute_ts=1772127480"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26APR20CHIWON",
+                "conditioning_weight": 0.15187933473961562,
+                "licensed_floor_cents": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26APR20CHIWON-CHI@minute_ts=1776662460"
+              }
+            ],
+            "own_evidence_rows": [
+              {
+                "source": "OBSERVED_TRUE_TRADE_LOW",
+                "value_cents": 27,
+                "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "evidence_class": "TRADED",
+                "floor_decisiveness": 1,
+                "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                "exact_support_count": 9,
+                "lower_support_count": 22,
+                "upper_support_count": 0,
+                "exact_given_candidate_or_lower": 0.2903225806451613,
+                "supporting_shape_ids": [
+                  "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                  "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                  "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                  "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                ],
+                "elimination_support_share": 1,
+                "criterion_anchor_cents": 31,
+                "lowest_supported_floor_cents": 17,
+                "highest_supported_floor_cents": 27,
+                "per_leg_classification": {
+                  "class_id": "PRINTED_FLOOR_WITH_EXACT_SHAPE_SUPPORT",
+                  "leg_id": "BAR",
+                  "value_cents": 27,
+                  "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                  "depth_cents": 4,
+                  "depth_sign": "BELOW_ANCHOR",
+                  "descent_state": "OBSERVED_HIGH_ABOVE_PRINTED_LOW",
+                  "evidenced_floor_source": "OBSERVED_TRUE_TRADE_LOW",
+                  "observed_traded_high_cents": 28,
+                  "observed_descent_cents": 1,
+                  "above_anchor_excursion_cents": 0,
+                  "observed_descent_satisfies_directional_depth": true,
+                  "exact_shape_support": true,
+                  "highest_supported_floor_cents": 27,
+                  "distance_above_descent_path_cents": 0,
+                  "descent_state_open": false,
+                  "print_above_open_descent_path": false,
+                  "prior_floor_predicate_passed": true,
+                  "per_leg_grade_passed": true,
+                  "admission_gate_passed": true,
+                  "binding_floor_candidate": true,
+                  "pricing_eligible": true,
+                  "immunity_eligible": true,
+                  "refusal_reason": null,
+                  "provenance": "F-VS-234..237@85b940ff; DISPATCH_READ_THE_CLASSIFIER@2026-08-26; DISPATCH_ADMISSION_HAS_DIRECTION@2026-08-26; CC@85b940ff; F-VS-224/F-VS-229"
+                }
+              },
+              {
+                "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                "value_cents": 27,
+                "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "evidence_class": "TRADE_BACKED_SPREAD_CLEARING",
+                "floor_decisiveness": 0.2903225806451613,
+                "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                "exact_support_count": 9,
+                "lower_support_count": 22,
+                "upper_support_count": 0,
+                "exact_given_candidate_or_lower": 0.2903225806451613,
+                "supporting_shape_ids": [
+                  "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                  "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                  "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                  "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                ],
+                "elimination_support_share": 1,
+                "criterion_anchor_cents": 31,
+                "lowest_supported_floor_cents": 17,
+                "highest_supported_floor_cents": 27,
+                "per_leg_classification": {
+                  "class_id": "NON_PRINT_EVIDENCE_GRADED_NOT_BINDING",
+                  "leg_id": "BAR",
+                  "value_cents": 27,
+                  "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                  "depth_cents": 4,
+                  "depth_sign": "BELOW_ANCHOR",
+                  "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                  "evidenced_floor_source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                  "observed_traded_high_cents": 28,
+                  "observed_descent_cents": 0,
+                  "above_anchor_excursion_cents": 0,
+                  "observed_descent_satisfies_directional_depth": false,
+                  "exact_shape_support": true,
+                  "highest_supported_floor_cents": 27,
+                  "distance_above_descent_path_cents": 0,
+                  "descent_state_open": false,
+                  "print_above_open_descent_path": false,
+                  "prior_floor_predicate_passed": false,
+                  "per_leg_grade_passed": true,
+                  "admission_gate_passed": false,
+                  "binding_floor_candidate": false,
+                  "pricing_eligible": false,
+                  "immunity_eligible": false,
+                  "refusal_reason": "NON_PRINT_CHANNEL_NEVER_BINDS_FLOOR",
+                  "provenance": "F-VS-234..237@85b940ff; DISPATCH_READ_THE_CLASSIFIER@2026-08-26; DISPATCH_ADMISSION_HAS_DIRECTION@2026-08-26; CC@85b940ff; F-VS-224/F-VS-229"
+                }
+              }
+            ],
+            "conditioned_cents": null,
+            "final_level_cents": null,
+            "method": "ONE_PER_LEG_CLASSIFIER; ONE_NORMALIZED_PANEL_PLUS_EXACT_PRICE_SUPPORT; PRINTED_DESCENT_SUPPORTED_FLOOR_BINDS_OVER_UNPRINTED_HYPOTHESES; PANEL_CANDIDATES_CONSULT_EACH_CHANNEL_ONCE; EVIDENCE_CANDIDATES_ARE_NOT_REWEIGHTED_BY_THEMSELVES; OTHERWISE_EMITTED_INTEGER_IS_WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK",
+            "exact_price_support_joined": true,
+            "evidence_support_rows": [
+              {
+                "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "source_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "conditioning_weight": 1,
+                "initial_support_weight": 1,
+                "licensed_floor_cents": 27,
+                "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+                "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+                "evidence_class": "TRADED",
+                "floor_decisiveness": 1,
+                "floor_decisiveness_basis": {
+                  "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                  "exact_support_count": 9,
+                  "lower_support_count": 22,
+                  "upper_support_count": 0,
+                  "exact_given_candidate_or_lower": 0.2903225806451613,
+                  "supporting_shape_ids": [
+                    "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                    "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                    "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                    "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                  ],
+                  "elimination_support_share": 1
+                }
+              },
+              {
+                "event_id": "OWN_EVIDENCE|SPREAD_EYE_EFFECTIVE_CLEARING_PRICE|4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "source_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+                "conditioning_weight": 0.2903225806451613,
+                "initial_support_weight": 0.2903225806451613,
+                "licensed_floor_cents": 27,
+                "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+                "evidence_source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                "evidence_class": "TRADE_BACKED_SPREAD_CLEARING",
+                "floor_decisiveness": 0.2903225806451613,
+                "floor_decisiveness_basis": {
+                  "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                  "exact_support_count": 9,
+                  "lower_support_count": 22,
+                  "upper_support_count": 0,
+                  "exact_given_candidate_or_lower": 0.2903225806451613,
+                  "supporting_shape_ids": [
+                    "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                    "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                    "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                    "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+                  ],
+                  "elimination_support_share": 1
+                }
+              }
+            ],
+            "prior_to_conditioned_to_level": "29->NONE->NONE",
+            "replacement_operator_removed": true,
+            "each_channel_graded": true,
+            "traded_evidence_strongest": true,
+            "book_never_authors_without_prior": true,
+            "rounding": {
+              "continuous_cents": 27.007764986315824,
+              "directed_cents": 27,
+              "direction": "WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK",
+              "target_statistic": "POSTERIOR_WEIGHTED_MODE_FLOOR_SIDE_INTEGER",
+              "posterior_q50_cents": 27,
+              "provenance": "F-VS-233@86ca93f3"
+            },
+            "provenance": [
+              "F-VS-216/F-VS-218@a6e84246; F-VS-066/F-VS-068",
+              "F-VS-219..222@ad7138bd; F-VS-066; CONVICTION_BEFORE_THE_FLOOR@2026-08-25"
+            ]
+          },
+          "level_movement": {
+            "disposition": "MOVED_ON_NEW_MARKET_INPUT_OR_STATED_CONDITIONING_CHANGE",
+            "movement_kind": "WITHHELD",
+            "conditioning_changed": true,
+            "conditioning_inputs": {
+              "observed_traded_low_cents": 27,
+              "live_bid_cents": 28,
+              "live_ask_cents": 28,
+              "spread_eye_clearing_cents": 27,
+              "own_evidence_content": [
+                {
+                  "source": "OBSERVED_TRUE_TRADE_LOW",
+                  "value_cents": 27,
+                  "floor_decisiveness": 1,
+                  "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                  "exact_support_count": 9,
+                  "lower_support_count": 22,
+                  "elimination_support_share": 1
+                },
+                {
+                  "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                  "value_cents": 27,
+                  "floor_decisiveness": 0.2903225806451613,
+                  "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                  "exact_support_count": 9,
+                  "lower_support_count": 22,
+                  "elimination_support_share": 1
+                }
+              ],
+              "credited_sibling_entry_cents": null,
+              "credited_sibling_fill_receipt": null
+            },
+            "prior_authority_memory": {
+              "conditioning_signature": "{\"observed_traded_low_cents\":27,\"live_bid_cents\":27,\"live_ask_cents\":28,\"spread_eye_clearing_cents\":27,\"own_evidence_content\":[{\"source\":\"OBSERVED_TRUE_TRADE_LOW\",\"value_cents\":27,\"floor_decisiveness\":1,\"descent_state\":\"LOWER_SUPPORTED_FLOORS_REMAIN\",\"exact_support_count\":9,\"lower_support_count\":22,\"elimination_support_share\":1},{\"source\":\"CAUSAL_LIVE_BOOK_BID\",\"value_cents\":27,\"floor_decisiveness\":0.2903225806451613,\"descent_state\":\"LOWER_SUPPORTED_FLOORS_REMAIN\",\"exact_support_count\":9,\"lower_support_count\":22,\"elimination_support_share\":1},{\"source\":\"SPREAD_EYE_EFFECTIVE_CLEARING_PRICE\",\"value_cents\":27,\"floor_decisiveness\":0.2903225806451613,\"descent_state\":\"LOWER_SUPPORTED_FLOORS_REMAIN\",\"exact_support_count\":9,\"lower_support_count\":22,\"elimination_support_share\":1}],\"credited_sibling_entry_cents\":null,\"credited_sibling_fill_receipt\":null}",
+              "conditioning_inputs": {
+                "observed_traded_low_cents": 27,
+                "live_bid_cents": 27,
+                "live_ask_cents": 28,
+                "spread_eye_clearing_cents": 27,
+                "own_evidence_content": [
+                  {
+                    "source": "OBSERVED_TRUE_TRADE_LOW",
+                    "value_cents": 27,
+                    "floor_decisiveness": 1,
+                    "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                    "exact_support_count": 9,
+                    "lower_support_count": 22,
+                    "elimination_support_share": 1
+                  },
+                  {
+                    "source": "CAUSAL_LIVE_BOOK_BID",
+                    "value_cents": 27,
+                    "floor_decisiveness": 0.2903225806451613,
+                    "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                    "exact_support_count": 9,
+                    "lower_support_count": 22,
+                    "elimination_support_share": 1
+                  },
+                  {
+                    "source": "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE",
+                    "value_cents": 27,
+                    "floor_decisiveness": 0.2903225806451613,
+                    "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+                    "exact_support_count": 9,
+                    "lower_support_count": 22,
+                    "elimination_support_share": 1
+                  }
+                ],
+                "credited_sibling_entry_cents": null,
+                "credited_sibling_fill_receipt": null
+              },
+              "panel_prior_cents": 29,
+              "cross_category_cell_borrow": {
+                "status": "NOT_NEEDED_DIRECT_CELL_HAS_BELOW_ANCHOR_MEMBER",
+                "current_category": "ATP_CHALL",
+                "criterion_anchor_cents": 31,
+                "direct_vote_count": 7,
+                "direct_supports_below_anchor": true,
+                "cross_category_population": 149,
+                "cross_category_below_anchor_members": 119,
+                "empirical_grade": 0.7986577181208053,
+                "borrowed_votes": [],
+                "silent_ceiling_allowed": false,
+                "provenance": "F-VS-241@20a8a610; LOW_GRADE_CROSS_CATEGORY_MEMBERS_MISSING_DISCLOSURE"
+              },
+              "raw_conditioned_target_cents": 27,
+              "effective_target_cents": 27,
+              "live_ask_cents": 28,
+              "postable": true,
+              "evaluated_at_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-826"
+            },
+            "panel_recomposition_alone_may_move": false,
+            "provenance": "F-VS-217/F-VS-218@a6e84246; F-VS-134"
+          },
+          "independently_recomputed_engine_target_cents": 29,
+          "independently_recomputed_conditioned_target_cents": 27,
+          "independently_recomputed_authority_target_cents": null,
+          "production_target_matches_independent_recompute": true,
+          "authority_recompute_inputs": {
+            "specialist_map_votes": [
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26MAR10WONLAN",
+                "weight": 0.15792731495054943,
+                "value": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26MAR10WONLAN-LAN@minute_ts=1773172560"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26APR19SHEVAN",
+                "weight": 0.043102451813354425,
+                "value": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26APR19SHEVAN-SHE@minute_ts=1776576240"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26MAR01BITGUL",
+                "weight": 0.03205230944155517,
+                "value": 43,
+                "source_receipt": "KXATPCHALLENGERMATCH-26MAR01BITGUL-BIT@minute_ts=1772322360"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB28GILBUT",
+                "weight": 0.032012870392468896,
+                "value": 30,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB28GILBUT-GIL@minute_ts=1772223360"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB21KOUVAN",
+                "weight": 0.15228016322751847,
+                "value": 29,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB21KOUVAN-KOU@minute_ts=1771686180"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26FEB26MORSTR",
+                "weight": 0.15223179337005652,
+                "value": 30,
+                "source_receipt": "KXATPCHALLENGERMATCH-26FEB26MORSTR-MOR@minute_ts=1772127480"
+              },
+              {
+                "event_id": "KXATPCHALLENGERMATCH-26APR20CHIWON",
+                "weight": 0.15187933473961562,
+                "value": 25,
+                "source_receipt": "KXATPCHALLENGERMATCH-26APR20CHIWON-CHI@minute_ts=1776662460"
+              }
+            ],
+            "observed_traded_low_cents": 27,
+            "observed_traded_low_receipt": null,
+            "authority_method": "WEIGHTED_Q50_LICENSED_FLOOR_FROM_SPECIALIST_VOTES_CONDITIONED_BY_OWN_EVIDENCE"
+          },
+          "spread_eye_consumed": true,
+          "spread_eye_effective_clearing_price_cents": 27,
+          "spread_eye_reason": "SPREAD_EYE_REWEIGHTS_THE_PANEL_PRIOR_INSIDE_THE_SINGLE_AUTHORITY_AND_NEVER_COMMANDS_A_LANE",
+          "postability": {
+            "current_postable": false,
+            "prior_postable": true,
+            "became_lawful_on_current_book_receipt": false,
+            "current_ask_cents": 28,
+            "prior_ask_cents": 28,
+            "target_cents": null,
+            "provenance": "F-VS-232@86ca93f3; SAME_RECEIPT_ACT"
+          },
+          "live_bid_cents": 28,
+          "live_ask_cents": 28,
+          "target_from_licensed_rows": false,
+          "no_lane_may_replace_target": true,
+          "provenance": [
+            "DISPATCH_CONTRACTS_BUILD@2026-08-25",
+            "REGISTERED_TECHNIQUE_SPREAD_EYE@2026-08-25"
+          ]
+        },
+        "writer_lane": "LICENSED_FLOOR_TENURE",
+        "lane_level_replaced_authority": false,
+        "live_bid_relation": "REFERENCE_EVIDENCE_NOT_FINAL_LEVEL",
+        "technique_contract": "C02_FLOOR_TENURE_OVER_ALL_ROUTINE_MOVERS",
+        "locked_book_is_placement_law_only": true,
+        "existing_rest_cancelled_by_locked_book": false,
+        "active_floor_rest_cents": 27,
+        "evidenced_floor_cents": 27,
+        "active_target_crossed_live_ask": false,
+        "post_only_test": {
+          "target_cents": 27,
+          "live_ask_cents": 28,
+          "lawful_for_new_placement": true,
+          "existing_floor_rest_disposition": "IMMUNE_PENDING_TRADE_CREDIT_OR_ELIMINATION_OVERTURN",
+          "predicate": "AT_FLOOR_IMMUNITY_PRECEDES_ROUTINE_POST_ONLY_CANCEL"
+        },
+        "supporting_eliminations_overturned": false,
+        "supporting_elimination_overturn_evidence": [],
+        "immune_to": [
+          "CONTINUOUS_POST_ONLY",
+          "DISAGREES_EMBARGO",
+          "BELIEF_REPRICER",
+          "RESTORE_LANES"
+        ],
+        "only_lawful_exit": "SUPPORTING_ELIMINATION_OVERTURNED_OR_TRADE_CREDIT"
+      }
+    }
+  ],
+  "locked_book_cancelled_existing_rest_count": 0,
+  "same_receipt_floor_handoffs": [],
+  "allocation_and_cap_resnaps": [],
+  "every_resnap_names_traded_low_axis": true
+}

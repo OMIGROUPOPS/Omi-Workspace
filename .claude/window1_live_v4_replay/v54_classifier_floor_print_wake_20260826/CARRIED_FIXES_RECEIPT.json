@@ -1,0 +1,62 @@
+{
+  "label": "C04_CURRENT_AUTHORITY_SPAN_DIRECTION_PROTECTION_SINGLE_CANCEL_RESTORE",
+  "c04_current_authority_restore_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784031096.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-30469",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 58,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 58,
+      "stale_price_ignored_cents": 58
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784020209.484,
+      "receipt": "62c5acca-20b5-609e-9743-315bb552232f",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 56,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 56,
+      "stale_price_ignored_cents": 58
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784020655.000003,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1049",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 55,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 55,
+      "stale_price_ignored_cents": 55
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784036643.000006,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3297",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 54,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 54,
+      "stale_price_ignored_cents": 55
+    }
+  ],
+  "post_span_orders": [],
+  "away_from_floor_lift_violations": [],
+  "cancel_count": 5,
+  "cancel_without_rearm_count": 0,
+  "passed": true
+}

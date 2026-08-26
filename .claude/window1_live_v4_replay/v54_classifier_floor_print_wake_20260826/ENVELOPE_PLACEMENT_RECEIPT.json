@@ -1,0 +1,75 @@
+{
+  "label": "CONDITIONED_Q75_INSIDE_SPREAD_REACH_PLACEMENT_WITH_ATOMIC_REARM",
+  "rule": "Within a current coherent envelope stand at the phase-conditioned population q75, clipped to the lawful envelope below ask. A prior-receipt conviction may originate or reprice at the same conditioned q75 only after its survivor support is rechecked and its causal book basis is re-stated at this receipt; live touch remains subordinate.",
+  "numeric_placement_constant_added": false,
+  "rows_artifact": "ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+  "rows_count": 2429,
+  "giubar_rows_count": 5,
+  "giubar_receipts": [
+    {
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783833752.027,
+      "receipt": "505935b7-b8b1-4144-1e43-e3f22e873fb4",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 28,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "sentence_sha256": "48cf02738f0fe78315a326777bc8483684409251c4ddffcb43e41d5d5d3a41d7"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783833752.027,
+      "receipt": "505935b7-b8b1-4144-1e43-e3f22e873fb4",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 64,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "sentence_sha256": "fc97abe8532bd72828ed78eb6dccba64ec8061ca5d9b70c766ce857b33ed11d7"
+    },
+    {
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783833752.027,
+      "receipt": "d670b533-64d8-4c10-170e-3dc5fd83b6ab",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 28,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "sentence_sha256": "0c4e314bf0b422bfe2976c47ba571b5178da764825e017d9c24c219f2b29b6e1"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783833752.027,
+      "receipt": "d670b533-64d8-4c10-170e-3dc5fd83b6ab",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 64,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "sentence_sha256": "179bb96818639e956ffb4b1887eefca7c347c1ce387e6f3b920dfb79a9f78054"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783854004.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1024",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 69,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "9f29ccdf72ef00f466769bb55686a51c9f78cbace50021ffdb531ff1ea6c44b4"
+    }
+  ],
+  "migrations_count": 27,
+  "inconsistent_active_count": 149,
+  "every_inconsistent_active_resolved_same_receipt": true,
+  "cancel_and_replace_atomic_count": 0,
+  "fail_loud_no_lawful_replacement_count": 0,
+  "stale_envelope_originated_new_rest_count": 0,
+  "deep_edge_default_count": 0,
+  "giubar_licensed_envelope_21_32_present": false,
+  "giubar_bar_upper_quantile_reach_present": true,
+  "every_coherent_placement_uses_conditioned_q75": true
+}

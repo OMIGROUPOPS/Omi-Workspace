@@ -1,0 +1,88 @@
+{
+  "label": "REST_PRICED_CREDITING",
+  "law": "A qualifying print at-or-below a standing rest proves credit; the credited entry is the rest limit, never the lower triggering print.",
+  "law_index_read_at": "bcee2c40",
+  "findings": [
+    "F-VS-104",
+    "F-VS-105",
+    "F-VS-106"
+  ],
+  "fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "fill_timestamp_epoch": 1783841801.417,
+      "fill_receipt": "CR-2caf8fc92707af0bf9ecdefb00f882227ee4369eed36cbf0349948af0fef5b84",
+      "standing_rest_cents": 27,
+      "triggering_print_cents": 27,
+      "credited_entry_cents": 27,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "fill_timestamp_epoch": 1783865397.812,
+      "fill_receipt": "CR-5c0fc27632282002247652a96a256dcc0282fe2a82d2f8ae71a32c0386fb3cbd",
+      "standing_rest_cents": 69,
+      "triggering_print_cents": 69,
+      "credited_entry_cents": 69,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "fill_timestamp_epoch": 1784032697.6,
+      "fill_receipt": "CR-68db7cbc64f8b14c28230b3b31593d4b01d11498574e10a11938fdad78af6162",
+      "standing_rest_cents": 58,
+      "triggering_print_cents": 57,
+      "credited_entry_cents": 58,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "fill_timestamp_epoch": 1784041997.986,
+      "fill_receipt": "CR-22a006e5fe45fb82052748d0bf235f2208fccdd5de31f08521686fecf0753500",
+      "standing_rest_cents": 40,
+      "triggering_print_cents": 40,
+      "credited_entry_cents": 40,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "fill_timestamp_epoch": 1784020209.484,
+      "fill_receipt": "CR-9f93a4152160e13c5e392ebe1413749250f3908153df2856e26f351fbfa70b55",
+      "standing_rest_cents": 41,
+      "triggering_print_cents": 41,
+      "credited_entry_cents": 41,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "fill_timestamp_epoch": 1784050973.062,
+      "fill_receipt": "CR-c9bd12e204a3464aa64df78f6331cfd717cd2f7b4970c5b34de124181cec1795",
+      "standing_rest_cents": 54,
+      "triggering_print_cents": 54,
+      "credited_entry_cents": 54,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    }
+  ],
+  "fill_count": 6,
+  "prints_strictly_below_rest_count": 1,
+  "every_entry_equals_standing_rest": true,
+  "every_triggering_print_at_or_below_rest": true
+}

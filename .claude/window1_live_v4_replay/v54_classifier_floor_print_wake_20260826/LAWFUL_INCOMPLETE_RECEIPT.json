@@ -1,0 +1,2480 @@
+{
+  "label": "F_VS_121_LAWFUL_INCOMPLETE_ARITHMETIC_STAMPS",
+  "provenance": "F-VS-121@97411938",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "stamp": "NOT_APPLICABLE_COMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "BAR": 27,
+          "GIU": 66
+        },
+        "two_leg_floor_sum_cents": 93,
+        "strictly_under_par_offer_cents": 6,
+        "proof": "27+66=93; max(0,99-93)=6"
+      },
+      "rest_at_floor_rows": [
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783841801.304,
+          "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "8cd4a41e92b1076a1a6856141480c63dd86728ff10ab45ccfd207daa931e2de2",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|2898debe-683f-4cd1-7a5e-572e1b7ac028",
+            "source_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 27,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 9,
+              "lower_support_count": 22,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0.2903225806451613,
+              "supporting_shape_ids": [
+                "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+              ],
+              "elimination_support_share": 1
+            }
+          }
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783841801.311,
+          "receipt": "8448a2f2-ec42-633e-efe5-f36ffcbb02c3",
+          "action": "HOLD_REST",
+          "sentence_sha256": "35d60926fd5c25f2c29179dc2b4d2f94ba5b70663a0ed79ea3c8190833995f55",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|2898debe-683f-4cd1-7a5e-572e1b7ac028",
+            "source_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 27,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 9,
+              "lower_support_count": 22,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0.2903225806451613,
+              "supporting_shape_ids": [
+                "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+                "ATP_CHALL_26_50_INTERIM_PATH_03_ORD_3_4",
+                "ATP_CHALL_26_50_INTERIM_PATH_UNUSABLE_REMAINDER"
+              ],
+              "elimination_support_share": 1
+            }
+          }
+        }
+      ],
+      "prongs_by_leg": {
+        "BAR": {
+          "floor_cents": 27,
+          "derived_at_own_floor_evidence": true,
+          "conduct_allocated_leg": true,
+          "qualifying_receipts": [
+            {
+              "decision_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+              "floor_evidence_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+              "action": "REPRICE_REST"
+            },
+            {
+              "decision_receipt": "8448a2f2-ec42-633e-efe5-f36ffcbb02c3",
+              "floor_evidence_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+              "action": "HOLD_REST"
+            }
+          ],
+          "both_prongs_met": true
+        },
+        "GIU": {
+          "floor_cents": 66,
+          "derived_at_own_floor_evidence": false,
+          "conduct_allocated_leg": false,
+          "qualifying_receipts": [],
+          "both_prongs_met": false
+        }
+      },
+      "both_leg_prongs_met": false,
+      "rest_at_floor_proven": false,
+      "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001",
+      "unstamped_abstention_scores_zero": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "stamp": "NOT_APPLICABLE_COMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "PAL": 39,
+          "URS": 57
+        },
+        "two_leg_floor_sum_cents": 96,
+        "strictly_under_par_offer_cents": 3,
+        "proof": "39+57=96; max(0,99-96)=3"
+      },
+      "rest_at_floor_rows": [
+        {
+          "leg_id": "URS",
+          "floor_cents": 57,
+          "rest_cents": 57,
+          "timestamp_epoch": 1784001495.000001,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-7",
+          "action": "PLACE_REST",
+          "sentence_sha256": "b528aa3714a5e653d3533c3596d0c0a791de7da9d169f1944f5cef09d018891b",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "URS",
+          "floor_cents": 57,
+          "rest_cents": 57,
+          "timestamp_epoch": 1784001495.000002,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-8",
+          "action": "HOLD_REST",
+          "sentence_sha256": "2200851b18585b2728c20a84b6377ecdfbb69b4b870ae94d105cebd1880cd380",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "URS",
+          "floor_cents": 57,
+          "rest_cents": 57,
+          "timestamp_epoch": 1784004250.000002,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-49",
+          "action": "HOLD_REST",
+          "sentence_sha256": "e6fe8a3d201e95deb57c5e821c13e76b6ceac33594086eb5cf8fda0154ce3261",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "URS",
+          "floor_cents": 57,
+          "rest_cents": 57,
+          "timestamp_epoch": 1784004251.000001,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-50",
+          "action": "HOLD_REST",
+          "sentence_sha256": "eac5fb8e89abd4a36aff0964be420234ddf4d8dc3c660747abccedffd99f307a",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        }
+      ],
+      "prongs_by_leg": {
+        "PAL": {
+          "floor_cents": 39,
+          "derived_at_own_floor_evidence": false,
+          "conduct_allocated_leg": false,
+          "qualifying_receipts": [],
+          "both_prongs_met": false
+        },
+        "URS": {
+          "floor_cents": 57,
+          "derived_at_own_floor_evidence": false,
+          "conduct_allocated_leg": true,
+          "qualifying_receipts": [],
+          "both_prongs_met": false
+        }
+      },
+      "both_leg_prongs_met": false,
+      "rest_at_floor_proven": false,
+      "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002",
+      "unstamped_abstention_scores_zero": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "stamp": "NOT_APPLICABLE_COMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "LAJ": 51,
+          "SVA": 41
+        },
+        "two_leg_floor_sum_cents": 92,
+        "strictly_under_par_offer_cents": 7,
+        "proof": "51+41=92; max(0,99-92)=7"
+      },
+      "rest_at_floor_rows": [
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784020209.000006,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-450",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "a4725e0bdc736906baa68ded03dcd763ee0a0687889315236f41b3c1c3cb47c2",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|95992e7f-c30f-6ca9-7bac-082bc6399668",
+            "source_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 41,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 43,
+              "lower_support_count": 81,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0.3467741935483871,
+              "supporting_shape_ids": [
+                "ATP_CHALL_26_50_INTERIM_PATH_01_ORD_0_1",
+                "ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2"
+              ],
+              "elimination_support_share": 1
+            }
+          }
+        }
+      ],
+      "prongs_by_leg": {
+        "LAJ": {
+          "floor_cents": 51,
+          "derived_at_own_floor_evidence": false,
+          "conduct_allocated_leg": false,
+          "qualifying_receipts": [],
+          "both_prongs_met": false
+        },
+        "SVA": {
+          "floor_cents": 41,
+          "derived_at_own_floor_evidence": true,
+          "conduct_allocated_leg": true,
+          "qualifying_receipts": [
+            {
+              "decision_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-450",
+              "floor_evidence_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+              "action": "REPRICE_REST"
+            }
+          ],
+          "both_prongs_met": true
+        }
+      },
+      "both_leg_prongs_met": false,
+      "rest_at_floor_proven": false,
+      "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "unstamped_abstention_scores_zero": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "stamp": "UNSTAMPED_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "DAN": 59,
+          "PRA": 41
+        },
+        "two_leg_floor_sum_cents": 100,
+        "strictly_under_par_offer_cents": 0,
+        "proof": "59+41=100; max(0,99-100)=0"
+      },
+      "rest_at_floor_rows": [
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784332608.000026,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-597",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "b2beeff97affb167b3ead8dfc0595c10d120bdc9c5322efb6ad92bf1c7032995",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784332856.000058,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1179",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "710166d0a559617c2e6de86e665241fe6a6f56cd7f4a5ad4a5e5ff974efdfcf0",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784332873.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1181",
+          "action": "HOLD_REST",
+          "sentence_sha256": "c4dd7b64c09b73959c6a9d8a70b6e4c3644fd5f0e72d0a6854e0f0c8eccaae49",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784336963.017,
+          "receipt": "5c3e4f2c-cb1c-7a8a-c61c-2f6597821fb9",
+          "action": "HOLD_REST",
+          "sentence_sha256": "d2337d16bc37c9c869a5377619e76c6263e79019cadfa55414043e6c5fe44674",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784338460.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1482",
+          "action": "HOLD_REST",
+          "sentence_sha256": "c0ec98015c236f245a77df15bed984d0cebd39238efc2071b8263fa7103e1f10",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784339306.774,
+          "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+          "action": "HOLD_REST",
+          "sentence_sha256": "34c1a7fc53455f407907a7b14448be4068ed5d86837b525a25515eb059db4577",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784339443.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258",
+          "action": "HOLD_REST",
+          "sentence_sha256": "677dce494f287e45451d8f340a7c7bb84a3874b29537bbdd8427f30720b8cdab",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784340781.176,
+          "receipt": "64c0a5d8-6433-51fe-50cc-0434ba1ef366",
+          "action": "HOLD_REST",
+          "sentence_sha256": "7c2ef55089f91524d7c44c2c7ba19b10c032bdc9fe586fac01006fe5772c7a47",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784341325.000018,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1339",
+          "action": "HOLD_REST",
+          "sentence_sha256": "f8585e34ef7b5215334832372f60021ed8ed780792a5c04d0c55dea9592300d8",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784341326.000003,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1583",
+          "action": "HOLD_REST",
+          "sentence_sha256": "5027dbda9a61d89c0c8ff6290a850d72c231f62105edcc9897c494413b4ce8d6",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784341326.393,
+          "receipt": "b1010b8c-11f5-6b9a-25e3-b04bbee26d4f",
+          "action": "HOLD_REST",
+          "sentence_sha256": "92d498f4f79f7a9b6be694c051c08ac5285dfe7f3b9f329b565c35e622c3adc4",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": null
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784347275.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9651",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "5d7daf2674a9ee48b3d32ef23f587f37c5155405e9c864a9485fc3b469ef0ef2",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784348008.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2581",
+          "action": "HOLD_REST",
+          "sentence_sha256": "836853276e7e9270e3ca1f1ee0d044153941af31e988e982c11bec9241e6c238",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784348245.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2582",
+          "action": "HOLD_REST",
+          "sentence_sha256": "a07ad85e625c561bd91dc9bf8e780c3352d59c83c7f2a5ece03aff570b189c68",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784348976.133,
+          "receipt": "9481e2a4-6a53-52e9-afb8-f8bf51396c14",
+          "action": "HOLD_REST",
+          "sentence_sha256": "9b14e942944aaa26f4a112069171a571211f1deba55168e918e4846c020ea364",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784349084.41,
+          "receipt": "4cacebcb-82a7-6ead-6f72-4310307f14e4",
+          "action": "HOLD_REST",
+          "sentence_sha256": "45e327d4caa02366f6ae4806d8850b47ef951037093982ed5bc2ac1629d10982",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784349132.533,
+          "receipt": "3f3180db-e2d7-690d-5644-f1f99251a978",
+          "action": "HOLD_REST",
+          "sentence_sha256": "6561f2466bfdb8ec7e66b68cb739719e9a66edf91d490e284b141f240cb17e2d",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784349344.641,
+          "receipt": "cefe72fc-2103-5af5-6c3b-65d73ac6f58c",
+          "action": "HOLD_REST",
+          "sentence_sha256": "24e9adbd3c38410d8cec9a8c27613d9deac017959c880bbb0bfa17be6a64e3e1",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784349391.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2641",
+          "action": "HOLD_REST",
+          "sentence_sha256": "9b88ee8dd1d9fa5e9d089bef0c15845530229757550db2dd6a7b3e786566b720",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784351935.842,
+          "receipt": "5198619d-86a7-7a35-0757-8819a46a6cc8",
+          "action": "HOLD_REST",
+          "sentence_sha256": "256cb6c47fc21f0be5c0ecf2350f1e5f13245d917beb6f0c57f0dae99f085de9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784352624.876,
+          "receipt": "c7944353-8ad7-67a5-978b-0bc2d9c3ddcc",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ead83ddad17c93c64fa9b168bdba13c1a9653658b7bd77a639cb9d03b0bb8c84",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784359387.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10406",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ddccbc0832adc89dfdf597e842817799a36139b30c4cf39e92869f1234fc598a",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784359759.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10520",
+          "action": "HOLD_REST",
+          "sentence_sha256": "4e232b13d746068ae9b7e3d7159425616a75fc618a169492596be0c56f5de246",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784359772.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2894",
+          "action": "HOLD_REST",
+          "sentence_sha256": "225bf2de13e307af5ab5af13afee31e164e1a8cc8e5fa2c0ed8c1ebd467a4fa0",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360023.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10544",
+          "action": "HOLD_REST",
+          "sentence_sha256": "33411cd37223150f95ecf8cc36f31d2bf688e638726669798da0c4c6ae243e4a",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360847.000008,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10576",
+          "action": "HOLD_REST",
+          "sentence_sha256": "d476c00b91d11ff49df71facebcfe5f4ee9f5c92c6ee0bad2def07e892e6a071",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360967.000006,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+          "action": "HOLD_REST",
+          "sentence_sha256": "999468107d02b7f14b3e5d8e0d78bdd5077864a60fcb03fe547abcb1e43b5db1",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360968.00001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2950",
+          "action": "HOLD_REST",
+          "sentence_sha256": "1167878521c73970faca853680b87d6d5ada8d8ffc530dad44ad375c6d1a9a1b",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360969.000013,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2963",
+          "action": "HOLD_REST",
+          "sentence_sha256": "5251797d0a83570b693d24e0f36df274f31bb27be9b66052a89df06fafe7c973",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360970.000008,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2971",
+          "action": "HOLD_REST",
+          "sentence_sha256": "cef04e6b088b59b5392a651eacd355348aa6aa07bfbf3c7061a9f0eeb1d67169",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360971.000014,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2985",
+          "action": "HOLD_REST",
+          "sentence_sha256": "8b3fbc1c5382c185c0942081ff421060d830ebc74a2a1ffc63e29057e382d53c",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784369248.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3294",
+          "action": "HOLD_REST",
+          "sentence_sha256": "38a18fbdd5c58bb6b7948e571169ac23766967cf3d69c455f7390bfdb4f697a8",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784369249.287,
+          "receipt": "6a5b1a68-a916-4763-e3ac-786bf85a68fa",
+          "action": "HOLD_REST",
+          "sentence_sha256": "e97550083694e28ee570f12a042ff7f152d53779eae1a80ea3da3c60ade3996a",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784370685.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11028",
+          "action": "HOLD_REST",
+          "sentence_sha256": "3dc689f3847f18336b66c51d4a73b9db777544de092439b1edbdcd3c50f7023f",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784371605.389,
+          "receipt": "8a925a9f-1f2c-4ee4-eb77-e488e41c5b3c",
+          "action": "HOLD_REST",
+          "sentence_sha256": "0e78f24dae0fd93e78412be317211ba99ed40c0b1013116b6b6b687d237c03c4",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784371941.772,
+          "receipt": "f68000e5-769c-4dd0-c0b4-704e448d1e28",
+          "action": "HOLD_REST",
+          "sentence_sha256": "a561524b103f50f3059441f919815d20b79d98b18c51c61c2e955d89ba9120f0",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784372115.641,
+          "receipt": "7063fdc3-ffec-5b68-a885-25ae0c29e2d0",
+          "action": "HOLD_REST",
+          "sentence_sha256": "50af24d1f68e3a53d77286e87093b5e63f509ed47913b33db1dbb41bd808ec4e",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784372133.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11189",
+          "action": "HOLD_REST",
+          "sentence_sha256": "eff2f7b597bfac1c53934115cbf48441e34008682e7a8ecbb784acb2d1b00c12",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+          "observed_floor_evidence": {
+            "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+            "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "conditioning_weight": 1,
+            "initial_support_weight": 1,
+            "licensed_floor_cents": 59,
+            "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+            "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+            "evidence_class": "TRADED",
+            "floor_decisiveness": 1,
+            "floor_decisiveness_basis": {
+              "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+              "exact_support_count": 0,
+              "lower_support_count": 68,
+              "upper_support_count": 0,
+              "exact_given_candidate_or_lower": 0,
+              "supporting_shape_ids": [],
+              "elimination_support_share": 0
+            }
+          }
+        }
+      ],
+      "prongs_by_leg": {
+        "DAN": {
+          "floor_cents": 59,
+          "derived_at_own_floor_evidence": true,
+          "conduct_allocated_leg": true,
+          "qualifying_receipts": [
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9651",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "REPRICE_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2581",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2582",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "9481e2a4-6a53-52e9-afb8-f8bf51396c14",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "4cacebcb-82a7-6ead-6f72-4310307f14e4",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "3f3180db-e2d7-690d-5644-f1f99251a978",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "cefe72fc-2103-5af5-6c3b-65d73ac6f58c",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2641",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "5198619d-86a7-7a35-0757-8819a46a6cc8",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "c7944353-8ad7-67a5-978b-0bc2d9c3ddcc",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10406",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10520",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2894",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10544",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10576",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2950",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2963",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2971",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2985",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3294",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "6a5b1a68-a916-4763-e3ac-786bf85a68fa",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11028",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "8a925a9f-1f2c-4ee4-eb77-e488e41c5b3c",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "f68000e5-769c-4dd0-c0b4-704e448d1e28",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "7063fdc3-ffec-5b68-a885-25ae0c29e2d0",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            },
+            {
+              "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11189",
+              "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+              "action": "HOLD_REST"
+            }
+          ],
+          "both_prongs_met": true
+        },
+        "PRA": {
+          "floor_cents": 41,
+          "derived_at_own_floor_evidence": false,
+          "conduct_allocated_leg": true,
+          "qualifying_receipts": [],
+          "both_prongs_met": false
+        }
+      },
+      "both_leg_prongs_met": false,
+      "rest_at_floor_proven": false,
+      "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+      "unstamped_abstention_scores_zero": true
+    }
+  ],
+  "danpra": {
+    "event_id": "KXATPMATCH-26JUL18DANPRA",
+    "stamp": "UNSTAMPED_INCOMPLETE",
+    "arithmetic": {
+      "floor_by_leg_cents": {
+        "DAN": 59,
+        "PRA": 41
+      },
+      "two_leg_floor_sum_cents": 100,
+      "strictly_under_par_offer_cents": 0,
+      "proof": "59+41=100; max(0,99-100)=0"
+    },
+    "rest_at_floor_rows": [
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784332608.000026,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-597",
+        "action": "REPRICE_REST",
+        "sentence_sha256": "b2beeff97affb167b3ead8dfc0595c10d120bdc9c5322efb6ad92bf1c7032995",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784332856.000058,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1179",
+        "action": "REPRICE_REST",
+        "sentence_sha256": "710166d0a559617c2e6de86e665241fe6a6f56cd7f4a5ad4a5e5ff974efdfcf0",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784332873.000001,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1181",
+        "action": "HOLD_REST",
+        "sentence_sha256": "c4dd7b64c09b73959c6a9d8a70b6e4c3644fd5f0e72d0a6854e0f0c8eccaae49",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784336963.017,
+        "receipt": "5c3e4f2c-cb1c-7a8a-c61c-2f6597821fb9",
+        "action": "HOLD_REST",
+        "sentence_sha256": "d2337d16bc37c9c869a5377619e76c6263e79019cadfa55414043e6c5fe44674",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784338460.000002,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1482",
+        "action": "HOLD_REST",
+        "sentence_sha256": "c0ec98015c236f245a77df15bed984d0cebd39238efc2071b8263fa7103e1f10",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784339306.774,
+        "receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+        "action": "HOLD_REST",
+        "sentence_sha256": "34c1a7fc53455f407907a7b14448be4068ed5d86837b525a25515eb059db4577",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784339443.000002,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258",
+        "action": "HOLD_REST",
+        "sentence_sha256": "677dce494f287e45451d8f340a7c7bb84a3874b29537bbdd8427f30720b8cdab",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784340781.176,
+        "receipt": "64c0a5d8-6433-51fe-50cc-0434ba1ef366",
+        "action": "HOLD_REST",
+        "sentence_sha256": "7c2ef55089f91524d7c44c2c7ba19b10c032bdc9fe586fac01006fe5772c7a47",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784341325.000018,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1339",
+        "action": "HOLD_REST",
+        "sentence_sha256": "f8585e34ef7b5215334832372f60021ed8ed780792a5c04d0c55dea9592300d8",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784341326.000003,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1583",
+        "action": "HOLD_REST",
+        "sentence_sha256": "5027dbda9a61d89c0c8ff6290a850d72c231f62105edcc9897c494413b4ce8d6",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784341326.393,
+        "receipt": "b1010b8c-11f5-6b9a-25e3-b04bbee26d4f",
+        "action": "HOLD_REST",
+        "sentence_sha256": "92d498f4f79f7a9b6be694c051c08ac5285dfe7f3b9f329b565c35e622c3adc4",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": null
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784347275.000001,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9651",
+        "action": "REPRICE_REST",
+        "sentence_sha256": "5d7daf2674a9ee48b3d32ef23f587f37c5155405e9c864a9485fc3b469ef0ef2",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784348008.000001,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2581",
+        "action": "HOLD_REST",
+        "sentence_sha256": "836853276e7e9270e3ca1f1ee0d044153941af31e988e982c11bec9241e6c238",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784348245.000001,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2582",
+        "action": "HOLD_REST",
+        "sentence_sha256": "a07ad85e625c561bd91dc9bf8e780c3352d59c83c7f2a5ece03aff570b189c68",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784348976.133,
+        "receipt": "9481e2a4-6a53-52e9-afb8-f8bf51396c14",
+        "action": "HOLD_REST",
+        "sentence_sha256": "9b14e942944aaa26f4a112069171a571211f1deba55168e918e4846c020ea364",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784349084.41,
+        "receipt": "4cacebcb-82a7-6ead-6f72-4310307f14e4",
+        "action": "HOLD_REST",
+        "sentence_sha256": "45e327d4caa02366f6ae4806d8850b47ef951037093982ed5bc2ac1629d10982",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784349132.533,
+        "receipt": "3f3180db-e2d7-690d-5644-f1f99251a978",
+        "action": "HOLD_REST",
+        "sentence_sha256": "6561f2466bfdb8ec7e66b68cb739719e9a66edf91d490e284b141f240cb17e2d",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784349344.641,
+        "receipt": "cefe72fc-2103-5af5-6c3b-65d73ac6f58c",
+        "action": "HOLD_REST",
+        "sentence_sha256": "24e9adbd3c38410d8cec9a8c27613d9deac017959c880bbb0bfa17be6a64e3e1",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784349391.000001,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2641",
+        "action": "HOLD_REST",
+        "sentence_sha256": "9b88ee8dd1d9fa5e9d089bef0c15845530229757550db2dd6a7b3e786566b720",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784351935.842,
+        "receipt": "5198619d-86a7-7a35-0757-8819a46a6cc8",
+        "action": "HOLD_REST",
+        "sentence_sha256": "256cb6c47fc21f0be5c0ecf2350f1e5f13245d917beb6f0c57f0dae99f085de9",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784352624.876,
+        "receipt": "c7944353-8ad7-67a5-978b-0bc2d9c3ddcc",
+        "action": "HOLD_REST",
+        "sentence_sha256": "ead83ddad17c93c64fa9b168bdba13c1a9653658b7bd77a639cb9d03b0bb8c84",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784359387.000002,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10406",
+        "action": "HOLD_REST",
+        "sentence_sha256": "ddccbc0832adc89dfdf597e842817799a36139b30c4cf39e92869f1234fc598a",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784359759.000002,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10520",
+        "action": "HOLD_REST",
+        "sentence_sha256": "4e232b13d746068ae9b7e3d7159425616a75fc618a169492596be0c56f5de246",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784359772.000001,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2894",
+        "action": "HOLD_REST",
+        "sentence_sha256": "225bf2de13e307af5ab5af13afee31e164e1a8cc8e5fa2c0ed8c1ebd467a4fa0",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784360023.000002,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10544",
+        "action": "HOLD_REST",
+        "sentence_sha256": "33411cd37223150f95ecf8cc36f31d2bf688e638726669798da0c4c6ae243e4a",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784360847.000008,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10576",
+        "action": "HOLD_REST",
+        "sentence_sha256": "d476c00b91d11ff49df71facebcfe5f4ee9f5c92c6ee0bad2def07e892e6a071",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784360967.000006,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+        "action": "HOLD_REST",
+        "sentence_sha256": "999468107d02b7f14b3e5d8e0d78bdd5077864a60fcb03fe547abcb1e43b5db1",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784360968.00001,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2950",
+        "action": "HOLD_REST",
+        "sentence_sha256": "1167878521c73970faca853680b87d6d5ada8d8ffc530dad44ad375c6d1a9a1b",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784360969.000013,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2963",
+        "action": "HOLD_REST",
+        "sentence_sha256": "5251797d0a83570b693d24e0f36df274f31bb27be9b66052a89df06fafe7c973",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784360970.000008,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2971",
+        "action": "HOLD_REST",
+        "sentence_sha256": "cef04e6b088b59b5392a651eacd355348aa6aa07bfbf3c7061a9f0eeb1d67169",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784360971.000014,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2985",
+        "action": "HOLD_REST",
+        "sentence_sha256": "8b3fbc1c5382c185c0942081ff421060d830ebc74a2a1ffc63e29057e382d53c",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784369248.000002,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3294",
+        "action": "HOLD_REST",
+        "sentence_sha256": "38a18fbdd5c58bb6b7948e571169ac23766967cf3d69c455f7390bfdb4f697a8",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784369249.287,
+        "receipt": "6a5b1a68-a916-4763-e3ac-786bf85a68fa",
+        "action": "HOLD_REST",
+        "sentence_sha256": "e97550083694e28ee570f12a042ff7f152d53779eae1a80ea3da3c60ade3996a",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784370685.000002,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11028",
+        "action": "HOLD_REST",
+        "sentence_sha256": "3dc689f3847f18336b66c51d4a73b9db777544de092439b1edbdcd3c50f7023f",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784371605.389,
+        "receipt": "8a925a9f-1f2c-4ee4-eb77-e488e41c5b3c",
+        "action": "HOLD_REST",
+        "sentence_sha256": "0e78f24dae0fd93e78412be317211ba99ed40c0b1013116b6b6b687d237c03c4",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784371941.772,
+        "receipt": "f68000e5-769c-4dd0-c0b4-704e448d1e28",
+        "action": "HOLD_REST",
+        "sentence_sha256": "a561524b103f50f3059441f919815d20b79d98b18c51c61c2e955d89ba9120f0",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784372115.641,
+        "receipt": "7063fdc3-ffec-5b68-a885-25ae0c29e2d0",
+        "action": "HOLD_REST",
+        "sentence_sha256": "50af24d1f68e3a53d77286e87093b5e63f509ed47913b33db1dbb41bd808ec4e",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      },
+      {
+        "leg_id": "DAN",
+        "floor_cents": 59,
+        "rest_cents": 59,
+        "timestamp_epoch": 1784372133.000002,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11189",
+        "action": "HOLD_REST",
+        "sentence_sha256": "eff2f7b597bfac1c53934115cbf48441e34008682e7a8ecbb784acb2d1b00c12",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "observed_floor_evidence": {
+          "event_id": "OWN_EVIDENCE|OBSERVED_TRUE_TRADE_LOW|13000d90-56b7-47c6-d215-44e55482fbfa",
+          "source_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+          "conditioning_weight": 1,
+          "initial_support_weight": 1,
+          "licensed_floor_cents": 59,
+          "support_source": "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+          "evidence_source": "OBSERVED_TRUE_TRADE_LOW",
+          "evidence_class": "TRADED",
+          "floor_decisiveness": 1,
+          "floor_decisiveness_basis": {
+            "descent_state": "LOWER_SUPPORTED_FLOORS_REMAIN",
+            "exact_support_count": 0,
+            "lower_support_count": 68,
+            "upper_support_count": 0,
+            "exact_given_candidate_or_lower": 0,
+            "supporting_shape_ids": [],
+            "elimination_support_share": 0
+          }
+        }
+      }
+    ],
+    "prongs_by_leg": {
+      "DAN": {
+        "floor_cents": 59,
+        "derived_at_own_floor_evidence": true,
+        "conduct_allocated_leg": true,
+        "qualifying_receipts": [
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9651",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "REPRICE_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2581",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2582",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "9481e2a4-6a53-52e9-afb8-f8bf51396c14",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "4cacebcb-82a7-6ead-6f72-4310307f14e4",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "3f3180db-e2d7-690d-5644-f1f99251a978",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "cefe72fc-2103-5af5-6c3b-65d73ac6f58c",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2641",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "5198619d-86a7-7a35-0757-8819a46a6cc8",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "c7944353-8ad7-67a5-978b-0bc2d9c3ddcc",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10406",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10520",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2894",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10544",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10576",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2950",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2963",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2971",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2985",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3294",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "6a5b1a68-a916-4763-e3ac-786bf85a68fa",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11028",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "8a925a9f-1f2c-4ee4-eb77-e488e41c5b3c",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "f68000e5-769c-4dd0-c0b4-704e448d1e28",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "7063fdc3-ffec-5b68-a885-25ae0c29e2d0",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          },
+          {
+            "decision_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11189",
+            "floor_evidence_receipt": "13000d90-56b7-47c6-d215-44e55482fbfa",
+            "action": "HOLD_REST"
+          }
+        ],
+        "both_prongs_met": true
+      },
+      "PRA": {
+        "floor_cents": 41,
+        "derived_at_own_floor_evidence": false,
+        "conduct_allocated_leg": true,
+        "qualifying_receipts": [],
+        "both_prongs_met": false
+      }
+    },
+    "both_leg_prongs_met": false,
+    "rest_at_floor_proven": false,
+    "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+    "unstamped_abstention_scores_zero": true
+  },
+  "unstamped_incomplete_games_score_zero": true
+}

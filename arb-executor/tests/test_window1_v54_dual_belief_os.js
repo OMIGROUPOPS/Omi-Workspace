@@ -221,7 +221,7 @@ assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.mi
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_restored_to_decision_path));
-assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method === "ONE_NORMALIZED_PANEL_PLUS_EXACT_PRICE_SUPPORT; OWN_EVIDENCE_WEIGHT_EQUALS_FLOOR_DECISIVENESS_FROM_DESCENT_ELIMINATION_AND_DOWNSIDE; PANEL_CANDIDATES_CONSULT_EACH_CHANNEL_ONCE; EVIDENCE_CANDIDATES_ARE_NOT_REWEIGHTED_BY_THEMSELVES; EMITTED_INTEGER_IS_WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method.includes("ONE_PER_LEG_CLASSIFIER")));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.exact_price_support_joined));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.exact_price_support.some((support) => support.support_source === "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE")));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.rounding.direction === "WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK"));
@@ -286,6 +286,26 @@ assert(postCredit.credited_leg_streams.AAA, "credited leg must remain in the rea
 assert.equal(postCredit.credited_leg_streams.AAA.current_receipt, "credited-a-keeps-reading");
 assert.equal(postCredit.credited_leg_streams.AAA.sibling_feed_live, true);
 assert.equal(postCredit.credited_leg_streams.AAA.action_emission_allowed, false);
+
+// F-VS-234..237: the one per-leg classifier admits a printed floor only
+// after causal descent (or exact survivor support). Event identity is absent.
+const classifierMeta = { ...meta, event_id: "CLASSIFIER-EVENT", leg_ids: ["LEG", "SIB"], anchors_cents: { LEG: 67, SIB: 33 } };
+const classifierState = os.createTapeState(classifierMeta);
+os.observe(classifierState, "LEG", { timestamp_epoch: 210, receipt: "leg-print-69", kind: "PRINT", price_cents: 69, size: 5 });
+const classifierCriterion = { anchor_cents: 67, candidate_depth_counts: { 1: 31, 3: 10 }, shape_supports: [] };
+const unsupported69 = os.classifyPerLegFloorEvidence({ state: classifierState, legId: "LEG", criterion: classifierCriterion, source: "OBSERVED_TRUE_TRADE_LOW", valueCents: 69, receipt: "leg-print-69" });
+assert.equal(unsupported69.binding_floor_candidate, false);
+assert.equal(unsupported69.depth_sign, "ABOVE_ANCHOR");
+assert.equal(unsupported69.refusal_reason, "PRINT_HAS_NO_CAUSAL_DESCENT_OR_EXACT_SURVIVOR_SUPPORT");
+os.observe(classifierState, "LEG", { timestamp_epoch: 220, receipt: "leg-print-66", kind: "PRINT", price_cents: 66, size: 5 });
+const supported66 = os.classifyPerLegFloorEvidence({ state: classifierState, legId: "LEG", criterion: classifierCriterion, source: "OBSERVED_TRUE_TRADE_LOW", valueCents: 66, receipt: "leg-print-66" });
+assert.equal(supported66.binding_floor_candidate, true);
+assert.equal(supported66.descent_state, "OBSERVED_HIGH_ABOVE_PRINTED_LOW");
+const outOfGridState = os.createTapeState({ ...classifierMeta, anchors_cents: { LEG: 58, SIB: 42 } });
+os.observe(outOfGridState, "LEG", { timestamp_epoch: 210, receipt: "leg-print-62", kind: "PRINT", price_cents: 62, size: 5 });
+os.observe(outOfGridState, "LEG", { timestamp_epoch: 220, receipt: "leg-print-59", kind: "PRINT", price_cents: 59, size: 5 });
+const supported59 = os.classifyPerLegFloorEvidence({ state: outOfGridState, legId: "LEG", criterion: { anchor_cents: 58, candidate_depth_counts: { 0: 68, 2: 12 }, shape_supports: [] }, source: "OBSERVED_TRUE_TRADE_LOW", valueCents: 59, receipt: "leg-print-59" });
+assert.equal(supported59.binding_floor_candidate, true, "a direction-supported printed floor outside the static grid must remain derivable");
 
 const noOpinionState = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(noOpinionState, leg, { timestamp_epoch: ts, receipt: `noop-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });

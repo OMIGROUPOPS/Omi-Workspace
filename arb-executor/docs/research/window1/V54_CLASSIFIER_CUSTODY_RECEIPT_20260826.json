@@ -1,0 +1,55 @@
+{
+  "schema": "V54_CLASSIFIER_CUSTODY_RECEIPT_V1",
+  "law": "L22",
+  "dispatch": "READ_THE_CLASSIFIER_PRINTS_WAKE_THE_ENGINE",
+  "status": "RECOVERED_AND_HASH_BOUND",
+  "scope": {
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false,
+    "deployment": false
+  },
+  "pre_score_artifacts": [
+    {
+      "attempt": "attempt_1",
+      "original_location": "C:/tmp/v54-floor-decisiveness-mechanical-failure-pre-score",
+      "custody_location": "C:/Users/omigr/OMI-Window1-private/stage1_store/v54_floor_decisiveness_pre_score_failures_20260826/attempt_1",
+      "recovered": true,
+      "file_count": 47,
+      "total_bytes": 1510329877,
+      "sorted_path_bytes_sha256_manifest_digest": "de5c28e20ff10ff0ef479dacc1ea059d312503bae80a375431b2841eb4e8ab64",
+      "key_files": {
+        "REPAIR_FOUR_GAME_TRACE.jsonl.gz": { "bytes": 379459692, "sha256": "ae8ec06a49c6f470a1b350ca9ae37812bf0f7b3659047e7ed33bca94c8c55ff1" },
+        "PRICING_AUTHORITY_RECEIPT.json": { "bytes": 343921465, "sha256": "7af2eaa4737e8dde60b38ca0c1c0d575cf93ada8b6156f7161f337d74f73a5cc" },
+        "CARRIED_CONVICTION_RECEIPT.json": { "bytes": 487578893, "sha256": "dff6868ed6aa5e806b83dd79330baf351e907eb342e4acd90730fc49aab9de82" },
+        "DETERMINISM_RECEIPT.json": { "bytes": 2841, "sha256": "17092234f8fa003f7eb49aaeb7ac835e31e887f163cf1d2c53ae8701834d61ec" },
+        "EXTERNAL_CUSTODY_MANIFEST.json": { "bytes": 2463, "sha256": "2cc437d1d4ec7450309654360e42bf23af3f0eec0745af1770769ac3733c2fc7" }
+      }
+    },
+    {
+      "attempt": "attempt_2",
+      "original_location": "C:/tmp/v54-floor-decisiveness-mechanical-failure-pre-score-2",
+      "custody_location": "C:/Users/omigr/OMI-Window1-private/stage1_store/v54_floor_decisiveness_pre_score_failures_20260826/attempt_2",
+      "recovered": true,
+      "file_count": 61,
+      "total_bytes": 1616112281,
+      "sorted_path_bytes_sha256_manifest_digest": "4cd49c0c718217b879c828165beb6e98f6fdac8287d41781f5f96bcea76562ee",
+      "key_files": {
+        "REPAIR_FOUR_GAME_TRACE.jsonl.gz": { "bytes": 379459692, "sha256": "ae8ec06a49c6f470a1b350ca9ae37812bf0f7b3659047e7ed33bca94c8c55ff1" },
+        "PRICING_AUTHORITY_RECEIPT.json": { "bytes": 343921465, "sha256": "7af2eaa4737e8dde60b38ca0c1c0d575cf93ada8b6156f7161f337d74f73a5cc" },
+        "CARRIED_CONVICTION_RECEIPT.json": { "bytes": 487578893, "sha256": "dff6868ed6aa5e806b83dd79330baf351e907eb342e4acd90730fc49aab9de82" },
+        "DETERMINISM_RECEIPT.json": { "bytes": 2841, "sha256": "17092234f8fa003f7eb49aaeb7ac835e31e887f163cf1d2c53ae8701834d61ec" },
+        "EXTERNAL_CUSTODY_MANIFEST.json": { "bytes": 2463, "sha256": "2cc437d1d4ec7450309654360e42bf23af3f0eec0745af1770769ac3733c2fc7" }
+      }
+    }
+  ],
+  "current_build_mechanical_attempt": {
+    "custody_location": "C:/Users/omigr/OMI-Window1-private/stage1_store/v54_classifier_floor_print_wake_20260826_mechanical_attempt1",
+    "score_adjudication": "VOID_MECHANICAL_PRECEDENT",
+    "causes": [
+      "credited-leg floor prints were logged but did not execute evaluateStage",
+      "same-timestamp floor checker compared against later receipts instead of the exact receipt grain"
+    ],
+    "resolution": "corrected run executed once from frozen inputs; no post-outcome policy adjustment"
+  }
+}

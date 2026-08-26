@@ -1,0 +1,95 @@
+{
+  "label": "F_VS_192_CAPTURED_REST_LICENSE_IS_NOT_A_FLOOR_PRODUCER",
+  "provenance": [
+    "F-VS-192@2941cd15",
+    "DEFINITION_LOCK"
+  ],
+  "true_floor_source": "OBSERVED_TRUE_TRADE_PRINT_PREFIX_ONLY",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "f41a2274-ed0a-44a6-c6ee-7b3f7be87e93",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "ee538694-14b7-41bc-b4cc-bbc59be78303",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-1204",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2677",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2867",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "038f03f3-2dcd-7363-da5f-06677e3be932",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-433",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-588",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1076",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    }
+  ],
+  "violations": []
+}

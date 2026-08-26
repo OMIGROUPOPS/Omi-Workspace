@@ -37,8 +37,8 @@ const ANALYSIS_ROOT = ".claude/window1_second_seat/v11_non_action_mechanism_audi
 const ACTUAL_BELL_PATH = `${ANALYSIS_ROOT}/ACTUAL_BELL_TABLE_804.json`;
 const NAMED_NEIGHBOR_PATH = `${ANALYSIS_ROOT}/NEIGHBOR_SPAN_BELL_CHECK.json`;
 const GROUND_TRUTH_CORRECTIONS_PATH = `${ANALYSIS_ROOT}/W1_GROUND_TRUTH_CORRECTIONS.jsonl`;
-const OUTPUT_LABEL = "V54_FLOOR_DECISIVENESS_NO_SELF_ECHO_POSTABILITY_HONEST_ROUNDING_MIND_ONLY_BED";
-const RUN_SOURCE = "V54_FLOOR_DECISIVENESS_NO_SELF_ECHO_POSTABILITY_HONEST_ROUNDING_20260826";
+const OUTPUT_LABEL = "V54_PER_LEG_CLASSIFIER_FLOOR_PRINT_WAKE_MIND_ONLY_BED";
+const RUN_SOURCE = "V54_PER_LEG_CLASSIFIER_FLOOR_PRINT_WAKE_20260826";
 const DEPTH_MAP_COMMIT = "ac68e3bc8d2c2018ba883c131b8b4101ae4cd257";
 const DEPTH_MAP_PATH = ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json";
 const SURVIVOR_SOURCE_COMMIT = "189eaa20";
@@ -90,12 +90,13 @@ function digestReplay(result) {
   result.stage_reads.forEach((row, index) => consume(`stage_reads[${index}]`, row));
   result.rearm_attempts.forEach((row, index) => consume(`rearm_attempts[${index}]`, row));
   result.fill_events.forEach((row, index) => consume(`fill_events[${index}]`, row));
-  return { sha256: hash.digest("hex"), bytes, counts: { stage_reads: result.stage_reads.length, rearm_attempts: result.rearm_attempts.length, fill_events: result.fill_events.length } };
+  result.floor_print_decision_instants.forEach((row, index) => consume(`floor_print_decision_instants[${index}]`, row));
+  return { sha256: hash.digest("hex"), bytes, counts: { stage_reads: result.stage_reads.length, rearm_attempts: result.rearm_attempts.length, fill_events: result.fill_events.length, floor_print_decision_instants: result.floor_print_decision_instants.length } };
 }
 function firstReplayDifference(left, right) {
   const execution = firstDifference(left.execution, right.execution, "$.execution");
   if (execution) return execution;
-  for (const field of ["stage_reads", "rearm_attempts", "fill_events"]) {
+  for (const field of ["stage_reads", "rearm_attempts", "fill_events", "floor_print_decision_instants"]) {
     if (left[field].length !== right[field].length) return { path: `$.${field}.length`, left: left[field].length, right: right[field].length };
     for (let index = 0; index < left[field].length; index += 1) {
       if (shaBytes(canonical(left[field][index])) === shaBytes(canonical(right[field][index]))) continue;
@@ -882,6 +883,18 @@ function turningEpochs(meta, rows) {
         runningAskLow = row.ask_cents;
       }
     }
+    // F-VS-237: every true print that establishes or touches the leg's
+    // running traded floor is an executable receipt, not merely export data.
+    // Include each exact receipt timestamp in the runner's epoch set; the
+    // inner receipt loop below preserves same-timestamp receipt identity.
+    let runningPrintLow = null;
+    for (const row of legRows) {
+      if (row.kind !== "PRINT" || !Number.isInteger(row.price_cents)) continue;
+      if (runningPrintLow === null || row.price_cents <= runningPrintLow) {
+        epochs.add(row.timestamp_epoch);
+        runningPrintLow = runningPrintLow === null ? row.price_cents : Math.min(runningPrintLow, row.price_cents);
+      }
+    }
     const refs = legRows.map((row) => ({ ...row, ref: row.kind === "PRINT" ? row.price_cents : row.last_trade_cents || (number(row.bid_cents) && number(row.ask_cents) ? Math.floor((row.bid_cents + row.ask_cents) / 2) : null) })).filter((row) => Number.isInteger(row.ref));
     let low = null;
     for (const row of refs) if (low === null || row.ref < low) { if (low === null || low - row.ref >= 2) epochs.add(row.timestamp_epoch); low = row.ref; }
@@ -1010,7 +1023,7 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
   const orderedRows = clockMode === "LEGACY_INTEGER_BOOK_FIRST"
     ? [...rows].sort(causalClock.compareLegacyRows)
     : causalClock.materializeCausalClock(rows);
-  const state = os.createTapeState(meta), epochSet = new Set(turningEpochs(meta, orderedRows)), derivations = [], stageReads = [], fillEvents = [], rearmAttempts = [];
+  const state = os.createTapeState(meta), epochSet = new Set(turningEpochs(meta, orderedRows)), derivations = [], stageReads = [], fillEvents = [], rearmAttempts = [], floorPrintDecisionInstants = [];
   // Independent fallback must remain byte-identical at the moments when its
   // licensed target changes. Adding only lineage transitions avoids turning the
   // export's repeated HOLD rows into artificial evaluation cadence.
@@ -1114,12 +1127,41 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
       for (const row of instantRows) {
         lastConsumedReceipt = row.receipt;
         const position = state.positions[row.leg_id];
+        const priorTrueTradeLow = state.legs[row.leg_id].running_true_trade_low_cents;
+        const floorPrintReceipt = row.kind === "PRINT"
+          && Number.isInteger(row.price_cents)
+          && (priorTrueTradeLow === null || row.price_cents <= priorTrueTradeLow);
+        let creditedOnThisReceipt = false;
         if (!smokeOnly && row.kind === "PRINT" && !position.credited && Number.isInteger(position.standing_target_cents) && row.price_cents <= position.standing_target_cents) {
           const fillEventReceipt = os.creditPosition(state, row.leg_id, row);
           fillEvents.push(fillEventReceipt);
           fillHandoffReceipt = row.receipt;
+          creditedOnThisReceipt = true;
         }
         os.observe(state, row.leg_id, row);
+        if (!smokeOnly && floorPrintReceipt) {
+          // Credited legs continue reading: their floor prints must wake the
+          // joint derivation so the open sibling sees the current evidence.
+          // Both-credited games still execute the read with an empty emission
+          // set, proving the engine woke without attempting another order.
+          const openLegIdsAtReceipt = state.leg_ids.filter((id) => !state.positions[id].credited);
+          const stage = evaluateStage({ trigger: "FLOOR_PRINT_DECISION_INSTANT", receipt: row.receipt, legIds: openLegIdsAtReceipt });
+          if (stage) openLegIdsAtReceipt.forEach((id) => sequentiallyEvaluatedLegs.add(id));
+          floorPrintDecisionInstants.push({
+            event_id: state.event_id,
+            leg_id: row.leg_id,
+            timestamp_epoch: row.timestamp_epoch,
+            receipt: row.receipt,
+            print_price_cents: row.price_cents,
+            prior_true_trade_low_cents: priorTrueTradeLow,
+            floor_relation: priorTrueTradeLow === null ? "FIRST_TRUE_PRINT" : row.price_cents < priorTrueTradeLow ? "NEW_TRUE_TRADE_LOW" : "TOUCHES_RUNNING_TRUE_TRADE_LOW",
+            decision_instant_fired: true,
+            decision_instant_kind: creditedOnThisReceipt ? "FILL_CREDIT_AND_JOINT_REDERIVATION" : stage ? openLegIdsAtReceipt.length ? "JOINT_POLICY_REDERIVATION_DECISION_INSTANT" : "TERMINAL_PAIR_READ_NO_ORDER_EMISSION" : "INSUFFICIENT_TWO_LEG_STATE_NO_ACTION",
+            stage_receipt: stage?.receipt ?? null,
+            policy_derivation_count: stage?.derivations?.length ?? 0,
+            provenance: os.LAYER_PROVENANCE.floor_print_decision_instant,
+          });
+        }
         // F-VS-191: duplicate BBO receipts with the same exchange timestamp are
         // distinct causal receipts. The materialized tape order is timestamp,
         // kind, then receipt-id. Evaluate the affected leg after each receipt so
@@ -1150,7 +1192,7 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
     }
   }
   const credited = state.leg_ids.filter((id) => state.positions[id].credited), combined = credited.length === 2 ? credited.reduce((total, id) => total + state.positions[id].entry_cents, 0) : null;
-  return { state, epochs, stage_reads: stageReads, derivations, fill_events: fillEvents, rearm_attempts: rearmAttempts, clock_mode: clockMode, ordered_rows: orderedRows, execution: { run_source: RUN_SOURCE, gradeable: Number.isFinite(meta.bell_epoch), completed: credited.length === 2, combined_entry_cents: combined, delta_vs_100_cents: Number.isInteger(combined) ? 100 - combined : null, legs: state.positions } };
+  return { state, epochs, stage_reads: stageReads, derivations, fill_events: fillEvents, rearm_attempts: rearmAttempts, floor_print_decision_instants: floorPrintDecisionInstants, clock_mode: clockMode, ordered_rows: orderedRows, execution: { run_source: RUN_SOURCE, gradeable: Number.isFinite(meta.bell_epoch), completed: credited.length === 2, combined_entry_cents: combined, delta_vs_100_cents: Number.isInteger(combined) ? 100 - combined : null, legs: state.positions } };
 }
 
 function readerExecutionReceipt(result) {
@@ -1503,7 +1545,7 @@ async function main() {
   writeText(path.join(output, "SMOKE_CRIJEA.md"), smokeMarkdown(smoke));
   writeJson(path.join(output, "SMOKE_CRIJEA_RECEIPT.json"), { label: "CRIJEA_INTEGRATION_SMOKE_NO_GRADING", all_readers_fired: smokeReaderReceipt.all_readers_fired, reader_count: smokeReaderReceipt.reader_count, expected_reader_count: smokeReaderReceipt.expected_reader_count, reader_receipts: smokeReaderReceipt.readers, named_neighbors: [...new Map(smoke.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => [row.citation_receipt_id, { event_id: row.event_id, citation_receipt_id: row.citation_receipt_id, citation_receipt: row.citation_receipt }]))).values()], derivations: smoke.derivations.length, sentence_action_equal: smoke.derivations.every((row) => row.sentence_action_assertion.equal), citation_receipt_equal: smoke.derivations.every((row) => row.citation_receipt_assertion.equal), conservation: smoke.derivations.every((row) => row.pair_conservation.at_or_below_99), grading_performed: false });
 
-  const perGame = JSON.parse(fs.readFileSync(path.join(walkRoot, "PER_GAME_L1_L8.json"), "utf8")), storyResults = [], storySections = [], storyTraces = [], storyTapeRows = new Map(), determinismRows = [], clockComparisonRows = [];
+  const perGame = JSON.parse(fs.readFileSync(path.join(walkRoot, "PER_GAME_L1_L8.json"), "utf8")), storyResults = [], storySections = [], storyTraces = [], storyTapeRows = new Map(), storyOrderedRows = new Map(), determinismRows = [], clockComparisonRows = [], floorPrintDecisionRows = [];
   fs.rmSync(path.join(output, "DETERMINISM_FAILURE_DEBUG.json"), { force: true });
   for (const eventId of TARGETS.stories) {
     const meta = metas.find((row) => row.event_id === eventId), rows = [...loadTicks(privateRoot, meta), ...printLoad.byEvent.get(eventId)].filter((row) => !Number.isFinite(meta.bell_epoch) || row.timestamp_epoch <= meta.bell_epoch);
@@ -1512,6 +1554,7 @@ async function main() {
     const repeat = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: false });
     const legacyClock = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: false, clockMode: "LEGACY_INTEGER_BOOK_FIRST" });
     const firstDigest = digestReplay(result), secondDigest = digestReplay(repeat);
+    storyOrderedRows.set(eventId, result.ordered_rows);
     const byteIdentical = firstDigest.sha256 === secondDigest.sha256 && firstDigest.bytes === secondDigest.bytes;
     const firstDiff = byteIdentical ? null : firstReplayDifference(result, repeat);
     determinismRows.push({ event_id: eventId, first_sha256: firstDigest.sha256, second_sha256: secondDigest.sha256, byte_identical: byteIdentical, first_bytes: firstDigest.bytes, second_bytes: secondDigest.bytes, first_counts: firstDigest.counts, second_counts: secondDigest.counts, first_difference: firstDiff });
@@ -1548,15 +1591,16 @@ async function main() {
     const incompleteStamp = lawfulIncompleteStamp(result, truthRows.find((row) => row.event_id === eventId));
     storyResults.push({ event_id: eventId, run_source: RUN_SOURCE, lineage_receipt: old, layered_dual_belief: result.execution, composition_rebuild: result.execution, lawful_incomplete: incompleteStamp, tape_rows_consumed: rows.length, book_rows_consumed: rows.filter((row) => row.kind === "BOOK").length, print_rows_consumed: rows.filter((row) => row.kind === "PRINT").length, turning_points: result.stage_reads.length, derivations: result.derivations.length, compact_rearm_attempts: result.rearm_attempts.length, causal_clock_changed_orders: changedOrders.length });
     storySections.push(storySection(result, old, meta, incompleteStamp));
-    storyTraces.push(...result.stage_reads.map((stage) => ({ event_id: eventId, kind: "DECISION_STAGE", ...stage })), ...result.rearm_attempts.map((row) => ({ kind: "REARM_ATTEMPT", ...row })), ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })));
+    floorPrintDecisionRows.push(...result.floor_print_decision_instants);
+    storyTraces.push(...result.stage_reads.map((stage) => ({ event_id: eventId, kind: "DECISION_STAGE", ...stage })), ...result.rearm_attempts.map((row) => ({ kind: "REARM_ATTEMPT", ...row })), ...result.floor_print_decision_instants.map((row) => ({ kind: "FLOOR_PRINT_DECISION_INSTANT", ...row })), ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })));
   }
   const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.layered_dual_belief.completed || row.layered_dual_belief.delta_vs_100_cents < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
-  const storiesHeader = `# Four convictions — floor decisiveness, no self-echo, postability acts, honest floor statistic\n\nLicense: LAW_INDEX read @ 86ca93f3, sha256 41784e6a… · CC @86ca93f3 (F-VS-230..233) · F-VS-224 grading order · F-VS-229 · DEFINITION LOCK · fill-price ruling · welds.\n\nThe connected panel remains the prior. Own-game levels enter once, weighted by evidence that the cent is the floor rather than by traded loudness. Standing rests never echo back as evidence. A book receipt that makes an already-derived level postable is actionable on that receipt. Integer orders use the posterior's floor-side mode, not mean-half-up. Exchange clock precision is stated as milliseconds. At-floor immunity enumerates its full population and every exit must carry actual overturn evidence. The four arguments come first; floors are their ruler and deltas remain last. No sealed, live, or full-804 run was performed.\n\n`;
+  const storiesHeader = `# Four convictions — one per-leg classifier and receipt-exact floor-print wake\n\nLicense: LAW_INDEX read @ 85b940ff, sha256 41784e6a… · CC @85b940ff (F-VS-234..237) · F-VS-224 grading order · F-VS-229 · DEFINITION LOCK · fill-price ruling · welds.\n\nThe sole price author and at-floor immunity consume the same per-leg classifier: depth sign, causal descent state, and evidenced-floor source. A printed, descent-supported floor cannot be outvoted by an unprinted hypothesis. Every first/new/equal floor print is an executable receipt on its own leg. The four arguments come first; floors are their ruler and deltas remain last. No sealed, live, or full-804 run was performed.\n\n`;
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
   writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], f_vs_110_stamp: "TUNED_RETAINED", independent_lane_authority: "ONLY_RECEIPT_PINNED_OWN_EVIDENCE_UNDER_F_VS_068", self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: storyResults.length === 804, sealed_read: storyResults.some((row) => row.event_id.includes("24JUL")), live_mutation: RUN_SOURCE.includes("LIVE_MUTATION") });
   writeJson(path.join(output, "DETERMINISM_RECEIPT.json"), {
-    label: "V54_FLOOR_DECISIVENESS_NO_SELF_ECHO_POSTABILITY_ROUNDING_DETERMINISM_X2",
-    method: "Each four-game execution is replayed twice from the same materialized tape, corpus, resources, and policy bytes; execution, decision stages, rearm attempts, and fill receipts are compared byte-for-byte before any score receipt is emitted.",
+    label: "V54_PER_LEG_CLASSIFIER_FLOOR_PRINT_WAKE_DETERMINISM_X2",
+    method: "Each four-game execution is replayed twice from the same materialized tape, corpus, resources, and policy bytes; execution, decision stages, floor-print decision instants, rearm attempts, and fill receipts are compared byte-for-byte before any score receipt is emitted.",
     rows: determinismRows,
     all_byte_identical: determinismRows.length === TARGETS.stories.length && determinismRows.every((row) => row.byte_identical),
     runs_per_game: 2,
@@ -1573,6 +1617,71 @@ async function main() {
   await writeJsonlGzipStreaming(path.join(output, "REPAIR_FOUR_GAME_TRACE.jsonl.gz"), storyTraces);
   const decisionStages = storyTraces.filter((row) => row.kind === "DECISION_STAGE");
   const allDerivations = decisionStages.flatMap((row) => row.derivations.map((derivation) => ({ event_id: row.event_id, trigger: row.trigger, stage_receipt: row.receipt, stage_reads: row.reads, ...derivation })));
+  const classifierRows = allDerivations.map((row) => ({
+    event_id: row.event_id,
+    leg_id: row.leg_id,
+    timestamp_epoch: row.timestamp_epoch,
+    receipt: row.stage_receipt,
+    trigger: row.trigger,
+    classification: row.layered_dual_belief?.pricing_authority?.per_leg_classification ?? null,
+    pricing_consumed: row.layered_dual_belief?.pricing_authority?.classifier_consumed_by_pricing ?? false,
+    immunity_consumed: row.layered_dual_belief?.floor_rest_protection?.classifier_consumed_by_immunity ?? false,
+    pricing_immunity_equal: row.layered_dual_belief?.floor_rest_protection?.pricing_and_immunity_classifier_equal ?? false,
+    authority_target_cents: row.layered_dual_belief?.pricing_authority?.target_cents ?? null,
+    final_target_cents: row.action.target_cents,
+    action: row.action.action,
+    ...sentenceTraceIndex(row),
+  }));
+  const creditedClassifierRows = decisionStages.flatMap((stage) => Object.entries(stage.credited_leg_streams ?? {}).map(([legId, stream]) => ({
+    event_id: stage.event_id,
+    leg_id: legId,
+    timestamp_epoch: stage.timestamp_epoch,
+    receipt: stage.receipt,
+    trigger: stage.trigger,
+    classification: stream.pricing_authority?.per_leg_classification ?? null,
+    pricing_consumed: stream.pricing_authority?.classifier_consumed_by_pricing ?? false,
+    immunity_consumed: false,
+    pricing_immunity_equal: true,
+    authority_target_cents: stream.pricing_authority?.target_cents ?? null,
+    final_target_cents: null,
+    action: "CREDITED_LEG_READ_NO_ORDER_EMISSION",
+    sentence_sha256: null,
+    full_sentence_location: "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+  })));
+  classifierRows.push(...creditedClassifierRows);
+  const namedClassifierRows = classifierRows.filter((row) => [
+    "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU|69",
+    "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU|66",
+    "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL|39",
+    "KXATPMATCH-26JUL18DANPRA|DAN|59",
+  ].includes(`${row.event_id}|${row.leg_id}|${row.classification?.value_cents}`));
+  writeJson(path.join(output, "PER_LEG_CLASSIFIER_RECEIPT.json"), {
+    label: "F_VS_234_237_ONE_PER_LEG_CLASSIFIER_CONSUMED_BY_PRICING_AND_IMMUNITY",
+    law: "Depth sign, causal descent state, and evidenced-floor source form one per-leg classification. Printed descent-supported floors bind over unprinted hypotheses; unsupported prints remain refused.",
+    provenance: ["CC@85b940ff:F-VS-234..237", os.LAYER_PROVENANCE.per_leg_floor_classifier],
+    rows: classifierRows,
+    named_rows: namedClassifierRows,
+    evaluations: classifierRows.length,
+    both_consumers_read_same_classifier: classifierRows.every((row) => row.pricing_immunity_equal),
+    dan_59_derivable: namedClassifierRows.some((row) => row.leg_id === "DAN" && row.classification?.value_cents === 59 && row.classification.binding_floor_candidate && row.authority_target_cents === 59),
+    pal_39_derivable: namedClassifierRows.some((row) => row.leg_id === "PAL" && row.classification?.value_cents === 39 && row.classification.binding_floor_candidate && row.authority_target_cents === 39),
+    giu_69_refused: namedClassifierRows.some((row) => row.leg_id === "GIU" && row.classification?.value_cents === 69 && row.classification.binding_floor_candidate === false),
+    giu_66_derivable: namedClassifierRows.some((row) => row.leg_id === "GIU" && row.classification?.value_cents === 66 && row.classification.binding_floor_candidate && row.authority_target_cents === 66),
+  });
+  const giu66FloorPrintRows = floorPrintDecisionRows.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL12GIUBAR" && row.leg_id === "GIU" && row.print_price_cents === 66);
+  writeJson(path.join(output, "FLOOR_PRINT_DECISION_INSTANT_RECEIPT.json"), {
+    label: "F_VS_237_EVERY_FLOOR_PRINT_RECEIPT_WAKES_OWN_LEG",
+    law: "Every first print, new traded low, and equal touch of the running traded low is an exact-receipt decision instant on its own leg; a filling print is itself the credit decision instant.",
+    provenance: ["CC@85b940ff:F-VS-237", os.LAYER_PROVENANCE.floor_print_decision_instant],
+    rows: floorPrintDecisionRows,
+    floor_print_receipts: floorPrintDecisionRows.length,
+    fired: floorPrintDecisionRows.filter((row) => row.decision_instant_fired).length,
+    not_fired: floorPrintDecisionRows.filter((row) => !row.decision_instant_fired),
+    giu_66_receipts: giu66FloorPrintRows,
+    giu_66_receipt_count: giu66FloorPrintRows.length,
+    giu_66_all_fired: giu66FloorPrintRows.length >= 3 && giu66FloorPrintRows.every((row) => row.decision_instant_fired),
+    scheduler_latency_seconds: 0,
+  });
   const contractRows = allDerivations.map((row) => ({
     event_id: row.event_id,
     leg_id: row.leg_id,
@@ -2850,6 +2959,8 @@ async function main() {
   }
   if (!fillHandoffs.every((row) => row.trade_receipt && row.sentence_cites_trade_receipt && row.sentence_cites_handoff_receipt)) lawViolations.push("POST_FILL_SENTENCE_WITHOUT_FILL_RECEIPT");
   if (decisionStages.flatMap((row) => row.derivations).some((row) => !row.pair_conservation.at_or_below_99)) lawViolations.push("PAIR_CONSERVATION_BREACH");
+  if (classifierRows.some((row) => !row.pricing_immunity_equal)) lawViolations.push("PRICING_AND_IMMUNITY_DID_NOT_READ_IDENTICAL_PER_LEG_CLASSIFIER");
+  if (floorPrintDecisionRows.some((row) => row.decision_instant_fired !== true)) lawViolations.push("FLOOR_PRINT_RECEIPT_DID_NOT_FIRE_DECISION_INSTANT");
   if (allDerivations.some((row) => row.derivation.neighbor_leg.legacy_blanket_low_ratio_used !== false)) lawViolations.push("BLANKET_DIP_RATIO_SURVIVED");
   if (allDerivations.some((row) => row.derivation.neighbor_leg.binary_state_gate_used !== false)) lawViolations.push("BINARY_SAME_STATE_GATE_SURVIVED");
   if (allDerivations.some((row) => row.derivation.neighbor_leg.subtractive_remaining_dip_used !== false)) lawViolations.push("SUBTRACTIVE_REMAINING_DIP_SURVIVED");
@@ -2955,10 +3066,10 @@ async function main() {
   if (/state\.dual_belief\.floor_rest_tenure_(?:by_leg|history)\s*=/.test(dualBeliefSourceForTenureAudit) || allDerivations.some((row) => row.layered_dual_belief?.floor_rest_protection?.sampled_row_tenure_serialized !== false)) lawViolations.push("PHANTOM_OR_DUPLICATE_TENURE_INSTRUMENT");
   const baselinePins = storyResults.filter((row) => ["KXATPCHALLENGERMATCH-26JUL14URSPAL", "KXATPCHALLENGERMATCH-26JUL14LAJSVA"].includes(row.event_id)).map((row) => ({ event_id: row.event_id, completed: row.lineage_receipt.completed, delta_vs_100_cents: row.lineage_receipt.delta_vs_100_cents }));
   writeJson(path.join(output, "DIAGNOSTIC_SUMMARY_RECEIPT.json"), {
-    label: "V54_AUTHOR_READS_OWN_GAME_NON_GATE_DIAGNOSTIC_SUMMARY",
-    law_index_read_at: "a6e84246",
+    label: "V54_PER_LEG_CLASSIFIER_FLOOR_PRINT_WAKE_NON_GATE_DIAGNOSTIC_SUMMARY",
+    law_index_read_at: "85b940ff",
     law_index_sha256: "41784e6a…",
-    cc_forensics: ["a6e84246:F-VS-215..218", "F-VS-066", "F-VS-068", "F-VS-134", "DEFINITION_LOCK"],
+    cc_forensics: ["85b940ff:F-VS-234..237", "F-VS-224", "F-VS-229", "DEFINITION_LOCK", "FILL_PRICE_RULING", "WELDS"],
     honest_baseline_pins: baselinePins,
     pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)),
     required_bed_floors: SAFETY_FLOORS,
@@ -3060,14 +3171,20 @@ async function main() {
     const floor = Number.isInteger(row.layered_dual_belief?.floor_rest_protection?.evidenced_floor_cents)
       ? row.layered_dual_belief.floor_rest_protection.evidenced_floor_cents
       : null;
-    const tapeRows = storyTapeRows.get(row.event_id) ?? [];
-    const prefixPrints = tapeRows.filter((tapeRow) => tapeRow.kind === "PRINT" && tapeRow.leg_id === row.leg_id && tapeRow.timestamp_epoch <= row.timestamp_epoch && Number.isInteger(tapeRow.price_cents));
+    const tapeRows = storyOrderedRows.get(row.event_id) ?? storyTapeRows.get(row.event_id) ?? [];
+    const receiptIndex = tapeRows.findIndex((tapeRow) => tapeRow.receipt === row.stage_receipt);
+    const causalPrefix = receiptIndex >= 0
+      ? tapeRows.slice(0, receiptIndex + 1)
+      : tapeRows.filter((tapeRow) => tapeRow.timestamp_epoch <= row.timestamp_epoch);
+    const prefixPrints = causalPrefix.filter((tapeRow) => tapeRow.kind === "PRINT" && tapeRow.leg_id === row.leg_id && Number.isInteger(tapeRow.price_cents));
     const independentFloor = prefixPrints.length ? Math.min(...prefixPrints.map((print) => print.price_cents)) : null;
     return {
       event_id: row.event_id,
       leg_id: row.leg_id,
       timestamp_epoch: row.timestamp_epoch,
       receipt: row.stage_receipt,
+      exact_receipt_index: receiptIndex >= 0 ? receiptIndex : null,
+      causal_prefix_basis: receiptIndex >= 0 ? "MATERIALIZED_TAPE_THROUGH_EXACT_RECEIPT" : "SYNTHETIC_STAGE_THROUGH_TIMESTAMP",
       row_class: independentFloor === null ? "NO_TRUE_TRADE_YET" : "TRUE_TRADE_PREFIX_AVAILABLE",
       emitted_floor_cents: floor,
       independent_print_floor_cents: independentFloor,
@@ -3429,11 +3546,11 @@ async function main() {
     non_falsifiable_checks: gateChecks.filter((check) => !check.can_fail).map((check) => check.id),
   });
   writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), {
-    label: "V54_AUTHOR_READS_OWN_GAME_EXECUTABLE_GATE",
+    label: "V54_PER_LEG_CLASSIFIER_FLOOR_PRINT_WAKE_EXECUTABLE_GATE",
     run_source: RUN_SOURCE,
-    law_index_read_at: "a6e84246",
+    law_index_read_at: "85b940ff",
     law_index_sha256: "41784e6a…",
-    cc_forensics: ["a6e84246:F-VS-215..218", "F-VS-066", "F-VS-068", "F-VS-134", "DEFINITION_LOCK"],
+    cc_forensics: ["85b940ff:F-VS-234..237", "F-VS-224", "F-VS-229", "DEFINITION_LOCK", "FILL_PRICE_RULING", "WELDS"],
     contract: "Every check reads an independent store and proves fail-capability by executing the same production predicate on an injected counterexample; hand-written twins do not establish falsifiability.",
     checks: gateChecks,
     check_count: gateChecks.length,

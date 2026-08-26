@@ -1,0 +1,93 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/ATOMIC_REARM_RECEIPT.json",
+      "bytes": 315170088,
+      "sha256": "ee2b1df08e0c9aa370e50b3c6010c7de0718b7b9515e6bd1abae82eee563eee6"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/AUTHORITY_VACUUM_RECEIPT.json",
+      "bytes": 89392625,
+      "sha256": "fcc95d7cd942ae9179b0c1cc44e7e4cf7c66905654bb82ad38c4550a6097f659"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 273394519,
+      "sha256": "a93e14baad8aa800962cdb0fa7fa667c374ed2de9c5be42b3519e686e42cb8e4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+      "bytes": 47016300,
+      "sha256": "e2d541b66e3956e1fe6a60fe1eca31999cae2130f1858f7875db1922bef8c3e0"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 24033620,
+      "sha256": "f4a97c3e3143e3391ad1816204504824feca65fafa7be9f109342606d316e3ea"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 36076023,
+      "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "bytes": 16402181,
+      "sha256": "da2dd8e7f1a704148f2226a548fc7907f7f097e805e9ebda97db522326049023"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 227082125,
+      "sha256": "4eea7e5e97fd06552625bece552f34748a45c54c30c44aed3dc69ac2281b7cf4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "bytes": 18299602,
+      "sha256": "7998e082dda1744d32cecf53ebd5075f43af2548993d8fb6590947bcdcd21ca7"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+      "bytes": 12026147,
+      "sha256": "809cdd6043ee61f2c3b53a4b315a9523eb0ca251217c7eb27d857e99a9cddd03"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "bytes": 23367941,
+      "sha256": "34e58af85f2ce075481d9e21ae68c4a54343a89c6efbeb3716332de7a6efafa8"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 205567661,
+      "sha256": "cee7562dc93fb827db6fcdbf96e284ff9dd041be7bd728356355c1fbda39d472"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 197306248,
+      "sha256": "f811eac15d042382d10368d5789f89535c461d69b1aa18622c6603b78d6404fb"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/SMOKE_CRIJEA.md",
+      "bytes": 31014090,
+      "sha256": "5d28a8da370bb8363b7430d485c407c08b4db3deb74eb484c1e4570d9d58a313"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 20524214,
+      "sha256": "388c2c543edd78e13e555e74c94c8b283465e37b8c008d352d1cf081e0722a3f"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/TRUE_CONDITIONING_RECEIPT.json",
+      "bytes": 35052158,
+      "sha256": "c44186720ea375ee44328c5b9608f389565b36e70f315585f2aa37f8fec5347e"
+    }
+  ],
+  "count": 17,
+  "bytes": 1583100211
+}

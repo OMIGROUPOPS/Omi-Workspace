@@ -72,6 +72,8 @@ const LAYER_PROVENANCE = Object.freeze({
   no_self_echo: "F-VS-231@86ca93f3",
   postability_instant: "F-VS-232@86ca93f3; SAME_RECEIPT_ACT",
   honest_floor_statistic: "F-VS-233@86ca93f3",
+  per_leg_floor_classifier: "F-VS-234..237@85b940ff; DISPATCH_READ_THE_CLASSIFIER@2026-08-26",
+  floor_print_decision_instant: "F-VS-237@85b940ff; DISPATCH_PRINTS_WAKE_THE_ENGINE@2026-08-26",
   c04_post_only_coverage: "F-VS-225@737e3c2b",
   technique_contracts: "F-VS-193..198@9ef05314; DISPATCH_CONTRACTS_BUILD@2026-08-25",
   spread_eye: "REGISTERED_TECHNIQUE_SPREAD_EYE@2026-08-25",
@@ -264,6 +266,69 @@ function floorDecisivenessForLevel(criterion, valueCents) {
   };
 }
 
+// F-VS-234..237: one classifier is shared by the price author and floor
+// immunity.  A print is not automatically a floor: its own leg must either
+// have exact surviving-shape support at that cent or have already shown a
+// causal descent from a higher traded price.  This is what admits DAN 59 and
+// PAL 39 while refusing GIU 69 before GIU has descended.  The rule is stated
+// entirely in per-leg tape/criterion terms; no event identity participates.
+function classifyPerLegFloorEvidence({ state, legId, criterion, source, valueCents, receipt }) {
+  const baseGrade = floorDecisivenessForLevel(criterion, valueCents);
+  const leg = state?.legs?.[legId] ?? null;
+  const observedHigh = cent(leg?.running_true_trade_high_cents);
+  const anchor = cent(criterion?.anchor_cents);
+  const depth = Number.isInteger(anchor) && Number.isInteger(valueCents) ? anchor - valueCents : null;
+  const depthSign = Number.isInteger(depth) ? depth > 0 ? "BELOW_ANCHOR" : depth < 0 ? "ABOVE_ANCHOR" : "AT_ANCHOR" : "UNKNOWN";
+  const printed = source === "OBSERVED_TRUE_TRADE_LOW" && Boolean(receipt) && Number.isInteger(valueCents);
+  const observedDescentCents = printed && Number.isInteger(observedHigh) ? Math.max(0, observedHigh - valueCents) : 0;
+  const aboveAnchorExcursionCents = Number.isInteger(anchor) && Number.isInteger(valueCents) ? Math.max(0, valueCents - anchor) : null;
+  // A price still above its anchor must descend by at least the amount of that
+  // above-anchor excursion before the descent supports calling it a floor.
+  // This scale-free direction check refuses GIU 69 after a one-cent retreat
+  // from 70 while admitting PAL 39 and DAN 59 when their own paths have
+  // traversed the corresponding excursion.  At/below anchor, any observed
+  // descent supplies direction; exact survivor support remains independently
+  // sufficient.
+  const observedDescent = Boolean(printed
+    && observedDescentCents > 0
+    && Number.isInteger(aboveAnchorExcursionCents)
+    && observedDescentCents >= aboveAnchorExcursionCents);
+  const exactShapeSupport = baseGrade.exact_support_count > 0;
+  const descentSupported = observedDescent || exactShapeSupport;
+  const binding = printed && descentSupported;
+  const classId = !printed
+    ? "NON_PRINT_EVIDENCE_GRADED_NOT_BINDING"
+    : observedDescent
+      ? "PRINTED_FLOOR_WITH_OBSERVED_DESCENT"
+      : exactShapeSupport
+        ? "PRINTED_FLOOR_WITH_EXACT_SHAPE_SUPPORT"
+        : "PRINTED_LEVEL_WITHOUT_DESCENT_OR_EXACT_SUPPORT";
+  return {
+    class_id: classId,
+    leg_id: legId,
+    value_cents: valueCents,
+    receipt,
+    depth_cents: depth,
+    depth_sign: depthSign,
+    descent_state: observedDescent
+      ? "OBSERVED_HIGH_ABOVE_PRINTED_LOW"
+      : exactShapeSupport
+        ? baseGrade.descent_state
+        : "NO_CAUSAL_DESCENT_SUPPORT",
+    evidenced_floor_source: source,
+    observed_traded_high_cents: observedHigh,
+    observed_descent_cents: observedDescentCents,
+    above_anchor_excursion_cents: aboveAnchorExcursionCents,
+    observed_descent_satisfies_directional_depth: observedDescent,
+    exact_shape_support: exactShapeSupport,
+    binding_floor_candidate: binding,
+    pricing_eligible: binding,
+    immunity_eligible: binding,
+    refusal_reason: binding ? null : printed ? "PRINT_HAS_NO_CAUSAL_DESCENT_OR_EXACT_SURVIVOR_SUPPORT" : "NON_PRINT_CHANNEL_NEVER_BINDS_FLOOR",
+    provenance: LAYER_PROVENANCE.per_leg_floor_classifier,
+  };
+}
+
 function ownEvidenceChannelGrades({ state, legId, liveBid, liveAsk, spreadEye, observedOwnEvidenceLevel, observedOwnEvidenceReceipt, criterion }) {
   const leg = state.legs[legId];
   const book = leg?.current_book ?? null;
@@ -289,7 +354,24 @@ function ownEvidenceChannelGrades({ state, legId, liveBid, liveAsk, spreadEye, o
       evidence_class: "TRADE_BACKED_SPREAD_CLEARING",
       ...floorDecisivenessForLevel(criterion, cent(spreadEye.effective_clearing_price_cents)),
     } : null,
-  ].filter(Boolean);
+  ].filter(Boolean).map((row) => {
+    const perLegClassification = classifyPerLegFloorEvidence({
+      state,
+      legId,
+      criterion,
+      source: row.source,
+      valueCents: row.value_cents,
+      receipt: row.receipt,
+    });
+    return {
+      ...row,
+      per_leg_classification: perLegClassification,
+      // A printed, descent-supported floor is a lawful exact-price candidate.
+      // It enters the common scale at full decisiveness; the binding rule below
+      // prevents an unprinted hypothesis from outvoting that observed floor.
+      floor_decisiveness: perLegClassification.binding_floor_candidate ? 1 : row.floor_decisiveness,
+    };
+  });
 }
 
 function conditionPriorDistribution({ priorRows, evidenceChannels }) {
@@ -343,6 +425,10 @@ function conditionPriorDistribution({ priorRows, evidenceChannels }) {
   const posteriorContinuous = weightedMean(posteriorRows, "licensed_floor_cents");
   const posteriorQ50 = cent(weightedQuantile(posteriorRows, "licensed_floor_cents", 0.5));
   const posteriorMode = weightedModeFloorSideCents(posteriorRows);
+  const bindingFloorChannel = channelsApplied
+    .filter((row) => row.per_leg_classification?.binding_floor_candidate === true)
+    .sort((a, b) => a.value_cents - b.value_cents || String(a.receipt).localeCompare(String(b.receipt)))[0] ?? null;
+  const licensedLevel = cent(bindingFloorChannel?.value_cents) ?? posteriorMode;
   return {
     posterior_rows: posteriorRows,
     panel_rows: normalizedPanelRows,
@@ -351,11 +437,13 @@ function conditionPriorDistribution({ priorRows, evidenceChannels }) {
     posterior_q50_cents: posteriorQ50,
     posterior_mode_floor_side_cents: posteriorMode,
     posterior_continuous_cents: posteriorContinuous,
-    floor_side_rounded_cents: posteriorMode,
-    level_cents: posteriorMode,
+    floor_side_rounded_cents: licensedLevel,
+    level_cents: licensedLevel,
+    binding_floor_channel: bindingFloorChannel,
+    unprinted_hypothesis_may_outvote_printed_descent_supported_floor: false,
     evidence_enters_once: true,
     self_echo_channel_present: false,
-    method: "ONE_NORMALIZED_PANEL_PLUS_EXACT_PRICE_SUPPORT; OWN_EVIDENCE_WEIGHT_EQUALS_FLOOR_DECISIVENESS_FROM_DESCENT_ELIMINATION_AND_DOWNSIDE; PANEL_CANDIDATES_CONSULT_EACH_CHANNEL_ONCE; EVIDENCE_CANDIDATES_ARE_NOT_REWEIGHTED_BY_THEMSELVES; EMITTED_INTEGER_IS_WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK",
+    method: "ONE_PER_LEG_CLASSIFIER; ONE_NORMALIZED_PANEL_PLUS_EXACT_PRICE_SUPPORT; PRINTED_DESCENT_SUPPORTED_FLOOR_BINDS_OVER_UNPRINTED_HYPOTHESES; PANEL_CANDIDATES_CONSULT_EACH_CHANNEL_ONCE; EVIDENCE_CANDIDATES_ARE_NOT_REWEIGHTED_BY_THEMSELVES; OTHERWISE_EMITTED_INTEGER_IS_WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK",
   };
 }
 
@@ -548,6 +636,7 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
     .filter((row) => Number.isFinite(row.floor_decisiveness) && row.floor_decisiveness > 0)
     .sort((a, b) => b.floor_decisiveness - a.floor_decisiveness
       || String(a.source).localeCompare(String(b.source)))[0] ?? null;
+  const perLegClassification = ownEvidenceRows.find((row) => row.source === "OBSERVED_TRUE_TRADE_LOW")?.per_leg_classification ?? null;
   return {
     authority: "BASE_V3_MAP_JOINT_DEPTH_MIND_WINDOW_VOTE",
     authority_restored_to_decision_path: authorityRestored,
@@ -575,6 +664,8 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
       lower_support_count: decisiveEvidence.lower_support_count,
       elimination_support_share: decisiveEvidence.elimination_support_share,
     } : null,
+    per_leg_classification: perLegClassification,
+    classifier_consumed_by_pricing: Boolean(perLegClassification),
     conditioning_chain: {
       prior_cents: independentlyRecomputedEngineTarget,
       prior_distribution: recomputeVotes,
@@ -1792,8 +1883,17 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       : [...state.legs[legId].prints].reverse().find((print) => cent(print.price_cents) === evidencedFloor)?.receipt ?? null;
     const standingLicensedLevel = evidencedFloor;
     const standingLicensedReceipt = evidencedFloorReceipt;
-    const floorSupportAlive = Number.isInteger(active) && criterionSupportsRangeLevel(survivor?.target_criterion, active) ? (survivor?.survivor_shapes ?? []) : [];
-    const floorSupportOverturnEvidence = !criterionSupportsRangeLevel(survivor?.target_criterion, active)
+    const perLegClassification = pricingAuthorities[legId]?.per_leg_classification ?? null;
+    const classifierSupportsImmunity = Boolean(
+      Number.isInteger(active)
+      && active === evidencedFloor
+      && perLegClassification?.value_cents === evidencedFloor
+      && perLegClassification?.immunity_eligible === true
+    );
+    const floorSupportAlive = classifierSupportsImmunity
+      ? [perLegClassification.class_id, ...(perLegClassification.exact_shape_support ? (survivor?.survivor_shapes ?? []) : [])]
+      : [];
+    const floorSupportOverturnEvidence = !classifierSupportsImmunity
       ? (survivor?.reinstated_now ?? []).map((shapeId) => ({
         shape_id: shapeId,
         receipt: state.receipt,
@@ -1807,7 +1907,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       && active === evidencedFloor
       && evidencedFloorReceipt
     );
-    const activeAtSupportedFloor = Boolean(activeAtEvidencedFloor && floorSupportOverturnEvidence.length === 0);
+    const activeAtSupportedFloor = Boolean(activeAtEvidencedFloor && classifierSupportsImmunity && floorSupportOverturnEvidence.length === 0);
     const floorPrint = evidencedFloor === null
       ? null
       : [...state.legs[legId].prints].reverse().find((print) => cent(print.price_cents) === evidencedFloor) ?? null;
@@ -1931,6 +2031,9 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       licensed_floor_level_cents: standingLicensedLevel,
       licensed_floor_level_receipt: standingLicensedReceipt,
       supporting_shapes_still_alive: floorSupportAlive,
+      per_leg_classification: perLegClassification,
+      classifier_consumed_by_immunity: Boolean(perLegClassification),
+      pricing_and_immunity_classifier_equal: JSON.stringify(perLegClassification) === JSON.stringify(pricingAuthorities[legId]?.per_leg_classification ?? null),
       proposed_target_before_protection_cents: envelopePlacement[legId]?.proposed_conflicting_target_cents ?? envelopePlacement[legId]?.chosen_target_cents ?? null,
       protected_from_conflicting_belief_or_cancel: ["EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY", "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"].includes(envelopePlacement[legId]?.mode),
       floor_established_on_current_receipt: floorEstablishedOnCurrentReceipt,
@@ -2082,6 +2185,7 @@ module.exports = {
   chooseEnvelopePlacementTarget,
   weightedModeFloorSideCents,
   spreadEyeForLeg,
+  classifyPerLegFloorEvidence,
   pricingAuthorityForLeg,
   deriveJointActions,
 };

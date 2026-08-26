@@ -1,0 +1,31 @@
+{
+  "label": "C03_POST_ONLY_IS_VETO_NOT_PRICE_AUTHOR",
+  "candidate_rows": 2884,
+  "veto_rows": 1,
+  "veto_price_rewrites": [],
+  "ask_only_tick_postability_act_rows": [],
+  "unlicensed_ask_only_tick_order_rows": [],
+  "crossed_standing_rest_hold_rows": [],
+  "passed": true,
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3646",
+      "covered": true,
+      "emitted": false,
+      "candidate_target_cents": 58,
+      "candidate_lawful": false,
+      "vetoed": true,
+      "target_cents": null,
+      "live_ask_cents": 58,
+      "lawful": true,
+      "disposition": "ACTIVE_REST_UNLAWFUL_TO_HOLD_CANCEL_AND_REDERIVE",
+      "active_target_before_cents": 58,
+      "active_target_crossed_live_ask": true,
+      "at_floor_immunity": false,
+      "held_crossed_rest": false,
+      "held_crossed_floor_rest_under_immunity": false
+    }
+  ]
+}

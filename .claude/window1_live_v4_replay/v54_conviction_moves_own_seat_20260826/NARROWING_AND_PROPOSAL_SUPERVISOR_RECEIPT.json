@@ -1,0 +1,18 @@
+{
+  "label": "F_VS_149_150_NARROWING_CONSUMPTION_AND_REAL_REASON_SUPERVISOR",
+  "provenance": [
+    "F-VS-149@d079687f",
+    "F-VS-150@d079687f"
+  ],
+  "floor_rest_lock_source_occurrences": 0,
+  "exact_floor_proposals": 189,
+  "exact_floor_proposals_admitted": 189,
+  "singleton_envelope_rows": 135,
+  "singleton_unconsumed_count": 0,
+  "singleton_unconsumed_receipts": [],
+  "supervised_floor_proposal_count": 2761,
+  "every_blocked_or_refused_floor_proposal_has_real_reason": true,
+  "no_not_required_stamp": true,
+  "rows_artifact": "NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+  "rows_count": 3099
+}

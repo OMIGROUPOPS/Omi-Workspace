@@ -1,0 +1,15 @@
+{
+  "label": "RECEIPT_ONLY_GATE_ALIGNMENT_DID_NOT_CHANGE_SCORE_ARTIFACTS",
+  "reason": "The seated-rest exception was added to the continuous-post-only receipt check because the current dispatch explicitly makes every guard junior to seat immunity. Policy behavior and score artifacts were not edited.",
+  "baseline_hashes": {
+    "FOUR_STORIES_RECEIPT.json": "e6eb3dd6ca3a7563185cebf8fda38007f78762af5ba3227870f6995867a99773",
+    "TRADE_REPORT_FOUR.json": "26d878777a89ab038634dd9b4fddd32fc6d05e213b22a4d07a1e47b98e9d2e3c",
+    "BELIEF_DEADLINE_SCORING_TABLE.json": "d2d51c01650f1e25bd367289610a97f874c7c944f123e4f4bcc9a2fb9fbafa49"
+  },
+  "rebuilt_hashes": {
+    "FOUR_STORIES_RECEIPT.json": "2405729c56be1573c9bbb86ae9b318ddae2600d73478f9148ff80f25eb920faa",
+    "TRADE_REPORT_FOUR.json": "5b525e5c7eaf313af89137cbe577e17a9732747d6df0c7e948c3c00ba62aea3c",
+    "BELIEF_DEADLINE_SCORING_TABLE.json": "2043bce6024674d41fd6beeb5894fad82067e83d4cf893145965931323a8a8ed"
+  },
+  "all_score_artifacts_byte_identical": false
+}

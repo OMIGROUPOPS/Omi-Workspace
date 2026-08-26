@@ -1,0 +1,23 @@
+{
+  "label": "C04_CURRENT_AUTHORITY_SPAN_DIRECTION_PROTECTION_SINGLE_CANCEL_RESTORE",
+  "c04_current_authority_restore_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784028256.439,
+      "receipt": "af7cc4fa-1eaf-6175-e09a-7ac8778c3049",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 57,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 57,
+      "stale_price_ignored_cents": 58
+    }
+  ],
+  "post_span_orders": [],
+  "away_from_floor_lift_violations": [],
+  "cancel_count": 1,
+  "cancel_without_rearm_count": 0,
+  "passed": true
+}

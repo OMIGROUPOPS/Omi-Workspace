@@ -1,0 +1,15 @@
+{
+  "label": "F_VS_118_CANCEL_AND_REPLACE_ATOMIC",
+  "rule": "An inconsistent rest is replaced inside the current envelope on the same receipt when a lawful joint replacement exists. Only that inconsistent rest cancels fail-loud when no lawful replacement exists; a consistent sibling rest is not globally cleared.",
+  "provenance": "F-VS-118@c08ce381",
+  "rows": [],
+  "cancel_and_replace_atomic_rows": 0,
+  "fail_loud_no_replacement_rows": 0,
+  "danpra": {
+    "prior_distinct_fail_loud_cancel_receipts_cc": 15,
+    "repaired_distinct_cancel_receipts": 0,
+    "cancel_storm_disappeared": true,
+    "receipts": [],
+    "rows": []
+  }
+}

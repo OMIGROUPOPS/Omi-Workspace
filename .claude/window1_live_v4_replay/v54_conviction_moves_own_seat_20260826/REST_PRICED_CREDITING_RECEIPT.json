@@ -1,0 +1,64 @@
+{
+  "label": "REST_PRICED_CREDITING",
+  "law": "A qualifying print at-or-below a standing rest proves credit; the credited entry is the rest limit, never the lower triggering print.",
+  "law_index_read_at": "bcee2c40",
+  "findings": [
+    "F-VS-104",
+    "F-VS-105",
+    "F-VS-106"
+  ],
+  "fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "fill_timestamp_epoch": 1783869375.227,
+      "fill_receipt": "CR-32bdf89222bd1c9bcd5c637442104ada6e0aeac1ca9a0c473d67063d9d242b9a",
+      "standing_rest_cents": 66,
+      "triggering_print_cents": 66,
+      "credited_entry_cents": 66,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "fill_timestamp_epoch": 1784032697.6,
+      "fill_receipt": "CR-f2c0422cf98a26bc978571bbe42589a9399763320e69d42df18a3ab33e03dabe",
+      "standing_rest_cents": 58,
+      "triggering_print_cents": 57,
+      "credited_entry_cents": 58,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "fill_timestamp_epoch": 1784041997.986,
+      "fill_receipt": "CR-15f21e795b860c8b374747e40cfcb2054d67116f4f9ef5f1eabaee7f59a16797",
+      "standing_rest_cents": 40,
+      "triggering_print_cents": 40,
+      "credited_entry_cents": 40,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "fill_timestamp_epoch": 1784036624.369,
+      "fill_receipt": "CR-f0b590a90cf1be77eeabbc17800136b3598537e73835ba072bc0b5b1b6ecd6c2",
+      "standing_rest_cents": 59,
+      "triggering_print_cents": 55,
+      "credited_entry_cents": 59,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "entry_equals_standing_rest": true,
+      "print_at_or_below_rest": true
+    }
+  ],
+  "fill_count": 4,
+  "prints_strictly_below_rest_count": 2,
+  "every_entry_equals_standing_rest": true,
+  "every_triggering_print_at_or_below_rest": true
+}

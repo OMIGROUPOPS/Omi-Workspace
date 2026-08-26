@@ -360,4 +360,38 @@ for (const mover of ["DISAGREES_EMBARGO", "CURRENT_BELIEF_REPRICER", "MULTI_LANE
 assert.equal(os.predictionSeatImmunityDecision({ seat: seatedFixture, current_epoch: 200, surviving_supporting_shape_ids: ["SURVIVOR_A"], active_target_cents: 41, proposed_target_cents: 48, mover: "DEADLINE_PROBE" }).disposition, "EXIT_DEADLINE_EXPIRED_UNMET");
 assert.equal(os.predictionSeatImmunityDecision({ seat: seatedFixture, current_epoch: 100, surviving_supporting_shape_ids: [], active_target_cents: 41, proposed_target_cents: 48, mover: "SUPPORT_OVERTURN_PROBE" }).disposition, "EXIT_SUPPORTING_ELIMINATIONS_OVERTURNED");
 
+// THE CONVICTION MOVES ITS OWN SEAT: exactly one mover is senior to immunity,
+// and only when the current coherent conviction carries a lawful evidence update.
+const ownConvictionUpdate = {
+  lawful: true,
+  update: "SHIFTED_OWN_CONVICTION_DOWN",
+  from_target_cents: 41,
+  to_target_cents: 39,
+  receipt: "belief#2",
+  movement_evidence: { current_book_receipt: "book#2", prior_book_receipt: "book#1" },
+};
+const reseatDecision = os.predictionSeatImmunityDecision({
+  seat: seatedFixture,
+  current_epoch: 100,
+  surviving_supporting_shape_ids: ["SURVIVOR_A"],
+  active_target_cents: 41,
+  proposed_target_cents: 39,
+  mover: "OWN_CONVICTION_LINEAGE",
+  own_conviction_update: ownConvictionUpdate,
+});
+assert.equal(reseatDecision.disposition, "RESEAT_ON_OWN_CONVICTION_UPDATE");
+assert.equal(reseatDecision.target_cents, 39);
+assert.equal(reseatDecision.same_receipt_required, true);
+const forgedReseat = os.predictionSeatImmunityDecision({
+  seat: seatedFixture,
+  current_epoch: 100,
+  surviving_supporting_shape_ids: ["SURVIVOR_A"],
+  active_target_cents: 41,
+  proposed_target_cents: 39,
+  mover: "OWN_CONVICTION_LINEAGE",
+  own_conviction_update: { ...ownConvictionUpdate, lawful: false },
+});
+assert.equal(forgedReseat.disposition, "IMMUNE_HOLD_FROM_SEATING");
+assert.equal(forgedReseat.target_cents, 41);
+
 console.log("window1_v54_dual_belief_os: PASS");

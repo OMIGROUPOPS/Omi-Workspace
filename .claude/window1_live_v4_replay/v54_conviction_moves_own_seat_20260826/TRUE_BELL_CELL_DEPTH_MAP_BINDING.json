@@ -1,0 +1,101 @@
+{
+  "kind": "TRUE_BELL_CELL_CONDITIONAL_DEPTH_MAP_V3",
+  "commit": "ac68e3bc8d2c2018ba883c131b8b4101ae4cd257",
+  "path": ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json",
+  "sha256": "72751efe0386bffe0d41e43fb680aaf2e30516b213c7a6371811725bbf67cef9",
+  "lookup_basis": "LIBRARY_MEMBER_BOUNDED_CLOSE_CENTS",
+  "future_close_consumed": false,
+  "mapped_cells": 511,
+  "source_law": {
+    "grid": "ratified 90 one-cent cells per category, close cells [5,95)",
+    "edge": "bounded-library close_cents minus bounded-library low_cents",
+    "right_edge": "only CORPUS_INDEX rows with span.status=BOUNDED and finite span.end_epoch",
+    "unbounded": "excluded, never silently pooled",
+    "quantile": "type-7 linear interpolation on sorted integer-cent edges; published cent fields round half up and raw values are retained"
+  },
+  "source_census": {
+    "source_games": 15367,
+    "bounded_games": 9697,
+    "unbounded_games_excluded": 5670,
+    "bounded_legs_seen": 19394,
+    "mapped_legs": 18328,
+    "out_of_grid_legs": 1066,
+    "missing_price_legs": 0,
+    "negative_edge_legs": 0,
+    "mapped_cells": 511,
+    "mapped_cells_by_category": {
+      "ATP_CHALL": 90,
+      "ATP_MAIN": 90,
+      "ITF_M": 77,
+      "ITF_W": 74,
+      "WTA_CHALL": 90,
+      "WTA_MAIN": 90
+    },
+    "by_category": {
+      "ATP_CHALL": {
+        "source_games": 6534,
+        "bounded_games": 3792,
+        "mapped_legs": 7224,
+        "out_of_grid_legs": 360,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      },
+      "ATP_MAIN": {
+        "source_games": 3672,
+        "bounded_games": 2596,
+        "mapped_legs": 4896,
+        "out_of_grid_legs": 296,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      },
+      "ITF_M": {
+        "source_games": 170,
+        "bounded_games": 95,
+        "mapped_legs": 155,
+        "out_of_grid_legs": 35,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      },
+      "ITF_W": {
+        "source_games": 144,
+        "bounded_games": 89,
+        "mapped_legs": 158,
+        "out_of_grid_legs": 20,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      },
+      "WTA_CHALL": {
+        "source_games": 1305,
+        "bounded_games": 681,
+        "mapped_legs": 1276,
+        "out_of_grid_legs": 86,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      },
+      "WTA_MAIN": {
+        "source_games": 3542,
+        "bounded_games": 2444,
+        "mapped_legs": 4619,
+        "out_of_grid_legs": 269,
+        "missing_price_legs": 0,
+        "negative_edge_legs": 0
+      }
+    },
+    "by_quality": {
+      "FOUNDATION_MINUTE_BELL_BOUNDED": 9000,
+      "HISTORICAL_EVENT_AGGREGATE_UNBOUNDED": 419,
+      "EVENT_REGISTRY_ONLY": 405,
+      "RANGE_SPECTRUM_PATH_UNBOUNDED": 4846,
+      "RANGE_SPECTRUM_PATH_BELL_BOUNDED": 697
+    },
+    "by_bell_method": {
+      "both_sides_trade_density": 343,
+      "both_sides_price_discovery": 8062,
+      "expected_expiration_fallback": 598,
+      "IN_PLAY_SIGNATURE_NAMED_NEIGHBOR_FVS050": 12,
+      "IN_PLAY_SIGNATURE_ROW_RATE_MIRRORED_REPRICING": 389,
+      "OFFICIAL_ACTUAL_MACHINE_RECEIPT": 99,
+      "OFFICIAL_ACTUAL_RANGE_SPECTRUM": 197
+    }
+  }
+}

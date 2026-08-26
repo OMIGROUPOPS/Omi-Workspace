@@ -1,0 +1,130 @@
+{
+  "label": "V54_CONVICTION_SEATS_THE_BID_CUSTODY_RECONCILED",
+  "files": [
+    {
+      "logical_path": "FOUNDATION_PER_MINUTE_UNIVERSE",
+      "custody_location": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+      "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+      "bytes": 406637058,
+      "rows": 9330878,
+      "committed": false,
+      "compact_derivatives": [
+        {
+          "path": "FOUNDATION_LIBRARY.jsonl.gz",
+          "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+          "bytes": 2159635,
+          "rows": 9000
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+          "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+          "bytes": 1668883,
+          "rows": 5260
+        },
+        {
+          "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+          "sha256": "52667e215dc0ef6bf393e23d3acd6c78d24809cbabc5b0e0aa82088fc5a5f557",
+          "bytes": 8497,
+          "rows": 24
+        }
+      ]
+    },
+    {
+      "logical_path": "INTERIM_PAIR_LIBRARY_V18.json",
+      "source_path": ".claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "source_commit": "189eaa20",
+      "custody_location": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/189eaa20/.claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "sha256": "4542b46d29b9d55dd97775ef3d8f8f3d971b899cf00e375189b15d08609849e2",
+      "bytes": 4711921,
+      "committed_in_current_tree": false,
+      "git_object_hash_bound": true
+    },
+    {
+      "logical_path": "PAIR_COUPLE_LIBRARY_V19.json",
+      "source_path": ".claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "source_commit": "189eaa20",
+      "custody_location": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/189eaa20/.claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b",
+      "bytes": 3485183,
+      "committed_in_current_tree": false,
+      "git_object_hash_bound": true
+    },
+    {
+      "logical_path": "CARRIED_CONVICTION_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_conviction_moves_own_seat_20260826\\CARRIED_CONVICTION_RECEIPT.json",
+      "sha256": "6bc04684e0f89d9c06a67fac2cbc398108153595c76b3e307741cffbe07ce70b",
+      "bytes": 1990748317,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_conviction_moves_own_seat_20260826\\DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "sha256": "154939146b6e791e0f5e33175e6980a660a84db781be30b2844f12c389ef8b83",
+      "bytes": 97680433,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_conviction_moves_own_seat_20260826\\ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "sha256": "f86bb357d9b1968d133ad939ca6ac6db293247d5c04f3ae27d4a00eb48c63dc9",
+      "bytes": 56331299,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_conviction_moves_own_seat_20260826\\NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "sha256": "b4eb953031681a0a9714a1ec20f71bade0d79c098db553f37528c72210749533",
+      "bytes": 58183657,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "PREDICTION_SEATED_RESTS_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_conviction_moves_own_seat_20260826\\PREDICTION_SEATED_RESTS_RECEIPT.json",
+      "sha256": "6ac989bd388bca1b87871bf10380ad7e04a7f6e438f81e0e08b4e6bd94800660",
+      "bytes": 764991191,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "PREDICTION_SEAT_IMMUNITY_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_conviction_moves_own_seat_20260826\\PREDICTION_SEAT_IMMUNITY_RECEIPT.json",
+      "sha256": "7c92803cc89d10fad07dc44f140b65aa84dc13de69e1fce33ae488b490ddd558",
+      "bytes": 767391429,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "PRICING_AUTHORITY_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_conviction_moves_own_seat_20260826\\PRICING_AUTHORITY_RECEIPT.json",
+      "sha256": "e7bb477f3a8d1e2fd99ac723c807b73625a616547f4dd759497737bbc3286fad",
+      "bytes": 1056166908,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_conviction_moves_own_seat_20260826\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "c99b13f65aa553bde5606b1930bc2d4e5c3d36455133176cb268c0639247c773",
+      "bytes": 393441920,
+      "rows": 1727,
+      "committed": false
+    },
+    {
+      "logical_path": "SMOKE_CRIJEA.md",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_conviction_moves_own_seat_20260826\\SMOKE_CRIJEA.md",
+      "sha256": "7f332e440d973b5f76df4c711d650d911ea815eedc43e8e10ac9edabe7be937e",
+      "bytes": 213617695,
+      "rows": null,
+      "committed": false
+    }
+  ],
+  "prior_manifest_disagreement_reconciled": true,
+  "phase_central_surface_file_receipt_matches_artifact_manifest": true,
+  "all_committed_artifacts_under_50_mb": true,
+  "committed_artifact_cap_bytes": 52428800,
+  "oversized_artifacts_moved_to_external_custody": 9
+}

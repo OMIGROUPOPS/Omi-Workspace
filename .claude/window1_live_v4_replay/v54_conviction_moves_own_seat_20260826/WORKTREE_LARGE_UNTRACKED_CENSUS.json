@@ -1,0 +1,113 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v35_conviction_moves_own_seat_20260826/PANEL_B_ENGAGEMENT.html",
+      "bytes": 11059460,
+      "sha256": "076dac83479998d57bc547afdd926a22e8b09892e01b30a341a397286041522d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/AUTHORITY_VACUUM_RECEIPT.json",
+      "bytes": 13237755,
+      "sha256": "0cc30ef2ac54b71ddb80683413acdafedc6c33b46a279e0e4818df1101367e22"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 1990748317,
+      "sha256": "6bc04684e0f89d9c06a67fac2cbc398108153595c76b3e307741cffbe07ce70b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+      "bytes": 28420685,
+      "sha256": "21e769ffa42138da76dc5149e1b9a403a20e1406301918e5789087471bdcac14"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 97680433,
+      "sha256": "154939146b6e791e0f5e33175e6980a660a84db781be30b2844f12c389ef8b83"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 36076023,
+      "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "bytes": 56331299,
+      "sha256": "f86bb357d9b1968d133ad939ca6ac6db293247d5c04f3ae27d4a00eb48c63dc9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/FLOOR_REST_PROTECTION_RECEIPT.json",
+      "bytes": 33821328,
+      "sha256": "4ea97974a5d73cb317835967683cbf72413ed771eebd92e11c587144eabfc941"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/FOUR_STORIES.md",
+      "bytes": 22257931,
+      "sha256": "9c37b05ff1c18ef7910ea7e7a423c76ed84b98aa5213eb9de917bdf42762eaee"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "bytes": 29521128,
+      "sha256": "a423f4910071a66f57507a5515c6479d0695d7155f31253e36d59220276673e0"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "bytes": 58183657,
+      "sha256": "b4eb953031681a0a9714a1ec20f71bade0d79c098db553f37528c72210749533"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+      "bytes": 17073069,
+      "sha256": "462b7279ae98b26fa6726ee60c9bbe8dd1c46850effaccd187a6569a04cfe193"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "bytes": 25970740,
+      "sha256": "8e9be4fdb14a7e64ce002e24857d653696c875c9639c65f1b5fc0f83c027a090"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/PREDICTION_SEAT_IMMUNITY_RECEIPT.json",
+      "bytes": 767391429,
+      "sha256": "7c92803cc89d10fad07dc44f140b65aa84dc13de69e1fce33ae488b490ddd558"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/PREDICTION_SEATED_RESTS_RECEIPT.json",
+      "bytes": 764991191,
+      "sha256": "6ac989bd388bca1b87871bf10380ad7e04a7f6e438f81e0e08b4e6bd94800660"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 1056166908,
+      "sha256": "e7bb477f3a8d1e2fd99ac723c807b73625a616547f4dd759497737bbc3286fad"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 393441920,
+      "sha256": "c99b13f65aa553bde5606b1930bc2d4e5c3d36455133176cb268c0639247c773"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/SMOKE_CRIJEA.md",
+      "bytes": 213617695,
+      "sha256": "7f332e440d973b5f76df4c711d650d911ea815eedc43e8e10ac9edabe7be937e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 22823246,
+      "sha256": "ffafa1cf453392ec03723a426e97ea44e6b2a18c4faa5f6edcf54d5dea5cfcbb"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_moves_own_seat_20260826/TRUE_CONDITIONING_RECEIPT.json",
+      "bytes": 30311830,
+      "sha256": "e82986b4eda89885ce01457c4bed18b68ec3f41d783a1045525d66c72708c13d"
+    }
+  ],
+  "count": 21,
+  "bytes": 5680500713
+}

@@ -1,0 +1,1824 @@
+{
+  "label": "V54_AUTHOR_READS_OWN_GAME_NON_GATE_DIAGNOSTIC_SUMMARY",
+  "law_index_read_at": "a6e84246",
+  "law_index_sha256": "41784e6a…",
+  "cc_forensics": [
+    "a6e84246:F-VS-215..218",
+    "F-VS-066",
+    "F-VS-068",
+    "F-VS-134",
+    "DEFINITION_LOCK"
+  ],
+  "honest_baseline_pins": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": true,
+      "delta_vs_100_cents": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": true,
+      "delta_vs_100_cents": 6
+    }
+  ],
+  "pins_equal_expected": true,
+  "required_bed_floors": {
+    "KXATPCHALLENGERMATCH_26JUL12GIUBAR": 7,
+    "KXATPCHALLENGERMATCH_26JUL14URSPAL": 4,
+    "KXATPCHALLENGERMATCH_26JUL14LAJSVA": 8
+  },
+  "layered_safety_floor_breaks": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "completed": true,
+      "delta_vs_100_cents": 4,
+      "legs": {
+        "BAR": {
+          "credited": true,
+          "entry_cents": 27,
+          "standing_target_cents": null,
+          "fill_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|BAR",
+            "captured_at_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+            "row_refs": [
+              "4fa381b8-914c-4ca3-2edd-5b77ac756cea"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+              "leg_id": "BAR",
+              "entry_cents": 27,
+              "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+              "triggering_print_price_cents": 27,
+              "fill_timestamp_epoch": 1783841801.417,
+              "prior_standing_target_cents": 27,
+              "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "standing_license_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+              "print_at_or_below_rest": true,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-2caf8fc92707af0bf9ecdefb00f882227ee4369eed36cbf0349948af0fef5b84"
+          },
+          "fill_timestamp_epoch": 1783841801.417,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null,
+          "standing_authority_evidence": {
+            "source": "OBSERVED_TRUE_TRADE_LOW",
+            "value_cents": 27,
+            "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+            "class_rank": 3,
+            "grade": 0.9958847736625515,
+            "decisiveness_weight": 2.9876543209876543
+          }
+        },
+        "GIU": {
+          "credited": true,
+          "entry_cents": 69,
+          "standing_target_cents": null,
+          "fill_receipt": "b113f8de-209e-522a-6da2-c9ef40e91737",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU",
+            "captured_at_receipt": "b113f8de-209e-522a-6da2-c9ef40e91737",
+            "row_refs": [
+              "b113f8de-209e-522a-6da2-c9ef40e91737"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+              "leg_id": "GIU",
+              "entry_cents": 69,
+              "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+              "triggering_print_price_cents": 69,
+              "fill_timestamp_epoch": 1783841972.759,
+              "prior_standing_target_cents": 69,
+              "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-474",
+              "print_at_or_below_rest": true,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-25d7f6da561a58e45b8fddef214df75b2990afa7120183c23998b1aa4b7d3e41"
+          },
+          "fill_timestamp_epoch": 1783841972.759,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null,
+          "standing_authority_evidence": {
+            "source": "OBSERVED_TRUE_TRADE_LOW",
+            "value_cents": 69,
+            "receipt": "cfcd2225-e66e-5a0e-f7a9-57e9ad6c2faf",
+            "class_rank": 3,
+            "grade": 0.998587570621469,
+            "decisiveness_weight": 2.995762711864407
+          }
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "completed": true,
+      "delta_vs_100_cents": 2,
+      "legs": {
+        "PAL": {
+          "credited": true,
+          "entry_cents": 40,
+          "standing_target_cents": null,
+          "fill_receipt": "34d9e70c-6438-7f56-bfd9-5decec93efcf",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL",
+            "captured_at_receipt": "34d9e70c-6438-7f56-bfd9-5decec93efcf",
+            "row_refs": [
+              "34d9e70c-6438-7f56-bfd9-5decec93efcf"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+              "leg_id": "PAL",
+              "entry_cents": 40,
+              "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+              "triggering_print_price_cents": 40,
+              "fill_timestamp_epoch": 1784041997.986,
+              "prior_standing_target_cents": 40,
+              "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2906",
+              "print_at_or_below_rest": true,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-22a006e5fe45fb82052748d0bf235f2208fccdd5de31f08521686fecf0753500"
+          },
+          "fill_timestamp_epoch": 1784041997.986,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null,
+          "standing_authority_evidence": {
+            "source": "OBSERVED_TRUE_TRADE_LOW",
+            "value_cents": 40,
+            "receipt": "038f03f3-2dcd-7363-da5f-06677e3be932",
+            "class_rank": 3,
+            "grade": 0.9955724785265209,
+            "decisiveness_weight": 2.9867174355795627
+          }
+        },
+        "URS": {
+          "credited": true,
+          "entry_cents": 58,
+          "standing_target_cents": null,
+          "fill_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+            "captured_at_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "row_refs": [
+              "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+              "leg_id": "URS",
+              "entry_cents": 58,
+              "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+              "triggering_print_price_cents": 57,
+              "fill_timestamp_epoch": 1784032697.6,
+              "prior_standing_target_cents": 58,
+              "standing_license_basis": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE",
+              "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4292",
+              "print_at_or_below_rest": true,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-bcc9ff34e4c42a04d10cef8434167ebe7ce90de623782d83f779f98a3cfc475a"
+          },
+          "fill_timestamp_epoch": 1784032697.6,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null,
+          "standing_authority_evidence": {
+            "source": "OBSERVED_TRUE_TRADE_LOW",
+            "value_cents": 58,
+            "receipt": "de8acb81-1259-6081-ed5a-a11461e5f45b",
+            "class_rank": 3,
+            "grade": 0.9657182036338704,
+            "decisiveness_weight": 2.897154610901611
+          }
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "completed": false,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "LAJ": {
+          "credited": true,
+          "entry_cents": 54,
+          "standing_target_cents": null,
+          "fill_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+            "captured_at_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+            "row_refs": [
+              "16abd619-09aa-7b19-502f-1c8dda90dac9"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+              "leg_id": "LAJ",
+              "entry_cents": 54,
+              "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+              "triggering_print_price_cents": 54,
+              "fill_timestamp_epoch": 1784050973.062,
+              "prior_standing_target_cents": 54,
+              "standing_license_basis": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE",
+              "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3282",
+              "print_at_or_below_rest": true,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-a187504d3baa654200b3f8208d6660083a3bb6b157df579de1c02940f775d738"
+          },
+          "fill_timestamp_epoch": 1784050973.062,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null,
+          "standing_authority_evidence": {
+            "source": "OBSERVED_TRUE_TRADE_LOW",
+            "value_cents": 54,
+            "receipt": "d2b2edfa-5b0e-5afc-6f15-a9dc9fe4d9fa",
+            "class_rank": 3,
+            "grade": 0.9995628357967536,
+            "decisiveness_weight": 2.998688507390261
+          }
+        },
+        "SVA": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": 41,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+          "standing_license_receipt": "d97f0682-a7e3-64f5-9751-dd8c5fcf09f4",
+          "standing_captured_rest_level_cents": 41,
+          "standing_captured_rest_license_receipt": "d97f0682-a7e3-64f5-9751-dd8c5fcf09f4",
+          "standing_authority_evidence": {
+            "source": "OBSERVED_TRUE_TRADE_LOW",
+            "value_cents": 41,
+            "receipt": "d97f0682-a7e3-64f5-9751-dd8c5fcf09f4",
+            "class_rank": 3,
+            "grade": 0.9772727272727273,
+            "decisiveness_weight": 2.9318181818181817
+          }
+        }
+      }
+    }
+  ],
+  "safety_floor_pass": false,
+  "central_estimator": {
+    "provenance": "F-VS-124@48dbf36b",
+    "future_low_return_library": {
+      "index": {
+        "path": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_one_author_cap_veto_no_vacuum_20260825_rerun4\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+        "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+        "bytes": 1668883,
+        "rows": 5260
+      },
+      "materializer_receipt": {
+        "path": "C:\\tmp\\omi-v54-dual-belief-20260823\\.claude\\window1_live_v4_replay\\v54_one_author_cap_veto_no_vacuum_20260825_rerun4\\FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json",
+        "sha256": "cfe59471d2df7fb9a5d18440099c4df1e5f2fed0cf351e9b4f9ede24739666e1",
+        "bytes": 1112,
+        "rows": null
+      },
+      "source": {
+        "bytes": 406637058,
+        "path": "tmp/per_minute_features.parquet",
+        "rows": 9330878,
+        "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4"
+      },
+      "output": {
+        "bounded_legs": 8386,
+        "by_category_legs": {
+          "ATP_CHALL": 3484,
+          "ATP_MAIN": 2427,
+          "WTA_CHALL": 487,
+          "WTA_MAIN": 1988
+        },
+        "bytes": 1668883,
+        "path": "C:\\Users\\omigr\\OMI-Workspace-codex-window1\\tmp\\v54-four-steps-ii\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+        "path_points": 71649,
+        "rows": 5260,
+        "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201"
+      },
+      "method": "EXACT_MINUTE_PATH_CHANGE_POINTS; NO_BUCKETS; NO_THRESHOLDS; NO_PLACEMENT_CONSTANTS; CURRENT_MINUTE_EXCLUDED_FROM_ITS_LABEL",
+      "layer_license": {
+        "grain": "MINUTE",
+        "licensed_layers": [
+          "MACRO",
+          "MICRO"
+        ],
+        "micro_micro_licensed": false
+      }
+    },
+    "surface": {
+      "kind": "F_VS_124_PHASE_CATEGORY_CENTRAL_FUTURE_LOW_SURFACE",
+      "source_sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+      "provenance": "F-VS-124@48dbf36b",
+      "method": "CATEGORY_X_FILED_PHASE_BAND_POPULATION; TERMINAL_PATH_POINT_PER_LEG_EXCLUDED; Q50_NEAREST_RANK; MIDRANK_REPORTED",
+      "phase_bands": [
+        {
+          "id": "P00_10",
+          "low": 0,
+          "high": 0.1
+        },
+        {
+          "id": "P10_30",
+          "low": 0.1,
+          "high": 0.3
+        },
+        {
+          "id": "P30_50",
+          "low": 0.3,
+          "high": 0.5
+        },
+        {
+          "id": "P50_70",
+          "low": 0.5,
+          "high": 0.7
+        },
+        {
+          "id": "P70_90",
+          "low": 0.7,
+          "high": 0.9
+        },
+        {
+          "id": "P90_100",
+          "low": 0.9,
+          "high": 1
+        }
+      ],
+      "source_path_points": 71613,
+      "terminal_points_excluded": 8383,
+      "central_population_points": 63227,
+      "cc_f_vs_124_reported_population_points": 63260,
+      "cc_reconciliation_difference_points": -33,
+      "cells": [
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P00_10",
+          "phase_low_inclusive": 0,
+          "phase_high_exclusive": 0.1,
+          "members": 7316,
+          "q25_cents": -11,
+          "q50_cents": -4,
+          "q75_cents": -1,
+          "q50_midrank": 0.501367,
+          "min_cents": -94,
+          "max_cents": 87
+        },
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P10_30",
+          "phase_low_inclusive": 0.1,
+          "phase_high_exclusive": 0.3,
+          "members": 1316,
+          "q25_cents": -8,
+          "q50_cents": -3,
+          "q75_cents": 0,
+          "q50_midrank": 0.487842,
+          "min_cents": -89,
+          "max_cents": 92
+        },
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P30_50",
+          "phase_low_inclusive": 0.3,
+          "phase_high_exclusive": 0.5,
+          "members": 1121,
+          "q25_cents": -6,
+          "q50_cents": -2,
+          "q75_cents": 1,
+          "q50_midrank": 0.471454,
+          "min_cents": -58,
+          "max_cents": 93
+        },
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P50_70",
+          "phase_low_inclusive": 0.5,
+          "phase_high_exclusive": 0.7,
+          "members": 1101,
+          "q25_cents": -5,
+          "q50_cents": -1,
+          "q75_cents": 2,
+          "q50_midrank": 0.512716,
+          "min_cents": -56,
+          "max_cents": 65
+        },
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P70_90",
+          "phase_low_inclusive": 0.7,
+          "phase_high_exclusive": 0.9,
+          "members": 2091,
+          "q25_cents": -6,
+          "q50_cents": 0,
+          "q75_cents": 3,
+          "q50_midrank": 0.51363,
+          "min_cents": -48,
+          "max_cents": 92
+        },
+        {
+          "category": "ATP_CHALL",
+          "phase_band": "P90_100",
+          "phase_low_inclusive": 0.9,
+          "phase_high_exclusive": 1,
+          "members": 12316,
+          "q25_cents": -2,
+          "q50_cents": 3,
+          "q75_cents": 10,
+          "q50_midrank": 0.479052,
+          "min_cents": -56,
+          "max_cents": 96
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P00_10",
+          "phase_low_inclusive": 0,
+          "phase_high_exclusive": 0.1,
+          "members": 5952,
+          "q25_cents": -10,
+          "q50_cents": -3,
+          "q75_cents": 0,
+          "q50_midrank": 0.521337,
+          "min_cents": -94,
+          "max_cents": 84
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P10_30",
+          "phase_low_inclusive": 0.1,
+          "phase_high_exclusive": 0.3,
+          "members": 1298,
+          "q25_cents": -6,
+          "q50_cents": -2,
+          "q75_cents": 1,
+          "q50_midrank": 0.489985,
+          "min_cents": -73,
+          "max_cents": 81
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P30_50",
+          "phase_low_inclusive": 0.3,
+          "phase_high_exclusive": 0.5,
+          "members": 891,
+          "q25_cents": -5,
+          "q50_cents": -1,
+          "q75_cents": 2,
+          "q50_midrank": 0.497755,
+          "min_cents": -62,
+          "max_cents": 82
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P50_70",
+          "phase_low_inclusive": 0.5,
+          "phase_high_exclusive": 0.7,
+          "members": 873,
+          "q25_cents": -5,
+          "q50_cents": -1,
+          "q75_cents": 2,
+          "q50_midrank": 0.462772,
+          "min_cents": -70,
+          "max_cents": 65
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P70_90",
+          "phase_low_inclusive": 0.7,
+          "phase_high_exclusive": 0.9,
+          "members": 1695,
+          "q25_cents": -6,
+          "q50_cents": 0,
+          "q75_cents": 3,
+          "q50_midrank": 0.50295,
+          "min_cents": -64,
+          "max_cents": 66
+        },
+        {
+          "category": "ATP_MAIN",
+          "phase_band": "P90_100",
+          "phase_low_inclusive": 0.9,
+          "phase_high_exclusive": 1,
+          "members": 7481,
+          "q25_cents": 0,
+          "q50_cents": 4,
+          "q75_cents": 11,
+          "q50_midrank": 0.518781,
+          "min_cents": -84,
+          "max_cents": 86
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P00_10",
+          "phase_low_inclusive": 0,
+          "phase_high_exclusive": 0.1,
+          "members": 978,
+          "q25_cents": -15,
+          "q50_cents": -6,
+          "q75_cents": -2,
+          "q50_midrank": 0.476994,
+          "min_cents": -78,
+          "max_cents": 82
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P10_30",
+          "phase_low_inclusive": 0.1,
+          "phase_high_exclusive": 0.3,
+          "members": 189,
+          "q25_cents": -10,
+          "q50_cents": -4,
+          "q75_cents": -1,
+          "q50_midrank": 0.521164,
+          "min_cents": -60,
+          "max_cents": 77
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P30_50",
+          "phase_low_inclusive": 0.3,
+          "phase_high_exclusive": 0.5,
+          "members": 167,
+          "q25_cents": -11,
+          "q50_cents": -3,
+          "q75_cents": 1,
+          "q50_midrank": 0.508982,
+          "min_cents": -65,
+          "max_cents": 88
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P50_70",
+          "phase_low_inclusive": 0.5,
+          "phase_high_exclusive": 0.7,
+          "members": 150,
+          "q25_cents": -9,
+          "q50_cents": -3,
+          "q75_cents": 1,
+          "q50_midrank": 0.48,
+          "min_cents": -45,
+          "max_cents": 85
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P70_90",
+          "phase_low_inclusive": 0.7,
+          "phase_high_exclusive": 0.9,
+          "members": 275,
+          "q25_cents": -7,
+          "q50_cents": -2,
+          "q75_cents": 2,
+          "q50_midrank": 0.472727,
+          "min_cents": -42,
+          "max_cents": 88
+        },
+        {
+          "category": "WTA_CHALL",
+          "phase_band": "P90_100",
+          "phase_low_inclusive": 0.9,
+          "phase_high_exclusive": 1,
+          "members": 2081,
+          "q25_cents": -3,
+          "q50_cents": 3,
+          "q75_cents": 11,
+          "q50_midrank": 0.494474,
+          "min_cents": -48,
+          "max_cents": 78
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P00_10",
+          "phase_low_inclusive": 0,
+          "phase_high_exclusive": 0.1,
+          "members": 4693,
+          "q25_cents": -13,
+          "q50_cents": -4,
+          "q75_cents": -1,
+          "q50_midrank": 0.516301,
+          "min_cents": -95,
+          "max_cents": 88
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P10_30",
+          "phase_low_inclusive": 0.1,
+          "phase_high_exclusive": 0.3,
+          "members": 963,
+          "q25_cents": -9,
+          "q50_cents": -3,
+          "q75_cents": 1,
+          "q50_midrank": 0.489616,
+          "min_cents": -75,
+          "max_cents": 89
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P30_50",
+          "phase_low_inclusive": 0.3,
+          "phase_high_exclusive": 0.5,
+          "members": 769,
+          "q25_cents": -7,
+          "q50_cents": -2,
+          "q75_cents": 1,
+          "q50_midrank": 0.485046,
+          "min_cents": -74,
+          "max_cents": 91
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P50_70",
+          "phase_low_inclusive": 0.5,
+          "phase_high_exclusive": 0.7,
+          "members": 746,
+          "q25_cents": -7,
+          "q50_cents": -2,
+          "q75_cents": 1,
+          "q50_midrank": 0.465147,
+          "min_cents": -73,
+          "max_cents": 85
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P70_90",
+          "phase_low_inclusive": 0.7,
+          "phase_high_exclusive": 0.9,
+          "members": 1479,
+          "q25_cents": -13,
+          "q50_cents": -1,
+          "q75_cents": 2,
+          "q50_midrank": 0.514537,
+          "min_cents": -69,
+          "max_cents": 89
+        },
+        {
+          "category": "WTA_MAIN",
+          "phase_band": "P90_100",
+          "phase_low_inclusive": 0.9,
+          "phase_high_exclusive": 1,
+          "members": 7286,
+          "q25_cents": -1,
+          "q50_cents": 4,
+          "q75_cents": 14,
+          "q50_midrank": 0.506451,
+          "min_cents": -60,
+          "max_cents": 93
+        }
+      ],
+      "sha256": "f02eca7a0f4192ed76139ef29c8ea9128bbf1661bee9c45f28ee20c7bb6c04fd"
+    },
+    "bias_shift": {
+      "baseline_median_signed_error_cents": -20,
+      "repaired_median_signed_error_cents": -4,
+      "moved_toward_zero": true,
+      "hit_share": 0.38256819693945443,
+      "cc_counterfactual": {
+        "median_signed_error_cents": -4,
+        "graded_rows": 3179,
+        "hit_rows": 1214,
+        "hit_share": 0.38188109468386283,
+        "provenance": "F-VS-127@3e3d3548",
+        "correction": "F_VS_124_HIT_TEST_WAS_INVERTED; REALIZED_LOW_AT_OR_BELOW_PREDICTION_IS_THE_HIT"
+      },
+      "reproduces_corrected_cc_within_one_percentage_point": true,
+      "role": "TELEMETRY_NOT_GATE"
+    }
+  },
+  "consume_live_touch": {
+    "provenance": [
+      "F-VS-125@48dbf36b",
+      "F-VS-129@3e3d3548",
+      "F-VS-068@521a1613"
+    ],
+    "rows": 0,
+    "floor_touch_rows": 0,
+    "floor_stood_rows": 0,
+    "data_unconsumed_violations": 0,
+    "touch_over_live_envelope_violations": 0,
+    "disagrees_placement_violations": 0,
+    "lawful_disagrees_own_evidence_actions": 27
+  },
+  "survivor_shapes": {
+    "source_commit": "189eaa20",
+    "receipt": "SURVIVOR_SHAPE_TRAJECTORIES.json",
+    "legs": 8,
+    "trajectory_rows": 9,
+    "eliminations_observed": 4,
+    "reinstatements_observed": 0,
+    "every_leg_seeded": true,
+    "target_axis": "POST_FORMATION_TRUE_TRADE_LOW_CENTS",
+    "ask_reachability_role": "INFORM_ONLY_NEVER_DEFINES_TRADED_LOW_TARGET",
+    "floor_moment_separation_receipt": "SURVIVOR_FLOOR_MOMENT_SEPARATION.json"
+  },
+  "carried_conviction": {
+    "provenance": "F-VS-134..135@e7081336",
+    "receipt": "CARRIED_CONVICTION_RECEIPT.json",
+    "prior_receipt_placements_or_reprices": 0,
+    "prior_receipt_readability": {
+      "readable_rows": 411,
+      "unreadable_rows": 2151
+    },
+    "hardcoded_stale_prior_gate_occurrences": 0,
+    "no_envelope_touch_lane_receipt": "NO_ENVELOPE_TOUCH_LANE_CENSUS.json",
+    "zero_action_blocker": [
+      "DISAGREES_HOLDS_OR_REDERIVES_NO_PLACEMENT",
+      "CONFIRMED_CARRIED_CONVICTION",
+      "SHIFTED_CARRIED_CONVICTION",
+      "TIGHTENED_CARRIED_CONVICTION",
+      "NO_LAWFUL_ENVELOPE",
+      "CARRIED_PRIOR_RECEIPT_CONVICTION_WITH_CURRENT_BASIS_RESTATEMENT"
+    ]
+  },
+  "floor_rest_protection": {
+    "provenance": [
+      "F-VS-138/F-VS-142@f4752720",
+      "F-VS-148..152@d079687f"
+    ],
+    "receipt": "FLOOR_REST_PROTECTION_RECEIPT.json",
+    "floor_rest_lock_source_occurrences": 0,
+    "protected_rows": 63,
+    "violations": 0,
+    "urs_repriced_off_observed_floor": false
+  },
+  "narrowing_and_supervisor": {
+    "receipt": "NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+    "exact_floor_proposals": 1297,
+    "exact_floor_proposals_admitted": 1295,
+    "singleton_envelope_rows": 39,
+    "singleton_unconsumed_rows": 0,
+    "supervised_floor_proposals": 1363
+  },
+  "disagrees_own_evidence": {
+    "provenance": "F-VS-068 + F-VS-138/F-VS-142@f4752720",
+    "receipt": "DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+    "licensed_rows": 124,
+    "unlicensed_placement_violations": 0,
+    "laj_51_floor_stood": false
+  },
+  "atomic_rearm": {
+    "provenance": "F-VS-120@97411938",
+    "legs": 4,
+    "resolved_legs": 2,
+    "pending_at_edge_legs": 2,
+    "permanent_silence": 0
+  },
+  "lawful_incomplete": {
+    "provenance": "F-VS-121@97411938",
+    "rows": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "stamp": "NOT_APPLICABLE_COMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "BAR": 27,
+            "GIU": 66
+          },
+          "two_leg_floor_sum_cents": 93,
+          "strictly_under_par_offer_cents": 6,
+          "proof": "27+66=93; max(0,99-93)=6"
+        },
+        "rest_at_floor_rows": [
+          {
+            "leg_id": "BAR",
+            "floor_cents": 27,
+            "rest_cents": 27,
+            "timestamp_epoch": 1783841772.000011,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-430",
+            "action": "REPRICE_REST",
+            "sentence_sha256": "60851f86ca36730d3fae071526b537bba44e32e09659ed478c0b9cc83bec74dd",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "BAR",
+            "floor_cents": 27,
+            "rest_cents": 27,
+            "timestamp_epoch": 1783841801.304,
+            "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+            "action": "REPRICE_REST",
+            "sentence_sha256": "8bd614ac81f7715a67ef8b6e79e46e532838d557c7d13e8f08f808b47b7f897e",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          }
+        ],
+        "rest_at_floor_proven": true,
+        "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001",
+        "unstamped_abstention_scores_zero": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "stamp": "NOT_APPLICABLE_COMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "PAL": 39,
+            "URS": 57
+          },
+          "two_leg_floor_sum_cents": 96,
+          "strictly_under_par_offer_cents": 3,
+          "proof": "39+57=96; max(0,99-96)=3"
+        },
+        "rest_at_floor_rows": [
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784001495.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-7",
+            "action": "PLACE_REST",
+            "sentence_sha256": "fefe010d0f04a765841f5c8c1adb0f94286e6ea138c6c8d45b0da31015b8b528",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784001495.000002,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-8",
+            "action": "HOLD_REST",
+            "sentence_sha256": "8a2b5e5fd050d3d70fab98ebd5249a0026564e7c0ba28377984ad96e0ac564cd",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784004250.000002,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-49",
+            "action": "HOLD_REST",
+            "sentence_sha256": "4b64edf607e10ff8159576a3e467428e98d3b75ca52950a7540d10960ec87df8",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "URS",
+            "floor_cents": 57,
+            "rest_cents": 57,
+            "timestamp_epoch": 1784004251.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-50",
+            "action": "HOLD_REST",
+            "sentence_sha256": "be5199deaf734c73d83fa71dbdbb12022c0ce3d41c73f747ce6fc0da7718c0d0",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          }
+        ],
+        "rest_at_floor_proven": true,
+        "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002",
+        "unstamped_abstention_scores_zero": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "stamp": "UNSTAMPED_INCOMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "LAJ": 51,
+            "SVA": 41
+          },
+          "two_leg_floor_sum_cents": 92,
+          "strictly_under_par_offer_cents": 7,
+          "proof": "51+41=92; max(0,99-92)=7"
+        },
+        "rest_at_floor_rows": [
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020209.484,
+            "receipt": "d97f0682-a7e3-64f5-9751-dd8c5fcf09f4",
+            "action": "REPRICE_REST",
+            "sentence_sha256": "7161e136bfc782c961c5f84563c1480288f1d5dacaefbdacba902946c7000534",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020214.878,
+            "receipt": "4f1edd6e-4e43-6394-4176-9cafeb1e897a",
+            "action": "HOLD_REST",
+            "sentence_sha256": "09268f4e3c70e499bc9ce675d2bec661be4afea9a1863039c79cce7fc140f211",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020218.594001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-394",
+            "action": "HOLD_REST",
+            "sentence_sha256": "f6e8f0579bc7ea00ae4033fad6b2be0ed1978e26cc56d40167e6385a11985818",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020219.000039,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-433",
+            "action": "HOLD_REST",
+            "sentence_sha256": "95059ebcdc4638f385409707e4786e757d4011aed01fdcbe56c8f6908bb2b8fd",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020222.000004,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-482",
+            "action": "HOLD_REST",
+            "sentence_sha256": "7eee8d4f3daabad0d3bb6d7c10d572e839dd3a078fb4fface1032e85fc72ab65",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020223.000009,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-588",
+            "action": "HOLD_REST",
+            "sentence_sha256": "cf21f3c9a795e14a2ff35e19c1368afb8d0b25c417a9950a06306f445043f1bd",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020251.000002,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-741",
+            "action": "HOLD_REST",
+            "sentence_sha256": "5be256972b794718ae92f11f503d2f89a71763189737bf27ddcf31a3f5c658c8",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020497.000002,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-882",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9bc9a89334b6eac824f491696e1b08a64232254ab303fbdeb2bb8991a6ec1ed2",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020654.000009,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1046",
+            "action": "HOLD_REST",
+            "sentence_sha256": "4bc87669ab28347bb4fa874d559a282259a37213f974897e0e7d8fc54d2c00af",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020661.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1076",
+            "action": "HOLD_REST",
+            "sentence_sha256": "25c391a2c5c68bf4b0b553c9757545c4f7f4e8180d5d6f38d30af802237daa04",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020689.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1129",
+            "action": "HOLD_REST",
+            "sentence_sha256": "a0add8328aa70c9ca45efe88b352745b071ec1824a15511aab9167ace3e3244e",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784020872.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1233",
+            "action": "HOLD_REST",
+            "sentence_sha256": "2345e439407238dd5d69b16f4e373100299e829ddd51b4413c987fc4d893d387",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784024111.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1599",
+            "action": "HOLD_REST",
+            "sentence_sha256": "3b8e86f99fd6a3d566ab337e0c691a7f2951ea453f6dd0ae92a6e196f1ebecab",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784024328.000002,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1633",
+            "action": "HOLD_REST",
+            "sentence_sha256": "b67d5738930f9f7f04bc8f737e0e5c58710d7625d5f88528f4d2777d21fe9e3d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784028911.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2518",
+            "action": "HOLD_REST",
+            "sentence_sha256": "b2ce8853f676089250b97fe67c79e1793e3420a755664ce0b9d34c93e9b0457d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784036642.000004,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3282",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9d259b58286a844d76ab882157b9d71b199298f844fab9fb536d0f95675be9ea",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784036642.000007,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3285",
+            "action": "HOLD_REST",
+            "sentence_sha256": "075abfc443a12df91403f29ff3c8dc2ef79b2e7c4b553347e0e6e734ab89e952",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784036642.000013,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3291",
+            "action": "HOLD_REST",
+            "sentence_sha256": "1c292f66eb74a4c6bcf488ad3f306d8eec53f93d6081fdf6cd9b1d3706473707",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784039243.522,
+            "receipt": "7a17e4a0-5a27-71e4-458b-28a11d7f08f9",
+            "action": "HOLD_REST",
+            "sentence_sha256": "dd8fcada141b4d1c968ea3423225094cd81fcf61c2e6017332aef7e904e2d735",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784039714.000002,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3784",
+            "action": "HOLD_REST",
+            "sentence_sha256": "42ed835c93f1aef6778eb4fd5e3d7ff02d19640fcf24eb8d42e43ebcf5af5422",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784049591.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4307",
+            "action": "HOLD_REST",
+            "sentence_sha256": "e325b8f556f7e5b740f7eb4c556d8c438edb7387ccaa8ec6e6fd5e7ed58b1c6b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784049674.000002,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4331",
+            "action": "HOLD_REST",
+            "sentence_sha256": "1bedc78de6d80a86dd25083367fdfabdb05f89934898deb0996401d64fe92a3d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784049812.000005,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4347",
+            "action": "HOLD_REST",
+            "sentence_sha256": "f386cc7be6af5601a8daa2a6aa5d1452315b2e097138fa6970bb65299333f58b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784049952.000007,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4395",
+            "action": "HOLD_REST",
+            "sentence_sha256": "894aa5f31c0ecd9e32929406aee5eb035431afbd84fc573a93e853075a1f9a92",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784049981.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3000",
+            "action": "HOLD_REST",
+            "sentence_sha256": "b5a51384b635dad393f01290720fcfd13b27f1b1d3e66ccda15c5f3620241055",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784049994.000006,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4410",
+            "action": "HOLD_REST",
+            "sentence_sha256": "1369ddadf5799a0cc0aff62fe8a76aeb86aa5203ce32d88f114a41be19c10cc7",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784050012.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4426",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9b6c6894fdfbe73f2f6c61dd8cd833af282231cdbc2ea69dfc8a3ba44ccc3345",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784050516.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4458",
+            "action": "HOLD_REST",
+            "sentence_sha256": "4a72cf1403dd20a345fb1c6f96d581c275cf124e8505168797c6084aab95499d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784050687.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4463",
+            "action": "HOLD_REST",
+            "sentence_sha256": "725f4a29876c174956e7101310198ca2d0a57448fc52f0047aca9e6716b112b1",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784050694.000011,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4509",
+            "action": "HOLD_REST",
+            "sentence_sha256": "5308e527d000df91eec536b13eef9f44b9fbc0e6a5ad532ee4ed059fba6b4634",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784050723.000003,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4539",
+            "action": "HOLD_REST",
+            "sentence_sha256": "fc29294d877112fc54372196467321233c878dc79208a2e9169157934c2b7af3",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784050815.000012,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4553",
+            "action": "HOLD_REST",
+            "sentence_sha256": "21a157bd2ea1f822d40feac99c569edc3aeeb8d0ad707c26f34dcc069f84483c",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784050816.00003,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4583",
+            "action": "HOLD_REST",
+            "sentence_sha256": "8bb4c0c4f410f7db8bc576ba6fa004a4446615fc2916fd37286c5317dcb8f0ad",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784050973.062,
+            "receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+            "action": "HOLD_REST",
+            "sentence_sha256": "823ec094f1589d7fe3aa60ecbad5db9a309dfb49c24a29049947f868bb68dbe7",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784052707.741,
+            "receipt": "ddaa0876-739a-5206-64f0-c67ce5214974",
+            "action": "HOLD_REST",
+            "sentence_sha256": "9d04d45179742699682d4c3b531f4c911e17b54b5000e7678a34be51c1e61544",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784059613.000002,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+            "action": "HOLD_REST",
+            "sentence_sha256": "91147e4bc430f2e7d6e6275b67897cca0b8494c56460500f4102c2bea0fa3e66",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784061309.000001,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-7432",
+            "action": "HOLD_REST",
+            "sentence_sha256": "e76e32a2bd7ea7e2ac29e04923a9355e012711b5e581bac342b5649f47f67413",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784072103.000012,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-12986",
+            "action": "HOLD_REST",
+            "sentence_sha256": "1c23ea68095d2673e5a611d81f49c1b4a8aece7f0dc3202423c401840739e713",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784078361.000002,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-70555",
+            "action": "HOLD_REST",
+            "sentence_sha256": "7000b5e6730e2c418b84c91e9e0fc646f16afe7a6ac8254a7047ce309cc278b4",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784078361.264,
+            "receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d",
+            "action": "HOLD_REST",
+            "sentence_sha256": "5a71fd9338611d7b02f6b26fe44df4b4d1652a335d6cb2b7f03bcdf969730c4e",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "SVA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784078361.264,
+            "receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d",
+            "action": "HOLD_REST",
+            "sentence_sha256": "43b5850e72e03024f1d28b52750ee1c4b1f35de659ec17c83c2ea42f705f2120",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          }
+        ],
+        "rest_at_floor_proven": true,
+        "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "unstamped_abstention_scores_zero": true
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "stamp": "LAWFUL_INCOMPLETE",
+        "arithmetic": {
+          "floor_by_leg_cents": {
+            "DAN": 59,
+            "PRA": 41
+          },
+          "two_leg_floor_sum_cents": 100,
+          "strictly_under_par_offer_cents": 0,
+          "proof": "59+41=100; max(0,99-100)=0"
+        },
+        "rest_at_floor_rows": [
+          {
+            "leg_id": "PRA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784336963.017,
+            "receipt": "5c3e4f2c-cb1c-7a8a-c61c-2f6597821fb9",
+            "action": "REPRICE_REST",
+            "sentence_sha256": "d1c661da15b5be8c9c5aa22976b4c6195908d5df69c337e6e7146acbae1935cc",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "PRA",
+            "floor_cents": 41,
+            "rest_cents": 41,
+            "timestamp_epoch": 1784341326.000004,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1584",
+            "action": "PLACE_REST",
+            "sentence_sha256": "22602cb3a91ba9fd563058397a3cb58338ee0b8ac93197f931cbdcdc09cc3555",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784347275.000001,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9651",
+            "action": "REPRICE_REST",
+            "sentence_sha256": "6991e82624533b216eadba31f60beeefd5a4d1bca5fda4b694d7d4d8345165e7",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784348008.000001,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2581",
+            "action": "HOLD_REST",
+            "sentence_sha256": "4dd6c652301b801d997e5fa05f5d274d78b4d46343e2ef234deae78e65dcf5d1",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784348245.000001,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2582",
+            "action": "HOLD_REST",
+            "sentence_sha256": "59f0c8ec805fdd7edde8f92662f462420aa3594150ac9da7f74e693aa9367dc5",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784349391.000001,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2641",
+            "action": "HOLD_REST",
+            "sentence_sha256": "ae44c415aa2fb90b6a7be72620c1f66007cb2af78e4fbe4f1d586ee67d477dda",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784359387.000002,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10406",
+            "action": "HOLD_REST",
+            "sentence_sha256": "797a332eddcc2684fb764f0030494138ea67e07a44b20db3a36d6fc1b227205b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784359759.000002,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10520",
+            "action": "HOLD_REST",
+            "sentence_sha256": "f6ddfd9fb9bf6e38ca80cb81458fce82eb3005e717290b685e8d14a5cc541899",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784359772.000001,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2894",
+            "action": "HOLD_REST",
+            "sentence_sha256": "7fa84fd91c893d5c09c4ec570c70e61ebf9ef1af5c76f21cebe3e48479a74f68",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784360023.000002,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10544",
+            "action": "HOLD_REST",
+            "sentence_sha256": "74d29076213310fecf577fb4ee3f5ac24a21b8e8ca4a76fd67a1ccebeef2131e",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784360847.000008,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10576",
+            "action": "HOLD_REST",
+            "sentence_sha256": "1d43a1bacc5b717ace3dac1473a2760cb620e6e3885d2baed982c73eb6ca8c7d",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784360967.000006,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+            "action": "HOLD_REST",
+            "sentence_sha256": "fd35dd6576884cebc91255f904882bc5e86967247a1dfc4fd940ce5439c55379",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784360968.00001,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2950",
+            "action": "HOLD_REST",
+            "sentence_sha256": "cd38e246473ccd278888be85070296e752f1006926be6373629fce435b945a71",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784360969.000013,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2963",
+            "action": "HOLD_REST",
+            "sentence_sha256": "ce9d74b6437be26f688e698e536a4c1769da72c339f20a4c72a2f17605826ab6",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784360970.000008,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2971",
+            "action": "HOLD_REST",
+            "sentence_sha256": "73a12f698d0dd56d9b41eb897abbad82dc94b45cd754b3e6e5bf47ef805c895b",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784360971.000014,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2985",
+            "action": "HOLD_REST",
+            "sentence_sha256": "edff8afbf41a9eafeb759a92cd71d7ce8676ad0900c649f1c233363909b87c80",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784369248.000002,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3294",
+            "action": "HOLD_REST",
+            "sentence_sha256": "da0d46a9ac42fab68b4b970c127be1dbcb6e2f776a1a314338fd0ad60e51e90f",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784370685.000002,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11028",
+            "action": "HOLD_REST",
+            "sentence_sha256": "e1910b51b1ee2985adfbee3a622202d6b2f53f021bc42b6749adb75dcba452a8",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          },
+          {
+            "leg_id": "DAN",
+            "floor_cents": 59,
+            "rest_cents": 59,
+            "timestamp_epoch": 1784372133.000002,
+            "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11189",
+            "action": "HOLD_REST",
+            "sentence_sha256": "ffe2f90bb286d0d2b4d167242ead11acd27a956e62123d67a7d423ca1006f1dd",
+            "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+          }
+        ],
+        "rest_at_floor_proven": true,
+        "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+        "unstamped_abstention_scores_zero": true
+      }
+    ],
+    "danpra_stamp": {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "stamp": "LAWFUL_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "DAN": 59,
+          "PRA": 41
+        },
+        "two_leg_floor_sum_cents": 100,
+        "strictly_under_par_offer_cents": 0,
+        "proof": "59+41=100; max(0,99-100)=0"
+      },
+      "rest_at_floor_rows": [
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784336963.017,
+          "receipt": "5c3e4f2c-cb1c-7a8a-c61c-2f6597821fb9",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "d1c661da15b5be8c9c5aa22976b4c6195908d5df69c337e6e7146acbae1935cc",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784341326.000004,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1584",
+          "action": "PLACE_REST",
+          "sentence_sha256": "22602cb3a91ba9fd563058397a3cb58338ee0b8ac93197f931cbdcdc09cc3555",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784347275.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9651",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "6991e82624533b216eadba31f60beeefd5a4d1bca5fda4b694d7d4d8345165e7",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784348008.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2581",
+          "action": "HOLD_REST",
+          "sentence_sha256": "4dd6c652301b801d997e5fa05f5d274d78b4d46343e2ef234deae78e65dcf5d1",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784348245.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2582",
+          "action": "HOLD_REST",
+          "sentence_sha256": "59f0c8ec805fdd7edde8f92662f462420aa3594150ac9da7f74e693aa9367dc5",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784349391.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2641",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ae44c415aa2fb90b6a7be72620c1f66007cb2af78e4fbe4f1d586ee67d477dda",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784359387.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10406",
+          "action": "HOLD_REST",
+          "sentence_sha256": "797a332eddcc2684fb764f0030494138ea67e07a44b20db3a36d6fc1b227205b",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784359759.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10520",
+          "action": "HOLD_REST",
+          "sentence_sha256": "f6ddfd9fb9bf6e38ca80cb81458fce82eb3005e717290b685e8d14a5cc541899",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784359772.000001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2894",
+          "action": "HOLD_REST",
+          "sentence_sha256": "7fa84fd91c893d5c09c4ec570c70e61ebf9ef1af5c76f21cebe3e48479a74f68",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360023.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10544",
+          "action": "HOLD_REST",
+          "sentence_sha256": "74d29076213310fecf577fb4ee3f5ac24a21b8e8ca4a76fd67a1ccebeef2131e",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360847.000008,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10576",
+          "action": "HOLD_REST",
+          "sentence_sha256": "1d43a1bacc5b717ace3dac1473a2760cb620e6e3885d2baed982c73eb6ca8c7d",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360967.000006,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+          "action": "HOLD_REST",
+          "sentence_sha256": "fd35dd6576884cebc91255f904882bc5e86967247a1dfc4fd940ce5439c55379",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360968.00001,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2950",
+          "action": "HOLD_REST",
+          "sentence_sha256": "cd38e246473ccd278888be85070296e752f1006926be6373629fce435b945a71",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360969.000013,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2963",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ce9d74b6437be26f688e698e536a4c1769da72c339f20a4c72a2f17605826ab6",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360970.000008,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2971",
+          "action": "HOLD_REST",
+          "sentence_sha256": "73a12f698d0dd56d9b41eb897abbad82dc94b45cd754b3e6e5bf47ef805c895b",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784360971.000014,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2985",
+          "action": "HOLD_REST",
+          "sentence_sha256": "edff8afbf41a9eafeb759a92cd71d7ce8676ad0900c649f1c233363909b87c80",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784369248.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3294",
+          "action": "HOLD_REST",
+          "sentence_sha256": "da0d46a9ac42fab68b4b970c127be1dbcb6e2f776a1a314338fd0ad60e51e90f",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784370685.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11028",
+          "action": "HOLD_REST",
+          "sentence_sha256": "e1910b51b1ee2985adfbee3a622202d6b2f53f021bc42b6749adb75dcba452a8",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "DAN",
+          "floor_cents": 59,
+          "rest_cents": 59,
+          "timestamp_epoch": 1784372133.000002,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11189",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ffe2f90bb286d0d2b4d167242ead11acd27a956e62123d67a7d423ca1006f1dd",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        }
+      ],
+      "rest_at_floor_proven": true,
+      "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+      "unstamped_abstention_scores_zero": true
+    },
+    "unstamped_incomplete_count": 1
+  },
+  "named_step_failures": [],
+  "coherence_placement": {
+    "provenance": "F-VS-118@c08ce381",
+    "latency_receipt": "COHERENCE_PLACEMENT_LATENCY_RECEIPT.json",
+    "every_qualified_action_same_receipt": true,
+    "stale_envelope_originated_new_rest_count": 8
+  },
+  "atomic_cancel_replace": {
+    "provenance": "F-VS-118@c08ce381",
+    "receipt": "ATOMIC_CANCEL_REPLACE_RECEIPT.json",
+    "atomic_replacements": 0,
+    "fail_loud_no_replacement": 0,
+    "danpra_prior_cancel_storm_receipts": 15,
+    "danpra_repaired_cancel_receipts": 0,
+    "danpra_cancel_storm_disappeared": true
+  },
+  "inside_spread_reach_placement": {
+    "provenance": "F-VS-130@3e3d3548",
+    "quantile": "Q75",
+    "coherent_rows": 2388,
+    "violations": 0,
+    "target_equals_live_bid_rows": 17,
+    "target_equals_live_bid_by_lane": {
+      "PRICING_AUTHORITY_TARGET_EXECUTED": 17
+    }
+  },
+  "envelope_migration": {
+    "provenance": "F-VS-114(c)@9ff83002 + F-VS-118@c08ce381",
+    "migration_rows": 24,
+    "inconsistent_active_rows": 0,
+    "every_inconsistent_active_resolved_same_receipt": true,
+    "q50_root_cause_named_row_found": false
+  },
+  "live_deadlines": {
+    "provenance": "F-VS-112@3be11997",
+    "rows": 2634,
+    "graded_rows": 1503,
+    "hit_rows": 575,
+    "all_fresh": true
+  },
+  "independent_bed_lane": {
+    "hold_rows": 2773,
+    "abstain_rows": 1319,
+    "own_evidence_fill_count": 0
+  },
+  "no_bed_flattery": {
+    "f_vs_110_stamp": "TUNED_RETAINED",
+    "named_event_id_source_occurrences": 0
+  },
+  "rest_pricing": {
+    "fill_count": 5,
+    "every_entry_equals_standing_rest": true,
+    "active_print_priced_residue_count": 0
+  },
+  "sentence_price": {
+    "rows": 5274,
+    "every_field_matches_book_state": true
+  },
+  "envelope_placement": {
+    "rows_evaluated": 2405,
+    "distinct_policy_modes": [
+      "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+      "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS",
+      "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE",
+      "INSUFFICIENT_AUTHORITY_STAND_DOWN",
+      "LOCKED_BOOK_PLACEMENT_VETO_EXISTING_REST_HELD",
+      "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST",
+      "PRICING_AUTHORITY_TARGET_EXECUTED"
+    ],
+    "f_vs_110_stamp": "TUNED_RETAINED",
+    "verbatim_sentence_artifact": "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md"
+  },
+  "law_violations": [],
+  "superseded_composition_scan_signals_not_used_for_verdict": [
+    "UNNAMED_EVIDENCE_LADDER_RUNG",
+    "TOUCH_RELATION_MISSING_FROM_SENTENCE",
+    "DEPTH_DERIVATION_MISSING_FROM_SENTENCE",
+    "EVIDENCE_RUNG_OR_BASIS_MISSING_FROM_SENTENCE",
+    "FOUNDATION_CITATION_GRAIN_OR_LAYER_MISSING",
+    "BELOW_TOUCH_REST_WITHOUT_V3_MAP_LICENSE",
+    "WINDOW_SIDE_TOUCH_OR_MAP_LICENSE_MISSING_FROM_SENTENCE"
+  ],
+  "zero_measured_law_violations": true,
+  "layer_order_complete": true,
+  "sentences_carry_layered_dual_belief": true,
+  "sentences_cite_fills": true,
+  "self_stop": true,
+  "stop_reason": "BED_TRIPWIRE_BREAK_AFTER_FLOOR_LOCK_RETIREMENT_AND_NARROWING_CONSUMPTION",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

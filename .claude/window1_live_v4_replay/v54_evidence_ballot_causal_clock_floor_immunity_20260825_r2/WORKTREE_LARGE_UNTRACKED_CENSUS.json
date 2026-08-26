@@ -1,0 +1,123 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/ATOMIC_REARM_RECEIPT.json",
+      "bytes": 311984717,
+      "sha256": "3cdb428582de279fbdb2ae9d7b0c1287415f9cba319720f14ff445e2bc3be3a4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/AUTHORITY_VACUUM_RECEIPT.json",
+      "bytes": 83312693,
+      "sha256": "46863852a0f72754a586965539608d8ec5c591921b629944207c9ea2b8bea8a6"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 275452962,
+      "sha256": "ec48cb152434fda4987d32ad05f9f69e98e3dc59e30a4e22ddbd913e5e496a8a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+      "bytes": 35408126,
+      "sha256": "19f5830e255a0e7494cf54c069bb7051f2061cbb267206730e4c84118cebfd08"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 21799075,
+      "sha256": "46cbedd5a92232efb021e499af4c1586afb1dc54b7481579b68bd239b10a2d3c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 36076023,
+      "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 261521041,
+      "sha256": "a7926634016ed6ca1fce2f24ca78ad68102ccf176cacf18579e23e444ad9296b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 231027835,
+      "sha256": "fe9ff2cc6322ed36335201d3f0a2e43880ddb3fc6a00c1014da14fa125cd5923"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "bytes": 412255992,
+      "sha256": "08381434aef55291bf31a9f6a35c779780202ade4ae1526d094f4deb9a1eff5a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "bytes": 23281061,
+      "sha256": "538339b1e8fb34e9136d417283d9cb82a0c294bbd110935cdcdba3526fe98794"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 208709495,
+      "sha256": "ceed7dc29326318787bb61e6ecd5b16877d57ff18fb884eb3d91672355698060"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 193558422,
+      "sha256": "241d9fa6319e38c913e351923078ff1c6ab24303f2668c4008c0f65093b32b47"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/SMOKE_CRIJEA.md",
+      "bytes": 28044547,
+      "sha256": "622dc45a6e4a09e2f687a67584e8a0d924242f24f06804ae589af95d399e98e0"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 20128116,
+      "sha256": "43edf8f52be5b1785eb532097eca4d330ec5e6c5c3511ebb13ea4fa9f5eff4c8"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825_r2/TRUE_CONDITIONING_RECEIPT.json",
+      "bytes": 55692521,
+      "sha256": "89c52adb918fef2e5da21b5803cc41cc78e656a3eecce96d2a346b08bfc8e77a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825/CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+      "bytes": 35408126,
+      "sha256": "19f5830e255a0e7494cf54c069bb7051f2061cbb267206730e4c84118cebfd08"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 21799075,
+      "sha256": "8e66dd676802cb9371b89d4c46e0a0d92ed7dfc2f0326ef1209c242aa9264ab9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 36076023,
+      "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825/OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "bytes": 23281061,
+      "sha256": "538339b1e8fb34e9136d417283d9cb82a0c294bbd110935cdcdba3526fe98794"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825/SMOKE_CRIJEA.md",
+      "bytes": 28044547,
+      "sha256": "622dc45a6e4a09e2f687a67584e8a0d924242f24f06804ae589af95d399e98e0"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_evidence_ballot_causal_clock_floor_immunity_20260825/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 20128116,
+      "sha256": "f5455a47f61b0ac980eda9449d9118ee958b039875635a14fe4c44d64b4a6909"
+    }
+  ],
+  "count": 23,
+  "bytes": 2385738912
+}

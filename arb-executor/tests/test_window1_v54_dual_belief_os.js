@@ -221,7 +221,9 @@ assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.mi
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_restored_to_decision_path));
-assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method === "PRIOR_HYPOTHESES_REWEIGHTED_BY_RECEIPT_PINNED_CHANNEL_LIKELIHOODS; TRADE_CLASS_STRONGEST; BOOK_REQUIRES_PRIOR_AND_NEVER_AUTHORS_ALONE; POSTERIOR_MEAN_FLOOR_SIDE_DIRECTED_INTEGER"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method === "PANEL_HYPOTHESES_PLUS_RECEIPT_PINNED_OWN_EVIDENCE_EXACT_PRICE_SUPPORT; DECISIVENESS_EQUALS_CLASS_RANK_TIMES_GRADE; ALL_CANDIDATES_CONDITIONED_BY_ALL_CHANNELS; TRADE_CLASS_STRONGEST; BOOK_INFORMS_WITH_PANEL_AND_NEVER_AUTHORS_ALONE; POSTERIOR_MEAN_FLOOR_SIDE_DIRECTED_INTEGER"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.exact_price_support_joined));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.exact_price_support.some((support) => support.support_source === "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE")));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.rounding.direction === "EXACT_HALF_TO_HIGHER_INTEGER_57_5_TO_58"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.own_evidence_rows.every((evidence) => Boolean(evidence.receipt))), "every current-game evidence value must be receipt-pinned");
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.replacement_operator_removed));
@@ -296,5 +298,15 @@ assert(noOpinion.derivations.every((row) => row.action.action === "HOLD_REST"));
 assert(noOpinion.derivations.every((row) => !String(row.action.reason).includes("EXECUTED_BY_LANE")));
 assert(noOpinion.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner.lane === "NO_ACTION"));
 assert(noOpinion.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "INSUFFICIENT_AUTHORITY_STAND_DOWN"));
+
+const causalClock = require("../analysis/window1_v54_causal_tape_clock.js");
+const clockRows = causalClock.materializeCausalClock([
+  { event_id: "CLOCK", leg_id: "AAA", kind: "BOOK", receipt: "book#row-1", timestamp_epoch: 100, source_timestamp_epoch: 100, source_row_index: 1, bid_cents: 25, ask_cents: 30, last_trade_cents: 0 },
+  { event_id: "CLOCK", leg_id: "AAA", kind: "BOOK", receipt: "book#row-2", timestamp_epoch: 100, source_timestamp_epoch: 100, source_row_index: 2, bid_cents: 25, ask_cents: 30, last_trade_cents: 27 },
+  { event_id: "CLOCK", leg_id: "AAA", kind: "PRINT", receipt: "trade-27", timestamp_epoch: 100.304766, source_timestamp_epoch: 100.304766, price_cents: 27, size: 5 },
+]);
+assert.deepEqual(clockRows.map((row) => row.receipt), ["book#row-1", "trade-27", "book#row-2"]);
+assert.equal(clockRows[2].causal_clock.relation, "AFTER_MATCHED_TRUE_PRINT_LAST_TRADE_TRANSITION");
+assert(clockRows[0].timestamp_epoch < clockRows[1].timestamp_epoch && clockRows[1].timestamp_epoch < clockRows[2].timestamp_epoch);
 
 console.log("window1_v54_dual_belief_os: PASS");

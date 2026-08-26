@@ -1,0 +1,296 @@
+{
+  "label": "FILL_HANDOFF_RECEIPT",
+  "fill_events": [
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|BAR",
+      "captured_at_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+      "row_refs": [
+        "4fa381b8-914c-4ca3-2edd-5b77ac756cea"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "leg_id": "BAR",
+        "entry_cents": 27,
+        "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+        "triggering_print_price_cents": 27,
+        "fill_timestamp_epoch": 1783841801.417,
+        "prior_standing_target_cents": 27,
+        "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+        "standing_license_receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+        "print_at_or_below_rest": true,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-2caf8fc92707af0bf9ecdefb00f882227ee4369eed36cbf0349948af0fef5b84"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU",
+      "captured_at_receipt": "b113f8de-209e-522a-6da2-c9ef40e91737",
+      "row_refs": [
+        "b113f8de-209e-522a-6da2-c9ef40e91737"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "leg_id": "GIU",
+        "entry_cents": 69,
+        "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+        "triggering_print_price_cents": 69,
+        "fill_timestamp_epoch": 1783841972.759,
+        "prior_standing_target_cents": 69,
+        "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+        "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-474",
+        "print_at_or_below_rest": true,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-25d7f6da561a58e45b8fddef214df75b2990afa7120183c23998b1aa4b7d3e41"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+      "captured_at_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+      "row_refs": [
+        "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "leg_id": "URS",
+        "entry_cents": 58,
+        "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+        "triggering_print_price_cents": 57,
+        "fill_timestamp_epoch": 1784032697.6,
+        "prior_standing_target_cents": 58,
+        "standing_license_basis": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE",
+        "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4292",
+        "print_at_or_below_rest": true,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-bcc9ff34e4c42a04d10cef8434167ebe7ce90de623782d83f779f98a3cfc475a"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL",
+      "captured_at_receipt": "34d9e70c-6438-7f56-bfd9-5decec93efcf",
+      "row_refs": [
+        "34d9e70c-6438-7f56-bfd9-5decec93efcf"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "leg_id": "PAL",
+        "entry_cents": 40,
+        "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+        "triggering_print_price_cents": 40,
+        "fill_timestamp_epoch": 1784041997.986,
+        "prior_standing_target_cents": 40,
+        "standing_license_basis": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+        "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2906",
+        "print_at_or_below_rest": true,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-22a006e5fe45fb82052748d0bf235f2208fccdd5de31f08521686fecf0753500"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+      "captured_at_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "row_refs": [
+        "16abd619-09aa-7b19-502f-1c8dda90dac9"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "leg_id": "LAJ",
+        "entry_cents": 54,
+        "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+        "triggering_print_price_cents": 54,
+        "fill_timestamp_epoch": 1784050973.062,
+        "prior_standing_target_cents": 54,
+        "standing_license_basis": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE",
+        "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3282",
+        "print_at_or_below_rest": true,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-a187504d3baa654200b3f8208d6660083a3bb6b157df579de1c02940f775d738"
+    }
+  ],
+  "post_fill_derivations": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783841801.417,
+      "trade_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+      "handoff_receipt_id": "CR-aeebaaa2a0f1e9d3e5e3c2939ea680d5ead6f1f97bc053e362d574cbc25b3be2",
+      "query_fingerprint_sha256": "de3c902e85d8a9458520c563086b4ba5d7274fcf908fb816495032a2792cc25c",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "02613b4faca175479b0b86354d6e872585a4f530eae1381ab92fe9fd69d0fcd4",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783841945.000004,
+      "trade_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+      "handoff_receipt_id": "CR-a4947b3691204c62679bb669b7d81cbd1d162717877cacd98656123230c853eb",
+      "query_fingerprint_sha256": "01484da8584e56d4da997cbe108609cdb9655e98dc5bc14bf335fac48792a3df",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "370aba27f297bd87e729995f53b37376670a4a5960d014b73503f7b55c12cc0e",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783841972.000001,
+      "trade_receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+      "handoff_receipt_id": "CR-17fc625b5ea66988014d39210c064dfce16fc0dbcac5ee80f0e08a1ce68fc077",
+      "query_fingerprint_sha256": "fdd5d759677e44644dc19db67c1d61c338bef257e9f00dd40f04ab2b8aa672a8",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "16cf3e0f47c978bb40157d7574ccaf0bc7fcdd3094517cda196d1cedb5293545",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784032697.6,
+      "trade_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+      "handoff_receipt_id": "CR-4da8a5df4c38e495c3c999bc39efcbe0efd0407a64e4e12372bb92fa2231b491",
+      "query_fingerprint_sha256": "4520b1c36bb345ae7cd2436332ebff2ec9527f65ff76441b44d3f6e5bf599f07",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "8efc36d91496841a69e805f9b34fc0f7d1b05a09642c384e14a37317841631ce",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784038360.853,
+      "trade_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+      "handoff_receipt_id": "CR-05da25301a89a74699c4a2ea5f6662aa04fa0db59061bfefbb5db8471560ac84",
+      "query_fingerprint_sha256": "c02e92549a07ff16f91cb4fcbb78c5613cf5517a14ea63601eeb0866511840dc",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "5d1a79eb4a0761e4c837523b525d043975874bcfced4f1d910bb9f1270229bda",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784041639.585,
+      "trade_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+      "handoff_receipt_id": "CR-838377a7a249a4a217c66b8cc77d48e7373869da313d1031d17f92c6b16035e6",
+      "query_fingerprint_sha256": "782f7f764a7fa201af9eb45603ed8f71e606d4c0c08c4af0070ee7f9e9469ac5",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "0f236d7aa5b2d276f73d589311cd237030f1af5ae4a03dd63e5f45bce82e5962",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784050973.062,
+      "trade_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "handoff_receipt_id": "CR-67ee7b746dd5ed928dba427ab7c2188eabbad04e9256ccb3e588cf7818536ed3",
+      "query_fingerprint_sha256": "7601705fea6de5a3445f83af7b9942d1d2b03014fb03607ad0ac47383097037a",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "823ec094f1589d7fe3aa60ecbad5db9a309dfb49c24a29049947f868bb68dbe7",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784052707.741,
+      "trade_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "handoff_receipt_id": "CR-e0b0ea71440d6471fb2ff909e928e3ce210460c371736dc96f3b6cdb745f486f",
+      "query_fingerprint_sha256": "52bffc659ef80d8e81112ba6691079aeefd1db76fe146b6f0a80fe4e4a4006f7",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "9d04d45179742699682d4c3b531f4c911e17b54b5000e7678a34be51c1e61544",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784059613.000002,
+      "trade_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "handoff_receipt_id": "CR-d5c49ffa3f9c3b5b1d3e2129687bf3b1cf105102f5e5c699fc5a1965f9773b0d",
+      "query_fingerprint_sha256": "ed082e30a522fe5c617a2f8d6d7b368bab8322300c2ddcbe48d9150c32947c38",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "91147e4bc430f2e7d6e6275b67897cca0b8494c56460500f4102c2bea0fa3e66",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784061309.000001,
+      "trade_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "handoff_receipt_id": "CR-f82e79c59278468ff5b31504002df5909d606b662a3643eec70f6a14f60eff89",
+      "query_fingerprint_sha256": "d6be7d38e1c2e73abc5f1be930bd6a319fb9577035f42b42a49ff6a1b0d9d366",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "e76e32a2bd7ea7e2ac29e04923a9355e012711b5e581bac342b5649f47f67413",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784072103.000012,
+      "trade_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "handoff_receipt_id": "CR-33f8e54b41fd7ff1f5110da4e7553fc52273ad51cfbb3fe924403356bb4f20ba",
+      "query_fingerprint_sha256": "ec045b0d09f63dc92bc752a09648cf1afba855fe7a7c473ebda477ff5087902a",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "1c23ea68095d2673e5a611d81f49c1b4a8aece7f0dc3202423c401840739e713",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784078361.000002,
+      "trade_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "handoff_receipt_id": "CR-55350c81641792c482787493a71f560a15d272a7ad80490cd2039b6c7725cd19",
+      "query_fingerprint_sha256": "6b25885bf96d5d64a0be4e4b7060ee9bc981e08af26bce7222f7fc71f8cd513b",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "7000b5e6730e2c418b84c91e9e0fc646f16afe7a6ac8254a7047ce309cc278b4",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784078361.264,
+      "trade_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "handoff_receipt_id": "CR-78dd6aa23b86ab8775e2cb0106931d304ed896d28464c6f33e5e2771ca25ec77",
+      "query_fingerprint_sha256": "c702a384638b99929584e3393405c69ca0c5e4b4ccd5a0dfb7f49e54b9e263bb",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "5a71fd9338611d7b02f6b26fe44df4b4d1652a335d6cb2b7f03bcdf969730c4e",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "timestamp_epoch": 1784078361.264,
+      "trade_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "handoff_receipt_id": "CR-78dd6aa23b86ab8775e2cb0106931d304ed896d28464c6f33e5e2771ca25ec77",
+      "query_fingerprint_sha256": "c702a384638b99929584e3393405c69ca0c5e4b4ccd5a0dfb7f49e54b9e263bb",
+      "sentence_cites_trade_receipt": true,
+      "sentence_cites_handoff_receipt": true,
+      "sentence_sha256": "43b5850e72e03024f1d28b52750ee1c4b1f35de659ec17c83c2ea42f705f2120",
+      "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+    }
+  ],
+  "every_post_fill_sentence_cites_fill_receipt": true
+}

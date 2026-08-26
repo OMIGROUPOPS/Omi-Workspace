@@ -7,6 +7,7 @@ const readline = require("readline");
 const crypto = require("crypto");
 const { execFileSync } = require("child_process");
 const os = require("./window1_v54_dual_belief_os.js");
+const causalClock = require("./window1_v54_causal_tape_clock.js");
 const layeredReporter = require("./window1_v54_dual_belief_reporter.js");
 const bellLibrary = require("./window1_v54_bell_bound_library.js");
 const subsetGuard = require("./window1_named_subset_guard.js");
@@ -36,8 +37,8 @@ const ANALYSIS_ROOT = ".claude/window1_second_seat/v11_non_action_mechanism_audi
 const ACTUAL_BELL_PATH = `${ANALYSIS_ROOT}/ACTUAL_BELL_TABLE_804.json`;
 const NAMED_NEIGHBOR_PATH = `${ANALYSIS_ROOT}/NEIGHBOR_SPAN_BELL_CHECK.json`;
 const GROUND_TRUTH_CORRECTIONS_PATH = `${ANALYSIS_ROOT}/W1_GROUND_TRUTH_CORRECTIONS.jsonl`;
-const OUTPUT_LABEL = "V54_CONDITION_DONT_REPLACE_CONVICTION_MIND_ONLY_BED";
-const RUN_SOURCE = "V54_CONDITION_DONT_REPLACE_20260825";
+const OUTPUT_LABEL = "V54_EVIDENCE_BALLOT_CAUSAL_CLOCK_AT_FLOOR_IMMUNITY_MIND_ONLY_BED";
+const RUN_SOURCE = "V54_EVIDENCE_BALLOT_CAUSAL_CLOCK_AT_FLOOR_IMMUNITY_20260825";
 const DEPTH_MAP_COMMIT = "ac68e3bc8d2c2018ba883c131b8b4101ae4cd257";
 const DEPTH_MAP_PATH = ".claude/window1_second_seat/dives_t1_v3_20260823/TRUE_BELL_CELL_DEPTH_MAP.json";
 const SURVIVOR_SOURCE_COMMIT = "189eaa20";
@@ -794,7 +795,7 @@ function loadTicks(privateRoot, meta) {
         if (line.length < headers.join(",").length / 4 || String(row.ts_et).length < 20) { LOAD_TICK_ISSUES.push(issue); return; }
         throw error;
       }
-      rows.push({ event_id: meta.event_id, leg_id: legId, timestamp_epoch: timestampEpoch, receipt: `${path.basename(file)}#row-${index + 1}`, kind: "BOOK", bid_cents: number(row.bid_1), ask_cents: number(row.ask_1), last_trade_cents: number(row.last_trade), bid_1_sz: number(row.bid_1_sz), ask_1_sz: number(row.ask_1_sz), bid_depth_5: number(row.bid_depth_5), ask_depth_5: number(row.ask_depth_5), source: "EXTERNAL_CUSTODY_DUAL_BOOK" });
+      rows.push({ event_id: meta.event_id, leg_id: legId, timestamp_epoch: timestampEpoch, source_timestamp_epoch: timestampEpoch, source_row_index: index + 1, receipt: `${path.basename(file)}#row-${index + 1}`, kind: "BOOK", bid_cents: number(row.bid_1), ask_cents: number(row.ask_1), last_trade_cents: number(row.last_trade), bid_1_sz: number(row.bid_1_sz), ask_1_sz: number(row.ask_1_sz), bid_depth_5: number(row.bid_depth_5), ask_depth_5: number(row.ask_depth_5), source: "EXTERNAL_CUSTODY_DUAL_BOOK" });
     });
   }
   return rows;
@@ -807,7 +808,8 @@ async function loadTargetPrints(privateRoot, metas) {
   const source = path.join(privateRoot, "fit-local", "prints.jsonl");
   const sourceRows = await streamJsonl(source, (row) => {
     const target = tickers.get(row.ticker); if (!target) return;
-    byEvent.get(target.event_id).push({ event_id: target.event_id, leg_id: target.leg_id, timestamp_epoch: Date.parse(row.exchange_ts) / 1000, receipt: row.receipt_id ?? row.trade_id, kind: "PRINT", price_cents: number(row.price_cents), size: number(row.size), source: "EXTERNAL_CUSTODY_TRUE_PRINTS", taker_book_side: row.taker_book_side });
+    const timestampEpoch = Date.parse(row.exchange_ts) / 1000;
+    byEvent.get(target.event_id).push({ event_id: target.event_id, leg_id: target.leg_id, timestamp_epoch: timestampEpoch, source_timestamp_epoch: timestampEpoch, receipt: row.receipt_id ?? row.trade_id, kind: "PRINT", price_cents: number(row.price_cents), size: number(row.size), source: "EXTERNAL_CUSTODY_TRUE_PRINTS", taker_book_side: row.taker_book_side });
   });
   return { byEvent, source: { path: source, bytes: fs.statSync(source).size, scanned_rows: sourceRows, sha256: fileHash(source) } };
 }
@@ -969,11 +971,13 @@ function citationsPlain(derivation) {
   return Object.values(derivation.citation_receipts).map((row) => `${row.receipt_id}=${JSON.stringify(row)}`).join("; ");
 }
 
-function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false }) {
+function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false, clockMode = "CAUSAL_FRACTIONAL" }) {
   if (activeExecutionGuard) activeExecutionGuard.record(meta.event_id);
   // Replay consumes an immutable, fully ordered view.  Epoch derivation and
   // state execution must see the same receipt order on every run.
-  const orderedRows = [...rows].sort(compareTapeRows);
+  const orderedRows = clockMode === "LEGACY_INTEGER_BOOK_FIRST"
+    ? [...rows].sort(causalClock.compareLegacyRows)
+    : causalClock.materializeCausalClock(rows);
   const state = os.createTapeState(meta), epochSet = new Set(turningEpochs(meta, orderedRows)), derivations = [], stageReads = [], fillEvents = [], rearmAttempts = [];
   // Independent fallback must remain byte-identical at the moments when its
   // licensed target changes. Adding only lineage transitions avoids turning the
@@ -1012,6 +1016,7 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
           position.standing_license_receipt = null;
           position.standing_captured_rest_level_cents = null;
           position.standing_captured_rest_license_receipt = null;
+          position.standing_authority_evidence = null;
         } else {
           position.standing_target_cents = derivation.action.target_cents;
           if (
@@ -1022,6 +1027,9 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
             position.standing_license_receipt = state.receipt;
             position.standing_captured_rest_level_cents = derivation.action.target_cents;
             position.standing_captured_rest_license_receipt = state.receipt;
+            position.standing_authority_evidence = derivation.layered_dual_belief?.pricing_authority?.decisive_evidence
+              ? { ...derivation.layered_dual_belief.pricing_authority.decisive_evidence }
+              : null;
           }
         }
         if (derivation.action.action !== "HOLD_REST" || targetBefore !== position.standing_target_cents || derivation.layered_dual_belief?.atomic_rearm?.status === "REARM_RESOLVED_WITH_LAWFUL_REST") meaningfulRearmTransition = true;
@@ -1114,7 +1122,7 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
     }
   }
   const credited = state.leg_ids.filter((id) => state.positions[id].credited), combined = credited.length === 2 ? credited.reduce((total, id) => total + state.positions[id].entry_cents, 0) : null;
-  return { state, epochs, stage_reads: stageReads, derivations, fill_events: fillEvents, rearm_attempts: rearmAttempts, execution: { run_source: RUN_SOURCE, gradeable: Number.isFinite(meta.bell_epoch), completed: credited.length === 2, combined_entry_cents: combined, delta_vs_100_cents: Number.isInteger(combined) ? 100 - combined : null, legs: state.positions } };
+  return { state, epochs, stage_reads: stageReads, derivations, fill_events: fillEvents, rearm_attempts: rearmAttempts, clock_mode: clockMode, ordered_rows: orderedRows, execution: { run_source: RUN_SOURCE, gradeable: Number.isFinite(meta.bell_epoch), completed: credited.length === 2, combined_entry_cents: combined, delta_vs_100_cents: Number.isInteger(combined) ? 100 - combined : null, legs: state.positions } };
 }
 
 function readerExecutionReceipt(result) {
@@ -1451,35 +1459,71 @@ async function main() {
   writeText(path.join(output, "SMOKE_CRIJEA.md"), smokeMarkdown(smoke));
   writeJson(path.join(output, "SMOKE_CRIJEA_RECEIPT.json"), { label: "CRIJEA_INTEGRATION_SMOKE_NO_GRADING", all_readers_fired: smokeReaderReceipt.all_readers_fired, reader_count: smokeReaderReceipt.reader_count, expected_reader_count: smokeReaderReceipt.expected_reader_count, reader_receipts: smokeReaderReceipt.readers, named_neighbors: [...new Map(smoke.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => [row.citation_receipt_id, { event_id: row.event_id, citation_receipt_id: row.citation_receipt_id, citation_receipt: row.citation_receipt }]))).values()], derivations: smoke.derivations.length, sentence_action_equal: smoke.derivations.every((row) => row.sentence_action_assertion.equal), citation_receipt_equal: smoke.derivations.every((row) => row.citation_receipt_assertion.equal), conservation: smoke.derivations.every((row) => row.pair_conservation.at_or_below_99), grading_performed: false });
 
-  const perGame = JSON.parse(fs.readFileSync(path.join(walkRoot, "PER_GAME_L1_L8.json"), "utf8")), storyResults = [], storySections = [], storyTraces = [], storyTapeRows = new Map(), determinismRows = [];
+  const perGame = JSON.parse(fs.readFileSync(path.join(walkRoot, "PER_GAME_L1_L8.json"), "utf8")), storyResults = [], storySections = [], storyTraces = [], storyTapeRows = new Map(), determinismRows = [], clockComparisonRows = [];
   fs.rmSync(path.join(output, "DETERMINISM_FAILURE_DEBUG.json"), { force: true });
   for (const eventId of TARGETS.stories) {
     const meta = metas.find((row) => row.event_id === eventId), rows = [...loadTicks(privateRoot, meta), ...printLoad.byEvent.get(eventId)].filter((row) => !Number.isFinite(meta.bell_epoch) || row.timestamp_epoch <= meta.bell_epoch);
     storyTapeRows.set(eventId, rows);
     const result = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: false });
     const repeat = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: false });
+    const legacyClock = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: false, clockMode: "LEGACY_INTEGER_BOOK_FIRST" });
     const firstDigest = digestReplay(result), secondDigest = digestReplay(repeat);
     const byteIdentical = firstDigest.sha256 === secondDigest.sha256 && firstDigest.bytes === secondDigest.bytes;
     const firstDiff = byteIdentical ? null : firstReplayDifference(result, repeat);
     determinismRows.push({ event_id: eventId, first_sha256: firstDigest.sha256, second_sha256: secondDigest.sha256, byte_identical: byteIdentical, first_bytes: firstDigest.bytes, second_bytes: secondDigest.bytes, first_counts: firstDigest.counts, second_counts: secondDigest.counts, first_difference: firstDiff });
     if (!byteIdentical) writeJson(path.join(output, "DETERMINISM_FAILURE_DEBUG.json"), { label: "PRE_SCORE_DETERMINISM_FAILURE", event_id: eventId, first_sha256: firstDigest.sha256, second_sha256: secondDigest.sha256, first_difference: firstDiff, score_rows_emitted: false });
     ensure(byteIdentical, `DETERMINISM_FAILURE ${eventId}`);
+    const orderView = (run) => run.derivations
+      .filter((row) => ["PLACE_REST", "REPRICE_REST", "CANCEL_REST"].includes(row.action.action))
+      .map((row) => ({
+        leg_id: row.leg_id,
+        receipt: row.receipt,
+        timestamp_epoch: row.timestamp_epoch,
+        action: row.action.action,
+        target_cents: row.action.target_cents,
+        causal_clock: run.ordered_rows.find((tapeRow) => tapeRow.receipt === row.receipt)?.causal_clock ?? null,
+      }));
+    const causalOrders = orderView(result), legacyOrders = orderView(legacyClock);
+    const causalByKey = new Map(causalOrders.map((row) => [`${row.leg_id}|${row.receipt}`, row]));
+    const legacyByKey = new Map(legacyOrders.map((row) => [`${row.leg_id}|${row.receipt}`, row]));
+    const changedOrders = [...new Set([...causalByKey.keys(), ...legacyByKey.keys()])].sort().flatMap((key) => {
+      const before = legacyByKey.get(key) ?? null, after = causalByKey.get(key) ?? null;
+      return canonical(before) === canonical(after) ? [] : [{ key, legacy_integer_book_first: before, causal_fractional: after }];
+    });
+    const adjustedRows = result.ordered_rows.filter((row) => row.kind === "BOOK" && row.timestamp_epoch !== row.source_timestamp_epoch);
+    clockComparisonRows.push({
+      event_id: eventId,
+      source_book_rows: result.ordered_rows.filter((row) => row.kind === "BOOK").length,
+      true_fractional_print_rows: result.ordered_rows.filter((row) => row.kind === "PRINT" && row.timestamp_epoch % 1 !== 0).length,
+      causal_book_rows_recut: adjustedRows.length,
+      book_rows_after_matched_print: adjustedRows.filter((row) => row.causal_clock?.relation === "AFTER_MATCHED_TRUE_PRINT_LAST_TRADE_TRANSITION").length,
+      changed_order_count: changedOrders.length,
+      changed_orders: changedOrders,
+    });
     const old = oldOutcome(perGame, eventId, meta);
     const incompleteStamp = lawfulIncompleteStamp(result, truthRows.find((row) => row.event_id === eventId));
-    storyResults.push({ event_id: eventId, run_source: RUN_SOURCE, lineage_receipt: old, layered_dual_belief: result.execution, composition_rebuild: result.execution, lawful_incomplete: incompleteStamp, tape_rows_consumed: rows.length, book_rows_consumed: rows.filter((row) => row.kind === "BOOK").length, print_rows_consumed: rows.filter((row) => row.kind === "PRINT").length, turning_points: result.stage_reads.length, derivations: result.derivations.length, compact_rearm_attempts: result.rearm_attempts.length });
+    storyResults.push({ event_id: eventId, run_source: RUN_SOURCE, lineage_receipt: old, layered_dual_belief: result.execution, composition_rebuild: result.execution, lawful_incomplete: incompleteStamp, tape_rows_consumed: rows.length, book_rows_consumed: rows.filter((row) => row.kind === "BOOK").length, print_rows_consumed: rows.filter((row) => row.kind === "PRINT").length, turning_points: result.stage_reads.length, derivations: result.derivations.length, compact_rearm_attempts: result.rearm_attempts.length, causal_clock_changed_orders: changedOrders.length });
     storySections.push(storySection(result, old, meta, incompleteStamp));
     storyTraces.push(...result.stage_reads.map((stage) => ({ event_id: eventId, kind: "DECISION_STAGE", ...stage })), ...result.rearm_attempts.map((row) => ({ kind: "REARM_ATTEMPT", ...row })), ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })));
   }
   const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.layered_dual_belief.completed || row.layered_dual_belief.delta_vs_100_cents < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
-  const storiesHeader = `# Four convictions — condition, don't replace\n\nLicense: LAW_INDEX read @ ad7138bd, sha256 41784e6a… · CC @ad7138bd (F-VS-219..222) · F-VS-066 · F-VS-053 · DEFINITION LOCK · fill-price ruling · welds · CONVICTION-BEFORE-THE-FLOOR.\n\nThe connected panel is the prior. Each receipt's own-game trade, book, and spread-clearing channels update its distribution by recorded grade; trade evidence is strongest and a book never authors alone. Derivation and postability act on the same receipt, credited legs continue reading for the sibling and overturn tests, and every fractional derivation states its floor-side integer direction. The four stories below are the acceptance object. Deltas remain last. No sealed, live, or full-804 run was performed.\n\n`;
+  const storiesHeader = `# Four convictions — evidence joins support; causal clock; at-floor immunity\n\nLicense: LAW_INDEX read @ 737e3c2b, sha256 41784e6a… · CC @737e3c2b (F-VS-225..228) · F-VS-224 grading order · F-VS-134 · DEFINITION LOCK · fill-price ruling · welds.\n\nThe connected panel remains the prior, while every receipt-pinned own-game evidence value now joins the candidate set at its exact cent with measured decisiveness. Whole-second recorder books are causally interleaved with fractional exchange prints before decisions. A rest standing at its evidenced traded floor is immune to every routine mover until its supporting elimination overturns or a trade credits it. The four arguments come first; floors are their ruler and deltas remain last. No sealed, live, or full-804 run was performed.\n\n`;
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
   writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], f_vs_110_stamp: "TUNED_RETAINED", independent_lane_authority: "ONLY_RECEIPT_PINNED_OWN_EVIDENCE_UNDER_F_VS_068", self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: storyResults.length === 804, sealed_read: storyResults.some((row) => row.event_id.includes("24JUL")), live_mutation: RUN_SOURCE.includes("LIVE_MUTATION") });
   writeJson(path.join(output, "DETERMINISM_RECEIPT.json"), {
-    label: "V54_CONDITION_DONT_REPLACE_DETERMINISM_X2",
+    label: "V54_EVIDENCE_BALLOT_CAUSAL_CLOCK_AT_FLOOR_IMMUNITY_DETERMINISM_X2",
     method: "Each four-game execution is replayed twice from the same materialized tape, corpus, resources, and policy bytes; execution, decision stages, rearm attempts, and fill receipts are compared byte-for-byte before any score receipt is emitted.",
     rows: determinismRows,
     all_byte_identical: determinismRows.length === TARGETS.stories.length && determinismRows.every((row) => row.byte_identical),
     runs_per_game: 2,
+  });
+  writeJson(path.join(output, "CAUSAL_CLOCK_RECEIPT.json"), {
+    label: "TRUE_FRACTIONAL_PRINT_CAUSAL_BOOK_INTERLEAVE",
+    law: "F-VS-228@737e3c2b",
+    method: "Whole-second recorder books are interleaved with true fractional exchange prints by source-row order and the recorder last_trade transition watermark. A decision can only consume the causal prefix at its effective receipt time.",
+    policy_change: false,
+    rows: clockComparisonRows,
+    total_changed_orders: clockComparisonRows.reduce((total, row) => total + row.changed_order_count, 0),
   });
   await writeJsonlGzipStreaming(path.join(output, "REPAIR_FOUR_GAME_TRACE.jsonl.gz"), storyTraces);
   const decisionStages = storyTraces.filter((row) => row.kind === "DECISION_STAGE");
@@ -1611,13 +1655,39 @@ async function main() {
     || !row.sentence_carries_channel_grades
     || row.channels.some((channel) => !channel.receipt || !Number.isFinite(channel.grade) || !Number.isInteger(channel.class_rank)));
   writeJson(path.join(output, "TRUE_CONDITIONING_RECEIPT.json"), {
-    label: "CONDITION_DONT_REPLACE_PANEL_PRIOR_UPDATED_BY_EVERY_GRADED_OWN_EVIDENCE_CHANNEL",
-    authority: "F-VS-219..222@ad7138bd; F-VS-066",
+    label: "OWN_EVIDENCE_JOINS_THE_HYPOTHESIS_SUPPORT_AT_ITS_EXACT_PRICE",
+    authority: ["F-VS-219..222@ad7138bd", "F-VS-225/F-VS-227@737e3c2b", "F-VS-066"],
     replacement_operator_source: "RETIRED",
-    channel_seniority: ["TRADED", "TRADE_BACKED_SPREAD_CLEARING", "BOOK"],
+    channel_seniority: ["TRADED", "TRADE_BACKED_SPREAD_CLEARING", "CARRIED_LICENSED_CONDUCT", "BOOK"],
     book_is_informative_never_alone_decisive: true,
     rows: trueConditioningRows,
     violations: trueConditioningViolations,
+  });
+  const ownEvidenceSupportRows = pricingAuthorityRows.map((row) => ({
+    event_id: row.event_id,
+    leg_id: row.leg_id,
+    timestamp_epoch: row.timestamp_epoch,
+    receipt: row.receipt,
+    panel_prior_cents: row.authority?.panel_prior_cents ?? null,
+    evidence_channels: row.authority?.true_conditioning?.channels_applied ?? [],
+    exact_price_support: row.authority?.exact_price_support ?? [],
+    decisive_evidence: row.authority?.decisive_evidence ?? null,
+    posterior_continuous_cents: row.authority?.true_conditioning?.posterior_continuous_cents ?? null,
+    derived_target_cents: row.authority?.target_cents ?? null,
+    movement: row.authority?.level_movement ?? null,
+  }));
+  const ownEvidenceSupportViolations = ownEvidenceSupportRows.filter((row) => row.evidence_channels.some((channel) => !row.exact_price_support.some((support) => support.licensed_floor_cents === channel.value_cents && support.evidence_source === channel.source)));
+  writeJson(path.join(output, "OWN_EVIDENCE_SUPPORT_RECEIPT.json"), {
+    label: "PANEL_VOTES_PLUS_CURRENT_GAME_EVIDENCED_LEVELS_AT_EXACT_PRICES",
+    authority: ["F-VS-225/F-VS-227@737e3c2b", "F-VS-066"],
+    weighting_law: "Each panel row retains normalized prior mass. Each receipt-pinned evidence value contributes a candidate at its exact cent with decisiveness mass class_rank × grade; every candidate is then conditioned by every channel.",
+    rows: ownEvidenceSupportRows,
+    named: {
+      BAR_27: ownEvidenceSupportRows.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL12GIUBAR" && row.leg_id === "BAR" && row.evidence_channels.some((channel) => channel.source === "OBSERVED_TRUE_TRADE_LOW" && channel.value_cents === 27)),
+      GIU_66: ownEvidenceSupportRows.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL12GIUBAR" && row.leg_id === "GIU" && (row.derived_target_cents === 66 || row.evidence_channels.some((channel) => channel.value_cents === 66))),
+      DAN_59: ownEvidenceSupportRows.filter((row) => row.event_id === "KXATPMATCH-26JUL18DANPRA" && row.leg_id === "DAN" && row.evidence_channels.some((channel) => channel.source === "OBSERVED_TRUE_TRADE_LOW" && channel.value_cents === 59)),
+    },
+    violations: ownEvidenceSupportViolations,
   });
   const sameReceiptActRows = allDerivations.map((row) => ({
     event_id: row.event_id,
@@ -2026,20 +2096,29 @@ async function main() {
   const floorProtectionViolations = floorProtectionRows.filter((row) => row.protection?.violation);
   const ursFloorProtectionRows = floorProtectionRows.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL14URSPAL" && row.leg_id === "URS");
   writeJson(path.join(output, "FLOOR_REST_PROTECTION_RECEIPT.json"), {
-    label: "DIRECTIONAL_EXACT_FLOOR_TENURE_BLOCKS_AWAY_NEVER_ONTO",
+    label: "AT_FLOOR_REST_IMMUNE_TO_EVERY_ROUTINE_MOVER_UNTIL_ELIMINATION_OVERTURN_OR_CREDIT",
     run_source: RUN_SOURCE,
-    law: "Evidenced floor is exactly the bell-lawful observed traded low. Tenure protects only a rest exactly at that own-tape level from movement away; it never blocks a recompute onto the level.",
-    provenance: ["F-VS-154/F-VS-155/F-VS-159@6093141b", "F-VS-217/F-VS-218@a6e84246"],
+    law: "Evidenced floor is exactly the bell-lawful observed traded low. A rest exactly at it is immune to belief drift, DISAGREES, repricer, restore, and routine continuous post-only; only supporting-elimination overturn or trade credit ends it.",
+    provenance: ["F-VS-154/F-VS-155/F-VS-159@6093141b", "F-VS-228@737e3c2b", "F-VS-134"],
     floor_rest_lock_source_occurrences: (fs.readFileSync(path.join(repo, "arb-executor/analysis/window1_v54_dual_belief_os.js"), "utf8").match(/floor_rest_locks\s*=/g) ?? []).length,
     rows: floorProtectionRows,
     protected_rows: floorProtectionRows.filter((row) => row.protection?.protected_from_conflicting_belief_or_cancel).length,
     same_receipt_floor_rows: floorProtectionRows.filter((row) => row.protection?.same_receipt_floor_law_applied).length,
     held_postable_singleton_rows: floorProtectionRows.filter((row) => row.protection?.postable_floor_rest_held_against_crossing_singleton).length,
+    immunity_rows: floorProtectionRows.filter((row) => row.protection?.at_floor_immunity_applied).length,
     violations: floorProtectionViolations,
     urs_named_rows: ursFloorProtectionRows,
     urs_repriced_off_observed_traded_floor: ursFloorProtectionRows.some((row) => Number.isInteger(row.protection?.evidenced_floor_cents)
       && row.protection?.active_target_before_cents === row.protection.evidenced_floor_cents
       && row.action?.target_cents !== row.protection.evidenced_floor_cents),
+  });
+  writeJson(path.join(output, "AT_FLOOR_IMMUNITY_RECEIPT.json"), {
+    label: "ONE_AT_FLOOR_IMMUNITY_NOT_PER_GUARD_PATCHES",
+    authority: ["F-VS-228@737e3c2b", "F-VS-134"],
+    immune_to: ["CONTINUOUS_POST_ONLY", "DISAGREES_EMBARGO", "BELIEF_REPRICER", "RESTORE_LANES"],
+    rows: floorProtectionRows.filter((row) => row.protection?.at_floor_immunity_applied),
+    violations: floorProtectionViolations,
+    named_PRA_41: floorProtectionRows.filter((row) => row.event_id === "KXATPMATCH-26JUL18DANPRA" && row.leg_id === "PRA" && row.protection?.evidenced_floor_cents === 41),
   });
   const tenureFillEvents = storyTraces.filter((row) => row.kind === "FILL_EVENT").map((row) => row.fill_event_receipt);
   const tenureRowsByLeg = storyResults.flatMap((story) => {
@@ -2946,7 +3025,7 @@ async function main() {
     const mode = row.layered_dual_belief?.envelope_placement?.mode;
     const expected = mode === "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
         ? "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
-      : mode === "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+      : ["EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY", "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"].includes(mode)
         ? "OBSERVED_TRUE_TRADE_FLOOR_TENURE"
         : mode === "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
           ? "CURRENT_AUTHORITY_PRICE_RESTORED"
@@ -2965,7 +3044,7 @@ async function main() {
       event_id: row.event_id,
       leg_id: row.leg_id,
       receipt: row.stage_receipt,
-      covered: Boolean(["TARGET_CENTS_LT_LIVE_ASK_CENTS", "STANDING_TARGET_CENTS_LT_LIVE_ASK_CENTS"].includes(test?.predicate)),
+      covered: Boolean(["TARGET_CENTS_LT_LIVE_ASK_CENTS", "STANDING_TARGET_CENTS_LT_LIVE_ASK_CENTS", "AT_FLOOR_IMMUNITY_PRECEDES_ROUTINE_POST_ONLY_CANCEL"].includes(test?.predicate)),
       emitted,
       candidate_target_cents: test?.target_cents ?? null,
       candidate_lawful: test?.lawful ?? null,
@@ -2976,7 +3055,9 @@ async function main() {
       disposition: row.layered_dual_belief?.envelope_placement?.post_only_disposition ?? null,
       active_target_before_cents: row.layered_dual_belief?.envelope_placement?.active_target_before_cents ?? null,
       active_target_crossed_live_ask: row.layered_dual_belief?.envelope_placement?.active_target_crossed_live_ask === true,
-      held_crossed_rest: row.action.action === "HOLD_REST" && row.layered_dual_belief?.envelope_placement?.active_target_crossed_live_ask === true,
+      at_floor_immunity: row.layered_dual_belief?.envelope_placement?.mode === "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS",
+      held_crossed_rest: row.action.action === "HOLD_REST" && row.layered_dual_belief?.envelope_placement?.active_target_crossed_live_ask === true && row.layered_dual_belief?.envelope_placement?.mode !== "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS",
+      held_crossed_floor_rest_under_immunity: row.action.action === "HOLD_REST" && row.layered_dual_belief?.envelope_placement?.active_target_crossed_live_ask === true && row.layered_dual_belief?.envelope_placement?.mode === "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS",
     };
   });
   const oneAuthorOrderRows = pricingAuthorityRows.filter((row) => row.emitted_order);
@@ -3014,12 +3095,13 @@ async function main() {
     rows: postOnlyVetoRows,
   });
   writeJson(path.join(output, "CONTINUOUS_POST_ONLY_RECEIPT.json"), {
-    label: "POST_ONLY_APPLIES_TO_NEW_AND_ALREADY_STANDING_RESTS",
-    authority: "F-VS-217@a6e84246",
+    label: "POST_ONLY_APPLIES_TO_NEW_AND_NON_FLOOR_STANDING_RESTS; AT_FLOOR_IMMUNITY_IS_SENIOR",
+    authority: ["F-VS-217@a6e84246", "F-VS-228@737e3c2b"],
     predicate: "STANDING_TARGET_CENTS_LT_LIVE_ASK_CENTS",
     active_crossing_rows: postOnlyGateRows.filter((row) => row.active_target_crossed_live_ask),
     cancelled_or_lawfully_replaced_rows: postOnlyGateRows.filter((row) => row.active_target_crossed_live_ask && !row.held_crossed_rest),
     unlawful_holds: crossedStandingHoldRows,
+    immune_floor_holds_pending_trade_credit: postOnlyGateRows.filter((row) => row.held_crossed_floor_rest_under_immunity),
     passed: crossedStandingHoldRows.length === 0,
   });
   const vacuumRows = pricingAuthorityRows.filter((row) => !Number.isInteger(row.authority_target_cents));
@@ -3036,6 +3118,25 @@ async function main() {
   const postSpanOrderRows = allDerivations.filter((row) => ["PLACE_REST", "REPRICE_REST"].includes(row.action.action)
     && Number.isFinite(spanEndByEvent.get(row.event_id)) && row.timestamp_epoch > spanEndByEvent.get(row.event_id));
   const c04Rows = allDerivations.filter((row) => row.layered_dual_belief?.envelope_placement?.mode === "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE");
+  const c04CoverageFailures = c04Rows.filter((row) => {
+    const test = row.layered_dual_belief?.envelope_placement?.post_only_test;
+    return test?.coverage !== "C04_RESTORE_LANE"
+      || test?.predicate !== "TARGET_CENTS_LT_LIVE_ASK_CENTS"
+      || test?.lawful !== true;
+  });
+  writeJson(path.join(output, "C04_POST_ONLY_COVERAGE_RECEIPT.json"), {
+    label: "C04_RESTORE_LANE_IS_COVERED_BY_THE_SAME_POST_ONLY_PREDICATE",
+    authority: "F-VS-225@737e3c2b",
+    rows: c04Rows.map((row) => ({
+      event_id: row.event_id,
+      leg_id: row.leg_id,
+      timestamp_epoch: row.timestamp_epoch,
+      receipt: row.stage_receipt,
+      action: row.action,
+      placement: row.layered_dual_belief?.envelope_placement,
+    })),
+    failures: c04CoverageFailures.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, receipt: row.stage_receipt })),
+  });
   writeJson(path.join(output, "CARRIED_FIXES_RECEIPT.json"), {
     label: "C04_CURRENT_AUTHORITY_SPAN_DIRECTION_PROTECTION_SINGLE_CANCEL_RESTORE",
     c04_current_authority_restore_rows: c04Rows.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.stage_receipt, action: row.action, authority_target_cents: row.layered_dual_belief?.pricing_authority?.target_cents, stale_price_ignored_cents: row.layered_dual_belief?.envelope_placement?.stale_price_ignored_cents ?? null })),
@@ -3054,6 +3155,8 @@ async function main() {
   if (vacuumEmissionRows.length) lawViolations.push("AUTHORITY_VACUUM_EMITTED_AN_ORDER");
   if (postSpanOrderRows.length) lawViolations.push("ORDER_EMITTED_PAST_SPAN_END");
   if (trueConditioningViolations.length) lawViolations.push("PRIOR_REPLACED_OR_OWN_EVIDENCE_CHANNEL_UNGRADED");
+  if (ownEvidenceSupportViolations.length) lawViolations.push("OWN_EVIDENCE_CHANNEL_MISSING_EXACT_PRICE_SUPPORT_CANDIDATE");
+  if (c04CoverageFailures.length) lawViolations.push("C04_RESTORE_LANE_MISSING_POST_ONLY_COVERAGE");
   if (sameReceiptActViolations.length) lawViolations.push("DERIVED_POSTABLE_LEVEL_NOT_ACTED_SAME_RECEIPT");
   if (creditedLegReadViolations.length) lawViolations.push("CREDITED_LEG_STREAM_STOPPED_OR_FAILED_TO_FEED_SIBLING");
   if (directionalRoundingViolations.length) lawViolations.push("BID_DERIVATION_ROUNDING_DIRECTION_UNSTATED_OR_MISAPPLIED");

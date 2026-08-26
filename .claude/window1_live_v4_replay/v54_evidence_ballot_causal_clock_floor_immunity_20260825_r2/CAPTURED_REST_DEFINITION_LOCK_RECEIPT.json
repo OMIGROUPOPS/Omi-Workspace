@@ -1,0 +1,116 @@
+{
+  "label": "F_VS_192_CAPTURED_REST_LICENSE_IS_NOT_A_FLOOR_PRODUCER",
+  "provenance": [
+    "F-VS-192@2941cd15",
+    "DEFINITION_LOCK"
+  ],
+  "true_floor_source": "OBSERVED_TRUE_TRADE_PRINT_PREFIX_ONLY",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-557",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-94",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-266",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-638",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-641",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-719",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "ee538694-14b7-41bc-b4cc-bbc59be78303",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-1204",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "f825bd6e-531b-746c-73fe-a6e58079ca5f",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-897",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-975",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2677",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2867",
+      "claim_source": "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER",
+      "target_authority": "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
+    }
+  ],
+  "violations": []
+}

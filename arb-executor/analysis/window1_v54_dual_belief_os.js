@@ -65,14 +65,18 @@ const LAYER_PROVENANCE = Object.freeze({
   directional_rounding: "F-VS-221(d)@ad7138bd; FLOOR_SIDE_INTEGER_ROUNDING@2026-08-25",
   directional_floor_tenure: "F-VS-217/F-VS-218@a6e84246",
   continuous_post_only: "F-VS-217@a6e84246",
+  evidence_joins_support: "F-VS-225/F-VS-227@737e3c2b; F-VS-066",
+  causal_fractional_clock: "F-VS-228@737e3c2b",
+  at_floor_immunity: "F-VS-228@737e3c2b; F-VS-134",
+  c04_post_only_coverage: "F-VS-225@737e3c2b",
   technique_contracts: "F-VS-193..198@9ef05314; DISPATCH_CONTRACTS_BUILD@2026-08-25",
   spread_eye: "REGISTERED_TECHNIQUE_SPREAD_EYE@2026-08-25",
 });
 
 const TECHNIQUE_CONTRACTS = Object.freeze([
   Object.freeze({ id: "C01_PRICING_AUTHORITY_OVER_LANE_LEVEL_SELECTION", state: "FIRED_OR_PRICED", senior: "PANEL_PRIOR_CONDITIONED_BY_CURRENT_GAME_OWN_EVIDENCE", junior: "ALL_PLACEMENT_LANES", resolution: "THE_AUTHOR_CONDITIONS_PRIOR_ON_TRADED_LOW_LIVE_BOOK_AND_SPREAD_CLEARING; LANES_MAY_NOT_SUBSTITUTE_A_LEVEL" }),
-  Object.freeze({ id: "C02_FLOOR_TENURE_OVER_BELIEF_DRIFT", state: "FIRED_OR_PRICED", senior: "EXACT_EVIDENCED_OWN_TAPE_LEVEL_TENURE", junior: "COHERENT_OR_CARRIED_REPRICE", resolution: "BLOCK_MOVES_AWAY_FROM_AN_EXACT_EVIDENCED_LEVEL; NEVER_BLOCK_A_RECOMPUTE_ONTO_IT" }),
-  Object.freeze({ id: "C03_POST_ONLY_OVER_ALL_NEW_AND_STANDING_ORDERS", state: "FIRED_OR_PRICED", senior: "REST_TARGET_LT_CAUSAL_LIVE_ASK_CONTINUOUSLY", junior: "EVERY_LANE_WRITER_AND_ACTIVE_REST", resolution: "VETO_EMISSION_ONLY; A_STANDING_REST_AT_OR_ABOVE_ASK_IS_CANCELLED_OR_REPLACED_BY_A_LAWFUL_AUTHORITY_LEVEL" }),
+  Object.freeze({ id: "C02_FLOOR_TENURE_OVER_ALL_ROUTINE_MOVERS", state: "FIRED_OR_PRICED", senior: "EXACT_EVIDENCED_OWN_TAPE_LEVEL_TENURE", junior: "BELIEF_DRIFT_DISAGREES_REPRICER_RESTORE_AND_CONTINUOUS_POST_ONLY", resolution: "AN_AT_FLOOR_REST_HOLDS_UNLESS_ITS_SUPPORTING_ELIMINATIONS_ARE_OVERTURNED" }),
+  Object.freeze({ id: "C03_POST_ONLY_OVER_NEW_ORDERS_AND_NON_FLOOR_RESTS", state: "FIRED_OR_PRICED", senior: "REST_TARGET_LT_CAUSAL_LIVE_ASK", junior: "EVERY_NEW_WRITER_AND_NON_FLOOR_ACTIVE_REST", resolution: "VETO_EMISSION_ONLY; AN_AT_FLOOR_REST_IS_RESERVED_FOR_TRADE_CREDIT_ADJUDICATION_UNDER_C02" }),
   Object.freeze({ id: "C04_CANCEL_REARM_RESTORES_PRICE", state: "FIRED_OR_PRICED", senior: "CURRENT_RECOMPUTED_AUTHORITY_PRICE", junior: "GENERIC_REARM_OR_STALE_PRICE", resolution: "REARM_AT_THE_CURRENT_AUTHORITY_PRICE_WHEN_LICENSED_POSTABLE_AND_PAIR_LAWFUL" }),
   Object.freeze({ id: "C05_LOCKED_BOOK_IS_PLACEMENT_ONLY", state: "FIRED_OR_PRICED", senior: "EXISTING_LAWFUL_REST", junior: "LOCKED_OR_CROSSED_BOOK_NEW_PLACEMENT_VETO", resolution: "NO_NEW_ORDER; NEVER_CANCEL_AN_EXISTING_REST" }),
   Object.freeze({ id: "C06_LANE_LANE_LEVEL_SELECTION", state: "FIRED_OR_PRICED", senior: "PRICING_AUTHORITY", junior: "COHERENT_DISAGREES_TOUCH_CARRIED_WRITERS", resolution: "ONE_ELIGIBLE_WRITER_EMITS_THE_AUTHORITY_PRICE" }),
@@ -236,6 +240,8 @@ function ownEvidenceChannelGrades({ state, legId, liveBid, liveAsk, spreadEye, o
     : 0;
   const tradeGrade = totalTradeVolume > 0 ? totalTradeVolume / (totalTradeVolume + 1) : 0;
   const spreadGrade = Number.isFinite(spreadEye?.interior_print_share) ? spreadEye.interior_print_share : 0;
+  const standing = cent(state.positions[legId]?.standing_target_cents);
+  const standingEvidence = state.positions[legId]?.standing_authority_evidence ?? null;
   return [
     Number.isInteger(observedOwnEvidenceLevel) ? {
       source: "OBSERVED_TRUE_TRADE_LOW",
@@ -264,13 +270,46 @@ function ownEvidenceChannelGrades({ state, legId, liveBid, liveAsk, spreadEye, o
       grade: spreadGrade,
       grade_basis: { interior_print_share: spreadGrade, interior_print_count: spreadEye?.interior_print_count ?? 0, post_onset_print_count: spreadEye?.print_count_post_onset ?? 0 },
     } : null,
+    Number.isInteger(standing) && standingEvidence?.receipt && Number.isFinite(standingEvidence?.grade) && standingEvidence.grade > 0 ? {
+      source: "LICENSED_STANDING_REST_EVIDENCE",
+      value_cents: standing,
+      receipt: standingEvidence.receipt,
+      evidence_class: "CARRIED_LICENSED_CONDUCT",
+      class_rank: standingEvidence.class_rank,
+      grade: standingEvidence.grade,
+      grade_basis: {
+        source_channel: standingEvidence.source,
+        source_value_cents: standingEvidence.value_cents,
+        source_grade: standingEvidence.grade,
+        standing_license_receipt: state.positions[legId].standing_license_receipt,
+      },
+    } : null,
   ].filter(Boolean);
 }
 
 function conditionPriorDistribution({ priorRows, evidenceChannels }) {
   const channelsApplied = evidenceChannels.filter((row) => Number.isFinite(row.grade) && row.grade > 0 && Number.isInteger(row.value_cents) && row.receipt);
-  const posteriorRows = priorRows.map((row) => {
-    let posteriorWeight = row.conditioning_weight;
+  const priorTotal = sum(priorRows.map((row) => Number.isFinite(row.conditioning_weight) && row.conditioning_weight > 0 ? row.conditioning_weight : 0));
+  const normalizedPanelRows = priorRows.map((row) => ({
+    ...row,
+    support_source: "GRADED_PANEL_HYPOTHESIS",
+    initial_support_weight: priorTotal > 0 ? row.conditioning_weight / priorTotal : 0,
+  }));
+  const evidenceSupportRows = channelsApplied.map((channel) => ({
+    event_id: `OWN_EVIDENCE|${channel.source}|${channel.receipt}`,
+    source_receipt: channel.receipt,
+    conditioning_weight: channel.class_rank * channel.grade,
+    initial_support_weight: channel.class_rank * channel.grade,
+    licensed_floor_cents: channel.value_cents,
+    support_source: "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE",
+    evidence_source: channel.source,
+    evidence_class: channel.evidence_class,
+    evidence_grade: channel.grade,
+    evidence_class_rank: channel.class_rank,
+  }));
+  const candidateRows = [...normalizedPanelRows, ...evidenceSupportRows];
+  const posteriorRows = candidateRows.map((row) => {
+    let posteriorWeight = Number.isFinite(row.initial_support_weight) ? row.initial_support_weight : row.conditioning_weight;
     const channelUpdates = [];
     for (const channel of channelsApplied) {
       const distance = Math.abs(row.licensed_floor_cents - channel.value_cents);
@@ -289,13 +328,15 @@ function conditionPriorDistribution({ priorRows, evidenceChannels }) {
         multiplier,
       });
     }
-    return { ...row, prior_weight: row.conditioning_weight, conditioning_weight: posteriorWeight, channel_updates: channelUpdates };
+    return { ...row, prior_weight: row.initial_support_weight ?? row.conditioning_weight, conditioning_weight: posteriorWeight, channel_updates: channelUpdates };
   }).filter((row) => Number.isFinite(row.conditioning_weight) && row.conditioning_weight > 0);
   const posteriorContinuous = weightedMean(posteriorRows, "licensed_floor_cents");
   const posteriorQ50 = cent(weightedQuantile(posteriorRows, "licensed_floor_cents", 0.5));
   const rounded = floorSideRoundCents(posteriorContinuous);
   return {
     posterior_rows: posteriorRows,
+    panel_rows: normalizedPanelRows,
+    evidence_support_rows: evidenceSupportRows,
     channels_applied: channelsApplied,
     posterior_q50_cents: posteriorQ50,
     posterior_continuous_cents: posteriorContinuous,
@@ -305,7 +346,7 @@ function conditionPriorDistribution({ priorRows, evidenceChannels }) {
     // beside it as distribution telemetry rather than silently choosing a
     // different integer statistic.
     level_cents: rounded,
-    method: "PRIOR_HYPOTHESES_REWEIGHTED_BY_RECEIPT_PINNED_CHANNEL_LIKELIHOODS; TRADE_CLASS_STRONGEST; BOOK_REQUIRES_PRIOR_AND_NEVER_AUTHORS_ALONE; POSTERIOR_MEAN_FLOOR_SIDE_DIRECTED_INTEGER",
+    method: "PANEL_HYPOTHESES_PLUS_RECEIPT_PINNED_OWN_EVIDENCE_EXACT_PRICE_SUPPORT; DECISIVENESS_EQUALS_CLASS_RANK_TIMES_GRADE; ALL_CANDIDATES_CONDITIONED_BY_ALL_CHANNELS; TRADE_CLASS_STRONGEST; BOOK_INFORMS_WITH_PANEL_AND_NEVER_AUTHORS_ALONE; POSTERIOR_MEAN_FLOOR_SIDE_DIRECTED_INTEGER",
   };
 }
 
@@ -400,7 +441,6 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
   const observedOwnEvidenceReceipt = recomputeInputs.observed_traded_low_receipt
     ?? [...(state.legs[legId]?.prints ?? [])].reverse().find((row) => cent(row.price_cents) === observedOwnEvidenceLevel)?.receipt
     ?? null;
-  const liveBookReceipt = state.legs[legId]?.current_book?.receipt ?? null;
   const ownEvidenceRows = ownEvidenceChannelGrades({ state, legId, liveBid, liveAsk, spreadEye, observedOwnEvidenceLevel, observedOwnEvidenceReceipt });
   const ownEvidenceCentral = cent(centralMedianCents(ownEvidenceRows));
   const formationComplete = baseRow?.derivation?.formation_complete === true;
@@ -430,14 +470,17 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
   const siblingId = state.leg_ids.find((id) => id !== legId);
   const siblingPosition = state.positions[siblingId];
   const conditioningInputs = {
-    own_last_market_receipt: state.legs[legId]?.rows?.at(-1)?.receipt ?? null,
     observed_traded_low_cents: observedOwnEvidenceLevel,
-    observed_traded_low_receipt: observedOwnEvidenceReceipt,
-    live_book_receipt: liveBookReceipt,
     live_bid_cents: liveBid,
     live_ask_cents: liveAsk,
     spread_eye_clearing_cents: clearingTarget,
-    spread_eye_clearing_receipt: ownEvidenceRows.find((row) => row.source === "SPREAD_EYE_EFFECTIVE_CLEARING_PRICE")?.receipt ?? null,
+    own_evidence_content: ownEvidenceRows.map((row) => ({
+      source: row.source,
+      value_cents: row.value_cents,
+      class_rank: row.class_rank,
+      grade: row.grade,
+      grade_basis: row.grade_basis,
+    })),
     credited_sibling_entry_cents: siblingPosition?.credited ? cent(siblingPosition.entry_cents) : null,
     credited_sibling_fill_receipt: siblingPosition?.credited ? siblingPosition.fill_receipt ?? null : null,
   };
@@ -477,6 +520,11 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
     && (ownEvidenceRows.some((row) => row.receipt)
       || (depthLicense?.lawful === true && baseRow.derivation.true_bell_cell_depth_map?.licensed === true))
   );
+  const decisiveEvidence = [...ownEvidenceRows]
+    .filter((row) => Number.isFinite(row.class_rank) && Number.isFinite(row.grade) && row.grade > 0)
+    .sort((a, b) => (b.class_rank * b.grade) - (a.class_rank * a.grade)
+      || b.class_rank - a.class_rank
+      || String(a.source).localeCompare(String(b.source)))[0] ?? null;
   return {
     authority: "BASE_V3_MAP_JOINT_DEPTH_MIND_WINDOW_VOTE",
     authority_restored_to_decision_path: authorityRestored,
@@ -492,6 +540,15 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
     own_evidence_rows: ownEvidenceRows,
     own_evidence_central_cents: ownEvidenceCentral,
     true_conditioning: trueConditioning,
+    exact_price_support: trueConditioning.evidence_support_rows,
+    decisive_evidence: decisiveEvidence ? {
+      source: decisiveEvidence.source,
+      value_cents: decisiveEvidence.value_cents,
+      receipt: decisiveEvidence.receipt,
+      class_rank: decisiveEvidence.class_rank,
+      grade: decisiveEvidence.grade,
+      decisiveness_weight: decisiveEvidence.class_rank * decisiveEvidence.grade,
+    } : null,
     conditioning_chain: {
       prior_cents: independentlyRecomputedEngineTarget,
       prior_distribution: recomputeVotes,
@@ -499,6 +556,8 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
       conditioned_cents: cent(rawConditionedTarget),
       final_level_cents: target,
       method: trueConditioning.method,
+      exact_price_support_joined: true,
+      evidence_support_rows: trueConditioning.evidence_support_rows,
       prior_to_conditioned_to_level: `${independentlyRecomputedEngineTarget ?? "NONE"}->${cent(rawConditionedTarget) ?? "NONE"}->${target ?? "NONE"}`,
       replacement_operator_removed: true,
       each_channel_graded: true,
@@ -1303,7 +1362,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       targets[legId] = active;
       parAllocationFloorBounds[legId] = { ...parAllocationFloorBounds[legId], value_cents: active, protected_active_floor_rest: true };
       envelopePlacement[legId] = {
-        mode: "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY",
+        mode: "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS",
         writer_lane: "LICENSED_FLOOR_TENURE",
         active_floor_rest_cents: active,
         evidenced_floor_cents: evidencedFloor,
@@ -1315,10 +1374,13 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         supporting_shapes_still_alive: floorSupportingShapes,
         supporting_eliminations_overturned: false,
         chosen_target_cents: active,
+        supporting_eliminations_overturned: false,
         may_cancel_or_reprice_off_floor: false,
-        tenure_direction: "BLOCK_AWAY_NEVER_BLOCK_ONTO",
-        technique_contract: "C02_FLOOR_TENURE_OVER_BELIEF_DRIFT",
-        provenance: [LAYER_PROVENANCE.floor_rest_protection, LAYER_PROVENANCE.technique_contracts],
+        immune_to: ["CONTINUOUS_POST_ONLY", "DISAGREES_EMBARGO", "BELIEF_REPRICER", "RESTORE_LANES"],
+        only_lawful_exit: "SUPPORTING_ELIMINATION_OVERTURNED_OR_TRADE_CREDIT",
+        tenure_direction: "AT_FLOOR_IMMUNITY",
+        technique_contract: "C02_FLOOR_TENURE_OVER_ALL_ROUTINE_MOVERS",
+        provenance: [LAYER_PROVENANCE.floor_rest_protection, LAYER_PROVENANCE.at_floor_immunity, LAYER_PROVENANCE.technique_contracts],
         numeric_constant_added: false,
       };
     }
@@ -1367,7 +1429,38 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       ? cent(reads.half_pair_state.value.legs[siblingId].entry_cents)
       : cent(allocation.targets[siblingId]) ?? cent(reads.half_pair_state.value.legs[siblingId].standing_target_cents);
     const pairPlanLawful = !Number.isInteger(siblingPlan) || active + siblingPlan <= base.PAR_BUDGET_CENTS;
-    if (activeCrossesAsk && (!Number.isInteger(candidate) || candidate >= ask || candidate === active)) {
+    const survivorCriterion = survivorUpdate.legs[legId]?.target_criterion ?? null;
+    const atFloorImmunity = Boolean(
+      Number.isInteger(active)
+      && Number.isInteger(floor)
+      && active === floor
+      && criterionSupportsRangeLevel(survivorCriterion, active)
+    );
+    if (atFloorImmunity) {
+      allocation.targets[legId] = active;
+      envelopePlacement[legId] = {
+        ...placement,
+        mode: "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS",
+        writer_lane: "LICENSED_FLOOR_TENURE",
+        active_floor_rest_cents: active,
+        evidenced_floor_cents: floor,
+        live_ask_cents: ask,
+        active_target_crossed_live_ask: activeCrossesAsk,
+        post_only_test: {
+          target_cents: active,
+          live_ask_cents: ask,
+          lawful_for_new_placement: Number.isInteger(ask) ? active < ask : false,
+          existing_floor_rest_disposition: "IMMUNE_PENDING_TRADE_CREDIT_OR_ELIMINATION_OVERTURN",
+          predicate: "AT_FLOOR_IMMUNITY_PRECEDES_ROUTINE_POST_ONLY_CANCEL",
+        },
+        supporting_eliminations_overturned: false,
+        immune_to: ["CONTINUOUS_POST_ONLY", "DISAGREES_EMBARGO", "BELIEF_REPRICER", "RESTORE_LANES"],
+        only_lawful_exit: "SUPPORTING_ELIMINATION_OVERTURNED_OR_TRADE_CREDIT",
+        chosen_target_cents: active,
+        technique_contract: "C02_FLOOR_TENURE_OVER_ALL_ROUTINE_MOVERS",
+        provenance: [LAYER_PROVENANCE.at_floor_immunity, LAYER_PROVENANCE.floor_rest_protection],
+      };
+    } else if (activeCrossesAsk && (!Number.isInteger(candidate) || candidate >= ask || candidate === active)) {
       allocation.targets[legId] = null;
       allocation.reason = `${allocation.reason}+CONTINUOUS_POST_ONLY_CANCEL_CROSSED_STANDING_REST`;
       envelopePlacement[legId] = {
@@ -1381,7 +1474,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         post_only_test: { target_cents: active, live_ask_cents: ask, lawful: false, predicate: "STANDING_TARGET_CENTS_LT_LIVE_ASK_CENTS" },
         post_only_disposition: "ACTIVE_REST_UNLAWFUL_TO_HOLD_CANCEL_AND_REDERIVE",
         chosen_target_cents: null,
-        technique_contract: "C03_POST_ONLY_OVER_ALL_NEW_AND_STANDING_ORDERS",
+        technique_contract: "C03_POST_ONLY_OVER_NEW_ORDERS_AND_NON_FLOOR_RESTS",
         provenance: [LAYER_PROVENANCE.post_only_own_target, LAYER_PROVENANCE.continuous_post_only],
       };
     } else if (candidateIsNewOrder && askOnlyBookTick) {
@@ -1550,7 +1643,16 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
           stale_price_ignored_cents: pendingRearmBefore.last_cancelled_price_reference_cents ?? pendingRearmBefore.price_to_restore_cents ?? null,
           restored_price_license_receipt: state.receipt,
           chosen_target_cents: restorePrice,
+          live_ask_cents: ask,
+          post_only_test: {
+            target_cents: restorePrice,
+            live_ask_cents: ask,
+            lawful: restorePrice < ask,
+            predicate: "TARGET_CENTS_LT_LIVE_ASK_CENTS",
+            coverage: "C04_RESTORE_LANE",
+          },
           technique_contract: "C04_CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE",
+          provenance: [LAYER_PROVENANCE.atomic_rearm_fix, LAYER_PROVENANCE.c04_post_only_coverage],
         };
       }
     }
@@ -1573,6 +1675,8 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         ? "CONTINUOUS_POST_ONLY_CANCEL_CROSSED_STANDING_REST"
       : placementMode === "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
       ? "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+      : placementMode === "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      ? "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
       : placementMode === "FLOOR_CAPABLE_OWN_BOOK_LEVEL_BELOW_PRIOR_TRADE_LOW"
         ? "FLOOR_CAPABLE_OWN_BOOK_LEVEL_BELOW_PRIOR_TRADE_LOW"
       : placementMode === "OWN_EVIDENCE_AT_DISAGREES_SURVIVOR_SUPPORTED"
@@ -1592,7 +1696,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const explicitWriter = envelopePlacement[legId]?.writer_lane ?? null;
     const derivedWinner = !Number.isInteger(target) && !Number.isInteger(active)
       ? "NO_ACTION"
-      : placementMode === "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+      : ["EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY", "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"].includes(placementMode)
         ? "LICENSED_FLOOR_TENURE"
       : placementMode === "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
         ? "ACTIVE_REST_HOLD"
@@ -1605,7 +1709,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       FLOOR_CAPABLE_WRITER: Boolean(coherence.status === "DISAGREES" || envelopePlacement[legId]?.floor_handoff_same_receipt),
       CARRIED_CONVICTION_WRITER: Boolean(decisionEnvelopes[legId] && !coherentNow && coherence.status !== "DISAGREES"),
       OWN_TOUCH_WRITER: Boolean(!decisionEnvelopes[legId] && coherence.status !== "DISAGREES" && pricingAuthorities[legId]?.base_target_lawful),
-      LICENSED_FLOOR_TENURE: placementMode === "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY",
+      LICENSED_FLOOR_TENURE: ["EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY", "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"].includes(placementMode),
       REARM_PRICE_RESTORATION_WRITER: placementMode === "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE",
       ACTIVE_REST_HOLD: Number.isInteger(active) && target === active,
       POST_ONLY_CONTINUOUS_VETO: placementMode === "CONTINUOUS_POST_ONLY_CANCEL_CROSSED_STANDING_REST",
@@ -1631,7 +1735,13 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const standingLicensedLevel = evidencedFloor;
     const standingLicensedReceipt = evidencedFloorReceipt;
     const floorSupportAlive = Number.isInteger(active) && criterionSupportsRangeLevel(survivor?.target_criterion, active) ? (survivor?.survivor_shapes ?? []) : [];
-    const activeAtSupportedFloor = Boolean(Number.isInteger(active) && Number.isInteger(evidencedFloor) && active === evidencedFloor && evidencedFloorReceipt);
+    const activeAtSupportedFloor = Boolean(
+      Number.isInteger(active)
+      && Number.isInteger(evidencedFloor)
+      && active === evidencedFloor
+      && evidencedFloorReceipt
+      && criterionSupportsRangeLevel(survivor?.target_criterion, active)
+    );
     const floorPrint = evidencedFloor === null
       ? null
       : [...state.legs[legId].prints].reverse().find((print) => cent(print.price_cents) === evidencedFloor) ?? null;
@@ -1640,11 +1750,12 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     const sameReceiptFloorDeparture = Boolean(floorEstablishedOnCurrentReceipt
       && activeAtSupportedFloor
       && target !== active
-      && !continuousPostOnlyCancel);
-    // Continuous post-only is senior because a crossed maker rest is unlawful
-    // to keep standing. Cancelling that rest does not falsify directional floor
-    // tenure; it is the mandatory disposition of an unpostable order.
-    const floorRestProtectionViolation = activeAtSupportedFloor && target !== active && !continuousPostOnlyCancel;
+      );
+    // A floor-exact standing maker rest is reserved for trade-credit
+    // adjudication. Routine post-only, disagreement, repricer, and restore
+    // branches cannot rotate through it; only an overturned survivor support
+    // permits departure.
+    const floorRestProtectionViolation = activeAtSupportedFloor && target !== active;
     const targetInsideCurrentEnvelope = Number.isInteger(target) && currentEnvelope && target >= currentEnvelope.low_cents && target <= currentEnvelope.high_cents;
     if (coherentNow && Number.isInteger(target) && !state.dual_belief.first_lawful_coherence_by_leg[legId]) {
       state.dual_belief.first_lawful_coherence_by_leg[legId] = { epoch: state.current_epoch, receipt: state.receipt };
@@ -1755,7 +1866,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       licensed_floor_level_receipt: standingLicensedReceipt,
       supporting_shapes_still_alive: floorSupportAlive,
       proposed_target_before_protection_cents: envelopePlacement[legId]?.proposed_conflicting_target_cents ?? envelopePlacement[legId]?.chosen_target_cents ?? null,
-      protected_from_conflicting_belief_or_cancel: envelopePlacement[legId]?.mode === "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY",
+      protected_from_conflicting_belief_or_cancel: ["EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY", "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"].includes(envelopePlacement[legId]?.mode),
       floor_established_on_current_receipt: floorEstablishedOnCurrentReceipt,
       same_receipt_floor_departure: sameReceiptFloorDeparture,
       same_receipt_floor_law_applied: false,
@@ -1763,9 +1874,11 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       violation: floorRestProtectionViolation,
       tenure_instrument: "ORDER_TRANSITION_TENURE_SINGLE_PRODUCER",
       sampled_row_tenure_serialized: false,
-      tenure_direction: "BLOCK_AWAY_NEVER_BLOCK_ONTO",
-      continuous_post_only_seniority_applied: continuousPostOnlyCancel,
-      provenance: [LAYER_PROVENANCE.floor_rest_protection, LAYER_PROVENANCE.directional_floor_tenure],
+      tenure_direction: "AT_FLOOR_IMMUNITY_UNLESS_SUPPORTING_ELIMINATION_OVERTURNS",
+      continuous_post_only_seniority_applied: false,
+      continuous_post_only_cancel_attempted: continuousPostOnlyCancel,
+      at_floor_immunity_applied: envelopePlacement[legId]?.mode === "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS",
+      provenance: [LAYER_PROVENANCE.floor_rest_protection, LAYER_PROVENANCE.directional_floor_tenure, LAYER_PROVENANCE.at_floor_immunity],
     };
     const proposalBeforeAllocation = cent(envelopePlacement[legId]?.proposed_conflicting_target_cents ?? envelopePlacement[legId]?.chosen_target_cents);
     const proposalAtOrBelowFloor = Number.isInteger(proposalBeforeAllocation) && Number.isInteger(evidencedFloor) && proposalBeforeAllocation <= evidencedFloor;
@@ -1824,7 +1937,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.derivation.target_basis = reason;
     row.derivation.target_authority = placementMode === "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
         ? "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"
-      : placementMode === "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+      : ["EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY", "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"].includes(placementMode)
         ? "OBSERVED_TRUE_TRADE_FLOOR_TENURE"
         : placementMode === "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
           ? "CURRENT_AUTHORITY_PRICE_RESTORED"

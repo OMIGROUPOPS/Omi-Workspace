@@ -1,0 +1,47 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V28",
+  "files": {
+    "CASE_STUDY_RECEIPT.json": {
+      "path": "CASE_STUDY_RECEIPT.json",
+      "sha256": "40641b63ef9c1c75c86fd28a17dd64cb2032cbe9e06b1f95c92e47c2855a55f8",
+      "bytes": 438262,
+      "rows": null
+    },
+    "PANEL_A_PAIR_RENDER.html": {
+      "path": "PANEL_A_PAIR_RENDER.html",
+      "sha256": "2d97e07ec11e38e27faabe4ffe7391ceb6affdcdab5911ea66314191edcb4366",
+      "bytes": 26705,
+      "rows": null
+    },
+    "PANEL_B_ENGAGEMENT.html": {
+      "path": "PANEL_B_ENGAGEMENT.html",
+      "sha256": "175ed27ba9beaf12bb43cdfa944aa77b584be28947c09e16780399beac7d4288",
+      "bytes": 5703357,
+      "rows": null
+    },
+    "PANEL_C_TRADE_REPORTS.html": {
+      "path": "PANEL_C_TRADE_REPORTS.html",
+      "sha256": "09353cfc2a58a25aa0c16c8b2735595928c4f0a74f62b59ba159facd32be1006",
+      "bytes": 787969,
+      "rows": null
+    },
+    "TRADE_REPORT_PATTERN_ENGINE.md": {
+      "path": "TRADE_REPORT_PATTERN_ENGINE.md",
+      "sha256": "439a8aac8cdfc7c13f4495e38ffef690fa6e5b43832a29946a9f72677e4547c5",
+      "bytes": 444100,
+      "rows": null
+    },
+    "TRADE_REPORT_REFLEX.md": {
+      "path": "TRADE_REPORT_REFLEX.md",
+      "sha256": "2e810affb323af3a26a56cef3115958c597b39a3389af3d60445e47e83725579",
+      "bytes": 141,
+      "rows": null
+    },
+    "V1_THROUGH_V28_SIDE_BY_SIDE.md": {
+      "path": "V1_THROUGH_V28_SIDE_BY_SIDE.md",
+      "sha256": "eda33b89376c9333536bb3150b20a3ae95fe287e034ae28f54b4f0c112656dba",
+      "bytes": 307,
+      "rows": null
+    }
+  }
+}

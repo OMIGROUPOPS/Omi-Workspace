@@ -1,0 +1,533 @@
+{
+  "label": "V54_FLOOR_DECISIVENESS_NO_SELF_ECHO_POSTABILITY_HONEST_ROUNDING_MIND_ONLY_BED",
+  "files": {
+    "ASSUMPTION_GAPS.md": {
+      "path": "ASSUMPTION_GAPS.md",
+      "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+      "bytes": 943,
+      "rows": null
+    },
+    "ATOMIC_CANCEL_REPLACE_RECEIPT.json": {
+      "path": "ATOMIC_CANCEL_REPLACE_RECEIPT.json",
+      "sha256": "0b2bbbc38a3f2b2f195c95fc6a0832a788cbd40866df071fcf6fcb3360eb21d4",
+      "bytes": 637,
+      "rows": null
+    },
+    "AT_FLOOR_IMMUNITY_RECEIPT.json": {
+      "path": "AT_FLOOR_IMMUNITY_RECEIPT.json",
+      "sha256": "cb49cc5e0591fc0cae80f453f41b3db5a8f8521a1f9731b3e0d4e630e416782a",
+      "bytes": 1156168,
+      "rows": null
+    },
+    "BELIEF_DEADLINE_SCORING_TABLE.json": {
+      "path": "BELIEF_DEADLINE_SCORING_TABLE.json",
+      "sha256": "3e3a0d3fc80d3d7eeb2185b5e5445c949d93a15aa9356180c1f8c244a53350ef",
+      "bytes": 13775226,
+      "rows": null
+    },
+    "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json": {
+      "path": "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json",
+      "sha256": "79e5943e6b7d103ccbceb751b05d0a556a64b4dd2dda02e55908df6b2fcab651",
+      "bytes": 6476879,
+      "rows": null
+    },
+    "C04_POST_ONLY_COVERAGE_RECEIPT.json": {
+      "path": "C04_POST_ONLY_COVERAGE_RECEIPT.json",
+      "sha256": "f7efb4761582dceafdf41d9eb25054d30d9be7f341aa1eb42570c87cfda32764",
+      "bytes": 363221,
+      "rows": null
+    },
+    "CAPTURED_REST_DEFINITION_LOCK_RECEIPT.json": {
+      "path": "CAPTURED_REST_DEFINITION_LOCK_RECEIPT.json",
+      "sha256": "5c588e7057c69e739a8719fb1dcc415d64399e9d3c0cf03e4ee19413e9ab14f5",
+      "bytes": 10441,
+      "rows": null
+    },
+    "CARRIED_FIXES_RECEIPT.json": {
+      "path": "CARRIED_FIXES_RECEIPT.json",
+      "sha256": "1466eb7f25ae8e54b41911b3dc95f8cedeed0903b0234113288674f77449eddd",
+      "bytes": 2444,
+      "rows": null
+    },
+    "CAUSAL_CLOCK_RECEIPT.json": {
+      "path": "CAUSAL_CLOCK_RECEIPT.json",
+      "sha256": "3168430066d8a2fe2a14b02bbd4c60f0491c63aa8720a2d5497a757a80ceabf2",
+      "bytes": 1646771,
+      "rows": null
+    },
+    "CC_URSPAL_LATE_BELL.md": {
+      "path": "CC_URSPAL_LATE_BELL.md",
+      "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+      "bytes": 464,
+      "rows": null
+    },
+    "COHERENCE_PLACEMENT_LATENCY_RECEIPT.json": {
+      "path": "COHERENCE_PLACEMENT_LATENCY_RECEIPT.json",
+      "sha256": "2e5d2ed5ebb56adbebc9f8a3dc18b280f25e5fce503fd113386d8c6a5eaeebc6",
+      "bytes": 9878889,
+      "rows": null
+    },
+    "COHERENCE_TIMELINES.json": {
+      "path": "COHERENCE_TIMELINES.json",
+      "sha256": "1fd16815ba27d6921f9d70fd0f82199e3f27147222e2a104cf748400ca43ac97",
+      "bytes": 3840972,
+      "rows": null
+    },
+    "CONTINUOUS_POST_ONLY_RECEIPT.json": {
+      "path": "CONTINUOUS_POST_ONLY_RECEIPT.json",
+      "sha256": "4b3f5a756a914c2cc8d7b9fa9815df84dba93501f098332011d678fa5b362692",
+      "bytes": 7557,
+      "rows": null
+    },
+    "CONTRACT_EXECUTION_RECEIPT.json": {
+      "path": "CONTRACT_EXECUTION_RECEIPT.json",
+      "sha256": "e7fd10e10e61986686e117d38451c091da0389d20dfa3361500b1a9f29564c7d",
+      "bytes": 51572,
+      "rows": null
+    },
+    "CORPUS_CENSUS.json": {
+      "path": "CORPUS_CENSUS.json",
+      "sha256": "e17b8129f5f38080bed21d0d2c624b0e74519a62c4d0265f717cb57e75183a9e",
+      "bytes": 14140,
+      "rows": null
+    },
+    "CORPUS_INDEX.jsonl.gz": {
+      "path": "CORPUS_INDEX.jsonl.gz",
+      "sha256": "95bf613072446aa5d159255fa81515a25a7b629e287b7356acde62c952792fd8",
+      "bytes": 4892299,
+      "rows": null
+    },
+    "CREDITED_LEG_CONTINUED_READ_RECEIPT.json": {
+      "path": "CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+      "sha256": "d9d075280bc63e7cf135da470ee882f8e8dfe40938ed92a28ed0743dc53317c7",
+      "bytes": 22307320,
+      "rows": null
+    },
+    "DEFINITION_REPAIR_SUMMARY.json": {
+      "path": "DEFINITION_REPAIR_SUMMARY.json",
+      "sha256": "a93ac9bd9d6e68b6563b3119b4639f41c751e933334fd34c2e93283713cb2d99",
+      "bytes": 257406,
+      "rows": null
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "path": "DETERMINISM_RECEIPT.json",
+      "sha256": "17092234f8fa003f7eb49aaeb7ac835e31e887f163cf1d2c53ae8701834d61ec",
+      "bytes": 2841,
+      "rows": null
+    },
+    "DIAGNOSTIC_SUMMARY_RECEIPT.json": {
+      "path": "DIAGNOSTIC_SUMMARY_RECEIPT.json",
+      "sha256": "5f089e02477d4208a172e2ea6b69aa80a30cda143fc4b366e3121f11b73ce21c",
+      "bytes": 377027,
+      "rows": null
+    },
+    "DIRECTIONAL_ROUNDING_RECEIPT.json": {
+      "path": "DIRECTIONAL_ROUNDING_RECEIPT.json",
+      "sha256": "9cf88465b4313bbed0375c8bad459096e50866e106f09101d23eda800171806a",
+      "bytes": 3123695,
+      "rows": null
+    },
+    "DISAGREES_OWN_EVIDENCE_RECEIPT.json": {
+      "path": "DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "sha256": "b93b760c500cbb748e0af36a938cdc0263e5c8a7bab6bf1f0b739249922644a1",
+      "bytes": 18933177,
+      "rows": null
+    },
+    "DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json": {
+      "path": "DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089",
+      "bytes": 36076023,
+      "rows": null
+    },
+    "ENVELOPE_HIGH_PROVENANCE_RECEIPT.json": {
+      "path": "ENVELOPE_HIGH_PROVENANCE_RECEIPT.json",
+      "sha256": "9568d34f5f55176d48cdd4395360a7f559994ad5221ea13f7b2b225078046e44",
+      "bytes": 5227292,
+      "rows": null
+    },
+    "ENVELOPE_PLACEMENT_RECEIPT.json": {
+      "path": "ENVELOPE_PLACEMENT_RECEIPT.json",
+      "sha256": "36421a560e96c94408f71aa2260b257c3166859b7fd9350c7a217a5fca6eba0f",
+      "bytes": 54334,
+      "rows": null
+    },
+    "ENVELOPE_PLACEMENT_ROWS.jsonl.gz": {
+      "path": "ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "sha256": "14e764fd0ac12dc0b45e5254892435c68cda9c3169eb272dec57fa282574d7f3",
+      "bytes": 33973841,
+      "rows": null
+    },
+    "EVIDENCED_FLOOR_TENURE_TABLE.json": {
+      "path": "EVIDENCED_FLOOR_TENURE_TABLE.json",
+      "sha256": "478a3630c64ef2176f8eeb2e26461c055f6657a3d95a0e717379d0ee27328259",
+      "bytes": 1980187,
+      "rows": null
+    },
+    "EVIDENCE_ONLY_LEVEL_MOVEMENT_RECEIPT.json": {
+      "path": "EVIDENCE_ONLY_LEVEL_MOVEMENT_RECEIPT.json",
+      "sha256": "b79ce753649b1571bf46b641fd9e5ecfeb884d384bae48cc767cf09268c55d8b",
+      "bytes": 9714473,
+      "rows": null
+    },
+    "EXTERNAL_CUSTODY_MANIFEST.json": {
+      "path": "EXTERNAL_CUSTODY_MANIFEST.json",
+      "sha256": "2e391d2ab713a01c3640d9d5285eff1dedcfe27e6b481d4f1f7604e917525984",
+      "bytes": 5391,
+      "rows": null
+    },
+    "FILL_HANDOFF_RECEIPT.json": {
+      "path": "FILL_HANDOFF_RECEIPT.json",
+      "sha256": "6a47e8701522eb9d5381ae50803992aa6895efe3c5ca745304d0b07f33c9c94d",
+      "bytes": 143344,
+      "rows": null
+    },
+    "FLOOR_CAPABLE_LANE_RECEIPT.json": {
+      "path": "FLOOR_CAPABLE_LANE_RECEIPT.json",
+      "sha256": "7a8d5e8c4ae3af85e5d9c0d9cb787db1194cfe9ec019f1380dfd4aa9de988608",
+      "bytes": 112037,
+      "rows": null
+    },
+    "FLOOR_DEFINITION_ALL_ROWS_CHECK.json": {
+      "path": "FLOOR_DEFINITION_ALL_ROWS_CHECK.json",
+      "sha256": "4d64ff7b78dc1e71d29b80e6d32ee70c79da536f5c9b1b2d6fb1fa31a1958e7b",
+      "bytes": 2118976,
+      "rows": null
+    },
+    "FLOOR_REST_PROTECTION_RECEIPT.json": {
+      "path": "FLOOR_REST_PROTECTION_RECEIPT.json",
+      "sha256": "8b9faf97ee08dfaaf9f0062b379ac6ca923c3db247320e4049aedc2f67abc55d",
+      "bytes": 1523796,
+      "rows": null
+    },
+    "FLOOR_TIME_BINDING_COVERAGE.json": {
+      "path": "FLOOR_TIME_BINDING_COVERAGE.json",
+      "sha256": "68a7fb7501068cb25d4a1533c1ff195982689466c76dc4d7b02bdd0c79c87811",
+      "bytes": 2345,
+      "rows": null
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+      "bytes": 465,
+      "rows": null
+    },
+    "FOUNDATION_COVERAGE_BEFORE_AFTER.json": {
+      "path": "FOUNDATION_COVERAGE_BEFORE_AFTER.json",
+      "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+      "bytes": 593,
+      "rows": null
+    },
+    "FOUNDATION_LIBRARY.jsonl.gz": {
+      "path": "FOUNDATION_LIBRARY.jsonl.gz",
+      "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+      "bytes": 2159635,
+      "rows": null
+    },
+    "FOUNDATION_LIBRARY_RECEIPT.json": {
+      "path": "FOUNDATION_LIBRARY_RECEIPT.json",
+      "sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5",
+      "bytes": 3558,
+      "rows": null
+    },
+    "FOUR_STORIES.md": {
+      "path": "FOUR_STORIES.md",
+      "sha256": "df3ad784ec81702cebc0ef9f377fe264fca4f1a7084142022effc960b8d116fb",
+      "bytes": 4887125,
+      "rows": null
+    },
+    "FOUR_STORIES_RECEIPT.json": {
+      "path": "FOUR_STORIES_RECEIPT.json",
+      "sha256": "484fd37404e7e1e431626f5c4a18ad8923e9f0c65d33ef3b5abeacf507440e84",
+      "bytes": 675470,
+      "rows": null
+    },
+    "FUNCTIONALITY_RECEIPT.json": {
+      "path": "FUNCTIONALITY_RECEIPT.json",
+      "sha256": "df6b15f1546ef5983c8efb2fa6fb92c4265a5b1e52e56bd5a68b396a6c82c025",
+      "bytes": 24194,
+      "rows": null
+    },
+    "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz": {
+      "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+      "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+      "bytes": 1668883,
+      "rows": null
+    },
+    "FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json": {
+      "path": "FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json",
+      "sha256": "cfe59471d2df7fb9a5d18440099c4df1e5f2fed0cf351e9b4f9ede24739666e1",
+      "bytes": 1112,
+      "rows": null
+    },
+    "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md": {
+      "path": "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "sha256": "bd4fe310b84aca21992853aa4202c38de54af7636bbcb6a2549e7045b7d687ba",
+      "bytes": 22937156,
+      "rows": null
+    },
+    "HONEST_GATE_COUNTEREXAMPLE_RECEIPT.json": {
+      "path": "HONEST_GATE_COUNTEREXAMPLE_RECEIPT.json",
+      "sha256": "f48101109df07f4baf1dca635a58e2160db7e33119384994e365c8350ac369a1",
+      "bytes": 14731,
+      "rows": null
+    },
+    "INCONSISTENT_Q50_ROOT_CAUSE_RECEIPT.json": {
+      "path": "INCONSISTENT_Q50_ROOT_CAUSE_RECEIPT.json",
+      "sha256": "0f09e81b14b0b5aa9d4e122128b7ecfbeeaddc364aef3b20cb5b971cf368d1fb",
+      "bytes": 5065566,
+      "rows": null
+    },
+    "LAJ_FLOOR_MOMENT_BELIEF_INPUTS.json": {
+      "path": "LAJ_FLOOR_MOMENT_BELIEF_INPUTS.json",
+      "sha256": "433ad9555caad050714098c0daf7405eae2a8c1d839e934c0b2a681878aaeada",
+      "bytes": 483,
+      "rows": null
+    },
+    "LAWFUL_INCOMPLETE_RECEIPT.json": {
+      "path": "LAWFUL_INCOMPLETE_RECEIPT.json",
+      "sha256": "b435aabdf1a0959a188f92cde705eae091e8538ef39b38c34073c08ddf2b6271",
+      "bytes": 335569,
+      "rows": null
+    },
+    "LAYERED_DUAL_BELIEF_RECEIPT.json": {
+      "path": "LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "sha256": "1eb4f39afb49c11d2cc18ef69e8e2f07f99b8d42d7bab71abca1fd1665586bca",
+      "bytes": 4506011,
+      "rows": null
+    },
+    "LIBRARY_BELL_BOUND_RECEIPT.json": {
+      "path": "LIBRARY_BELL_BOUND_RECEIPT.json",
+      "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+      "bytes": 15882,
+      "rows": null
+    },
+    "LITERAL_BOOLEAN_AUDIT.json": {
+      "path": "LITERAL_BOOLEAN_AUDIT.json",
+      "sha256": "db6ea228d98b0ac3b279736843bd8d6533b18e08483963be1b04d3696d3f434c",
+      "bytes": 190132,
+      "rows": null
+    },
+    "LIVE_TOUCH_CONSUMPTION_RECEIPT.json": {
+      "path": "LIVE_TOUCH_CONSUMPTION_RECEIPT.json",
+      "sha256": "0587f53cb2a351ec3acd1aee4615a04eedea682b7e3bf3d614da33a1310619d0",
+      "bytes": 554,
+      "rows": null
+    },
+    "LOW_SOURCE_REPRICE_RECEIPT.json": {
+      "path": "LOW_SOURCE_REPRICE_RECEIPT.json",
+      "sha256": "99f7be039cee93aaaf4f876f89f418c4119b592a98125b26c492d6fd77b1bc58",
+      "bytes": 727,
+      "rows": null
+    },
+    "NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json": {
+      "path": "NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "sha256": "6ffbe13da021deed74b0b2a50d68d59d4203dd0dce1a89062022aaf21e222b9e",
+      "bytes": 610,
+      "rows": null
+    },
+    "NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz": {
+      "path": "NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "sha256": "0dba7d0a551cbde8663626c3262093abefbb420d91badfbf329f0c1208f8c29e",
+      "bytes": 33113908,
+      "rows": null
+    },
+    "NEIGHBOR_SPECIALIST_BINDING.json": {
+      "path": "NEIGHBOR_SPECIALIST_BINDING.json",
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13",
+      "bytes": 11374669,
+      "rows": null
+    },
+    "NO_ENVELOPE_TOUCH_LANE_CENSUS.json": {
+      "path": "NO_ENVELOPE_TOUCH_LANE_CENSUS.json",
+      "sha256": "07e00d5ecf01b80516c852ccb218e98057fc08b9494ae2e1f7cc45e87846bcd8",
+      "bytes": 2731,
+      "rows": null
+    },
+    "ONE_DECISION_PER_RECEIPT.json": {
+      "path": "ONE_DECISION_PER_RECEIPT.json",
+      "sha256": "32e45e66ff3c95100baa43e6098574f6af2bcee76560273fdd9b1d39a7e561ac",
+      "bytes": 4088901,
+      "rows": null
+    },
+    "OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json": {
+      "path": "OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+      "sha256": "9553593e8f0e2ed1849a3bb8847b4d715eaca073cc6d74ef045755dcfa36662d",
+      "bytes": 12045241,
+      "rows": null
+    },
+    "OWN_EVIDENCE_SUPPORT_RECEIPT.json": {
+      "path": "OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "sha256": "2e13c51c33b48dfa6064a27b0da19803f2f15e63b0cca0283ed6b8cfc01101e7",
+      "bytes": 34319068,
+      "rows": null
+    },
+    "PAR_ALLOCATION_HEADROOM_RECEIPT.json": {
+      "path": "PAR_ALLOCATION_HEADROOM_RECEIPT.json",
+      "sha256": "467e61bb03d590c44a65e2c0dc071b9727de39044a21041d67370a4bc896e0dc",
+      "bytes": 6309266,
+      "rows": null
+    },
+    "PHASE_CENTRAL_ESTIMATE_SURFACE.json": {
+      "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+      "sha256": "52667e215dc0ef6bf393e23d3acd6c78d24809cbabc5b0e0aa82088fc5a5f557",
+      "bytes": 8497,
+      "rows": null
+    },
+    "POST_ONLY_OWN_TARGET_RECEIPT.json": {
+      "path": "POST_ONLY_OWN_TARGET_RECEIPT.json",
+      "sha256": "595585ed8867f3dfc400eb120cd93152090e860c0bd4bb697c6735ef8c29bcc7",
+      "bytes": 3744922,
+      "rows": null
+    },
+    "POST_ONLY_VETO_NO_ASK_TICK_ORDER_RECEIPT.json": {
+      "path": "POST_ONLY_VETO_NO_ASK_TICK_ORDER_RECEIPT.json",
+      "sha256": "a7ab845012d6707b4973b85b37784996bc3d1b8e5c5ddc125d00cd4ce471776c",
+      "bytes": 24443,
+      "rows": null
+    },
+    "PRINT_PRICED_RESIDUE_SWEEP.json": {
+      "path": "PRINT_PRICED_RESIDUE_SWEEP.json",
+      "sha256": "2a98cf38b83a31f9b032ed92b0aea609f26c3fde66fe364099b9408cc6839987",
+      "bytes": 1370,
+      "rows": null
+    },
+    "PROCESS_FIRST_CONFIRM.md": {
+      "path": "PROCESS_FIRST_CONFIRM.md",
+      "sha256": "0de025fa62a719e1c4f6857deb695c832992720ab6372ed2cc2b527bd01e98f9",
+      "bytes": 4275836,
+      "rows": null
+    },
+    "PROCESS_FIRST_CONFIRM_RECEIPT.json": {
+      "path": "PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "sha256": "699af64abb98c6ee3de2de719641b5864372d898771845eeb9d8fe74a552cb5f",
+      "bytes": 6815387,
+      "rows": null
+    },
+    "RECEIPT_PRODUCER_COVERAGE.json": {
+      "path": "RECEIPT_PRODUCER_COVERAGE.json",
+      "sha256": "938b6d15e426d6f7abaea918b3ad6d1f68f539255a6af7730447f25ad004a45f",
+      "bytes": 24458,
+      "rows": null
+    },
+    "REPAIR_GATE_RECEIPT.json": {
+      "path": "REPAIR_GATE_RECEIPT.json",
+      "sha256": "223b529b678dc0f02e10ee02be5ac7badac0b6673eb29657a73c6cc6dfe44579",
+      "bytes": 225220,
+      "rows": null
+    },
+    "REST_PRICED_CREDITING_RECEIPT.json": {
+      "path": "REST_PRICED_CREDITING_RECEIPT.json",
+      "sha256": "890446748eb728b2710db929e354d199e0b75a6722605bb0575e2c472c6728a6",
+      "bytes": 2813,
+      "rows": null
+    },
+    "SAME_RECEIPT_ACT_RECEIPT.json": {
+      "path": "SAME_RECEIPT_ACT_RECEIPT.json",
+      "sha256": "f7487f7c8b15c41d0af96bc4cdc68e7af487d73fcd3bba8620687f6fe132a2f2",
+      "bytes": 6369771,
+      "rows": null
+    },
+    "SMOKE_CRIJEA.md": {
+      "path": "SMOKE_CRIJEA.md",
+      "sha256": "038c66260efd59af3f1b174278f0dce8ba6139b025f8e18bc2284537869cfa19",
+      "bytes": 27641321,
+      "rows": null
+    },
+    "SMOKE_CRIJEA_RECEIPT.json": {
+      "path": "SMOKE_CRIJEA_RECEIPT.json",
+      "sha256": "6298ef1bd8f014ef92bdba8c182f5d6d261013522fb39fa4fd9b9fc2d4e1bbf5",
+      "bytes": 1244540,
+      "rows": null
+    },
+    "SOURCE_RECEIPTS.json": {
+      "path": "SOURCE_RECEIPTS.json",
+      "sha256": "25bc2bb4017afd175bdbc8a080b3c6d867f9de7d33268c7a9d92a86016d203f4",
+      "bytes": 59129,
+      "rows": null
+    },
+    "SPREAD_EYE_RECEIPT.json": {
+      "path": "SPREAD_EYE_RECEIPT.json",
+      "sha256": "25130f753bb9579e48d27ff015fae14ab788248e5fa8d98b31d9cd64f6e040df",
+      "bytes": 13477661,
+      "rows": null
+    },
+    "SURVIVOR_FLOOR_MOMENT_SEPARATION.json": {
+      "path": "SURVIVOR_FLOOR_MOMENT_SEPARATION.json",
+      "sha256": "34d7660146b12afeeefefd846bd4963baae7bc9546585f9027047720b02837e8",
+      "bytes": 26360,
+      "rows": null
+    },
+    "SURVIVOR_SHAPE_LIBRARY_BINDING.json": {
+      "path": "SURVIVOR_SHAPE_LIBRARY_BINDING.json",
+      "sha256": "774d07d4f110a7b39fd1995c9d82f0704a3a1d1198c945ec63e5d5d21e085620",
+      "bytes": 1587,
+      "rows": null
+    },
+    "SURVIVOR_SHAPE_TRAJECTORIES.json": {
+      "path": "SURVIVOR_SHAPE_TRAJECTORIES.json",
+      "sha256": "b7462d83a273d86b3520b2dfcc744cb0796bd08cc411af18e66ef3fef578b8a7",
+      "bytes": 53349,
+      "rows": null
+    },
+    "TARGET_PRINTS_5.jsonl.gz": {
+      "path": "TARGET_PRINTS_5.jsonl.gz",
+      "sha256": "e685bf23bb1d75a1299f27aa0ea09d8ef5f87e35128801615024fa35a0a9afb5",
+      "bytes": 1326936,
+      "rows": null
+    },
+    "TECHNIQUE_CONTRACTS_RECEIPT.json": {
+      "path": "TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "sha256": "89c827db8825cb7e55e07ec5443caaff1ca27b322ffd5f7900e7471622d93a7d",
+      "bytes": 42241356,
+      "rows": null
+    },
+    "TOUCH_SUBORDINATION_RECEIPT.json": {
+      "path": "TOUCH_SUBORDINATION_RECEIPT.json",
+      "sha256": "eb5214e09f49a3a93330abc0a79fca471215525a5ddedf94705ff7d4dcceec1d",
+      "bytes": 686,
+      "rows": null
+    },
+    "TRADED_LOW_SHAPE_SUPPORT_BINDING.json": {
+      "path": "TRADED_LOW_SHAPE_SUPPORT_BINDING.json",
+      "sha256": "95c8fcecbf3cc095bd153039d0fa6b48fddee6f28b9a221f464d250f8423fb79",
+      "bytes": 28093,
+      "rows": null
+    },
+    "TRADE_REPORT_FOUR.json": {
+      "path": "TRADE_REPORT_FOUR.json",
+      "sha256": "381a58f098fed1a4bd9afe2b2f16f102de502cecec009ecb1de6317a59a6625c",
+      "bytes": 2972503,
+      "rows": null
+    },
+    "TRADE_REPORT_FOUR.md": {
+      "path": "TRADE_REPORT_FOUR.md",
+      "sha256": "64373a36f800937276165c0aa3dfe4546369b59bd6f97e6c5d266c9d9dff1216",
+      "bytes": 1850261,
+      "rows": null
+    },
+    "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json": {
+      "path": "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json",
+      "sha256": "5d8a72fb88d1ce35b66828d675a98fd96fd21d4324f0ebf7c1e5c811a8e4b5f4",
+      "bytes": 3232,
+      "rows": null
+    },
+    "TRUE_CONDITIONING_RECEIPT.json": {
+      "path": "TRUE_CONDITIONING_RECEIPT.json",
+      "sha256": "1b72f7ccfdfe0973ecfae4bbb65f98d4c93e2d11c79f24ea57becd7719347c96",
+      "bytes": 47767730,
+      "rows": null
+    },
+    "VAULT_ADDENDUM.md": {
+      "path": "VAULT_ADDENDUM.md",
+      "sha256": "7c1d86755a89599f56b566654decf59a7ff7849f8293327a158b097a32f71e2e",
+      "bytes": 2406,
+      "rows": null
+    },
+    "WORKTREE_LARGE_UNTRACKED_CENSUS.json": {
+      "path": "WORKTREE_LARGE_UNTRACKED_CENSUS.json",
+      "sha256": "d61d4f4362bd2a3300c55fd4f3c85c85ca9a3bcfe993ebadf36ee180197eb815",
+      "bytes": 5805,
+      "rows": null
+    }
+  }
+}

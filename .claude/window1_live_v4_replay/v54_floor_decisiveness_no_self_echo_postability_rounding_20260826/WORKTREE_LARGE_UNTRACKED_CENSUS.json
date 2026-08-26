@@ -1,0 +1,113 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/ATOMIC_REARM_RECEIPT.json",
+      "bytes": 165565974,
+      "sha256": "f9c47535415ea341af9f1ea7513a12f6438571504db766eb9694befde2031a22"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/AUTHORITY_VACUUM_RECEIPT.json",
+      "bytes": 97489435,
+      "sha256": "c230e4c74a86b11bf6c088c256e258d38573a0fe347e237d4887a390385adb5c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/BELIEF_DEADLINE_SCORING_TABLE.json",
+      "bytes": 13775226,
+      "sha256": "3e3a0d3fc80d3d7eeb2185b5e5445c949d93a15aa9356180c1f8c244a53350ef"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 487578893,
+      "sha256": "dff6868ed6aa5e806b83dd79330baf351e907eb342e4acd90730fc49aab9de82"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+      "bytes": 22307320,
+      "sha256": "d9d075280bc63e7cf135da470ee882f8e8dfe40938ed92a28ed0743dc53317c7"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 18933177,
+      "sha256": "b93b760c500cbb748e0af36a938cdc0263e5c8a7bab6bf1f0b739249922644a1"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 36076023,
+      "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "bytes": 33973841,
+      "sha256": "14e764fd0ac12dc0b45e5254892435c68cda9c3169eb272dec57fa282574d7f3"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "bytes": 22937156,
+      "sha256": "bd4fe310b84aca21992853aa4202c38de54af7636bbcb6a2549e7045b7d687ba"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 427826757,
+      "sha256": "3797e081e3523a9107ae1c13818917eac41624f83f986ea27e6d76e3e69ca786"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "bytes": 33113908,
+      "sha256": "0dba7d0a551cbde8663626c3262093abefbb420d91badfbf329f0c1208f8c29e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/ONE_AUTHOR_AUTHORITY_RECEIPT.json",
+      "bytes": 118478272,
+      "sha256": "4e2f055dbeb957be8092387f8dff2655890ff051b3fc590cdcd6b79e6725a1bf"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+      "bytes": 12045241,
+      "sha256": "9553593e8f0e2ed1849a3bb8847b4d715eaca073cc6d74ef045755dcfa36662d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "bytes": 34319068,
+      "sha256": "2e13c51c33b48dfa6064a27b0da19803f2f15e63b0cca0283ed6b8cfc01101e7"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 343921465,
+      "sha256": "7af2eaa4737e8dde60b38ca0c1c0d575cf93ada8b6156f7161f337d74f73a5cc"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 379459692,
+      "sha256": "ae8ec06a49c6f470a1b350ca9ae37812bf0f7b3659047e7ed33bca94c8c55ff1"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/SMOKE_CRIJEA.md",
+      "bytes": 27641321,
+      "sha256": "038c66260efd59af3f1b174278f0dce8ba6139b025f8e18bc2284537869cfa19"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/SPREAD_EYE_RECEIPT.json",
+      "bytes": 13477661,
+      "sha256": "25130f753bb9579e48d27ff015fae14ab788248e5fa8d98b31d9cd64f6e040df"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 42241356,
+      "sha256": "89c827db8825cb7e55e07ec5443caaff1ca27b322ffd5f7900e7471622d93a7d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_floor_decisiveness_no_self_echo_postability_rounding_20260826/TRUE_CONDITIONING_RECEIPT.json",
+      "bytes": 47767730,
+      "sha256": "1b72f7ccfdfe0973ecfae4bbb65f98d4c93e2d11c79f24ea57becd7719347c96"
+    }
+  ],
+  "count": 21,
+  "bytes": 2390304185
+}

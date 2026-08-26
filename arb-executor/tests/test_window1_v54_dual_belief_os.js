@@ -221,14 +221,14 @@ assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.mi
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_restored_to_decision_path));
-assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method === "PANEL_HYPOTHESES_PLUS_RECEIPT_PINNED_OWN_EVIDENCE_EXACT_PRICE_SUPPORT; DECISIVENESS_EQUALS_CLASS_RANK_TIMES_GRADE; ALL_CANDIDATES_CONDITIONED_BY_ALL_CHANNELS; TRADE_CLASS_STRONGEST; BOOK_INFORMS_WITH_PANEL_AND_NEVER_AUTHORS_ALONE; POSTERIOR_MEAN_FLOOR_SIDE_DIRECTED_INTEGER"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method === "ONE_NORMALIZED_PANEL_PLUS_EXACT_PRICE_SUPPORT; OWN_EVIDENCE_WEIGHT_EQUALS_FLOOR_DECISIVENESS_FROM_DESCENT_ELIMINATION_AND_DOWNSIDE; PANEL_CANDIDATES_CONSULT_EACH_CHANNEL_ONCE; EVIDENCE_CANDIDATES_ARE_NOT_REWEIGHTED_BY_THEMSELVES; EMITTED_INTEGER_IS_WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.exact_price_support_joined));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.exact_price_support.some((support) => support.support_source === "CURRENT_GAME_OWN_EVIDENCE_EXACT_PRICE")));
-assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.rounding.direction === "EXACT_HALF_TO_HIGHER_INTEGER_57_5_TO_58"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.rounding.direction === "WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.own_evidence_rows.every((evidence) => Boolean(evidence.receipt))), "every current-game evidence value must be receipt-pinned");
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.replacement_operator_removed));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.each_channel_graded));
-assert(joint.derivations.every((row) => row.sentence.includes("CHANNEL_GRADES=")));
+assert(joint.derivations.every((row) => row.sentence.includes("FLOOR_DECISIVENESS_CHANNELS=")));
 assert(joint.derivations.every((row) => row.sentence.includes("AUTHOR_CHAIN=PRIOR_")));
 assert(joint.derivations.every((row) => row.layered_dual_belief.decision_arbitration.lane_may_replace_authority === false));
 assert(joint.derivations.every((row) => row.sentence.includes("ENVELOPE_PLACEMENT=")));

@@ -1,0 +1,1505 @@
+{
+  "label": "CONDITIONED_Q75_INSIDE_SPREAD_REACH_PLACEMENT_WITH_ATOMIC_REARM",
+  "rule": "Within a current coherent envelope stand at the phase-conditioned population q75, clipped to the lawful envelope below ask. A prior-receipt conviction may originate or reprice at the same conditioned q75 only after its survivor support is rechecked and its causal book basis is re-stated at this receipt; live touch remains subordinate.",
+  "numeric_placement_constant_added": false,
+  "rows_artifact": "ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+  "rows_count": 5487,
+  "giubar_rows_count": 135,
+  "giubar_receipts": [
+    {
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783833752.027,
+      "receipt": "d670b533-64d8-4c10-170e-3dc5fd83b6ab",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 28,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "sentence_sha256": "42aa485949cb2a7c1441c1c8b3675dd73dbe66a329ad83ccf5469dc8f7f598c3"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783833752.027,
+      "receipt": "d670b533-64d8-4c10-170e-3dc5fd83b6ab",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 64,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "sentence_sha256": "3bce39f3990aecbb3dc5ce73e7dbcb4b1af65c25a58392951563e880457d5f35"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783854004.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1024",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 55,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "sentence_sha256": "862785fc6a033d7aa3b34cabc17e12a9456fb798c3e51b48c0335818b716e935"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783873822.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2829",
+      "action": {
+        "action": "REPRICE_REST",
+        "target_cents": 66,
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      },
+      "sentence_sha256": "5d2a605ee8d26eb82fc69066d5b4a7ca9251f2fe9d3f26dd443952c79135adc4"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783873943.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2832",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "18729a08b92fb191e81e7b71d02216e113cfe636733b125de9e5819c69d63bae"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874240.000008,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2919",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "6ddd510d4becb465e2820e2ba0b56548d8afb9782797ba56bb6fa0b658dcfc86"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874299.000002,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2812",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "f24cbf23da19c3f624ec900c7b9b47e06c1284427505ac93751b8bbfc38e56f6"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "bf5752e05fee7ec07ffcb824eadc587ba0f0eda02df3bf94383ee81284c9f958"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    },
+    {
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783874300.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+      "action": {
+        "action": "HOLD_REST",
+        "target_cents": 66,
+        "reason": "AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS"
+      },
+      "sentence_sha256": "ab04752ea827cf3d3c3ddce0b7aa96f8fa5bf23b03d3b5b2d9e7216794074e47"
+    }
+  ],
+  "migrations_count": 31,
+  "inconsistent_active_count": 3512,
+  "every_inconsistent_active_resolved_same_receipt": true,
+  "cancel_and_replace_atomic_count": 0,
+  "fail_loud_no_lawful_replacement_count": 0,
+  "stale_envelope_originated_new_rest_count": 1,
+  "deep_edge_default_count": 0,
+  "giubar_licensed_envelope_21_32_present": false,
+  "giubar_bar_upper_quantile_reach_present": true,
+  "every_coherent_placement_uses_conditioned_q75": true
+}

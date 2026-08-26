@@ -1,0 +1,740 @@
+{
+  "label": "F_VS_178_NO_ORPHAN_RECEIPTS_SOURCE_COVERAGE",
+  "method": "Every committed receipt basename is searched in the executable builder and standing reporter source. A receipt without a named producer fails the build.",
+  "rows": [
+    {
+      "artifact": "ARTIFACT_HASH_MANIFEST.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "ASSUMPTION_GAPS.md",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "ATOMIC_CANCEL_REPLACE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "AT_FLOOR_IMMUNITY_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "BELIEF_DEADLINE_SCORING_TABLE.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js",
+        "arb-executor/analysis/window1_v54_dual_belief_reporter.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "C04_POST_ONLY_COVERAGE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "CAPTURED_REST_DEFINITION_LOCK_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "CARRIED_FIXES_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "CAUSAL_CLOCK_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "CC_URSPAL_LATE_BELL.md",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "COHERENCE_PLACEMENT_LATENCY_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "COHERENCE_TIMELINES.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js",
+        "arb-executor/analysis/window1_v54_dual_belief_reporter.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "CONTINUOUS_POST_ONLY_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "CONTRACT_EXECUTION_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "CORPUS_CENSUS.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "CORPUS_INDEX.jsonl.gz",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "DEFINITION_REPAIR_SUMMARY.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "DERIVABLE_FLOOR_CONDUCT_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "DETERMINISM_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "DIAGNOSTIC_SUMMARY_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "DIRECTIONAL_FLOOR_ADMISSION_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "DIRECTIONAL_ROUNDING_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "ENVELOPE_HIGH_PROVENANCE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "ENVELOPE_PLACEMENT_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "EVIDENCED_FLOOR_TENURE_TABLE.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "EVIDENCE_ONLY_LEVEL_MOVEMENT_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "EXTERNAL_CUSTODY_MANIFEST.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FILL_HANDOFF_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FLOOR_CAPABLE_LANE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FLOOR_DEFINITION_ALL_ROWS_CHECK.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FLOOR_PRINT_DECISION_INSTANT_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FLOOR_REST_PROTECTION_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FLOOR_TIME_BINDING_COVERAGE.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FOUNDATION_COVERAGE_BEFORE_AFTER.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FOUNDATION_LIBRARY.jsonl.gz",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FOUNDATION_LIBRARY_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FOUR_STORIES.md",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FOUR_STORIES_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FUNCTIONALITY_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "HONEST_GATE_COUNTEREXAMPLE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "INCONSISTENT_Q50_ROOT_CAUSE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "LAJ_FLOOR_MOMENT_BELIEF_INPUTS.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "LAWFUL_INCOMPLETE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "LIBRARY_BELL_BOUND_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "LITERAL_BOOLEAN_AUDIT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "LIVE_TOUCH_CONSUMPTION_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "LOW_SOURCE_REPRICE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "NEIGHBOR_SPECIALIST_BINDING.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "NO_ENVELOPE_TOUCH_LANE_CENSUS.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "ONE_DECISION_PER_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "PAR_ALLOCATION_HEADROOM_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "PER_LEG_CLASSIFIER_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "POST_ONLY_OWN_TARGET_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "POST_ONLY_VETO_NO_ASK_TICK_ORDER_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "PRINT_PRICED_RESIDUE_SWEEP.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "PROCESS_FIRST_CONFIRM.md",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js",
+        "arb-executor/analysis/window1_v54_dual_belief_reporter.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js",
+        "arb-executor/analysis/window1_v54_dual_belief_reporter.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "RECEIPT_PRODUCER_COVERAGE.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "REPAIR_GATE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "REST_PRICED_CREDITING_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "SAME_RECEIPT_ACT_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "SMOKE_CRIJEA.md",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "SMOKE_CRIJEA_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "SOURCE_RECEIPTS.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "SPREAD_EYE_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "SURVIVOR_FLOOR_MOMENT_SEPARATION.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "SURVIVOR_SHAPE_LIBRARY_BINDING.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "SURVIVOR_SHAPE_TRAJECTORIES.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "TARGET_PRINTS_5.jsonl.gz",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "TOUCH_SUBORDINATION_RECEIPT.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "TRADED_LOW_SHAPE_SUPPORT_BINDING.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "TRADE_REPORT_FOUR.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "TRADE_REPORT_FOUR.md",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    },
+    {
+      "artifact": "WORKTREE_LARGE_UNTRACKED_CENSUS.json",
+      "producer_sources": [
+        "arb-executor/analysis/build_window1_v54_dual_belief.js"
+      ],
+      "regenerable": true,
+      "producer_contract": "NAMED_OUTPUT_PATH_PRESENT_IN_EXECUTABLE_SOURCE"
+    }
+  ],
+  "artifact_count": 91,
+  "unproduced": []
+}

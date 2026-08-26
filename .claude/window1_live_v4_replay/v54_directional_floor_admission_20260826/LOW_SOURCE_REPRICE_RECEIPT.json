@@ -1,0 +1,16 @@
+{
+  "label": "F_VS_164_168_169_TRADE_LOW_BOOK_PATH_MID_SEPARATION",
+  "run_source": "V54_DIRECTIONAL_FLOOR_ADMISSION_DERIVABLE_FLOOR_GOVERNS_20260826",
+  "law": "A traded low is written only by a true trade receipt. Book-path low, reported-last reference low, and bid/ask midpoint low are separately named non-trade evidence. Any action consuming them discloses that basis in its sentence.",
+  "prior_trace": null,
+  "evaluated_rows": 5988,
+  "non_traded_low_rows_repriced": 297,
+  "non_traded_low_rows_every_sentence_discloses": true,
+  "changed_orders": [],
+  "changed_order_count": 0,
+  "danpra_opening_named_case": null,
+  "provenance": [
+    "F-VS-164/F-VS-168/F-VS-169@44559ebc",
+    "CC@e65fe458/44559ebc"
+  ]
+}

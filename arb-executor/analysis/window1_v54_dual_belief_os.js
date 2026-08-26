@@ -74,6 +74,8 @@ const LAYER_PROVENANCE = Object.freeze({
   honest_floor_statistic: "F-VS-233@86ca93f3",
   per_leg_floor_classifier: "F-VS-234..237@85b940ff; DISPATCH_READ_THE_CLASSIFIER@2026-08-26",
   floor_print_decision_instant: "F-VS-237@85b940ff; DISPATCH_PRINTS_WAKE_THE_ENGINE@2026-08-26",
+  directional_floor_admission: "DISPATCH_ADMISSION_HAS_DIRECTION@2026-08-26; CC@85b940ff; F-VS-224/F-VS-229",
+  derivable_floor_governs: "DISPATCH_STAND_ON_THE_DERIVABLE_FLOOR@2026-08-26; DEFINITION_LOCK",
   c04_post_only_coverage: "F-VS-225@737e3c2b",
   technique_contracts: "F-VS-193..198@9ef05314; DISPATCH_CONTRACTS_BUILD@2026-08-25",
   spread_eye: "REGISTERED_TECHNIQUE_SPREAD_EYE@2026-08-25",
@@ -246,6 +248,7 @@ function floorDecisivenessForLevel(criterion, valueCents) {
   const exactSupport = sum(levels.filter((row) => row.level_cents === valueCents).map((row) => row.count));
   const lowerSupport = sum(levels.filter((row) => row.level_cents < valueCents).map((row) => row.count));
   const upperSupport = sum(levels.filter((row) => row.level_cents > valueCents).map((row) => row.count));
+  const supportedLevels = levels.map((row) => row.level_cents).sort((a, b) => a - b);
   const downsideDenominator = exactSupport + lowerSupport;
   const exactGivenNotHigher = downsideDenominator > 0 ? exactSupport / downsideDenominator : 0;
   const supportingShapes = supportingShapeIdsForLevel(criterion, valueCents);
@@ -263,15 +266,17 @@ function floorDecisivenessForLevel(criterion, valueCents) {
     supporting_shape_ids: supportingShapes,
     elimination_support_share: eliminationSupportShare,
     criterion_anchor_cents: anchor,
+    lowest_supported_floor_cents: supportedLevels[0] ?? null,
+    highest_supported_floor_cents: supportedLevels.at(-1) ?? null,
   };
 }
 
-// F-VS-234..237: one classifier is shared by the price author and floor
-// immunity.  A print is not automatically a floor: its own leg must either
-// have exact surviving-shape support at that cent or have already shown a
-// causal descent from a higher traded price.  This is what admits DAN 59 and
-// PAL 39 while refusing GIU 69 before GIU has descended.  The rule is stated
-// entirely in per-leg tape/criterion terms; no event identity participates.
+// F-VS-234..237 plus the directional-admission repair: one classifier is
+// shared by the price author and floor immunity. A print is not automatically
+// a floor. If the surviving descent path is still open below a printed level,
+// any print above that path is refused. Exact path support is admitted. The
+// prior path predicate and the per-leg descent grade are composed; neither
+// replaces the other, and no event identity participates.
 function classifyPerLegFloorEvidence({ state, legId, criterion, source, valueCents, receipt }) {
   const baseGrade = floorDecisivenessForLevel(criterion, valueCents);
   const leg = state?.legs?.[legId] ?? null;
@@ -294,15 +299,27 @@ function classifyPerLegFloorEvidence({ state, legId, criterion, source, valueCen
     && Number.isInteger(aboveAnchorExcursionCents)
     && observedDescentCents >= aboveAnchorExcursionCents);
   const exactShapeSupport = baseGrade.exact_support_count > 0;
-  const descentSupported = observedDescent || exactShapeSupport;
-  const binding = printed && descentSupported;
+  const highestSupportedFloor = cent(baseGrade.highest_supported_floor_cents);
+  const distanceAboveDescentPath = Number.isInteger(highestSupportedFloor) && Number.isInteger(valueCents)
+    ? valueCents - highestSupportedFloor
+    : null;
+  const descentStateOpen = baseGrade.lower_support_count > 0 && !exactShapeSupport;
+  const printAboveOpenDescentPath = Boolean(printed
+    && descentStateOpen
+    && Number.isInteger(distanceAboveDescentPath)
+    && distanceAboveDescentPath > 0);
+  const priorFloorPredicatePassed = printed && !printAboveOpenDescentPath;
+  const perLegGradePassed = exactShapeSupport || observedDescent;
+  const binding = printed && priorFloorPredicatePassed && perLegGradePassed;
   const classId = !printed
     ? "NON_PRINT_EVIDENCE_GRADED_NOT_BINDING"
-    : observedDescent
-      ? "PRINTED_FLOOR_WITH_OBSERVED_DESCENT"
+    : printAboveOpenDescentPath
+      ? "PRINT_ABOVE_OPEN_DESCENT_PATH_NOT_FLOOR_CANDIDATE"
       : exactShapeSupport
         ? "PRINTED_FLOOR_WITH_EXACT_SHAPE_SUPPORT"
-        : "PRINTED_LEVEL_WITHOUT_DESCENT_OR_EXACT_SUPPORT";
+        : observedDescent
+          ? "PRINTED_FLOOR_WITH_OBSERVED_DESCENT"
+          : "PRINTED_LEVEL_WITHOUT_DESCENT_OR_EXACT_SUPPORT";
   return {
     class_id: classId,
     leg_id: legId,
@@ -310,22 +327,37 @@ function classifyPerLegFloorEvidence({ state, legId, criterion, source, valueCen
     receipt,
     depth_cents: depth,
     depth_sign: depthSign,
-    descent_state: observedDescent
-      ? "OBSERVED_HIGH_ABOVE_PRINTED_LOW"
-      : exactShapeSupport
-        ? baseGrade.descent_state
-        : "NO_CAUSAL_DESCENT_SUPPORT",
+    descent_state: printAboveOpenDescentPath
+      ? "OPEN_DESCENT_PATH_BELOW_PRINT"
+      : observedDescent
+        ? "OBSERVED_HIGH_ABOVE_PRINTED_LOW"
+        : exactShapeSupport
+          ? baseGrade.descent_state
+          : "NO_CAUSAL_DESCENT_SUPPORT",
     evidenced_floor_source: source,
     observed_traded_high_cents: observedHigh,
     observed_descent_cents: observedDescentCents,
     above_anchor_excursion_cents: aboveAnchorExcursionCents,
     observed_descent_satisfies_directional_depth: observedDescent,
     exact_shape_support: exactShapeSupport,
+    highest_supported_floor_cents: highestSupportedFloor,
+    distance_above_descent_path_cents: distanceAboveDescentPath,
+    descent_state_open: descentStateOpen,
+    print_above_open_descent_path: printAboveOpenDescentPath,
+    prior_floor_predicate_passed: priorFloorPredicatePassed,
+    per_leg_grade_passed: perLegGradePassed,
+    admission_gate_passed: binding,
     binding_floor_candidate: binding,
     pricing_eligible: binding,
     immunity_eligible: binding,
-    refusal_reason: binding ? null : printed ? "PRINT_HAS_NO_CAUSAL_DESCENT_OR_EXACT_SURVIVOR_SUPPORT" : "NON_PRINT_CHANNEL_NEVER_BINDS_FLOOR",
-    provenance: LAYER_PROVENANCE.per_leg_floor_classifier,
+    refusal_reason: binding
+      ? null
+      : printAboveOpenDescentPath
+        ? "PRINT_DURING_OPEN_DESCENT_ABOVE_PATH_NOT_FLOOR_CANDIDATE"
+        : printed
+          ? "PRINT_HAS_NO_CAUSAL_DESCENT_OR_EXACT_PATH_SUPPORT"
+          : "NON_PRINT_CHANNEL_NEVER_BINDS_FLOOR",
+    provenance: `${LAYER_PROVENANCE.per_leg_floor_classifier}; ${LAYER_PROVENANCE.directional_floor_admission}`,
   };
 }
 

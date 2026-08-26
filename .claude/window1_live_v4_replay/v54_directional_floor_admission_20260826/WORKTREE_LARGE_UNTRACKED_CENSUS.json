@@ -1,0 +1,188 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/AT_FLOOR_IMMUNITY_RECEIPT.json",
+      "bytes": 10816638,
+      "sha256": "8c36f2be356e95d857d36d4ebdbbaee7de4140453eea049c176afa806cb279a5"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+      "bytes": 49278736,
+      "sha256": "426afe1b46c9ce5dd3068e1fd44357c9bb2fad389c275372e67cdf14e92fad36"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 25618391,
+      "sha256": "1697fe51d9c78d3c377ea80ecb26ac0a751a0fa3186c7ae8270d4bd7d478d6a9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 36076023,
+      "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "bytes": 16865567,
+      "sha256": "37c211bfc14f05d13dfd2f7b73e98527c3715d057e83758a87e37d99563a8934"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/FLOOR_REST_PROTECTION_RECEIPT.json",
+      "bytes": 10996999,
+      "sha256": "acbee3dedeeb5c44e5d86bdbb0511570041f34422db4d3f2676b6e7973e72a62"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "bytes": 18860157,
+      "sha256": "b0498ef92139af0a57f9618f36facb8d21bc7088db288c6d2ab321342d33bc56"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+      "bytes": 15760366,
+      "sha256": "663c609458ea5ab3c75450214a491c1f25fbbaa28e7b342e3228e3abd2259d1e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "bytes": 25743907,
+      "sha256": "b40392dec1c367447e56968ebdc2ca4b15485a09b342605b8b30237be53a019f"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/SMOKE_CRIJEA.md",
+      "bytes": 32827657,
+      "sha256": "b36209d2fac832c61fee76c35178858c44b5718d3b8432af4e5a5b71724c4c98"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 20538630,
+      "sha256": "e5bc5a8ebb1a07782d0c8edaa76320ad5dbdabe18dbc84de283a184080a1c5f8"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826_failed_spec_defect/TRUE_CONDITIONING_RECEIPT.json",
+      "bytes": 37309194,
+      "sha256": "1b49f3a174ee443a023c772410f911e35dd1e7e8537e2675f2f951308cff21a2"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/ATOMIC_REARM_RECEIPT.json",
+      "bytes": 180614140,
+      "sha256": "056f709ca50dc490f1f9e844b46b1c36b6030250c99de4add27783126f372e60"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/AUTHORITY_VACUUM_RECEIPT.json",
+      "bytes": 112107808,
+      "sha256": "3e7df16be5f4acae19719dbaf8c322ddb7aa8381169ac51656c53fb3edf05820"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/BELIEF_DEADLINE_SCORING_TABLE.json",
+      "bytes": 13952159,
+      "sha256": "a2ab6eff98bcf74b9445dfbb5132ac9c062b47c4bdb71de9530616242c8ed11c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 555460718,
+      "sha256": "1f79c0df55e58a95d77ca4c98e473f341a32c3df854ab3c8c47401bb87eee05e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/CREDITED_LEG_CONTINUED_READ_RECEIPT.json",
+      "bytes": 31458495,
+      "sha256": "25d889c1dc83b831924ae8dfe039b65ba914d725f2f3d00a2dfb4236400e450a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/DIRECTIONAL_FLOOR_ADMISSION_RECEIPT.json",
+      "bytes": 11337300,
+      "sha256": "1322dddd5e88e1ad0fae8a1605200152737195bca12146cf3343e446a95acb69"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 24499553,
+      "sha256": "32d85a05cf0995380f640dace797d55f31571fdb90ee2d3c286ec65ecaf6a36f"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 36076023,
+      "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "bytes": 38455525,
+      "sha256": "8f2930d148ef1e02ae846121c78ecf65d9c168952d3e76400edb0485c72c1cfd"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "bytes": 28413051,
+      "sha256": "ecd6c4de470e5b737d4c4914420d561cc61a80cb8f823bcd1c9da4673da57743"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 489328123,
+      "sha256": "9cb1545e0fb0e65de4627c532fc1f211ff4453e7619788a89de99b21bb8b9908"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "bytes": 38068000,
+      "sha256": "f36683e529c8d260d1e97add136eab6ca54a2fe81b0b241ea8b419c78225e466"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/ONE_AUTHOR_AUTHORITY_RECEIPT.json",
+      "bytes": 141777567,
+      "sha256": "65f55c6cbb59ee6c4b4e226455a18c0393942ff0a30008fa26e1856f21049b8a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+      "bytes": 33732232,
+      "sha256": "2db3ae3538144f7103c3c5f28217f209a52e95763688f6e6928219e6345bcd28"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "bytes": 40136245,
+      "sha256": "abf169b0d7fb2539c43e27df56ebe65660e78322b5ed0096deec92a8e95bb45e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/PER_LEG_CLASSIFIER_RECEIPT.json",
+      "bytes": 11933398,
+      "sha256": "5aeeb928932923dae3023b81861a2636c91b1dbfe4180e4c0525389d2dda4835"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 408156002,
+      "sha256": "d88192b3b91f95abca0c0b6646e80f1bfb3f18398e96276b3cd4615431c85333"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 401093020,
+      "sha256": "cd854a6b6e0cbbfd9a3f0ff84d930c8008449de8f6f12fc150c66edab8788733"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/SMOKE_CRIJEA.md",
+      "bytes": 32651257,
+      "sha256": "a2cb3e2bab0d6898af819f027affdf4720624b15f35bf0cbe1c72bc416ec755b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/SPREAD_EYE_RECEIPT.json",
+      "bytes": 13601250,
+      "sha256": "b9738d71f2e8603fe6475afd97be096964e3a33ca1c1e0c51c882d0bc514c4d2"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 42688692,
+      "sha256": "baefabb409e05253ed13f7099e2f756d2a350c0688d75faea197e0c698060400"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_directional_floor_admission_20260826/TRUE_CONDITIONING_RECEIPT.json",
+      "bytes": 53322372,
+      "sha256": "6e6eefea90864c6a0d9fe7b011f291ed62e205ec0b4ee1b8ad1f961742804521"
+    }
+  ],
+  "count": 36,
+  "bytes": 3062304533
+}

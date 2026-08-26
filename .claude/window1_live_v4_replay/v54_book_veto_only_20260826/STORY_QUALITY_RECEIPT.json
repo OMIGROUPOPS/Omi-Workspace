@@ -1,0 +1,137 @@
+{
+  "label": "F_VS_244_TWENTY_RULE_STORY_BAR",
+  "authority": "F-VS-244@0d1ca473",
+  "checks": [
+    {
+      "id": "01_STATUS_FIRST_TEN_LINES",
+      "passed": true
+    },
+    {
+      "id": "02_LAW_VIOLATIONS_FIRST_TEN_LINES",
+      "passed": true
+    },
+    {
+      "id": "03_SELF_STOP_FIRST_TEN_LINES",
+      "passed": true
+    },
+    {
+      "id": "04_MAX_LINE_4000",
+      "passed": true,
+      "observed": 3773
+    },
+    {
+      "id": "05_PROSE_AT_LEAST_20_PERCENT",
+      "passed": true,
+      "observed": 0.9366827253957329
+    },
+    {
+      "id": "06_NO_RAW_JSON_TABLE_CELLS",
+      "passed": true
+    },
+    {
+      "id": "07_ALL_FOUR_GAMES_NAMED",
+      "passed": true
+    },
+    {
+      "id": "08_ALL_EIGHT_LEG_EXHIBITS",
+      "passed": true,
+      "observed": 8
+    },
+    {
+      "id": "09_FULL_TRACE_LOCATION_NAMED",
+      "passed": true
+    },
+    {
+      "id": "10_EVERY_FILL_NAMED_AS_FILL",
+      "passed": true,
+      "observed": [
+        {
+          "identity": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA",
+          "marker": "FILL SVA:",
+          "named": true,
+          "conviction_precedes_fill": true,
+          "rest_price_named": true
+        },
+        {
+          "identity": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+          "marker": "FILL LAJ:",
+          "named": true,
+          "conviction_precedes_fill": true,
+          "rest_price_named": true
+        },
+        {
+          "identity": "KXATPMATCH-26JUL18DANPRA|PRA",
+          "marker": "FILL PRA:",
+          "named": true,
+          "conviction_precedes_fill": true,
+          "rest_price_named": true
+        }
+      ]
+    },
+    {
+      "id": "11_CONVICTION_PRECEDES_EVERY_FILL",
+      "passed": true
+    },
+    {
+      "id": "12_FILL_PRICE_IS_REST_PRICE_STATED",
+      "passed": true
+    },
+    {
+      "id": "13_EVERY_RESEAT_RECEIPT_NARRATED",
+      "passed": true,
+      "observed": 322
+    },
+    {
+      "id": "14_TARGET_AUTHORITY_PER_LEG",
+      "passed": true
+    },
+    {
+      "id": "15_LIVE_DEADLINE_PER_LEG",
+      "passed": true
+    },
+    {
+      "id": "16_EVIDENCE_PER_LEG",
+      "passed": true
+    },
+    {
+      "id": "17_BELIEF_EQUALS_ACTION_PER_LEG",
+      "passed": true
+    },
+    {
+      "id": "18_TERMINAL_EXHIBIT_PER_LEG",
+      "passed": true
+    },
+    {
+      "id": "19_DELTAS_AFTER_ARGUMENT",
+      "passed": true
+    },
+    {
+      "id": "20_AGGRESSOR_BLINDNESS_DISCLOSED",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "fill_narrative_checks": [
+    {
+      "identity": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA",
+      "marker": "FILL SVA:",
+      "named": true,
+      "conviction_precedes_fill": true,
+      "rest_price_named": true
+    },
+    {
+      "identity": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+      "marker": "FILL LAJ:",
+      "named": true,
+      "conviction_precedes_fill": true,
+      "rest_price_named": true
+    },
+    {
+      "identity": "KXATPMATCH-26JUL18DANPRA|PRA",
+      "marker": "FILL PRA:",
+      "named": true,
+      "conviction_precedes_fill": true,
+      "rest_price_named": true
+    }
+  ]
+}

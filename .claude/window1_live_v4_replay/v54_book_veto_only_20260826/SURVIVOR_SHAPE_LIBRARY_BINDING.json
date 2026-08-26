@@ -1,0 +1,34 @@
+{
+  "label": "V54_TRADED_LOW_AXIS_SURVIVOR_SHAPE_LIBRARIES_CUSTODY_RECONCILED",
+  "source_commit": "189eaa20",
+  "modules": [
+    "window1_interim_elimination_v13",
+    "window1_pair_interim_elimination_v18",
+    "window1_pair_couple_elimination_v19"
+  ],
+  "libraries": [
+    {
+      "path": ".claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "sha256": "4542b46d29b9d55dd97775ef3d8f8f3d971b899cf00e375189b15d08609849e2",
+      "bytes": 4711921,
+      "custody": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/189eaa20/.claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "groups": 16,
+      "pair_hypothesis_groups": 4
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b",
+      "bytes": 3485183,
+      "custody": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/189eaa20/.claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "groups": 16,
+      "pair_couple_groups": 4
+    }
+  ],
+  "causal_binding": "EXACT_MEMBER_BACKED_TRADED_LOW_DEPTH_BINS_MATCH_THE_RUNNING_POST_FORMATION_TRUE_TRADE_LOW; NO_ASK_PATH_TARGET; NO_RIGHT_EDGE_OR_SPAN_FRACTION_CONSUMED",
+  "traded_low_support_sha256": "dc8bf6ffa03309721901199e8cd889a6f82152725d5ecd4e8baf1d1f1247dc7d",
+  "provenance": [
+    "F-VS-133/F-VS-135@e7081336",
+    "F-VS-139/F-VS-143@f4752720",
+    "189eaa20"
+  ]
+}

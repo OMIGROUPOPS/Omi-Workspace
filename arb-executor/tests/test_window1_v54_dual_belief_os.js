@@ -270,10 +270,8 @@ os.configurePhaseCentralSurface({
   cells: [{ category: "ATP_MAIN", phase_band: "P00_10", phase_low_inclusive: 0, phase_high_exclusive: 0.1, members: 101, q25_cents: -5, q50_cents: -4, q75_cents: 0, q50_midrank: 0.51 }],
 });
 const disagrees = os.deriveJointActions({ state: jointState, reads: jointReads, neighborhood: jointNeighborhood, lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
-assert.equal(disagrees.coherence.status, "DISAGREES");
-assert(disagrees.derivations.every((row) => row.action.action === "HOLD_REST" && row.action.target_cents === null));
-assert(disagrees.derivations.every((row) => row.layered_dual_belief.prediction_seat.seat === null));
-assert(disagrees.derivations.every((row) => !["PLACE_REST", "REPRICE_REST"].includes(row.action.action)));
+assert.equal(disagrees.coherence.status, "COHERENT", "phase-travel telemetry may not rewrite the one non-book pricing authority");
+assert.deepEqual(disagrees.derivations.map((row) => row.layered_dual_belief.pricing_authority.target_cents), joint.derivations.map((row) => row.layered_dual_belief.pricing_authority.target_cents));
 assert(disagrees.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner_regenerated_from_lane_eligibility));
 assert(disagrees.derivations.every((row) => row.layered_dual_belief.pricing_authority.no_lane_may_replace_target));
 assert(disagrees.derivations.filter((row) => Number.isInteger(row.action.target_cents)).every((row) => row.action.target_cents < row.layered_dual_belief.envelope_placement.live_ask_cents));
@@ -368,7 +366,7 @@ const ownConvictionUpdate = {
   from_target_cents: 41,
   to_target_cents: 39,
   receipt: "belief#2",
-  movement_evidence: { current_book_receipt: "book#2", prior_book_receipt: "book#1" },
+  movement_evidence: { named_non_book_evidence_sources: ["TRUE_PRINT_FLOOR_RECEIPT"], current_true_print_receipt: "trade#2", prior_true_print_receipt: "trade#1" },
 };
 const reseatDecision = os.predictionSeatImmunityDecision({
   seat: seatedFixture,
@@ -393,5 +391,38 @@ const forgedReseat = os.predictionSeatImmunityDecision({
 });
 assert.equal(forgedReseat.disposition, "IMMUNE_HOLD_FROM_SEATING");
 assert.equal(forgedReseat.target_cents, 41);
+
+// THE BOOK IS VETO-ONLY: production helpers prove each door. A book cursor,
+// bid, or ask change cannot license or transform a level. The ask can only
+// refuse an independently derived candidate.
+const nonBookSnapshot = {
+  evidenced_floor_receipt: "trade#1",
+  decisive_evidence_receipt: "trade#1",
+  non_book_evidence_signature: "trade#1@41",
+  panel_signature: "panel#a",
+  credited_sibling_fill_receipt: null,
+  supporting_shape_ids: ["SURVIVOR_A"],
+};
+const bookOnlySnapshot = { ...nonBookSnapshot, belief_book_receipt: "book#2", live_bid_cents: 42, live_ask_cents: 44 };
+const bookOnlyDelta = os.predictionSeatEvidenceDelta(nonBookSnapshot, bookOnlySnapshot);
+assert.equal(bookOnlyDelta.changed, false);
+assert.equal(bookOnlyDelta.book_cursor_considered, false);
+const bookOnlyDecision = os.bookVetoOnlyDecision({ prior_snapshot: nonBookSnapshot, current_snapshot: bookOnlySnapshot, standing_target_cents: 41, proposed_target_cents: 42, live_ask_cents: 44 });
+assert.equal(bookOnlyDecision.update_licensed, false);
+assert.equal(bookOnlyDecision.candidate_level_cents, 41);
+assert.equal(bookOnlyDecision.book_transformed_level, false);
+const askVeto = os.bookVetoOnlyDecision({ prior_snapshot: nonBookSnapshot, current_snapshot: { ...nonBookSnapshot, evidenced_floor_receipt: "trade#2" }, standing_target_cents: 41, proposed_target_cents: 43, live_ask_cents: 43 });
+assert.equal(askVeto.update_licensed, true);
+assert.equal(askVeto.candidate_level_cents, 43);
+assert.equal(askVeto.book_disposition, "VETO");
+assert.equal(askVeto.book_transformed_level, false);
+const printUpdate = os.bookVetoOnlyDecision({ prior_snapshot: nonBookSnapshot, current_snapshot: { ...nonBookSnapshot, evidenced_floor_receipt: "trade#2", decisive_evidence_receipt: "trade#2", non_book_evidence_signature: "trade#2@39" }, standing_target_cents: 41, proposed_target_cents: 39, live_ask_cents: 44 });
+assert.equal(printUpdate.update_licensed, true);
+assert.equal(printUpdate.candidate_level_cents, 39);
+assert.equal(printUpdate.book_disposition, "POSTABLE");
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.own_evidence_rows.every((evidence) => evidence.evidence_class !== "BOOK" && evidence.source !== "CAUSAL_LIVE_BOOK_BID")));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.spread_eye_consumed === false));
+assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.prior_lane_mode !== "CONSUME_OWN_EVIDENCED_LIVE_TOUCH_WHILE_ENVELOPE_NULL"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.book_veto_only.book_may_determine_transform_or_license_level === false));
 
 console.log("window1_v54_dual_belief_os: PASS");

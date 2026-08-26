@@ -1,0 +1,106 @@
+{
+  "label": "V54_BOOK_VETO_ONLY_CUSTODY_RECONCILED",
+  "files": [
+    {
+      "logical_path": "FOUNDATION_PER_MINUTE_UNIVERSE",
+      "custody_location": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+      "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+      "bytes": 406637058,
+      "rows": 9330878,
+      "committed": false,
+      "compact_derivatives": [
+        {
+          "path": "FOUNDATION_LIBRARY.jsonl.gz",
+          "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+          "bytes": 2159635,
+          "rows": 9000
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+          "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+          "bytes": 1668883,
+          "rows": 5260
+        },
+        {
+          "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+          "sha256": "52667e215dc0ef6bf393e23d3acd6c78d24809cbabc5b0e0aa82088fc5a5f557",
+          "bytes": 8497,
+          "rows": 24
+        }
+      ]
+    },
+    {
+      "logical_path": "INTERIM_PAIR_LIBRARY_V18.json",
+      "source_path": ".claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "source_commit": "189eaa20",
+      "custody_location": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/189eaa20/.claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "sha256": "4542b46d29b9d55dd97775ef3d8f8f3d971b899cf00e375189b15d08609849e2",
+      "bytes": 4711921,
+      "committed_in_current_tree": false,
+      "git_object_hash_bound": true
+    },
+    {
+      "logical_path": "PAIR_COUPLE_LIBRARY_V19.json",
+      "source_path": ".claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "source_commit": "189eaa20",
+      "custody_location": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/189eaa20/.claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b",
+      "bytes": 3485183,
+      "committed_in_current_tree": false,
+      "git_object_hash_bound": true
+    },
+    {
+      "logical_path": "CARRIED_CONVICTION_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_book_veto_only_20260826\\CARRIED_CONVICTION_RECEIPT.json",
+      "sha256": "5cd77b2c3b07e7ae82b7e9fa794925cd01af19108dd2fcb9e68bc96cd9c63dc6",
+      "bytes": 750990104,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_book_veto_only_20260826\\DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "sha256": "bc88a295c0825807f53a5cb41afdf8af6f094b89161679b7a6929295afbc1182",
+      "bytes": 82446664,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "PREDICTION_SEATED_RESTS_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_book_veto_only_20260826\\PREDICTION_SEATED_RESTS_RECEIPT.json",
+      "sha256": "5b764ff4ecef2ba5efd7db8364873219c7c2409dad76b71550d776539ec9077c",
+      "bytes": 198059447,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "PREDICTION_SEAT_IMMUNITY_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_book_veto_only_20260826\\PREDICTION_SEAT_IMMUNITY_RECEIPT.json",
+      "sha256": "1b2744664a292beccd8ee0ba27763875c2baff8f205fa2ed1313dc0899074796",
+      "bytes": 232719280,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "PRICING_AUTHORITY_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_book_veto_only_20260826\\PRICING_AUTHORITY_RECEIPT.json",
+      "sha256": "1d012962e2f6c7f6d2f27929db37e6081d62b03a4bcdd8ef3c1284e16dcdf36a",
+      "bytes": 407165086,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_book_veto_only_20260826\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "2747cc7153858158a3e7ea3dcc70af64c953f8ab3e8bce699f5f611f38833204",
+      "bytes": 225576962,
+      "rows": 1720,
+      "committed": false
+    }
+  ],
+  "prior_manifest_disagreement_reconciled": true,
+  "phase_central_surface_file_receipt_matches_artifact_manifest": true,
+  "all_committed_artifacts_under_50_mb": true,
+  "committed_artifact_cap_bytes": 52428800,
+  "oversized_artifacts_moved_to_external_custody": 6
+}

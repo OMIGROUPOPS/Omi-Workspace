@@ -1,0 +1,2316 @@
+{
+  "label": "F_VS_121_LAWFUL_INCOMPLETE_ARITHMETIC_STAMPS",
+  "provenance": "F-VS-121@97411938",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "stamp": "UNSTAMPED_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "BAR": 27,
+          "GIU": 66
+        },
+        "two_leg_floor_sum_cents": 93,
+        "strictly_under_par_offer_cents": 6,
+        "proof": "27+66=93; max(0,99-93)=6"
+      },
+      "rest_at_floor_rows": [
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783841772,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-431",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "fc479d7c9efeb6a9e35a05a66b64b69182352a1eaa00dfe5d3cf8647416f7895",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "GIU",
+          "floor_cents": 66,
+          "rest_cents": 66,
+          "timestamp_epoch": 1783841772,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-431",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "bbcb68bf3688dbd2394ebcc94adf824ddede193c9633a216f2e5e4b36369759c",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783841774,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-435",
+          "action": "HOLD_REST",
+          "sentence_sha256": "d53f882c74b83e99c9ec59997cbc9ef4c7a8c65c76d97a1ac5f97c9a0eeff3f6",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "GIU",
+          "floor_cents": 66,
+          "rest_cents": 66,
+          "timestamp_epoch": 1783841774,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-435",
+          "action": "HOLD_REST",
+          "sentence_sha256": "24ef24199f784cf4f33f1f76f06d36d6d3d39e70e9c6f6a34ff13f3d006251c3",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "GIU",
+          "floor_cents": 66,
+          "rest_cents": 66,
+          "timestamp_epoch": 1783841801,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-315",
+          "action": "HOLD_REST",
+          "sentence_sha256": "9de0952963eddbac8f83207ebc05c19cf53de2162a62c79141387bb494917b94",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "GIU",
+          "floor_cents": 66,
+          "rest_cents": 66,
+          "timestamp_epoch": 1783841801.304,
+          "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+          "action": "HOLD_REST",
+          "sentence_sha256": "b0ee37bd3b070d36647b0b953de522cc68c1500b9440036f8883c2007fc0a810",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783841972,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "0bd9af0451bbf00faf5a81d6d33e3c250c45b293ddf1dbbe735e3e0f8aff0e6a",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "GIU",
+          "floor_cents": 66,
+          "rest_cents": 66,
+          "timestamp_epoch": 1783841972,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+          "action": "HOLD_REST",
+          "sentence_sha256": "31db5fca6a0c99f26bbdd651b1c4720ecbf6ddb7628bc70616234fb3408bc294",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783842032,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-362",
+          "action": "HOLD_REST",
+          "sentence_sha256": "c5304e77a4ef9468e0f41bc0534a2e589e27fc9bbd42989c29853aa56f0d4427",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "GIU",
+          "floor_cents": 66,
+          "rest_cents": 66,
+          "timestamp_epoch": 1783842032,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-362",
+          "action": "HOLD_REST",
+          "sentence_sha256": "d0cbbdcb8caa3b5e45e6b1cf81690169363c3a115f3ba632da74185f924cc97e",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851291,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-547",
+          "action": "HOLD_REST",
+          "sentence_sha256": "625e565270c9478bbd2c7f792b5907e6b7182002c932b0cc0c22971da99a577c",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851325,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-549",
+          "action": "HOLD_REST",
+          "sentence_sha256": "aadbbaa823676864d997764aecce8c3eb8dd1274818c3cd5039ea0d73d7c4941",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851354,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-551",
+          "action": "HOLD_REST",
+          "sentence_sha256": "1e08e3110653658c1113e52c94db12e7d0d18b9707d627cfb27b94352d08eae1",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851385,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-553",
+          "action": "HOLD_REST",
+          "sentence_sha256": "86827e96d9135d26214b54bdbb59a0b6b39de2b7bfe57adb9ffff0b296d1f2d8",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851420,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-555",
+          "action": "HOLD_REST",
+          "sentence_sha256": "b828691362a3f317ae038ba4f270a99dfb7b01049cf30597eae0a7306673ba01",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851421,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-636",
+          "action": "HOLD_REST",
+          "sentence_sha256": "27ad03da7f9cd4c3d504a8c7cb9d564063644ba669b4fe0fa21898d8e6df05aa",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851523,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-558",
+          "action": "HOLD_REST",
+          "sentence_sha256": "4a675dd9e781b39df414f8033895239d9831bc8b1608b3d1736d6d5b993d8cd9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851524,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-640",
+          "action": "HOLD_REST",
+          "sentence_sha256": "e82a5564c75cba3231d76d68109769a27ca6bbfcf6a5e9766a78cdcf9463c6cc",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851560,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-560",
+          "action": "HOLD_REST",
+          "sentence_sha256": "134c0e6a9b21078cd476ddaff1c180c68e41d43e7031b17e7cc7bf0894a5360e",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851565,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-561",
+          "action": "HOLD_REST",
+          "sentence_sha256": "8abf4fe85c760ac8c8018348fdab0e7fbfc6736b5ddbf60daf27af825a722192",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851648,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-566",
+          "action": "HOLD_REST",
+          "sentence_sha256": "91b85ff7c91bdb7c03a927f327a27b9cd5160db6fc735bfecf6451d80d11658b",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851680,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-569",
+          "action": "HOLD_REST",
+          "sentence_sha256": "efed61ef1a1e5e07d8e427e197261d1812a92a728c67b2fbf5233798b464bbc3",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851681,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-653",
+          "action": "HOLD_REST",
+          "sentence_sha256": "7aacd725ddc0cbb10fac369d1d77b5896772fa8dc6045131f529d6d37ecd3cf3",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851721,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-572",
+          "action": "HOLD_REST",
+          "sentence_sha256": "def734a5de1fc6348105f11e734b2cc7979bff3a9c38c15fc43268ed61ee38a3",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851722,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-656",
+          "action": "HOLD_REST",
+          "sentence_sha256": "99535eb3f9a6e17b3718a4a77c78ae7075b5ede20294ae1689b7ef3f46272774",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851742,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-658",
+          "action": "HOLD_REST",
+          "sentence_sha256": "d89238f470f5a8e8a9fc342a7000f32b60f95ae14f8b647a7ddfbcc1209cf440",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851753,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-574",
+          "action": "HOLD_REST",
+          "sentence_sha256": "f5faf51292fc31fb1dec14c84e328d1e3720acfbc4a738201c84b2a6d6b37d83",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851824,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-669",
+          "action": "HOLD_REST",
+          "sentence_sha256": "b780ad33cf7b0317e217ad90232f689db4330ec1fe70cfc0588df61d3fbd580b",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851844,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-581",
+          "action": "HOLD_REST",
+          "sentence_sha256": "04263b7e7f48d850f99ee6d03538d18724a2981d4bd9f7e626bded71e9bb1e1f",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851871,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-582",
+          "action": "HOLD_REST",
+          "sentence_sha256": "903713220013eb02c6d95e98798271f69d041f913b69b08b57c94018327dc06d",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783851931,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-591",
+          "action": "HOLD_REST",
+          "sentence_sha256": "2c2262d392747a72a5c81f5f72e95ad4cdd28cc6410d1ed6bad3826cab00d20e",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783852936,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-736",
+          "action": "HOLD_REST",
+          "sentence_sha256": "62690bd327404a0c1883d9748c2ce4de98863b033f3022b79edd8b483d25880d",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "GIU",
+          "floor_cents": 66,
+          "rest_cents": 66,
+          "timestamp_epoch": 1783852936,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-736",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "6ddccc1523a4c174845f86bc832341121c42605921807278b659c96da5766cf4",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783854033,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-888",
+          "action": "HOLD_REST",
+          "sentence_sha256": "7d49f41668ddc13a4caa391607863550a136812e51cf6e5426ba199c747f3c1b",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783855764.797,
+          "receipt": "f6988de7-aeba-53c2-ff8e-dd70aa8fe0a3",
+          "action": "HOLD_REST",
+          "sentence_sha256": "0b14de5c69de1f5de52645e6804ffa0d97c4e1a14b601e85dbdcf1a6bcccce05",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "GIU",
+          "floor_cents": 66,
+          "rest_cents": 66,
+          "timestamp_epoch": 1783855764.797,
+          "receipt": "f6988de7-aeba-53c2-ff8e-dd70aa8fe0a3",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "ea7fa33d5650b1f24b9ff3e8bb63712290bf1d9ab41f9377cc2105186af15276",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783855765,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1153",
+          "action": "HOLD_REST",
+          "sentence_sha256": "6778d2fd2b41108f7d2c15a47edcde2f8aebd46b91abc9fc1af6fa57dde230e6",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "GIU",
+          "floor_cents": 66,
+          "rest_cents": 66,
+          "timestamp_epoch": 1783855765,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1153",
+          "action": "HOLD_REST",
+          "sentence_sha256": "dbb521de7e358fbc6d2b8a1dbf14bb3673448cb955c8fcbd9ab94c149359bf64",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783861526,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1688",
+          "action": "HOLD_REST",
+          "sentence_sha256": "301f2744e6c9f1d89c82031f62fdb34428c59bf250ed5db0a910fee5de25ebb8",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "GIU",
+          "floor_cents": 66,
+          "rest_cents": 66,
+          "timestamp_epoch": 1783861526,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1688",
+          "action": "HOLD_REST",
+          "sentence_sha256": "6514fec2ce79f5282ab328db756f6b47283fb7983b5da78c3bbad448974170c5",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783863525,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1781",
+          "action": "HOLD_REST",
+          "sentence_sha256": "62ed4e7d378fe2d5665d907681607f3cd249eba7907e72738286ec1169f6061f",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783863733,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1975",
+          "action": "HOLD_REST",
+          "sentence_sha256": "debf6a13141a52194a8c295c355a289304f5f50392dc4922a97c322999938380",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783866958,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2323",
+          "action": "HOLD_REST",
+          "sentence_sha256": "8d5ebbb1b2d89b2719e5594838ab1b7abdeac5f73c716456a7736019fb9406fb",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783867224,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2397",
+          "action": "HOLD_REST",
+          "sentence_sha256": "73693058d43e947f36940c9571338f305184791be69859ed91b00d1b12748bb0",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783867786,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2443",
+          "action": "HOLD_REST",
+          "sentence_sha256": "4ef19d5d847f55a17b461ba582b6ed242ecc1715424a078c3a728265721fb370",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783873872,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2830",
+          "action": "HOLD_REST",
+          "sentence_sha256": "0b90a936a96032a7c4a1c71653f590e5fd78b3ddf0d8e572b1f89871eec891e0",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783873944,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2836",
+          "action": "HOLD_REST",
+          "sentence_sha256": "b0003cf6679be018fdf8e6707093516e13743a603ac6b6dad07fc5ff883c86ec",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874240,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2919",
+          "action": "HOLD_REST",
+          "sentence_sha256": "2fd2266e91ea0cbec76f7d2a75066974522bd0b49938b48bd089446d4f1a3cf0",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "896a10121f709623debd09dc6eb8fa4316a915067623025457db2f75dc945285",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "1efc959321d0a7f54f5e0bdd3786a2000102f18a9ad901557bd088d4014247e4",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "BAR",
+          "floor_cents": 27,
+          "rest_cents": 27,
+          "timestamp_epoch": 1783874300,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ef4702764063a97f08f09bf680ed61ab3e7e943463534a15e3f5703dbb2287d9",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        }
+      ],
+      "rest_at_floor_proven": true,
+      "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001",
+      "unstamped_abstention_scores_zero": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "stamp": "NOT_APPLICABLE_COMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "PAL": 39,
+          "URS": 57
+        },
+        "two_leg_floor_sum_cents": 96,
+        "strictly_under_par_offer_cents": 3,
+        "proof": "39+57=96; max(0,99-96)=3"
+      },
+      "rest_at_floor_rows": [],
+      "rest_at_floor_proven": false,
+      "truth_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002",
+      "unstamped_abstention_scores_zero": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "stamp": "UNSTAMPED_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "LAJ": 51,
+          "SVA": 41
+        },
+        "two_leg_floor_sum_cents": 92,
+        "strictly_under_par_offer_cents": 7,
+        "proof": "51+41=92; max(0,99-92)=7"
+      },
+      "rest_at_floor_rows": [
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784020209.484,
+          "receipt": "d97f0682-a7e3-64f5-9751-dd8c5fcf09f4",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "bd263e99b119778a9b8bbf4586c0cc46c78c3151601401fa0acef5699ad3b6bb",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784028911,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1466",
+          "action": "HOLD_REST",
+          "sentence_sha256": "77df3f9a5dd04d2d4693dd81a5a8457799e7076330284bd29fd7159d85125a43",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784037555,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2301",
+          "action": "HOLD_REST",
+          "sentence_sha256": "f956621039c262039bf6a9abb15c91a6bce9f7aee624f7c228f5e423c48bb303",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784039243,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2439",
+          "action": "HOLD_REST",
+          "sentence_sha256": "6fdd5ea5e51cc3e9f3983f21ca910c764170ffbff1f37ae25fb142a9cd19a958",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784039714,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2476",
+          "action": "HOLD_REST",
+          "sentence_sha256": "0e9f0597b0932441fa271e3a0855838b5544a760a116abc3af0462ae37ec03d7",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784049607,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4311",
+          "action": "HOLD_REST",
+          "sentence_sha256": "ee85c816404ee58136a8eb5a2c55588440cdb795c0b062d9b8a2466e67aa62bb",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784049675,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4333",
+          "action": "HOLD_REST",
+          "sentence_sha256": "3f051d456a947df9684092ee15cb189e28c81c87ff91fb2d6adb2c4d0f4103df",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784049813,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2967",
+          "action": "HOLD_REST",
+          "sentence_sha256": "8b3c48b88b023f49a6998f9b2539fe23a721efb097865376cc66062bf6f2a235",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784049953,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2997",
+          "action": "HOLD_REST",
+          "sentence_sha256": "02461bcc1887984dc91b385cbcccc66db5b88570308125aa388a32d278ff1793",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784049994,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4410",
+          "action": "HOLD_REST",
+          "sentence_sha256": "dc3e58d2c82e55d8f24a4e4539ab9097b62afaaef37b9f3f31a898a59401b904",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784049995,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3002",
+          "action": "HOLD_REST",
+          "sentence_sha256": "90ca3861e622a1ff5bc8df8276e123a966073882be2e58a4fe67bee9cf572fa7",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784050014,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4432",
+          "action": "HOLD_REST",
+          "sentence_sha256": "5d8b0b72a2d76f933936cca518ab19cd46832a54fbe9e06da10f984c6ba2d426",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784050516,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4458",
+          "action": "HOLD_REST",
+          "sentence_sha256": "4614e8ca4f3661976505549890953b60de251dafcffe97e02ae1f5214f3ad4bf",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784050691,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3020",
+          "action": "HOLD_REST",
+          "sentence_sha256": "8cf3798e19fb2fd4f0e1840bad38a6c53b5ad32afacf57a14a3e503a046e91fa",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784050695,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3052",
+          "action": "HOLD_REST",
+          "sentence_sha256": "71e58ef73336a9d43f83781ef58ab85cec22e00208bfce3f2aeec3e63bf18bcb",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784050739,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4540",
+          "action": "HOLD_REST",
+          "sentence_sha256": "292979e6cacdf308a15f4d4b660bd2c8fdf1dc40ee14e05861419735085d02c3",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784050816,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3100",
+          "action": "HOLD_REST",
+          "sentence_sha256": "d476bfa140e16e4e9e8190c442b668c84b9295eef27dfaabbc0ce081d5623ede",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784050817,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3109",
+          "action": "HOLD_REST",
+          "sentence_sha256": "c4d5a8d9fd740a7c6029c6c060bd60dbb348b2a697d1bd38c2dfda11b1e5d6c6",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784050973.062,
+          "receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+          "action": "HOLD_REST",
+          "sentence_sha256": "9c0e4d76e954fe79f7a3d59d8363c7167f812e770ffb4689609696a0a28f41da",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784052707.741,
+          "receipt": "ddaa0876-739a-5206-64f0-c67ce5214974",
+          "action": "HOLD_REST",
+          "sentence_sha256": "771424c0eae7fa566b131903dd8586b8e4b59c70973ecafc6a5dc0c238be3709",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784059613,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+          "action": "HOLD_REST",
+          "sentence_sha256": "4f47cf21c541a46fe2cd2bec8372fa1b759d1e3bb16e52a0ffe9eac47dd21207",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784061309,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-7432",
+          "action": "HOLD_REST",
+          "sentence_sha256": "f3a8e5a3dab7f6289fc9eaa2dec842afa9f7a679a1e97233f00e4f9477607169",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784072103,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-13585",
+          "action": "HOLD_REST",
+          "sentence_sha256": "c21436802167c4f42e8d83924afe1a3dbf3c4cf0440b7d50d979d260c4570f2d",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784078361,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-70555",
+          "action": "HOLD_REST",
+          "sentence_sha256": "06d2fcc0e673937c480e3e59cab188b2b5109309bb440f2e5d5c548c9d93f0c1",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784078361.264,
+          "receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d",
+          "action": "HOLD_REST",
+          "sentence_sha256": "8c1e99f615c27ed0f4d301b660974b44cc43a7345dcc63fafcd3b2866208133a",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "SVA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784078361.264,
+          "receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d",
+          "action": "HOLD_REST",
+          "sentence_sha256": "bea141c0db655f9328596aa776a68f5535c85f03d4b1a129359927f93eed5156",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        }
+      ],
+      "rest_at_floor_proven": true,
+      "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "unstamped_abstention_scores_zero": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "stamp": "LAWFUL_INCOMPLETE",
+      "arithmetic": {
+        "floor_by_leg_cents": {
+          "DAN": 59,
+          "PRA": 41
+        },
+        "two_leg_floor_sum_cents": 100,
+        "strictly_under_par_offer_cents": 0,
+        "proof": "59+41=100; max(0,99-100)=0"
+      },
+      "rest_at_floor_rows": [
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784359388,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2877",
+          "action": "REPRICE_REST",
+          "sentence_sha256": "ebecd22538ee98a58f542c82b3f8fddadd68e06f43aa5c9e3f2246a2e28fa7e1",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784359766,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2893",
+          "action": "HOLD_REST",
+          "sentence_sha256": "fe38b441b66f512d93444f31ecea0cc7d065b0b4c2475ebef399387a30742c46",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784359773,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2899",
+          "action": "HOLD_REST",
+          "sentence_sha256": "bba16f645ea2d88fe59788254082f73299fff261d9a85bc9b260e8c1985bd909",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784360023,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2905",
+          "action": "HOLD_REST",
+          "sentence_sha256": "cfa50ba8997372b42612f5661b6f64e2e2dcad94f30ffeab2de9908b2f131e94",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784360967,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+          "action": "HOLD_REST",
+          "sentence_sha256": "962c40c856b2c31012e049c344c6e0749c03fd5a3fbc096c57a6c881459c9ba3",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784360968,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2950",
+          "action": "HOLD_REST",
+          "sentence_sha256": "be1b7bcdfacd6596c53edd915fe579a79d60ffb4f441ff23fb3bb6dff4cb715b",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784360969,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2963",
+          "action": "HOLD_REST",
+          "sentence_sha256": "f91f1187611755c9f9244015a9c8b61e96bf75bff51c0a46597487f9655d276c",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784360970,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2971",
+          "action": "HOLD_REST",
+          "sentence_sha256": "b5fba01407f3231751f3b287d598f32cd071f5743b507f4823391ddd7910c338",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784360971,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2985",
+          "action": "HOLD_REST",
+          "sentence_sha256": "b8d81b7244b3701f0d332a86ac04eb74caf213f99fc3df23436cee67aa9450ef",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        },
+        {
+          "leg_id": "PRA",
+          "floor_cents": 41,
+          "rest_cents": 41,
+          "timestamp_epoch": 1784360972,
+          "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3005",
+          "action": "HOLD_REST",
+          "sentence_sha256": "3d170b4d7805b8ede693b6aaebda7df4d31d538689e092fe25420c287063f744",
+          "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+        }
+      ],
+      "rest_at_floor_proven": true,
+      "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+      "unstamped_abstention_scores_zero": true
+    }
+  ],
+  "danpra": {
+    "event_id": "KXATPMATCH-26JUL18DANPRA",
+    "stamp": "LAWFUL_INCOMPLETE",
+    "arithmetic": {
+      "floor_by_leg_cents": {
+        "DAN": 59,
+        "PRA": 41
+      },
+      "two_leg_floor_sum_cents": 100,
+      "strictly_under_par_offer_cents": 0,
+      "proof": "59+41=100; max(0,99-100)=0"
+    },
+    "rest_at_floor_rows": [
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784359388,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2877",
+        "action": "REPRICE_REST",
+        "sentence_sha256": "ebecd22538ee98a58f542c82b3f8fddadd68e06f43aa5c9e3f2246a2e28fa7e1",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784359766,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2893",
+        "action": "HOLD_REST",
+        "sentence_sha256": "fe38b441b66f512d93444f31ecea0cc7d065b0b4c2475ebef399387a30742c46",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784359773,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2899",
+        "action": "HOLD_REST",
+        "sentence_sha256": "bba16f645ea2d88fe59788254082f73299fff261d9a85bc9b260e8c1985bd909",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784360023,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2905",
+        "action": "HOLD_REST",
+        "sentence_sha256": "cfa50ba8997372b42612f5661b6f64e2e2dcad94f30ffeab2de9908b2f131e94",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784360967,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2940",
+        "action": "HOLD_REST",
+        "sentence_sha256": "962c40c856b2c31012e049c344c6e0749c03fd5a3fbc096c57a6c881459c9ba3",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784360968,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2950",
+        "action": "HOLD_REST",
+        "sentence_sha256": "be1b7bcdfacd6596c53edd915fe579a79d60ffb4f441ff23fb3bb6dff4cb715b",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784360969,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2963",
+        "action": "HOLD_REST",
+        "sentence_sha256": "f91f1187611755c9f9244015a9c8b61e96bf75bff51c0a46597487f9655d276c",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784360970,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2971",
+        "action": "HOLD_REST",
+        "sentence_sha256": "b5fba01407f3231751f3b287d598f32cd071f5743b507f4823391ddd7910c338",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784360971,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-2985",
+        "action": "HOLD_REST",
+        "sentence_sha256": "b8d81b7244b3701f0d332a86ac04eb74caf213f99fc3df23436cee67aa9450ef",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+      },
+      {
+        "leg_id": "PRA",
+        "floor_cents": 41,
+        "rest_cents": 41,
+        "timestamp_epoch": 1784360972,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3005",
+        "action": "HOLD_REST",
+        "sentence_sha256": "3d170b4d7805b8ede693b6aaebda7df4d31d538689e092fe25420c287063f744",
+        "full_sentence_location": "REPAIR_FOUR_GAME_TRACE.jsonl.gz"
+      }
+    ],
+    "rest_at_floor_proven": true,
+    "truth_receipt": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18DANPRA",
+    "unstamped_abstention_scores_zero": true
+  },
+  "unstamped_incomplete_games_score_zero": true
+}

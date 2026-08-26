@@ -221,8 +221,12 @@ assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.mi
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_restored_to_decision_path));
-assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method === "CENTRAL_MEDIAN_OF_CURRENT_GAME_OWN_EVIDENCE_AFTER_FORMATION_ELSE_PANEL_PRIOR"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method === "PRIOR_HYPOTHESES_REWEIGHTED_BY_RECEIPT_PINNED_CHANNEL_LIKELIHOODS; TRADE_CLASS_STRONGEST; BOOK_REQUIRES_PRIOR_AND_NEVER_AUTHORS_ALONE; POSTERIOR_MEAN_FLOOR_SIDE_DIRECTED_INTEGER"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.rounding.direction === "EXACT_HALF_TO_HIGHER_INTEGER_57_5_TO_58"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.own_evidence_rows.every((evidence) => Boolean(evidence.receipt))), "every current-game evidence value must be receipt-pinned");
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.replacement_operator_removed));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.each_channel_graded));
+assert(joint.derivations.every((row) => row.sentence.includes("CHANNEL_GRADES=")));
 assert(joint.derivations.every((row) => row.sentence.includes("AUTHOR_CHAIN=PRIOR_")));
 assert(joint.derivations.every((row) => row.layered_dual_belief.decision_arbitration.lane_may_replace_authority === false));
 assert(joint.derivations.every((row) => row.sentence.includes("ENVELOPE_PLACEMENT=")));
@@ -266,6 +270,20 @@ assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_pla
 assert(disagrees.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner_regenerated_from_lane_eligibility));
 assert(disagrees.derivations.every((row) => row.layered_dual_belief.pricing_authority.no_lane_may_replace_target));
 assert(disagrees.derivations.filter((row) => Number.isInteger(row.action.target_cents)).every((row) => row.action.target_cents < row.layered_dual_belief.envelope_placement.live_ask_cents));
+
+jointState.positions.AAA.credited = true;
+jointState.positions.AAA.entry_cents = 38;
+jointState.positions.AAA.fill_receipt = "credited-a-receipt";
+os.observe(jointState, "AAA", { timestamp_epoch: 212, receipt: "credited-a-keeps-reading", kind: "PRINT", price_cents: 37, size: 9 });
+const postCreditReads = os.readAll(jointState);
+const postCreditVector = os.vectorFromReads(jointState, postCreditReads);
+const postCreditNeighborhood = os.retrieveNeighborhood(jointCorpus, postCreditVector, "TEST-EVENT", 1, jointState.receipt);
+const postCredit = os.deriveJointActions({ state: jointState, reads: postCreditReads, neighborhood: postCreditNeighborhood, lineageByLeg: { AAA: { action: "HOLD_REST", target_cents: 38, receipt: "lineage#credited-aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#open-bbb" } }, resources });
+assert.equal(postCredit.derivations.length, 1, "credited leg may not emit another order");
+assert(postCredit.credited_leg_streams.AAA, "credited leg must remain in the read chain");
+assert.equal(postCredit.credited_leg_streams.AAA.current_receipt, "credited-a-keeps-reading");
+assert.equal(postCredit.credited_leg_streams.AAA.sibling_feed_live, true);
+assert.equal(postCredit.credited_leg_streams.AAA.action_emission_allowed, false);
 
 const noOpinionState = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(noOpinionState, leg, { timestamp_epoch: ts, receipt: `noop-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });

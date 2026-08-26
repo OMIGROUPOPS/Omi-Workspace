@@ -1,0 +1,93 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/ATOMIC_REARM_RECEIPT.json",
+      "bytes": 263679560,
+      "sha256": "7b39578775d610303a0ad484b03ceb357677e7c1219bece9b18dc632171a02a0"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/AUTHORITY_VACUUM_RECEIPT.json",
+      "bytes": 10591472,
+      "sha256": "2c517876fb26662ce6dc0e7e438a75a501cd230feed5ac98d593a0addec36a18"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 294646975,
+      "sha256": "e189617706ac6efc7098b1654eed9c07271bc9d32b37f3e5219b31a036ef87f2"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "bytes": 30014346,
+      "sha256": "c8ed9892bb7614a9b240a24ca3b3398ba51d8e95a1774e5b55ac15f080a9f9e5"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 36076023,
+      "sha256": "b2bc51e6cd3769cd0dfb5c16bd96c5728dd3efdc4f8277bd93d795acee930089"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/ENVELOPE_PLACEMENT_ROWS.jsonl.gz",
+      "bytes": 23936100,
+      "sha256": "9e2381d35bba9227f59cfdc40df1fc759cec78f1efd7ccac3add7fa2af8af1a6"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "bytes": 56638275,
+      "sha256": "4a9c815ba69ec33569f6aa52b0cb3d44d8adaad8d9d7da378e026eed2730b488"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 95622834,
+      "sha256": "0879f427da674384c24a6af99089e2473a78ca357f750b834387bd41937ca0b4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/NARROWING_AND_PROPOSAL_SUPERVISOR_ROWS.jsonl.gz",
+      "bytes": 22380356,
+      "sha256": "d8fbf4b59fe036856809415ce170b2cf61105ead00504f4e0cfcd17f02e81d72"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+      "bytes": 18047137,
+      "sha256": "20c7ba076827a7d605724bcc4edaaf191fcb8478116d64a001d88d66151dce7c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/OWN_EVIDENCE_SUPPORT_RECEIPT.json",
+      "bytes": 28832627,
+      "sha256": "ecfa4773a2925e8a0171c73be8e34f21b7913ba8dc94151323a1fb5d9b9dfdc0"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 236616564,
+      "sha256": "cd5c3df29e0192c93f4378c567d12cc0ca513335cb105b366acb82e2429349bd"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 225320962,
+      "sha256": "33e66308e95c10d68bca7090ee176b6450d88975c76cdb0b8eac5ff27aeef9f9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/SMOKE_CRIJEA.md",
+      "bytes": 33147491,
+      "sha256": "f08bfe40c50ac3ca220a5a831355408cdb667218b6f8800b1c135c52df139b3c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "bytes": 23192253,
+      "sha256": "bfc5c35fd4920fe496a5f2e05ab2b1d3e19687e711cb51489096510ccf884170"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_conviction_seats_bid_20260826/TRUE_CONDITIONING_RECEIPT.json",
+      "bytes": 31485351,
+      "sha256": "2a0ae99c758a2f605aa6d6b98bd90fba440739d8a0c0e4aa137f35d816e3a2e5"
+    }
+  ],
+  "count": 17,
+  "bytes": 1441602995
+}

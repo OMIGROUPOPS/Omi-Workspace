@@ -219,7 +219,10 @@ assert(joint.derivations.every((row) => row.sentence.includes("SETTLED_BOOK_MID_
 assert(joint.derivations.every((row) => row.sentence.includes("book-receipt=")));
 assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.status !== "RESOLVED" || belief.belief_price_cents === Math.floor((belief.live_bid_cents + belief.live_ask_cents) / 2))));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
-assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.prediction_seat.seat?.aim_equals_conduct === true));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_source === "UNIFIED_CONDITIONED_BELIEF_POSTERIOR_FOR_AIM_AND_CONDUCT"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.target_cents === row.layered_dual_belief.micro.beliefs[row.leg_id].predicted_cents));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_restored_to_decision_path));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method.includes("ONE_PER_LEG_CLASSIFIER")));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.exact_price_support_joined));
@@ -245,7 +248,7 @@ assert.equal(joint.derivations[0].layered_dual_belief.micro.beliefs.AAA.remainin
 assert(joint.derivations.every((row) => row.layered_dual_belief.coherence_placement.current_coherence));
 assert(joint.derivations.filter((row) => row.action.action === "PLACE_REST").every((row) => row.layered_dual_belief.coherence_placement.qualification_to_action_latency_seconds === 0));
 assert(joint.derivations.every((row) => row.layered_dual_belief.coherence_placement.stale_envelope_originated_new_rest === false));
-assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.deadline.deadline_epoch >= belief.deadline.emitted_at_epoch && belief.deadline.derives_fresh_at_each_emission)));
+assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.micro.beliefs).every((belief) => belief.deadline.deadline_epoch > belief.deadline.emitted_at_epoch && belief.deadline.derives_fresh_at_each_emission && belief.deadline.stale_modeled_deadline_clamped_to_emission === false)));
 assert(joint.derivations.every((row) => row.sentence.includes("remaining-dip=total-minus-arrived=") && row.sentence.includes("deadline-emitted-now=")));
 assert.equal(Object.prototype.hasOwnProperty.call(jointState.dual_belief, "floor_rest_locks"), false, "persistent first-guess floor locks must be retired");
 assert(joint.derivations.every((row) => row.layered_dual_belief.floor_rest_protection.floor_rest_lock_state === "ABSENT_RETIRED"));
@@ -253,11 +256,13 @@ assert(joint.derivations.every((row) => row.layered_dual_belief.floor_rest_prote
 assert(joint.derivations.every((row) => row.layered_dual_belief.par_allocation_floor_bound.name === "PAR_ALLOCATION_OBSERVED_TRADED_FLOOR_BOUND"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.par_allocation_floor_bound.value_cents <= row.layered_dual_belief.par_allocation_floor_bound.evidenced_floor_cents));
 assert(joint.derivations.every((row) => row.sentence.includes("PAR_ALLOCATION_FLOOR_BOUND=") && row.sentence.includes("OBSERVED_TRADED_FLOOR=")));
-assert(joint.derivations.every((row) => row.derivation.target_authority === "BASE_V3_MAP_JOINT_DEPTH_MIND_WINDOW_PRICING_AUTHORITY"));
+assert(joint.derivations.every((row) => row.derivation.target_authority === "UNIFIED_CONDITIONED_BELIEF_POSTERIOR_AIM_EQUALS_CONDUCT"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.proposal_supervisor && !String(row.layered_dual_belief.proposal_supervisor.status).includes("NOT_REQUIRED")));
 assert.deepEqual(os.chooseEnvelopePlacementTarget({ low_cents: 66, high_cents: 66 }, 63, 68), { target_cents: 66, singleton_level_cents: 66, singleton_consumed: true });
 assert.deepEqual(os.chooseEnvelopePlacementTarget({ low_cents: 62, high_cents: 66 }, 64, 68), { target_cents: 64, singleton_level_cents: null, singleton_consumed: false });
 
+jointState.dual_belief.prediction_seats_by_leg = {};
+jointState.dual_belief.authority_memory_by_leg = {};
 os.configurePhaseCentralSurface({
   kind: "F_VS_124_PHASE_CATEGORY_CENTRAL_FUTURE_LOW_SURFACE",
   sha256: "surface-disagrees-test-sha",
@@ -267,8 +272,8 @@ os.configurePhaseCentralSurface({
 const disagrees = os.deriveJointActions({ state: jointState, reads: jointReads, neighborhood: jointNeighborhood, lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
 assert.equal(disagrees.coherence.status, "DISAGREES");
 assert(disagrees.derivations.every((row) => row.action.action === "HOLD_REST" && row.action.target_cents === null));
-assert(disagrees.derivations.every((row) => row.layered_dual_belief.pricing_authority.level_movement.disposition === "PURE_PANEL_RECOMPOSITION_SUPPRESSED"));
-assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "INSUFFICIENT_AUTHORITY_STAND_DOWN"));
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.prediction_seat.seat === null));
+assert(disagrees.derivations.every((row) => !["PLACE_REST", "REPRICE_REST"].includes(row.action.action)));
 assert(disagrees.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner_regenerated_from_lane_eligibility));
 assert(disagrees.derivations.every((row) => row.layered_dual_belief.pricing_authority.no_lane_may_replace_target));
 assert(disagrees.derivations.filter((row) => Number.isInteger(row.action.target_cents)).every((row) => row.action.target_cents < row.layered_dual_belief.envelope_placement.live_ask_cents));

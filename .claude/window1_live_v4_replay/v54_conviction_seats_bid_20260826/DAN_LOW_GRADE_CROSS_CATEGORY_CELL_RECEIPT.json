@@ -1,0 +1,7 @@
+{
+  "label": "F_VS_241_MEMBERS_MISSING_CELL_LOW_GRADE_CROSS_CATEGORY_DISCLOSURE",
+  "rule": "Where the current category cell has no member on the needed side of its anchor, extant cross-category members may enter as low-grade evidence with an empirical grade and row provenance. If none exists the leg abstains; a silent 58 ceiling is forbidden.",
+  "rows": [],
+  "dan_rows": [],
+  "every_consumption_has_grade_and_provenance": true
+}

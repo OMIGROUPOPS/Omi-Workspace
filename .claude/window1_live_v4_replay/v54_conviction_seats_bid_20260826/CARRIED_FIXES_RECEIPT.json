@@ -1,0 +1,75 @@
+{
+  "label": "C04_CURRENT_AUTHORITY_SPAN_DIRECTION_PROTECTION_SINGLE_CANCEL_RESTORE",
+  "c04_current_authority_restore_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "timestamp_epoch": 1783873822.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-2829",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 66,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 66,
+      "stale_price_ignored_cents": 66
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784016225.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-987",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 63,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 63,
+      "stale_price_ignored_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784028237.000001,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-28009",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 53,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 53,
+      "stale_price_ignored_cents": 62
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784020196.000026,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-388",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 59,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 59,
+      "stale_price_ignored_cents": 59
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784036643.000006,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3297",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 54,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 54,
+      "stale_price_ignored_cents": 59
+    }
+  ],
+  "post_span_orders": [],
+  "away_from_floor_lift_violations": [],
+  "cancel_count": 5,
+  "cancel_without_rearm_count": 0,
+  "passed": true
+}

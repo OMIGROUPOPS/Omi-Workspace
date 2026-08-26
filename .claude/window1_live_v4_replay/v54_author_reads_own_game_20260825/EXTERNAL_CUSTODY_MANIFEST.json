@@ -1,0 +1,90 @@
+{
+  "label": "V54_REMOVE_FLOOR_LOCK_CUSTODY_RECONCILED",
+  "files": [
+    {
+      "logical_path": "FOUNDATION_PER_MINUTE_UNIVERSE",
+      "custody_location": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+      "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+      "bytes": 406637058,
+      "rows": 9330878,
+      "committed": false,
+      "compact_derivatives": [
+        {
+          "path": "FOUNDATION_LIBRARY.jsonl.gz",
+          "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+          "bytes": 2159635,
+          "rows": 9000
+        },
+        {
+          "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+          "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+          "bytes": 1668883,
+          "rows": 5260
+        },
+        {
+          "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+          "sha256": "52667e215dc0ef6bf393e23d3acd6c78d24809cbabc5b0e0aa82088fc5a5f557",
+          "bytes": 8497,
+          "rows": 24
+        }
+      ]
+    },
+    {
+      "logical_path": "INTERIM_PAIR_LIBRARY_V18.json",
+      "source_path": ".claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "source_commit": "189eaa20",
+      "custody_location": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/189eaa20/.claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json",
+      "sha256": "4542b46d29b9d55dd97775ef3d8f8f3d971b899cf00e375189b15d08609849e2",
+      "bytes": 4711921,
+      "committed_in_current_tree": false,
+      "git_object_hash_bound": true
+    },
+    {
+      "logical_path": "PAIR_COUPLE_LIBRARY_V19.json",
+      "source_path": ".claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "source_commit": "189eaa20",
+      "custody_location": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/189eaa20/.claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+      "sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b",
+      "bytes": 3485183,
+      "committed_in_current_tree": false,
+      "git_object_hash_bound": true
+    },
+    {
+      "logical_path": "CARRIED_CONVICTION_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_author_reads_own_game_20260825\\CARRIED_CONVICTION_RECEIPT.json",
+      "sha256": "253da95a87c2c873a061ae4d8340b977b5ea9b1b1343826811ad523135613f85",
+      "bytes": 66254426,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "ENVELOPE_PLACEMENT_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_author_reads_own_game_20260825\\ENVELOPE_PLACEMENT_RECEIPT.json",
+      "sha256": "d06872d0a24e912d857aadb9f2a3eecd53a98338e6afb85c03ce37c3ec677e3d",
+      "bytes": 77678720,
+      "rows": 940,
+      "committed": false
+    },
+    {
+      "logical_path": "NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_author_reads_own_game_20260825\\NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "sha256": "aa08df28f0ff37da35b85bafb7f4a966593c6adee74e0cf2f3f086d109129f82",
+      "bytes": 110716752,
+      "rows": null,
+      "committed": false
+    },
+    {
+      "logical_path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\stage1_store\\v54_author_reads_own_game_20260825\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "d791516c811ea75f210bc930a7d7d9e70529c433cbaf6890eb5cd2c4851d5d8f",
+      "bytes": 66598733,
+      "rows": 7450,
+      "committed": false
+    }
+  ],
+  "prior_manifest_disagreement_reconciled": true,
+  "phase_central_surface_file_receipt_matches_artifact_manifest": true,
+  "all_committed_artifacts_under_50_mb": true,
+  "committed_artifact_cap_bytes": 52428800,
+  "oversized_artifacts_moved_to_external_custody": 4
+}

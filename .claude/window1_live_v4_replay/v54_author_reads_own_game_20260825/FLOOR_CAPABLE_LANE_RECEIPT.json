@@ -1,0 +1,1973 @@
+{
+  "label": "F_VS_190_FLOOR_CAPABLE_LANE_OWNS_BELOW_PRIOR_LOW",
+  "provenance": [
+    "F-VS-190@2941cd15",
+    "CC@d945bcdd/2941cd15"
+  ],
+  "law": "When own live-book evidence plus the survivor traded-low range supports a level below the prior traded low, the floor-capable own-book lane owns the leg; DISAGREES prior-low pricing may not own it.",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-47",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-53",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-53",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-55",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-55",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-64",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-64",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "d670b533-64d8-4c10-170e-3dc5fd83b6ab",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "d670b533-64d8-4c10-170e-3dc5fd83b6ab",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-76",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-76",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "CONTINUOUS_POST_ONLY_CANCEL_CROSSED_STANDING_REST"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-431",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-431",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "INSUFFICIENT_AUTHORITY_STAND_DOWN"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-435",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-435",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "INSUFFICIENT_AUTHORITY_STAND_DOWN"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "INSUFFICIENT_AUTHORITY_STAND_DOWN"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-357",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-9",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-57",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-57",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-66",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-66",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-524",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-524",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-529",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-529",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3208",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3208",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17420",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17420",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17446",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17446",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17450",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17450",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17707",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17707",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3273",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3273",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17777",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17777",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3279",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3279",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3283",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3283",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17902",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17902",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3288",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3288",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17952",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17952",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3290",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3290",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3294",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3294",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3296",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3296",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3297",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3297",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "CONTINUOUS_POST_ONLY_CANCEL_CROSSED_STANDING_REST"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3462",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3462",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18685",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18685",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18694",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18694",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3470",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3470",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18747",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18747",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3474",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3474",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3479",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3479",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18839",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18839",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3481",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3481",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "a529177f-2dbf-74ab-6105-8f02b6f6c01b",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-60",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-65",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-65",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-74",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-74",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-81",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-81",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-84",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-84",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-95",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-95",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-99",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-99",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-115",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-115",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-119",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-119",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-123",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-123",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-131",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-131",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-144",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-144",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-154",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-154",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-167",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-167",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-171",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-171",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-229",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "CONTINUOUS_POST_ONLY_CANCEL_CROSSED_STANDING_REST"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-229",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-241",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "INSUFFICIENT_AUTHORITY_STAND_DOWN"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-241",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-245",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-245",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-263",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "INSUFFICIENT_AUTHORITY_STAND_DOWN"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-263",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2140",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2140",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2143",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2143",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2439",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2439",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2476",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2476",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4311",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4311",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4333",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4333",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2967",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2967",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2997",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2997",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4410",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4410",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3002",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3002",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4432",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4432",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4458",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4458",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3020",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3020",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3052",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3052",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4540",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4540",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3100",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3100",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3109",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3109",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "ddaa0876-739a-5206-64f0-c67ce5214974",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-7432",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-13585",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-70555",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": null,
+      "mode": "EXACT_EVIDENCED_FLOOR_REST_HELD_AGAINST_MOVE_AWAY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "SVA",
+      "receipt": "177840ec-68b2-6dd4-fc63-f042a347f92d",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "DISAGREES_PRIOR_TRADE_LOW",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-966",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-966",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "receipt": "5c3e4f2c-cb1c-7a8a-c61c-2f6597821fb9",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "receipt": "5c3e4f2c-cb1c-7a8a-c61c-2f6597821fb9",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1246",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1246",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3315",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3315",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3399",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3399",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3498",
+      "lower_lawful_level_existed": false,
+      "pricing_lane": "NO_NEW_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3498",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    }
+  ],
+  "lower_lawful_level_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "d670b533-64d8-4c10-170e-3dc5fd83b6ab",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-76",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "CONTINUOUS_POST_ONLY_CANCEL_CROSSED_STANDING_REST"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-431",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "INSUFFICIENT_AUTHORITY_STAND_DOWN"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-435",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "INSUFFICIENT_AUTHORITY_STAND_DOWN"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "INSUFFICIENT_AUTHORITY_STAND_DOWN"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "GIU",
+      "receipt": "4fa381b8-914c-4ca3-2edd-5b77ac756cea",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3208",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3208",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17420",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17420",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17446",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17446",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17450",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17450",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17707",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17707",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3273",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3273",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17777",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17777",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3279",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3279",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3283",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3283",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17902",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17902",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3288",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3288",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17952",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17952",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3290",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3290",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3294",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3294",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3296",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3296",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3297",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3297",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "CONTINUOUS_POST_ONLY_CANCEL_CROSSED_STANDING_REST"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3462",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3462",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18685",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18685",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18694",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18694",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3470",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3470",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18747",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18747",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3474",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3474",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3479",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3479",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18839",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18839",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3481",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3481",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-229",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "CONTINUOUS_POST_ONLY_CANCEL_CROSSED_STANDING_REST"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-241",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "INSUFFICIENT_AUTHORITY_STAND_DOWN"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-245",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-263",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "INSUFFICIENT_AUTHORITY_STAND_DOWN"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2140",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4333",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2997",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3002",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3020",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4540",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3109",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3315",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3399",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "PRA",
+      "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3498",
+      "lower_lawful_level_existed": true,
+      "pricing_lane": "FLOOR_CAPABLE_OWN_BOOK_LEVEL",
+      "mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+    }
+  ],
+  "ownership_violations": []
+}

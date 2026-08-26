@@ -221,6 +221,9 @@ assert(joint.derivations.every((row) => Object.values(row.layered_dual_belief.mi
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.numeric_constant_added === false));
 assert(joint.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
 assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.authority_restored_to_decision_path));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.conditioning_chain.method === "CENTRAL_MEDIAN_OF_CURRENT_GAME_OWN_EVIDENCE_AFTER_FORMATION_ELSE_PANEL_PRIOR"));
+assert(joint.derivations.every((row) => row.layered_dual_belief.pricing_authority.own_evidence_rows.every((evidence) => Boolean(evidence.receipt))), "every current-game evidence value must be receipt-pinned");
+assert(joint.derivations.every((row) => row.sentence.includes("AUTHOR_CHAIN=PRIOR_")));
 assert(joint.derivations.every((row) => row.layered_dual_belief.decision_arbitration.lane_may_replace_authority === false));
 assert(joint.derivations.every((row) => row.sentence.includes("ENVELOPE_PLACEMENT=")));
 assert(joint.derivations.every((row) => row.sentence.includes("SOURCE_KEY=LIBRARY_CLOSE_CENTS") || row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->NONE_LIBRARY_MEMBER_BOUNDED_CLOSE_CENTS_PRESERVED")));
@@ -257,8 +260,9 @@ os.configurePhaseCentralSurface({
 });
 const disagrees = os.deriveJointActions({ state: jointState, reads: jointReads, neighborhood: jointNeighborhood, lineageByLeg: { AAA: { action: "PLACE_REST", target_cents: 37, receipt: "lineage#aaa" }, BBB: { action: "PLACE_REST", target_cents: 61, receipt: "lineage#bbb" } }, resources });
 assert.equal(disagrees.coherence.status, "DISAGREES");
-assert(disagrees.derivations.every((row) => row.action.reason === "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"));
-assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "PRICING_AUTHORITY_TARGET_EXECUTED"));
+assert(disagrees.derivations.every((row) => row.action.action === "HOLD_REST" && row.action.target_cents === null));
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.pricing_authority.level_movement.disposition === "PURE_PANEL_RECOMPOSITION_SUPPRESSED"));
+assert(disagrees.derivations.every((row) => row.layered_dual_belief.envelope_placement.mode === "INSUFFICIENT_AUTHORITY_STAND_DOWN"));
 assert(disagrees.derivations.every((row) => row.layered_dual_belief.decision_arbitration.winner_regenerated_from_lane_eligibility));
 assert(disagrees.derivations.every((row) => row.layered_dual_belief.pricing_authority.no_lane_may_replace_target));
 assert(disagrees.derivations.filter((row) => Number.isInteger(row.action.target_cents)).every((row) => row.action.target_cents < row.layered_dual_belief.envelope_placement.live_ask_cents));

@@ -1,0 +1,88 @@
+{
+  "label": "C04_CURRENT_AUTHORITY_SPAN_DIRECTION_PROTECTION_SINGLE_CANCEL_RESTORE",
+  "c04_current_authority_restore_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784016226,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-744",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 63,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 63,
+      "stale_price_ignored_cents": 63
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784023497,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2144",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 59,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 59,
+      "stale_price_ignored_cents": 62
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784025121,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3206",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 58,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 58,
+      "stale_price_ignored_cents": 59
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784025502,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3456",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 58,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 58,
+      "stale_price_ignored_cents": 58
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "URS",
+      "timestamp_epoch": 1784028256.439,
+      "receipt": "de8acb81-1259-6081-ed5a-a11461e5f45b",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 56,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 56,
+      "stale_price_ignored_cents": 58
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784036642,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2140",
+      "action": {
+        "action": "PLACE_REST",
+        "target_cents": 54,
+        "reason": "CANCEL_REARM_RESTORES_CURRENT_AUTHORITY_PRICE"
+      },
+      "authority_target_cents": 54,
+      "stale_price_ignored_cents": 61
+    }
+  ],
+  "post_span_orders": [],
+  "away_from_floor_lift_violations": [],
+  "cancel_count": 7,
+  "cancel_without_rearm_count": 0,
+  "passed": true
+}

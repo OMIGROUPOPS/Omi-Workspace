@@ -1,0 +1,485 @@
+{
+  "label": "V54_AUTHOR_READS_OWN_GAME_MIND_ONLY_BED",
+  "files": {
+    "ASSUMPTION_GAPS.md": {
+      "path": "ASSUMPTION_GAPS.md",
+      "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+      "bytes": 943,
+      "rows": null
+    },
+    "ATOMIC_CANCEL_REPLACE_RECEIPT.json": {
+      "path": "ATOMIC_CANCEL_REPLACE_RECEIPT.json",
+      "sha256": "0b2bbbc38a3f2b2f195c95fc6a0832a788cbd40866df071fcf6fcb3360eb21d4",
+      "bytes": 637,
+      "rows": null
+    },
+    "ATOMIC_REARM_RECEIPT.json": {
+      "path": "ATOMIC_REARM_RECEIPT.json",
+      "sha256": "921ab3fc4ba3980bc8e2052959a0c3db91d945dd9743d4be193d9b5cfd4f1f67",
+      "bytes": 15069148,
+      "rows": null
+    },
+    "AUTHORITY_VACUUM_RECEIPT.json": {
+      "path": "AUTHORITY_VACUUM_RECEIPT.json",
+      "sha256": "322c91f98083ed25598a477097f75b457fe7d764347d43a48e07d6f96d953fd4",
+      "bytes": 6216390,
+      "rows": null
+    },
+    "BELIEF_DEADLINE_SCORING_TABLE.json": {
+      "path": "BELIEF_DEADLINE_SCORING_TABLE.json",
+      "sha256": "f7792f4e7bd4a675a20f81b84bb18d37b2224d112e26e1fa6f7ba03b1d747c66",
+      "bytes": 2755224,
+      "rows": null
+    },
+    "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json": {
+      "path": "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json",
+      "sha256": "939e8a2a4da9c6a9bc11580136a418d3b19ca934a651f01b6498ddd2c95690a6",
+      "bytes": 1230555,
+      "rows": null
+    },
+    "CAPTURED_REST_DEFINITION_LOCK_RECEIPT.json": {
+      "path": "CAPTURED_REST_DEFINITION_LOCK_RECEIPT.json",
+      "sha256": "83378e378987dfe8767303e272722314191fc8194e9b8c286afbe1485d77b76c",
+      "bytes": 3751,
+      "rows": null
+    },
+    "CARRIED_FIXES_RECEIPT.json": {
+      "path": "CARRIED_FIXES_RECEIPT.json",
+      "sha256": "04ad6bae78b9fafe576ea7e598b825f3d386feda7b73ed10f8a118623340a39b",
+      "bytes": 2845,
+      "rows": null
+    },
+    "CC_URSPAL_LATE_BELL.md": {
+      "path": "CC_URSPAL_LATE_BELL.md",
+      "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+      "bytes": 464,
+      "rows": null
+    },
+    "COHERENCE_PLACEMENT_LATENCY_RECEIPT.json": {
+      "path": "COHERENCE_PLACEMENT_LATENCY_RECEIPT.json",
+      "sha256": "5e4d327663933fbf8f4de3c70d8198d7bc7f01c5fe12cb8718d0f717602cb742",
+      "bytes": 258719,
+      "rows": null
+    },
+    "COHERENCE_TIMELINES.json": {
+      "path": "COHERENCE_TIMELINES.json",
+      "sha256": "95979994b551b661b1be5a37cee49bd61f97310c7864de976c6ff0048445213d",
+      "bytes": 2025079,
+      "rows": null
+    },
+    "CONTINUOUS_POST_ONLY_RECEIPT.json": {
+      "path": "CONTINUOUS_POST_ONLY_RECEIPT.json",
+      "sha256": "0b1f94cd463546c69936e2a91780fccdf57594c52856289f6ca69b99e5da1e89",
+      "bytes": 4876,
+      "rows": null
+    },
+    "CONTRACT_EXECUTION_RECEIPT.json": {
+      "path": "CONTRACT_EXECUTION_RECEIPT.json",
+      "sha256": "8bd6fa854f5e14b8bc1298339b9b32e4af31c94396646f9895fcafefd768f667",
+      "bytes": 241,
+      "rows": null
+    },
+    "CORPUS_CENSUS.json": {
+      "path": "CORPUS_CENSUS.json",
+      "sha256": "e17b8129f5f38080bed21d0d2c624b0e74519a62c4d0265f717cb57e75183a9e",
+      "bytes": 14140,
+      "rows": null
+    },
+    "CORPUS_INDEX.jsonl.gz": {
+      "path": "CORPUS_INDEX.jsonl.gz",
+      "sha256": "95bf613072446aa5d159255fa81515a25a7b629e287b7356acde62c952792fd8",
+      "bytes": 4892299,
+      "rows": null
+    },
+    "DEFINITION_REPAIR_SUMMARY.json": {
+      "path": "DEFINITION_REPAIR_SUMMARY.json",
+      "sha256": "db84f46d604fbaf828116971360ea46250f9832b44be4be5a698e26064825b15",
+      "bytes": 48692,
+      "rows": null
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "path": "DETERMINISM_RECEIPT.json",
+      "sha256": "8a5f589861bf2d5668745dd2219d48c65be60ae119960bacfcf198823b6715b2",
+      "bytes": 2804,
+      "rows": null
+    },
+    "DIAGNOSTIC_SUMMARY_RECEIPT.json": {
+      "path": "DIAGNOSTIC_SUMMARY_RECEIPT.json",
+      "sha256": "5cab32f5a41a24b739414f03c6d42c1bf9c86e054991cae03062bd5798bd083b",
+      "bytes": 75572,
+      "rows": null
+    },
+    "DISAGREES_OWN_EVIDENCE_RECEIPT.json": {
+      "path": "DISAGREES_OWN_EVIDENCE_RECEIPT.json",
+      "sha256": "3220814743db6a5199c8968001801de9e8695ed19012f536338f60a516e20a6c",
+      "bytes": 8167791,
+      "rows": null
+    },
+    "DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json": {
+      "path": "DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "sha256": "7debfaf6c2ac9e4cc9cfa3d761347d107d68ca60245e2b0b9020b19c6479b516",
+      "bytes": 36525113,
+      "rows": null
+    },
+    "ENVELOPE_HIGH_PROVENANCE_RECEIPT.json": {
+      "path": "ENVELOPE_HIGH_PROVENANCE_RECEIPT.json",
+      "sha256": "bb1b61c9a1902f0a00e7074b04ec4dbd7337f7918c4a9f2eaf2bf54ac08c832c",
+      "bytes": 992614,
+      "rows": null
+    },
+    "EVIDENCED_FLOOR_TENURE_TABLE.json": {
+      "path": "EVIDENCED_FLOOR_TENURE_TABLE.json",
+      "sha256": "0f1909a5f4b04845d861885bd7552dbdb42a4fdd4564ee3152702d633fe62f3e",
+      "bytes": 74665,
+      "rows": null
+    },
+    "EVIDENCE_ONLY_LEVEL_MOVEMENT_RECEIPT.json": {
+      "path": "EVIDENCE_ONLY_LEVEL_MOVEMENT_RECEIPT.json",
+      "sha256": "a68585db5584918083087cb868950aa253168dfc315e5570d1108bc318fdbce9",
+      "bytes": 1383080,
+      "rows": null
+    },
+    "EXTERNAL_CUSTODY_MANIFEST.json": {
+      "path": "EXTERNAL_CUSTODY_MANIFEST.json",
+      "sha256": "38638a830d7393a492cde933d9841105acdf90752b7dbcf166ff7b64cc402eaa",
+      "bytes": 4087,
+      "rows": null
+    },
+    "FILL_HANDOFF_RECEIPT.json": {
+      "path": "FILL_HANDOFF_RECEIPT.json",
+      "sha256": "cfb62da9b751e53c566d3b9642accfbb97ea63202cb4e8b7d92f9b6a0d774fd3",
+      "bytes": 12954,
+      "rows": null
+    },
+    "FLOOR_CAPABLE_LANE_RECEIPT.json": {
+      "path": "FLOOR_CAPABLE_LANE_RECEIPT.json",
+      "sha256": "5d2bdc4dda08cc2b7beab0894447bdc6532e747195ba465ca2146b0cbf7b2578",
+      "bytes": 75388,
+      "rows": null
+    },
+    "FLOOR_DEFINITION_ALL_ROWS_CHECK.json": {
+      "path": "FLOOR_DEFINITION_ALL_ROWS_CHECK.json",
+      "sha256": "f2ac38913f8bf2b00a1c868639de5899dbe88d07d46c38d8fcfdd41042e3b63d",
+      "bytes": 443371,
+      "rows": null
+    },
+    "FLOOR_REST_PROTECTION_RECEIPT.json": {
+      "path": "FLOOR_REST_PROTECTION_RECEIPT.json",
+      "sha256": "f42acf68ab277cf31b0f5fb549667cbff32acbab14b5305e44cfe5f52c99d650",
+      "bytes": 3497027,
+      "rows": null
+    },
+    "FLOOR_TIME_BINDING_COVERAGE.json": {
+      "path": "FLOOR_TIME_BINDING_COVERAGE.json",
+      "sha256": "68a7fb7501068cb25d4a1533c1ff195982689466c76dc4d7b02bdd0c79c87811",
+      "bytes": 2345,
+      "rows": null
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+      "bytes": 465,
+      "rows": null
+    },
+    "FOUNDATION_COVERAGE_BEFORE_AFTER.json": {
+      "path": "FOUNDATION_COVERAGE_BEFORE_AFTER.json",
+      "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+      "bytes": 593,
+      "rows": null
+    },
+    "FOUNDATION_LIBRARY.jsonl.gz": {
+      "path": "FOUNDATION_LIBRARY.jsonl.gz",
+      "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+      "bytes": 2159635,
+      "rows": null
+    },
+    "FOUNDATION_LIBRARY_RECEIPT.json": {
+      "path": "FOUNDATION_LIBRARY_RECEIPT.json",
+      "sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5",
+      "bytes": 3558,
+      "rows": null
+    },
+    "FOUR_STORIES.md": {
+      "path": "FOUR_STORIES.md",
+      "sha256": "2858dbbbba2d1b79d93e3ac94e6c18250f794102c12841ae8fbd3b695c9d325d",
+      "bytes": 2848808,
+      "rows": null
+    },
+    "FOUR_STORIES_RECEIPT.json": {
+      "path": "FOUR_STORIES_RECEIPT.json",
+      "sha256": "28f3856c109934426f48fe5f5223a7e23604e9277d7952664b678f348fcda8e4",
+      "bytes": 124754,
+      "rows": null
+    },
+    "FUNCTIONALITY_RECEIPT.json": {
+      "path": "FUNCTIONALITY_RECEIPT.json",
+      "sha256": "df6b15f1546ef5983c8efb2fa6fb92c4265a5b1e52e56bd5a68b396a6c82c025",
+      "bytes": 24194,
+      "rows": null
+    },
+    "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz": {
+      "path": "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+      "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+      "bytes": 1668883,
+      "rows": null
+    },
+    "FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json": {
+      "path": "FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json",
+      "sha256": "cfe59471d2df7fb9a5d18440099c4df1e5f2fed0cf351e9b4f9ede24739666e1",
+      "bytes": 1112,
+      "rows": null
+    },
+    "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md": {
+      "path": "GIUBAR_ENVELOPE_PLACEMENT_SENTENCES.md",
+      "sha256": "27730004f491cf55598cbfa33061f1eedc6986b9535b02bcc9b583c10b482c63",
+      "bytes": 51,
+      "rows": null
+    },
+    "HONEST_GATE_COUNTEREXAMPLE_RECEIPT.json": {
+      "path": "HONEST_GATE_COUNTEREXAMPLE_RECEIPT.json",
+      "sha256": "c35a3d3ab2da4f2d2ee35315278c5f1d3cf4cd5ad62d14575bc5fc3065f2c49e",
+      "bytes": 14693,
+      "rows": null
+    },
+    "INCONSISTENT_Q50_ROOT_CAUSE_RECEIPT.json": {
+      "path": "INCONSISTENT_Q50_ROOT_CAUSE_RECEIPT.json",
+      "sha256": "2c46f2b072401e5b23e14625b0c8447a4e631efa39f2eea3e96a969233f9d9da",
+      "bytes": 1417425,
+      "rows": null
+    },
+    "INSIDE_SPREAD_REACH_RECEIPT.json": {
+      "path": "INSIDE_SPREAD_REACH_RECEIPT.json",
+      "sha256": "049e64ad8abf0439cd78f1f92f4b48053a4f5ddfa660e6dabd6ebff3a37ff473",
+      "bytes": 46351533,
+      "rows": null
+    },
+    "LAJ_FLOOR_MOMENT_BELIEF_INPUTS.json": {
+      "path": "LAJ_FLOOR_MOMENT_BELIEF_INPUTS.json",
+      "sha256": "c2b3060d9eec9dc56a9f13a4468b313df3cbb08244f724fe1e664712dd9bbeee",
+      "bytes": 16379,
+      "rows": null
+    },
+    "LAWFUL_INCOMPLETE_RECEIPT.json": {
+      "path": "LAWFUL_INCOMPLETE_RECEIPT.json",
+      "sha256": "4c4d15cbe7e2020946399a2b2c1d91679112e966b045e806d12d7888519ac368",
+      "bytes": 45527,
+      "rows": null
+    },
+    "LAYERED_DUAL_BELIEF_RECEIPT.json": {
+      "path": "LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "sha256": "490939b5651218cd7a84d6259c7518aa6096c494f01cf13f1d889f86ea21cc6a",
+      "bytes": 2131541,
+      "rows": null
+    },
+    "LIBRARY_BELL_BOUND_RECEIPT.json": {
+      "path": "LIBRARY_BELL_BOUND_RECEIPT.json",
+      "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+      "bytes": 15882,
+      "rows": null
+    },
+    "LITERAL_BOOLEAN_AUDIT.json": {
+      "path": "LITERAL_BOOLEAN_AUDIT.json",
+      "sha256": "d54f274b1a1388983ba62c7f524b916af1134fd764c3fbd1a11e79b0574f831b",
+      "bytes": 179835,
+      "rows": null
+    },
+    "LIVE_TOUCH_CONSUMPTION_RECEIPT.json": {
+      "path": "LIVE_TOUCH_CONSUMPTION_RECEIPT.json",
+      "sha256": "0587f53cb2a351ec3acd1aee4615a04eedea682b7e3bf3d614da33a1310619d0",
+      "bytes": 554,
+      "rows": null
+    },
+    "LOW_SOURCE_REPRICE_RECEIPT.json": {
+      "path": "LOW_SOURCE_REPRICE_RECEIPT.json",
+      "sha256": "395c3808964cc1c28a6c0ac418fa5a266b35a5a884dccda9ca3b02154eff2222",
+      "bytes": 689,
+      "rows": null
+    },
+    "NEIGHBOR_SPECIALIST_BINDING.json": {
+      "path": "NEIGHBOR_SPECIALIST_BINDING.json",
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13",
+      "bytes": 11374669,
+      "rows": null
+    },
+    "NO_ENVELOPE_TOUCH_LANE_CENSUS.json": {
+      "path": "NO_ENVELOPE_TOUCH_LANE_CENSUS.json",
+      "sha256": "b9a72b0b26a535e4fc4e8ea4d711d662508149b0572eb72837bd318f9e1a9f4b",
+      "bytes": 2728,
+      "rows": null
+    },
+    "ONE_AUTHOR_AUTHORITY_RECEIPT.json": {
+      "path": "ONE_AUTHOR_AUTHORITY_RECEIPT.json",
+      "sha256": "c455adfb14466183eabfe10acc90a21f6faf5b633cdaa94ee843a863f02b1ee0",
+      "bytes": 2831676,
+      "rows": null
+    },
+    "ONE_DECISION_PER_RECEIPT.json": {
+      "path": "ONE_DECISION_PER_RECEIPT.json",
+      "sha256": "64599fb879d9574b77e095767f2b7e79ed2f955f0c5cf94152c288fa760dabb8",
+      "bytes": 172402,
+      "rows": null
+    },
+    "OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json": {
+      "path": "OWN_EVIDENCE_INSIDE_AUTHOR_RECEIPT.json",
+      "sha256": "ef53a202f4b32e802244179d7577577ee2d578d14d7cbe465505c576dbb9533d",
+      "bytes": 1101335,
+      "rows": null
+    },
+    "PAR_ALLOCATION_HEADROOM_RECEIPT.json": {
+      "path": "PAR_ALLOCATION_HEADROOM_RECEIPT.json",
+      "sha256": "bd18ec1eb5da0abc3d9f417eaee621cd5ca05b47a9098e0f733b92d064d7b33c",
+      "bytes": 1383290,
+      "rows": null
+    },
+    "PHASE_CENTRAL_ESTIMATE_SURFACE.json": {
+      "path": "PHASE_CENTRAL_ESTIMATE_SURFACE.json",
+      "sha256": "52667e215dc0ef6bf393e23d3acd6c78d24809cbabc5b0e0aa82088fc5a5f557",
+      "bytes": 8497,
+      "rows": null
+    },
+    "POST_ONLY_OWN_TARGET_RECEIPT.json": {
+      "path": "POST_ONLY_OWN_TARGET_RECEIPT.json",
+      "sha256": "9f836a738ed2b13898340273112f3bb80839fb536fcbf5e7018d5db91181c514",
+      "bytes": 698604,
+      "rows": null
+    },
+    "POST_ONLY_VETO_NO_ASK_TICK_ORDER_RECEIPT.json": {
+      "path": "POST_ONLY_VETO_NO_ASK_TICK_ORDER_RECEIPT.json",
+      "sha256": "0faf9a7b2f50620e7c95c70c5740bea08391517c6c864c2b5feb719217f72c9f",
+      "bytes": 10637,
+      "rows": null
+    },
+    "PRICING_AUTHORITY_RECEIPT.json": {
+      "path": "PRICING_AUTHORITY_RECEIPT.json",
+      "sha256": "f999a33bd40596caad3242bbd8762693afbcdd377bfda8b5eeed78ac211a9ea2",
+      "bytes": 49542280,
+      "rows": null
+    },
+    "PRINT_PRICED_RESIDUE_SWEEP.json": {
+      "path": "PRINT_PRICED_RESIDUE_SWEEP.json",
+      "sha256": "73a60d0b9ff9f71a87cff737fbe1cc5fb63e9cab6f436a12599d468d913eb516",
+      "bytes": 1370,
+      "rows": null
+    },
+    "PROCESS_FIRST_CONFIRM.md": {
+      "path": "PROCESS_FIRST_CONFIRM.md",
+      "sha256": "bcacf8a130e8d52efa0f966954f5ff041f8949247017cfa562a2d11303e5aff9",
+      "bytes": 2255446,
+      "rows": null
+    },
+    "PROCESS_FIRST_CONFIRM_RECEIPT.json": {
+      "path": "PROCESS_FIRST_CONFIRM_RECEIPT.json",
+      "sha256": "35cc0a1a62bfc16b63cebe3b2955dce39f4e45b319b6fcee3cf05d8825cd0642",
+      "bytes": 1923860,
+      "rows": null
+    },
+    "RECEIPT_PRODUCER_COVERAGE.json": {
+      "path": "RECEIPT_PRODUCER_COVERAGE.json",
+      "sha256": "751d65aef782b0dd2367b5aa83bdfac71dd90bff115039d2f0da67273e7d666c",
+      "bytes": 22516,
+      "rows": null
+    },
+    "REPAIR_GATE_RECEIPT.json": {
+      "path": "REPAIR_GATE_RECEIPT.json",
+      "sha256": "f797da373bd291702c3a20b5a5194c26c33261e510a7729197323cddc5f421b4",
+      "bytes": 213341,
+      "rows": null
+    },
+    "REST_PRICED_CREDITING_RECEIPT.json": {
+      "path": "REST_PRICED_CREDITING_RECEIPT.json",
+      "sha256": "49e1638c888ec50d770a8fa6842e7c774659b9d8c05432059fa2612c4f81a53a",
+      "bytes": 2823,
+      "rows": null
+    },
+    "SMOKE_CRIJEA.md": {
+      "path": "SMOKE_CRIJEA.md",
+      "sha256": "509be607c760ad1ba8247e021f2500148dbfd316bf4d957843af78c6cb292a4e",
+      "bytes": 20484687,
+      "rows": null
+    },
+    "SMOKE_CRIJEA_RECEIPT.json": {
+      "path": "SMOKE_CRIJEA_RECEIPT.json",
+      "sha256": "1ad55e5bc0abfa7a72c3104006ae5cd6a9143d9c5ca3149210edad93ba32cd0f",
+      "bytes": 1077087,
+      "rows": null
+    },
+    "SOURCE_RECEIPTS.json": {
+      "path": "SOURCE_RECEIPTS.json",
+      "sha256": "25bc2bb4017afd175bdbc8a080b3c6d867f9de7d33268c7a9d92a86016d203f4",
+      "bytes": 59129,
+      "rows": null
+    },
+    "SPREAD_EYE_RECEIPT.json": {
+      "path": "SPREAD_EYE_RECEIPT.json",
+      "sha256": "2741788cdc8c5bf8d677ff38c4432815bae024d7e8bb1d5300c2165805955056",
+      "bytes": 2735342,
+      "rows": null
+    },
+    "SURVIVOR_FLOOR_MOMENT_SEPARATION.json": {
+      "path": "SURVIVOR_FLOOR_MOMENT_SEPARATION.json",
+      "sha256": "eda068aca0dce29b5665245d1b9b3a5724a860d9aa271f3c38bbce7392d6cd32",
+      "bytes": 26410,
+      "rows": null
+    },
+    "SURVIVOR_SHAPE_LIBRARY_BINDING.json": {
+      "path": "SURVIVOR_SHAPE_LIBRARY_BINDING.json",
+      "sha256": "774d07d4f110a7b39fd1995c9d82f0704a3a1d1198c945ec63e5d5d21e085620",
+      "bytes": 1587,
+      "rows": null
+    },
+    "SURVIVOR_SHAPE_TRAJECTORIES.json": {
+      "path": "SURVIVOR_SHAPE_TRAJECTORIES.json",
+      "sha256": "cc75b9139125451b9acea726cf14f4ae2649faca7e711700399fa88c0559a2dc",
+      "bytes": 52629,
+      "rows": null
+    },
+    "TARGET_PRINTS_5.jsonl.gz": {
+      "path": "TARGET_PRINTS_5.jsonl.gz",
+      "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+      "bytes": 1224927,
+      "rows": null
+    },
+    "TECHNIQUE_CONTRACTS_RECEIPT.json": {
+      "path": "TECHNIQUE_CONTRACTS_RECEIPT.json",
+      "sha256": "20377b90fe8a4341313dba0f1ceea10a0eaa7a5f2e96fe562825a897b189c603",
+      "bytes": 9062360,
+      "rows": null
+    },
+    "TOUCH_SUBORDINATION_RECEIPT.json": {
+      "path": "TOUCH_SUBORDINATION_RECEIPT.json",
+      "sha256": "0544d7b880c01cd4d5730046a48ba2f011e225da887a5663646d862a8740c455",
+      "bytes": 686,
+      "rows": null
+    },
+    "TRADED_LOW_SHAPE_SUPPORT_BINDING.json": {
+      "path": "TRADED_LOW_SHAPE_SUPPORT_BINDING.json",
+      "sha256": "95c8fcecbf3cc095bd153039d0fa6b48fddee6f28b9a221f464d250f8423fb79",
+      "bytes": 28093,
+      "rows": null
+    },
+    "TRADE_REPORT_FOUR.json": {
+      "path": "TRADE_REPORT_FOUR.json",
+      "sha256": "59150d041b45c87c71e53384a26374643543fb25432b1f1116911caf170b074f",
+      "bytes": 1142070,
+      "rows": null
+    },
+    "TRADE_REPORT_FOUR.md": {
+      "path": "TRADE_REPORT_FOUR.md",
+      "sha256": "da215abb3ec659b0c12368694f5bd36a65ea1d2f0f1653c3f6d26f680c22d145",
+      "bytes": 932475,
+      "rows": null
+    },
+    "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json": {
+      "path": "TRUE_BELL_CELL_DEPTH_MAP_BINDING.json",
+      "sha256": "5d8a72fb88d1ce35b66828d675a98fd96fd21d4324f0ebf7c1e5c811a8e4b5f4",
+      "bytes": 3232,
+      "rows": null
+    },
+    "WORKTREE_LARGE_UNTRACKED_CENSUS.json": {
+      "path": "WORKTREE_LARGE_UNTRACKED_CENSUS.json",
+      "sha256": "a239ed8f529002fee1205df69de8dd111ff00c54f29933ea400f30324ea69ad8",
+      "bytes": 2525,
+      "rows": null
+    }
+  }
+}

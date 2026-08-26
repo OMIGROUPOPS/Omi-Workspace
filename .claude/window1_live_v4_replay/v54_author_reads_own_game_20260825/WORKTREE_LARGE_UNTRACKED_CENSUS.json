@@ -1,0 +1,58 @@
+{
+  "label": "F_V53_074_WORKTREE_LARGE_UNTRACKED_CENSUS",
+  "threshold_bytes_exclusive": 10485760,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_author_reads_own_game_20260825/ATOMIC_REARM_RECEIPT.json",
+      "bytes": 15069148,
+      "sha256": "921ab3fc4ba3980bc8e2052959a0c3db91d945dd9743d4be193d9b5cfd4f1f67"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_author_reads_own_game_20260825/CARRIED_CONVICTION_RECEIPT.json",
+      "bytes": 66254426,
+      "sha256": "253da95a87c2c873a061ae4d8340b977b5ea9b1b1343826811ad523135613f85"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_author_reads_own_game_20260825/DUPLICATE_TIMESTAMP_BOOK_SELECTION_RECEIPT.json",
+      "bytes": 36525113,
+      "sha256": "7debfaf6c2ac9e4cc9cfa3d761347d107d68ca60245e2b0b9020b19c6479b516"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_author_reads_own_game_20260825/ENVELOPE_PLACEMENT_RECEIPT.json",
+      "bytes": 77678720,
+      "sha256": "d06872d0a24e912d857aadb9f2a3eecd53a98338e6afb85c03ce37c3ec677e3d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_author_reads_own_game_20260825/INSIDE_SPREAD_REACH_RECEIPT.json",
+      "bytes": 46351533,
+      "sha256": "049e64ad8abf0439cd78f1f92f4b48053a4f5ddfa660e6dabd6ebff3a37ff473"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_author_reads_own_game_20260825/NARROWING_AND_PROPOSAL_SUPERVISOR_RECEIPT.json",
+      "bytes": 110716752,
+      "sha256": "aa08df28f0ff37da35b85bafb7f4a966593c6adee74e0cf2f3f086d109129f82"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_author_reads_own_game_20260825/NEIGHBOR_SPECIALIST_BINDING.json",
+      "bytes": 11374669,
+      "sha256": "514b59755555d25240ff28133cac55e0110e22891695284034514dfceddd7a13"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_author_reads_own_game_20260825/PRICING_AUTHORITY_RECEIPT.json",
+      "bytes": 49542280,
+      "sha256": "f999a33bd40596caad3242bbd8762693afbcdd377bfda8b5eeed78ac211a9ea2"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_author_reads_own_game_20260825/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "bytes": 66598733,
+      "sha256": "d791516c811ea75f210bc930a7d7d9e70529c433cbaf6890eb5cd2c4851d5d8f"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_author_reads_own_game_20260825/SMOKE_CRIJEA.md",
+      "bytes": 20484687,
+      "sha256": "509be607c760ad1ba8247e021f2500148dbfd316bf4d957843af78c6cb292a4e"
+    }
+  ],
+  "count": 10,
+  "bytes": 500596061
+}

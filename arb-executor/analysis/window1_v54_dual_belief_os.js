@@ -1200,14 +1200,20 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, p
   const byMinutes = deadline?.deadline_minutes_to_bell ?? null;
   const volume = round2(Math.log1p(sum(Object.values(reads.volume.value).map((row) => row.contracts))));
   const formationComplete = Number.isFinite(reads.anchor_settle.value.formation_progress[legId]) && reads.anchor_settle.value.formation_progress[legId] >= 1;
-  const beliefPrice = formationComplete && liveBid && liveAsk && liveBid < liveAsk ? Math.floor((liveBid + liveAsk) / 2) : null;
-  const beliefPriceBasis = beliefPrice ? "SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK" : null;
+  const beliefPrice = formationComplete
+    && Number.isInteger(envelopeHigh)
+    && envelopeHighBasis === "OBSERVED_TRUE_TRADE_LOW"
+    && Boolean(envelopeHighReceipt)
+    ? envelopeHigh
+    : null;
+  const beliefPriceBasis = beliefPrice === null ? null : envelopeHighBasis;
   const bookReceipt = reads.books.value[legId]?.receipt ?? null;
   const microResolved = macroStatus === "RESOLVED"
     && formationComplete
     && Number.isInteger(predicted)
     && Number.isInteger(readerLevel)
     && Number.isInteger(beliefPrice)
+    && Boolean(envelopeHighReceipt)
     && Number.isInteger(liveBid)
     && Number.isInteger(liveAsk)
     && liveBid < liveAsk
@@ -1221,7 +1227,7 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, p
     ? `${topNeighbor.event_id}@${round2(topNeighbor.score)} [${topNeighbor.quality}/${topNeighbor.grain ?? "UNKNOWN"}; MACRO/MICRO; ${topNeighbor.citation_receipt_id}]`
     : "NO_GRADED_NEIGHBOR";
   const plain = microResolved
-    ? `believes ${legId} at ${beliefPrice}¢ [${beliefPriceBasis}; bid=${liveBid}¢; ask=${liveAsk}¢; book-receipt=${bookReceipt}] at ${minutesToBell ?? "UNKNOWN"}min-to-bell with ${volume ?? "UNKNOWN"} vol_log1p in ${state.category}, using ${store} + ${neighborName}, SHOULD drift to ${predicted}¢ by ${byMinutes ?? "UNKNOWN"}min-to-bell [PHASE_CENTRAL_ESTIMATE=${conditionedPrior?.phase_central_estimate?.q50_cents ?? "UNKNOWN"}¢; CENTRAL_ESTIMATE_RANK=${conditionedPrior?.phase_central_estimate?.estimate_rank_in_population ?? "UNKNOWN"}; CENTRAL_MEMBERS=${conditionedPrior?.phase_central_estimate?.members ?? "UNKNOWN"}; CENTRAL_CELL=${conditionedPrior?.phase_central_estimate?.phase_band ?? "UNKNOWN"}; deadline-epoch=${deadline?.deadline_epoch ?? "UNKNOWN"}; deadline-emitted-now=${deadline?.emitted_at_epoch ?? "UNKNOWN"}; deadline-receipt=${deadline?.emitted_at_receipt ?? "UNKNOWN"}]`
+    ? `believes ${legId} at ${beliefPrice}¢ [${beliefPriceBasis}; evidenced-receipt=${envelopeHighReceipt}] at ${minutesToBell ?? "UNKNOWN"}min-to-bell with ${volume ?? "UNKNOWN"} vol_log1p in ${state.category}, using ${store} + ${neighborName}, SHOULD drift to ${predicted}¢ by ${byMinutes ?? "UNKNOWN"}min-to-bell [PHASE_CENTRAL_ESTIMATE=${conditionedPrior?.phase_central_estimate?.q50_cents ?? "UNKNOWN"}¢; CENTRAL_ESTIMATE_RANK=${conditionedPrior?.phase_central_estimate?.estimate_rank_in_population ?? "UNKNOWN"}; CENTRAL_MEMBERS=${conditionedPrior?.phase_central_estimate?.members ?? "UNKNOWN"}; CENTRAL_CELL=${conditionedPrior?.phase_central_estimate?.phase_band ?? "UNKNOWN"}; deadline-epoch=${deadline?.deadline_epoch ?? "UNKNOWN"}; deadline-emitted-now=${deadline?.emitted_at_epoch ?? "UNKNOWN"}; deadline-receipt=${deadline?.emitted_at_receipt ?? "UNKNOWN"}]`
     : null;
   return {
     leg_id: legId,

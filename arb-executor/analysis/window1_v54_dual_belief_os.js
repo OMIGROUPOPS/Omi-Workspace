@@ -2577,7 +2577,66 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
           chosen_target_cents: active,
         };
       } else if (!postable) {
-        ladderClip.disposition = "POST_ONLY_VETO_SKIP_CLIP_BASELINE_PRESERVED";
+        const survivingRungs = [...new Set((ladderClip.current_levels_cents ?? [])
+          .map((value) => cent(value))
+          .filter((value) => Number.isInteger(value)))]
+          .sort((a, b) => a - b);
+        const nextLiveRung = survivingRungs
+          .filter((value) => value < clipAsk)
+          .at(-1) ?? null;
+        const currentRestOnLadder = Number.isInteger(active) && survivingRungs.includes(active);
+        const rungPairSum = Number.isInteger(nextLiveRung) && Number.isInteger(siblingCommitment)
+          ? nextLiveRung + siblingCommitment
+          : null;
+        const rungPairBlocked = Number.isInteger(rungPairSum) && rungPairSum > base.PAR_BUDGET_CENTS;
+        Object.assign(ladderClip, {
+          q_pair_sum_cents: clipPairSum,
+          next_live_rung_cents: nextLiveRung,
+          next_live_rung_on_ladder: Number.isInteger(nextLiveRung) && survivingRungs.includes(nextLiveRung),
+          current_rest_on_ladder: currentRestOnLadder,
+          pair_sum_cents: rungPairSum,
+          pair_veto_blocked: rungPairBlocked,
+        });
+        if (rungPairBlocked) {
+          target = active;
+          allocation.targets[legId] = active;
+          ladderClip.disposition = "PAIR_VETO_SKIP_NEXT_LIVE_RUNG_HOLD_EXISTING_REST_AND_CONTINUE";
+          envelopePlacement[legId] = {
+            ...envelopePlacement[legId],
+            mode: "LADDER_SHRINK_NEXT_LIVE_RUNG_PAIR_VETO_HOLD",
+            writer_lane: Number.isInteger(active) ? "ACTIVE_REST_HOLD" : "NO_ACTION",
+            ladder_q_clip: ladderClip,
+            chosen_target_cents: active,
+          };
+        } else if (Number.isInteger(nextLiveRung)) {
+          target = nextLiveRung;
+          allocation.targets[legId] = nextLiveRung;
+          ladderClip.disposition = nextLiveRung === active
+            ? "NEXT_LIVE_RUNG_ALREADY_STANDING"
+            : "Q_UNPOSTABLE_NEXT_LIVE_RUNG_ADMITTED";
+          envelopePlacement[legId] = {
+            ...envelopePlacement[legId],
+            mode: "LADDER_SHRINK_NEXT_LIVE_RUNG_ADMITTED",
+            writer_lane: "LADDER_SHRINK_NEXT_LIVE_RUNG_WRITER",
+            ladder_q_clip: ladderClip,
+            active_target_before_cents: active,
+            chosen_target_cents: nextLiveRung,
+            post_only_test: { target_cents: nextLiveRung, live_ask_cents: clipAsk, lawful: true, predicate: "TARGET_CENTS_LT_LIVE_ASK_CENTS" },
+          };
+        } else {
+          target = active;
+          allocation.targets[legId] = active;
+          ladderClip.disposition = currentRestOnLadder
+            ? "NO_LOWER_LIVE_RUNG_CURRENT_LADDER_REST_HELD"
+            : "NO_LOWER_LIVE_RUNG_HOLD_WITHOUT_DIVE";
+          envelopePlacement[legId] = {
+            ...envelopePlacement[legId],
+            mode: "LADDER_SHRINK_NO_LIVE_RUNG_HOLD",
+            writer_lane: Number.isInteger(active) ? "ACTIVE_REST_HOLD" : "NO_ACTION",
+            ladder_q_clip: ladderClip,
+            chosen_target_cents: active,
+          };
+        }
       } else {
         target = clipTarget;
         allocation.targets[legId] = clipTarget;
@@ -2602,6 +2661,12 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         ? "Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK"
       : placementMode === "LADDER_SHRINK_Q_CLIP_PAIR_VETO_HOLD"
         ? "PAIR_VETO_SKIPS_LADDER_CLIP_AND_HOLDS_WITHOUT_ABORT"
+      : placementMode === "LADDER_SHRINK_NEXT_LIVE_RUNG_ADMITTED"
+        ? "Q_UNPOSTABLE_NEXT_SURVIVING_LADDER_RUNG_BELOW_ASK_ADMITTED"
+      : placementMode === "LADDER_SHRINK_NEXT_LIVE_RUNG_PAIR_VETO_HOLD"
+        ? "PAIR_VETO_SKIPS_NEXT_LIVE_RUNG_AND_HOLDS_WITHOUT_ABORT"
+      : placementMode === "LADDER_SHRINK_NO_LIVE_RUNG_HOLD"
+        ? "NO_SURVIVING_LADDER_RUNG_BELOW_ASK_HOLD_WITHOUT_DIVE"
       : placementMode === "PREDICTION_SEAT_IMMUNITY_HOLD_FROM_SEATING"
         ? "PREDICTION_SEAT_IMMUNE_UNTIL_TRACED_SUPPORT_OVERTURN_OR_OWN_DEADLINE_EXPIRY"
       : placementMode === "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR"

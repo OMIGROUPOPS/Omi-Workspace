@@ -1309,6 +1309,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
   if (!state.dual_belief.carried_convictions) state.dual_belief.carried_convictions = {};
   if (!state.dual_belief.conviction_history) state.dual_belief.conviction_history = [];
   if (!state.dual_belief.prediction_seats_by_leg) state.dual_belief.prediction_seats_by_leg = {};
+  if (!state.dual_belief.ladder_clip_by_leg) state.dual_belief.ladder_clip_by_leg = {};
   delete state.dual_belief.floor_rest_tenure_by_leg;
   delete state.dual_belief.floor_rest_tenure_history;
   // F-VS-148..152: the persistent first-guess floor_rest_locks state is retired.
@@ -1344,6 +1345,35 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
   const beliefs = {};
   const pricingAuthorities = Object.fromEntries(readIds.map((id) => [id, pricingAuthorityForLeg({ state, legId: id, baseRow: baseRows.get(id), spreadEye: spreadEyes[id], criterion: survivorUpdate.legs[id]?.target_criterion ?? null })]));
   for (const legId of readIds) beliefs[legId] = beliefForLeg({ state, reads, neighborhood, baseRow: baseRows.get(legId), conditionedPrior: conditionedPriors[legId], pricingAuthority: pricingAuthorities[legId], legId, macroStatus, macroFamily: macroFamilies[legId] });
+  const ladderClips = {};
+  for (const legId of readIds) {
+    const levels = [...new Set((survivorUpdate.legs[legId]?.target_criterion?.candidate_final_floor_levels_cents ?? []).filter(Number.isInteger))].sort((a, b) => a - b);
+    const memory = state.dual_belief.ladder_clip_by_leg[legId] ?? null;
+    if (memory?.evaluated_at_receipt === state.receipt) {
+      ladderClips[legId] = memory.clip;
+      continue;
+    }
+    const priorLevels = memory?.current_levels_cents ?? null;
+    const q = cent(beliefs[legId]?.predicted_cents);
+    const runningLow = cent(survivorUpdate.legs[legId]?.target_criterion?.observed_traded_low_cents);
+    const ladderShrank = Array.isArray(priorLevels) && levels.length < priorLevels.length;
+    const clip = {
+      leg_id: legId,
+      receipt: state.receipt,
+      prior_levels_cents: priorLevels,
+      current_levels_cents: levels,
+      prior_size: Array.isArray(priorLevels) ? priorLevels.length : null,
+      current_size: levels.length,
+      ladder_shrank: ladderShrank,
+      q_cents: q,
+      running_true_trade_low_cents: runningLow,
+      q_at_or_above_running_low: Number.isInteger(q) && Number.isInteger(runningLow) && q >= runningLow,
+      eligible_before_postability_and_pair_veto: Boolean(ladderShrank && Number.isInteger(q) && Number.isInteger(runningLow) && q >= runningLow),
+      disposition: ladderShrank ? "OBSERVED_LADDER_CLIP_PENDING_EXECUTION_CHECKS" : "NO_LADDER_CLIP",
+    };
+    ladderClips[legId] = clip;
+    state.dual_belief.ladder_clip_by_leg[legId] = { evaluated_at_receipt: state.receipt, current_levels_cents: levels, clip };
+  }
   const microResolved = macroResolved && readIds.every((id) => beliefs[id].status === "RESOLVED");
   const microStatus = microResolved ? "RESOLVED" : "INSUFFICIENT_EVIDENCE";
   const microReceipt = layerReceipt(state, "MICRO", microStatus, readIds.flatMap((id) => [beliefs[id].book_receipt, beliefs[id].top_neighbor?.citation_receipt_id]), {
@@ -2515,9 +2545,63 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         };
       }
     }
+    const ladderClip = ladderClips[legId] ?? null;
+    if (ladderClip?.eligible_before_postability_and_pair_veto) {
+      const clipTarget = cent(ladderClip.q_cents);
+      const clipAsk = cent(reads.books.value[legId]?.ask_cents);
+      const siblingId = state.leg_ids.find((id) => id !== legId);
+      const siblingHalfPair = reads.half_pair_state.value.legs[siblingId];
+      const siblingCommitment = siblingHalfPair.credited
+        ? cent(siblingHalfPair.entry_cents)
+        : cent(siblingHalfPair.standing_target_cents);
+      const clipPairSum = Number.isInteger(siblingCommitment) ? clipTarget + siblingCommitment : null;
+      const pairBlocked = Number.isInteger(clipPairSum) && clipPairSum > base.PAR_BUDGET_CENTS;
+      const postable = Number.isInteger(clipAsk) && clipTarget < clipAsk;
+      Object.assign(ladderClip, {
+        sibling_leg_id: siblingId,
+        sibling_commitment_cents: siblingCommitment,
+        pair_sum_cents: clipPairSum,
+        pair_veto_blocked: pairBlocked,
+        live_ask_cents: clipAsk,
+        postable,
+      });
+      if (pairBlocked) {
+        target = active;
+        allocation.targets[legId] = active;
+        ladderClip.disposition = "PAIR_VETO_SKIP_CLIP_HOLD_EXISTING_REST_AND_CONTINUE";
+        envelopePlacement[legId] = {
+          ...envelopePlacement[legId],
+          mode: "LADDER_SHRINK_Q_CLIP_PAIR_VETO_HOLD",
+          writer_lane: Number.isInteger(active) ? "ACTIVE_REST_HOLD" : "NO_ACTION",
+          ladder_q_clip: ladderClip,
+          chosen_target_cents: active,
+        };
+      } else if (!postable) {
+        ladderClip.disposition = "POST_ONLY_VETO_SKIP_CLIP_BASELINE_PRESERVED";
+      } else {
+        target = clipTarget;
+        allocation.targets[legId] = clipTarget;
+        ladderClip.disposition = target === active ? "CLIP_TARGET_ALREADY_STANDING" : "LADDER_SHRINK_Q_CLIP_ADMITTED";
+        envelopePlacement[legId] = {
+          ...envelopePlacement[legId],
+          mode: "LADDER_SHRINK_Q_CLIP_ADMITTED",
+          writer_lane: "LADDER_SHRINK_Q_CLIP_WRITER",
+          ladder_q_clip: ladderClip,
+          active_target_before_cents: active,
+          chosen_target_cents: clipTarget,
+          post_only_test: { target_cents: clipTarget, live_ask_cents: clipAsk, lawful: true, predicate: "TARGET_CENTS_LT_LIVE_ASK_CENTS" },
+        };
+      }
+      if (!allocation.ladder_q_clips) allocation.ladder_q_clips = {};
+      allocation.ladder_q_clips[legId] = ladderClip;
+    }
     const placementMode = envelopePlacement[legId]?.mode;
     const reason = placementMode === "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
         ? "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT"
+      : placementMode === "LADDER_SHRINK_Q_CLIP_ADMITTED"
+        ? "Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK"
+      : placementMode === "LADDER_SHRINK_Q_CLIP_PAIR_VETO_HOLD"
+        ? "PAIR_VETO_SKIPS_LADDER_CLIP_AND_HOLDS_WITHOUT_ABORT"
       : placementMode === "PREDICTION_SEAT_IMMUNITY_HOLD_FROM_SEATING"
         ? "PREDICTION_SEAT_IMMUNE_UNTIL_TRACED_SUPPORT_OVERTURN_OR_OWN_DEADLINE_EXPIRY"
       : placementMode === "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR"
@@ -2600,7 +2684,9 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       };
     }
     const explicitWriter = envelopePlacement[legId]?.writer_lane ?? null;
-    const derivedWinner = placementMode === "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+    const derivedWinner = placementMode === "LADDER_SHRINK_Q_CLIP_ADMITTED"
+      ? "LADDER_SHRINK_Q_CLIP_WRITER"
+      : placementMode === "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
       ? "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE"
       : placementMode === "PREDICTION_SEAT_IMMUNITY_HOLD_FROM_SEATING"
       ? "PREDICTION_SEAT_IMMUNITY"
@@ -2625,6 +2711,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       POST_ONLY_CONTINUOUS_VETO: placementMode === "CONTINUOUS_POST_ONLY_CANCEL_CROSSED_STANDING_REST",
       PREDICTION_SEAT_IMMUNITY: placementMode === "PREDICTION_SEAT_IMMUNITY_HOLD_FROM_SEATING",
       PREDICTION_SEAT_OWN_CONVICTION_LINEAGE: placementMode === "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT",
+      LADDER_SHRINK_Q_CLIP_WRITER: placementMode === "LADDER_SHRINK_Q_CLIP_ADMITTED",
       NO_ACTION: !Number.isInteger(target) && !Number.isInteger(active),
     };
     laneEligibility[derivedWinner] = true;
@@ -2949,6 +3036,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.derivation.spread_eye = spreadEyes[legId];
     row.derivation.derived_target_cents = target;
     row.derivation.allocation = allocation;
+    row.derivation.ladder_q_clip = ladderClip;
     const authorityTargetAtReceipt = cent(pricingAuthorities[legId]?.target_cents);
     const authorityDiverged = Number.isInteger(authorityTargetAtReceipt) && target !== authorityTargetAtReceipt;
     const seniorAuthorityReason = authorityDiverged
@@ -2977,9 +3065,11 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       senior_authority_reason: seniorAuthorityReason,
     };
     const siblingLegId = state.leg_ids.find((id) => id !== legId);
-    const siblingPlan = creditedId
-      ? cent(reads.half_pair_state.value.legs[creditedId].entry_cents)
-      : cent(allocation.targets[siblingLegId]);
+    const siblingPlan = ladderClip?.eligible_before_postability_and_pair_veto
+      ? ladderClip.sibling_commitment_cents
+      : creditedId
+        ? cent(reads.half_pair_state.value.legs[creditedId].entry_cents)
+        : cent(allocation.targets[siblingLegId]);
     const jointSum = target && siblingPlan ? target + siblingPlan : null;
     row.pair_conservation = { sibling_leg_id: siblingLegId, sibling_commitment_cents: siblingPlan, evaluated_target_cents: target, sum_cents: jointSum, at_or_below_99: !Number.isInteger(jointSum) || jointSum <= base.PAR_BUDGET_CENTS };
     results.push(row);

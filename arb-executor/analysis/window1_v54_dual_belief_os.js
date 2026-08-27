@@ -2654,6 +2654,75 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       if (!allocation.ladder_q_clips) allocation.ladder_q_clips = {};
       allocation.ladder_q_clips[legId] = ladderClip;
     }
+    const currentReceiptRowForLeg = (state.legs[legId]?.rows ?? []).findLast((row) => row.receipt === state.receipt) ?? null;
+    const currentReceiptIsOwnedNonPrint = Boolean(currentReceiptRowForLeg && currentReceiptRowForLeg.kind !== "PRINT");
+    const liveLadder = [...new Set((survivorUpdate.legs[legId]?.target_criterion?.candidate_final_floor_levels_cents ?? [])
+      .map((value) => cent(value))
+      .filter((value) => Number.isInteger(value)))]
+      .sort((a, b) => a - b);
+    const runningTradedLow = cent(survivorUpdate.legs[legId]?.target_criterion?.observed_traded_low_cents);
+    const liveAsk = cent(reads.books.value[legId]?.ask_cents);
+    const activeOnLiveLadder = Number.isInteger(active) && liveLadder.includes(active);
+    const highestPostableLiveRung = Number.isInteger(liveAsk) && Number.isInteger(runningTradedLow)
+      ? liveLadder.filter((value) => value < liveAsk && value >= runningTradedLow).at(-1) ?? null
+      : null;
+    const higherPostableLiveRungExists = Number.isInteger(active)
+      && Number.isInteger(highestPostableLiveRung)
+      && highestPostableLiveRung > active;
+    if (currentReceiptIsOwnedNonPrint
+      && Number.isInteger(active)
+      && Number.isInteger(highestPostableLiveRung)
+      && (!activeOnLiveLadder || higherPostableLiveRungExists)) {
+      const siblingId = state.leg_ids.find((id) => id !== legId);
+      const siblingHalfPair = reads.half_pair_state.value.legs[siblingId];
+      const siblingCommitment = siblingHalfPair.credited
+        ? cent(siblingHalfPair.entry_cents)
+        : cent(siblingHalfPair.standing_target_cents);
+      const pairSum = Number.isInteger(siblingCommitment) ? highestPostableLiveRung + siblingCommitment : null;
+      const pairBlocked = Number.isInteger(pairSum) && pairSum > base.PAR_BUDGET_CENTS;
+      const liveLadderReseat = {
+        leg_id: legId,
+        receipt: state.receipt,
+        receipt_kind: currentReceiptRowForLeg.kind,
+        active_target_before_cents: active,
+        active_on_current_ladder: activeOnLiveLadder,
+        current_ladder_cents: liveLadder,
+        running_true_trade_low_cents: runningTradedLow,
+        live_ask_cents: liveAsk,
+        highest_postable_live_rung_cents: highestPostableLiveRung,
+        sibling_leg_id: siblingId,
+        sibling_commitment_cents: siblingCommitment,
+        pair_sum_cents: pairSum,
+        pair_veto_blocked: pairBlocked,
+      };
+      if (pairBlocked) {
+        target = active;
+        allocation.targets[legId] = active;
+        liveLadderReseat.disposition = "PAIR_VETO_SKIP_LIVE_LADDER_RESEAT_HOLD_AND_CONTINUE";
+        envelopePlacement[legId] = {
+          ...envelopePlacement[legId],
+          mode: "NON_PRINT_LIVE_LADDER_RESEAT_PAIR_VETO_HOLD",
+          writer_lane: "ACTIVE_REST_HOLD",
+          live_ladder_reseat: liveLadderReseat,
+          chosen_target_cents: active,
+        };
+      } else {
+        target = highestPostableLiveRung;
+        allocation.targets[legId] = highestPostableLiveRung;
+        liveLadderReseat.disposition = "DEAD_OR_SHALLOW_RUNG_RESEATED_TO_HIGHEST_POSTABLE_LIVE_RUNG";
+        envelopePlacement[legId] = {
+          ...envelopePlacement[legId],
+          mode: "NON_PRINT_HIGHEST_POSTABLE_LIVE_LADDER_RUNG_ADMITTED",
+          writer_lane: "LIVE_LADDER_RESEAT_WRITER",
+          live_ladder_reseat: liveLadderReseat,
+          active_target_before_cents: active,
+          chosen_target_cents: highestPostableLiveRung,
+          post_only_test: { target_cents: highestPostableLiveRung, live_ask_cents: liveAsk, lawful: true, predicate: "TARGET_CENTS_LT_LIVE_ASK_CENTS" },
+        };
+      }
+      if (!allocation.live_ladder_reseats) allocation.live_ladder_reseats = {};
+      allocation.live_ladder_reseats[legId] = liveLadderReseat;
+    }
     const placementMode = envelopePlacement[legId]?.mode;
     const reason = placementMode === "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
         ? "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT"
@@ -2667,6 +2736,10 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         ? "PAIR_VETO_SKIPS_NEXT_LIVE_RUNG_AND_HOLDS_WITHOUT_ABORT"
       : placementMode === "LADDER_SHRINK_NO_LIVE_RUNG_HOLD"
         ? "NO_SURVIVING_LADDER_RUNG_BELOW_ASK_HOLD_WITHOUT_DIVE"
+      : placementMode === "NON_PRINT_HIGHEST_POSTABLE_LIVE_LADDER_RUNG_ADMITTED"
+        ? "NON_PRINT_DEAD_OR_SHALLOW_REST_RESEATED_TO_HIGHEST_POSTABLE_LIVE_LADDER_RUNG"
+      : placementMode === "NON_PRINT_LIVE_LADDER_RESEAT_PAIR_VETO_HOLD"
+        ? "PAIR_VETO_SKIPS_NON_PRINT_LIVE_LADDER_RESEAT_AND_HOLDS_WITHOUT_ABORT"
       : placementMode === "PREDICTION_SEAT_IMMUNITY_HOLD_FROM_SEATING"
         ? "PREDICTION_SEAT_IMMUNE_UNTIL_TRACED_SUPPORT_OVERTURN_OR_OWN_DEADLINE_EXPIRY"
       : placementMode === "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR"

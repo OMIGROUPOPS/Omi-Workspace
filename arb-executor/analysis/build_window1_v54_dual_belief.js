@@ -1124,7 +1124,21 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
       const legId = derivation.leg_id;
       ensure(derivation.sentence_action_assertion.equal, `sentence action failed ${state.event_id}|${legId}`);
       ensure(derivation.citation_receipt_assertion.equal, `citation receipt failed ${state.event_id}|${legId}`);
-      ensure(derivation.pair_conservation.at_or_below_99, `pair conservation failed ${state.event_id}|${legId}`);
+      if (!derivation.pair_conservation.at_or_below_99) {
+        const heldTarget = state.positions[legId].standing_target_cents;
+        derivation.action = {
+          ...derivation.action,
+          action: Number.isInteger(heldTarget) ? "HOLD_REST" : "STAND_DOWN",
+          target_cents: heldTarget,
+          reason: `${derivation.action.reason}+PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE`,
+        };
+        derivation.pair_conservation = {
+          ...derivation.pair_conservation,
+          proposed_target_skipped: true,
+          held_existing_target_cents: heldTarget,
+          replay_continued: true,
+        };
+      }
       if (!smokeOnly && !state.positions[legId].credited) {
         const position = state.positions[legId];
         const targetBefore = position.standing_target_cents;

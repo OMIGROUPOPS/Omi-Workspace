@@ -1160,6 +1160,25 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
             position.standing_captured_rest_license_receipt = state.receipt;
           }
         }
+        if (derivation.action.reason === "Q_UNPOSTABLE_NEXT_SURVIVING_LADDER_RUNG_BELOW_ASK_ADMITTED") {
+          ensure(
+            ["PLACE_REST", "REPRICE_REST"].includes(derivation.action.action)
+              && Number.isInteger(derivation.action.target_cents)
+              && position.standing_target_cents === derivation.action.target_cents,
+            `NEXT_LIVE_RUNG_REST_WRITE_FAILED ${state.event_id}|${legId}|${state.receipt}`,
+          );
+          derivation.machine_rest_log_write = {
+            store: "ORDER_TRANSITION_TENURE_SINGLE_PRODUCER",
+            log_file: "EVIDENCED_FLOOR_TENURE_TABLE.json",
+            leg_id: legId,
+            timestamp_epoch: state.current_epoch,
+            receipt: state.receipt,
+            action: derivation.action.action,
+            price_cents: position.standing_target_cents,
+            standing_license_basis: position.standing_license_basis,
+            standing_license_receipt: position.standing_license_receipt,
+          };
+        }
         if (derivation.action.action !== "HOLD_REST" || targetBefore !== position.standing_target_cents || derivation.layered_dual_belief?.atomic_rearm?.status === "REARM_RESOLVED_WITH_LAWFUL_REST") meaningfulRearmTransition = true;
       }
     }
@@ -2512,12 +2531,14 @@ async function main() {
   const floorProtectionRows = allDerivations.filter((row) => row.layered_dual_belief?.floor_rest_protection?.active_was_at_evidenced_floor
     || row.layered_dual_belief?.floor_rest_protection?.protected_from_conflicting_belief_or_cancel
     || row.layered_dual_belief?.floor_rest_protection?.same_receipt_floor_law_applied
-    || row.layered_dual_belief?.floor_rest_protection?.postable_floor_rest_held_against_crossing_singleton).map((row) => ({
+    || row.layered_dual_belief?.floor_rest_protection?.postable_floor_rest_held_against_crossing_singleton
+    || row.machine_rest_log_write?.standing_license_basis === "Q_UNPOSTABLE_NEXT_SURVIVING_LADDER_RUNG_BELOW_ASK_ADMITTED").map((row) => ({
     event_id: row.event_id,
     leg_id: row.leg_id,
     timestamp_epoch: row.timestamp_epoch,
     receipt: row.stage_receipt,
     action: row.action,
+    machine_rest_log_write: row.machine_rest_log_write ?? null,
     protection: row.layered_dual_belief.floor_rest_protection,
     survivor_shapes: row.layered_dual_belief?.macro?.survivor_shapes?.legs?.[row.leg_id] ?? null,
     ...sentenceTraceIndex(row),
@@ -2873,21 +2894,25 @@ async function main() {
     belief_leg_id: belief.leg_id,
     timestamp_epoch: row.timestamp_epoch,
     stage_receipt: row.stage_receipt,
-    book_receipt: belief.belief_price_book_receipt,
+    evidenced_receipt: belief.envelope_high_receipt,
     bid_cents: belief.live_bid_cents,
     ask_cents: belief.live_ask_cents,
     belief_price_cents: belief.belief_price_cents,
     basis: belief.belief_price_basis,
-    expected_series_floored_mid_cents: Math.floor((belief.live_bid_cents + belief.live_ask_cents) / 2),
-    field_matches_book_state: belief.belief_price_cents === Math.floor((belief.live_bid_cents + belief.live_ask_cents) / 2),
+    envelope_high_cents: belief.envelope_high_cents,
+    field_matches_evidenced_true_trade_low: belief.belief_price_basis === "OBSERVED_TRUE_TRADE_LOW"
+      && Boolean(belief.envelope_high_receipt)
+      && belief.belief_price_cents === belief.envelope_high_cents,
+    basis_is_live_book_quantity: /(?:SETTLED_BOOK|BOOK|BID|ASK|MID)/.test(String(belief.belief_price_basis ?? "")),
   })));
   writeJson(path.join(output, "BELIEF_SENTENCE_PRICE_FIELD_RECEIPT.json"), {
-    label: "BELIEF_PRICE_IS_EVIDENCED_BOOK_STATE",
+    label: "BELIEF_PRICE_IS_EVIDENCED_TRUE_TRADE_LOW",
     bare_reader_level_used_as_belief_price: false,
-    method: "SETTLED_BOOK_MID_SERIES_FLOORED_FROM_RECEIPT_PINNED_BID_ASK",
+    method: "OBSERVED_TRUE_TRADE_LOW_WITH_EVIDENCED_RECEIPT",
     rows: beliefPriceRows,
-    every_field_matches_book_state: beliefPriceRows.every((row) => row.field_matches_book_state),
-    every_row_names_book_receipt: beliefPriceRows.every((row) => Boolean(row.book_receipt)),
+    every_field_matches_evidenced_true_trade_low: beliefPriceRows.every((row) => row.field_matches_evidenced_true_trade_low),
+    every_row_names_evidenced_receipt: beliefPriceRows.every((row) => Boolean(row.evidenced_receipt)),
+    live_book_basis_count: beliefPriceRows.filter((row) => row.basis_is_live_book_quantity).length,
   });
   const deadlineSeen = new Set(), deadlineRows = [];
   for (const row of allDerivations) {
@@ -3524,8 +3549,8 @@ async function main() {
   if (allDerivations.some((row) => !row.sentence.includes("V3_KEY=LIBRARY_CLOSE_CENTS->NONE_LIBRARY_MEMBER_BOUNDED_CLOSE_CENTS_PRESERVED"))) lawViolations.push("V3_LIBRARY_MEMBER_KEY_NOT_STATED_VERBATIM");
   if (allDerivations.some((row) => row.layered_dual_belief.coherence.status === "COHERENT" && (!row.sentence.includes("believes ") || !row.sentence.includes("SIBLING-INVERSE:")))) lawViolations.push("DUAL_BELIEF_SENTENCE_FORMAT_MISSING");
   if (printPricedResidueCount !== 0 || restPriceRows.some((row) => !row.entry_equals_standing_rest || row.execution_price_basis !== "STANDING_REST_LIMIT_CENTS")) lawViolations.push("PRINT_PRICED_CREDITING_RESIDUE");
-  if (beliefPriceRows.some((row) => !row.field_matches_book_state || !row.book_receipt || row.basis !== "SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK")) lawViolations.push("BELIEF_PRICE_NOT_EVIDENCED_BOOK_STATE");
-  if (allDerivations.some((row) => row.layered_dual_belief?.coherence?.status === "COHERENT" && !row.sentence.includes("SETTLED_BOOK_MID_SERIES_FLOORED_FROM_BID_ASK"))) lawViolations.push("BELIEF_SENTENCE_BOOK_PRICE_BASIS_MISSING");
+  if (beliefPriceRows.some((row) => !row.field_matches_evidenced_true_trade_low || row.basis_is_live_book_quantity)) lawViolations.push("BELIEF_PRICE_NOT_EVIDENCED_BOOK_STATE");
+  if (allDerivations.some((row) => row.layered_dual_belief?.coherence?.status === "COHERENT" && Object.values(row.layered_dual_belief?.micro?.beliefs ?? {}).some((belief) => belief?.status === "RESOLVED" && (belief.belief_price_basis !== "OBSERVED_TRUE_TRADE_LOW" || !belief.envelope_high_receipt || !belief.plain_sentence?.includes(`[OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=${belief.envelope_high_receipt}]`))))) lawViolations.push("BELIEF_SENTENCE_BOOK_PRICE_BASIS_MISSING");
   if (envelopePlacementRows.some((row) => row.placement?.numeric_constant_added !== false || row.sentence_has_envelope_placement !== true)) lawViolations.push("ENVELOPE_PLACEMENT_UNLICENSED_OR_SILENT");
   if (touchOverLiveEnvelopeViolations.length) lawViolations.push("LIVE_TOUCH_OVERRAN_LAWFUL_BELIEF_ENVELOPE");
   if (disagreesPlacementViolations.length) lawViolations.push("UNLICENSED_REST_PLACED_OR_REPRICED_AT_DISAGREES");

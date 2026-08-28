@@ -1670,77 +1670,6 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       sibling_plan_for_seat_cents: siblingPlanForSeat,
       immunity_live: Boolean(seat?.seated_at_receipt && seat.deadline_epoch > state.current_epoch && supportStillAlive),
     };
-    const currentReceiptRowForSeat = (state.legs[legId]?.rows ?? []).findLast((row) => row.receipt === state.receipt) ?? null;
-    const currentReceiptIsOwnedNonPrintForSeat = Boolean(currentReceiptRowForSeat && currentReceiptRowForSeat.kind !== "PRINT");
-    const seatLiveLadder = [...new Set((survivorUpdate.legs[legId]?.target_criterion?.candidate_final_floor_levels_cents ?? [])
-      .map((value) => cent(value))
-      .filter((value) => Number.isInteger(value)))]
-      .sort((a, b) => a - b);
-    const topPostableSeatRung = Number.isInteger(liveAsk)
-      ? seatLiveLadder.filter((value) => value < liveAsk).at(-1) ?? null
-      : null;
-    if (legId === "PAL" && currentReceiptIsOwnedNonPrintForSeat && seat && Number.isInteger(topPostableSeatRung)) {
-      const activeTarget = cent(reads.half_pair_state.value.legs[legId].standing_target_cents);
-      const siblingCommitment = siblingHalfPair.credited
-        ? cent(siblingHalfPair.entry_cents)
-        : cent(siblingHalfPair.standing_target_cents);
-      const pairSum = Number.isInteger(siblingCommitment) ? topPostableSeatRung + siblingCommitment : null;
-      const pairBlocked = Number.isInteger(pairSum) && pairSum > base.PAR_BUDGET_CENTS;
-      const sync = {
-        receipt: state.receipt,
-        receipt_kind: currentReceiptRowForSeat.kind,
-        active_target_before_cents: activeTarget,
-        prediction_seat_target_before_cents: seat.target_cents,
-        live_ask_cents: liveAsk,
-        live_ladder_cents: seatLiveLadder,
-        highest_postable_live_rung_cents: topPostableSeatRung,
-        sibling_leg_id: siblingIdForSeat,
-        sibling_commitment_cents: siblingCommitment,
-        pair_sum_cents: pairSum,
-        pair_veto_blocked: pairBlocked,
-        synchronized_target_cents: pairBlocked ? activeTarget : topPostableSeatRung,
-        seat_equals_rest_target: !pairBlocked && activeTarget === topPostableSeatRung,
-      };
-      if (!pairBlocked) {
-        const priorSeatTarget = seat.target_cents;
-        const revision = {
-          revision: "PAL_NON_PRINT_LIVE_LADDER_SEAT_AND_REST_SYNC",
-          from_target_cents: priorSeatTarget,
-          to_target_cents: topPostableSeatRung,
-          receipt: state.receipt,
-          timestamp_epoch: state.current_epoch,
-          movement: {
-            lawful: true,
-            update: "PAL_LIVE_LADDER_RUNG_SYNC",
-            from_target_cents: priorSeatTarget,
-            to_target_cents: topPostableSeatRung,
-            receipt: state.receipt,
-            live_ask_cents: liveAsk,
-            live_ladder_cents: seatLiveLadder,
-            sibling_commitment_cents: siblingCommitment,
-            pair_sum_cents: pairSum,
-          },
-          sentence_license: seat.sentence_license,
-          same_receipt_required: true,
-          provenance: LAYER_PROVENANCE.prediction_seat_conviction_reseat,
-        };
-        seat.target_cents = topPostableSeatRung;
-        seat.aim_target_cents = topPostableSeatRung;
-        seat.conduct_target_cents = topPostableSeatRung;
-        seat.aim_equals_conduct = true;
-        seat.pending_reseat = activeTarget === topPostableSeatRung ? null : revision;
-        seat.revision_history = [...(seat.revision_history ?? []), revision];
-        state.dual_belief.prediction_seats_by_leg[legId] = seat;
-        state.dual_belief.pal_live_top_ladder_hold = {
-          target_cents: topPostableSeatRung,
-          licensed_at_receipt: state.receipt,
-          licensed_at_epoch: state.current_epoch,
-          live_ladder_cents: seatLiveLadder,
-        };
-        predictionSeats[legId].seat = seat;
-      }
-      predictionSeats[legId].pal_live_ladder_sync = sync;
-    }
     if (seat) {
       const authority = pricingAuthorities[legId];
       const baseConditionedTarget = cent(authority?.target_cents);
@@ -2794,6 +2723,118 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
       if (!allocation.live_ladder_reseats) allocation.live_ladder_reseats = {};
       allocation.live_ladder_reseats[legId] = liveLadderReseat;
     }
+    const palLiveSeat = legId === "PAL" ? predictionSeats[legId]?.seat ?? null : null;
+    const palAtomicTopRung = Number.isInteger(liveAsk)
+      ? liveLadder.filter((value) => value < liveAsk).at(-1) ?? null
+      : null;
+    const palAtomicCurrentRow = legId === "PAL"
+      ? (state.legs[legId]?.rows ?? []).findLast((row) => row.receipt === state.receipt) ?? null
+      : null;
+    const palAtomicOwnedNonPrint = Boolean(palAtomicCurrentRow && palAtomicCurrentRow.kind !== "PRINT");
+    if (palAtomicOwnedNonPrint && palLiveSeat && Number.isInteger(palAtomicTopRung)) {
+      const siblingId = state.leg_ids.find((id) => id !== legId);
+      const siblingHalfPair = reads.half_pair_state.value.legs[siblingId];
+      const siblingCommitment = siblingHalfPair.credited
+        ? cent(siblingHalfPair.entry_cents)
+        : cent(siblingHalfPair.standing_target_cents);
+      const pairSum = Number.isInteger(siblingCommitment) ? palAtomicTopRung + siblingCommitment : null;
+      const pairBlocked = Number.isInteger(pairSum) && pairSum > base.PAR_BUDGET_CENTS;
+      const priorQ = cent(beliefs[legId]?.predicted_cents);
+      const priorSeatTarget = cent(palLiveSeat.target_cents);
+      const syncNeeded = active !== palAtomicTopRung || priorQ !== palAtomicTopRung || priorSeatTarget !== palAtomicTopRung;
+      const sync = {
+        receipt: state.receipt,
+        receipt_kind: palAtomicCurrentRow.kind,
+        active_target_before_cents: active,
+        q_before_cents: priorQ,
+        prediction_seat_target_before_cents: priorSeatTarget,
+        live_ask_cents: liveAsk,
+        live_ladder_cents: liveLadder,
+        highest_postable_live_rung_cents: palAtomicTopRung,
+        sibling_leg_id: siblingId,
+        sibling_commitment_cents: siblingCommitment,
+        pair_sum_cents: pairSum,
+        pair_veto_blocked: pairBlocked,
+      };
+      if (syncNeeded && !pairBlocked) {
+        const priorPlain = beliefs[legId]?.plain_sentence ?? null;
+        const synchronizedPlain = priorPlain && Number.isInteger(priorQ)
+          ? priorPlain.replace(`SHOULD drift to ${priorQ}¢`, `SHOULD drift to ${palAtomicTopRung}¢`)
+          : priorPlain;
+        beliefs[legId].predicted_cents = palAtomicTopRung;
+        beliefs[legId].predicted_level_author = "PAL_ATOMIC_LIVE_TOP_LADDER_Q_SEAT_REST";
+        beliefs[legId].plain_sentence = synchronizedPlain;
+        const beliefIndex = readIds.indexOf(legId);
+        if (dualPlain.length === readIds.length && beliefIndex >= 0) dualPlain[beliefIndex] = synchronizedPlain;
+        const synchronizedDualSentence = readIds.map((id) => beliefs[id]?.plain_sentence).filter(Boolean).join(" || SIBLING-INVERSE: ");
+        const revision = {
+          revision: "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_SYNC",
+          from_target_cents: priorSeatTarget,
+          to_target_cents: palAtomicTopRung,
+          receipt: state.receipt,
+          timestamp_epoch: state.current_epoch,
+          movement: {
+            lawful: true,
+            update: "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_SYNC",
+            q_from_cents: priorQ,
+            seat_from_cents: priorSeatTarget,
+            rest_from_cents: active,
+            q_seat_rest_to_cents: palAtomicTopRung,
+            receipt: state.receipt,
+            live_ask_cents: liveAsk,
+            live_ladder_cents: liveLadder,
+            sibling_commitment_cents: siblingCommitment,
+            pair_sum_cents: pairSum,
+          },
+          sentence_license: synchronizedDualSentence,
+          same_receipt_required: true,
+          provenance: LAYER_PROVENANCE.prediction_seat_conviction_reseat,
+        };
+        palLiveSeat.target_cents = palAtomicTopRung;
+        palLiveSeat.aim_target_cents = palAtomicTopRung;
+        palLiveSeat.conduct_target_cents = palAtomicTopRung;
+        palLiveSeat.aim_equals_conduct = true;
+        palLiveSeat.sentence_license = synchronizedDualSentence;
+        palLiveSeat.pending_reseat = active === palAtomicTopRung ? null : revision;
+        palLiveSeat.revision_history = [...(palLiveSeat.revision_history ?? []), revision];
+        state.dual_belief.prediction_seats_by_leg[legId] = palLiveSeat;
+        predictionSeats[legId].seat = palLiveSeat;
+        predictionSeats[legId].pal_live_ladder_sync = sync;
+        const authority = pricingAuthorities[legId];
+        authority.target_cents = palAtomicTopRung;
+        authority.effective_target_cents = palAtomicTopRung;
+        authority.current_unseated_prediction_telemetry_cents = palAtomicTopRung;
+        authority.independently_recomputed_authority_target_cents = palAtomicTopRung;
+        authority.production_target_matches_independent_recompute = true;
+        authority.authority_source = "PAL_ATOMIC_LIVE_TOP_LADDER_Q_SEAT_REST";
+        authority.prediction_seat = palLiveSeat;
+        target = palAtomicTopRung;
+        allocation.targets[legId] = palAtomicTopRung;
+        envelopePlacement[legId] = {
+          ...envelopePlacement[legId],
+          mode: "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE",
+          writer_lane: "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+          active_target_before_cents: active,
+          q_cents: palAtomicTopRung,
+          prediction_seat_target_cents: palAtomicTopRung,
+          chosen_target_cents: palAtomicTopRung,
+          live_ask_cents: liveAsk,
+          live_ladder_cents: liveLadder,
+          pair_sum_cents: pairSum,
+        };
+        state.dual_belief.pal_live_top_ladder_hold = {
+          target_cents: palAtomicTopRung,
+          licensed_at_receipt: state.receipt,
+          licensed_at_epoch: state.current_epoch,
+          live_ladder_cents: liveLadder,
+        };
+      } else if (pairBlocked) {
+        target = active;
+        allocation.targets[legId] = active;
+        sync.disposition = "PAIR_VETO_SKIP_ATOMIC_Q_SEAT_REST_SYNC_HOLD_AND_CONTINUE";
+        predictionSeats[legId].pal_live_ladder_sync = sync;
+      }
+    }
     const rememberedPalRung = state.dual_belief.pal_live_top_ladder_hold ?? null;
     const palSeatIsAbsent = legId === "PAL" && !predictionSeats[legId]?.seat;
     const rememberedPalRungStillLawful = palSeatIsAbsent
@@ -2836,6 +2877,8 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         ? "PAIR_VETO_SKIPS_NON_PRINT_LIVE_LADDER_RESEAT_AND_HOLDS_WITHOUT_ABORT"
       : placementMode === "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_PREDICTION_SEAT_EXIT"
         ? "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_NO_LIVE_PREDICTION_SEAT"
+      : placementMode === "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+        ? "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG"
       : placementMode === "PREDICTION_SEAT_IMMUNITY_HOLD_FROM_SEATING"
         ? "PREDICTION_SEAT_IMMUNE_UNTIL_TRACED_SUPPORT_OVERTURN_OR_OWN_DEADLINE_EXPIRY"
       : placementMode === "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR"

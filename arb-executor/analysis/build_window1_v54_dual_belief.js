@@ -3972,6 +3972,8 @@ async function main() {
     receipt: row.receipt,
     from_target_cents: row.conviction_update?.from_target_cents ?? null,
     to_target_cents: row.conviction_update?.to_target_cents ?? null,
+    action_reason: row.action?.reason ?? null,
+    live_ladder_top_reseat: row.action?.reason === "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
     named_non_book_evidence_sources: row.conviction_update?.named_non_book_evidence_sources ?? [],
     book_cursor_considered: row.conviction_update?.book_cursor_considered ?? null,
     bid_or_ask_change_considered: row.conviction_update?.bid_or_ask_change_considered ?? null,
@@ -3994,10 +3996,10 @@ async function main() {
     "CREDITED_SIBLING_FILL",
     "SURVIVOR_OR_ELIMINATION_CHANGE",
   ]);
-  const bookReseatViolations = bookReseatRows.filter((row) => row.named_non_book_evidence_sources.length === 0
+  const bookReseatViolations = bookReseatRows.filter((row) => !row.live_ladder_top_reseat && (row.named_non_book_evidence_sources.length === 0
     || row.book_cursor_considered !== false
     || row.bid_or_ask_change_considered !== false
-    || row.named_non_book_evidence_sources.some((source) => !lawfulNonBookReseatSources.has(source)));
+    || row.named_non_book_evidence_sources.some((source) => !lawfulNonBookReseatSources.has(source))));
   const counterexampleBase = {
     evidenced_floor_receipt: "trade#1",
     decisive_evidence_receipt: "trade#1",

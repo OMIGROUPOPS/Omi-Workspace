@@ -1938,8 +1938,11 @@ async function main() {
     const outcome = story?.legs?.[spec.leg_id] ?? null;
     const comparisonTs = firstBinding?.timestamp_epoch ?? firstEvaluation?.timestamp_epoch ?? null;
     const creditedBeforeFloor = Number.isFinite(outcome?.fill_timestamp_epoch) && Number.isFinite(comparisonTs) && outcome.fill_timestamp_epoch < comparisonTs;
+    const creditedAtFloorOnFloorReceipt = outcome?.entry_cents === spec.floor_cents && outcome?.fill_receipt === firstBinding?.receipt;
     const floorGovernsOpenConduct = Boolean(firstBinding && !creditedBeforeFloor && evaluations.some((row) => row.final_target_cents === spec.floor_cents || outcome?.standing_target_cents === spec.floor_cents));
-    const exactAnswer = creditedBeforeFloor
+    const exactAnswer = creditedAtFloorOnFloorReceipt
+      ? "CREDITED_AT_DERIVABLE_PRINTED_FLOOR_ON_FLOOR_RECEIPT"
+      : creditedBeforeFloor
       ? `NONE__LEG_ALREADY_CREDITED_AT_${outcome.entry_cents}_BEFORE_DERIVABLE_${spec.floor_cents}_RECEIPT`
       : floorGovernsOpenConduct
         ? "DERIVABLE_DESCENT_SUPPORTED_PRINTED_FLOOR_GOVERNED_CONDUCT"
@@ -1953,11 +1956,12 @@ async function main() {
       first_conduct_at_floor: conductAtFloor,
       terminal_leg_outcome: outcome,
       credited_before_derivable_floor_receipt: creditedBeforeFloor,
+      credited_at_derivable_floor_on_floor_receipt: creditedAtFloorOnFloorReceipt,
       derivable_floor_governed_open_leg_conduct: floorGovernsOpenConduct,
       conduct_answer: exactAnswer,
       evidence_outweighing_derivable_floor: exactAnswer.startsWith("DERIVABLE_FLOOR_DID_NOT_GOVERN") ? firstBinding?.classification ?? null : null,
       answered: Boolean(firstEvaluation),
-      lawful_or_explained: floorGovernsOpenConduct || creditedBeforeFloor,
+      lawful_or_explained: floorGovernsOpenConduct || creditedBeforeFloor || creditedAtFloorOnFloorReceipt,
     };
   });
   const derivableFloorOpenLegFailures = derivableFloorConductRows.filter((row) => !row.lawful_or_explained);

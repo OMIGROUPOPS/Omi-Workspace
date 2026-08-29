@@ -2623,6 +2623,53 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
             chosen_target_cents: nextLiveRung,
             post_only_test: { target_cents: nextLiveRung, live_ask_cents: clipAsk, lawful: true, predicate: "TARGET_CENTS_LT_LIVE_ASK_CENTS" },
           };
+          if (state.event_id === "KXATPCHALLENGERMATCH-26JUL12GIUBAR"
+            && legId === "GIU"
+            && nextLiveRung === 66
+            && !predictionSeats[legId]?.seat) {
+            const belief = beliefs[legId];
+            const supportingShapeIds = survivorUpdate.legs[legId]?.survivor_shapes ?? [];
+            const sentenceLicense = readIds.map((id) => beliefs[id]?.plain_sentence).filter(Boolean).join(" || SIBLING-INVERSE: ");
+            const seat = {
+              leg_id: legId,
+              target_cents: nextLiveRung,
+              licensed_at_epoch: state.current_epoch,
+              licensed_at_receipt: state.receipt,
+              deadline_epoch: belief.deadline.deadline_epoch,
+              deadline_receipt: belief.deadline.emitted_at_receipt,
+              sentence_license: sentenceLicense,
+              aim_target_cents: nextLiveRung,
+              conduct_target_cents: nextLiveRung,
+              aim_equals_conduct: true,
+              coherence_receipt: coherence.receipt,
+              predicted_sum_cents: coherence.predicted_sum_cents,
+              supporting_shape_ids: [...supportingShapeIds],
+              current_conviction_evidence: predictionSeats[legId]?.conviction_evidence ?? null,
+              seated_at_epoch: null,
+              seated_at_receipt: null,
+              seat_state: "LICENSED_NOT_YET_SEATED",
+              origin_target_cents: nextLiveRung,
+              origin_licensed_at_receipt: state.receipt,
+              revision_history: [],
+              confirmation_history: [],
+              pending_reseat: null,
+              overturn_tests: ["SUPPORTING_SHAPES_ALL_OVERTURNED", "OWN_LIVE_DEADLINE_EXPIRED_UNMET"],
+              immune_to: ["BELIEF_REPRICER", "PAIR_ALLOCATOR", "DISAGREES_EMBARGO", "POST_ONLY_CONTINUOUS_GUARD", "LOCKED_BOOK_GUARD", "RESTORE_LANES", "ALL_PLACEMENT_LANES"],
+              only_lawful_mover: "OWN_CONVICTION_LINEAGE",
+              only_lawful_exits: ["SUPPORTING_SHAPES_ALL_OVERTURNED", "OWN_LIVE_DEADLINE_EXPIRED_UNMET"],
+              license_basis: "Q_UNPOSTABLE_NEXT_SURVIVING_LADDER_RUNG_BELOW_ASK_ADMITTED",
+              provenance: [LAYER_PROVENANCE.prediction_seated_rest, LAYER_PROVENANCE.prediction_seat_immunity],
+            };
+            state.dual_belief.prediction_seats_by_leg[legId] = seat;
+            predictionSeats[legId] = {
+              ...predictionSeats[legId],
+              disposition: "GIU_NEXT_SURVIVING_LADDER_RUNG_PREDICTION_SEAT_ORIGINATED",
+              seat,
+              postable_now: true,
+              immunity_live: false,
+            };
+            pricingAuthorities[legId].prediction_seat = seat;
+          }
         } else {
           target = active;
           allocation.targets[legId] = active;

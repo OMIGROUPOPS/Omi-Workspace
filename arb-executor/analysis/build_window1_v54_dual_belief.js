@@ -3061,7 +3061,7 @@ async function main() {
   const predictionSeatUnique = [...new Map(predictionSeatRows.map((row) => [`${row.event_id}|${row.leg_id}|${row.licensed_at_receipt}|${row.target_cents}`, row])).values()];
   const namedPredictionSeats = [
     { event_id: "KXATPCHALLENGERMATCH-26JUL12GIUBAR", leg_id: "GIU", target_cents: 66 },
-    { event_id: "KXATPCHALLENGERMATCH-26JUL14URSPAL", leg_id: "URS", target_cents: 57 },
+    { event_id: "KXATPCHALLENGERMATCH-26JUL14URSPAL", leg_id: "URS", target_cents: 58 },
     { event_id: "KXATPCHALLENGERMATCH-26JUL14URSPAL", leg_id: "PAL", target_cents: 39 },
     { event_id: "KXATPMATCH-26JUL18DANPRA", leg_id: "PRA", target_cents: 41 },
   ].map((spec) => ({

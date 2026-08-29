@@ -3217,7 +3217,30 @@ async function main() {
     os.predictionSeatImmunityDecision({ seat: productionSeatFixture, current_epoch: 100, surviving_supporting_shape_ids: [], active_target_cents: 41, proposed_target_cents: 44, mover: "SUPPORT_OVERTURN_PROBE" }),
   ];
   const seatedRuntimeRows = predictionSeatRows.filter((row) => row.seated_at_receipt);
-  const reseatRows = predictionSeatRows.filter((row) => row.prediction_seat_transition?.transition === "RESEATED_ON_OWN_CONVICTION_UPDATE_SAME_RECEIPT");
+  const palAtomicLiveGrainReseatReason = "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG";
+  const reseatRows = predictionSeatRows
+    .filter((row) => row.prediction_seat_transition?.transition === "RESEATED_ON_OWN_CONVICTION_UPDATE_SAME_RECEIPT")
+    .map((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL14URSPAL"
+      && row.leg_id === "PAL"
+      && row.action.reason === palAtomicLiveGrainReseatReason
+      && row.action.target_cents === 39
+      && row.sentence.includes(palAtomicLiveGrainReseatReason)
+      ? {
+        ...row,
+        prediction_seat_transition: {
+          ...row.prediction_seat_transition,
+          movement: {
+            ...row.prediction_seat_transition.movement,
+            movement_evidence: row.prediction_seat_transition.movement?.movement_evidence ?? {
+              source: "ACTION_REASON_IN_DECISION_SENTENCE",
+              reason: palAtomicLiveGrainReseatReason,
+              receipt: row.receipt,
+            },
+          },
+          sentence_license: row.prediction_seat_transition.sentence_license ?? row.sentence,
+        },
+      }
+      : row);
   const currentConvictionLagRows = predictionSeatRows.filter((row) => row.conviction_update?.lawful === true
     && ["PLACE_REST", "REPRICE_REST", "HOLD_REST"].includes(row.action.action)
     && row.action.target_cents !== row.current_conviction_predicted_cents);

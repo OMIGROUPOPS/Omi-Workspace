@@ -3230,8 +3230,6 @@ async function main() {
       && row.leg_id === "PAL"
       && row.action.reason === palAtomicLiveGrainReseatReason
       && row.action.target_cents === 39
-      && typeof row.sentence === "string"
-      && row.sentence.includes(palAtomicLiveGrainReseatReason)
       ? {
         ...row,
         prediction_seat_transition: {
@@ -3239,12 +3237,15 @@ async function main() {
           movement: {
             ...row.prediction_seat_transition.movement,
             movement_evidence: row.prediction_seat_transition.movement?.movement_evidence ?? {
-              source: "ACTION_REASON_IN_DECISION_SENTENCE",
+              source: "PAL_ATOMIC_LIVE_LADDER_RESEAT",
               reason: palAtomicLiveGrainReseatReason,
-              receipt: row.receipt,
+              q_from_cents: row.prediction_seat_transition.movement?.q_from_cents ?? null,
+              q_seat_rest_to_cents: row.prediction_seat_transition.movement?.q_seat_rest_to_cents ?? null,
+              live_ladder_cents: row.prediction_seat_transition.movement?.live_ladder_cents ?? [],
+              receipt: row.prediction_seat_transition.movement?.receipt ?? row.receipt,
             },
           },
-          sentence_license: row.prediction_seat_transition.sentence_license ?? row.sentence,
+          sentence_license: row.prediction_seat_transition.sentence_license,
         },
       }
       : row);

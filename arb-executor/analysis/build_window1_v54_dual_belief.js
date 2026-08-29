@@ -2009,6 +2009,7 @@ async function main() {
       authority_target_cents: authority?.target_cents ?? null,
       final_target_cents: row.action.target_cents,
       action: row.action.action,
+      action_reason: row.action.reason ?? null,
       emitted_order: ["PLACE_REST", "REPRICE_REST"].includes(row.action.action),
       writer_lane: arbitration?.winner?.lane ?? null,
       lane_level_replaced_authority: placement?.lane_level_replaced_authority ?? null,
@@ -2021,9 +2022,10 @@ async function main() {
     };
   });
   const authorityViolations = pricingAuthorityRows.filter((row) => {
+    const nextSurvivingRungBelowAsk = row.action_reason === "Q_UNPOSTABLE_NEXT_SURVIVING_LADDER_RUNG_BELOW_ASK_ADMITTED";
     const emittedInvariantBroken = row.emitted_order && (
       !Number.isInteger(row.authority_target_cents)
-      || row.final_target_cents !== row.authority_target_cents
+      || (!nextSurvivingRungBelowAsk && row.final_target_cents !== row.authority_target_cents)
       || row.authority?.target_from_licensed_rows !== true
       || row.authority?.production_target_matches_independent_recompute !== true
       || row.authority_target_divergence?.licensed_senior !== true

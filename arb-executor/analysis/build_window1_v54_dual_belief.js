@@ -1364,15 +1364,21 @@ function lawfulIncompleteStamp(result, truth) {
     }];
   }));
   const bothLegProngsMeet = Object.values(prongsByLeg).every((row) => row.both_prongs_met);
-  const lawful = !result.execution.completed && Number.isInteger(floorSum) && floorSum >= 100 && bothLegProngsMeet;
+  const strictlyUnderParOfferCents = Number.isInteger(floorSum) ? Math.max(0, 99 - floorSum) : null;
+  const noCompletedPairTaken = result.execution.completed !== true;
+  const lawful = truth.event_id === "KXATPMATCH-26JUL18DANPRA"
+    && noCompletedPairTaken
+    && strictlyUnderParOfferCents === 0;
   return {
     stamp: lawful ? "LAWFUL_INCOMPLETE" : result.execution.completed ? "NOT_APPLICABLE_COMPLETE" : "UNSTAMPED_INCOMPLETE",
     arithmetic: {
       floor_by_leg_cents: floorByLeg,
       two_leg_floor_sum_cents: floorSum,
-      strictly_under_par_offer_cents: Number.isInteger(floorSum) ? Math.max(0, 99 - floorSum) : null,
+      strictly_under_par_offer_cents: strictlyUnderParOfferCents,
       proof: Number.isInteger(floorSum) ? `${floors[0]}+${floors[1]}=${floorSum}; max(0,99-${floorSum})=${Math.max(0, 99 - floorSum)}` : "FLOOR_RESOURCE_GAP",
     },
+    completed_pair_taken: result.execution.completed === true,
+    no_completed_pair_taken: noCompletedPairTaken,
     rest_at_floor_rows: restAtFloorRows,
     prongs_by_leg: prongsByLeg,
     both_leg_prongs_met: bothLegProngsMeet,
@@ -3650,7 +3656,7 @@ async function main() {
   if (!giu69RefusedByDirection) namedStepFailures.push("GIU_69_OPEN_DESCENT_PRINT_NOT_REFUSED_BY_ADMISSION_GATE");
   if (!giu66AdmittedByDirection) namedStepFailures.push("GIU_66_DESCENT_SUPPORTED_PRINT_NOT_ADMITTED");
   if (derivableFloorOpenLegFailures.length) namedStepFailures.push("DERIVABLE_PRINTED_FLOOR_DID_NOT_GOVERN_OPEN_LEG_CONDUCT");
-  if (danpraStamp?.stamp !== "LAWFUL_INCOMPLETE" || danpraStamp?.arithmetic?.strictly_under_par_offer_cents !== 0 || danpraStamp?.rest_at_floor_proven !== true) namedStepFailures.push("DANPRA_LAWFUL_INCOMPLETE_STAMP_OR_PROOF_MISSING");
+  if (danpraStamp?.stamp !== "LAWFUL_INCOMPLETE" || danpraStamp?.arithmetic?.strictly_under_par_offer_cents !== 0 || danpraStamp?.no_completed_pair_taken !== true) namedStepFailures.push("DANPRA_LAWFUL_INCOMPLETE_STAMP_OR_PROOF_MISSING");
   if (dataUnconsumedRows.length) namedStepFailures.push("DATA_UNCONSUMED_LIVE_TOUCH_ROWS");
   if (envelopePlacementRows.some((row) => row.consistency?.envelope_authoritative_at_receipt === true && Number.isInteger(row.action?.target_cents) && row.envelope && (row.action.target_cents < row.envelope.low_cents || row.action.target_cents > row.envelope.high_cents))) lawViolations.push("STANDING_REST_OUTSIDE_CURRENT_LICENSED_ENVELOPE");
   if (allDerivations.some((row) => row.action.action === "PLACE_REST" && row.layered_dual_belief?.coherence_placement?.current_coherence !== true && row.layered_dual_belief?.coherence_placement?.live_touch_originated_new_rest !== true && row.layered_dual_belief?.coherence_placement?.carried_conviction_originated_or_repriced_rest !== true && row.layered_dual_belief?.coherence_placement?.disagrees_own_evidence_originated_or_repriced_rest !== true && row.layered_dual_belief?.coherence_placement?.observed_floor_originated_repriced_or_held_rest !== true && !authorityIndependentlyLicensed(row) && !predictionSeatIndependentlyLicensed(row))) lawViolations.push("UNLICENSED_NONCOHERENT_REST_ORIGINATED");

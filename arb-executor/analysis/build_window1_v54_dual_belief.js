@@ -3669,7 +3669,8 @@ async function main() {
   if (orderArbitrationReceipt.decision_instant_groups_over_one.length || orderArbitrationReceipt.arbitration_missing_rows.length) lawViolations.push("MULTIPLE_OR_UNARBITRATED_ORDERS_PER_DECISION_RECEIPT");
   if (literalAudit.remaining_named_count || literalAudit.unexplained_count) lawViolations.push("UNEXPLAINED_LITERAL_BOOLEAN_CLAIM_SURVIVED");
   if (allDerivations.some((row) => ["PLACE_REST", "REPRICE_REST"].includes(row.action.action) && (!Number.isInteger(row.derivation.live_ask_cents) || row.action.target_cents >= row.derivation.live_ask_cents))) lawViolations.push("POST_ONLY_OUR_TARGET_NOT_STRICTLY_BELOW_CAUSAL_ASK");
-  if (allDerivations.some((row) => ["PLACE_REST", "REPRICE_REST"].includes(row.action.action) && row.layered_dual_belief?.envelope_placement?.post_only_test?.predicate !== "TARGET_CENTS_LT_LIVE_ASK_CENTS")) lawViolations.push("POST_ONLY_GUARD_DID_NOT_COVER_EMITTED_ORDER");
+  if (allDerivations.some((row) => ["PLACE_REST", "REPRICE_REST"].includes(row.action.action)
+    && (!Number.isInteger(row.action.target_cents) || !Number.isInteger(row.derivation.live_ask_cents) || row.action.target_cents >= row.derivation.live_ask_cents))) lawViolations.push("POST_ONLY_GUARD_DID_NOT_COVER_EMITTED_ORDER");
   if (allDerivations.some((row) => row.layered_dual_belief?.envelope_placement?.lower_lawful_level_existed === true && row.layered_dual_belief?.envelope_placement?.pricing_lane !== "FLOOR_CAPABLE_OWN_BOOK_LEVEL")) lawViolations.push("BELOW_PRIOR_LOW_LEVEL_OWNED_BY_NON_FLOOR_CAPABLE_LANE");
   if (allDerivations.some((row) => row.layered_dual_belief?.envelope_placement?.mode === "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST" && (row.layered_dual_belief.envelope_placement.captured_rest_claim_source !== "STANDING_REST_LICENSE_NOT_A_FLOOR_PRODUCER" || row.derivation.target_authority !== "CAPTURED_REST_LEVEL_HELD_POST_ONLY_NOT_A_FLOOR_PRODUCER"))) lawViolations.push("CAPTURED_REST_CLAIM_PROMOTED_TO_FLOOR_PRODUCER");
   if (firedContracts.length !== 14 || latentContracts.length !== 6 || retiredContracts.length !== 1 || contractRows.some((row) => row.contracts.length !== 21 || !row.sentence_carries_contract)) lawViolations.push("TECHNIQUE_CONTRACT_REGISTER_INCOMPLETE_OR_SILENT");
@@ -3851,7 +3852,8 @@ async function main() {
       event_id: row.event_id,
       leg_id: row.leg_id,
       receipt: row.stage_receipt,
-      covered: Boolean(["TARGET_CENTS_LT_LIVE_ASK_CENTS", "STANDING_TARGET_CENTS_LT_LIVE_ASK_CENTS", "AT_FLOOR_IMMUNITY_PRECEDES_ROUTINE_POST_ONLY_CANCEL", "PREDICTION_SEAT_IMMUNITY_PRECEDES_EVERY_ROUTINE_MOVER"].includes(test?.predicate)),
+      covered: Boolean(["TARGET_CENTS_LT_LIVE_ASK_CENTS", "STANDING_TARGET_CENTS_LT_LIVE_ASK_CENTS", "AT_FLOOR_IMMUNITY_PRECEDES_ROUTINE_POST_ONLY_CANCEL", "PREDICTION_SEAT_IMMUNITY_PRECEDES_EVERY_ROUTINE_MOVER"].includes(test?.predicate)
+        || (emitted && Number.isInteger(row.action.target_cents) && Number.isInteger(row.derivation.live_ask_cents) && row.action.target_cents < row.derivation.live_ask_cents)),
       emitted,
       candidate_target_cents: test?.target_cents ?? null,
       candidate_lawful: test?.lawful ?? null,

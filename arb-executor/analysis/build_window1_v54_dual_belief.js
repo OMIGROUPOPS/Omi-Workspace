@@ -3230,6 +3230,7 @@ async function main() {
       && row.leg_id === "PAL"
       && row.action.reason === palAtomicLiveGrainReseatReason
       && row.action.target_cents === 39
+      && typeof row.sentence === "string"
       && row.sentence.includes(palAtomicLiveGrainReseatReason)
       ? {
         ...row,

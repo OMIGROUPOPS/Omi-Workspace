@@ -3265,7 +3265,10 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     };
     const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${action.target_cents ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
     const upstream = `MACRO=${macroStatus}[${macroReceipt.receipt_id}] · MICRO=${microStatus}[${microReceipt.receipt_id}] · MICRO_MICRO=${microMicroStatus}[${microMicroReceipt.receipt_id}]`;
-    const beliefText = dualPlain.length ? `${dualPlain[0]} || SIBLING-INVERSE: ${dualPlain[1]}` : "DUAL_BELIEF=INSUFFICIENT_EVIDENCE";
+    const crossCategoryCellBorrowDisclosure = pricingAuthorities[legId]?.cross_category_cell_borrow?.status === "LOW_GRADE_EVIDENCE_CONSUMED"
+      ? " LOW_GRADE_CROSS_CATEGORY_MEMBERS_MISSING_DISCLOSURE"
+      : "";
+    const beliefText = `${dualPlain.length ? `${dualPlain[0]} || SIBLING-INVERSE: ${dualPlain[1]}` : "DUAL_BELIEF=INSUFFICIENT_EVIDENCE"}${crossCategoryCellBorrowDisclosure}`;
     const fillHandoffId = baseRows.get(legId).derivation.fill_handoff_receipt_id;
     const fillHandoff = fillHandoffId ? baseRows.get(legId).citation_receipts[fillHandoffId] : null;
     const fillHandoffText = fillHandoff

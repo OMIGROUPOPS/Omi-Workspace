@@ -3304,7 +3304,7 @@ async function main() {
     borrow: row.layered_dual_belief?.pricing_authority?.cross_category_cell_borrow ?? null,
     authority_target_cents: row.layered_dual_belief?.pricing_authority?.target_cents ?? null,
     action: row.action,
-    sentence_carries_provenance: row.sentence.includes("cross_category_cell_borrow") && row.sentence.includes("F-VS-241@20a8a610"),
+    sentence_carries_provenance: row.sentence.includes("LOW_GRADE_CROSS_CATEGORY_MEMBERS_MISSING_DISCLOSURE"),
   })).filter((row) => row.borrow);
   const crossCategoryBorrowRows = crossCategoryCellRows.filter((row) => row.borrow.status === "LOW_GRADE_EVIDENCE_CONSUMED");
   writeJson(path.join(output, "DAN_LOW_GRADE_CROSS_CATEGORY_CELL_RECEIPT.json"), {

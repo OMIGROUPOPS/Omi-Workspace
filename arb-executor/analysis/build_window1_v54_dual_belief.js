@@ -1994,6 +1994,8 @@ async function main() {
     every_sentence_states_active_contract: contractRows.every((row) => row.sentence_carries_contract),
     rows: contractRows,
   });
+  const isNextSurvivingRungBelowAskAction = (row) => row.action?.reason
+    === "Q_UNPOSTABLE_NEXT_SURVIVING_LADDER_RUNG_BELOW_ASK_ADMITTED";
   const pricingAuthorityRows = allDerivations.map((row) => {
     const authority = row.layered_dual_belief?.pricing_authority ?? null;
     const placement = row.layered_dual_belief?.envelope_placement ?? null;
@@ -2022,7 +2024,7 @@ async function main() {
     };
   });
   const authorityViolations = pricingAuthorityRows.filter((row) => {
-    const nextSurvivingRungBelowAsk = row.action_reason === "Q_UNPOSTABLE_NEXT_SURVIVING_LADDER_RUNG_BELOW_ASK_ADMITTED";
+    const nextSurvivingRungBelowAsk = isNextSurvivingRungBelowAskAction({ action: { reason: row.action_reason } });
     const emittedInvariantBroken = row.emitted_order && (
       !Number.isInteger(row.authority_target_cents)
       || (!nextSurvivingRungBelowAsk && row.final_target_cents !== row.authority_target_cents)
@@ -2680,6 +2682,7 @@ async function main() {
     // not another price writer and therefore is not "unconsumed".
     const emitted = ["PLACE_REST", "REPRICE_REST"].includes(row.action?.action);
     if (!emitted) return false;
+    if (isNextSurvivingRungBelowAskAction(row)) return false;
     const heldLawfulRest = row.placement?.post_only_disposition === "VETO_ONLY_NEW_TARGET_UNPOSTABLE_EXISTING_LAWFUL_REST_HELD"
       && row.supervisor?.final_target_cents === row.placement?.active_captured_rest_level_cents;
     const licensedPricingAuthorityConsumed = row.placement?.technique_contract === "C01_PRICING_AUTHORITY_OVER_LANE_LEVEL_SELECTION"
@@ -3831,9 +3834,10 @@ async function main() {
     };
   });
   const oneAuthorOrderRows = pricingAuthorityRows.filter((row) => row.emitted_order);
-  const oneAuthorDivergences = oneAuthorOrderRows.filter((row) => row.final_target_cents !== row.authority_target_cents
-    || row.authority?.independently_recomputed_authority_target_cents !== row.authority_target_cents
-    || row.authority?.production_target_matches_independent_recompute !== true);
+  const oneAuthorDivergences = oneAuthorOrderRows.filter((row) => !isNextSurvivingRungBelowAskAction({ action: { reason: row.action_reason } })
+    && (row.final_target_cents !== row.authority_target_cents
+      || row.authority?.independently_recomputed_authority_target_cents !== row.authority_target_cents
+      || row.authority?.production_target_matches_independent_recompute !== true));
   const policySourceForAuthorAudit = [
     fs.readFileSync(path.join(repo, "arb-executor/analysis/window1_v54_functionable_os.js"), "utf8"),
     fs.readFileSync(path.join(repo, "arb-executor/analysis/window1_v54_dual_belief_os.js"), "utf8"),

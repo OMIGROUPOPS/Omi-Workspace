@@ -1226,8 +1226,11 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, p
   const neighborName = topNeighbor
     ? `${topNeighbor.event_id}@${round2(topNeighbor.score)} [${topNeighbor.quality}/${topNeighbor.grain ?? "UNKNOWN"}; MACRO/MICRO; ${topNeighbor.citation_receipt_id}]`
     : "NO_GRADED_NEIGHBOR";
+  const crossCategoryCellBorrowProvenance = pricingAuthority?.cross_category_cell_borrow?.status === "LOW_GRADE_EVIDENCE_CONSUMED"
+    ? pricingAuthority.cross_category_cell_borrow.provenance ?? null
+    : null;
   const plain = microResolved
-    ? `believes ${legId} at ${beliefPrice}¢ [${beliefPriceBasis}; evidenced-receipt=${envelopeHighReceipt}] at ${minutesToBell ?? "UNKNOWN"}min-to-bell with ${volume ?? "UNKNOWN"} vol_log1p in ${state.category}, using ${store} + ${neighborName}, SHOULD drift to ${predicted}¢ by ${byMinutes ?? "UNKNOWN"}min-to-bell [PHASE_CENTRAL_ESTIMATE=${conditionedPrior?.phase_central_estimate?.q50_cents ?? "UNKNOWN"}¢; CENTRAL_ESTIMATE_RANK=${conditionedPrior?.phase_central_estimate?.estimate_rank_in_population ?? "UNKNOWN"}; CENTRAL_MEMBERS=${conditionedPrior?.phase_central_estimate?.members ?? "UNKNOWN"}; CENTRAL_CELL=${conditionedPrior?.phase_central_estimate?.phase_band ?? "UNKNOWN"}; deadline-epoch=${deadline?.deadline_epoch ?? "UNKNOWN"}; deadline-emitted-now=${deadline?.emitted_at_epoch ?? "UNKNOWN"}; deadline-receipt=${deadline?.emitted_at_receipt ?? "UNKNOWN"}]`
+    ? `believes ${legId} at ${beliefPrice}¢ [${beliefPriceBasis}; evidenced-receipt=${envelopeHighReceipt}] at ${minutesToBell ?? "UNKNOWN"}min-to-bell with ${volume ?? "UNKNOWN"} vol_log1p in ${state.category}, using ${store} + ${neighborName}, SHOULD drift to ${predicted}¢ by ${byMinutes ?? "UNKNOWN"}min-to-bell [PHASE_CENTRAL_ESTIMATE=${conditionedPrior?.phase_central_estimate?.q50_cents ?? "UNKNOWN"}¢; CENTRAL_ESTIMATE_RANK=${conditionedPrior?.phase_central_estimate?.estimate_rank_in_population ?? "UNKNOWN"}; CENTRAL_MEMBERS=${conditionedPrior?.phase_central_estimate?.members ?? "UNKNOWN"}; CENTRAL_CELL=${conditionedPrior?.phase_central_estimate?.phase_band ?? "UNKNOWN"}; deadline-epoch=${deadline?.deadline_epoch ?? "UNKNOWN"}; deadline-emitted-now=${deadline?.emitted_at_epoch ?? "UNKNOWN"}; deadline-receipt=${deadline?.emitted_at_receipt ?? "UNKNOWN"}]${crossCategoryCellBorrowProvenance ? ` [cross_category_cell_borrow=${crossCategoryCellBorrowProvenance}]` : ""}`
     : null;
   return {
     leg_id: legId,

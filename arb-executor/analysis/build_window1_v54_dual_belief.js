@@ -3059,14 +3059,45 @@ async function main() {
     };
   });
   const predictionSeatUnique = [...new Map(predictionSeatRows.map((row) => [`${row.event_id}|${row.leg_id}|${row.licensed_at_receipt}|${row.target_cents}`, row])).values()];
+  const namedBaseLaneLicense = (spec) => {
+    const executionLeg = storyResults.find((row) => row.event_id === spec.event_id)?.layered_dual_belief?.legs?.[spec.leg_id] ?? null;
+    const fillContext = executionLeg?.fill_event_receipt?.context ?? null;
+    const licenseRow = allDerivations.find((row) => row.event_id === spec.event_id
+      && row.leg_id === spec.leg_id
+      && row.stage_receipt === fillContext?.standing_license_receipt) ?? null;
+    const qCents = licenseRow?.layered_dual_belief?.micro?.beliefs?.[spec.leg_id]?.predicted_cents ?? null;
+    const restCents = fillContext?.prior_standing_target_cents ?? null;
+    if (fillContext?.standing_license_basis !== "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+      || qCents !== spec.target_cents
+      || restCents !== spec.target_cents
+      || licenseRow?.action?.target_cents !== spec.target_cents) return null;
+    return {
+      event_id: spec.event_id,
+      leg_id: spec.leg_id,
+      target_cents: spec.target_cents,
+      license_kind: "BASE_PRICING_AUTHORITY_STANDING_LICENSE",
+      licensed_at_epoch: licenseRow.timestamp_epoch,
+      licensed_at_receipt: fillContext.standing_license_receipt,
+      standing_license_basis: fillContext.standing_license_basis,
+      q_cents: qCents,
+      rest_cents: restCents,
+      action: licenseRow.action,
+      action_equals_seat_when_emitted: licenseRow.action.target_cents === spec.target_cents,
+      aim_equals_conduct: qCents === restCents,
+      prediction_seat_transition: null,
+      ...sentenceTraceIndex(licenseRow),
+    };
+  };
   const namedPredictionSeats = [
     { event_id: "KXATPCHALLENGERMATCH-26JUL12GIUBAR", leg_id: "GIU", target_cents: 66 },
     { event_id: "KXATPCHALLENGERMATCH-26JUL14URSPAL", leg_id: "URS", target_cents: 58 },
     { event_id: "KXATPCHALLENGERMATCH-26JUL14URSPAL", leg_id: "PAL", target_cents: 39 },
-    { event_id: "KXATPMATCH-26JUL18DANPRA", leg_id: "PRA", target_cents: 41 },
+    { event_id: "KXATPMATCH-26JUL18DANPRA", leg_id: "PRA", target_cents: 41, license_kind: "BASE_PRICING_AUTHORITY_STANDING_LICENSE" },
   ].map((spec) => ({
     ...spec,
-    earliest_license: predictionSeatUnique.filter((row) => row.event_id === spec.event_id && row.leg_id === spec.leg_id && row.target_cents === spec.target_cents).sort((a, b) => a.licensed_at_epoch - b.licensed_at_epoch)[0] ?? null,
+    earliest_license: spec.license_kind === "BASE_PRICING_AUTHORITY_STANDING_LICENSE"
+      ? namedBaseLaneLicense(spec)
+      : predictionSeatUnique.filter((row) => row.event_id === spec.event_id && row.leg_id === spec.leg_id && row.target_cents === spec.target_cents).sort((a, b) => a.licensed_at_epoch - b.licensed_at_epoch)[0] ?? null,
   }));
   writeJson(path.join(output, "PREDICTION_SEATED_RESTS_RECEIPT.json"), {
     label: "F_VS_240_COHERENT_PREDICTION_SEATS_BID_BEFORE_PRINT",
@@ -3075,6 +3106,8 @@ async function main() {
     row_count: predictionSeatRows.length,
     unique_license_count: predictionSeatUnique.length,
     named_tests: namedPredictionSeats,
+    named_base_lane_licenses: namedPredictionSeats.filter((row) => row.license_kind === "BASE_PRICING_AUTHORITY_STANDING_LICENSE" && row.earliest_license).length,
+    named_base_lane_licenses_do_not_create_prediction_seat_rows: true,
     named_current_aim_seats: namedPredictionSeats.filter((row) => row.earliest_license).length,
     every_license_has_sentence_and_overturn_tests: predictionSeatRows.every((row) => row.sentence_is_license && row.overturn_tests.length > 0),
     every_deadline_strictly_future: predictionSeatRows.every((row) => row.deadline_strictly_future),

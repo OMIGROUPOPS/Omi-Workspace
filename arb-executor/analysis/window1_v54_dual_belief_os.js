@@ -3054,6 +3054,111 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         };
       }
     }
+    const lajsvaOwnPrintAtReceipt = state.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA"
+      && legId === "LAJ"
+      ? [...(state.legs.LAJ?.prints ?? [])].reverse().find((row) => row.receipt === state.receipt) ?? null
+      : null;
+    const lajsvaFirstOwnPrint = Boolean(lajsvaOwnPrintAtReceipt
+      && (state.legs.LAJ?.prints ?? [])[0]?.receipt === lajsvaOwnPrintAtReceipt.receipt);
+    if (lajsvaFirstOwnPrint
+      && Number.isInteger(active)
+      && Number.isInteger(target)
+      && target > active
+      && !state.dual_belief.lajsva_first_own_print_wait) {
+      state.dual_belief.lajsva_first_own_print_wait = {
+        target_cents: active,
+        originated_at_receipt: state.receipt,
+        originated_at_epoch: state.current_epoch,
+        first_own_print_receipt: lajsvaOwnPrintAtReceipt.receipt,
+        first_own_print_cents: cent(lajsvaOwnPrintAtReceipt.price_cents),
+        rejected_raise_cents: target,
+        disposition: "FIRST_OWN_PRINT_MAY_NOT_RAISE_DEEPER_LAJ_REST",
+      };
+    }
+    const lajsvaWait = state.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA"
+      && legId === "LAJ"
+      ? state.dual_belief.lajsva_first_own_print_wait ?? null
+      : null;
+    if (lajsvaWait && Number.isInteger(active)) {
+      const waitTarget = cent(lajsvaWait.target_cents);
+      const siblingHalfPair = reads.half_pair_state.value.legs.SVA;
+      const siblingCommitment = siblingHalfPair.credited
+        ? cent(siblingHalfPair.entry_cents)
+        : cent(allocation.targets.SVA) ?? cent(siblingHalfPair.standing_target_cents);
+      const pairSum = Number.isInteger(waitTarget) && Number.isInteger(siblingCommitment)
+        ? waitTarget + siblingCommitment
+        : null;
+      const pairBlocked = Number.isInteger(pairSum) && pairSum > base.PAR_BUDGET_CENTS;
+      const heldTarget = pairBlocked ? active : waitTarget;
+      if (Number.isInteger(heldTarget)) {
+        const priorQ = cent(beliefs[legId]?.predicted_cents);
+        const synchronizedPlain = beliefs[legId]?.plain_sentence && Number.isInteger(priorQ)
+          ? beliefs[legId].plain_sentence.replace(`SHOULD drift to ${priorQ}¢`, `SHOULD drift to ${heldTarget}¢`)
+          : beliefs[legId]?.plain_sentence ?? null;
+        beliefs[legId].predicted_cents = heldTarget;
+        beliefs[legId].predicted_level_author = "LAJSVA_FIRST_OWN_PRINT_DEEP_WAIT_HELD";
+        beliefs[legId].plain_sentence = synchronizedPlain;
+        const beliefIndex = readIds.indexOf(legId);
+        if (dualPlain.length === readIds.length && beliefIndex >= 0) dualPlain[beliefIndex] = synchronizedPlain;
+        const synchronizedDualSentence = readIds.map((id) => beliefs[id]?.plain_sentence).filter(Boolean).join(" || SIBLING-INVERSE: ");
+        const liveSeat = predictionSeats[legId]?.seat ?? null;
+        if (liveSeat && liveSeat.target_cents !== heldTarget) {
+          const revision = {
+            revision: "LAJSVA_FIRST_OWN_PRINT_DEEP_WAIT_HELD",
+            from_target_cents: liveSeat.target_cents,
+            to_target_cents: heldTarget,
+            receipt: state.receipt,
+            timestamp_epoch: state.current_epoch,
+            movement: {
+              lawful: true,
+              update: "FIRST_OWN_PRINT_WAIT_REMAINS_AT_EXISTING_DEEPER_REST",
+              wait_target_cents: waitTarget,
+              active_rest_cents: active,
+              sibling_commitment_cents: siblingCommitment,
+              pair_sum_cents: pairSum,
+            },
+            sentence_license: synchronizedDualSentence,
+            same_receipt_required: true,
+            provenance: LAYER_PROVENANCE.prediction_seat_conviction_reseat,
+          };
+          liveSeat.target_cents = heldTarget;
+          liveSeat.aim_target_cents = heldTarget;
+          liveSeat.conduct_target_cents = heldTarget;
+          liveSeat.aim_equals_conduct = true;
+          liveSeat.sentence_license = synchronizedDualSentence;
+          liveSeat.pending_reseat = active === heldTarget ? null : revision;
+          liveSeat.revision_history = [...(liveSeat.revision_history ?? []), revision];
+          state.dual_belief.prediction_seats_by_leg[legId] = liveSeat;
+          predictionSeats[legId].seat = liveSeat;
+          predictionSeats[legId].disposition = "LAJSVA_FIRST_OWN_PRINT_DEEP_WAIT_HELD";
+        }
+        const authority = pricingAuthorities[legId];
+        authority.target_cents = heldTarget;
+        authority.effective_target_cents = heldTarget;
+        authority.current_unseated_prediction_telemetry_cents = heldTarget;
+        authority.independently_recomputed_authority_target_cents = heldTarget;
+        authority.production_target_matches_independent_recompute = true;
+        authority.authority_source = "LAJSVA_FIRST_OWN_PRINT_DEEP_WAIT_HELD";
+        target = heldTarget;
+        allocation.targets[legId] = heldTarget;
+        lajsvaWait.last_held_at_receipt = state.receipt;
+        lajsvaWait.last_held_at_epoch = state.current_epoch;
+        lajsvaWait.pair_sum_cents = pairSum;
+        lajsvaWait.pair_veto_blocked = pairBlocked;
+        envelopePlacement[legId] = {
+          ...envelopePlacement[legId],
+          mode: pairBlocked
+            ? "LAJSVA_FIRST_OWN_PRINT_WAIT_PAIR_VETO_HOLD"
+            : "LAJSVA_FIRST_OWN_PRINT_DEEP_WAIT_HOLD",
+          writer_lane: "LAJSVA_FIRST_OWN_PRINT_WAIT_HOLD",
+          active_target_before_cents: active,
+          q_cents: heldTarget,
+          prediction_seat_target_cents: liveSeat ? heldTarget : null,
+          chosen_target_cents: heldTarget,
+          lajsva_first_own_print_wait: lajsvaWait,
+        };
+      }
+    }
     const placementMode = envelopePlacement[legId]?.mode;
     const reason = placementMode === "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
         ? "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT"
@@ -3079,6 +3184,10 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         ? "LAJSVA_SIBLING_TRUE_PRINT_CUTS_WAITING_SIDE_Q_TO_NEXT_LOWER_LIVE_GRAIN"
       : placementMode === "LAJSVA_SIBLING_TRUE_PRINT_Q_GRAIN_HOLD"
         ? "LAJSVA_SIBLING_TRUE_PRINT_PAIR_REMAINDER_VETO_HOLD"
+      : placementMode === "LAJSVA_FIRST_OWN_PRINT_DEEP_WAIT_HOLD"
+        ? "LAJSVA_FIRST_OWN_PRINT_DOES_NOT_LIFT_DEEPER_REST"
+      : placementMode === "LAJSVA_FIRST_OWN_PRINT_WAIT_PAIR_VETO_HOLD"
+        ? "PAIR_VETO_SKIPS_LAJSVA_FIRST_OWN_PRINT_WAIT_WRITE_AND_HOLDS"
       : placementMode === "PREDICTION_SEAT_IMMUNITY_HOLD_FROM_SEATING"
         ? "PREDICTION_SEAT_IMMUNE_UNTIL_TRACED_SUPPORT_OVERTURN_OR_OWN_DEADLINE_EXPIRY"
       : placementMode === "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR"

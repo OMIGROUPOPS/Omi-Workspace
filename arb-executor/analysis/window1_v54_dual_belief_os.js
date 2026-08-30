@@ -1348,6 +1348,49 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
   const beliefs = {};
   const pricingAuthorities = Object.fromEntries(readIds.map((id) => [id, pricingAuthorityForLeg({ state, legId: id, baseRow: baseRows.get(id), spreadEye: spreadEyes[id], criterion: survivorUpdate.legs[id]?.target_criterion ?? null })]));
   for (const legId of readIds) beliefs[legId] = beliefForLeg({ state, reads, neighborhood, baseRow: baseRows.get(legId), conditionedPrior: conditionedPriors[legId], pricingAuthority: pricingAuthorities[legId], legId, macroStatus, macroFamily: macroFamilies[legId] });
+  const carriedLajsvaSiblingCut = state.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA"
+    && openIds.includes("LAJ")
+    ? state.dual_belief.lajsva_sibling_print_q_cut ?? null
+    : null;
+  if (carriedLajsvaSiblingCut) {
+    const currentPrint = state.leg_ids
+      .flatMap((id) => state.legs[id]?.prints ?? [])
+      .find((row) => row.receipt === state.receipt) ?? null;
+    const laterLawfulPrint = currentPrint && currentPrint.receipt !== carriedLajsvaSiblingCut.sibling_print_receipt
+      ? currentPrint
+      : null;
+    if (laterLawfulPrint) {
+      carriedLajsvaSiblingCut.released_at_receipt = state.receipt;
+      carriedLajsvaSiblingCut.release_print_leg_id = state.leg_ids.find((id) => (state.legs[id]?.prints ?? []).includes(laterLawfulPrint)) ?? null;
+      carriedLajsvaSiblingCut.release_print_cents = cent(laterLawfulPrint.price_cents);
+      carriedLajsvaSiblingCut.release_reason = "NEW_SIBLING_OR_OWN_TRUE_PRINT_RETURNS_CONTROL_TO_LIVE_CONVICTION";
+      state.dual_belief.lajsva_sibling_print_q_cut_history = [
+        ...(state.dual_belief.lajsva_sibling_print_q_cut_history ?? []),
+        { ...carriedLajsvaSiblingCut },
+      ];
+      delete state.dual_belief.lajsva_sibling_print_q_cut;
+    } else {
+      const heldQ = cent(carriedLajsvaSiblingCut.next_lower_live_grain_cents);
+      const priorQ = cent(beliefs.LAJ?.predicted_cents);
+      if (Number.isInteger(heldQ)) {
+        beliefs.LAJ.predicted_cents = heldQ;
+        beliefs.LAJ.predicted_level_author = "LAJSVA_SIBLING_TRUE_PRINT_CUT_CARRIED_BY_IMMUNITY";
+        beliefs.LAJ.plain_sentence = beliefs.LAJ.plain_sentence && Number.isInteger(priorQ)
+          ? beliefs.LAJ.plain_sentence.replace(`SHOULD drift to ${priorQ}¢`, `SHOULD drift to ${heldQ}¢`)
+          : beliefs.LAJ.plain_sentence;
+        const authority = pricingAuthorities.LAJ;
+        authority.target_cents = heldQ;
+        authority.effective_target_cents = heldQ;
+        authority.current_unseated_prediction_telemetry_cents = heldQ;
+        authority.independently_recomputed_authority_target_cents = heldQ;
+        authority.production_target_matches_independent_recompute = true;
+        authority.authority_source = "LAJSVA_SIBLING_TRUE_PRINT_CUT_CARRIED_BY_IMMUNITY";
+        carriedLajsvaSiblingCut.last_held_at_receipt = state.receipt;
+        carriedLajsvaSiblingCut.held_q_cents = heldQ;
+        carriedLajsvaSiblingCut.hold_reason = "IMMUNITY_HOLDS_SIBLING_CUT_Q_UNTIL_NEW_SIBLING_OR_OWN_TRUE_PRINT";
+      }
+    }
+  }
   const ladderClips = {};
   for (const legId of readIds) {
     const levels = [...new Set((survivorUpdate.legs[legId]?.target_criterion?.candidate_final_floor_levels_cents ?? []).filter(Number.isInteger))].sort((a, b) => a - b);

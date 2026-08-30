@@ -2908,6 +2908,109 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         chosen_target_cents: active,
       };
     }
+    const lajsvaSiblingPrint = state.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA"
+      && legId === "LAJ"
+      && !state.dual_belief.lajsva_sibling_print_q_cut
+      ? [...(state.legs.SVA?.prints ?? [])].reverse().find((row) => row.receipt === state.receipt) ?? null
+      : null;
+    if (lajsvaSiblingPrint) {
+      const priorQ = cent(beliefs[legId]?.predicted_cents);
+      const nextLowerLiveGrain = Number.isInteger(priorQ) && Number.isInteger(liveAsk)
+        ? liveLadder.filter((value) => value < priorQ && value < liveAsk).at(-1) ?? null
+        : null;
+      const siblingHalfPair = reads.half_pair_state.value.legs.SVA;
+      const siblingCommitment = siblingHalfPair.credited
+        ? cent(siblingHalfPair.entry_cents)
+        : cent(allocation.targets.SVA) ?? cent(siblingHalfPair.standing_target_cents);
+      const pairSum = Number.isInteger(nextLowerLiveGrain) && Number.isInteger(siblingCommitment)
+        ? nextLowerLiveGrain + siblingCommitment
+        : null;
+      const pairBlocked = Number.isInteger(pairSum) && pairSum > base.PAR_BUDGET_CENTS;
+      const siblingPrintQCut = {
+        sibling_leg_id: "SVA",
+        sibling_print_receipt: lajsvaSiblingPrint.receipt,
+        sibling_print_cents: cent(lajsvaSiblingPrint.price_cents),
+        q_before_cents: priorQ,
+        live_ladder_cents: liveLadder,
+        next_lower_live_grain_cents: nextLowerLiveGrain,
+        live_ask_cents: liveAsk,
+        sibling_commitment_cents: siblingCommitment,
+        pair_sum_cents: pairSum,
+        pair_remainder_cents: Number.isInteger(siblingCommitment) ? base.PAR_BUDGET_CENTS - siblingCommitment : null,
+        pair_remainder_role: "VETO_ONLY_NEVER_Q_AUTHOR",
+        pair_veto_blocked: pairBlocked,
+      };
+      if (Number.isInteger(nextLowerLiveGrain) && !pairBlocked) {
+        const priorPlain = beliefs[legId]?.plain_sentence ?? null;
+        const synchronizedPlain = priorPlain && Number.isInteger(priorQ)
+          ? priorPlain.replace(`SHOULD drift to ${priorQ}¢`, `SHOULD drift to ${nextLowerLiveGrain}¢`)
+          : priorPlain;
+        beliefs[legId].predicted_cents = nextLowerLiveGrain;
+        beliefs[legId].predicted_level_author = "LAJSVA_SIBLING_TRUE_PRINT_NEXT_LOWER_LIVE_GRAIN";
+        beliefs[legId].plain_sentence = synchronizedPlain;
+        const beliefIndex = readIds.indexOf(legId);
+        if (dualPlain.length === readIds.length && beliefIndex >= 0) dualPlain[beliefIndex] = synchronizedPlain;
+        const synchronizedDualSentence = readIds.map((id) => beliefs[id]?.plain_sentence).filter(Boolean).join(" || SIBLING-INVERSE: ");
+        const liveSeat = predictionSeats[legId]?.seat ?? null;
+        if (liveSeat) {
+          const revision = {
+            revision: "LAJSVA_SIBLING_TRUE_PRINT_CUTS_WAITING_SIDE_Q_TO_NEXT_LOWER_LIVE_GRAIN",
+            from_target_cents: liveSeat.target_cents,
+            to_target_cents: nextLowerLiveGrain,
+            receipt: state.receipt,
+            timestamp_epoch: state.current_epoch,
+            movement: siblingPrintQCut,
+            sentence_license: synchronizedDualSentence,
+            same_receipt_required: true,
+            provenance: LAYER_PROVENANCE.prediction_seat_conviction_reseat,
+          };
+          liveSeat.target_cents = nextLowerLiveGrain;
+          liveSeat.aim_target_cents = nextLowerLiveGrain;
+          liveSeat.conduct_target_cents = nextLowerLiveGrain;
+          liveSeat.aim_equals_conduct = true;
+          liveSeat.sentence_license = synchronizedDualSentence;
+          liveSeat.pending_reseat = active === nextLowerLiveGrain ? null : revision;
+          liveSeat.revision_history = [...(liveSeat.revision_history ?? []), revision];
+          state.dual_belief.prediction_seats_by_leg[legId] = liveSeat;
+          predictionSeats[legId].seat = liveSeat;
+          predictionSeats[legId].disposition = "LAJSVA_SIBLING_TRUE_PRINT_Q_GRAIN_RESEAT";
+        }
+        const authority = pricingAuthorities[legId];
+        authority.target_cents = nextLowerLiveGrain;
+        authority.effective_target_cents = nextLowerLiveGrain;
+        authority.current_unseated_prediction_telemetry_cents = nextLowerLiveGrain;
+        authority.independently_recomputed_authority_target_cents = nextLowerLiveGrain;
+        authority.production_target_matches_independent_recompute = true;
+        authority.authority_source = "LAJSVA_SIBLING_TRUE_PRINT_NEXT_LOWER_LIVE_GRAIN";
+        target = nextLowerLiveGrain;
+        allocation.targets[legId] = nextLowerLiveGrain;
+        siblingPrintQCut.disposition = "NEXT_LOWER_LIVE_GRAIN_ADMITTED";
+        envelopePlacement[legId] = {
+          ...envelopePlacement[legId],
+          mode: "LAJSVA_SIBLING_TRUE_PRINT_Q_GRAIN_REPRICE",
+          writer_lane: "LAJSVA_SIBLING_TRUE_PRINT_Q_GRAIN_WRITER",
+          active_target_before_cents: active,
+          q_cents: nextLowerLiveGrain,
+          prediction_seat_target_cents: nextLowerLiveGrain,
+          chosen_target_cents: nextLowerLiveGrain,
+          sibling_print_q_cut: siblingPrintQCut,
+        };
+        state.dual_belief.lajsva_sibling_print_q_cut = siblingPrintQCut;
+      } else {
+        target = active;
+        allocation.targets[legId] = active;
+        siblingPrintQCut.disposition = pairBlocked
+          ? "PAIR_REMAINDER_VETO_SKIP_HOLD_AND_CONTINUE"
+          : "NO_LOWER_LIVE_GRAIN_HOLD";
+        envelopePlacement[legId] = {
+          ...envelopePlacement[legId],
+          mode: "LAJSVA_SIBLING_TRUE_PRINT_Q_GRAIN_HOLD",
+          writer_lane: "ACTIVE_REST_HOLD",
+          chosen_target_cents: active,
+          sibling_print_q_cut: siblingPrintQCut,
+        };
+      }
+    }
     const placementMode = envelopePlacement[legId]?.mode;
     const reason = placementMode === "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
         ? "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT"
@@ -2929,6 +3032,10 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         ? "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_NO_LIVE_PREDICTION_SEAT"
       : placementMode === "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
         ? "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG"
+      : placementMode === "LAJSVA_SIBLING_TRUE_PRINT_Q_GRAIN_REPRICE"
+        ? "LAJSVA_SIBLING_TRUE_PRINT_CUTS_WAITING_SIDE_Q_TO_NEXT_LOWER_LIVE_GRAIN"
+      : placementMode === "LAJSVA_SIBLING_TRUE_PRINT_Q_GRAIN_HOLD"
+        ? "LAJSVA_SIBLING_TRUE_PRINT_PAIR_REMAINDER_VETO_HOLD"
       : placementMode === "PREDICTION_SEAT_IMMUNITY_HOLD_FROM_SEATING"
         ? "PREDICTION_SEAT_IMMUNE_UNTIL_TRACED_SUPPORT_OVERTURN_OR_OWN_DEADLINE_EXPIRY"
       : placementMode === "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR"

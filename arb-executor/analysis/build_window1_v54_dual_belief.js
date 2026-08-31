@@ -1940,7 +1940,9 @@ async function main() {
     const creditedBeforeFloor = Number.isFinite(outcome?.fill_timestamp_epoch) && Number.isFinite(comparisonTs) && outcome.fill_timestamp_epoch < comparisonTs;
     const creditedAtFloorOnFloorReceipt = outcome?.entry_cents === spec.floor_cents && outcome?.fill_receipt === firstBinding?.receipt;
     const creditedBeforeFloorRow = creditedBeforeFloor || (outcome?.entry_cents !== spec.floor_cents && outcome?.fill_receipt === firstBinding?.receipt);
-    const nonDerivableFloorExplained = Boolean(firstEvaluation?.classification?.refusal_reason && !firstBinding && !outcome?.credited);
+    const nonDerivableFloorExplained = Boolean(!firstBinding
+      && firstEvaluation?.classification?.class_id === "PRINT_ABOVE_OPEN_DESCENT_PATH_NOT_FLOOR_CANDIDATE"
+      && firstEvaluation?.classification?.binding_floor_candidate === false);
     const floorGovernsOpenConduct = Boolean(firstBinding && !creditedBeforeFloor && evaluations.some((row) => row.final_target_cents === spec.floor_cents || outcome?.standing_target_cents === spec.floor_cents));
     const exactAnswer = creditedAtFloorOnFloorReceipt
       ? "CREDITED_AT_DERIVABLE_PRINTED_FLOOR_ON_FLOOR_RECEIPT"

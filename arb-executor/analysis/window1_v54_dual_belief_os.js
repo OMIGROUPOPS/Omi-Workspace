@@ -3159,8 +3159,67 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
         };
       }
     }
+    const formationEndEpoch = finite(state.legs[legId].formation_end_epoch);
+    const formationCompleteForLeg = baseRows.get(legId)?.derivation?.formation_complete === true;
+    const allTimeTradedLow = cent(state.legs[legId].running_true_trade_low_cents);
+    const allTimeTradedLowPrint = Number.isInteger(allTimeTradedLow)
+      ? [...state.legs[legId].prints].reverse().find((print) => cent(print.price_cents) === allTimeTradedLow) ?? null
+      : null;
+    const preFormationPrintWouldLicenseRest = Boolean(
+      formationCompleteForLeg
+      && Number.isFinite(formationEndEpoch)
+      && allTimeTradedLowPrint
+      && allTimeTradedLowPrint.timestamp_epoch < formationEndEpoch
+      && (active === allTimeTradedLow || target === allTimeTradedLow)
+    );
+    if (preFormationPrintWouldLicenseRest) {
+      const postFormationPrints = state.legs[legId].prints.filter((print) =>
+        print.timestamp_epoch >= formationEndEpoch && Number.isInteger(cent(print.price_cents)));
+      const postFormationTradedLow = postFormationPrints.length > 0
+        ? Math.min(...postFormationPrints.map((print) => cent(print.price_cents)))
+        : null;
+      const liveAskAtFormationBinding = cent(reads.books.value[legId]?.ask_cents);
+      const siblingId = state.leg_ids.find((id) => id !== legId);
+      const siblingHalfPair = reads.half_pair_state.value.legs[siblingId];
+      const siblingCommitment = siblingHalfPair.credited
+        ? cent(siblingHalfPair.entry_cents)
+        : cent(siblingHalfPair.standing_target_cents);
+      const postable = Number.isInteger(postFormationTradedLow)
+        && Number.isInteger(liveAskAtFormationBinding)
+        && postFormationTradedLow < liveAskAtFormationBinding;
+      const pairSum = Number.isInteger(postFormationTradedLow) && Number.isInteger(siblingCommitment)
+        ? postFormationTradedLow + siblingCommitment
+        : null;
+      const pairLawful = !Number.isInteger(pairSum) || pairSum <= base.PAR_BUDGET_CENTS;
+      target = postable && pairLawful ? postFormationTradedLow : null;
+      allocation.targets[legId] = target;
+      envelopePlacement[legId] = {
+        ...envelopePlacement[legId],
+        mode: Number.isInteger(target)
+          ? "FORMATION_BOUND_POST_FORMATION_TRADED_LOW_ADMITTED"
+          : "FORMATION_BOUND_PRE_FORMATION_REST_UNSET",
+        writer_lane: Number.isInteger(target)
+          ? "FORMATION_BOUND_POST_FORMATION_LOW_WRITER"
+          : "FORMATION_BOUND_UNSET",
+        formation_end_epoch: formationEndEpoch,
+        pre_formation_rest_cents: active,
+        pre_formation_print_receipt: allTimeTradedLowPrint.receipt,
+        pre_formation_print_epoch: allTimeTradedLowPrint.timestamp_epoch,
+        post_formation_traded_low_cents: postFormationTradedLow,
+        live_ask_cents: liveAskAtFormationBinding,
+        sibling_commitment_cents: siblingCommitment,
+        pair_sum_cents: pairSum,
+        postable,
+        pair_lawful: pairLawful,
+        chosen_target_cents: target,
+      };
+    }
     const placementMode = envelopePlacement[legId]?.mode;
-    const reason = placementMode === "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+    const reason = placementMode === "FORMATION_BOUND_POST_FORMATION_TRADED_LOW_ADMITTED"
+        ? "FORMATION_BINDS_REST_TO_POST_FORMATION_TRADED_LOW"
+      : placementMode === "FORMATION_BOUND_PRE_FORMATION_REST_UNSET"
+        ? "PRE_FORMATION_PRINT_CANNOT_LICENSE_POST_FORMATION_REST"
+      : placementMode === "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
         ? "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT"
       : placementMode === "LADDER_SHRINK_Q_CLIP_ADMITTED"
         ? "Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK"
@@ -3611,6 +3670,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, survivor_shapes: survivorUpdate, conditioned_priors: conditionedPriors, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, prediction_seat: predictionSeatTrace, prediction_seat_transition: predictionSeatTransitionTrace, belief_mode: beliefMode, conviction_evolution: convictionEvolution[legId], carried_conviction_consumed_for_action: carriedPlacement, independent_lane_license: [LAYER_PROVENANCE.own_evidence_sufficiency, LAYER_PROVENANCE.disagrees_own_evidence_release, LAYER_PROVENANCE.book_veto_only], pricing_authority: pricingAuthorityTrace, spread_eye: spreadEyes[legId], credited_leg_streams: creditedReadTrace, same_receipt_act: sameReceiptAct, technique_contracts: TECHNIQUE_CONTRACTS, decision_arbitration: decisionArbitration, atomic_rearm: rearmReceipt, first_coherence: state.dual_belief.first_coherence, envelope_history_count: state.dual_belief.envelope_history.length, envelope_migration_at_receipt: envelopeMigrations[legId] ?? null, envelope_consistency: envelopeConsistency, coherence_placement: coherencePlacement, floor_rest_protection: floorRestProtection, proposal_supervisor: proposalSupervisor, par_allocation_floor_bound: allocationBound, envelope: currentEnvelope, envelope_placement: envelopePlacementTrace, v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
     delete row.derivation.stale_prior_path_used;
     row.derivation.carried_conviction = convictionEvolution[legId];
+    row.derivation.formation_end_epoch = finite(state.legs[legId].formation_end_epoch);
     row.derivation.target_basis = reason;
     row.derivation.target_authority = ["PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR", "PREDICTION_SEAT_IMMUNITY_HOLD_FROM_SEATING", "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"].includes(placementMode)
         ? "UNIFIED_CONDITIONED_BELIEF_POSTERIOR_AIM_EQUALS_CONDUCT"

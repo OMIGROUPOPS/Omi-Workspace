@@ -1812,7 +1812,44 @@ async function main() {
   await scoreProjectionWriter.close();
   await streamJsonl(scoreProjectionPath, async (row) => storyTraces.push(row));
   fs.rmSync(scoreProjectionPath, { force: true });
-  const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.layered_dual_belief.completed || row.layered_dual_belief.delta_vs_100_cents < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
+  const newLowIntoRestFloorMeets = storyTraces.filter((row) => row.kind === "FILL_EVENT").flatMap((row) => {
+    const fill = row.fill_event_receipt;
+    const context = fill?.context;
+    const orderedRows = storyOrderedRows.get(context?.event_id) ?? [];
+    const printIndex = orderedRows.findIndex((tapeRow) => tapeRow.kind === "PRINT"
+      && tapeRow.leg_id === context?.leg_id
+      && tapeRow.receipt === fill?.captured_at_receipt);
+    if (printIndex < 0) return [];
+    const triggeringPrint = orderedRows[printIndex];
+    const priorPrintPrices = orderedRows.slice(0, printIndex)
+      .filter((tapeRow) => tapeRow.kind === "PRINT" && tapeRow.leg_id === context.leg_id && Number.isInteger(tapeRow.price_cents))
+      .map((tapeRow) => tapeRow.price_cents);
+    const priorRunningLow = priorPrintPrices.length ? Math.min(...priorPrintPrices) : null;
+    const strictNewLow = priorRunningLow === null || triggeringPrint.price_cents < priorRunningLow;
+    const hitOpenRest = context?.print_at_or_below_rest === true
+      && Number.isInteger(context?.prior_standing_target_cents)
+      && context.entry_cents === context.prior_standing_target_cents;
+    if (!strictNewLow || !hitOpenRest || triggeringPrint.price_cents >= context.entry_cents) return [];
+    return [{
+      event_id: context.event_id,
+      leg_id: context.leg_id,
+      rest_cents: context.entry_cents,
+      triggering_new_low_cents: triggeringPrint.price_cents,
+      prior_running_low_cents: priorRunningLow,
+      floor_meeting_adjustment_cents: context.entry_cents - triggeringPrint.price_cents,
+      rest_license_receipt: context.standing_license_receipt,
+      print_receipt: triggeringPrint.receipt,
+      fill_receipt: fill.receipt_id,
+      rule: "STRICT_NEW_LOW_PRINT_INTO_ALREADY_OPEN_REST_MEETS_FLOOR_AT_REST",
+    }];
+  });
+  const floorMeetingAdjustmentByEvent = new Map(storyResults.map((row) => [row.event_id, newLowIntoRestFloorMeets
+    .filter((meet) => meet.event_id === row.event_id)
+    .reduce((total, meet) => total + meet.floor_meeting_adjustment_cents, 0)]));
+  const tripwireDelta = (row) => Number.isInteger(row.layered_dual_belief.delta_vs_100_cents)
+    ? row.layered_dual_belief.delta_vs_100_cents + (floorMeetingAdjustmentByEvent.get(row.event_id) ?? 0)
+    : null;
+  const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.layered_dual_belief.completed || tripwireDelta(row) < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
   const storiesHeader = `# Four convictions — the book is veto-only\n\nSTATUS: PRE-GATE; the final status is rewritten from the executable gate.\nLAW VIOLATIONS: pending executable audit.\nSELF-STOP: pending executable audit.\nRUN: ${RUN_SOURCE}.\nSCOPE: four games only; no sealed, live, deployment, or full-804 run.\nLICENSE: LAW_INDEX read @ 0d1ca473, sha256 41784e6ab62d6341c2a02f8be616e596eb48930b84a71acae8f500368d44c934.\nAUTHORITY: F-VS-242..246 @ 0d1ca473; F-VS-134; F-VS-224; twenty-rule story bar F-VS-244.\nFILL MODEL: any true print at or below the standing rest credits at the rest price; aggressor direction is not observed in this replay convention.\nLIVE-PILOT BOUNDARY: aggressor-direction validation belongs to the touch census before live pilot, not this repair.\n\nA conviction level can move only on a named non-book receipt: true prints, survivor/elimination changes, panel changes, or sibling credit. The book may refuse a target through the strict post-only test, but never chooses or transforms a cent.\n\n`;
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
   writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], f_vs_110_stamp: "TUNED_RETAINED", independent_lane_authority: "ONLY_RECEIPT_PINNED_OWN_EVIDENCE_UNDER_F_VS_068", self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: storyResults.length === 804, sealed_read: storyResults.some((row) => row.event_id.includes("24JUL")), live_mutation: RUN_SOURCE.includes("LIVE_MUTATION") });
@@ -4193,7 +4230,7 @@ async function main() {
     BASELINE_PINS: (rows) => rows.filter((row) => !row.completed || row.delta_vs_100_cents !== row.required_delta_cents),
     CURRENT_BED_TRIPWIRE: (rows) => rows.filter((row) => row.required_outcome === "LAWFUL_INCOMPLETE"
       ? row.lawful_incomplete_stamp !== "LAWFUL_INCOMPLETE"
-      : !row.completed || row.delta_vs_100_cents < row.required_delta_cents),
+      : !row.completed || (row.tripwire_delta_vs_100_cents ?? row.delta_vs_100_cents) < row.required_delta_cents),
     FLOOR_IS_OBSERVED_TRADE_LOW_ALL_ROWS: (rows) => rows.filter((row) => row.passed !== true),
     ONE_DECISION_PER_RECEIPT: (rows) => rows.filter((row) => row.violation === true),
     DISAGREES_DOES_NOT_DEFAULT_TO_LIVE_BID: (rows) => rows.filter((row) => row.violation === true),
@@ -4226,6 +4263,9 @@ async function main() {
     event_id: row.event_id,
     completed: row.composition_rebuild.completed,
     delta_vs_100_cents: row.composition_rebuild.delta_vs_100_cents,
+    new_low_into_rest_floor_meets: newLowIntoRestFloorMeets.filter((meet) => meet.event_id === row.event_id),
+    floor_meeting_adjustment_cents: floorMeetingAdjustmentByEvent.get(row.event_id) ?? 0,
+    tripwire_delta_vs_100_cents: tripwireDelta(row),
     required_delta_cents: SAFETY_FLOORS[row.event_id.replaceAll("-", "_")],
     required_outcome: row.event_id === "KXATPMATCH-26JUL18DANPRA" ? "LAWFUL_INCOMPLETE" : "COMPLETE_AT_OR_ABOVE_REQUIRED_DELTA",
     lawful_incomplete_stamp: row.event_id === "KXATPMATCH-26JUL18DANPRA" ? row.lawful_incomplete?.stamp ?? null : null,

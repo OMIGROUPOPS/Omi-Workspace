@@ -471,12 +471,11 @@ function floorDecisivenessForLevel(criterion, valueCents) {
   };
 }
 
-// F-VS-234..237 plus the directional-admission repair: one classifier is
-// shared by the price author and floor immunity. A print is not automatically
-// a floor. If the surviving descent path is still open below a printed level,
-// any print above that path is refused. Exact path support is admitted. The
-// prior path predicate and the per-leg descent grade are composed; neither
-// replaces the other, and no event identity participates.
+// One classifier is shared by the price author and floor immunity. A print is
+// not automatically a floor: a surviving descent path below the printed level
+// keeps that level outside the floor-candidate set, while exact path support
+// admits it. The prior path predicate and per-leg descent grade are composed;
+// neither replaces the other, and no event identity participates.
 function classifyPerLegFloorEvidence({ state, legId, criterion, source, valueCents, receipt }) {
   const baseGrade = floorDecisivenessForLevel(criterion, valueCents);
   const leg = state?.legs?.[legId] ?? null;
@@ -1179,6 +1178,16 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, p
   const observedTradeLowReceipt = observedTradeLow === null
     ? null
     : [...state.legs[legId].prints].reverse().find((row) => cent(row.price_cents) === observedTradeLow)?.receipt ?? null;
+  const ownPrints = (state.legs[legId].prints ?? []).filter((row) => Number.isInteger(cent(row.price_cents)) && Boolean(row.receipt));
+  const ownPrintReceipts = ownPrints.map((row) => row.receipt);
+  const ownPrintNetDown = ownPrints.length >= 2
+    && cent(ownPrints.at(-1).price_cents) < cent(ownPrints[0].price_cents);
+  const qAuthor = ownPrints.length === 0
+    ? "INSUFFICIENT_EVIDENCE"
+    : ownPrintNetDown
+      ? "PRIOR_REWEIGHTED_BY_OWN_WALK"
+      : "PRIOR_ONLY";
+  const xAuthor = ownPrints.length === 0 ? "INSUFFICIENT_EVIDENCE" : "LIBRARY_FRACTION_PRIOR";
   const envelopeHigh = observedTradeLow;
   const envelopeHighBasis = observedTradeLow ? "OBSERVED_TRUE_TRADE_LOW" : null;
   const envelopeHighReceipt = observedTradeLow ? observedTradeLowReceipt : null;
@@ -1248,6 +1257,10 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, p
     live_bid_cents: liveBid,
     live_ask_cents: liveAsk,
     predicted_cents: predicted,
+    print_count: ownPrints.length,
+    q_author: qAuthor,
+    x_author: xAuthor,
+    own_print_receipts: ownPrintReceipts,
     phase_projection_telemetry_cents: cent(phaseProjectionTelemetry),
     predicted_level_author: "NON_BOOK_PRICING_AUTHORITY_POSTERIOR",
     book_veto_only: true,

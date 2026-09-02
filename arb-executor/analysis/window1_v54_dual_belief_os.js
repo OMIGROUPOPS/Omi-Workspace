@@ -2096,8 +2096,21 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     }
     const laneProposalBeforeAuthority = cent(targets[legId]);
     const laneModeBeforeAuthority = envelopePlacement[legId]?.mode ?? null;
-    const pricingAuthority = pricingAuthorities[legId];
-    const authorityTarget = cent(pricingAuthority?.target_cents);
+    const rawPricingAuthority = pricingAuthorities[legId];
+    const insufficientEvidenceAuthorityVeto = beliefs[legId]?.status === "INSUFFICIENT_EVIDENCE";
+    const unlicensedAuthorityTarget = insufficientEvidenceAuthorityVeto ? cent(rawPricingAuthority?.target_cents) : null;
+    const pricingAuthority = insufficientEvidenceAuthorityVeto
+      ? {
+        ...rawPricingAuthority,
+        target_cents: Number.isInteger(active) ? active : null,
+        independently_recomputed_authority_target_cents: Number.isInteger(active) ? active : null,
+        insufficient_evidence_authority_veto: "MICRO_STATUS_INSUFFICIENT_EVIDENCE",
+        unlicensed_authority_target_cents: unlicensedAuthorityTarget,
+        rearm_resolution_under_veto: Number.isInteger(active) ? "RESTORE_EXISTING_REST_CENTS" : "STAND_DOWN_NO_NULL_RESTORE",
+      }
+      : rawPricingAuthority;
+    if (insufficientEvidenceAuthorityVeto) pricingAuthorities[legId] = pricingAuthority;
+    const authorityTarget = insufficientEvidenceAuthorityVeto ? null : cent(pricingAuthority?.target_cents);
     const writerLane = predictionSeatReseatPending
       ? "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE"
       : predictionSeat

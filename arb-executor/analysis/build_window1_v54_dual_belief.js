@@ -1316,7 +1316,18 @@ function readerExecutionReceipt(result) {
 }
 
 function oldOutcome(perGame, eventId, meta) {
-  const row = perGame.rows.find((item) => item.event_id === eventId), credits = row.L7_CREDIT.why;
+  const row = perGame.rows.find((item) => item.event_id === eventId);
+  if (row === undefined) return {
+    run_source: "STORE_SILENT",
+    walk_file: path.join(path.resolve(arg("walk")), "PER_GAME_L1_L8.json"),
+    event_id: eventId,
+    completed: false,
+    combined_entry_cents: null,
+    delta_vs_100_cents: null,
+    gradeable: false,
+    legs: {}
+  };
+  const credits = row.L7_CREDIT.why;
   const legs = {};
   for (const [identity, credit] of Object.entries(credits)) {
     const legId = identity.split("|").at(-1), stamp = meta.truth_fill_stamps?.[legId] ?? null;

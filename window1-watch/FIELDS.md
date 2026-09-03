@@ -34,4 +34,5 @@ bell.source <- altgas.json bell.bell_source
 provenance.event_id <- altgas.json provenance.event_id
 provenance.trace_sha256 <- altgas.json provenance.trace_sha256
 provenance.os_sha256 <- SHA256 of arb-executor/analysis/window1_v54_dual_belief_os.js
+shell/public/data/altgas.face.json <- npm run face:data copies data/altgas.face.json through shell/scripts/copy-face-data.mjs
 stand-down/pull action series <- STORE SILENT; exported action names are HOLD_REST, PLACE_REST, and REPRICE_REST

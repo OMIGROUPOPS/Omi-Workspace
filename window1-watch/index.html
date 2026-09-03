@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A public watch for one match: ALT versus GAS.">
+  <title>Window-1 Watch — ALT vs GAS</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: rgb(239 238 232);
+      --muted: rgb(157 163 168);
+      --faint: rgb(102 108 113);
+      --line: rgb(53 57 61);
+      --panel: rgb(20 22 24);
+      --ground: rgb(11 12 13);
+      --alt: rgb(255 178 92);
+      --gas: rgb(96 203 216);
+      --focus: rgb(244 227 183);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--ground); }
+
+    body {
+      margin: 0;
+      min-width: 20rem;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 82% 4%, rgb(36 40 42 / 0.48), transparent 30rem),
+        var(--ground);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(100% - 2rem, 78rem);
+      margin: 0 auto;
+      padding: clamp(1.5rem, 4vw, 3.5rem) 0 2.25rem;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: clamp(2rem, 6vw, 5.5rem);
+    }
+
+    .eyebrow,
+    .hour,
+    .beat-time,
+    .legend,
+    button,
+    output {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .provenance {
+      max-width: 80ch;
+      margin-top: 0.4rem;
+      overflow-wrap: anywhere;
+      text-transform: none;
+    }
+
+    .match {
+      margin: 0.4rem 0 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 6vw, 4.75rem);
+      font-weight: 400;
+      letter-spacing: -0.045em;
+      line-height: 0.95;
+    }
+
+    .match .alt { color: var(--alt); }
+    .match .gas { color: var(--gas); }
+
+    .hour {
+      margin: 0.15rem 0 0;
+      color: var(--ink);
+      font-size: clamp(1.2rem, 2.6vw, 2rem);
+      font-weight: 450;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .statement {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(15rem, 0.8fr);
+      gap: clamp(2rem, 6vw, 6rem);
+      align-items: end;
+      min-height: 9.5rem;
+      margin-bottom: clamp(1.75rem, 4vw, 3rem);
+    }
+
+    h1 {
+      max-width: 17ch;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.25rem, 5vw, 4.8rem);
+      font-weight: 400;
+      letter-spacing: -0.045em;
+      line-height: 1.03;
+      text-wrap: balance;
+    }
+
+    .beat-note {
+      margin: 0 0 0.4rem;
+      padding-left: 1rem;
+      border-left: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .beat-time {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--ink);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .watch {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 0.3rem;
+      background: rgb(16 18 19 / 0.86);
+      box-shadow: 0 1.8rem 5rem rgb(0 0 0 / 0.26);
+    }
+
+    .canvas-wrap {
+      position: relative;
+      width: 100%;
+      height: clamp(18rem, 45vw, 34rem);
+      min-height: 18rem;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .legend {
+      position: absolute;
+      top: 1rem;
+      left: clamp(3.2rem, 7vw, 5.8rem);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 1.2rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      pointer-events: none;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .key {
+      width: 1.6rem;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .key.alt { color: var(--alt); }
+    .key.gas { color: var(--gas); }
+    .key.rest {
+      height: 0;
+      border-top: 1px dashed currentColor;
+      background: transparent;
+      opacity: 0.78;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: auto auto auto 1fr auto;
+      gap: 0.55rem;
+      align-items: center;
+      padding: 0.85rem;
+      border-top: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    button {
+      min-width: 4.1rem;
+      min-height: 2.75rem;
+      border: 1px solid var(--line);
+      border-radius: 0.2rem;
+      background: rgb(29 31 33);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+    }
+
+    button:hover { border-color: var(--faint); background: rgb(36 39 41); }
+    button:active { transform: translateY(1px); }
+    button:focus-visible,
+    input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+    .play {
+      border-color: rgb(105 93 65);
+      background: rgb(48 42 31);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      min-width: 7rem;
+      accent-color: var(--focus);
+      cursor: pointer;
+    }
+
+    output {
+      min-width: 4.2rem;
+      color: var(--ink);
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    .organs {
+      display: grid;
+      gap: 0.55rem;
+      padding: 1rem clamp(1rem, 2vw, 1.5rem);
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .organs p { margin: 0; }
+    .organs strong { color: var(--ink); font-weight: 650; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 0.85rem;
+      color: var(--faint);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 48rem) {
+      main { width: min(100% - 1rem, 78rem); padding-top: 1rem; }
+      header { margin-bottom: 3.2rem; }
+      .statement { grid-template-columns: 1fr; gap: 1.25rem; min-height: 12rem; }
+      .beat-note { max-width: 34rem; }
+      .controls { grid-template-columns: repeat(3, 1fr); }
+      .controls input { grid-column: 1 / -2; grid-row: 2; }
+      .controls output { grid-column: -2 / -1; grid-row: 2; }
+      footer { flex-direction: column; gap: 0.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      button { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <p class="eyebrow">Window-1 Watch</p>
+        <p class="eyebrow provenance">OS SHA256 <span id="osSha">loading face data</span><br>Trace SHA256 <span id="traceSha">loading face data</span></p>
+        <p class="match"><span class="alt">ALT</span> vs <span class="gas">GAS</span></p>
+      </div>
+      <p class="hour" id="largeHour">0.0h</p>
+    </header>
+
+    <section class="statement" aria-live="polite">
+      <h1 id="headline">Loading stored trace.</h1>
+      <p class="beat-note">
+        <span class="beat-time" id="beatTime">Loading</span>
+        <span id="beatText">Waiting for data/altgas.face.json.</span>
+      </p>
+    </section>
+
+    <section class="watch" aria-label="ALT versus GAS match watch">
+      <div class="canvas-wrap">
+        <canvas id="chart" role="img" aria-label="ALT and GAS stored bid, ask, last, rest, and fill series"></canvas>
+        <div class="legend" aria-hidden="true">
+          <span><i class="key alt"></i>ALT last</span>
+          <span><i class="key alt"></i>ALT bid</span>
+          <span><i class="key alt"></i>ALT ask</span>
+          <span><i class="key alt rest"></i>ALT rest</span>
+          <span><i class="key gas"></i>GAS last</span>
+          <span><i class="key gas"></i>GAS bid</span>
+          <span><i class="key gas"></i>GAS ask</span>
+          <span><i class="key gas rest"></i>GAS rest</span>
+        </div>
+      </div>
+      <div class="controls">
+        <button type="button" class="play" id="play" aria-label="Play the match watch">Play</button>
+        <button type="button" id="prev" aria-label="Go to the previous beat">Prev</button>
+        <button type="button" id="next" aria-label="Go to the next beat">Next</button>
+        <input id="scrub" type="range" min="0" max="1" step="0.1" value="0" aria-label="Scrub through the stored match watch">
+        <output id="hour" for="scrub">0.0h</output>
+      </div>
+      <div class="organs" aria-live="polite">
+        <p><strong>Brain</strong> <span id="brain">STORE SILENT</span></p>
+        <p><strong>Leftovers</strong> <span id="leftovers">STORE SILENT</span></p>
+        <p><strong>Hands</strong> <span id="hands">none</span></p>
+      </div>
+    </section>
+
+    <footer>
+      <span>Stored bids, asks, prints, rests, and fills.</span>
+      <span id="hoursRange">Hours from stored bell</span>
+    </footer>
+  </main>
+
+  <script>
+    (() => {
+      const $ = selector => document.querySelector(selector);
+      const chart = $("canvas");
+      const context = chart.getContext("2d");
+      const scrub = $("#scrub");
+      const playButton = $("#play");
+      const prevButton = $("#prev");
+      const nextButton = $("#next");
+      const hourOutput = $("#hour");
+      const largeHour = $("#largeHour");
+      const headline = $("#headline");
+      const beatTime = $("#beatTime");
+      const beatText = $("#beatText");
+      const brain = $("#brain");
+      const leftovers = $("#leftovers");
+      const hands = $("#hands");
+      const osSha = $("#osSha");
+      const traceSha = $("#traceSha");
+      const hoursRange = $("#hoursRange");
+      const legs = ["ALT", "GAS"];
+
+      let face = null;
+      let timeline = [];
+      let beats = [];
+      let restSegments = { ALT: [], GAS: [] };
+      let hour = 0;
+      let playing = false;
+      let frame = 0;
+      let lastTick = 0;
+      let yMin = 0;
+      let yMax = 100;
+
+      const finite = Number.isFinite;
+      const color = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      const centsText = value => finite(value) ? value + "¢" : "STORE SILENT";
+      const hourText = value => finite(value) ? value.toFixed(1) + "h" : "STORE SILENT";
+      const emptyState = () => ({
+        ALT: { sentence: null, survivors: null, rest: null },
+        GAS: { sentence: null, survivors: null, rest: null },
+      });
+
+      function stateAt(time) {
+        const state = emptyState();
+        for (const row of timeline) {
+          if (row.t > time) break;
+          for (const leg of legs) {
+            const item = row.legs?.[leg];
+            if (!item) continue;
+            if (item.sentence) state[leg].sentence = item.sentence;
+            if (item.survivors !== null && item.survivors !== undefined) state[leg].survivors = item.survivors;
+            if (item.rest) state[leg].rest = item.rest;
+            if (item.fill) state[leg].rest = null;
+          }
+        }
+        return state;
+      }
+
+      function headlineFor(row) {
+        const states = [row.legs, stateAt(row.t)];
+        for (const state of states) {
+          for (const leg of legs) {
+            const sentence = state?.[leg]?.sentence;
+            if (sentence?.plain_sentence) return sentence.plain_sentence;
+            if (sentence?.status) return sentence.status;
+          }
+        }
+        return "STORE SILENT";
+      }
+
+      function makeBeats() {
+        const result = [];
+        const prior = {
+          ALT: { status: undefined, Q: undefined, survivors: undefined },
+          GAS: { status: undefined, Q: undefined, survivors: undefined },
+        };
+        for (const row of timeline) {
+          const changes = [];
+          for (const leg of legs) {
+            const item = row.legs?.[leg];
+            if (!item) continue;
+            if (item.sentence) {
+              if (item.sentence.status !== prior[leg].status) changes.push(leg + " " + item.sentence.status);
+              if (item.sentence.Q !== prior[leg].Q) changes.push(leg + " Q " + centsText(item.sentence.Q));
+              prior[leg].status = item.sentence.status;
+              prior[leg].Q = item.sentence.Q;
+            }
+            if (item.survivors !== null && item.survivors !== undefined && item.survivors !== prior[leg].survivors) {
+              changes.push(leg + " survivors " + item.survivors);
+              prior[leg].survivors = item.survivors;
+            }
+            if (item.rest) changes.push(leg + " rest " + item.rest.cents + " (" + (item.rest.lane ?? "STORE SILENT") + ")");
+            if (item.fill) changes.push("FILL " + leg + " " + item.fill.cents);
+          }
+          if (changes.length) {
+            result.push({
+              hour: row.t,
+              label: String(row.kind || "STORE SILENT").replaceAll("_", " ") + " · " + hourText(row.t),
+              headline: headlineFor(row),
+              text: changes.join(" · "),
+            });
+          }
+        }
+        return result;
+      }
+
+      function makeRestSegments() {
+        const result = { ALT: [], GAS: [] };
+        const active = { ALT: null, GAS: null };
+        for (const row of timeline) {
+          for (const leg of legs) {
+            const item = row.legs?.[leg];
+            if (item?.rest) {
+              if (active[leg]) result[leg].push({ ...active[leg], end: row.t });
+              active[leg] = { start: row.t, cents: item.rest.cents };
+            }
+            if (item?.fill && active[leg]) {
+              result[leg].push({ ...active[leg], end: row.t });
+              active[leg] = null;
+            }
+          }
+        }
+        for (const leg of legs) if (active[leg]) result[leg].push({ ...active[leg], end: face.bell.t });
+        return result;
+      }
+
+      function setRange() {
+        const values = [];
+        for (const leg of legs) {
+          for (const row of face.tape[leg]) {
+            if (row.t > face.bell.t) continue;
+            for (const key of ["bid", "ask", "last"]) if (finite(row[key])) values.push(row[key]);
+          }
+          for (const segment of restSegments[leg]) if (finite(segment.cents)) values.push(segment.cents);
+        }
+        for (const row of timeline) {
+          for (const leg of legs) if (finite(row.legs?.[leg]?.fill?.cents)) values.push(row.legs[leg].fill.cents);
+        }
+        if (!values.length) throw new Error("No stored price values");
+        const low = Math.min(...values);
+        const high = Math.max(...values);
+        const padding = Math.max(2, Math.ceil((high - low) * 0.06));
+        yMin = low - padding;
+        yMax = high + padding;
+      }
+
+      function latestValue(rows, key, time) {
+        let value = null;
+        for (const row of rows) {
+          if (row.t > time) break;
+          if (finite(row[key])) value = row[key];
+        }
+        return value;
+      }
+
+      function currentBeat() {
+        let active = beats[0] ?? null;
+        for (const beat of beats) {
+          if (beat.hour <= hour) active = beat;
+          else break;
+        }
+        return active;
+      }
+
+      function draw() {
+        if (!face) return;
+        const bounds = chart.getBoundingClientRect();
+        const scale = Math.min(window.devicePixelRatio || 1, 2);
+        const width = Math.max(1, Math.round(bounds.width));
+        const height = Math.max(1, Math.round(bounds.height));
+        if (chart.width !== Math.round(width * scale) || chart.height !== Math.round(height * scale)) {
+          chart.width = Math.round(width * scale);
+          chart.height = Math.round(height * scale);
+        }
+        context.setTransform(scale, 0, 0, scale, 0, 0);
+        context.clearRect(0, 0, width, height);
+
+        const small = width < 620;
+        const pad = { top: small ? 90 : 78, right: small ? 20 : 38, bottom: 50, left: small ? 43 : 62 };
+        const plotWidth = width - pad.left - pad.right;
+        const plotHeight = height - pad.top - pad.bottom;
+        const cappedHour = Math.max(0, Math.min(face.bell.t, hour));
+        const x = value => pad.left + value / face.bell.t * plotWidth;
+        const y = value => pad.top + (yMax - value) / (yMax - yMin) * plotHeight;
+        const clip = () => {
+          context.beginPath();
+          context.rect(pad.left, pad.top, plotWidth, plotHeight);
+          context.clip();
+        };
+
+        context.lineWidth = 1;
+        context.font = (small ? 11 : 12) + "px Inter, system-ui, sans-serif";
+        context.fillStyle = color("--faint");
+        context.strokeStyle = color("--line");
+        const yStep = Math.max(1, Math.ceil((yMax - yMin) / 5));
+        for (let price = Math.ceil(yMin / yStep) * yStep; price <= yMax; price += yStep) {
+          const lineY = y(price);
+          context.beginPath();
+          context.moveTo(pad.left, lineY + 0.5);
+          context.lineTo(width - pad.right, lineY + 0.5);
+          context.stroke();
+          context.textAlign = "right";
+          context.textBaseline = "middle";
+          context.fillText(price + "¢", pad.left - 10, lineY);
+        }
+        for (let index = 0; index <= 6; index += 1) {
+          const tick = face.bell.t * index / 6;
+          context.textAlign = index === 0 ? "left" : index === 6 ? "right" : "center";
+          context.textBaseline = "top";
+          context.fillText(tick.toFixed(index === 0 ? 0 : 1) + "h", x(tick), height - pad.bottom + 14);
+        }
+
+        function drawStep(rows, key, stroke, alpha, lineWidth) {
+          const points = rows.filter(row => row.t <= cappedHour && finite(row[key]));
+          if (!points.length) return;
+          context.save();
+          clip();
+          context.beginPath();
+          context.globalAlpha = alpha;
+          context.strokeStyle = stroke;
+          context.lineWidth = lineWidth;
+          let previous = points[0];
+          context.moveTo(x(Math.max(0, previous.t)), y(previous[key]));
+          for (let index = 1; index < points.length; index += 1) {
+            const point = points[index];
+            context.lineTo(x(point.t), y(previous[key]));
+            context.lineTo(x(point.t), y(point[key]));
+            previous = point;
+          }
+          if (previous.t < cappedHour) context.lineTo(x(cappedHour), y(previous[key]));
+          context.stroke();
+          context.restore();
+        }
+
+        function drawRests(segments, stroke) {
+          for (const segment of segments) {
+            if (segment.start > cappedHour || !finite(segment.cents)) continue;
+            context.save();
+            clip();
+            context.beginPath();
+            context.strokeStyle = stroke;
+            context.lineWidth = 1.6;
+            context.setLineDash([7, 7]);
+            context.moveTo(x(Math.max(0, segment.start)), y(segment.cents));
+            context.lineTo(x(Math.min(segment.end, cappedHour)), y(segment.cents));
+            context.stroke();
+            context.restore();
+          }
+        }
+
+        drawStep(face.tape.ALT, "ask", color("--alt"), 0.28, 1);
+        drawStep(face.tape.ALT, "bid", color("--alt"), 0.55, 1.2);
+        drawStep(face.tape.ALT, "last", color("--alt"), 1, 2.4);
+        drawStep(face.tape.GAS, "ask", color("--gas"), 0.28, 1);
+        drawStep(face.tape.GAS, "bid", color("--gas"), 0.55, 1.2);
+        drawStep(face.tape.GAS, "last", color("--gas"), 1, 2.4);
+        drawRests(restSegments.ALT, color("--alt"));
+        drawRests(restSegments.GAS, color("--gas"));
+
+        for (const row of timeline) {
+          if (row.t > cappedHour) break;
+          for (const leg of legs) {
+            const fill = row.legs?.[leg]?.fill;
+            if (!finite(fill?.cents)) continue;
+            context.beginPath();
+            context.arc(x(row.t), y(fill.cents), 5, 0, Math.PI * 2);
+            context.fillStyle = color(leg === "ALT" ? "--alt" : "--gas");
+            context.fill();
+            context.strokeStyle = color("--ground");
+            context.lineWidth = 2;
+            context.stroke();
+          }
+        }
+
+        const playX = x(cappedHour);
+        context.save();
+        context.beginPath();
+        context.moveTo(playX + 0.5, pad.top);
+        context.lineTo(playX + 0.5, height - pad.bottom);
+        context.strokeStyle = "rgb(239 238 232 / 0.55)";
+        context.setLineDash([2, 5]);
+        context.stroke();
+        context.restore();
+        for (const leg of legs) {
+          const last = latestValue(face.tape[leg], "last", cappedHour);
+          if (!finite(last)) continue;
+          context.beginPath();
+          context.arc(playX, y(last), 4, 0, Math.PI * 2);
+          context.fillStyle = color(leg === "ALT" ? "--alt" : "--gas");
+          context.fill();
+          context.strokeStyle = color("--ground");
+          context.lineWidth = 2;
+          context.stroke();
+        }
+      }
+
+      function render() {
+        if (!face) return;
+        const beat = currentBeat();
+        const fixedHour = hour.toFixed(1);
+        scrub.value = fixedHour;
+        hourOutput.textContent = fixedHour + "h";
+        largeHour.textContent = fixedHour + "h";
+        headline.textContent = beat?.headline ?? "STORE SILENT";
+        beatTime.textContent = beat?.label ?? "STORE SILENT";
+        beatText.textContent = beat?.text ?? "STORE SILENT";
+        const state = stateAt(hour);
+        brain.textContent = legs.map(leg => {
+          const sentence = state[leg].sentence;
+          return leg + ": " + (sentence?.plain_sentence ?? sentence?.status ?? "STORE SILENT");
+        }).join(" | ");
+        leftovers.textContent = legs.map(leg => leg + ": " + (state[leg].survivors ?? "STORE SILENT")).join(" | ");
+        hands.textContent = legs.map(leg => {
+          const rest = state[leg].rest;
+          return leg + ": " + (rest ? rest.cents + "¢ (" + (rest.lane ?? "STORE SILENT") + ")" : "none");
+        }).join(" | ");
+        draw();
+      }
+
+      function pause() {
+        playing = false;
+        playButton.textContent = "Play";
+        cancelAnimationFrame(frame);
+      }
+
+      function tick(time) {
+        if (!playing || !face) return;
+        if (!lastTick) lastTick = time;
+        const elapsed = Math.min(time - lastTick, 100);
+        lastTick = time;
+        hour = Math.min(face.bell.t, hour + elapsed * 0.0032);
+        render();
+        if (hour >= face.bell.t) return pause();
+        frame = requestAnimationFrame(tick);
+      }
+
+      playButton.addEventListener("click", () => {
+        if (!face) return;
+        if (playing) return pause();
+        if (hour >= face.bell.t) hour = 0;
+        playing = true;
+        lastTick = 0;
+        playButton.textContent = "Pause";
+        frame = requestAnimationFrame(tick);
+      });
+      scrub.addEventListener("input", event => {
+        if (!face) return;
+        pause();
+        hour = Number(event.target.value);
+        render();
+      });
+      function moveBeat(direction) {
+        if (!face || !beats.length) return;
+        pause();
+        const currentIndex = beats.findLastIndex(beat => beat.hour <= hour + 0.001);
+        if (direction < 0) {
+          const exact = currentIndex >= 0 && Math.abs(hour - beats[currentIndex].hour) < 0.05;
+          hour = beats[Math.max(0, currentIndex - (exact ? 1 : 0))].hour;
+        } else {
+          const target = beats.find(beat => beat.hour > hour + 0.001);
+          hour = target ? target.hour : beats.at(-1).hour;
+        }
+        render();
+      }
+      prevButton.addEventListener("click", () => moveBeat(-1));
+      nextButton.addEventListener("click", () => moveBeat(1));
+      window.addEventListener("resize", draw);
+
+      fetch("data/altgas.face.json", { cache: "no-store" })
+        .then(response => {
+          if (!response.ok) throw new Error("face data HTTP " + response.status);
+          return response.json();
+        })
+        .then(data => {
+          if (!finite(data?.bell?.t) || !Array.isArray(data?.os) || !data?.tape?.ALT || !data?.tape?.GAS) {
+            throw new Error("face data schema mismatch");
+          }
+          face = data;
+          timeline = [...face.os]
+            .filter(row => finite(row.t) && row.t <= face.bell.t)
+            .sort((left, right) => left.t - right.t || String(left.receipt || "").localeCompare(String(right.receipt || "")));
+          beats = makeBeats();
+          restSegments = makeRestSegments();
+          setRange();
+          scrub.max = String(face.bell.t);
+          hoursRange.textContent = "Hours 0–" + face.bell.t.toFixed(1);
+          osSha.textContent = face.provenance?.os_sha256 ?? "STORE SILENT";
+          traceSha.textContent = face.provenance?.trace_sha256 ?? "STORE SILENT";
+          render();
+        })
+        .catch(error => {
+          headline.textContent = "Face data did not load.";
+          beatTime.textContent = "STORE SILENT";
+          beatText.textContent = error.message;
+          brain.textContent = "STORE SILENT";
+          leftovers.textContent = "STORE SILENT";
+          hands.textContent = "none";
+        });
+    })();
+  </script>
+</body>
+</html>

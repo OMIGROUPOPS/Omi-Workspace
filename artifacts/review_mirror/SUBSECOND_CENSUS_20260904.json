@@ -1,0 +1,2931 @@
+{
+ "label": "SUBSECOND_CONSOLIDATION_CENSUS",
+ "date": "2026-09-04",
+ "machines": [
+  "desktop (C:\\Users\\omigr)",
+  "droplet A 104.131.191.95 (ubuntu-s-1vcpu-2gb-nyc3-01)",
+  "DO Spaces nyc3 omi-tick-archive",
+  "git history (OMIGROUPOPS/Omi-Workspace)"
+ ],
+ "read_only": true,
+ "file_sets": [
+  {
+   "source": "local:fit-local/ticks",
+   "machine": "desktop",
+   "path": "C:/Users/omigr/OMI-Window1-private\\fit-local\\ticks",
+   "kind": "top-5 book snapshots (recorder)",
+   "cadence_class": "1-second",
+   "median_gap_s": 1.0,
+   "gap_p10_p90": [
+    1.0,
+    3.0
+   ],
+   "columns": "ts_et,ticker,bid_1,bid_1_sz,bid_2,bid_2_sz,bid_3,bid_3_sz,bid_4,bid_4_sz,bid_5,bid_5_sz,ask_1,ask_1_sz,ask_2,ask_2_sz,ask_3,ask_3_sz,ask_4,ask_4_sz,ask_5,ask_5_sz,mid,bid_depth_5,ask_depth_5,depth_rat",
+   "files": 1608,
+   "tickers": 1608,
+   "events": 804,
+   "first": "2026-07-11T13:48:53",
+   "last": "2026-07-21T14:40:28",
+   "bytes": 973834436,
+   "timestamps": "absolute (ET 12-hour string, 1 s resolution)",
+   "notes": "same-second share 0.9043 of rows in 40-file sample; name dates ['26JUL12', '26JUL20']"
+  },
+  {
+   "source": "local:fit-local/prints.jsonl",
+   "machine": "desktop",
+   "path": "C:/Users/omigr/OMI-Window1-private\\fit-local\\prints.jsonl",
+   "kind": "public exchange trade prints",
+   "cadence_class": "subsecond (event-driven)",
+   "median_gap_s": null,
+   "columns": "exchange_ts,is_block_trade,price_cents,receipt_id,size,source,taker_book_side,taker_outcome_side,taker_side,ticker,trade_id,true_print",
+   "files": 1,
+   "tickers": 1606,
+   "events": 804,
+   "first": "2026-07-11T10:48:48.641494Z",
+   "last": "2026-07-21T19:33:45.512718Z",
+   "bytes": 1766090446,
+   "timestamps": "absolute (exchange_ts ISO microseconds)",
+   "rows": 4836462,
+   "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+   "notes": "months {'2026-07': 4836462}"
+  },
+  {
+   "source": "local:fit-local/depth_recorder",
+   "machine": "desktop",
+   "path": "C:/Users/omigr/OMI-Window1-private\\fit-local\\depth_recorder",
+   "kind": "top-20 depth snapshots (change-deduplicated)",
+   "cadence_class": "poll (per-ticker median 21.4 s)",
+   "median_gap_s": 21.40750002861023,
+   "gap_p10_p90": [
+    10.670000076293945,
+    100.06000006198883
+   ],
+   "columns": "ts, ts_epoch, ticker, cat, player, opp, mins_to_start, bid, ask, spread, bids[[px,sz]], asks[[px,sz]]",
+   "files": 175,
+   "tickers": null,
+   "events": null,
+   "first": "20260713",
+   "last": "20260720",
+   "bytes": 400532818,
+   "timestamps": "absolute (ts_epoch)",
+   "notes": "hourly jsonl.gz files 2026-07-13..2026-07-20; 1226 tickers seen in 9-file sample"
+  },
+  {
+   "source": "local:ws-depth-source/ws_depth",
+   "machine": "desktop",
+   "path": "C:\\Users\\omigr\\OMI-Window1-private\\ws-depth-source\\ws_depth",
+   "kind": "raw WS orderbook_delta frames",
+   "cadence_class": "subsecond",
+   "median_gap_s": null,
+   "columns": "t, m{type, sid, seq, msg{market_ticker, market_id, price_dollars, delta_fp, side, ts, ts_ms}}",
+   "files": 215,
+   "tickers": null,
+   "events": null,
+   "first": "2026-07-12",
+   "last": "2026-07-20",
+   "bytes": 5393753162,
+   "timestamps": "absolute (t epoch ms, msg.ts ISO)",
+   "notes": "hourly ws_YYYYMMDD_HH.jsonl.gz; 215 files"
+  },
+  {
+   "source": "local:holdout-exam-20260807/tapes",
+   "machine": "desktop",
+   "path": "C:/Users/omigr/OMI-Window1-private\\holdout-exam-20260807",
+   "kind": "top-5 book snapshots (holdout exam)",
+   "cadence_class": "1-second",
+   "median_gap_s": 2.0,
+   "gap_p10_p90": [
+    1.0,
+    29.0
+   ],
+   "columns": "ts_et,ticker,bid_1,bid_1_sz,bid_2,bid_2_sz,bid_3,bid_3_sz,bid_4,bid_4_sz,bid_5,bid_5_sz,ask_1,ask_1_sz,ask_2,ask_2_sz,ask_3,ask_3_sz,ask_4,ask_4_sz,ask_5,ask_5_sz,mid,bid_depth_5,ask_depth_5,depth_rat",
+   "files": 342,
+   "tickers": 342,
+   "events": 171,
+   "first": "2026-07-26T14:12:24",
+   "last": "2026-07-28T12:40:44",
+   "bytes": 559715685,
+   "timestamps": "absolute (ET 12-hour string)",
+   "notes": "plus prints/ subdir (public trades jsonl, 2026-07-27..28) and a .tar"
+  },
+  {
+   "source": "local:calibration-v1/ws_public_trade_reconcile.sqlite",
+   "machine": "desktop",
+   "path": "C:\\Users\\omigr\\OMI-Window1-private\\calibration-v1\\ws_public_trade_reconcile.sqlite",
+   "kind": "public prints + WS trade prints (reconcile store)",
+   "cadence_class": "subsecond (event-driven)",
+   "median_gap_s": null,
+   "columns": "public_print(trade_id,ticker,ts_ms,price_cents,size_text); ws_raw(+source_file); ws_unique",
+   "files": 1,
+   "tickers": null,
+   "events": null,
+   "first": "2026-07-11T10:48:48Z",
+   "last": "2026-07-21T19:33:45Z",
+   "bytes": 1511034880,
+   "timestamps": "absolute (ts_ms)",
+   "rows": {
+    "public_print": 4836462,
+    "ws_raw": 3322756,
+    "ws_unique": 3322756
+   },
+   "notes": "ws_raw/ws_unique span 2026-07-12T00:01:06Z..2026-07-20T23:59:59Z"
+  },
+  {
+   "source": "local:fit-local/guarded-cache-v3",
+   "machine": "desktop",
+   "path": "C:/Users/omigr/OMI-Window1-private\\fit-local\\guarded-cache-v3",
+   "kind": "per-event cache: legs[{prints, snapshots}] (derived from ticks+prints)",
+   "cadence_class": "derived",
+   "median_gap_s": null,
+   "columns": "cache_key, cache_version, earliest_utc, latest_utc, event_id, legs[{leg,ticker,prints,snapshots}]",
+   "files": 804,
+   "tickers": null,
+   "events": 804,
+   "first": "2026-07-12",
+   "last": "2026-07-20",
+   "bytes": 197461623,
+   "timestamps": "absolute",
+   "notes": "json.gz per event"
+  },
+  {
+   "source": "dropletA:data/durable/depth_recorder",
+   "machine": "droplet A",
+   "path": "/root/Omi-Workspace/arb-executor/data/durable/depth_recorder",
+   "kind": "top-20 depth snapshots (live recorder, rolling)",
+   "cadence_class": "poll (same recorder as local depth_recorder)",
+   "median_gap_s": null,
+   "columns": "ts, ts_epoch, ticker, cat, player, opp, mins_to_start, bid, ask, spread, bids, asks",
+   "files": 171,
+   "tickers": null,
+   "events": null,
+   "first": "20260828",
+   "last": "20260904",
+   "bytes": 516298005,
+   "timestamps": "absolute (ts_epoch)",
+   "notes": "only 2026-08-28..2026-09-04 retained on disk; earlier hours were shipped and removed"
+  },
+  {
+   "source": "dropletA:data/durable/ws_depth_recorder",
+   "machine": "droplet A",
+   "path": "/root/Omi-Workspace/arb-executor/data/durable/ws_depth_recorder",
+   "kind": "raw WS frames with receipt clock (bbo + orderbook_delta)",
+   "cadence_class": "subsecond",
+   "median_gap_s": null,
+   "columns": "t, received_at_utc, source_epoch, staleness_ms, staleness_status, raw_ws_sha256, bbo{market_ticker,yes_bid,yes_ask,no_bid,no_ask}, m{type,sid,seq,msg{...}}",
+   "files": 26,
+   "tickers": null,
+   "events": null,
+   "first": "20260903",
+   "last": "20260904",
+   "bytes": 3062095038,
+   "timestamps": "absolute",
+   "notes": "rolling 2-day retention on disk; 6-hourly rclone copy to spaces:omi-tick-archive/ws_depth"
+  },
+  {
+   "source": "dropletA:data/durable/validation4_ticks",
+   "machine": "droplet A",
+   "path": "/root/Omi-Workspace/arb-executor/data/durable/validation4_ticks",
+   "kind": "binary BBO ticks per leg (I-B-B)",
+   "cadence_class": "1-second (median gap 1.0 s)",
+   "median_gap_s": 1.0,
+   "columns": "ts(uint32 LE), bid(uint8), ask(uint8)",
+   "files": 1678,
+   "tickers": 1678,
+   "events": 1150,
+   "first": "2026-03-20T04:49:51",
+   "last": "2026-04-17T15:15:49",
+   "bytes": 1537053480,
+   "timestamps": "absolute (epoch seconds)",
+   "rows": 256175580,
+   "notes": "events with both legs 528; MANIFEST: coverage Mar 17 - Apr 17 ET"
+  },
+  {
+   "source": "dropletA:data/durable/bbo_log_v4.csv.gz",
+   "machine": "droplet A",
+   "path": "/root/Omi-Workspace/arb-executor/data/durable/bbo_log_v4.csv.gz",
+   "kind": "BBO append log",
+   "cadence_class": "1-second (single-writer append; MANIFEST)",
+   "median_gap_s": null,
+   "columns": "timestamp, ticker, bid, ask, spread",
+   "files": 1,
+   "tickers": null,
+   "events": null,
+   "first": "2026-03-20 04:49:51 ET",
+   "last": "2026-04-17 15:15:49 ET",
+   "bytes": 879047205,
+   "timestamps": "absolute (ET string, 1 s)",
+   "rows": "515454156",
+   "notes": "rows from zcat|wc -l; first/last lines identical to validation4_ticks span; per-ticker enumeration not done"
+  },
+  {
+   "source": "dropletA:state/daysheet_tape",
+   "machine": "droplet A",
+   "path": "/root/Omi-Workspace/arb-executor/state/daysheet_tape",
+   "kind": "public trades cache per ticker (consolidator source public_tape)",
+   "cadence_class": "subsecond (event-driven; median gap 15.1 s)",
+   "median_gap_s": 15.108958959579468,
+   "columns": "{v, fetched_at, final, covered_from, prints[{ts, price_c, ct}]}",
+   "files": 476,
+   "tickers": 476,
+   "events": 303,
+   "first": "2026-07-13T02:00:31Z",
+   "last": "2026-07-18T02:17:10Z",
+   "bytes": 48019556,
+   "timestamps": "absolute (ts epoch)",
+   "rows": 883557,
+   "notes": "series prefixes {'KXMLBGAME': 1, 'KXITFWMATCH': 155, 'KXWTAMATCH': 27, 'KXATPCHALLENGERMATCH': 62, 'KXATPMATCH': 31, 'KXITFMATCH': 164, 'KXWTACHALLENGERMATCH': 36}"
+  },
+  {
+   "source": "dropletA:logs/live_v3_*.jsonl.gz",
+   "machine": "droplet A",
+   "path": "/root/Omi-Workspace/arb-executor/logs",
+   "kind": "engine logs (consolidator source ws_log)",
+   "cadence_class": "event-driven",
+   "median_gap_s": null,
+   "columns": "ts, ts_epoch, event, ticker, details{}",
+   "files": 46,
+   "tickers": null,
+   "events": null,
+   "first": "2026-06-01",
+   "last": "2026-07-28",
+   "bytes": 344130790,
+   "timestamps": "absolute (ts_epoch)",
+   "notes": "ingest_log ws_log: 54 files, 0 prints rows"
+  },
+  {
+   "source": "dropletA:analysis/premarket_ticks",
+   "machine": "droplet A",
+   "path": "/root/Omi-Workspace/arb-executor/analysis/premarket_ticks",
+   "kind": "poll-cadence CSV per ticker (consolidator source book_transition)",
+   "cadence_class": "n/a",
+   "median_gap_s": null,
+   "columns": "",
+   "files": 0,
+   "tickers": 0,
+   "events": 0,
+   "first": null,
+   "last": null,
+   "bytes": 0,
+   "timestamps": "n/a",
+   "notes": "EMPTY on disk today; ingest_log shows 15,210 files ingested from here in 2026-07; archive_sync.sh ships gzipped CSVs to spaces:omi-tick-archive/{ticks,trades}"
+  },
+  {
+   "source": "dropletA:tennis.db kalshi_price_snapshots",
+   "machine": "droplet A (/mnt/omi-trading-data-nyc3/active/tennis.db)",
+   "path": "/mnt/omi-trading-data-nyc3/active/tennis.db",
+   "kind": "poll snapshots bid/ask/last per ticker",
+   "cadence_class": "poll-5min (302 s median from range_spectrum tick arrays)",
+   "median_gap_s": 302,
+   "columns": "polled_at,ticker,event_ticker,series_ticker,bid_cents,ask_cents,last_cents,volume_24h,commence_time",
+   "files": 1,
+   "tickers": 32742,
+   "events": 16371,
+   "first": "2026-04-21 11:45:12",
+   "last": "2026-09-04 13:50:33",
+   "bytes": 27388317696,
+   "timestamps": "absolute (polled_at UTC string)",
+   "rows": 6811100,
+   "notes": "live DB with WAL (146 MB); tickers/events summed per month; by month rows/tickers/events {'2026-04': [296807, 1448, 724], '2026-05': [1319932, 4382, 2191], '2026-06': [1297011, 4738, 2369], '2026-07': [834266, 5356, 2678], '2026-08': [2611254, 14098, 7049], '2026-09': [451830, 2720, 1360]}"
+  },
+  {
+   "source": "dropletA:/srv/omi-research",
+   "machine": "droplet A",
+   "path": "/srv/omi-research",
+   "kind": "research packages: PRINTS_804.jsonl.gz (window1-nightly), window1-exam-20260807/public-trades/prints.jsonl, window1-20260722 normalized",
+   "cadence_class": "subsecond (public prints)",
+   "median_gap_s": null,
+   "columns": "exchange_ts, is_block_trade, price_cents, receipt_id, size, source, taker_book_side, taker_outcome_side, taker_side, ticker, trade_id, true_print",
+   "files": 474,
+   "tickers": 342,
+   "events": 171,
+   "first": "2026-07-12",
+   "last": "2026-07-28",
+   "bytes": 713357949,
+   "timestamps": "absolute",
+   "notes": "subdirs {'window1-nightly-938dca47': 3, 'window1-exam-20260807': 355, 'window1-20260722': 116}; PRINTS_804 170.4 MB; exam prints 386.5 MB"
+  },
+  {
+   "source": "spaces:omi-tick-archive/ticks",
+   "machine": "DO Spaces nyc3",
+   "path": "spaces:omi-tick-archive/ticks",
+   "kind": "top-5 book snapshots per leg (archive of premarket_ticks)",
+   "cadence_class": "1-second",
+   "median_gap_s": 1.0,
+   "columns": "ts_et,ticker,bid_1..ask_5(+sz),mid,bid_depth_5,ask_depth_5,depth_ratio,last_trade",
+   "files": 31767,
+   "tickers": 31767,
+   "events": 15884,
+   "first": "2026-04-19",
+   "last": "2026-07-28",
+   "bytes": 9375338339,
+   "timestamps": "absolute (ET 12-hour string)",
+   "notes": "objects by month {'2026-04': 1730, '2026-05': 1235, '2026-06': 14140, '2026-07': 14662}; events both legs by month {'2026-04': 865, '2026-05': 617, '2026-06': 7070, '2026-07': 7331}; modtime 2026-06-10 16:45:31..2026-07-28 08:40:46"
+  },
+  {
+   "source": "spaces:omi-tick-archive/trades",
+   "machine": "DO Spaces nyc3",
+   "path": "spaces:omi-tick-archive/trades",
+   "kind": "trade prints per leg",
+   "cadence_class": "subsecond (event-driven; 2-5 s median between prints)",
+   "median_gap_s": 2.0,
+   "columns": "ts_et,ticker,price,count,taker_side",
+   "files": 30813,
+   "tickers": 30813,
+   "events": 15554,
+   "first": "2026-04-18",
+   "last": "2026-07-28",
+   "bytes": 214580025,
+   "timestamps": "absolute (ET 12-hour string)",
+   "notes": "objects by month {'2026-04': 1744, '2026-05': 1148, '2026-06': 13841, '2026-07': 14080}; events both legs by month {'2026-04': 865, '2026-05': 559, '2026-06': 6881, '2026-07': 6954}; modtime 2026-06-10 16:47:22..2026-07-30 01:11:35"
+  },
+  {
+   "source": "spaces:omi-tick-archive/ws_depth",
+   "machine": "DO Spaces nyc3",
+   "path": "spaces:omi-tick-archive/ws_depth",
+   "kind": "raw WS frames (hourly)",
+   "cadence_class": "subsecond",
+   "median_gap_s": null,
+   "columns": "as ws_depth_recorder",
+   "files": 1740,
+   "tickers": null,
+   "events": null,
+   "first": "20260623",
+   "last": "20260904",
+   "bytes": 128487896571,
+   "timestamps": "absolute",
+   "notes": "days 74, days by month {'202606': 8, '202607': 31, '202608': 31, '202609': 4}, missing days []"
+  },
+  {
+   "source": "git:c8119431 arb-executor/analysis/match_ticks",
+   "machine": "git history (not on disk)",
+   "path": "commit c8119431 (2026-04-17)",
+   "kind": "bid/ask/mid tick streams, 473 cell-matched tickers",
+   "cadence_class": "1-second",
+   "median_gap_s": 1.0,
+   "columns": "ts_offset_sec, bid, ask, mid",
+   "files": 473,
+   "tickers": 473,
+   "events": 327,
+   "first": "26MAR17 (name)",
+   "last": "26APR14 (name)",
+   "bytes": null,
+   "timestamps": "OFFSETS from first row (no absolute clock)",
+   "notes": "sample rows/file 256..100000"
+  },
+  {
+   "source": "git:26f8e853 arb-executor/analysis/match_ticks_full",
+   "machine": "git history (not on disk)",
+   "path": "commit 26f8e853 (2026-04-18)",
+   "kind": "full-length bid/ask/mid tick streams",
+   "cadence_class": "1-second",
+   "median_gap_s": 1.0,
+   "columns": "ts_offset_sec, bid, ask, mid",
+   "files": 808,
+   "tickers": 808,
+   "events": 404,
+   "first": "26MAR17 (name)",
+   "last": "26APR14 (name)",
+   "bytes": null,
+   "timestamps": "OFFSETS from first row",
+   "notes": "sample rows/file 10201..876604"
+  }
+ ],
+ "stores": {
+  "subsecond_store.db": {
+   "path": "/root/Omi-Workspace/arb-executor/state/subsecond_store.db",
+   "bytes": 6376095744,
+   "mtime": "2026-08-02 04:35",
+   "sha256": "fecc8d8766cc6572bf84dd46fce49b1e59b80ac77b05db20bf44b223ca62ea93",
+   "tables": {
+    "prints": {
+     "cols": [
+      "event",
+      "ticker",
+      "ts",
+      "price",
+      "size",
+      "src"
+     ],
+     "max_rowid": 25574898,
+     "by_src": [
+      {
+       "src": "backfill",
+       "rows": 21061384,
+       "first": "2026-05-14T00:00:00Z",
+       "last": "2026-07-18T17:50:50Z",
+       "tickers": 9405,
+       "events": 4708
+      },
+      {
+       "src": "book_transition",
+       "rows": 3629957,
+       "first": "2026-07-11T13:27:21Z",
+       "last": "2026-07-28T12:40:45Z",
+       "tickers": 8962,
+       "events": 4517
+      },
+      {
+       "src": "public_tape",
+       "rows": 883557,
+       "first": "2026-07-13T02:00:31Z",
+       "last": "2026-07-18T02:17:10Z",
+       "tickers": 463,
+       "events": 301
+      }
+     ],
+     "by_src_month": [
+      {
+       "src": "backfill",
+       "month": "2026-05",
+       "rows": 4906302,
+       "events": 1147
+      },
+      {
+       "src": "backfill",
+       "month": "2026-06",
+       "rows": 8635562,
+       "events": 2209
+      },
+      {
+       "src": "backfill",
+       "month": "2026-07",
+       "rows": 7519520,
+       "events": 1468
+      },
+      {
+       "src": "book_transition",
+       "month": "2026-07",
+       "rows": 3629957,
+       "events": 4517
+      },
+      {
+       "src": "public_tape",
+       "month": "2026-07",
+       "rows": 883557,
+       "events": 301
+      }
+     ]
+    },
+    "ingest_log": {
+     "cols": [
+      "src",
+      "path",
+      "rows",
+      "ingested_at"
+     ],
+     "rows": 28101,
+     "by_src": {
+      "public_tape|2026-07": 476,
+      "ws_log|2026-06": 24,
+      "ws_log|2026-07": 30,
+      "book_transition|2026-07": 15210,
+      "backfill|2026-04": 1268,
+      "backfill|2026-07": 2911,
+      "backfill|2026-06": 4274,
+      "backfill|2026-05": 3908
+     },
+     "dirs": {
+      "public_tape|/root/Omi-Workspace/arb-executor/state/daysheet_tape": 476,
+      "ws_log|/root/Omi-Workspace/arb-executor/logs": 54,
+      "book_transition|/root/Omi-Workspace/arb-executor/analysis/premarket_ticks": 15210,
+      "backfill|": 12361
+     },
+     "examples": {
+      "public_tape": "/root/Omi-Workspace/arb-executor/state/daysheet_tape/KXATPCHALLENGERMATCH-26JUL14DELXIL-DEL.json",
+      "ws_log": "/root/Omi-Workspace/arb-executor/logs/live_v3_20260601.jsonl.gz",
+      "book_transition": "/root/Omi-Workspace/arb-executor/analysis/premarket_ticks/KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz",
+      "backfill": "KXATPCHALLENGERMATCH-26APR20CHAHUR-CHA"
+     }
+    }
+   }
+  },
+  "tennis.db": {
+   "path": "/mnt/omi-trading-data-nyc3/active/tennis.db (symlink /root/Omi-Workspace/arb-executor/tennis.db)",
+   "bytes": 27388317696,
+   "wal_bytes": 146173512,
+   "sha256": null,
+   "sha256_note": "live database with WAL, not hashed",
+   "tables": [
+    {
+     "table": "active_positions",
+     "cols": [
+      "id",
+      "event_ticker",
+      "market_ticker",
+      "side",
+      "size",
+      "avg_price",
+      "current_bid",
+      "dca_status",
+      "entry_time",
+      "match_status",
+      "last_updated"
+     ],
+     "max_rowid": null,
+     "indexes": [
+      "sqlite_autoindex_active_positions_1"
+     ],
+     "span_entry_time": "SKIPPED_UNINDEXED_LARGE",
+     "span_last_updated": "SKIPPED_UNINDEXED_LARGE"
+    },
+    {
+     "table": "betexplorer_staging",
+     "cols": [
+      "p1_name",
+      "p2_name",
+      "p1_fv_cents",
+      "p2_fv_cents",
+      "raw_odds_p1",
+      "raw_odds_p2",
+      "vig_pct",
+      "tournament",
+      "source_url",
+      "scraped_at"
+     ],
+     "max_rowid": 214972,
+     "indexes": [
+      "sqlite_autoindex_betexplorer_staging_1"
+     ],
+     "span_scraped_at": [
+      "2026-04-19 20:36:51",
+      "2026-09-04 15:04:03"
+     ]
+    },
+    {
+     "table": "book_prices",
+     "cols": [
+      "event_ticker",
+      "book_key",
+      "player1_name",
+      "player2_name",
+      "book_p1_fv_cents",
+      "book_p2_fv_cents",
+      "raw_odds_p1",
+      "raw_odds_p2",
+      "vig_pct",
+      "sport_key",
+      "commence_time",
+      "polled_at"
+     ],
+     "max_rowid": 66062674,
+     "indexes": [
+      "sqlite_autoindex_book_prices_1",
+      "idx_book_prices_event",
+      "idx_book_prices_book",
+      "idx_book_prices_commence"
+     ],
+     "span_commence_time": [
+      "2026-04-20T05:00:00Z",
+      "2026-09-06T00:10:00Z"
+     ],
+     "span_polled_at": [
+      "2026-04-19 18:33:45",
+      "2026-09-04 15:36:37"
+     ]
+    },
+    {
+     "table": "bookmaker_odds",
+     "cols": [
+      "id",
+      "te_match_id",
+      "player1",
+      "player2",
+      "p1_decimal_odds",
+      "p2_decimal_odds",
+      "p1_implied_prob",
+      "p2_implied_prob",
+      "kalshi_ticker",
+      "kalshi_price",
+      "edge_pct",
+      "scraped_at"
+     ],
+     "max_rowid": 173649,
+     "indexes": [
+      "sqlite_autoindex_bookmaker_odds_1"
+     ],
+     "span_scraped_at": [
+      "2026-04-02 21:35:09",
+      "2026-09-04 15:48:59"
+     ]
+    },
+    {
+     "table": "dca_truth",
+     "cols": [
+      "ticker",
+      "match_date",
+      "side_code",
+      "entry_price",
+      "entry_size",
+      "dca_price",
+      "dca_size",
+      "blended_avg",
+      "total_size",
+      "exit_type",
+      "exit_price",
+      "result",
+      "pnl_with_dca",
+      "pnl_without_dca",
+      "pnl_diff",
+      "category",
+      "settlement_pnl"
+     ],
+     "max_rowid": 655,
+     "indexes": [
+      "sqlite_autoindex_dca_truth_1"
+     ]
+    },
+    {
+     "table": "edge_scores",
+     "cols": [
+      "event_ticker",
+      "player1_name",
+      "player2_name",
+      "pinnacle_p1",
+      "pinnacle_p2",
+      "kalshi_p1",
+      "kalshi_p2",
+      "edge_p1",
+      "edge_p2",
+      "grade",
+      "sport_key",
+      "commence_time",
+      "updated_at",
+      "fv_tier",
+      "fv_source",
+      "num_books"
+     ],
+     "max_rowid": 2538691,
+     "indexes": [
+      "sqlite_autoindex_edge_scores_1"
+     ],
+     "span_commence_time": [
+      "2026-04-20T08:00:00Z",
+      "2026-09-06T15:00:00Z"
+     ],
+     "span_updated_at": [
+      "2026-04-20 04:01:56",
+      "2026-09-04 15:50:39"
+     ]
+    },
+    {
+     "table": "historical_events",
+     "cols": [
+      "event_ticker",
+      "category",
+      "winner",
+      "loser",
+      "first_price_winner",
+      "min_price_winner",
+      "max_price_winner",
+      "last_price_winner",
+      "first_price_loser",
+      "total_trades",
+      "first_ts",
+      "last_ts",
+      "min_price_loser",
+      "max_price_loser"
+     ],
+     "max_rowid": 5889,
+     "indexes": [
+      "sqlite_autoindex_historical_events_1"
+     ],
+     "span_first_ts": [
+      "2026-01-02T07:43:54.66568Z",
+      "2026-04-10T05:32:02.165725Z"
+     ],
+     "span_last_ts": [
+      "2026-01-02T23:35:00.290018Z",
+      "2026-04-10T19:51:42.867592Z"
+     ]
+    },
+    {
+     "table": "kalshi_price_snapshots",
+     "cols": [
+      "polled_at",
+      "ticker",
+      "event_ticker",
+      "series_ticker",
+      "bid_cents",
+      "ask_cents",
+      "last_cents",
+      "volume_24h",
+      "commence_time"
+     ],
+     "max_rowid": 6814124,
+     "indexes": [
+      "sqlite_autoindex_kalshi_price_snapshots_1",
+      "idx_kps_event",
+      "idx_kps_ticker_time"
+     ],
+     "span_polled_at": [
+      "2026-04-21 11:45:12",
+      "2026-09-04 15:47:24"
+     ],
+     "span_commence_time": "SKIPPED_UNINDEXED_LARGE"
+    },
+    {
+     "table": "kalshi_schedule_revisions",
+     "cols": [
+      "ticker",
+      "schedule_sha256",
+      "event_ticker",
+      "series_ticker",
+      "first_observed_at_utc",
+      "last_observed_at_utc",
+      "schedule_fields_json",
+      "raw_response_sha256",
+      "request_path"
+     ],
+     "max_rowid": 16990,
+     "indexes": [
+      "sqlite_autoindex_kalshi_schedule_revisions_1",
+      "idx_ksr_event_time"
+     ]
+    },
+    {
+     "table": "live_scores",
+     "cols": [
+      "id",
+      "te_match_id",
+      "player1",
+      "player2",
+      "p1_sets",
+      "p2_sets",
+      "p1_games",
+      "p2_games",
+      "status",
+      "kalshi_ticker",
+      "last_updated"
+     ],
+     "max_rowid": 46219907,
+     "indexes": [
+      "sqlite_autoindex_live_scores_1"
+     ],
+     "span_last_updated": "SKIPPED_UNINDEXED_LARGE"
+    },
+    {
+     "table": "matches",
+     "cols": [
+      "id",
+      "date",
+      "event_ticker",
+      "market_ticker",
+      "tournament",
+      "category",
+      "our_side",
+      "other_side",
+      "entry_price",
+      "other_price",
+      "final_price",
+      "result",
+      "pregame_flat",
+      "dca_price",
+      "total_size",
+      "avg_price",
+      "pnl_cents",
+      "entry_time",
+      "settlement_time",
+      "time_to_settle_min",
+      "max_dip",
+      "scenario",
+      "source"
+     ],
+     "max_rowid": 3627,
+     "indexes": [
+      "sqlite_autoindex_matches_1",
+      "idx_matches_date",
+      "idx_matches_category",
+      "idx_matches_result"
+     ],
+     "span_entry_time": [
+      "2026-02-05T12:24:47",
+      "2026-03-10T14:20:23"
+     ],
+     "span_settlement_time": [
+      "2026-02-05T12:07:45",
+      "2026-04-17 13:47:13"
+     ]
+    },
+    {
+     "table": "name_cache",
+     "cols": [
+      "odds_api_name",
+      "kalshi_code",
+      "confidence",
+      "updated_at"
+     ],
+     "max_rowid": 39331062,
+     "indexes": [
+      "sqlite_autoindex_name_cache_1"
+     ],
+     "span_updated_at": "SKIPPED_UNINDEXED_LARGE"
+    },
+    {
+     "table": "observed_start_events",
+     "cols": [
+      "kalshi_event_ticker",
+      "te_match_id",
+      "player1",
+      "player2",
+      "kalshi_market_tickers_json",
+      "first_inplay_at",
+      "inserted_at",
+      "identity_method",
+      "source_page_sha256"
+     ],
+     "max_rowid": null,
+     "indexes": [
+      "sqlite_autoindex_observed_start_events_1",
+      "idx_ose_te_match"
+     ]
+    },
+    {
+     "table": "observed_starts",
+     "cols": [
+      "te_match_id",
+      "player1",
+      "player2",
+      "kalshi_ticker",
+      "first_inplay_at",
+      "inserted_at"
+     ],
+     "max_rowid": 69,
+     "indexes": [
+      "sqlite_autoindex_observed_starts_1"
+     ]
+    },
+    {
+     "table": "players",
+     "cols": [
+      "id",
+      "name",
+      "kalshi_code",
+      "country",
+      "ranking",
+      "ranking_date",
+      "surface_hard_wr",
+      "surface_clay_wr",
+      "surface_grass_wr",
+      "last_updated"
+     ],
+     "max_rowid": 612,
+     "indexes": [
+      "sqlite_autoindex_players_1",
+      "idx_players_code"
+     ],
+     "span_last_updated": [
+      null,
+      null
+     ]
+    },
+    {
+     "table": "sqlite_sequence",
+     "cols": [
+      "name",
+      "seq"
+     ],
+     "max_rowid": 5,
+     "indexes": []
+    },
+    {
+     "done": true
+    }
+   ],
+   "kalshi_price_snapshots": {
+    "cols": [
+     "polled_at",
+     "ticker",
+     "event_ticker",
+     "series_ticker",
+     "bid_cents",
+     "ask_cents",
+     "last_cents",
+     "volume_24h",
+     "commence_time"
+    ],
+    "span": [
+     [
+      "2026-04-21 11:45:12"
+     ],
+     [
+      "2026-09-04 13:50:33"
+     ]
+    ],
+    "by_month": {
+     "2026-04": {
+      "rows": 296807,
+      "tickers": 1448,
+      "events": 724,
+      "events_both_legs": 724
+     },
+     "2026-05": {
+      "rows": 1319932,
+      "tickers": 4382,
+      "events": 2191,
+      "events_both_legs": 2191
+     },
+     "2026-06": {
+      "rows": 1297011,
+      "tickers": 4738,
+      "events": 2369,
+      "events_both_legs": 2369
+     },
+     "2026-07": {
+      "rows": 834266,
+      "tickers": 5356,
+      "events": 2678,
+      "events_both_legs": 2678
+     },
+     "2026-08": {
+      "rows": 2611254,
+      "tickers": 14098,
+      "events": 7049,
+      "events_both_legs": 7049
+     },
+     "2026-09": {
+      "rows": 451830,
+      "tickers": 2720,
+      "events": 1360,
+      "events_both_legs": 1360
+     }
+    }
+   }
+  },
+  "tennis_small_tables_backup_20260708.db": {
+   "path": "/root/tennis_small_tables_backup_20260708.db",
+   "bytes": 16617472,
+   "sha256": "ea3a3187dfb0bf7c7e59b090133278b91d75ad9fab68f4d25c73de69791274ad",
+   "tables": {
+    "bookmaker_odds": {
+     "rows": 120453,
+     "cols": [
+      "id",
+      "te_match_id",
+      "player1",
+      "player2",
+      "p1_decimal_odds",
+      "p2_decimal_odds",
+      "p1_implied_prob",
+      "p2_implied_prob",
+      "kalshi_ticker",
+      "kalshi_price",
+      "edge_pct",
+      "scraped_at"
+     ],
+     "spans": {}
+    },
+    "live_scores": {
+     "rows": 19755,
+     "cols": [
+      "id",
+      "te_match_id",
+      "player1",
+      "player2",
+      "p1_sets",
+      "p2_sets",
+      "p1_games",
+      "p2_games",
+      "status",
+      "kalshi_ticker",
+      "last_updated"
+     ],
+     "spans": {
+      "p1_sets": [
+       0,
+       3
+      ],
+      "p2_sets": [
+       0,
+       2
+      ]
+     }
+    },
+    "observed_starts": {
+     "rows": 20,
+     "cols": [
+      "te_match_id",
+      "player1",
+      "player2",
+      "kalshi_ticker",
+      "first_inplay_at",
+      "inserted_at"
+     ],
+     "spans": {}
+    },
+    "players": {
+     "rows": 612,
+     "cols": [
+      "id",
+      "name",
+      "kalshi_code",
+      "country",
+      "ranking",
+      "ranking_date",
+      "surface_hard_wr",
+      "surface_clay_wr",
+      "surface_grass_wr",
+      "last_updated"
+     ],
+     "spans": {
+      "ranking_date": [
+       null,
+       null
+      ],
+      "last_updated": [
+       null,
+       null
+      ]
+     }
+    },
+    "sqlite_sequence": {
+     "rows": 3,
+     "cols": [
+      "name",
+      "seq"
+     ],
+     "spans": {}
+    }
+   }
+  },
+  "fv_history (book_prices archive)": {
+   "path": "/root/Omi-Workspace/arb-executor/data/durable/fv_history/by_month/*.parquet",
+   "kind": "bookmaker odds fair-values archived nightly from tennis.db book_prices (NOT Kalshi ticks)",
+   "total_rows_archived": 62594288,
+   "last_archived_ts": "2026-09-04 02:29:35",
+   "files": {
+    "2026-04": 3088738,
+    "2026-05": 20388795,
+    "2026-06": 12910761,
+    "2026-07": 4484812,
+    "2026-08": 18061180,
+    "2026-09": 3660002
+   },
+   "columns": [
+    "event_ticker",
+    "book_key",
+    "player1_name",
+    "player2_name",
+    "book_p1_fv_cents",
+    "book_p2_fv_cents",
+    "raw_odds_p1",
+    "raw_odds_p2",
+    "vig_pct",
+    "sport_key",
+    "commence_time",
+    "polled_at"
+   ]
+  },
+  "local prints.jsonl": {
+   "path": "C:/Users/omigr/OMI-Window1-private\\fit-local\\prints.jsonl",
+   "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+   "bytes": 1766090446
+  },
+  "consolidator": {
+   "droplet_path": "/root/Omi-Workspace/arb-executor/analysis/subsecond_consolidate.py",
+   "droplet_sha256": "e954dcd0122f2bbb35d7dae93be8817e6ab38af8dcc1287b3925ff1ef9e587a1",
+   "droplet_mtime": "2026-07-18 12:40",
+   "print_backfill_sha256": "bc29c1c72541d1343ebfa9c1361dc25b31ba6dcd4c9be6df526a737ea3307c5f",
+   "cron": "no crontab entry for subsecond_consolidate.py or print_backfill.py on droplet A; only archive_sync.sh (09:10 daily), premarket_ticks gzip (06:17), ws_depth rclone copy (every 6 h), archive_book_prices_v1.py (02:30)"
+  }
+ },
+ "T1_month_x_source_both_legs_le_1s": {
+  "validation4_ticks (dropletA)": {
+   "2026-04": 340,
+   "2026-03": 188
+  },
+  "match_ticks (git c8119431)": {
+   "2026-03/04": "146 of 327 events have 2 files"
+  },
+  "match_ticks_full (git 26f8e853)": {
+   "2026-03/04": 404
+  },
+  "bbo_log_v4.csv.gz (dropletA)": {
+   "2026-03/04": "NOT_ENUMERATED (515M rows; scan not completed)"
+  },
+  "spaces ticks": {
+   "2026-04": 865,
+   "2026-05": 617,
+   "2026-06": 7070,
+   "2026-07": 7331
+  },
+  "spaces trades (prints)": {
+   "2026-04": 865,
+   "2026-05": 559,
+   "2026-06": 6881,
+   "2026-07": 6954
+  },
+  "local fit-local/ticks": {
+   "2026-07": 804
+  },
+  "local fit-local/prints.jsonl": {
+   "2026-07": 804
+  },
+  "local holdout-exam tapes": {
+   "2026-07": 171
+  },
+  "local ws-depth-source": {
+   "2026-07": "hourly frames 07-12..07-20 (per-event both-legs not enumerated)"
+  },
+  "dropletA daysheet_tape (public_tape)": {
+   "2026-07": "303 events, 476 tickers"
+  },
+  "subsecond_store prints src=backfill": {
+   "2026-05": 1147,
+   "2026-06": 2209,
+   "2026-07": 1468
+  },
+  "subsecond_store prints src=book_transition": {
+   "2026-07": 4517
+  },
+  "subsecond_store prints src=public_tape": {
+   "2026-07": 301
+  },
+  "spaces ws_depth (subsecond frames)": {
+   "2026-06": "8 days",
+   "2026-07": "31 days",
+   "2026-08": "31 days",
+   "2026-09": "4 days"
+  }
+ },
+ "T2_month_x_source_both_legs_any_cadence": {
+  "validation4_ticks (dropletA)": {
+   "2026-04": 340,
+   "2026-03": 188
+  },
+  "match_ticks (git c8119431)": {
+   "2026-03/04": 327
+  },
+  "match_ticks_full (git 26f8e853)": {
+   "2026-03/04": 404
+  },
+  "bbo_log_v4.csv.gz (dropletA)": {
+   "2026-03/04": "NOT_ENUMERATED"
+  },
+  "spaces ticks": {
+   "2026-04": 865,
+   "2026-05": 617,
+   "2026-06": 7070,
+   "2026-07": 7331
+  },
+  "spaces trades (prints)": {
+   "2026-04": 865,
+   "2026-05": 559,
+   "2026-06": 6881,
+   "2026-07": 6954
+  },
+  "local fit-local/ticks": {
+   "2026-07": 804
+  },
+  "local fit-local/prints.jsonl": {
+   "2026-07": 804
+  },
+  "local holdout-exam tapes": {
+   "2026-07": 171
+  },
+  "local ws-depth-source": {
+   "2026-07": "same"
+  },
+  "dropletA daysheet_tape (public_tape)": {
+   "2026-07": 303
+  },
+  "subsecond_store prints src=backfill": {
+   "2026-05": 1147,
+   "2026-06": 2209,
+   "2026-07": 1468
+  },
+  "subsecond_store prints src=book_transition": {
+   "2026-07": 4517
+  },
+  "subsecond_store prints src=public_tape": {
+   "2026-07": 301
+  },
+  "local depth_recorder (poll)": {
+   "2026-07": "hourly files 07-13..07-20; not per-event"
+  },
+  "dropletA depth_recorder (poll)": {
+   "2026-08/09": "hourly files 08-28..09-04"
+  },
+  "tennis.db kalshi_price_snapshots (poll-5min)": {
+   "2026-04": 724,
+   "2026-05": 2191,
+   "2026-06": 2369,
+   "2026-07": 2678,
+   "2026-08": 7049,
+   "2026-09": 1360
+  },
+  "spaces ws_depth (subsecond frames)": {
+   "2026-06": "8 days",
+   "2026-07": "31 days",
+   "2026-08": "31 days",
+   "2026-09": "4 days"
+  }
+ },
+ "T3_ingest_log": {
+  "ingested": {
+   "public_tape|2026-07": 476,
+   "ws_log|2026-06": 24,
+   "ws_log|2026-07": 30,
+   "book_transition|2026-07": 15210,
+   "backfill|2026-04": 1268,
+   "backfill|2026-07": 2911,
+   "backfill|2026-06": 4274,
+   "backfill|2026-05": 3908
+  },
+  "on_disk_not_ingested": {
+   "daysheet_tape 2026-07": "ingested (476/476)",
+   "premarket_ticks (book_transition)": "ingested 15,210 files in 2026-07; directory now empty on disk; the same tickers persist only as spaces:omi-tick-archive/ticks objects (not in ingest_log by that path)",
+   "spaces ticks 2026-04..2026-07 (31,767 objects)": "NOT ingested by path (ingest_log has no spaces: paths)",
+   "spaces trades 2026-04..2026-07 (30,813 objects)": "NOT ingested; overlaps backfill (Kalshi /markets/trades) by ticker for 9405 tickers",
+   "spaces ws_depth 2026-06-23..2026-09-04 (1,740 objects)": "NOT ingested (book-grade; consolidator inventories only)",
+   "validation4_ticks 2026-03-17..04-17 (1,678 .bin)": "NOT ingested (no consolidator source for I-B-B binaries)",
+   "bbo_log_v4.csv.gz 2026-03-20..04-17": "NOT ingested",
+   "local fit-local/ticks 2026-07-11..07-21 (1,608 csv.gz)": "NOT ingested (desktop only)",
+   "local fit-local/prints.jsonl 2026-07-11..07-21 (4,836,462 prints)": "NOT ingested (desktop only); same rows as calibration-v1 public_print",
+   "local ws-depth-source 2026-07-12..07-20 (215 files)": "NOT ingested (desktop only)",
+   "local holdout-exam-20260807 2026-07-26..07-28": "NOT ingested (desktop only); droplet copy at /srv/omi-research/window1-exam-20260807",
+   "/srv/omi-research PRINTS_804 + exam prints": "NOT ingested",
+   "live_v3 logs 2026-06-01..07-28 (46 files)": "ingested as ws_log, 54 entries, 0 rows",
+   "match_ticks / match_ticks_full (git only)": "NOT ingested (offset clocks; not on any disk)",
+   "kalshi_price_snapshots 2026-04-21..2026-09-04": "NOT ingested (poll grade; consumed by range_spectrum_build.py only)"
+  }
+ },
+ "T4_gaps": {
+  "first_capture_day": "2026-03-20",
+  "through": "2026-09-04",
+  "zero_capture_day_ranges": [
+   [
+    "2026-03-21",
+    "2026-03-22"
+   ],
+   [
+    "2026-05-05",
+    "2026-05-23"
+   ],
+   [
+    "2026-05-30",
+    "2026-05-30"
+   ]
+  ],
+  "sources_counted": [
+   "validation4_ticks (measured per-file first-tick days; bbo_log_v4 is the same data, first/last lines identical, not separately day-enumerated)",
+   "spaces ticks",
+   "spaces trades",
+   "spaces ws_depth",
+   "local ticks/prints",
+   "holdout tapes",
+   "daysheet_tape",
+   "droplet depth_recorder"
+  ],
+  "poll_grade_excluded": [
+   "kalshi_price_snapshots (2026-04-21..2026-09-04, no day gaps by month)",
+   "depth_recorder local 07-13..07-20"
+  ]
+ },
+ "unreachable_or_partial": [
+  {
+   "target": "droplet B 159.65.234.55",
+   "status": "UNREACHABLE",
+   "why": "ssh connect timed out (port 22)"
+  },
+  {
+   "target": "tennis.db full table row counts",
+   "status": "PARTIAL",
+   "why": "count(*) on the 27 GB live DB did not complete within the SSH session (connection reset after ~50 min); max(rowid) proxies used where the file-backed pass finished"
+  },
+  {
+   "target": "bbo_log_v4 per-ticker enumeration",
+   "status": "PARTIAL",
+   "why": "515M-row gz; per-line Python scan stopped; head/tail/row-count from C tools only"
+  },
+  {
+   "target": "match_ticks / match_ticks_full",
+   "status": "GIT ONLY",
+   "why": "not on any disk; read from commits c8119431 / 26f8e853"
+  }
+ ],
+ "raw": {
+  "local_census": {
+   "ticks": {
+    "exists": true,
+    "path": "C:/Users/omigr/OMI-Window1-private\\fit-local\\ticks",
+    "files": 1608,
+    "bytes": 973834436,
+    "ext": {
+     ".csv": 1608
+    },
+    "tickers": 1608,
+    "events": 804,
+    "name_dates": [
+     "26JUL12",
+     "26JUL20"
+    ],
+    "subdirs": [
+     "."
+    ],
+    "sample_headers": [
+     "ts_et,ticker,bid_1,bid_1_sz,bid_2,bid_2_sz,bid_3,bid_3_sz,bid_4,bid_4_sz,bid_5,bid_5_sz,ask_1,ask_1_sz,ask_2,ask_2_sz,ask_3,ask_3_sz,ask_4,ask_4_sz,ask_5,ask_5_sz,mid,bid_depth_5,ask_depth_5,depth_rat"
+    ],
+    "sample_n": 25,
+    "gap_median_of_medians": null,
+    "gap_min": null,
+    "gap_max": null,
+    "first_ts_min": null,
+    "last_ts_max": null,
+    "absolute": null
+   },
+   "depth_recorder": {
+    "exists": true,
+    "path": "C:/Users/omigr/OMI-Window1-private\\fit-local\\depth_recorder",
+    "files": 175,
+    "bytes": 400532818,
+    "ext": {
+     ".jsonl": 175
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": null,
+    "subdirs": [
+     "."
+    ],
+    "sample_headers": [
+     "{\"ts\": \"07-13 01:00:05.90 ET\", \"ts_epoch\": 1783918805.8, \"ticker\": \"KXATPMATCH-26JUL13FAUDAM-FAU\", \"cat\": \"ATP_MAIN\", \"player\": \"Thomas Faurel\", \"opp\": \"Damas\", \"mins_to_start\": null, \"bid\": 55, \"ask\"",
+     "{\"ts\": \"07-13 08:00:24.15 ET\", \"ts_epoch\": 1783944023.93, \"ticker\": \"KXATPMATCH-26JUL14KYMDIE-KYM\", \"cat\": \"ATP_MAIN\", \"player\": \"Jerome Kym\", \"opp\": \"Dietrich\", \"mins_to_start\": null, \"bid\": 58, \"ask",
+     "{\"ts\": \"07-13 15:00:18.19 ET\", \"ts_epoch\": 1783969217.36, \"ticker\": \"KXATPMATCH-26JUL14DIAMID-DIA\", \"cat\": \"ATP_MAIN\", \"player\": \"Facundo Diaz Acosta\", \"opp\": \"Midon\", \"mins_to_start\": null, \"bid\": 73",
+     "{\"ts\": \"07-14 04:00:10.13 ET\", \"ts_epoch\": 1784016010.02, \"ticker\": \"KXATPMATCH-26JUL14TRAKRU-TRA\", \"cat\": \"ATP_MAIN\", \"player\": \"Stefano Travaglia\", \"opp\": \"Krumich\", \"mins_to_start\": null, \"bid\": 42",
+     "{\"ts\": \"07-14 12:00:14.54 ET\", \"ts_epoch\": 1784044811.14, \"ticker\": \"KXATPMATCH-26JUL15CERKEC-KEC\", \"cat\": \"ATP_MAIN\", \"player\": \"Miomir Kecmanovic\", \"opp\": \"Cerundolo\", \"mins_to_start\": null, \"bid\": ",
+     "{\"ts\": \"07-14 19:00:14.36 ET\", \"ts_epoch\": 1784070013.9, \"ticker\": \"KXATPMATCH-26JUL15GOMARN-GOM\", \"cat\": \"ATP_MAIN\", \"player\": \"Federico Agustin Gomez\", \"opp\": \"Arnaldi\", \"mins_to_start\": null, \"bid\""
+    ],
+    "sample_n": 25,
+    "gap_median_of_medians": null,
+    "gap_min": null,
+    "gap_max": null,
+    "first_ts_min": null,
+    "last_ts_max": null,
+    "absolute": null
+   },
+   "premarket_ticks": {
+    "exists": false
+   },
+   "ws-depth-source": {
+    "exists": false
+   },
+   "guarded-cache-v3": {
+    "exists": true,
+    "path": "C:/Users/omigr/OMI-Window1-private\\fit-local\\guarded-cache-v3",
+    "files": 804,
+    "bytes": 197461623,
+    "ext": {
+     ".json": 804
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": [
+     "26JUL12",
+     "26JUL20"
+    ],
+    "subdirs": [
+     "."
+    ],
+    "sample_headers": [],
+    "sample_n": 0,
+    "gap_median_of_medians": null,
+    "gap_min": null,
+    "gap_max": null,
+    "first_ts_min": null,
+    "last_ts_max": null,
+    "absolute": null
+   },
+   "fit-run-r2": {
+    "exists": true,
+    "path": "C:/Users/omigr/OMI-Window1-private\\fit-local\\fit-run-r2",
+    "files": 1006,
+    "bytes": 562469508,
+    "ext": {
+     ".log": 6,
+     ".pid": 1,
+     ".json": 809,
+     ".jsonl": 190
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": [
+     "26JUL12",
+     "26JUL20"
+    ],
+    "subdirs": [
+     ".",
+     "WINDOW1_CANDIDATE_DETAIL.diagnostics.jsonl.by_candidate",
+     "WINDOW1_CANDIDATE_DETAIL.jsonl.by_candidate",
+     "cache"
+    ],
+    "sample_headers": [
+     "{\"boundary_exact\":false,\"boundary_safe_prestart\":false,\"candidate_id\":\"tminus_2h__corridor_15m__backwalk_depth4_support\",\"category\":\"ATP_CHALL\",\"censored\":true,\"conditional_lower_metrics\":null,\"condit",
+     "{\"boundary_exact\":false,\"boundary_safe_prestart\":false,\"candidate_id\":\"tminus_2h__corridor_15m__park_touch_favorite_first_reaim_touch\",\"category\":\"ATP_CHALL\",\"censored\":true,\"conditional_lower_metrics",
+     "{\"boundary_exact\":false,\"boundary_safe_prestart\":false,\"candidate_id\":\"tminus_2h__corridor_30m__shape_cell_simultaneous_hold\",\"category\":\"ATP_CHALL\",\"censored\":true,\"conditional_lower_metrics\":null,\"c",
+     "{\"boundary_exact\":false,\"boundary_safe_prestart\":false,\"candidate_id\":\"tminus_2h__corridor_45m__park_touch_simultaneous_hold\",\"category\":\"ATP_CHALL\",\"censored\":true,\"conditional_lower_metrics\":null,\"c",
+     "{\"boundary_exact\":false,\"boundary_safe_prestart\":false,\"candidate_id\":\"tminus_4h__corridor_15m__category_offset_simultaneous_hold\",\"category\":\"ATP_CHALL\",\"censored\":true,\"conditional_lower_metrics\":nu",
+     "{\"boundary_exact\":false,\"boundary_safe_prestart\":false,\"candidate_id\":\"tminus_4h__corridor_15m__causal_stack_simultaneous_reaim\",\"category\":\"ATP_CHALL\",\"censored\":true,\"conditional_lower_metrics\":null"
+    ],
+    "sample_n": 25,
+    "gap_median_of_medians": null,
+    "gap_min": null,
+    "gap_max": null,
+    "first_ts_min": null,
+    "last_ts_max": null,
+    "absolute": null
+   },
+   "stage1": {
+    "exists": false
+   },
+   "stage1_store": {
+    "exists": false
+   },
+   "holdout-exam-20260807": {
+    "exists": true,
+    "path": "C:/Users/omigr/OMI-Window1-private\\holdout-exam-20260807",
+    "files": 344,
+    "bytes": 559715685,
+    "ext": {
+     ".tar": 1,
+     ".jsonl": 1,
+     ".csv": 342
+    },
+    "tickers": 342,
+    "events": 171,
+    "name_dates": [
+     "26JUL27",
+     "26JUL28"
+    ],
+    "subdirs": [
+     ".",
+     "prints",
+     "tapes"
+    ],
+    "sample_headers": [
+     "ts_et,ticker,bid_1,bid_1_sz,bid_2,bid_2_sz,bid_3,bid_3_sz,bid_4,bid_4_sz,bid_5,bid_5_sz,ask_1,ask_1_sz,ask_2,ask_2_sz,ask_3,ask_3_sz,ask_4,ask_4_sz,ask_5,ask_5_sz,mid,bid_depth_5,ask_depth_5,depth_rat",
+     "{\"exchange_ts\":\"2026-07-27T14:00:57.807524Z\",\"is_block_trade\":false,\"price_cents\":99,\"receipt_id\":\"250ccc52-91aa-6186-e4fa-407b9bb2661f\",\"size\":70.0,\"source\":\"kalshi_public_trade\",\"taker_book_side\":\"a"
+    ],
+    "sample_n": 25,
+    "gap_median_of_medians": 52826.21214699745,
+    "gap_min": 52826.21214699745,
+    "gap_max": 52826.21214699745,
+    "first_ts_min": 1785160849.057704,
+    "last_ts_max": 1785159857.08746,
+    "absolute": null
+   },
+   "calibration-v1": {
+    "exists": true,
+    "path": "C:/Users/omigr/OMI-Window1-private\\calibration-v1",
+    "files": 7,
+    "bytes": 1519659610,
+    "ext": {
+     ".jsonl": 4,
+     ".log": 2,
+     ".sqlite": 1
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": null,
+    "subdirs": [
+     "."
+    ],
+    "sample_headers": [
+     "{\"accepted\":true,\"action\":\"buy\",\"client_order_id\":\"3ed28018-b18e-4621-a06a-1bf8f311d7f9\",\"evaluation_end_exchange_ts\":1783904400.0,\"evaluation_end_source\":\"scheduled_start_plus_60m_corridor\",\"event_id",
+     "{\"accepted_order_ids\":[\"48d93296-d837-4739-b7da-830986a2cb19\"],\"cancellation_evidence\":{\"48d93296-d837-4739-b7da-830986a2cb19\":[{\"label\":\"orphan_buy_reconcile_cleanup\",\"local_logged_ts\":1783887746.986",
+     "{\"action\":\"buy\",\"book_side\":\"bid\",\"count_fp\":\"5.00\",\"created_time\":\"2026-07-20T19:08:21.473043Z\",\"fee_cost\":\"0.000000\",\"fill_id\":\"00191212-8431-56ab-812f-a60d4461512b\",\"is_taker\":false,\"market_ticker\"",
+     "{\"category\":\"ATP_CHALL\",\"event_date\":\"2026-07-12\",\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN\",\"legs\":[{\"leg\":\"ALV\",\"ticker\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV\"},{\"leg\":\"VAN\",\"ticker\":\"KXATPCH"
+    ],
+    "sample_n": 4,
+    "gap_median_of_medians": 167204.0,
+    "gap_min": 167204.0,
+    "gap_max": 167204.0,
+    "first_ts_min": 1784573644.0,
+    "last_ts_max": 1784045274.0,
+    "absolute": null
+   },
+   "prints.jsonl": {
+    "path": "C:/Users/omigr/OMI-Window1-private\\fit-local\\prints.jsonl",
+    "bytes": 1766090446,
+    "rows": 4836462,
+    "tickers": 1606,
+    "events": 804,
+    "first": "2026-07-11T10:48:48.641494Z",
+    "last": "2026-07-21T19:33:45.512718Z",
+    "months": {
+     "2026-07": 4836462
+    },
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "columns": [
+     "exchange_ts",
+     "is_block_trade",
+     "price_cents",
+     "receipt_id",
+     "size",
+     "source",
+     "taker_book_side",
+     "taker_outcome_side",
+     "taker_side",
+     "ticker",
+     "trade_id",
+     "true_print"
+    ]
+   },
+   "other_csv_gz_dirs": {
+    "C:/Users/omigr\\OMI-Window1-private\\fit-local\\ticks": {
+     "files": 1608,
+     "header": "ts_et,ticker,bid_1,bid_1_sz,bid_2,bid_2_sz,bid_3,bid_3_sz,bid_4,bid_4_sz,bid_5,bid_5_sz,ask_1,ask_1_sz,ask_2,ask_2_sz,ask_3,ask_3_sz,ask_4,ask_4_sz,ask_5,ask_5_"
+    },
+    "C:/Users/omigr\\OMI-Window1-private\\holdout-exam-20260807\\tapes": {
+     "files": 342,
+     "header": "ts_et,ticker,bid_1,bid_1_sz,bid_2,bid_2_sz,bid_3,bid_3_sz,bid_4,bid_4_sz,bid_5,bid_5_sz,ask_1,ask_1_sz,ask_2,ask_2_sz,ask_3,ask_3_sz,ask_4,ask_4_sz,ask_5,ask_5_"
+    }
+   }
+  },
+  "local_detail": {
+   "ticks": {
+    "files": 1608,
+    "sampled": 30,
+    "ts_col": "ts_et",
+    "gap_median": null,
+    "gap_min": null,
+    "gap_max": null,
+    "first_utc": null,
+    "last_sampled_utc": null
+   },
+   "holdout_tapes": {
+    "files": 342,
+    "sampled": 30,
+    "ts_col": "ts_et",
+    "gap_median": null,
+    "gap_min": null,
+    "gap_max": null,
+    "first_utc": null,
+    "last_sampled_utc": null
+   },
+   "depth_recorder_local": {
+    "files": 175,
+    "dates": [
+     "20260713",
+     "20260720"
+    ],
+    "n_dates": 8,
+    "sample_tickers": 1226,
+    "per_ticker_gap_median": 21.40750002861023,
+    "gap_p10": 10.670000076293945,
+    "gap_p90": 100.06000006198883,
+    "gz": 175
+   },
+   "guarded_cache_v3": {
+    "sample": "KXATPCHALLENGERMATCH-26JUL12ALVVAN.json.gz",
+    "keys": [
+     "cache_key",
+     "cache_version",
+     "earliest_utc",
+     "event_id",
+     "latest_utc",
+     "legs"
+    ],
+    "types": {
+     "cache_key": "str",
+     "cache_version": "str",
+     "earliest_utc": "str",
+     "event_id": "str",
+     "latest_utc": "str",
+     "legs": "list[2]"
+    },
+    "list_legs": [
+     "leg",
+     "prints",
+     "snapshots",
+     "ticker"
+    ]
+   },
+   "calibration_sqlite": {
+    "public_print": {
+     "rows": 4836462,
+     "cols": [
+      "trade_id",
+      "ticker",
+      "ts_ms",
+      "price_cents",
+      "size_text"
+     ],
+     "spans": {
+      "ts_ms": [
+       1783766928641,
+       1784662425512
+      ],
+      "price_cents": [
+       1,
+       99
+      ]
+     }
+    },
+    "ws_raw": {
+     "rows": 3322756,
+     "cols": [
+      "trade_id",
+      "ticker",
+      "ts_ms",
+      "price_cents",
+      "size_text",
+      "source_file"
+     ],
+     "spans": {
+      "ts_ms": [
+       1783814466990,
+       1784591999957
+      ],
+      "price_cents": [
+       1,
+       99
+      ]
+     }
+    },
+    "ws_unique": {
+     "rows": 3322756,
+     "cols": [
+      "trade_id",
+      "ticker",
+      "ts_ms",
+      "price_cents",
+      "size_text"
+     ],
+     "spans": {
+      "ts_ms": [
+       1783814466990,
+       1784591999957
+      ],
+      "price_cents": [
+       1,
+       99
+      ]
+     }
+    }
+   },
+   "calibration_files": {
+    "api_fills.private.jsonl": 913028,
+    "events.jsonl": 336694,
+    "lifecycle.private.jsonl": 1768283,
+    "orders.private.jsonl": 5606583,
+    "ws-trade-reconcile.err.log": 0,
+    "ws-trade-reconcile.out.log": 142,
+    "ws_public_trade_reconcile.sqlite": 1511034880
+   },
+   "stage1": {
+    "files": 806,
+    "bytes": 451671779,
+    "ext": {
+     ".jsonl": 806
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": null,
+    "subdirs": [
+     "v54_l19a_fit_composition_pass1",
+     "v54_l19a_neighbor_voted_composition_pass2",
+     "v54_pair_model_iteration_01_804_20260821"
+    ],
+    "headers": [
+     [
+      "v54_l19a_fit_composition_pass1\\build1\\ALL_SENTENCES_804.jsonl.gz",
+      "{\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN\",\"leg_id\":\"ALV\",\"timestamp_epoch\":1783801048,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN|TURN|1783801048\",\"sentence\":\"At 0.000000 "
+     ],
+     [
+      "v54_l19a_fit_composition_pass1\\build2\\ALL_SENTENCES_804.jsonl.gz",
+      "{\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN\",\"leg_id\":\"ALV\",\"timestamp_epoch\":1783801048,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN|TURN|1783801048\",\"sentence\":\"At 0.000000 "
+     ],
+     [
+      "v54_l19a_neighbor_voted_composition_pass2\\build1\\ALL_SENTENCES_804.jsonl.gz",
+      "{\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN\",\"leg_id\":\"ALV\",\"timestamp_epoch\":1783801048,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN|TURN|1783801048\",\"sentence\":\"At 0.000000 "
+     ]
+    ]
+   },
+   "stage1_store": {
+    "files": 968,
+    "bytes": 39554647339,
+    "ext": {
+     ".json": 778,
+     ".jsonl": 86,
+     ".md": 86,
+     ".html": 18
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": null,
+    "subdirs": [
+     "v54_author_reads_own_game_20260825",
+     "v54_book_veto_only_20260826",
+     "v54_book_veto_only_20260826_pre_full_book_audit",
+     "v54_carried_conviction_survivor_shapes_20260824",
+     "v54_carried_conviction_survivor_shapes_mechanical_defect_20260824",
+     "v54_carried_conviction_survivor_shapes_mechanical_defect_empty_seed_20260824",
+     "v54_central_estimate_consume_touch_20260823",
+     "v54_classifier_floor_print_wake_20260826",
+     "v54_classifier_floor_print_wake_20260826_mechanical_attempt1",
+     "v54_condition_dont_replace_20260825",
+     "v54_contracts_authority_spread_eye_20260825",
+     "v54_conviction_moves_own_seat_20260826"
+    ],
+    "headers": [
+     [
+      "v54_author_reads_own_game_20260825\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "{\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR\",\"kind\":\"DECISION_STAGE\",\"trigger\":\"TURNING_POINT\",\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-4\",\"timestamp_epoch\""
+     ],
+     [
+      "v54_book_veto_only_20260826\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "{\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR\",\"kind\":\"DECISION_STAGE\",\"trigger\":\"TURNING_POINT\",\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1\",\"timestamp_epoch\""
+     ],
+     [
+      "v54_book_veto_only_20260826_pre_full_book_audit\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "{\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR\",\"kind\":\"DECISION_STAGE\",\"trigger\":\"TURNING_POINT\",\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-1\",\"timestamp_epoch\""
+     ]
+    ]
+   },
+   "start-recovery-round2": {
+    "files": 1134,
+    "bytes": 7618068,
+    "ext": {
+     ".json": 1118,
+     ".jsonl": 2,
+     ".db": 1,
+     ".html": 13
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": [
+     "2026-07-11",
+     "26JUL20"
+    ],
+    "subdirs": [
+     ".",
+     "normalized",
+     "raw"
+    ],
+    "headers": [
+     [
+      "normalized\\RESIDUAL_IDENTITY_CROSSWALK.jsonl",
+      "{\"competitor_target_ids\":[\"353bbf1c-3443-42d4-9ade-162d190bb7b0\",\"0d5fdb36-7cc1-4e79-a459-fb2a24411b9a\"],\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN\",\"event_source_id\":\"sr:sport"
+     ],
+     [
+      "raw\\remote-retained\\corpus_events_v2.jsonl",
+      "{\"event\": \"KXATPCHALLENGERMATCH-26APR01ALUMEJ\", \"cat\": \"ATP_CHALL\", \"era\": \"26APR\", \"old_stamp_last\": null, \"old_stamp_first\": null, \"sched_honest\": 1775185200.0, \"sched_src\": \"mil"
+     ]
+    ]
+   },
+   "start-recovery-v2": {
+    "files": 821,
+    "bytes": 4964828,
+    "ext": {
+     ".log": 4,
+     ".jsonl": 7,
+     ".json": 808,
+     ".md": 2
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": [
+     "26JUL12",
+     "26JUL20"
+    ],
+    "subdirs": [
+     ".",
+     "ledger-v3",
+     "public-milestones-raw"
+    ],
+    "headers": [
+     [
+      "milestone_shadow.remote.jsonl",
+      "{\"ts\": 1784247419.2658224, \"event\": \"KXATPCHALLENGERMATCH-26JUL14DELXIL\", \"ms_status\": \"not_started\", \"ms_start\": \"2026-07-15T11:00:00Z\", \"ms_start_ep\": 1784113200.0, \"sched_ep\": n"
+     ],
+     [
+      "PUBLIC_MILESTONES.normalized.jsonl",
+      "{\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN\",\"exported_utc\":\"2026-07-24T02:35:55.439427+00:00\",\"last_updated_utc\":\"2026-07-13T11:22:23.657664Z\",\"milestone_identity_sha256\":\"800"
+     ],
+     [
+      "tennis_db.live_scores.jsonl",
+      "{\"kalshi_ticker\":\"SOT\",\"last_updated\":\"2026-07-12 17:59:43\",\"p1_games\":\"\",\"p1_sets\":2,\"p2_games\":\"\",\"p2_sets\":0,\"player1\":\"Soto M.\",\"player2\":\"Claverie L.\",\"status\":\"finished\"}\n"
+     ]
+    ]
+   },
+   "ws-depth-source": {
+    "files": 215,
+    "bytes": 5393753162,
+    "ext": {
+     ".jsonl": 215
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": [
+     "20260712",
+     "20260720"
+    ],
+    "subdirs": [
+     "ws_depth"
+    ],
+    "headers": [
+     [
+      "ws_depth\\ws_20260712_00.jsonl.gz",
+      "{\"t\":1783814400.112,\"m\":{\"type\":\"orderbook_delta\",\"sid\":1,\"seq\":4987791,\"msg\":{\"market_ticker\":\"KXATPMATCH-26JUL12TABHUE-TAB\",\"market_id\":\"9f73c4bd-d5a7-4a9e-88ad-37f7a718f483\",\"pr"
+     ],
+     [
+      "ws_depth\\ws_20260712_01.jsonl.gz",
+      "{\"t\":1783818000.18,\"m\":{\"type\":\"orderbook_delta\",\"sid\":1,\"seq\":5056971,\"msg\":{\"market_ticker\":\"KXATPCHALLENGERMATCH-26JUL12PRIBAL-PRI\",\"market_id\":\"49b376ae-4cb0-48fa-ae16-8977aef3"
+     ],
+     [
+      "ws_depth\\ws_20260712_02.jsonl.gz",
+      "{\"t\":1783821600.096,\"m\":{\"type\":\"orderbook_delta\",\"sid\":1,\"seq\":5184182,\"msg\":{\"market_ticker\":\"KXATPCHALLENGERMATCH-26JUL12HOUJOR-JOR\",\"market_id\":\"6dd92851-bcc7-4ac5-a63f-74a1068"
+     ]
+    ]
+   },
+   "ws-coverage": {
+    "files": 11,
+    "bytes": 944889,
+    "ext": {
+     ".log": 6,
+     ".pid": 3,
+     ".jsonl": 1,
+     ".json": 1
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": null,
+    "subdirs": [
+     "."
+    ],
+    "headers": [
+     [
+      "WS_DEPTH_COVERAGE_LEDGER.jsonl",
+      "{\"available\":true,\"epoch_count\":10,\"first_exchange_ts\":\"2026-07-12T00:46:11.727000+00:00\",\"first_live_transition_timestamp_basis\":null,\"first_live_transition_ts\":null,\"full_depth_u"
+     ]
+    ]
+   },
+   "joined": {
+    "files": 1,
+    "bytes": 336694,
+    "ext": {
+     ".jsonl": 1
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": null,
+    "subdirs": [
+     "."
+    ],
+    "headers": [
+     [
+      "events.jsonl",
+      "{\"category\":\"ATP_CHALL\",\"event_date\":\"2026-07-12\",\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN\",\"legs\":[{\"leg\":\"ALV\",\"ticker\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV\"},{\"leg\":\"VA"
+     ]
+    ]
+   },
+   "replay-live-v4": {
+    "files": 9,
+    "bytes": 2029117998,
+    "ext": {
+     ".db": 1,
+     ".jsonl": 8
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": null,
+    "subdirs": [
+     ".",
+     "stage1-store"
+    ],
+    "headers": [
+     [
+      "stage1-store\\v53_02_understanding_bounds_stage1_20260820\\FULL_DECISION_TRACE_30.jsonl.gz",
+      "{\"event_id\":\"KXATPMATCH-26JUL12FARWAW\",\"leg_identity\":\"KXATPMATCH-26JUL12FARWAW|FAR\",\"category\":\"ATP_MAIN\",\"price_region\":\"51_75\",\"timestamp_epoch\":1783774211,\"t_minus_scheduled_se"
+     ],
+     [
+      "stage1-store\\v53_02_understanding_bounds_stage1_20260820\\V52L_COMPARATOR_TRACE_30.jsonl.gz",
+      "{\"event_id\":\"KXATPMATCH-26JUL12FARWAW\",\"leg_identity\":\"KXATPMATCH-26JUL12FARWAW|FAR\",\"category\":\"ATP_MAIN\",\"price_region\":\"51_75\",\"timestamp_epoch\":1783774211,\"t_minus_scheduled_se"
+     ],
+     [
+      "stage1-store\\v53_03_read_licensed_bound_stage1_20260820\\FULL_DECISION_TRACE_30.jsonl.gz",
+      "{\"event_id\":\"KXATPMATCH-26JUL12BUDPEL\",\"leg_identity\":\"KXATPMATCH-26JUL12BUDPEL|BUD\",\"category\":\"ATP_MAIN\",\"price_region\":\"26_50\",\"timestamp_epoch\":1783777733,\"t_minus_scheduled_se"
+     ]
+    ]
+   },
+   "fit-local/os-family-cache": {
+    "files": 119,
+    "bytes": 32831589,
+    "ext": {
+     ".json": 119
+    },
+    "tickers": 0,
+    "events": 0,
+    "name_dates": [
+     "26JUL12",
+     "26JUL12"
+    ],
+    "subdirs": [
+     "2cff6adaee7d6a8f6807105e86b22104a4b91f5f818a204fbadacf5411d60f50"
+    ],
+    "headers": []
+   },
+   "fit-local/empty": {
+    "files": 0,
+    "bytes": 0,
+    "ext": {},
+    "tickers": 0,
+    "events": 0,
+    "name_dates": null,
+    "subdirs": [],
+    "headers": []
+   },
+   "fit_run_r2_cache": [
+    "ad54d6efdd05b77f39267601d438ccb6438c2f22dc8c539051b100352b26a502"
+   ]
+  },
+  "local_books": {
+   "ticks": {
+    "files": 1608,
+    "sampled": 40,
+    "rows_med": 52251.5,
+    "gap_median": 1.0,
+    "gap_p10": 1.0,
+    "gap_p90": 3.0,
+    "first_utc": "2026-07-11T13:48:53",
+    "last_utc": "2026-07-21T14:40:28",
+    "same_second_pairs_share": 0.9043,
+    "ts_resolution": "1 s (12-hour ET string)"
+   },
+   "holdout_tapes": {
+    "files": 342,
+    "sampled": 40,
+    "rows_med": 15694.0,
+    "gap_median": 2.0,
+    "gap_p10": 1.0,
+    "gap_p90": 29.0,
+    "first_utc": "2026-07-26T14:12:24",
+    "last_utc": "2026-07-28T12:40:44",
+    "same_second_pairs_share": 0.8773,
+    "ts_resolution": "1 s (12-hour ET string)"
+   }
+  },
+  "droplet_files": {
+   "durable/depth_recorder": {
+    "exists": true,
+    "files": 171,
+    "bytes": 516298005,
+    "ext": {
+     ".jsonl": 169,
+     ".log": 1,
+     ".txt": 1
+    },
+    "name_dates": [
+     "20260828",
+     "20260904"
+    ],
+    "tickers": 0,
+    "events": 0,
+    "mtime": [
+     1784755272.4141731,
+     1788543111.6733563
+    ],
+    "samples": [
+     [
+      "depth_20260901_07.jsonl.gz",
+      [
+       "{\"ts\": \"09-01 07:00:26.37 ET\", \"ts_epoch\": 1788260426.19, \"ticker\": \"KXATPMATCH-26SEP02SAKTIA-SAK\", \"cat\": \"ATP_MAIN\", \"player\": \"Rei Sakamoto\", \"opp\": null, \"mins_to_start\": null, \"bid\": 22, \"ask\": 2",
+       "{\"ts\": \"09-01 07:00:26.47 ET\", \"ts_epoch\": 1788260426.19, \"ticker\": \"KXATPMATCH-26SEP02AUGKHA-KHA\", \"cat\": \"ATP_MAIN\", \"player\": \"Karen Khachanov\", \"opp\": null, \"mins_to_start\": null, \"bid\": 28, \"ask\""
+      ]
+     ],
+     [
+      "depth_20260903_03.jsonl.gz",
+      [
+       "{\"ts\": \"09-03 03:00:00.95 ET\", \"ts_epoch\": 1788418800.89, \"ticker\": \"KXATPMATCH-26SEP04YIBALC-YIB\", \"cat\": \"ATP_MAIN\", \"player\": \"Yibing Wu\", \"opp\": null, \"mins_to_start\": null, \"bid\": 12, \"ask\": 13, ",
+       "{\"ts\": \"09-03 03:00:01.02 ET\", \"ts_epoch\": 1788418800.89, \"ticker\": \"KXATPMATCH-26SEP04YIBALC-ALC\", \"cat\": \"ATP_MAIN\", \"player\": \"Carlos Alcaraz\", \"opp\": null, \"mins_to_start\": null, \"bid\": 87, \"ask\":"
+      ]
+     ]
+    ],
+    "subdirs": [
+     "."
+    ]
+   },
+   "durable/ws_depth_recorder": {
+    "exists": true,
+    "files": 26,
+    "bytes": 3062095038,
+    "ext": {
+     ".jsonl": 26
+    },
+    "name_dates": [
+     "20260903",
+     "20260904"
+    ],
+    "tickers": 0,
+    "events": 0,
+    "mtime": [
+     1788454800.0184922,
+     1788543113.131478
+    ],
+    "samples": [
+     [
+      "ws_20260903_20_20260806T235443Z_3459414.jsonl.gz",
+      [
+       "{\"t\":1788465600.0,\"received_at_utc\":\"2026-09-03T19:59:59.999984+00:00\",\"source_epoch\":1788465599.983167,\"staleness_ms\":16.817,\"staleness_status\":\"MEASURED\",\"raw_ws_sha256\":\"5278dd4b6e1d6f77e543cb02c38",
+       "{\"t\":1788465600.018,\"received_at_utc\":\"2026-09-03T20:00:00.017871+00:00\",\"source_epoch\":1788465599.984479,\"staleness_ms\":33.392,\"staleness_status\":\"MEASURED\",\"raw_ws_sha256\":\"8e462e297c44419ae4f948fe9"
+      ]
+     ],
+     [
+      "ws_20260904_12_20260806T235443Z_3459414.jsonl.gz",
+      [
+       "{\"t\":1788523248.0893734,\"ev\":\"recorder_start\",\"subscribed\":332}",
+       "{\"t\":1788523248.121,\"received_at_utc\":\"2026-09-04T12:00:48.120525+00:00\",\"source_epoch\":null,\"staleness_ms\":null,\"staleness_status\":\"NO_SOURCE_TIMESTAMP\",\"raw_ws_sha256\":\"4c2bdb338dcae36ed801149f8a383"
+      ]
+     ]
+    ],
+    "subdirs": [
+     "."
+    ]
+   },
+   "durable/depth_chain": {
+    "exists": true,
+    "files": 3,
+    "bytes": 11659,
+    "ext": {
+     ".json": 1,
+     ".txt": 1,
+     ".parquet": 1
+    },
+    "name_dates": null,
+    "tickers": 0,
+    "events": 0,
+    "mtime": [
+     1781222355.6211348,
+     1781222355.623135
+    ],
+    "samples": [
+     [
+      "_g2_meta.json",
+      [
+       "{",
+       " \"sha256\": \"b86318242044976cfc9f118e079eae1b12f5e90a2829e8a55f0eb9bf26e9f925\","
+      ]
+     ]
+    ],
+    "subdirs": [
+     "."
+    ]
+   },
+   "durable/validation4_ticks": {
+    "exists": true,
+    "files": 1678,
+    "bytes": 1537053480,
+    "ext": {
+     ".bin": 1678
+    },
+    "name_dates": [
+     "26APR01",
+     "26MAR31"
+    ],
+    "tickers": 1678,
+    "events": 1150,
+    "mtime": [
+     1781124671.1844068,
+     1781124704.730192
+    ],
+    "samples": [],
+    "subdirs": [
+     "."
+    ]
+   },
+   "durable/holdout_seal": {
+    "exists": true,
+    "files": 4,
+    "bytes": 982524,
+    "ext": {
+     ".jsonl": 1,
+     ".lock": 1,
+     ".json": 2
+    },
+    "name_dates": null,
+    "tickers": 0,
+    "events": 0,
+    "mtime": [
+     1786059119.814555,
+     1787717798.5812345
+    ],
+    "samples": [
+     [
+      "HOLDOUT_CAPTURE_REGISTRY.jsonl",
+      [
+       "{\"activation_utc\":\"2026-08-06T23:31:32Z\",\"capture_source\":\"ws_depth_recorder_raw_exchange_frames\",\"category\":\"ATP_CHALL\",\"event_date\":\"2026-08-06\",\"event_id\":\"KXATPCHALLENGERMATCH-26AUG06ALEBRU\",\"firs",
+       "{\"activation_utc\":\"2026-08-06T23:31:32Z\",\"capture_source\":\"ws_depth_recorder_raw_exchange_frames\",\"category\":\"ATP_CHALL\",\"event_date\":\"2026-08-06\",\"event_id\":\"KXATPCHALLENGERMATCH-26AUG06BARBUT\",\"firs"
+      ]
+     ],
+     [
+      "REGISTRY_STATE.json",
+      [
+       "{",
+       "  \"activation_utc\": \"2026-08-06T23:31:32Z\","
+      ]
+     ]
+    ],
+    "subdirs": [
+     "."
+    ]
+   },
+   "durable/window1_reconciliation": {
+    "exists": true,
+    "files": 33,
+    "bytes": 309606,
+    "ext": {
+     ".json": 33
+    },
+    "name_dates": [
+     "2026-08-06",
+     "2026-09-04"
+    ],
+    "tickers": 0,
+    "events": 0,
+    "mtime": [
+     1786059835.7299888,
+     1788501730.3159049
+    ],
+    "samples": [
+     [
+      "RECONCILIATION_2026-08-22.json",
+      [
+       "{",
+       "  \"forbidden_access\": {"
+      ]
+     ],
+     [
+      "RECONCILIATION_2026-08-29.json",
+      [
+       "{",
+       "  \"forbidden_access\": {"
+      ]
+     ]
+    ],
+    "subdirs": [
+     "."
+    ]
+   },
+   "durable/per_minute_universe": {
+    "exists": true,
+    "files": 252,
+    "bytes": 957444020,
+    "ext": {
+     ".parquet": 230,
+     ".json": 13,
+     ".jsonl": 2,
+     ".txt": 3,
+     ".png": 4
+    },
+    "name_dates": [
+     "26APR26",
+     "26APR26"
+    ],
+    "tickers": 0,
+    "events": 0,
+    "mtime": [
+     1778896631.818787,
+     1781124668.983224
+    ],
+    "samples": [
+     [
+      "path_b_v2_run_summary.json",
+      [
+       "{",
+       "  \"analysis\": \"path_b_v2_marketable_vs_resting_atlas_exit_replay\","
+      ]
+     ],
+     [
+      "run_summary.json",
+      [
+       "{",
+       "  \"phase\": 3,"
+      ]
+     ]
+    ],
+    "subdirs": [
+     ".",
+     "probe"
+    ]
+   },
+   "durable/window1-20260722": {
+    "exists": false
+   },
+   "durable/window1-exam-20260807": {
+    "exists": false
+   },
+   "durable/window1-nightly-938dca47": {
+    "exists": false
+   },
+   "state/daysheet_tape": {
+    "exists": true,
+    "files": 476,
+    "bytes": 48019556,
+    "ext": {
+     ".json": 476
+    },
+    "name_dates": [
+     "26JUL13",
+     "26JUL18"
+    ],
+    "tickers": 476,
+    "events": 303,
+    "mtime": [
+     1784241984.0743952,
+     1784341184.2295918
+    ],
+    "samples": [
+     [
+      "KXMLBGAME-26JUL172138DETLAA-DET.json",
+      [
+       "{\"v\": 2, \"fetched_at\": 1784334509.1975124, \"final\": false, \"covered_from\": 1784230680.0, \"prints\": [{\"ts\": 1784230710.726898, \"price_c\": 53, \"ct\": 3.0}, {\"ts\": 1784231710.126578, \"price_c\": 53, \"ct\": ",
+       ""
+      ]
+     ],
+     [
+      "KXITFWMATCH-26JUL17STOLEW-STO.json",
+      [
+       "{\"v\": 2, \"fetched_at\": 1784271149.7485702, \"final\": false, \"covered_from\": 1784167200.0, \"prints\": [{\"ts\": 1784249294.035806, \"price_c\": 66, \"ct\": 10.0}, {\"ts\": 1784254601.468746, \"price_c\": 66, \"ct\":",
+       ""
+      ]
+     ]
+    ],
+    "subdirs": [
+     "."
+    ]
+   },
+   "logs/live_v3": {
+    "exists": true,
+    "files": 46,
+    "bytes": 344130790,
+    "ext": {
+     ".jsonl": 46
+    },
+    "name_dates": [
+     "20260601",
+     "20260728"
+    ],
+    "tickers": 0,
+    "events": 0,
+    "mtime": [
+     1780453780.7091856,
+     1785242446.693994
+    ],
+    "samples": [
+     [
+      "live_v3_20260627.jsonl.gz",
+      [
+       "{\"ts\": \"2026-06-27 01:50:05 AM ET\", \"ts_epoch\": 1782539405.4543564, \"event\": \"entry_table_loaded\", \"ticker\": \"\", \"details\": {\"rows\": 36, \"path\": \"docs/policy/per_regime_offsets_v2.csv\"}}",
+       "{\"ts\": \"2026-06-27 01:50:05 AM ET\", \"ts_epoch\": 1782539405.459475, \"event\": \"entry_table_cell_loaded\", \"ticker\": \"\", \"details\": {\"rows\": 360, \"path\": \"docs/policy/entry_table_percell_conservative.csv\""
+      ]
+     ],
+     [
+      "live_v3_20260705.jsonl.gz",
+      [
+       "{\"ts\": \"2026-07-05 10:39:36 AM ET\", \"ts_epoch\": 1783262376.3282096, \"event\": \"entry_table_loaded\", \"ticker\": \"\", \"details\": {\"rows\": 36, \"path\": \"docs/policy/per_regime_offsets_v2.csv\"}}",
+       "{\"ts\": \"2026-07-05 10:39:36 AM ET\", \"ts_epoch\": 1783262376.3505225, \"event\": \"entry_table_cell_loaded\", \"ticker\": \"\", \"details\": {\"rows\": 360, \"path\": \"docs/policy/entry_table_percell_conservative.csv"
+      ]
+     ]
+    ],
+    "subdirs": [
+     "."
+    ]
+   },
+   "analysis/premarket_ticks": {
+    "exists": true,
+    "files": 0,
+    "bytes": 0,
+    "ext": {},
+    "name_dates": null,
+    "tickers": 0,
+    "events": 0,
+    "mtime": [
+     null,
+     null
+    ],
+    "samples": [],
+    "subdirs": []
+   },
+   "srv/omi-research": {
+    "exists": true,
+    "files": 474,
+    "bytes": 713357949,
+    "ext": {
+     ".jsonl": 32,
+     ".txt": 1,
+     ".json": 383,
+     ".log": 20,
+     ".pid": 5,
+     ".tar": 1,
+     ".py": 27,
+     ".sha256": 1,
+     ".err": 1,
+     ".pyc": 3
+    },
+    "name_dates": [
+     "20260712",
+     "26JUL28"
+    ],
+    "tickers": 342,
+    "events": 171,
+    "mtime": [
+     1784695134.204466,
+     1786080398.245273
+    ],
+    "samples": [
+     [
+      "GUARDED_BOUNDARY_LEDGER.jsonl",
+      [
+       "{\"boundary_law\":\"V5_proxy_asymmetric_strict_window1_cutoff_900_seconds\",\"conflict_status\":\"none\",\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12ALVVAN\",\"guard_censor_reason\":null,\"guard_id\":\"te-calibration-c",
+       "{\"boundary_law\":\"official_exact_start_minus_committed_60_seconds\",\"conflict_status\":\"none\",\"event_id\":\"KXATPCHALLENGERMATCH-26JUL12ARNROM\",\"guard_censor_reason\":null,\"guard_id\":\"official-point-strict-"
+      ]
+     ],
+     [
+      "PRINTS_804.jsonl.gz",
+      [
+       "{\"exchange_ts\":\"2026-07-12T11:04:07.251908Z\",\"is_block_trade\":false,\"price_cents\":99,\"receipt_id\":\"f14c0825-d868-660d-6883-7c5230544080\",\"size\":70.65,\"source\":\"kalshi_public_trade\",\"taker_book_side\":\"",
+       "{\"exchange_ts\":\"2026-07-12T11:04:07.251908Z\",\"is_block_trade\":false,\"price_cents\":99,\"receipt_id\":\"e6bcf81f-2bd1-6840-6181-de85181011ce\",\"size\":61.45,\"source\":\"kalshi_public_trade\",\"taker_book_side\":\""
+      ]
+     ]
+    ],
+    "subdirs": [
+     "window1-20260722",
+     "window1-exam-20260807",
+     "window1-nightly-938dca47"
+    ]
+   },
+   "mnt/active": {
+    "exists": true,
+    "files": 3,
+    "bytes": 27453747952,
+    "ext": {
+     ".db-shm": 1,
+     ".db-wal": 1,
+     ".db": 1
+    },
+    "name_dates": null,
+    "tickers": 0,
+    "events": 0,
+    "mtime": [
+     1788542125.5728645,
+     1788543077.1804726
+    ],
+    "samples": [],
+    "subdirs": [
+     "."
+    ]
+   }
+  },
+  "droplet_detail": {
+   "validation4_ticks": {
+    "files": 1678,
+    "dates": {
+     "26APR01": 47,
+     "26APR02": 38,
+     "26APR03": 46,
+     "26APR04": 35,
+     "26APR05": 103,
+     "26APR06": 90,
+     "26APR07": 75,
+     "26APR08": 41,
+     "26APR09": 37,
+     "26APR10": 24,
+     "26APR11": 65,
+     "26APR12": 109,
+     "26APR13": 88,
+     "26APR14": 2,
+     "26APR15": 110,
+     "26APR16": 74,
+     "26APR17": 62,
+     "26MAR17": 4,
+     "26MAR18": 5,
+     "26MAR19": 11,
+     "26MAR20": 53,
+     "26MAR21": 1,
+     "26MAR22": 1,
+     "26MAR23": 26,
+     "26MAR24": 98,
+     "26MAR25": 42,
+     "26MAR26": 33,
+     "26MAR27": 30,
+     "26MAR28": 56,
+     "26MAR29": 115,
+     "26MAR30": 77,
+     "26MAR31": 80
+    },
+    "sample_name": "KXATPCHALLENGERMATCH-26APR01DENSCH-DEN.bin",
+    "head64_hex": "7437cd6920217437cd6920217437cd6920217437cd6920217537cd6920217537cd6920217537cd6920217537cd6920217537cd6920217537cd6920217537cd69",
+    "sizes_min_max": [
+     54,
+     7104324
+    ],
+    "docs": [],
+    "manifest_ctx": "ts_v3.csv). Producer: arb-executor/data/scripts/build_match_facts_v3.py.\n- Note: match_facts_v3.csv (durable copy) and /tmp/match_facts_v3.csv have identical sha256 confirmed in inventory probe.\n\n### validation4_ticks/*.bin\n- Source: /tmp/validation4/step6_real/ticks/*.bin (mtime range Apr 15-23 EDT)\n- Size: ~1.5 GB, 1,678 files\n- Provenance: Primary tick-level data per LESSONS Section 4. Format: little-endian I-B-B (4-byte ts + 1-byte bid + 1-byte ask). Coverage: Mar 17 - Apr 17 ET (extends 3 days earlier than bbo_log_v4 which starts Mar 20).\n- Producer code: /tmp/validation4/step6_real/extract_ticks.py + binary_splitter.py + fast_splitter.py (will be captured in Phase 1C)\n- Consumers: repl"
+   },
+   "daysheet_tape": {
+    "files": 476,
+    "prints": 883557,
+    "ts_min": 1783908031.817316,
+    "ts_max": 1784341030.459738,
+    "median_gap_s": 15.108958959579468,
+    "prefixes": {
+     "KXMLBGAME": 1,
+     "KXITFWMATCH": 155,
+     "KXWTAMATCH": 27,
+     "KXATPCHALLENGERMATCH": 62,
+     "KXATPMATCH": 31,
+     "KXITFMATCH": 164,
+     "KXWTACHALLENGERMATCH": 36
+    },
+    "events": 303
+   },
+   "live_v3": {
+    "files": 46,
+    "first": "live_v3_20260601.jsonl.gz",
+    "last": "live_v3_20260728.jsonl.gz",
+    "sample_events": {
+     "skipped": 183110,
+     "loop_lag": 2198,
+     "os_shadow": 1659,
+     "conviction_shadow": 1659,
+     "entry_dossier": 1338,
+     "ws_settled_pre_finalized": 953,
+     "below_leg_floor_refused": 657,
+     "wall_skip_pair": 502,
+     "below_discovery_floor_refused": 483,
+     "schedule_match": 428,
+     "kalshi_occ_delta": 428,
+     "aim_shadow": 362
+    },
+    "trade_like": [
+     "order_fingerprints_loaded",
+     "trade_ids_rebuilt",
+     "orphan_readopted_fingerprint",
+     "fingerprint_readopt_summary",
+     "walk_cap_yield_print_backed",
+     "self_fill_bell",
+     "entry_filled",
+     "cancel_fill_race",
+     "exit_filled",
+     "completion_fill",
+     "scalp_filled",
+     "unbooked_fill_defect"
+    ]
+   },
+   "srv": {
+    "subdirs": {
+     "window1-nightly-938dca47": 3,
+     "window1-exam-20260807": 355,
+     "window1-20260722": 116
+    },
+    "tick_like_files": 8,
+    "samples": [
+     [
+      "/window1-nightly-938dca47/PRINTS_804.jsonl.gz",
+      170361576,
+      "{\"exchange_ts\":\"2026-07-12T11:04:07.251908Z\",\"is_block_trade\":false,\"price_cents\":99,\"receipt_id\":\"f14c0825-d868-660d-6883-7c5230544080\",\"size\":70.65,\"source\":\"kalshi_public_trade\",\"taker_book_side\":\"ask\",\"taker_outcome_side\":\"no\",\"taker_side\":\"no\",\"ticker\":\"K"
+     ],
+     [
+      "/window1-exam-20260807/public-trades/prints.jsonl",
+      386455418,
+      "{\"exchange_ts\":\"2026-07-27T14:00:57.807524Z\",\"is_block_trade\":false,\"price_cents\":99,\"receipt_id\":\"250ccc52-91aa-6186-e4fa-407b9bb2661f\",\"size\":70.0,\"source\":\"kalshi_public_trade\",\"taker_book_side\":\"ask\",\"taker_outcome_side\":\"no\",\"taker_side\":\"no\",\"ticker\":\"KX"
+     ],
+     [
+      "/window1-20260722/corrected-run/normalized/books.jsonl",
+      0,
+      ""
+     ],
+     [
+      "/window1-20260722/corrected-run/normalized/prints.jsonl",
+      0,
+      ""
+     ]
+    ]
+   },
+   "depth_recorder": {
+    "files": 168,
+    "dates": [
+     "20260828",
+     "20260829",
+     "20260830",
+     "20260831",
+     "20260901",
+     "20260902",
+     "20260903",
+     "20260904"
+    ],
+    "first_line": "{\"ts\": \"08-28 13:00:34.96 ET\", \"ts_epoch\": 1787936434.75, \"ticker\": \"KXATPMATCH-26AUG28DUCFER-DUC\", \"cat\": \"ATP_MAIN\", \"player\": \"James Duckworth\", \"opp\": null, \"mins_to_start\": null, \"bid\": 41, \"ask\": 42, \"spread\": 1, \"bids\": [[41, 1612], [40, 19342], [39, 19872], [38, 10693], [37, 3952], [36, 3000], [35, 1004], [34, 76], [33, 8664], [32, 7004], [24, 4000], [23, 326], [22, 200], [21, 1], [20, 2008], [18, 38], [17, 20], [16, 4000], [14, 1], [12, 39]], \"asks\": [[42, 7004], [43, 23118], [44, 57668], [45, 13698], [46, 648], [47, 399], [48, 5879], [49, 1108], [50, 1354], [51, 9666], [52, 4501], [54, 1], [56, 4002], [59, 200], [63, 1149], [64, 4000], [72, 4001], [74, 20], [75, 2029], [76, 103]], ",
+    "others": [
+     "_watchdog.log",
+     "depth_20260904_13.jsonl",
+     "_status.txt"
+    ]
+   },
+   "ws_depth_recorder": {
+    "files": 26,
+    "dates": [
+     "20260903",
+     "20260904"
+    ],
+    "first_line": "{\"t\":1788451200.005,\"received_at_utc\":\"2026-09-03T16:00:00.004739+00:00\",\"source_epoch\":1788451187.033784,\"staleness_ms\":12970.955,\"staleness_status\":\"MEASURED\",\"raw_ws_sha256\":\"92a2c6d54d5ddf1d18021005422d2148426f990a87d53a1d04214a2fe10e7531\",\"bbo\":{\"market_ticker\":\"KXITFWMATCH-26SEP03RASDEZ-DEZ\",\"yes_bid\":56,\"yes_ask\":57,\"no_bid\":43,\"no_ask\":44,\"denominator_status\":\"AVAILABLE\"},\"m\":{\"type\":\"orderbook_delta\",\"sid\":1,\"seq\":19817,\"msg\":{\"market_ticker\":\"KXITFWMATCH-26SEP03RASDEZ-DEZ\",\"market_id\":\"bf1bcdf9-daef-4e7e-a151-7321945ae578\",\"price_dollars\":\"0.5600\",\"delta_fp\":\"124.50\",\"side\":\"yes\",\"ts\":\"2026-09-03T15:59:47.033784Z\",\"ts_ms\":1788451187033}}}\n",
+    "others": []
+   }
+  },
+  "spaces": {
+   "ticks": {
+    "objects": 31767,
+    "bytes": 9375338339,
+    "modtime_first": "2026-06-10 16:45:31",
+    "modtime_last": "2026-07-28 08:40:46",
+    "events": 15884,
+    "events_both_legs": 15883,
+    "objects_by_month": {
+     "2026-04": 1730,
+     "2026-05": 1235,
+     "2026-06": 14140,
+     "2026-07": 14662
+    },
+    "events_any_by_month": {
+     "2026-04": 865,
+     "2026-05": 618,
+     "2026-06": 7070,
+     "2026-07": 7331
+    },
+    "events_both_by_month": {
+     "2026-04": 865,
+     "2026-05": 617,
+     "2026-06": 7070,
+     "2026-07": 7331
+    },
+    "prefixes": {
+     "KXATPCHALLENGERMATCH": 2931,
+     "KXATPMATCH": 1029,
+     "KXITFMATCH": 5407,
+     "KXITFWMATCH": 4701,
+     "KXWTACHALLENGERMATCH": 768,
+     "KXWTAMATCH": 1048
+    },
+    "name_days": [
+     "26APR19",
+     "26JUL28",
+     81
+    ]
+   },
+   "trades": {
+    "objects": 30813,
+    "bytes": 214580025,
+    "modtime_first": "2026-06-10 16:47:22",
+    "modtime_last": "2026-07-30 01:11:35",
+    "events": 15554,
+    "events_both_legs": 15259,
+    "objects_by_month": {
+     "2026-04": 1744,
+     "2026-05": 1148,
+     "2026-06": 13841,
+     "2026-07": 14080
+    },
+    "events_any_by_month": {
+     "2026-04": 879,
+     "2026-05": 589,
+     "2026-06": 6960,
+     "2026-07": 7126
+    },
+    "events_both_by_month": {
+     "2026-04": 865,
+     "2026-05": 559,
+     "2026-06": 6881,
+     "2026-07": 6954
+    },
+    "prefixes": {
+     "KXATPCHALLENGERMATCH": 2920,
+     "KXATPMATCH": 1026,
+     "KXITFMATCH": 5256,
+     "KXITFWMATCH": 4542,
+     "KXWTACHALLENGERMATCH": 766,
+     "KXWTAMATCH": 1044
+    },
+    "name_days": [
+     "26APR18",
+     "26JUL28",
+     82
+    ]
+   },
+   "ws_depth": {
+    "objects": 1740,
+    "bytes": 128487896571,
+    "modtime_first": "2026-06-23 02:00:00",
+    "modtime_last": "2026-09-04 12:15:16",
+    "days": 74,
+    "first_day": "20260623",
+    "last_day": "20260904",
+    "days_by_month": {
+     "202606": 8,
+     "202607": 31,
+     "202608": 31,
+     "202609": 4
+    },
+    "objects_by_day_min_max": [
+     13,
+     26
+    ],
+    "missing_days": []
+   }
+  },
+  "spaces_days": {
+   "ticks": {
+    "first_day": "2026-04-19",
+    "last_day": "2026-07-28",
+    "days_present": 81,
+    "missing_ranges": [
+     [
+      "2026-05-05",
+      "2026-05-23"
+     ],
+     [
+      "2026-05-30",
+      "2026-05-30"
+     ]
+    ],
+    "objects_per_day_min_max": [
+     8,
+     1286
+    ],
+    "samples": {
+     "APR": "KXATPCHALLENGERMATCH-26APR19ADESAN-ADE.csv.gz",
+     "JUL": "KXATPCHALLENGERMATCH-26JUL01BROKEN-BRO.csv.gz",
+     "JUN": "KXATPCHALLENGERMATCH-26JUN01ALKAZK-ALK.csv.gz",
+     "MAY": "KXATPCHALLENGERMATCH-26MAY01ARNBOR-ARN.csv.gz"
+    }
+   },
+   "trades": {
+    "first_day": "2026-04-18",
+    "last_day": "2026-07-28",
+    "days_present": 82,
+    "missing_ranges": [
+     [
+      "2026-05-05",
+      "2026-05-23"
+     ],
+     [
+      "2026-05-30",
+      "2026-05-30"
+     ]
+    ],
+    "objects_per_day_min_max": [
+     1,
+     1257
+    ],
+    "samples": {
+     "APR": "KXATPCHALLENGERMATCH-26APR18CHUPAR-CHU.csv.gz",
+     "JUL": "KXATPCHALLENGERMATCH-26JUL01GLIWIN-GLI.csv.gz",
+     "JUN": "KXATPCHALLENGERMATCH-26JUN01BICMON-BIC.csv.gz",
+     "MAY": "KXATPCHALLENGERMATCH-26MAY01ARNBOR-ARN.csv.gz"
+    }
+   }
+  },
+  "validation4": {
+   "files": 1678,
+   "rows": 256175580,
+   "first_utc": "2026-03-20T04:49:51",
+   "last_utc": "2026-04-17T15:15:49",
+   "gap_median_s": 1.0,
+   "gap_min": 1.0,
+   "gap_max": 11,
+   "files_by_month": {
+    "2026-04": 1040,
+    "2026-03": 638
+   },
+   "events": 1150,
+   "events_both_legs": 528,
+   "events_by_month": {
+    "2026-04": 701,
+    "2026-03": 449
+   },
+   "events_both_by_month": {
+    "2026-04": 340,
+    "2026-03": 188
+   },
+   "days": [
+    "2026-03-20",
+    "2026-03-23",
+    "2026-03-24",
+    "2026-03-25",
+    "2026-03-26",
+    "2026-03-27",
+    "2026-03-28",
+    "2026-03-29",
+    "2026-03-30",
+    "2026-03-31",
+    "2026-04-01",
+    "2026-04-02",
+    "2026-04-03",
+    "2026-04-04",
+    "2026-04-05",
+    "2026-04-06",
+    "2026-04-07",
+    "2026-04-08",
+    "2026-04-09",
+    "2026-04-10",
+    "2026-04-11",
+    "2026-04-12",
+    "2026-04-13",
+    "2026-04-14",
+    "2026-04-15",
+    "2026-04-16",
+    "2026-04-17"
+   ],
+   "format": "little-endian <I ts, B bid, B ask (6 bytes/tick)"
+  },
+  "snap_month": [
+   {
+    "cols": [
+     "polled_at",
+     "ticker",
+     "event_ticker",
+     "series_ticker",
+     "bid_cents",
+     "ask_cents",
+     "last_cents",
+     "volume_24h",
+     "commence_time"
+    ]
+   },
+   {
+    "span": [
+     [
+      "2026-04-21 11:45:12"
+     ],
+     [
+      "2026-09-04 13:50:33"
+     ]
+    ]
+   },
+   {
+    "snap_month": [
+     "2026-04",
+     296807,
+     1448,
+     724
+    ]
+   },
+   {
+    "snap_month": [
+     "2026-05",
+     1319932,
+     4382,
+     2191
+    ]
+   },
+   {
+    "snap_month": [
+     "2026-06",
+     1297011,
+     4738,
+     2369
+    ]
+   },
+   {
+    "snap_month": [
+     "2026-07",
+     834266,
+     5356,
+     2678
+    ]
+   },
+   {
+    "snap_month": [
+     "2026-08",
+     2611254,
+     14098,
+     7049
+    ]
+   },
+   {
+    "snap_month": [
+     "2026-09",
+     451830,
+     2720,
+     1360
+    ]
+   },
+   {
+    "snap_month_both_legs": [
+     "2026-04",
+     724
+    ]
+   },
+   {
+    "snap_month_both_legs": [
+     "2026-05",
+     2191
+    ]
+   },
+   {
+    "snap_month_both_legs": [
+     "2026-06",
+     2369
+    ]
+   },
+   {
+    "snap_month_both_legs": [
+     "2026-07",
+     2678
+    ]
+   },
+   {
+    "snap_month_both_legs": [
+     "2026-08",
+     7049
+    ]
+   },
+   {
+    "snap_month_both_legs": [
+     "2026-09",
+     1360
+    ]
+   }
+  ],
+  "prints_by_src": [
+   [
+    "backfill",
+    21061384,
+    1778716800.626871,
+    1784397050.449856,
+    9405,
+    4708
+   ],
+   [
+    "book_transition",
+    3629957,
+    1783776441.0,
+    1785242445.0,
+    8962,
+    4517
+   ],
+   [
+    "public_tape",
+    883557,
+    1783908031.817316,
+    1784341030.459738,
+    463,
+    301
+   ]
+  ],
+  "prints_by_src_month": [
+   [
+    "backfill",
+    "2026-05",
+    4906302,
+    1147
+   ],
+   [
+    "backfill",
+    "2026-06",
+    8635562,
+    2209
+   ],
+   [
+    "backfill",
+    "2026-07",
+    7519520,
+    1468
+   ],
+   [
+    "book_transition",
+    "2026-07",
+    3629957,
+    4517
+   ],
+   [
+    "public_tape",
+    "2026-07",
+    883557,
+    301
+   ]
+  ],
+  "ingest_summary": {
+   "by_src_month": {
+    "public_tape|2026-07": 476,
+    "ws_log|2026-06": 24,
+    "ws_log|2026-07": 30,
+    "book_transition|2026-07": 15210,
+    "backfill|2026-04": 1268,
+    "backfill|2026-07": 2911,
+    "backfill|2026-06": 4274,
+    "backfill|2026-05": 3908
+   },
+   "dirs": {
+    "public_tape|/root/Omi-Workspace/arb-executor/state/daysheet_tape": 476,
+    "ws_log|/root/Omi-Workspace/arb-executor/logs": 54,
+    "book_transition|/root/Omi-Workspace/arb-executor/analysis/premarket_ticks": 15210,
+    "backfill|": 12361
+   },
+   "examples": {
+    "public_tape": "/root/Omi-Workspace/arb-executor/state/daysheet_tape/KXATPCHALLENGERMATCH-26JUL14DELXIL-DEL.json",
+    "ws_log": "/root/Omi-Workspace/arb-executor/logs/live_v3_20260601.jsonl.gz",
+    "book_transition": "/root/Omi-Workspace/arb-executor/analysis/premarket_ticks/KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz",
+    "backfill": "KXATPCHALLENGERMATCH-26APR20CHAHUR-CHA"
+   }
+  }
+ }
+}

@@ -1,0 +1,224 @@
+{
+  "actual_store_date_span": null,
+  "additional_blocker": "The inherited truth table has 804 named tune games, no eligible bell <= 2026-07-11 UTC-date spans. Supply filed pre-cutoff bell/formation bounds in the same truth-table schema; no new formation/bell algorithm was invented.",
+  "bell_cutoff_inclusive_utc_date": "2026-07-11",
+  "bound_sources": [
+    {
+      "bytes": 1426420,
+      "column_sources": {
+        "bell_epoch|bell_source|bell_precision": "best evidence by rank MACHINE_RECEIPT > TAPE_INFERENCE_CORROBORATED > OBSERVED_STARTS_UPPER_BOUND > TAPE_INFERENCE > UNKNOWN; SETTLEMENT_NO_MATCH for DJECIN per 3f4b0046. UNKNOWN is an answer; nothing is guessed",
+        "bell_machine_epoch": "MARKET_EVENT_LEDGER_804 t_minus_actual_bell observation fields @ 4716657a (exact, zero within-game spread)",
+        "bell_observed_inplay_epoch": "replay-live-v4/observed_starts.db first_inplay_at (UTC; in-play DISCOVERY moment - upper bound, lags the bell)",
+        "bell_tape_signature_epoch": "TAPE_SIGNATURE @ 3c7bc577: earliest sustained mirrored repricing; validated on 192 machine-known bells (median +1 min, 89% within +-30 min)",
+        "formation_end_*|open_postformation_*": "fit-local/ticks/<ticker>.csv.gz via SPREAD_SETTLE rule @ 3c7bc577: first mid with spread<=10c holding <=20c for 30 min",
+        "kalshi_close_time_epoch": "Kalshi API GET /trade-api/v2/markets/<ticker> close_time (winner declared - upper bound), fetched 2026-08-14; cached in W1_GROUND_TRUTH_SOURCES/kalshi_lifecycle_1608.json",
+        "leg_*_floor|close|contracts|premium": "fit-local/prints.jsonl true prints inside the verified span only (tape verified vs exchange by trade_id @ db470ec8 / 3f4b0046); premium_usd = sum(size*price)/100",
+        "leg_*_journey|net_travel_c": "net = span close - post-formation open; STILL if |net|<5c else MOVER (threshold per ec88f8e3)",
+        "locked_delta_valid_fills_c": "100 - sum(entries) only when BOTH legs are PRE_BELL_VALID and sum<100; else null",
+        "pair_state": "FOUR_STATE_EVENT_LEDGER_804.jsonl.gz @ 4716657a",
+        "recorder_open_epoch": "fit-local/ticks/<ticker>.csv.gz first in-window book row",
+        "scheduled_start_epoch": "OMI-Window1-private/joined/events.jsonl scheduled_start_exchange_ts (exchange catalog)",
+        "span_start_epoch|span_end_epoch|verified_span": "span = [formation_end_game, min(bell, w1_right)]; EMPTY when the bell precedes formation; UNKNOWN when the bell is unknown",
+        "us_*_fill_c|fill_epoch": "MARKET_EVENT_LEDGER_804 legs entry_cents/fill_timestamp_epoch @ 4716657a (the dev-804 V52e machine)",
+        "us_*_fill_stamp": "fill vs bell_epoch: PRE_BELL_VALID / POST_BELL_INVALID / UNKNOWN_BELL (fills at/below an OBSERVED_STARTS upper bound stamp UNKNOWN_BELL - never guessed; SETTLEMENT_NO_MATCH games stamp PRE_BELL_VALID, no bell ever rang)",
+        "us_*_first_post_epoch": "FIRST_POST_LEDGER.jsonl.gz @ 4716657a",
+        "w1_left_epoch|w1_right_epoch": "MARKET_EVENT_LEDGER_804.jsonl.gz @ 4716657a"
+      },
+      "path": "C:\\Users\\omigr\\omi-w1-face\\.claude\\window1_second_seat\\v11_non_action_mechanism_audit_20260803\\W1_GROUND_TRUTH_TABLE.json",
+      "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729"
+    }
+  ],
+  "bounds_excluded": {
+    "BELL_AFTER_CUTOFF": 775,
+    "UNKNOWN_BELL": 1,
+    "UNVERIFIED_SPAN:EMPTY (bell before formation end)": 3,
+    "UNVERIFIED_SPAN:NO_FORMATION": 5,
+    "UNVERIFIED_SPAN:UNKNOWN": 20
+  },
+  "builder": {
+    "path": "arb-executor/analysis/build_range_overlap_library_ticks.py",
+    "sha256": "9706f35219571cc878b7aa47da35017b30e1a2c9e1e0da1eae54e59bd0cba425"
+  },
+  "counts": {
+    "events": 0,
+    "legs": 0,
+    "points": 0
+  },
+  "differs_from_prior_art": {
+    "vs_FUTURE_LOW_RETURN_LIBRARY": "Carries high, last, bid, ask and true-print size-sum beside running low; native grain rather than minute labels.",
+    "vs_June_minute_cut": "Native recorder tick timestamps, targeted Mar-Jul 2026 rather than the June-filed library ending 2026-05-01; actual span is reported, never assumed. No resampling or manufactured boundary ticks. Bell/formation now come from the filed truth-table source, not historical parquet spans.",
+    "vs_range_spectrum_v1": "Recorder true prints and native book changes, bell-bounded formation-to-bell; not polling snapshots with an onset right edge.",
+    "vs_trendpath_build": "Per-game leg paths, not page percentiles. The pinned source uses first-hour-median discovery; PARALLEL BUILD's first-true-tick discovery is explicitly a new override, not silently attributed to that source."
+  },
+  "eligible_bounded_legs": 0,
+  "inherited_builder": {
+    "path": "arb-executor/analysis/build_range_overlap_library.py",
+    "sha256": "3f5009f7e81380a325f9af7a4d4912653d493da2ddf029964a99c3d033f8d736"
+  },
+  "library_written": false,
+  "method": "NATIVE_TICK_RECORDER_RANGE_OVERLAP_FROM_FILED_TRUTH_TABLE_BOUNDS",
+  "missing_schema": {
+    "cadence": [
+      "src",
+      "obj",
+      "raw_rows",
+      "kept_rows",
+      "distinct_ts",
+      "median_gap_raw",
+      "median_gap_kept"
+    ],
+    "prints": [
+      "src_role",
+      "obj"
+    ],
+    "ticks": [
+      "event",
+      "ticker",
+      "ts",
+      "bid",
+      "ask",
+      "last",
+      "size",
+      "src",
+      "src_role",
+      "obj"
+    ]
+  },
+  "output": null,
+  "prior_art_bound": [
+    {
+      "commit": "66b50db35e9dcec756ce6366bed1fe44147f8e29",
+      "inherited": "Minutes-before-bell slices and side rule; discovery/ESS/slice extensions are explicit PARALLEL BUILD overrides, not claims about the old source.",
+      "name": "trendpath_build.py",
+      "path": "arb-executor/analysis/trendpath_build.py",
+      "sha256": "626edf547e4aa7e327928e695e2f4ecfd40cd59fadf2e8e8384bb351d8f1dd17"
+    },
+    {
+      "commit": "41c1f7244af3afa4dade63bc9824808090ada41d",
+      "inherited": "Post-formation drift role rule and gate coverage/accuracy; consumed by the scoreboard, not reimplemented in this cutter.",
+      "name": "RECOGNITION_OPERATING_POINT",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RECOGNITION_OPERATING_POINT.md",
+      "sha256": "30cdec3d968098e7cfe120e52b0732fcf77322f13a07b2e0e0414a59031617eb"
+    },
+    {
+      "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+      "inherited": "The filed 13 families and floor-timing null are inherited by the scoreboard; this cutter does not relabel them.",
+      "name": "SHAPE_TAXONOMY_BUILD1",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+      "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599"
+    },
+    {
+      "commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+      "inherited": "Onset/trade-count/travel coordinates, FIRST-BIND and flip-rate scoring are inherited by the scoreboard; no scoring is done here.",
+      "name": "GATE_POLICY_EVAL_LIVE_COORDS",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.md",
+      "sha256": "7cf36d6841fde3f44facc72ece5b14636346960e7daee5756af5ffdc63d9a00a"
+    }
+  ],
+  "proof_scope": "REMOTE_STATIC_BACKUP_SCHEMA_PREFLIGHT_ONLY; SYNTHETIC_IMPLEMENTATION_TEST_SEPARATE",
+  "rules": {
+    "book": "ticks.bid and ticks.ask in stored cents, carried between book observations; missing sides remain null.",
+    "change_point": "Every native timestamp where any of the six fields changes; no minute rounding and no synthetic formation tick. Equal-timestamp conflicts exclude the leg instead of imposing ingestion order.",
+    "event_date": "The event_id's YYMMMDD calendar label, distinct from bell_utc_date; same-day retrieval hygiene must use the same basis for old and new libraries.",
+    "excluded_inferred_source": "book_transition is a changed-last surrogate, not a true trade; never authors low/high/last/volume.",
+    "floor_fraction": "First accepted true print at the eventual post-formation minimum, on this leg's formation-to-bell clock. No future path labels are inserted into causal points.",
+    "high": "Running maximum of accepted prints.price from formation; never ticks.last or book_transition.",
+    "last": "Most recent accepted prints.price at or before native timestamp; no midpoint, anchor, or ticks.last fallback.",
+    "leave_self_out": "Not applied while cutting; scoreboard applies walk-forward, leave-self-out and same-day exclusion.",
+    "low": "Running minimum of accepted prints.price initialized through formation, identical to ORDER 1's prior-low convention; subsequent true prints update it.",
+    "pair_hygiene": "Only events with exactly two successful bounded legs emitted; incomplete pairs excluded and counted.",
+    "roles": "Only src_role != TUNE_SAMPLE; NULL src_role is excluded rather than inferred from name.",
+    "side": "LEADER if inherited filed post-formation anchor_cents >= 50, otherwise UNDERDOG. The scoreboard's first-tick pair anchors are a separate causal read.",
+    "span": "File W1_GROUND_TRUTH_TABLE schema only; verified_span=OK and known bell_source; per-leg formation_end_epoch <= ts < bell_epoch; no bell or formation inference. The literal bell endpoint is used; filed_span_end_epoch is disclosed separately.",
+    "true_print_sources": [
+      "public_tape",
+      "ws_log",
+      "spaces_trades"
+    ],
+    "volume": "Running sum of accepted prints.size at formation <= ts < bell; missing/negative sizes exclude the leg. Stored zero sizes remain zero and are not estimated."
+  },
+  "schema_contract": {
+    "cadence": [
+      "src",
+      "obj",
+      "raw_rows",
+      "kept_rows",
+      "distinct_ts",
+      "median_gap_raw",
+      "median_gap_kept"
+    ],
+    "prints": [
+      "event",
+      "ticker",
+      "ts",
+      "price",
+      "size",
+      "src",
+      "src_role",
+      "obj"
+    ],
+    "ticks": [
+      "event",
+      "ticker",
+      "ts",
+      "bid",
+      "ask",
+      "last",
+      "size",
+      "src",
+      "src_role",
+      "obj"
+    ]
+  },
+  "schema_observed": {
+    "ingest_log": [
+      "src",
+      "path",
+      "rows",
+      "ingested_at"
+    ],
+    "prints": [
+      "event",
+      "ticker",
+      "ts",
+      "price",
+      "size",
+      "src"
+    ]
+  },
+  "source_census": "Optional full source GROUP BY scan stopped after schema gate failure; row counts/date span not claimed.",
+  "source_snapshot": {
+    "access": "sqlite3 URI mode=ro&immutable=1; sqlite_master schema SELECT only completed; no live database opened; no remote files written",
+    "bytes": 6376095744,
+    "path": "/root/Omi-Workspace/arb-executor/state/subsecond_store.db.bak_20260904",
+    "sha256": "fecc8d8766cc6572bf84dd46fce49b1e59b80ac77b05db20bf44b223ca62ea93",
+    "ssh_host": "root@104.131.191.95",
+    "symlink_target": "/mnt/omi-trading-data-nyc3/backups/subsecond_store.db.bak_20260904"
+  },
+  "status": "PROOF BLOCKED \u2014 pre-ingest backup lacks required fields",
+  "synthetic_verification": {
+    "checks": [
+      "native fractional-second change points",
+      "same-price distinct prints preserve volume",
+      "low initialized through formation, high resets at formation",
+      "bell endpoint exclusive",
+      "TUNE_SAMPLE and NULL src_role excluded",
+      "book_transition and ticks.last never substitute for true prints",
+      "same-timestamp conflicting prints/books fail closed",
+      "read-only snapshot rejects SQL writes",
+      "old backup schema fails before any library write",
+      "output/receipt aliases to source or truth rejected before receipt writes"
+    ],
+    "counts": {
+      "events": 1,
+      "legs": 2,
+      "points": 6
+    },
+    "fixture": "temporary synthetic SQLite; not a July data proof",
+    "full_cutter_runs": 2,
+    "gzip_sha256_equal": true,
+    "input_sha256_unchanged": true,
+    "receipt_sha256_equal": true,
+    "status": "PASS"
+  }
+}

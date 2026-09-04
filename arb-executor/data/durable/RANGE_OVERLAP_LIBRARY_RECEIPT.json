@@ -1,0 +1,154 @@
+{
+  "category_breakdown": {
+    "ATP_CHALL": {
+      "events": 3550,
+      "legs": 7100,
+      "points": 593126
+    },
+    "ATP_MAIN": {
+      "events": 2495,
+      "legs": 4990,
+      "points": 911401
+    },
+    "WTA_CHALL": {
+      "events": 589,
+      "legs": 1178,
+      "points": 93335
+    },
+    "WTA_MAIN": {
+      "events": 2366,
+      "legs": 4732,
+      "points": 684471
+    }
+  },
+  "counts": {
+    "events": 9000,
+    "legs": 18000,
+    "points": 2282333
+  },
+  "date_span": {
+    "bell_end_epoch": 1777662900,
+    "bell_end_utc": "2026-05-01T19:15:00Z",
+    "event_end": "2026-05-01",
+    "event_start": "2025-06-18",
+    "formation_start_epoch": 1750253580,
+    "formation_start_utc": "2025-06-18T13:33:00Z"
+  },
+  "differs_from_prior_art": {
+    "FUTURE_LOW_RETURN_LIBRARY": "Carries high, last, bid, ask, and volume beside the low.",
+    "July_DRIFT_ATLAS_trendpath_build.py": "Per-leg paths, not page percentiles.",
+    "range_spectrum_v1": "Recorder minute tape, bell-bounded formation-to-bell fractions, Aug 2025-May 2026 bounded library; not poll snapshots with an onset edge."
+  },
+  "field_rules": {
+    "ask_cents": "yes_ask_close converted to integer cents.",
+    "bid_cents": "yes_bid_close converted to integer cents.",
+    "change_point": "Emit the formation minute and each later minute where any of seen_true_trade_low_cents, seen_true_trade_high_cents, last_cents, bid_cents, ask_cents, or volume_cum changes.",
+    "last_cents": "Latest price_close on a minute_has_trade row, carried forward; price_close is the last true-trade price in the minute and is the close field beside the future-low builder's price_low true-trade source.",
+    "seen_true_trade_high_cents": "Running maximum from formation_end_epoch of price_high, the highest true-trade price in each minute from the per-minute trade OHLC field; no substitute field.",
+    "seen_true_trade_low_cents": "Running minimum of price_low on minute_has_trade rows, initialized through formation_end_epoch exactly as the future-low builder and updated causally thereafter.",
+    "volume_cum": "Running sum of trade-tape-sourced volume_in_minute from formation_end_epoch through the current minute."
+  },
+  "label": "RANGE_OVERLAP_LIBRARY_RECEIPT",
+  "layer_license": {
+    "grain": "MINUTE",
+    "licensed_layers": [
+      "MACRO",
+      "MICRO"
+    ],
+    "micro_micro_licensed": false
+  },
+  "leave_self_out_applied": false,
+  "method": "FOUNDATION_BOUNDED_SPANS; EXACT_MINUTE_PATH_CHANGE_POINTS; CAUSAL_STATE_THROUGH_CURRENT_MINUTE; CURRENT_MINUTE_EXCLUDED_FROM_OWN_STRICT_FUTURE_LABEL; NO_FUTURE_LABEL_EMITTED",
+  "output": {
+    "bytes": 26628883,
+    "path": "arb-executor/data/durable/RANGE_OVERLAP_LIBRARY.jsonl.gz",
+    "rows": 18000,
+    "sha256": "019d84b0500a79c5d762d95ae7f481c3ae9a5bd5f0818f81aea9207a27fdd76e"
+  },
+  "side_rule": "LEADER when anchor_cents >= 50; otherwise UNDERDOG.",
+  "sources": {
+    "bounded_span_source": {
+      "bounded_events": 9000,
+      "bounded_legs": 18000,
+      "bytes": 2159635,
+      "path": "C:/tmp/omi-v54-four-game-trace-92a4d839-retry-20260901/.claude/window1_live_v4_replay/v54_classifier_floor_print_wake_20260826/FOUNDATION_LIBRARY.jsonl.gz",
+      "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367"
+    },
+    "parquet": {
+      "bytes": 406637058,
+      "path": "arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+      "rows": 9330878,
+      "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4"
+    }
+  },
+  "span_rule": "Only span.status BOUNDED members from the filed foundation library; each leg runs formation_end_epoch <= minute_ts < bell_epoch; parquet match_start_method=unknown is excluded.",
+  "verification": {
+    "all_fraction_matches": true,
+    "all_seen_low_matches": true,
+    "event_id": "KXATPCHALLENGERMATCH-26APR01ALUMEJ",
+    "future_low_source_sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+    "leg_id": "ALU",
+    "points": [
+      {
+        "fraction_match": true,
+        "future_low_seen_true_trade_low_cents": 11,
+        "future_low_window_fraction": 0.0,
+        "range_overlap_point": {
+          "ask_cents": 11,
+          "bid_cents": 9,
+          "last_cents": 11,
+          "seen_true_trade_high_cents": null,
+          "seen_true_trade_low_cents": 11,
+          "volume_cum": 0,
+          "window_fraction": 0.0
+        },
+        "seen_low_match": true
+      },
+      {
+        "fraction_match": true,
+        "future_low_seen_true_trade_low_cents": 11,
+        "future_low_window_fraction": 0.001125703564727955,
+        "range_overlap_point": {
+          "ask_cents": 11,
+          "bid_cents": 8,
+          "last_cents": 11,
+          "seen_true_trade_high_cents": null,
+          "seen_true_trade_low_cents": 11,
+          "volume_cum": 0,
+          "window_fraction": 0.001125703564727955
+        },
+        "seen_low_match": true
+      },
+      {
+        "fraction_match": true,
+        "future_low_seen_true_trade_low_cents": 9,
+        "future_low_window_fraction": 0.2851782363977486,
+        "range_overlap_point": {
+          "ask_cents": 11,
+          "bid_cents": 9,
+          "last_cents": 9,
+          "seen_true_trade_high_cents": 11,
+          "seen_true_trade_low_cents": 9,
+          "volume_cum": 16,
+          "window_fraction": 0.2851782363977486
+        },
+        "seen_low_match": true
+      },
+      {
+        "fraction_match": true,
+        "future_low_seen_true_trade_low_cents": 8,
+        "future_low_window_fraction": 0.8975609756097561,
+        "range_overlap_point": {
+          "ask_cents": 8,
+          "bid_cents": 7,
+          "last_cents": 8,
+          "seen_true_trade_high_cents": 13,
+          "seen_true_trade_low_cents": 8,
+          "volume_cum": 8310,
+          "window_fraction": 0.8975609756097561
+        },
+        "seen_low_match": true
+      }
+    ]
+  }
+}

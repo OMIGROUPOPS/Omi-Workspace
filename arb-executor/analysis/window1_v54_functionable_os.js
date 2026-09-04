@@ -105,6 +105,7 @@ const CONDITIONAL_DIP_DECLARATION = Object.freeze({
   lineage_depth_fallback: "DELETED_FROM_COMPOSITION_PRICING; UNMAPPED_OR_UNLICENSED_DEPTH_EMITS_NO_NEW_TARGET",
 });
 const neighborhoodCorpusCache = new WeakMap();
+const rangeOverlapCorpusCache = new WeakMap();
 
 let neighborSpecialistBinding = null;
 let trueBellCellDepthMapBinding = null;
@@ -473,7 +474,7 @@ function retrieveNeighborhood(corpus, query, excludedEventId, count = SIMILARITY
     rows.splice(index, 0, entry);
     if (rows.length > count) rows.pop();
   }
-  return rows.map((entry, index) => {
+  const neighborhood = rows.map((entry, index) => {
     const rowRefs = (entry.row.source_receipts ?? []).map((sourceReceipt) => sourceReceipt?.row_ref).filter(Boolean);
     if (!rowRefs.length) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_ROW_RECEIPT_MISSING:${entry.row.event_id}|${capturedAtReceipt}`);
     const citationReceipt = captureReceipt({
@@ -510,6 +511,106 @@ function retrieveNeighborhood(corpus, query, excludedEventId, count = SIMILARITY
       query_fingerprint_sha256: queryFingerprint,
     };
   });
+  Object.defineProperty(neighborhood, "range_overlap", {
+    value: Array.isArray(corpus.range_overlap) ? corpus.range_overlap : [],
+    enumerable: false,
+  });
+  return neighborhood;
+}
+
+function overlapPointAtFraction(path, fraction) {
+  if (!Array.isArray(path) || !path.length || !Number.isFinite(fraction)) return null;
+  let selected = null;
+  for (const point of path) {
+    if (!Number.isFinite(point.window_fraction) || point.window_fraction > fraction) break;
+    selected = point;
+  }
+  return selected;
+}
+
+function retrieveOverlapMembership(rangeOverlap, query, excludedEventId, capturedAtReceipt) {
+  if (!capturedAtReceipt) throw new Error("CITATION_RECEIPT_BUILD_VIOLATION RANGE_OVERLAP_QUERY|MISSING_CAPTURE_CLOCK");
+  if (!Array.isArray(rangeOverlap)) throw new Error("RANGE_OVERLAP_LIBRARY_NOT_BOUND");
+  const fraction = finite(query?.window_fraction);
+  const ownLow = cent(query?.seen_low_cents);
+  const ownHigh = cent(query?.seen_high_cents);
+  const ownWidth = Number.isInteger(ownLow) && Number.isInteger(ownHigh) && ownHigh >= ownLow
+    ? ownHigh - ownLow + 1
+    : null;
+  let byCategorySide = rangeOverlapCorpusCache.get(rangeOverlap);
+  if (!byCategorySide) {
+    byCategorySide = new Map();
+    for (const row of rangeOverlap) {
+      if (!Array.isArray(row.path) || !row.path.length || !row.vector) continue;
+      const key = `${row.category}|${row.side}`;
+      if (!byCategorySide.has(key)) byCategorySide.set(key, []);
+      byCategorySide.get(key).push(row);
+    }
+    rangeOverlapCorpusCache.set(rangeOverlap, byCategorySide);
+  }
+  const members = [];
+  if (Number.isFinite(fraction) && Number.isInteger(ownWidth) && ownWidth > 0) {
+    const candidates = byCategorySide.get(`${query.category}|${query.side}`) ?? [];
+    for (const row of candidates) {
+      if (row.event_id === excludedEventId || row.event_date === query.event_date) continue;
+      const point = overlapPointAtFraction(row.path, fraction);
+      const memberLow = cent(point?.seen_true_trade_low_cents);
+      const memberHigh = cent(point?.seen_true_trade_high_cents);
+      const memberFinalLow = cent(row.path.at(-1)?.seen_true_trade_low_cents);
+      if (!(Number.isInteger(memberLow) && Number.isInteger(memberHigh) && memberHigh >= memberLow && Number.isInteger(memberFinalLow))) continue;
+      const overlapWidth = Math.min(ownHigh, memberHigh) - Math.max(ownLow, memberLow) + 1;
+      const share = overlapWidth / ownWidth;
+      if (!(share > 0)) continue;
+      const match = similarity(query, row.vector);
+      const weight = share * match.score * match.coverage;
+      members.push({
+        event_id: row.event_id,
+        leg_id: row.leg_id,
+        share,
+        weight,
+        member_state: {
+          m_low: memberLow,
+          m_high: memberHigh,
+          m_last: cent(point.last_cents),
+          fraction_used: point.window_fraction,
+        },
+        member_final_low: memberFinalLow,
+        member_remaining_dip: memberLow - memberFinalLow,
+        floor_fraction: finite(row.floor_fraction),
+        similarity: match.score,
+        coverage: match.coverage,
+        source_receipt: row.source_receipt ?? null,
+      });
+    }
+  }
+  members.sort((a, b) => b.weight - a.weight || b.share - a.share || a.event_id.localeCompare(b.event_id) || a.leg_id.localeCompare(b.leg_id));
+  const binding = rangeOverlap.binding ?? null;
+  const sourceRef = binding?.index
+    ? `${binding.index.path}@sha256:${binding.index.sha256}`
+    : members.find((row) => row.source_receipt)?.source_receipt ?? null;
+  const citationReceipt = captureReceipt({
+    citationType: "RANGE_OVERLAP_MEMBERSHIP",
+    sourceId: binding?.index?.path ?? "RANGE_OVERLAP_LIBRARY",
+    capturedAtReceipt,
+    rowRefs: sourceRef ? [sourceRef] : [],
+    status: sourceRef ? "RECEIPT" : "RESOURCE-GAP",
+    context: {
+      query_fingerprint_sha256: sha256(JSON.stringify(query)),
+      category: query?.category ?? null,
+      side: query?.side ?? null,
+      window_fraction: fraction,
+      seen_low_cents: ownLow,
+      seen_high_cents: ownHigh,
+      member_count: members.length,
+      weight_sum: sum(members.map((row) => row.weight)),
+      leave_self_out: true,
+      same_date_excluded: true,
+      cap_applied: false,
+    },
+  });
+  assertCaptureReceipt(citationReceipt, capturedAtReceipt, `RANGE_OVERLAP_MEMBERSHIP:${excludedEventId}`);
+  Object.defineProperty(members, "citation_receipt", { value: citationReceipt, enumerable: false });
+  return members;
 }
 
 function assertResources(resources) {
@@ -856,6 +957,7 @@ module.exports = {
   vectorFromReads,
   similarity,
   retrieveNeighborhood,
+  retrieveOverlapMembership,
   assertResources,
   conditionalNeighborLeg,
   configureNeighborSpecialistBinding,

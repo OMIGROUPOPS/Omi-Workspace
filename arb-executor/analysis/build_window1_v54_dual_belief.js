@@ -504,6 +504,10 @@ async function loadCorpus(cacheDir, repo, foundationIndexPath, foundationReceipt
   const registryPath = path.join(cacheDir, "corpus_events_v2.jsonl");
   const historicalPath = path.join(cacheDir, "historical_events_materialized.csv");
   const rangePath = path.join(cacheDir, "range_spectrum_v1.jsonl");
+  const rangeOverlapIndexPath = path.join(repo, "arb-executor", "data", "durable", "RANGE_OVERLAP_LIBRARY.jsonl.gz");
+  const rangeOverlapReceiptPath = path.join(repo, "arb-executor", "data", "durable", "RANGE_OVERLAP_LIBRARY_RECEIPT.json");
+  ensure(fs.existsSync(rangeOverlapIndexPath), `RANGE_OVERLAP_LIBRARY_MISSING ${rangeOverlapIndexPath}`);
+  ensure(fs.existsSync(rangeOverlapReceiptPath), `RANGE_OVERLAP_LIBRARY_RECEIPT_MISSING ${rangeOverlapReceiptPath}`);
   const authorities = loadBellAuthorities(repo, rangePath);
   authorities.bindings.range_receipt = `${rangePath}@sha256:${fileHash(rangePath)}`;
   const byEvent = new Map();
@@ -578,6 +582,34 @@ async function loadCorpus(cacheDir, repo, foundationIndexPath, foundationReceipt
   ensure(foundationRows === foundationReceipt.output.rows, `FOUNDATION_ROW_CONSERVATION ${foundationRows} != ${foundationReceipt.output.rows}`);
   ensure(fileHash(foundationIndexPath) === foundationReceipt.output.sha256, "FOUNDATION_COMPACT_SHA256_MISMATCH");
   const rows = [...byEvent.values()].sort((a, b) => a.event_id.localeCompare(b.event_id));
+  const rangeOverlapMaterializerReceipt = JSON.parse(fs.readFileSync(rangeOverlapReceiptPath, "utf8"));
+  ensure(rangeOverlapMaterializerReceipt.label === "RANGE_OVERLAP_LIBRARY_RECEIPT", "RANGE_OVERLAP_LIBRARY_LABEL_MISMATCH");
+  ensure(fileHash(rangeOverlapIndexPath) === rangeOverlapMaterializerReceipt.output.sha256, "RANGE_OVERLAP_LIBRARY_SHA256_MISMATCH");
+  const rangeOverlap = [];
+  const rangeOverlapRows = await streamJsonl(rangeOverlapIndexPath, (row, rowNumber) => {
+    const corpusRow = byEvent.get(row.event_id);
+    ensure(corpusRow, `RANGE_OVERLAP_MEMBER_MISSING_FROM_CORPUS ${row.ticker}`);
+    ensure(corpusRow.category === row.category, `RANGE_OVERLAP_CATEGORY_MISMATCH ${row.ticker}`);
+    ensure(corpusRow.event_date, `RANGE_OVERLAP_EVENT_DATE_MISSING ${row.ticker}`);
+    ensure(corpusRow.vector, `RANGE_OVERLAP_SIMILARITY_VECTOR_MISSING ${row.ticker}`);
+    rangeOverlap.push({
+      ...row,
+      event_date: corpusRow.event_date,
+      vector: corpusRow.vector,
+      source_receipt: `${rangeOverlapIndexPath}#row-${rowNumber}`,
+    });
+  });
+  ensure(rangeOverlapRows === rangeOverlapMaterializerReceipt.output.rows, `RANGE_OVERLAP_ROW_CONSERVATION ${rangeOverlapRows} != ${rangeOverlapMaterializerReceipt.output.rows}`);
+  const rangeOverlapBinding = {
+    index: receipt(rangeOverlapIndexPath, rangeOverlapRows),
+    materializer_receipt: receipt(rangeOverlapReceiptPath),
+    source: rangeOverlapMaterializerReceipt.sources,
+    output: rangeOverlapMaterializerReceipt.output,
+    method: rangeOverlapMaterializerReceipt.method,
+    layer_license: rangeOverlapMaterializerReceipt.layer_license,
+  };
+  Object.defineProperty(rangeOverlap, "binding", { value: rangeOverlapBinding, enumerable: false });
+  Object.defineProperty(rows, "range_overlap", { value: rangeOverlap, enumerable: false });
   const afterCoverage = {
     union_games: rows.length,
     bounded_games: rows.filter((row) => row.span?.status === "BOUNDED").length,
@@ -598,7 +630,7 @@ async function loadCorpus(cacheDir, repo, foundationIndexPath, foundationReceipt
     coverage_after: afterCoverage,
   };
   const futureLow = { index: receipt(futureLowIndexPath, futureLowRows), materializer_receipt: receipt(futureLowReceiptPath), source: futureLowReceipt.source, output: futureLowReceipt.output, method: futureLowReceipt.method, layer_license: futureLowReceipt.layer_license };
-  return { rows, foundation, future_low_return: futureLow, bell_bound_receipt: bellLibrary.buildReceipt(rows, authorities), counts: { registry_rows: registryRows, historical_rows: historicalLines.length, range_rows: rangeRows, foundation_rows: foundationRows, future_low_return_rows: futureLowRows, union_games: rows.length, by_quality: rows.reduce((acc, row) => (acc[row.quality] = (acc[row.quality] || 0) + 1, acc), {}), registry_categories: registryCategories, historical_categories: historicalCategories, range_categories: rangeCategories, foundation_categories: foundationReceipt.output.by_category, registry_eras: registryEras }, sources: { registry: receipt(registryPath, registryRows), historical: receipt(historicalPath, historicalLines.length), range: receipt(rangePath, rangeRows), foundation, future_low_return: futureLow, actual_bells: authorities.bindings.actual_bell_sha256, named_neighbor_bells: authorities.bindings.named_neighbor_sha256 } };
+  return { rows, foundation, future_low_return: futureLow, range_overlap: rangeOverlap, bell_bound_receipt: bellLibrary.buildReceipt(rows, authorities), counts: { registry_rows: registryRows, historical_rows: historicalLines.length, range_rows: rangeRows, foundation_rows: foundationRows, future_low_return_rows: futureLowRows, range_overlap_rows: rangeOverlapRows, union_games: rows.length, by_quality: rows.reduce((acc, row) => (acc[row.quality] = (acc[row.quality] || 0) + 1, acc), {}), registry_categories: registryCategories, historical_categories: historicalCategories, range_categories: rangeCategories, foundation_categories: foundationReceipt.output.by_category, registry_eras: registryEras }, sources: { registry: receipt(registryPath, registryRows), historical: receipt(historicalPath, historicalLines.length), range: receipt(rangePath, rangeRows), foundation, future_low_return: futureLow, range_overlap: rangeOverlapBinding, actual_bells: authorities.bindings.actual_bell_sha256, named_neighbor_bells: authorities.bindings.named_neighbor_sha256 } };
 }
 
 function bindNeighborSpecialists(corpusRows) {
@@ -1595,6 +1627,7 @@ async function main() {
     label: "V54_BOOK_VETO_ONLY_CUSTODY_RECONCILED",
     files: [
       { logical_path: "FOUNDATION_PER_MINUTE_UNIVERSE", custody_location: corpus.foundation.source.external_custody_location, sha256: corpus.foundation.source.sha256, bytes: corpus.foundation.source.bytes, rows: corpus.foundation.source.rows, committed: false, compact_derivatives: [{ path: "FOUNDATION_LIBRARY.jsonl.gz", sha256: corpus.foundation.index.sha256, bytes: corpus.foundation.index.bytes, rows: corpus.foundation.index.rows }, { path: "FUTURE_LOW_RETURN_LIBRARY.jsonl.gz", sha256: corpus.future_low_return.index.sha256, bytes: corpus.future_low_return.index.bytes, rows: corpus.future_low_return.index.rows }, { path: "PHASE_CENTRAL_ESTIMATE_SURFACE.json", sha256: phaseSurfaceReceipt.sha256, bytes: phaseSurfaceReceipt.bytes, rows: phaseCentralSurface.cells.length }] },
+      { logical_path: "RANGE_OVERLAP_LIBRARY.jsonl.gz", custody_location: corpus.range_overlap.binding.index.path, sha256: corpus.range_overlap.binding.index.sha256, bytes: corpus.range_overlap.binding.index.bytes, rows: corpus.range_overlap.binding.index.rows, receipt_path: corpus.range_overlap.binding.materializer_receipt.path, receipt_sha256: corpus.range_overlap.binding.materializer_receipt.sha256 },
       { logical_path: "INTERIM_PAIR_LIBRARY_V18.json", source_path: PAIR_INTERIM_LIBRARY_PATH, source_commit: SURVIVOR_SOURCE_COMMIT, custody_location: `https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/${SURVIVOR_SOURCE_COMMIT}/${PAIR_INTERIM_LIBRARY_PATH}`, sha256: survivorBinding.sha256.pair, bytes: Buffer.byteLength(pairInterimBytes), committed_in_current_tree: false, git_object_hash_bound: true },
       { logical_path: "PAIR_COUPLE_LIBRARY_V19.json", source_path: PAIR_COUPLE_LIBRARY_PATH, source_commit: SURVIVOR_SOURCE_COMMIT, custody_location: `https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/${SURVIVOR_SOURCE_COMMIT}/${PAIR_COUPLE_LIBRARY_PATH}`, sha256: survivorBinding.sha256.couple, bytes: Buffer.byteLength(pairCoupleBytes), committed_in_current_tree: false, git_object_hash_bound: true },
     ],

@@ -325,8 +325,29 @@ function predictionSeatTraceView(record) {
 
 function pricingAuthorityTraceView(authority) {
   if (!authority) return null;
+  const overlapMembersAuthor = authority.q_author === "OVERLAP_MEMBERS";
+  const overlapMembersRowReference = "SEE_DECISION_ROW_OVERLAP_MEMBERSHIP_MEMBERS";
+  const traceConditioningInputs = (inputs) => inputs && overlapMembersAuthor
+    ? { ...inputs, panel_signature: overlapMembersRowReference }
+    : inputs;
+  const traceAuthorityMemory = (memory) => memory && overlapMembersAuthor
+    ? { ...memory, conditioning_inputs: traceConditioningInputs(memory.conditioning_inputs) }
+    : memory;
   return traceWithoutEmbeddedSentenceLicenses({
     ...authority,
+    true_conditioning: authority.true_conditioning && overlapMembersAuthor
+      ? { ...authority.true_conditioning, panel_rows: overlapMembersRowReference }
+      : authority.true_conditioning,
+    conditioning_chain: authority.conditioning_chain && overlapMembersAuthor
+      ? { ...authority.conditioning_chain, prior_distribution: overlapMembersRowReference }
+      : authority.conditioning_chain,
+    level_movement: authority.level_movement && overlapMembersAuthor
+      ? {
+        ...authority.level_movement,
+        conditioning_inputs: traceConditioningInputs(authority.level_movement.conditioning_inputs),
+        prior_authority_memory: traceAuthorityMemory(authority.level_movement.prior_authority_memory),
+      }
+      : authority.level_movement,
     prediction_seat: authority.prediction_seat
       ? predictionSeatTraceView({ seat: authority.prediction_seat }).seat
       : null,
@@ -589,8 +610,10 @@ function ownEvidenceChannelGrades({ state, legId, spreadEye, observedOwnEvidence
   });
 }
 
-function conditionPriorDistribution({ priorRows, evidenceChannels }) {
-  const channelsApplied = evidenceChannels.filter((row) => row.evidence_class !== "BOOK" && Number.isFinite(row.floor_decisiveness) && row.floor_decisiveness > 0 && Number.isInteger(row.value_cents) && row.receipt);
+function conditionPriorDistribution({ priorRows, evidenceChannels, priorRowsAreOverlapMembers = false }) {
+  const channelsApplied = priorRowsAreOverlapMembers
+    ? []
+    : evidenceChannels.filter((row) => row.evidence_class !== "BOOK" && Number.isFinite(row.floor_decisiveness) && row.floor_decisiveness > 0 && Number.isInteger(row.value_cents) && row.receipt);
   const priorTotal = sum(priorRows.map((row) => Number.isFinite(row.conditioning_weight) && row.conditioning_weight > 0 ? row.conditioning_weight : 0));
   const normalizedPanelRows = priorRows.map((row) => ({
     ...row,
@@ -643,7 +666,9 @@ function conditionPriorDistribution({ priorRows, evidenceChannels }) {
   const bindingFloorChannel = channelsApplied
     .filter((row) => row.per_leg_classification?.binding_floor_candidate === true)
     .sort((a, b) => a.value_cents - b.value_cents || String(a.receipt).localeCompare(String(b.receipt)))[0] ?? null;
-  const licensedLevel = cent(bindingFloorChannel?.value_cents) ?? posteriorMode;
+  const licensedLevel = priorRowsAreOverlapMembers
+    ? posteriorMode
+    : cent(bindingFloorChannel?.value_cents) ?? posteriorMode;
   return {
     posterior_rows: posteriorRows,
     panel_rows: normalizedPanelRows,
@@ -655,10 +680,15 @@ function conditionPriorDistribution({ priorRows, evidenceChannels }) {
     floor_side_rounded_cents: licensedLevel,
     level_cents: licensedLevel,
     binding_floor_channel: bindingFloorChannel,
+    prior_rows_are_overlap_members: priorRowsAreOverlapMembers,
+    floor_decisiveness_consulted_for_membership: false,
+    evidence_channels_telemetry: evidenceChannels,
     unprinted_hypothesis_may_outvote_printed_descent_supported_floor: false,
     evidence_enters_once: true,
     self_echo_channel_present: false,
-    method: "ONE_PER_LEG_CLASSIFIER; ONE_NORMALIZED_PANEL_PLUS_EXACT_PRICE_SUPPORT; PRINTED_DESCENT_SUPPORTED_FLOOR_BINDS_OVER_UNPRINTED_HYPOTHESES; PANEL_CANDIDATES_CONSULT_EACH_CHANNEL_ONCE; EVIDENCE_CANDIDATES_ARE_NOT_REWEIGHTED_BY_THEMSELVES; OTHERWISE_EMITTED_INTEGER_IS_WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK",
+    method: priorRowsAreOverlapMembers
+      ? "OVERLAP_MEMBERS_ARE_PRIOR_ROWS; OWN_RANGE_SELECTS_MEMBERSHIP; MEMBER_WEIGHTS_EMIT_WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK; FLOOR_DECISIVENESS_IS_TELEMETRY_ONLY"
+      : "ONE_PER_LEG_CLASSIFIER; ONE_NORMALIZED_PANEL_PLUS_EXACT_PRICE_SUPPORT; PRINTED_DESCENT_SUPPORTED_FLOOR_BINDS_OVER_UNPRINTED_HYPOTHESES; PANEL_CANDIDATES_CONSULT_EACH_CHANNEL_ONCE; EVIDENCE_CANDIDATES_ARE_NOT_REWEIGHTED_BY_THEMSELVES; OTHERWISE_EMITTED_INTEGER_IS_WEIGHTED_MODE_WITH_LOWER_CENT_TIEBREAK",
   };
 }
 
@@ -730,21 +760,24 @@ function spreadEyeForLeg(state, legId) {
   };
 }
 
-function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion }) {
+function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion, overlapMembership }) {
   const baseTarget = cent(baseRow?.derivation?.derived_target_cents) ?? cent(baseRow?.action?.target_cents);
   const liveBid = cent(baseRow?.derivation?.live_bid_cents);
   const liveAsk = cent(baseRow?.derivation?.live_ask_cents);
   const depthLicense = baseRow?.derivation?.joint_depth_license ?? null;
-  const baseLawful = Number.isInteger(baseTarget)
-    && baseRow?.derivation?.formation_complete === true
-    && baseRow?.derivation?.formed_two_sided_book === true
-    && baseRow?.derivation?.crossed_book !== true
-    && depthLicense?.lawful === true;
+  const recomputeInputs = baseRow?.derivation?.authority_recompute_inputs ?? {};
+  const overlapMembers = overlapMembership?.members ?? [];
+  const overlapAuthoritative = overlapMembers.length > 0;
+  const formationComplete = baseRow?.derivation?.formation_complete === true;
+  const formedTwoSidedBook = baseRow?.derivation?.formed_two_sided_book === true;
+  const uncrossedBook = baseRow?.derivation?.crossed_book !== true;
+  const baseLawful = overlapAuthoritative
+    ? formationComplete && formedTwoSidedBook && uncrossedBook
+    : Number.isInteger(baseTarget) && formationComplete && formedTwoSidedBook && uncrossedBook && depthLicense?.lawful === true;
   // The spread eye remains observable telemetry, but its quote-relative
   // classification cannot author, transform, or license a level under the
   // book-veto-only invariant.
   const clearingTarget = cent(spreadEye?.effective_clearing_price_cents);
-  const recomputeInputs = baseRow?.derivation?.authority_recompute_inputs ?? {};
   const directVotes = (recomputeInputs.specialist_map_votes ?? []).map((row) => ({
     event_id: row.event_id,
     conditioning_weight: row.weight,
@@ -773,21 +806,44 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
       source_category: row.category,
     }))
     : [];
-  const recomputeVotes = [...directVotes, ...crossCategoryVotes];
-  const independentlyRecomputedEngineTarget = cent(weightedQuantile(recomputeVotes, "licensed_floor_cents", 0.5));
+  const fallbackVotes = [...directVotes, ...crossCategoryVotes];
+  const ownSeenLow = cent(overlapMembership?.query?.seen_low_cents);
+  const overlapVotes = overlapMembers.map((row) => {
+    const candidateLevel = Number.isInteger(ownSeenLow) && Number.isInteger(row.member_remaining_dip)
+      ? ownSeenLow - row.member_remaining_dip
+      : null;
+    return {
+      event_id: row.event_id,
+      leg_id: row.leg_id,
+      conditioning_weight: row.weight,
+      licensed_floor_cents: cent(candidateLevel),
+      candidate_level_cents: candidateLevel,
+      source_receipt: row.source_receipt,
+      support_source: "OVERLAP_MEMBER_REMAINING_DIP_APPLIED_TO_OWN_SEEN_LOW",
+      share: row.share,
+      member_state: row.member_state,
+      member_final_low: row.member_final_low,
+      member_remaining_dip: row.member_remaining_dip,
+      floor_fraction: row.floor_fraction,
+    };
+  });
+  const recomputeVotes = overlapAuthoritative ? overlapVotes : fallbackVotes;
+  const independentlyRecomputedEngineTarget = cent(overlapAuthoritative
+    ? weightedModeFloorSideCents(recomputeVotes)
+    : weightedQuantile(recomputeVotes, "licensed_floor_cents", 0.5));
   const observedOwnEvidenceLevel = cent(recomputeInputs.observed_traded_low_cents);
   const observedOwnEvidenceReceipt = recomputeInputs.observed_traded_low_receipt
     ?? [...(state.legs[legId]?.prints ?? [])].reverse().find((row) => cent(row.price_cents) === observedOwnEvidenceLevel)?.receipt
     ?? null;
   const ownEvidenceRows = ownEvidenceChannelGrades({ state, legId, spreadEye, observedOwnEvidenceLevel, observedOwnEvidenceReceipt, criterion });
   const ownEvidenceCentral = cent(centralMedianCents(ownEvidenceRows));
-  const formationComplete = baseRow?.derivation?.formation_complete === true;
-  const trueConditioning = conditionPriorDistribution({ priorRows: recomputeVotes, evidenceChannels: ownEvidenceRows });
+  const trueConditioning = conditionPriorDistribution({ priorRows: recomputeVotes, evidenceChannels: ownEvidenceRows, priorRowsAreOverlapMembers: overlapAuthoritative });
   const independentlyRecomputedConditionedTarget = formationComplete
     ? trueConditioning.level_cents ?? independentlyRecomputedEngineTarget
     : null;
   const ownEvidenceFallbackLawful = Boolean(
-    !Number.isInteger(independentlyRecomputedEngineTarget)
+    !overlapAuthoritative
+    && !Number.isInteger(independentlyRecomputedEngineTarget)
     && Number.isInteger(observedOwnEvidenceLevel)
     && criterionSupportsRangeLevel(criterion, observedOwnEvidenceLevel)
   );
@@ -796,13 +852,15 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
     : ownEvidenceFallbackLawful
       ? observedOwnEvidenceLevel
       : null;
-  const authoritySource = trueConditioning.channels_applied.length > 0 && baseLawful
-    ? "PANEL_PRIOR_UPDATED_BY_GRADED_CURRENT_GAME_OWN_EVIDENCE"
-    : Number.isInteger(independentlyRecomputedEngineTarget)
-      ? "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET"
-    : ownEvidenceFallbackLawful
-      ? "F_VS_068_OWN_EVIDENCE_VACUUM_FALLBACK"
-      : "INSUFFICIENT_EVIDENCE";
+  const authoritySource = overlapAuthoritative
+    ? "OVERLAP_MEMBERS_FROM_OWN_RANGE_AT_PHASE"
+    : trueConditioning.channels_applied.length > 0 && baseLawful
+      ? "PANEL_PRIOR_UPDATED_BY_GRADED_CURRENT_GAME_OWN_EVIDENCE"
+      : Number.isInteger(independentlyRecomputedEngineTarget)
+        ? "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET"
+      : ownEvidenceFallbackLawful
+        ? "F_VS_068_OWN_EVIDENCE_VACUUM_FALLBACK"
+        : "INSUFFICIENT_EVIDENCE";
   if (!state.dual_belief) state.dual_belief = {};
   if (!state.dual_belief.authority_memory_by_leg) state.dual_belief.authority_memory_by_leg = {};
   const siblingId = state.leg_ids.find((id) => id !== legId);
@@ -811,6 +869,8 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
   const conditioningInputs = {
     observed_traded_low_cents: observedOwnEvidenceLevel,
     panel_signature: panelSignature,
+    overlap_membership_count: overlapMembers.length,
+    overlap_membership_weight_sum: sum(overlapMembers.map((row) => row.weight)),
     own_evidence_content: ownEvidenceRows.map((row) => ({
       source: row.source,
       value_cents: row.value_cents,
@@ -873,6 +933,7 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
       cross_category_below_anchor_members: crossCategoryBelowAnchor.length,
       empirical_grade: crossCategoryEmpiricalGrade,
       borrowed_votes: crossCategoryVotes,
+      author_role: overlapAuthoritative ? "TELEMETRY_ONLY_WHILE_OVERLAP_MEMBERS_AUTHOR" : "PRIOR_ONLY_FALLBACK_PATH",
       silent_ceiling_allowed: false,
       provenance: LAYER_PROVENANCE.dan_cross_category_cell,
     },
@@ -883,11 +944,12 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
     postable: currentPostable,
     evaluated_at_receipt: state.receipt,
   };
-  const authorityRestored = Boolean(baseRow && baseRow.derivation && baseRow.derivation.neighbor_specialist_composition?.vote_count > 0);
+  const authorityRestored = overlapAuthoritative || Boolean(baseRow && baseRow.derivation && baseRow.derivation.neighbor_specialist_composition?.vote_count > 0);
   const targetFromLicensedRows = Boolean(
     Number.isInteger(target)
     && formationComplete
-    && (ownEvidenceRows.some((row) => row.receipt)
+    && (overlapAuthoritative
+      || ownEvidenceRows.some((row) => row.receipt)
       || (depthLicense?.lawful === true && baseRow.derivation.true_bell_cell_depth_map?.licensed === true))
   );
   const decisiveEvidence = [...ownEvidenceRows]
@@ -896,7 +958,7 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
       || String(a.source).localeCompare(String(b.source)))[0] ?? null;
   const perLegClassification = ownEvidenceRows.find((row) => row.source === "OBSERVED_TRUE_TRADE_LOW")?.per_leg_classification ?? null;
   return {
-    authority: "BASE_V3_MAP_JOINT_DEPTH_MIND_WINDOW_VOTE",
+    authority: overlapAuthoritative ? "OVERLAP_MEMBERS_WEIGHTED_MODE" : "BASE_V3_MAP_JOINT_DEPTH_MIND_WINDOW_VOTE",
     authority_restored_to_decision_path: authorityRestored,
     base_target_cents: baseTarget,
     target_cents: target,
@@ -906,6 +968,11 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
     mind_window: baseRow?.derivation?.mind_window ?? null,
     basis_weights: baseRow?.derivation?.basis_weights ?? [],
     authority_source: authoritySource,
+    q_author: overlapAuthoritative ? "OVERLAP_MEMBERS" : "PRIOR_ONLY",
+    overlap_membership_count: overlapMembers.length,
+    overlap_membership_weight_sum: sum(overlapMembers.map((row) => row.weight)),
+    specialist_map_votes_telemetry: directVotes,
+    seven_neighbor_retrieval_telemetry: (baseRow?.neighborhood ?? []).map((row) => ({ event_id: row.event_id, score: row.score, coverage: row.coverage, grade: row.grade })),
     panel_prior_cents: independentlyRecomputedEngineTarget,
     cross_category_cell_borrow: state.dual_belief.authority_memory_by_leg[legId].cross_category_cell_borrow,
     own_evidence_rows: ownEvidenceRows,
@@ -925,7 +992,7 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
       elimination_support_share: decisiveEvidence.elimination_support_share,
     } : null,
     per_leg_classification: perLegClassification,
-    classifier_consumed_by_pricing: Boolean(perLegClassification),
+    classifier_consumed_by_pricing: Boolean(perLegClassification) && !overlapAuthoritative,
     conditioning_chain: {
       prior_cents: independentlyRecomputedEngineTarget,
       prior_distribution: recomputeVotes,
@@ -934,6 +1001,9 @@ function pricingAuthorityForLeg({ state, legId, baseRow, spreadEye, criterion })
       final_level_cents: target,
       method: trueConditioning.method,
       exact_price_support_joined: true,
+      overlap_members_are_prior_rows: overlapAuthoritative,
+      floor_decisiveness_consulted_for_membership: false,
+      specialist_map_votes_role: overlapAuthoritative ? "TELEMETRY_ONLY" : "PRIOR_ONLY_FALLBACK",
       evidence_support_rows: trueConditioning.evidence_support_rows,
       prior_to_conditioned_to_level: `${independentlyRecomputedEngineTarget ?? "NONE"}->${cent(rawConditionedTarget) ?? "NONE"}->${target ?? "NONE"}`,
       replacement_operator_removed: true,
@@ -1131,17 +1201,28 @@ function layerReceipt(state, layer, status, rowRefs, context) {
   });
 }
 
-function freshDeadline(state, legId, conditionedPrior) {
+function freshDeadline(state, legId, conditionedPrior, overlapMembership) {
   const formation = finite(state.legs[legId].formation_end_epoch);
   const bell = finite(state.bell_epoch);
   const now = finite(state.current_epoch);
   const ownFraction = finite(conditionedPrior?.own_evidence?.window_fraction);
-  const futureRows = (conditionedPrior?.rows ?? []).filter((row) => Number.isFinite(row.member_floor_fraction)
+  const overlapFutureRows = (overlapMembership?.members ?? []).filter((row) => Number.isFinite(row.floor_fraction)
+    && Number.isFinite(row.weight)
+    && row.weight > 0
+    && Number.isFinite(ownFraction)
+    && row.floor_fraction > ownFraction)
+    .map((row) => ({ ...row, conditioning_weight: row.weight }));
+  const priorFutureRows = (conditionedPrior?.rows ?? []).filter((row) => Number.isFinite(row.member_floor_fraction)
     && Number.isFinite(row.conditioning_weight)
     && row.conditioning_weight > 0
     && Number.isFinite(ownFraction)
     && row.member_floor_fraction > ownFraction);
-  const fraction = weightedQuantile(futureRows, "member_floor_fraction", 0.5);
+  const overlapFraction = weightedQuantile(overlapFutureRows, "floor_fraction", 0.5);
+  const overlapAuthors = overlapFutureRows.length > 0 && Number.isFinite(overlapFraction);
+  const futureRows = overlapAuthors ? overlapFutureRows : priorFutureRows;
+  const fraction = overlapAuthors
+    ? overlapFraction
+    : weightedQuantile(priorFutureRows, "member_floor_fraction", 0.5);
   if (!(Number.isFinite(formation) && Number.isFinite(bell) && bell > formation && Number.isFinite(now) && Number.isFinite(fraction))) return null;
   const modeledEpoch = formation + clamp(fraction, 0, 1) * (bell - formation);
   if (!(modeledEpoch > now && modeledEpoch <= bell)) return null;
@@ -1154,6 +1235,10 @@ function freshDeadline(state, legId, conditionedPrior) {
     deadline_minutes_to_bell: Math.max(0, Math.round((bell - deadlineEpoch) / 60)),
     target_floor_fraction: fraction,
     modeled_floor_epoch: modeledEpoch,
+    x_author: overlapAuthors ? "OVERLAP_MEMBER_FLOOR_FRACTIONS" : "LIBRARY_FRACTION_PRIOR",
+    overlap_membership_count: overlapMembership?.member_count ?? 0,
+    overlap_future_member_count: overlapFutureRows.length,
+    overlap_membership_weight_sum: overlapMembership?.weight_sum ?? 0,
     stale_modeled_deadline_clamped_to_emission: false,
     stale_modeled_deadline_rejected_not_clamped: true,
     future_member_rows: futureRows.length,
@@ -1163,7 +1248,7 @@ function freshDeadline(state, legId, conditionedPrior) {
   };
 }
 
-function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, pricingAuthority, legId, macroStatus, macroFamily }) {
+function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, pricingAuthority, overlapMembership, legId, macroStatus, macroFamily }) {
   const vector = baseRow.vector;
   const orientedIndex = vector.oriented_leg_ids.indexOf(legId);
   const topNeighbor = neighborhood[0] ?? null;
@@ -1182,12 +1267,13 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, p
   const ownPrintReceipts = ownPrints.map((row) => row.receipt);
   const ownPrintNetDown = ownPrints.length >= 2
     && cent(ownPrints.at(-1).price_cents) < cent(ownPrints[0].price_cents);
-  const qAuthor = ownPrints.length === 0
-    ? "INSUFFICIENT_EVIDENCE"
-    : ownPrintNetDown
-      ? "PRIOR_REWEIGHTED_BY_OWN_WALK"
-      : "PRIOR_ONLY";
-  const xAuthor = ownPrints.length === 0 ? "INSUFFICIENT_EVIDENCE" : "LIBRARY_FRACTION_PRIOR";
+  const qAuthor = overlapMembership?.member_count > 0
+    ? "OVERLAP_MEMBERS"
+    : ownPrints.length === 0
+      ? "INSUFFICIENT_EVIDENCE"
+      : ownPrintNetDown
+        ? "PRIOR_REWEIGHTED_BY_OWN_WALK"
+        : "PRIOR_ONLY";
   const envelopeHigh = observedTradeLow;
   const envelopeHighBasis = observedTradeLow ? "OBSERVED_TRUE_TRADE_LOW" : null;
   const envelopeHighReceipt = observedTradeLow ? observedTradeLowReceipt : null;
@@ -1205,7 +1291,8 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, p
   // or transforms this target.
   const predicted = cent(pricingAuthority?.target_cents);
   const minutesToBell = Number.isFinite(state.bell_epoch) ? Math.max(0, Math.round((state.bell_epoch - state.current_epoch) / 60)) : null;
-  const deadline = freshDeadline(state, legId, conditionedPrior);
+  const deadline = freshDeadline(state, legId, conditionedPrior, overlapMembership);
+  const xAuthor = deadline?.x_author ?? "LIBRARY_FRACTION_PRIOR";
   const byMinutes = deadline?.deadline_minutes_to_bell ?? null;
   const volume = round2(Math.log1p(sum(Object.values(reads.volume.value).map((row) => row.contracts))));
   const formationComplete = Number.isFinite(reads.anchor_settle.value.formation_progress[legId]) && reads.anchor_settle.value.formation_progress[legId] >= 1;
@@ -1235,11 +1322,15 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, p
   const neighborName = topNeighbor
     ? `${topNeighbor.event_id}@${round2(topNeighbor.score)} [${topNeighbor.quality}/${topNeighbor.grain ?? "UNKNOWN"}; MACRO/MICRO; ${topNeighbor.citation_receipt_id}]`
     : "NO_GRADED_NEIGHBOR";
+  const highestWeightOverlapMembers = (overlapMembership?.members ?? []).slice(0, 3)
+    .map((row) => `${row.event_id}@share=${row.share}`)
+    .join(",") || "NONE";
+  const overlapSentence = `Overlap members ${overlapMembership?.member_count ?? 0}; weight sum ${overlapMembership?.weight_sum ?? 0}; highest weight ${highestWeightOverlapMembers}; Q ${predicted ?? "UNKNOWN"}¢ [${qAuthor}]; X ${deadline?.deadline_epoch ?? "UNKNOWN"} [${xAuthor}]`;
   const crossCategoryCellBorrowProvenance = pricingAuthority?.cross_category_cell_borrow?.status === "LOW_GRADE_EVIDENCE_CONSUMED"
     ? pricingAuthority.cross_category_cell_borrow.provenance ?? null
     : null;
   const plain = microResolved
-    ? `believes ${legId} at ${beliefPrice}¢ [${beliefPriceBasis}; evidenced-receipt=${envelopeHighReceipt}] at ${minutesToBell ?? "UNKNOWN"}min-to-bell with ${volume ?? "UNKNOWN"} vol_log1p in ${state.category}, using ${store} + ${neighborName}, SHOULD drift to ${predicted}¢ by ${byMinutes ?? "UNKNOWN"}min-to-bell [PHASE_CENTRAL_ESTIMATE=${conditionedPrior?.phase_central_estimate?.q50_cents ?? "UNKNOWN"}¢; CENTRAL_ESTIMATE_RANK=${conditionedPrior?.phase_central_estimate?.estimate_rank_in_population ?? "UNKNOWN"}; CENTRAL_MEMBERS=${conditionedPrior?.phase_central_estimate?.members ?? "UNKNOWN"}; CENTRAL_CELL=${conditionedPrior?.phase_central_estimate?.phase_band ?? "UNKNOWN"}; deadline-epoch=${deadline?.deadline_epoch ?? "UNKNOWN"}; deadline-emitted-now=${deadline?.emitted_at_epoch ?? "UNKNOWN"}; deadline-receipt=${deadline?.emitted_at_receipt ?? "UNKNOWN"}]${crossCategoryCellBorrowProvenance ? ` [cross_category_cell_borrow=${crossCategoryCellBorrowProvenance}]` : ""}`
+    ? `believes ${legId} at ${beliefPrice}¢ [${beliefPriceBasis}; evidenced-receipt=${envelopeHighReceipt}] at ${minutesToBell ?? "UNKNOWN"}min-to-bell with ${volume ?? "UNKNOWN"} vol_log1p in ${state.category}, using ${store} + ${neighborName}, SHOULD drift to ${predicted}¢ by ${byMinutes ?? "UNKNOWN"}min-to-bell [PHASE_CENTRAL_ESTIMATE=${conditionedPrior?.phase_central_estimate?.q50_cents ?? "UNKNOWN"}¢; CENTRAL_ESTIMATE_RANK=${conditionedPrior?.phase_central_estimate?.estimate_rank_in_population ?? "UNKNOWN"}; CENTRAL_MEMBERS=${conditionedPrior?.phase_central_estimate?.members ?? "UNKNOWN"}; CENTRAL_CELL=${conditionedPrior?.phase_central_estimate?.phase_band ?? "UNKNOWN"}; deadline-epoch=${deadline?.deadline_epoch ?? "UNKNOWN"}; deadline-emitted-now=${deadline?.emitted_at_epoch ?? "UNKNOWN"}; deadline-receipt=${deadline?.emitted_at_receipt ?? "UNKNOWN"}; ${overlapSentence}]${crossCategoryCellBorrowProvenance ? ` [cross_category_cell_borrow=${crossCategoryCellBorrowProvenance}]` : ""}`
     : null;
   return {
     leg_id: legId,
@@ -1260,6 +1351,8 @@ function beliefForLeg({ state, reads, neighborhood, baseRow, conditionedPrior, p
     print_count: ownPrints.length,
     q_author: qAuthor,
     x_author: xAuthor,
+    overlap_membership_count: overlapMembership?.member_count ?? 0,
+    overlap_membership_weight_sum: overlapMembership?.weight_sum ?? 0,
     own_print_receipts: ownPrintReceipts,
     phase_projection_telemetry_cents: cent(phaseProjectionTelemetry),
     predicted_level_author: "NON_BOOK_PRICING_AUTHORITY_POSTERIOR",
@@ -1341,6 +1434,35 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
   for (const legId of readIds) {
     baseRows.set(legId, base.deriveAction({ state, reads, neighborhood, legId, lineage: lineageByLeg[legId], resources }));
   }
+  const overlapMemberships = Object.fromEntries(readIds.map((legId) => {
+    const baseRow = baseRows.get(legId);
+    const ownEvidence = baseRow?.derivation?.neighbor_leg?.own_evidence ?? {};
+    const anchor = cent(state.legs[legId]?.anchor_cents);
+    const lastTruePrint = [...(state.legs[legId]?.prints ?? [])].reverse().find((row) => Number.isInteger(cent(row.price_cents))) ?? null;
+    const query = {
+      ...baseRow.vector,
+      category: state.category,
+      side: Number.isInteger(anchor) && anchor >= CONTRACT_SUM_CENTS / state.leg_ids.length ? "LEADER" : "UNDERDOG",
+      event_date: state.event_date,
+      window_fraction: finite(ownEvidence.window_fraction),
+      seen_low_cents: cent(state.legs[legId]?.running_true_trade_low_cents),
+      seen_high_cents: cent(state.legs[legId]?.running_true_trade_high_cents),
+      last_cents: cent(lastTruePrint?.price_cents),
+    };
+    const members = base.retrieveOverlapMembership(neighborhood.range_overlap, query, state.event_id, state.receipt);
+    const membership = {
+      query,
+      members,
+      member_count: members.length,
+      weight_sum: sum(members.map((row) => row.weight)),
+      citation_receipt: members.citation_receipt,
+      captured_at_receipt: state.receipt,
+      uncapped: true,
+      floor_decisiveness_consulted: false,
+    };
+    if (members.citation_receipt) baseRow.citation_receipts[members.citation_receipt.receipt_id] = members.citation_receipt;
+    return [legId, membership];
+  }));
   const allFormationComplete = state.leg_ids.every((id) => Number.isFinite(reads.anchor_settle.value.formation_progress[id]) && reads.anchor_settle.value.formation_progress[id] >= 1);
   const coarseNeighbors = neighborhood.filter((row) => ["FOUNDATION_MINUTE_BELL_BOUNDED", "RANGE_BELL_BOUNDED", "HISTORICAL_BELL_BOUNDED"].includes(row.quality));
   const survivorUpdate = survivorShapes.advanceSurvivorShapes({ state, reads });
@@ -1354,13 +1476,19 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
   const macroReceipt = layerReceipt(state, "MACRO", macroStatus, coarseNeighbors.flatMap((row) => [row.citation_receipt_id, ...(row.source_receipts ?? []).map((source) => source.row_ref)]), {
     families: macroFamilies,
     survivor_shapes: survivorUpdate,
+    overlap_membership: Object.fromEntries(readIds.map((id) => [id, {
+      survivor_count: overlapMemberships[id].member_count,
+      survivor_shape_count: survivorUpdate.legs[id]?.survivor_shapes?.length ?? 0,
+      weight_sum: overlapMemberships[id].weight_sum,
+      citation_receipt_id: overlapMemberships[id].citation_receipt?.receipt_id ?? null,
+    }])),
     travel_priors: Object.fromEntries(readIds.map((id) => [id, conditionedPriors[id] ?? null])),
     sources: coarseNeighbors.map((row) => ({ event_id: row.event_id, store: row.quality, grain: row.grain, licensed_layers: row.licensed_layers, citation_receipt_id: row.citation_receipt_id })),
     provenance: LAYER_PROVENANCE.layer_fit,
   });
   const beliefs = {};
-  const pricingAuthorities = Object.fromEntries(readIds.map((id) => [id, pricingAuthorityForLeg({ state, legId: id, baseRow: baseRows.get(id), spreadEye: spreadEyes[id], criterion: survivorUpdate.legs[id]?.target_criterion ?? null })]));
-  for (const legId of readIds) beliefs[legId] = beliefForLeg({ state, reads, neighborhood, baseRow: baseRows.get(legId), conditionedPrior: conditionedPriors[legId], pricingAuthority: pricingAuthorities[legId], legId, macroStatus, macroFamily: macroFamilies[legId] });
+  const pricingAuthorities = Object.fromEntries(readIds.map((id) => [id, pricingAuthorityForLeg({ state, legId: id, baseRow: baseRows.get(id), spreadEye: spreadEyes[id], criterion: survivorUpdate.legs[id]?.target_criterion ?? null, overlapMembership: overlapMemberships[id] })]));
+  for (const legId of readIds) beliefs[legId] = beliefForLeg({ state, reads, neighborhood, baseRow: baseRows.get(legId), conditionedPrior: conditionedPriors[legId], pricingAuthority: pricingAuthorities[legId], overlapMembership: overlapMemberships[legId], legId, macroStatus, macroFamily: macroFamilies[legId] });
   const carriedLajsvaSiblingCut = state.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA"
     && openIds.includes("LAJ")
     ? state.dual_belief.lajsva_sibling_print_q_cut ?? null
@@ -1435,7 +1563,7 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
   }
   const microResolved = macroResolved && readIds.every((id) => beliefs[id].status === "RESOLVED");
   const microStatus = microResolved ? "RESOLVED" : "INSUFFICIENT_EVIDENCE";
-  const microReceipt = layerReceipt(state, "MICRO", microStatus, readIds.flatMap((id) => [beliefs[id].book_receipt, beliefs[id].top_neighbor?.citation_receipt_id]), {
+  const microReceipt = layerReceipt(state, "MICRO", microStatus, readIds.flatMap((id) => [beliefs[id].book_receipt, beliefs[id].top_neighbor?.citation_receipt_id, overlapMemberships[id].citation_receipt?.receipt_id]), {
     beliefs,
     conditioning: LAYER_PROVENANCE.conditioning,
     v3_map_keying: { source: LAYER_PROVENANCE.v3_source_key, runtime: LAYER_PROVENANCE.v3_runtime_rekey, stated_verbatim: true },
@@ -3689,11 +3817,18 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.citation_receipts[macroReceipt.receipt_id] = macroReceipt;
     row.citation_receipts[microReceipt.receipt_id] = microReceipt;
     row.citation_receipts[microMicroReceipt.receipt_id] = microMicroReceipt;
+    row.overlap_membership = overlapMemberships[legId];
+    row.membership_count = overlapMemberships[legId].member_count;
+    row.membership_weight_sum = overlapMemberships[legId].weight_sum;
+    row.survivor_count = overlapMemberships[legId].member_count;
+    row.survivor_shape_count = survivorUpdate.legs[legId]?.survivor_shapes?.length ?? 0;
+    row.specialist_map_votes_telemetry = pricingAuthorities[legId]?.specialist_map_votes_telemetry ?? [];
+    row.seven_neighbor_retrieval_role = "TELEMETRY_ONLY_WHILE_OVERLAP_MEMBERS_AUTHOR_Q_AND_X";
     row.action = action;
     row.sentence = sentence;
     row.sentence_action_assertion = { hard_assert: true, expected_statement: actionStatement, equal: sentence.includes(actionStatement) };
     row.citation_receipt_assertion = { hard_assert: true, receipt_count: Object.keys(row.citation_receipts).length, equal: [macroReceipt, microReceipt, microMicroReceipt].every((receipt) => sentence.includes(receipt.receipt_id)) };
-    row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, survivor_shapes: survivorUpdate, conditioned_priors: conditionedPriors, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, prediction_seat: predictionSeatTrace, prediction_seat_transition: predictionSeatTransitionTrace, belief_mode: beliefMode, conviction_evolution: convictionEvolution[legId], carried_conviction_consumed_for_action: carriedPlacement, independent_lane_license: [LAYER_PROVENANCE.own_evidence_sufficiency, LAYER_PROVENANCE.disagrees_own_evidence_release, LAYER_PROVENANCE.book_veto_only], pricing_authority: pricingAuthorityTrace, spread_eye: spreadEyes[legId], credited_leg_streams: creditedReadTrace, same_receipt_act: sameReceiptAct, technique_contracts: TECHNIQUE_CONTRACTS, decision_arbitration: decisionArbitration, atomic_rearm: rearmReceipt, first_coherence: state.dual_belief.first_coherence, envelope_history_count: state.dual_belief.envelope_history.length, envelope_migration_at_receipt: envelopeMigrations[legId] ?? null, envelope_consistency: envelopeConsistency, coherence_placement: coherencePlacement, floor_rest_protection: floorRestProtection, proposal_supervisor: proposalSupervisor, par_allocation_floor_bound: allocationBound, envelope: currentEnvelope, envelope_placement: envelopePlacementTrace, v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
+    row.layered_dual_belief = { macro: { status: macroStatus, families: macroFamilies, survivor_shapes: survivorUpdate, survivor_count: overlapMemberships[legId].member_count, survivor_shape_count: survivorUpdate.legs[legId]?.survivor_shapes?.length ?? 0, overlap_membership_weight_sum: overlapMemberships[legId].weight_sum, conditioned_priors: conditionedPriors, receipt_id: macroReceipt.receipt_id }, micro: { status: microStatus, beliefs, receipt_id: microReceipt.receipt_id }, micro_micro: { status: microMicroStatus, receipt_id: microMicroReceipt.receipt_id }, coherence, prediction_seat: predictionSeatTrace, prediction_seat_transition: predictionSeatTransitionTrace, belief_mode: beliefMode, conviction_evolution: convictionEvolution[legId], carried_conviction_consumed_for_action: carriedPlacement, independent_lane_license: [LAYER_PROVENANCE.own_evidence_sufficiency, LAYER_PROVENANCE.disagrees_own_evidence_release, LAYER_PROVENANCE.book_veto_only], pricing_authority: pricingAuthorityTrace, spread_eye: spreadEyes[legId], credited_leg_streams: creditedReadTrace, same_receipt_act: sameReceiptAct, technique_contracts: TECHNIQUE_CONTRACTS, decision_arbitration: decisionArbitration, atomic_rearm: rearmReceipt, first_coherence: state.dual_belief.first_coherence, envelope_history_count: state.dual_belief.envelope_history.length, envelope_migration_at_receipt: envelopeMigrations[legId] ?? null, envelope_consistency: envelopeConsistency, coherence_placement: coherencePlacement, floor_rest_protection: floorRestProtection, proposal_supervisor: proposalSupervisor, par_allocation_floor_bound: allocationBound, envelope: currentEnvelope, envelope_placement: envelopePlacementTrace, v3_keying_fix: beliefs[legId]?.v3_map_semantics ?? null };
     delete row.derivation.stale_prior_path_used;
     row.derivation.carried_conviction = convictionEvolution[legId];
     row.derivation.formation_end_epoch = finite(state.legs[legId].formation_end_epoch);
@@ -3712,6 +3847,11 @@ function deriveJointActions({ state, reads, neighborhood, lineageByLeg, resource
     row.derivation.derived_target_cents = target;
     row.derivation.allocation = allocation;
     row.derivation.ladder_q_clip = ladderClip;
+    row.derivation.overlap_membership_count = overlapMemberships[legId].member_count;
+    row.derivation.overlap_membership_weight_sum = overlapMemberships[legId].weight_sum;
+    row.derivation.survivor_count = overlapMemberships[legId].member_count;
+    row.derivation.survivor_shape_count = survivorUpdate.legs[legId]?.survivor_shapes?.length ?? 0;
+    row.derivation.specialist_map_votes_telemetry = pricingAuthorities[legId]?.specialist_map_votes_telemetry ?? [];
     const authorityTargetAtReceipt = cent(pricingAuthorities[legId]?.target_cents);
     const authorityDiverged = Number.isInteger(authorityTargetAtReceipt) && target !== authorityTargetAtReceipt;
     const seniorAuthorityReason = authorityDiverged

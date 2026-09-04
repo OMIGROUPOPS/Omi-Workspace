@@ -1,0 +1,669 @@
+{
+  "category_filter": [
+    "ATP_MAIN"
+  ],
+  "conversions": {
+    "pair_vector": [
+      "favorite_last",
+      "favorite_bid",
+      "favorite_ask",
+      "underdog_last",
+      "underdog_bid",
+      "underdog_ask",
+      "favorite_plus_underdog_last"
+    ],
+    "remainder_clock": "tau = (window_fraction - f) / (1 - f)",
+    "remainder_delta": "Each side's last/bid/ask subtracts that same series' value at f; the seventh series subtracts the pair last sum at f.",
+    "remainder_grid": "union of the query pair's own stored change points > f; member sampled at the corresponding f + tau*(1-f), which is the same fraction grid",
+    "so_far_grid": "union of the query pair's own stored change points <= f; member sampled at largest change point <= each query fraction"
+  },
+  "definitions": {
+    "DEF-A_L7": "mean absolute difference over all jointly present values of the seven-series so-far level path; s is the equal-base-weight inverse-CDF median distance in that query's full eligible pool; weight exp(-d/s)",
+    "DEF-B_D7": "same as DEF-A after subtracting each side's anchor from last/bid/ask and the pair anchor sum from the seventh series",
+    "DEF-C_OVERLAP": "STORE_SILENT: the licensed RANGE_OVERLAP_LIBRARY rows do not contain the eleven-scalar similarity vectors. The live builder joins those vectors from other corpus stores, which ORDER 4 did not license as bench inputs; no vector was reconstructed or substituted.",
+    "DEF-D_IOU": "STORE_SILENT: the licensed RANGE_OVERLAP_LIBRARY rows do not contain the eleven-scalar similarity vectors. The live builder joins those vectors from other corpus stores, which ORDER 4 did not license as bench inputs; no vector was reconstructed or substituted.",
+    "DEF-E_BASE": "all eligible category/orientation members weight 1; all pool only"
+  },
+  "deviations": [
+    "DEF-C and DEF-D are STORE_SILENT because the licensed index and receipt do not carry the eleven-scalar vectors that the builder joins from unlicensed corpus inputs.",
+    "event_date is parsed from event_id because the index row omits the field required by the order's same-day exclusion."
+  ],
+  "event_date_rule": "The raw index omits event_date, so the exact YYMMMDD date code is read reversibly from event_id for same-day exclusion.",
+  "exclusions": {
+    "ATP_CHALL": {
+      "0.1": {
+        "equal_anchor_store_silent": 220,
+        "excluded_missing_both": 5,
+        "excluded_missing_true_trade_after": 6,
+        "excluded_missing_true_trade_at_or_before": 2385,
+        "oriented_pairs": 3330,
+        "scorable_pairs": 944,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      },
+      "0.25": {
+        "equal_anchor_store_silent": 220,
+        "excluded_missing_both": 5,
+        "excluded_missing_true_trade_after": 6,
+        "excluded_missing_true_trade_at_or_before": 1536,
+        "oriented_pairs": 3330,
+        "scorable_pairs": 1793,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      },
+      "0.5": {
+        "equal_anchor_store_silent": 220,
+        "excluded_missing_both": 5,
+        "excluded_missing_true_trade_after": 7,
+        "excluded_missing_true_trade_at_or_before": 642,
+        "oriented_pairs": 3330,
+        "scorable_pairs": 2686,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      },
+      "0.75": {
+        "equal_anchor_store_silent": 220,
+        "excluded_missing_both": 5,
+        "excluded_missing_true_trade_after": 14,
+        "excluded_missing_true_trade_at_or_before": 192,
+        "oriented_pairs": 3330,
+        "scorable_pairs": 3129,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      }
+    },
+    "ATP_MAIN": {
+      "0.1": {
+        "equal_anchor_store_silent": 542,
+        "excluded_missing_both": 5,
+        "excluded_missing_true_trade_after": 5,
+        "excluded_missing_true_trade_at_or_before": 753,
+        "oriented_pairs": 1953,
+        "scorable_pairs": 1200,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f",
+        "walk_forward": {
+          "eligible_member_observations": 711058,
+          "queries_without_walk_forward_members": 1,
+          "same_day_prior_excluded": 103
+        }
+      },
+      "0.25": {
+        "equal_anchor_store_silent": 542,
+        "excluded_missing_both": 4,
+        "excluded_missing_true_trade_after": 6,
+        "excluded_missing_true_trade_at_or_before": 313,
+        "oriented_pairs": 1953,
+        "scorable_pairs": 1638,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f",
+        "walk_forward": {
+          "eligible_member_observations": 1325782,
+          "queries_without_walk_forward_members": 2,
+          "same_day_prior_excluded": 212
+        }
+      },
+      "0.5": {
+        "equal_anchor_store_silent": 542,
+        "excluded_missing_both": 4,
+        "excluded_missing_true_trade_after": 7,
+        "excluded_missing_true_trade_at_or_before": 95,
+        "oriented_pairs": 1953,
+        "scorable_pairs": 1855,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f",
+        "walk_forward": {
+          "eligible_member_observations": 1700842,
+          "queries_without_walk_forward_members": 5,
+          "same_day_prior_excluded": 310
+        }
+      },
+      "0.75": {
+        "equal_anchor_store_silent": 542,
+        "excluded_missing_both": 5,
+        "excluded_missing_true_trade_after": 24,
+        "excluded_missing_true_trade_at_or_before": 27,
+        "oriented_pairs": 1953,
+        "scorable_pairs": 1907,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f",
+        "walk_forward": {
+          "eligible_member_observations": 1797589,
+          "queries_without_walk_forward_members": 5,
+          "same_day_prior_excluded": 366
+        }
+      }
+    },
+    "WTA_CHALL": {
+      "0.1": {
+        "equal_anchor_store_silent": 33,
+        "excluded_missing_both": 0,
+        "excluded_missing_true_trade_after": 1,
+        "excluded_missing_true_trade_at_or_before": 421,
+        "oriented_pairs": 556,
+        "scorable_pairs": 134,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      },
+      "0.25": {
+        "equal_anchor_store_silent": 33,
+        "excluded_missing_both": 0,
+        "excluded_missing_true_trade_after": 1,
+        "excluded_missing_true_trade_at_or_before": 289,
+        "oriented_pairs": 556,
+        "scorable_pairs": 266,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      },
+      "0.5": {
+        "equal_anchor_store_silent": 33,
+        "excluded_missing_both": 0,
+        "excluded_missing_true_trade_after": 1,
+        "excluded_missing_true_trade_at_or_before": 124,
+        "oriented_pairs": 556,
+        "scorable_pairs": 431,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      },
+      "0.75": {
+        "equal_anchor_store_silent": 33,
+        "excluded_missing_both": 0,
+        "excluded_missing_true_trade_after": 1,
+        "excluded_missing_true_trade_at_or_before": 35,
+        "oriented_pairs": 556,
+        "scorable_pairs": 520,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      }
+    },
+    "WTA_MAIN": {
+      "0.1": {
+        "equal_anchor_store_silent": 577,
+        "excluded_missing_both": 4,
+        "excluded_missing_true_trade_after": 4,
+        "excluded_missing_true_trade_at_or_before": 876,
+        "oriented_pairs": 1789,
+        "scorable_pairs": 913,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      },
+      "0.25": {
+        "equal_anchor_store_silent": 577,
+        "excluded_missing_both": 4,
+        "excluded_missing_true_trade_after": 6,
+        "excluded_missing_true_trade_at_or_before": 415,
+        "oriented_pairs": 1789,
+        "scorable_pairs": 1372,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      },
+      "0.5": {
+        "equal_anchor_store_silent": 577,
+        "excluded_missing_both": 4,
+        "excluded_missing_true_trade_after": 10,
+        "excluded_missing_true_trade_at_or_before": 129,
+        "oriented_pairs": 1789,
+        "scorable_pairs": 1654,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      },
+      "0.75": {
+        "equal_anchor_store_silent": 577,
+        "excluded_missing_both": 4,
+        "excluded_missing_true_trade_after": 24,
+        "excluded_missing_true_trade_at_or_before": 38,
+        "oriented_pairs": 1789,
+        "scorable_pairs": 1731,
+        "scorable_rule": "both legs have a volume_cum-identified true-trade point at or before f and after f"
+      }
+    }
+  },
+  "family_thresholds_and_precedence": [
+    "HOLD first: max further dip <=1 and net >=0",
+    "RISE second: net >=3 and max further dip <=2",
+    "FADE third: net <=-3 and, from the first occurrence of the remainder minimum onward, last never exceeds the level at f",
+    "DIP_RECOVER fourth: max further dip >=3 and net >-3",
+    "OTHER otherwise"
+  ],
+  "inputs": {
+    "named_tape_dir": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks",
+    "named_trace_current": {
+      "bytes": 1498735062,
+      "path": "C:\\tmp\\v54_altgas_face_20260903_2131_receipts\\KEEP\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "41ce581d97c33360ffcbcaa5ac6135527e4ed46bd393c29599194f5e195084e6"
+    },
+    "named_trace_prior": {
+      "bytes": 216662499,
+      "path": "C:\\tmp\\v54_altgas_extra_2dfb5b0a_20260902_run2_custody\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+      "use": "provenance/hash comparison only; named state is read from current trace"
+    },
+    "range_overlap_library": {
+      "bytes": 26628883,
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY.jsonl.gz",
+      "sha256": "019d84b0500a79c5d762d95ae7f481c3ae9a5bd5f0818f81aea9207a27fdd76e"
+    },
+    "range_overlap_library_receipt": {
+      "bytes": 5892,
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_RECEIPT.json",
+      "sha256": "a4043b882865c472a34bd2a2c3c79d0e5df0d6cda4d9ab47cacc29b446bb39a3"
+    }
+  },
+  "label": "TUNE_BENCH_RECEIPT",
+  "log_loss": "natural logarithm; a realized label with zero predicted mass is reported as INF with its query count; no smoothing constant is introduced",
+  "micro_micro_note": "Computed exactly as ordered as a diagnostic. The source receipt labels the minute library micro_micro_licensed=false.",
+  "named_tape_conversion": "Named-check tick tapes are collapsed to the last observed bid/ask state in each observed ET minute so they match the library's minute grain. The carried last_trade field becomes a new named true-print state only when its positive value changes; per-minute low/high are the min/max of those changed states. The change point is stamped at that minute's last observed tape epoch. This affects named checks only, never tuning selection or scores.",
+  "other_family_share_and_suggested_labels": {
+    "ATP_CHALL": {
+      "0.1": {
+        "favorite": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 101,
+          "other_share": 0.10699152542372882
+        },
+        "underdog": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 88,
+          "other_share": 0.09322033898305085
+        }
+      },
+      "0.25": {
+        "favorite": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 192,
+          "other_share": 0.10708310094813163
+        },
+        "underdog": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 176,
+          "other_share": 0.09815950920245399
+        }
+      },
+      "0.5": {
+        "favorite": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 304,
+          "other_share": 0.11317944899478778
+        },
+        "underdog": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 286,
+          "other_share": 0.10647803425167536
+        }
+      },
+      "0.75": {
+        "favorite": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 342,
+          "other_share": 0.10930009587727708
+        },
+        "underdog": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 367,
+          "other_share": 0.11728986896772131
+        }
+      }
+    },
+    "ATP_MAIN": {
+      "0.1": {
+        "favorite": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 28,
+            "NO_REMAINDER": 2,
+            "SMALL_OR_MIXED_MOVE": 389
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 419,
+          "other_share": 0.3491666666666667
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 21,
+            "NO_REMAINDER": 4,
+            "SMALL_OR_MIXED_MOVE": 537
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 562,
+          "other_share": 0.4683333333333333
+        }
+      },
+      "0.25": {
+        "favorite": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 43,
+            "NO_REMAINDER": 2,
+            "SMALL_OR_MIXED_MOVE": 383
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 428,
+          "other_share": 0.2612942612942613
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 31,
+            "NO_REMAINDER": 4,
+            "SMALL_OR_MIXED_MOVE": 518
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 553,
+          "other_share": 0.33760683760683763
+        }
+      },
+      "0.5": {
+        "favorite": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 59,
+            "NO_REMAINDER": 2,
+            "SMALL_OR_MIXED_MOVE": 259
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 320,
+          "other_share": 0.1725067385444744
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 43,
+            "NO_REMAINDER": 4,
+            "SMALL_OR_MIXED_MOVE": 326
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 373,
+          "other_share": 0.20107816711590296
+        }
+      },
+      "0.75": {
+        "favorite": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 244,
+          "other_share": 0.12794965915049816
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 63,
+            "NO_REMAINDER": 7,
+            "SMALL_OR_MIXED_MOVE": 224
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 294,
+          "other_share": 0.15416885159937074
+        }
+      }
+    },
+    "WTA_CHALL": {
+      "0.1": {
+        "favorite": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 1,
+            "SMALL_OR_MIXED_MOVE": 37
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 38,
+          "other_share": 0.2835820895522388
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 3,
+            "SMALL_OR_MIXED_MOVE": 47
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 50,
+          "other_share": 0.373134328358209
+        }
+      },
+      "0.25": {
+        "favorite": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 6,
+            "SMALL_OR_MIXED_MOVE": 51
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 57,
+          "other_share": 0.21428571428571427
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 5,
+            "SMALL_OR_MIXED_MOVE": 69
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 74,
+          "other_share": 0.2781954887218045
+        }
+      },
+      "0.5": {
+        "favorite": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 13,
+            "SMALL_OR_MIXED_MOVE": 65
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 78,
+          "other_share": 0.18097447795823665
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 6,
+            "SMALL_OR_MIXED_MOVE": 72
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 78,
+          "other_share": 0.18097447795823665
+        }
+      },
+      "0.75": {
+        "favorite": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 74,
+          "other_share": 0.1423076923076923
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 6,
+            "SMALL_OR_MIXED_MOVE": 77
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 83,
+          "other_share": 0.1596153846153846
+        }
+      }
+    },
+    "WTA_MAIN": {
+      "0.1": {
+        "favorite": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 17,
+            "NO_REMAINDER": 1,
+            "SMALL_OR_MIXED_MOVE": 297
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 315,
+          "other_share": 0.34501642935377874
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 14,
+            "NO_REMAINDER": 1,
+            "SMALL_OR_MIXED_MOVE": 418
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 433,
+          "other_share": 0.47426067907995617
+        }
+      },
+      "0.25": {
+        "favorite": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 41,
+            "NO_REMAINDER": 1,
+            "SMALL_OR_MIXED_MOVE": 305
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 347,
+          "other_share": 0.2529154518950437
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 23,
+            "NO_REMAINDER": 1,
+            "SMALL_OR_MIXED_MOVE": 432
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 456,
+          "other_share": 0.3323615160349854
+        }
+      },
+      "0.5": {
+        "favorite": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 53,
+            "NO_REMAINDER": 1,
+            "SMALL_OR_MIXED_MOVE": 238
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 292,
+          "other_share": 0.17654171704957677
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 39,
+            "NO_REMAINDER": 1,
+            "SMALL_OR_MIXED_MOVE": 289
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 329,
+          "other_share": 0.1989117291414752
+        }
+      },
+      "0.75": {
+        "favorite": {
+          "data_suggested_label_counts": {},
+          "data_suggested_labels_required": false,
+          "other_count": 222,
+          "other_share": 0.12824956672443674
+        },
+        "underdog": {
+          "data_suggested_label_counts": {
+            "DIP_AND_STAY_LOWER": 50,
+            "NO_REMAINDER": 2,
+            "SMALL_OR_MIXED_MOVE": 218
+          },
+          "data_suggested_labels_required": true,
+          "other_count": 270,
+          "other_share": 0.1559792027729636
+        }
+      }
+    }
+  },
+  "s_distributions_cents": {
+    "ATP_CHALL": {},
+    "ATP_MAIN": {
+      "0.1": {
+        "DEF-A_L7": {
+          "count": 1199,
+          "max": 39.842105865478516,
+          "mean": 14.235388240384697,
+          "min": 8.045112609863281,
+          "q10": 9.203390121459961,
+          "q25": 10.260000228881836,
+          "q50": 12.8125,
+          "q75": 16.769784927368164,
+          "q90": 21.917505264282227
+        },
+        "DEF-B_D7": {
+          "count": 1199,
+          "max": 37.92856979370117,
+          "mean": 6.24936494064689,
+          "min": 0.6666666865348816,
+          "q10": 1.076923131942749,
+          "q25": 1.3660714626312256,
+          "q50": 2.5161290168762207,
+          "q75": 8.222222328186035,
+          "q90": 18.88741683959961
+        }
+      },
+      "0.25": {
+        "DEF-A_L7": {
+          "count": 1636,
+          "max": 50.06756591796875,
+          "mean": 14.109563847334286,
+          "min": 7.7602996826171875,
+          "q10": 9.080924987792969,
+          "q25": 10.103896141052246,
+          "q50": 12.617856979370117,
+          "q75": 16.339284896850586,
+          "q90": 21.65350914001465
+        },
+        "DEF-B_D7": {
+          "count": 1636,
+          "max": 49.90909194946289,
+          "mean": 7.585731512213394,
+          "min": 0.9523809552192688,
+          "q10": 1.5357142686843872,
+          "q25": 1.951020359992981,
+          "q50": 3.865771770477295,
+          "q75": 12.679104804992676,
+          "q90": 19.29900360107422
+        }
+      },
+      "0.5": {
+        "DEF-A_L7": {
+          "count": 1850,
+          "max": 48.3742790222168,
+          "mean": 13.729718364767127,
+          "min": 7.783933639526367,
+          "q10": 8.74056625366211,
+          "q25": 9.667634010314941,
+          "q50": 12.182215690612793,
+          "q75": 15.64147663116455,
+          "q90": 21.92802619934082
+        },
+        "DEF-B_D7": {
+          "count": 1850,
+          "max": 41.175926208496094,
+          "mean": 8.152637923601512,
+          "min": 1.2307692766189575,
+          "q10": 1.9330573081970215,
+          "q25": 2.410959005355835,
+          "q50": 4.391110897064209,
+          "q75": 13.21548843383789,
+          "q90": 19.9780216217041
+        }
+      },
+      "0.75": {
+        "DEF-A_L7": {
+          "count": 1902,
+          "max": 48.393592834472656,
+          "mean": 13.244308711101079,
+          "min": 7.507176876068115,
+          "q10": 8.410526275634766,
+          "q25": 9.278481483459473,
+          "q50": 11.54183292388916,
+          "q75": 14.866935729980469,
+          "q90": 21.591110229492188
+        },
+        "DEF-B_D7": {
+          "count": 1902,
+          "max": 40.84247970581055,
+          "mean": 8.313754040548101,
+          "min": 1.5827586650848389,
+          "q10": 2.160278797149658,
+          "q25": 2.6668150424957275,
+          "q50": 4.487091064453125,
+          "q75": 13.383849143981934,
+          "q90": 20.247190475463867
+        }
+      }
+    },
+    "WTA_CHALL": {},
+    "WTA_MAIN": {}
+  },
+  "true_trade_change_point_rule": "The compact path omits minute_has_trade. A point is identified as true-trade when volume_cum increases; the formation point is true-trade when volume_cum > 0 or seen_true_trade_high_cents is present. No price or book field is substituted.",
+  "universe": {
+    "equal_anchor_store_silent": {
+      "ATP_CHALL": 220,
+      "ATP_MAIN": 542,
+      "WTA_CHALL": 33,
+      "WTA_MAIN": 577
+    },
+    "input_pair_events": 9000,
+    "malformed_pair_store_silent": {},
+    "oriented_pair_events": 7628
+  },
+  "walk_forward": "A member is eligible only when the later of its two leg bell_epoch values is strictly earlier than the later of the query's two leg formation_end_epoch values. This is the first instant when both query legs are formed and ensures both member legs have rung. The query event and same event-date members are excluded. No named-game exception.",
+  "weighted_quantiles": "inverse weighted empirical CDF: first ascending integer-cent value whose cumulative positive weight reaches q*total; no interpolation"
+}

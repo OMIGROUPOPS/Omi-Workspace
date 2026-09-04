@@ -107,6 +107,7 @@ function Home() {
             <Legend color="var(--color-alt)" label="ALT last trade" thick />
             <Legend color="var(--color-gas)" label="GAS last trade" thick />
             <Legend color="var(--color-alt)" label="Our bid" dashed />
+            <Legend color="var(--color-muted)" label="where lookalikes went from here (25–75%)" band />
           </div>
           <AtlasChart hours={hours} side="ALT" />
           <div className="border-t border-border">
@@ -125,22 +126,25 @@ function Legend({
   label,
   dashed,
   thick,
+  band,
 }: {
   color: string;
   label: string;
   dashed?: boolean;
   thick?: boolean;
+  band?: boolean;
 }) {
   return (
     <span className="inline-flex items-center gap-2">
       <svg width="22" height="8" aria-hidden>
+        {band ? <rect x="0" y="1" width="22" height="6" fill={color} opacity="0.22" /> : null}
         <line
           x1="0"
           y1="4"
           x2="22"
           y2="4"
           stroke={color}
-          strokeWidth={thick ? 3 : 1.6}
+          strokeWidth={band ? 0 : thick ? 3 : 1.6}
           strokeDasharray={dashed ? "4 3" : undefined}
         />
       </svg>

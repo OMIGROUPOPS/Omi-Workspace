@@ -6,6 +6,17 @@
 
 export type Side = "ALT" | "GAS";
 
+export type LookalikeBand = {
+  memberCount: number | null;
+  weightSum: number | null;
+  noFurtherDipShare: number | null;
+  q10: number | null;
+  q25: number | null;
+  q50: number | null;
+  q75: number | null;
+  q90: number | null;
+};
+
 export type Beat = {
   id: string;
   hours: number;
@@ -21,6 +32,7 @@ export type Beat = {
   pileAlive: boolean;
   hand: "idle" | "posting" | "pulling" | "holding";
   sentence: string;
+  lookalikes: Record<Side, LookalikeBand | null>;
 };
 
 export type Tick = {
@@ -34,6 +46,14 @@ export type Tick = {
   gasBid: number | null;
   gasAsk: number | null;
   gasRest: number | null;
+  altLookalikeQ10: number | null;
+  altLookalikeQ25: number | null;
+  altLookalikeQ75: number | null;
+  altLookalikeBand: [number, number] | null;
+  gasLookalikeQ10: number | null;
+  gasLookalikeQ25: number | null;
+  gasLookalikeQ75: number | null;
+  gasLookalikeBand: [number, number] | null;
 };
 
 // ---- face.json shapes (as written by build_face_data.mjs; see FIELDS.md) ----
@@ -44,6 +64,11 @@ type Sentence = {
 };
 type LegState = {
   bid?: number | null; ask?: number | null; running_low?: number | null; survivors?: number | null;
+  member_count?: number | null; weight_sum?: number | null;
+  member_remaining_dip_zero_weighted_share?: number | null;
+  candidate_level_q10_cents?: number | null; candidate_level_q25_cents?: number | null;
+  candidate_level_q50_cents?: number | null; candidate_level_q75_cents?: number | null;
+  candidate_level_q90_cents?: number | null;
   sentence?: Sentence | null;
   action?: { name?: string | null; target_cents?: number | null; reason?: string | null } | null;
   rest?: { action?: string | null; cents?: number | null; lane?: string | null; mode?: string | null } | null;
@@ -102,6 +127,44 @@ function lastAtOrBefore(rows: TapeRow[], hours: number): TapeRow | null {
   return best;
 }
 
+function lookalikeBand(leg: LegState | undefined): LookalikeBand | null {
+  if (!leg || typeof leg.member_count !== "number") return null;
+  return {
+    memberCount: leg.member_count,
+    weightSum: typeof leg.weight_sum === "number" ? leg.weight_sum : null,
+    noFurtherDipShare: typeof leg.member_remaining_dip_zero_weighted_share === "number" ? leg.member_remaining_dip_zero_weighted_share : null,
+    q10: typeof leg.candidate_level_q10_cents === "number" ? leg.candidate_level_q10_cents : null,
+    q25: typeof leg.candidate_level_q25_cents === "number" ? leg.candidate_level_q25_cents : null,
+    q50: typeof leg.candidate_level_q50_cents === "number" ? leg.candidate_level_q50_cents : null,
+    q75: typeof leg.candidate_level_q75_cents === "number" ? leg.candidate_level_q75_cents : null,
+    q90: typeof leg.candidate_level_q90_cents === "number" ? leg.candidate_level_q90_cents : null,
+  };
+}
+
+function lookalikeTimeline(side: Side): Array<{ t: number; band: LookalikeBand | null }> {
+  const out: Array<{ t: number; band: LookalikeBand | null }> = [];
+  for (const row of OS) {
+    const band = lookalikeBand(row.legs?.[side]);
+    if (band) out.push({ t: row.t, band });
+  }
+  return out;
+}
+
+function lookalikeAt(timeline: Array<{ t: number; band: LookalikeBand | null }>, hours: number): LookalikeBand | null {
+  let band: LookalikeBand | null = null;
+  for (const point of timeline) { if (point.t <= hours + 1e-9) band = point.band; else break; }
+  return band;
+}
+
+function bandRange(band: LookalikeBand | null): [number, number] | null {
+  return band?.q25 != null && band.q75 != null ? [band.q25, band.q75] : null;
+}
+
+function bandSentence(band: LookalikeBand | null): string | null {
+  if (!band || band.noFurtherDipShare == null || band.q25 == null || band.q10 == null) return null;
+  return `no further dip ${r1(band.noFurtherDipShare * 100)}% · q25 level ${band.q25}¢ · q10 level ${band.q10}¢`;
+}
+
 export function initTape(face: FaceData) {
   OS = Array.isArray(face.os) ? [...face.os].sort((a, b) => a.t - b.t) : [];
   PROVENANCE = face.provenance ?? {};
@@ -112,6 +175,8 @@ export function initTape(face: FaceData) {
 
   const altRests = restTimeline("ALT");
   const gasRests = restTimeline("GAS");
+  const altLookalikes = lookalikeTimeline("ALT");
+  const gasLookalikes = lookalikeTimeline("GAS");
 
   // time grid = every change point on either tape + every OS receipt, so nothing the OS did falls between samples
   const times = new Set<number>([0, WINDOW_HOURS_TOTAL]);
@@ -122,20 +187,26 @@ export function initTape(face: FaceData) {
   TICKS.length = 0;
   for (const h of [...times].filter((t) => t >= 0 && t <= WINDOW_HOURS_TOTAL).sort((a, b) => a - b)) {
     const a = lastAtOrBefore(alt, h), g = lastAtOrBefore(gas, h);
+    const altBand = lookalikeAt(altLookalikes, h), gasBand = lookalikeAt(gasLookalikes, h);
     TICKS.push({
       hours: h,
       hoursLeft: Math.max(0, WINDOW_HOURS_TOTAL - h),
       altLast: a?.last ?? null, altBid: a?.bid ?? null, altAsk: a?.ask ?? null, altRest: restAt(altRests, h),
       gasLast: g?.last ?? null, gasBid: g?.bid ?? null, gasAsk: g?.ask ?? null, gasRest: restAt(gasRests, h),
+      altLookalikeQ10: altBand?.q10 ?? null, altLookalikeQ25: altBand?.q25 ?? null, altLookalikeQ75: altBand?.q75 ?? null,
+      altLookalikeBand: bandRange(altBand),
+      gasLookalikeQ10: gasBand?.q10 ?? null, gasLookalikeQ25: gasBand?.q25 ?? null, gasLookalikeQ75: gasBand?.q75 ?? null,
+      gasLookalikeBand: bandRange(gasBand),
     });
   }
 
   // beats: one per OS receipt where something the face shows changed — sentence status, Q, survivors, rest, fill
   BEATS.length = 0;
-  let prev: Record<Side, { status: string; q: number | null; surv: number | null; rest: number | null }> = {
-    ALT: { status: "", q: null, surv: null, rest: null }, GAS: { status: "", q: null, surv: null, rest: null },
+  let prev: Record<Side, { status: string; q: number | null; surv: number | null; rest: number | null; band: string }> = {
+    ALT: { status: "", q: null, surv: null, rest: null, band: "" }, GAS: { status: "", q: null, surv: null, rest: null, band: "" },
   };
   let altRest: number | null = null, gasRest: number | null = null;
+  const currentLookalikes: Record<Side, LookalikeBand | null> = { ALT: null, GAS: null };
   OS.forEach((row, i) => {
     const changes: string[] = [];
     const lines: string[] = [];
@@ -148,6 +219,10 @@ export function initTape(face: FaceData) {
       const status = String(s.status ?? "");
       const q = typeof s.Q === "number" ? s.Q : null;
       const surv = typeof leg.survivors === "number" ? leg.survivors : null;
+      const storedBand = lookalikeBand(leg);
+      if (storedBand) currentLookalikes[side] = storedBand;
+      const band = currentLookalikes[side];
+      const bandSignature = JSON.stringify(band);
       const a = String(leg.rest?.action ?? "").toUpperCase();
       const isFill = String(row.kind ?? "").toUpperCase().includes("FILL") && typeof leg.fill?.cents === "number";
       if (a === "PLACE_REST" || a === "REPRICE_REST") {
@@ -165,13 +240,17 @@ export function initTape(face: FaceData) {
       if (status && status !== prev[side].status) changes.push(`${side} sentence ${status}`);
       if (q !== prev[side].q && q !== null) changes.push(`${side} Q ${cents(prev[side].q)} → ${cents(q)}`);
       if (surv !== prev[side].surv && surv !== null) changes.push(`${side} leftovers ${prev[side].surv ?? "?"} → ${surv}`);
+      if (bandSignature !== prev[side].band && band?.memberCount != null) changes.push(`${side} lookalikes ${band.memberCount}`);
+      const lookalikeSentence = bandSentence(band);
       if (status === "RESOLVED" || s.plain_sentence) {
-        lines.push(`${side}: ${firstClause(s.plain_sentence) || status} (P ${cents(s.P)} · Q ${cents(s.Q)} · X ${s.X ?? "STORE SILENT"})`);
+        lines.push(`${side}: ${firstClause(s.plain_sentence) || status} (P ${cents(s.P)} · Q ${cents(s.Q)} · X ${s.X ?? "STORE SILENT"})${lookalikeSentence ? ` · ${lookalikeSentence}` : ""}`);
       } else if (status) {
-        lines.push(`${side}: ${status}`);
+        lines.push(`${side}: ${status}${lookalikeSentence ? ` · ${lookalikeSentence}` : ""}`);
+      } else if (lookalikeSentence) {
+        lines.push(`${side}: ${lookalikeSentence}`);
       }
       if (s.q_author || s.x_author) cited.push(`${side} Q by ${s.q_author ?? "STORE SILENT"}, X by ${s.x_author ?? "STORE SILENT"}`);
-      prev[side] = { status, q, surv, rest: side === "ALT" ? altRest : gasRest };
+      prev[side] = { status, q, surv, rest: side === "ALT" ? altRest : gasRest, band: bandSignature };
     }
     if (changes.length === 0 && i !== 0) return;
 
@@ -197,11 +276,13 @@ export function initTape(face: FaceData) {
       pileAlive: altSurv > 0,
       hand,
       sentence: lines.join("  |  ") || "STORE SILENT",
+      lookalikes: { ALT: currentLookalikes.ALT, GAS: currentLookalikes.GAS },
     });
   });
   if (BEATS.length === 0) {
     BEATS.push({ id: "none", hours: 0, title: "no OS receipts", whatHappened: "STORE SILENT", whyTheBidMoved: "STORE SILENT", cited: "STORE SILENT",
-      altRest: null, gasRest: null, survivors: 0, brain: "blank", heart: "still", pileAlive: false, hand: "idle", sentence: "STORE SILENT" });
+      altRest: null, gasRest: null, survivors: 0, brain: "blank", heart: "still", pileAlive: false, hand: "idle", sentence: "STORE SILENT",
+      lookalikes: { ALT: null, GAS: null } });
   }
   READY = true;
 }

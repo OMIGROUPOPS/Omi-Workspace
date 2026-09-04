@@ -1,4 +1,5 @@
 import {
+  Area,
   CartesianGrid,
   Line,
   LineChart,
@@ -22,7 +23,7 @@ function ChartTip({
   side,
 }: {
   active?: boolean;
-  payload?: Array<{ dataKey?: string; value?: number }>;
+  payload?: Array<{ dataKey?: string; value?: number | [number, number] }>;
   label?: number;
   side: "ALT" | "GAS";
 }) {
@@ -31,6 +32,7 @@ function ChartTip({
     payload.map((p) => [String(p.dataKey), p.value]),
   );
   const prefix = side === "ALT" ? "alt" : "gas";
+  const band = row[`${prefix}LookalikeBand`];
   return (
     <div className="rounded-md border border-border bg-raised px-3 py-2 text-xs text-fg">
       <p className="mb-1 text-muted">{Number(label).toFixed(1)}h into the window</p>
@@ -41,6 +43,8 @@ function ChartTip({
         Our bid{" "}
         {row[`${prefix}Rest`] != null ? `${row[`${prefix}Rest`]}¢` : "none yet"}
       </p>
+      {Array.isArray(band) ? <p>Lookalikes 25–75% {band[0]}–{band[1]}¢</p> : null}
+      {row[`${prefix}LookalikeQ10`] != null ? <p>Lookalike q10 {row[`${prefix}LookalikeQ10`]}¢</p> : null}
     </div>
   );
 }
@@ -52,6 +56,8 @@ export function AtlasChart({ hours, side }: Props) {
   const bidKey = isAlt ? "altBid" : "gasBid";
   const askKey = isAlt ? "altAsk" : "gasAsk";
   const restKey = isAlt ? "altRest" : "gasRest";
+  const bandKey = isAlt ? "altLookalikeBand" : "gasLookalikeBand";
+  const q10Key = isAlt ? "altLookalikeQ10" : "gasLookalikeQ10";
   const stroke = isAlt ? "var(--color-alt)" : "var(--color-gas)";
   const now = data[data.length - 1];
   const last = now ? (isAlt ? now.altLast : now.gasLast) : null;
@@ -69,7 +75,7 @@ export function AtlasChart({ hours, side }: Props) {
             {name}
           </h2>
           <p className="mt-2 text-sm text-muted">
-            Grey = best bid and best ask. Bright = last trade. Dashed = our bid.
+            Grey = best bid and best ask. Bright = last trade. Dashed = our bid. Shade = where lookalikes went from here (25–75%).
           </p>
         </div>
         <div className="text-right tabular-nums">
@@ -109,6 +115,27 @@ export function AtlasChart({ hours, side }: Props) {
               cursor={{ stroke: "var(--color-border-strong)" }}
             />
             <ReferenceLine x={hours} stroke="var(--color-muted)" strokeDasharray="2 4" />
+            <Area
+              type="stepAfter"
+              dataKey={bandKey}
+              name="where lookalikes went from here (25–75%)"
+              stroke="none"
+              fill={stroke}
+              fillOpacity={0.12}
+              connectNulls={false}
+              isAnimationActive={false}
+            />
+            <Line
+              type="stepAfter"
+              dataKey={q10Key}
+              name="Lookalike q10"
+              stroke={stroke}
+              strokeWidth={1}
+              strokeOpacity={0.35}
+              dot={false}
+              connectNulls={false}
+              isAnimationActive={false}
+            />
             <Line
               type="monotone"
               dataKey={bidKey}

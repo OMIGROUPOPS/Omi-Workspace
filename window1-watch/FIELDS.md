@@ -12,6 +12,14 @@ os[].legs.<LEG>.bid <- stages[].books.<LEG>.bid_cents
 os[].legs.<LEG>.ask <- stages[].books.<LEG>.ask_cents
 os[].legs.<LEG>.running_low <- stages[].lows_travel.<LEG>.observed_traded_low_cents
 os[].legs.<LEG>.survivors <- stages[].macro.survivor_shapes.legs.<LEG>.survivor_shapes.length; stages[].shape_survival.<LEG> stores no survivor IDs or count
+os[].legs.<LEG>.member_count <- stages[].derivations[leg_id=<LEG>].overlap_membership.member_count (fallback: derivation membership_count)
+os[].legs.<LEG>.weight_sum <- stages[].derivations[leg_id=<LEG>].overlap_membership.weight_sum (fallback: derivation membership_weight_sum)
+os[].legs.<LEG>.member_remaining_dip_zero_weighted_share <- sum stages[].derivations[leg_id=<LEG>].derivation.pricing_authority.true_conditioning.posterior_rows[].conditioning_weight where member_remaining_dip = 0, divided by the sum of all positive finite posterior conditioning_weight; null when there is no weighted posterior
+os[].legs.<LEG>.candidate_level_q10_cents <- lower-bound cumulative weighted q10 of stages[].derivations[leg_id=<LEG>].derivation.pricing_authority.true_conditioning.posterior_rows[].candidate_level_cents using positive finite conditioning_weight; no interpolation
+os[].legs.<LEG>.candidate_level_q25_cents <- lower-bound cumulative weighted q25 of stages[].derivations[leg_id=<LEG>].derivation.pricing_authority.true_conditioning.posterior_rows[].candidate_level_cents using positive finite conditioning_weight; no interpolation
+os[].legs.<LEG>.candidate_level_q50_cents <- lower-bound cumulative weighted q50 of stages[].derivations[leg_id=<LEG>].derivation.pricing_authority.true_conditioning.posterior_rows[].candidate_level_cents using positive finite conditioning_weight; no interpolation
+os[].legs.<LEG>.candidate_level_q75_cents <- lower-bound cumulative weighted q75 of stages[].derivations[leg_id=<LEG>].derivation.pricing_authority.true_conditioning.posterior_rows[].candidate_level_cents using positive finite conditioning_weight; no interpolation
+os[].legs.<LEG>.candidate_level_q90_cents <- lower-bound cumulative weighted q90 of stages[].derivations[leg_id=<LEG>].derivation.pricing_authority.true_conditioning.posterior_rows[].candidate_level_cents using positive finite conditioning_weight; no interpolation
 os[].legs.<LEG>.sentence.status <- stages[].micro.beliefs.<LEG>.status
 os[].legs.<LEG>.sentence.P <- stages[].micro.beliefs.<LEG>.belief_price_cents
 os[].legs.<LEG>.sentence.Q <- stages[].micro.beliefs.<LEG>.predicted_cents
@@ -34,5 +42,6 @@ bell.source <- altgas.json bell.bell_source
 provenance.event_id <- altgas.json provenance.event_id
 provenance.trace_sha256 <- altgas.json provenance.trace_sha256
 provenance.os_sha256 <- SHA256 of arb-executor/analysis/window1_v54_dual_belief_os.js
+build_face_data.mjs --trace <trace> --tape-dir <dir> <- streams the trace and projects the same face fields without materializing altgas.json; provenance.trace_sha256 hashes that trace
 shell/public/data/altgas.face.json <- npm run face:data copies data/altgas.face.json through shell/scripts/copy-face-data.mjs
 stand-down/pull action series <- STORE SILENT; exported action names are HOLD_REST, PLACE_REST, and REPRICE_REST

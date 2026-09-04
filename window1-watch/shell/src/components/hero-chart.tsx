@@ -1,4 +1,5 @@
 import {
+  Area,
   Line,
   LineChart,
   ReferenceLine,
@@ -54,6 +55,48 @@ export function HeroChart({ hours }: Props) {
             x={hours}
             stroke="var(--color-muted)"
             strokeDasharray="2 4"
+          />
+          <Area
+            type="stepAfter"
+            dataKey="altLookalikeBand"
+            name="ALT where lookalikes went from here (25–75%)"
+            stroke="none"
+            fill="var(--color-alt)"
+            fillOpacity={0.10}
+            connectNulls={false}
+            isAnimationActive={false}
+          />
+          <Area
+            type="stepAfter"
+            dataKey="gasLookalikeBand"
+            name="GAS where lookalikes went from here (25–75%)"
+            stroke="none"
+            fill="var(--color-gas)"
+            fillOpacity={0.10}
+            connectNulls={false}
+            isAnimationActive={false}
+          />
+          <Line
+            type="stepAfter"
+            dataKey="altLookalikeQ10"
+            name="ALT lookalike q10"
+            stroke="var(--color-alt)"
+            strokeWidth={1}
+            strokeOpacity={0.35}
+            dot={false}
+            connectNulls={false}
+            isAnimationActive={false}
+          />
+          <Line
+            type="stepAfter"
+            dataKey="gasLookalikeQ10"
+            name="GAS lookalike q10"
+            stroke="var(--color-gas)"
+            strokeWidth={1}
+            strokeOpacity={0.35}
+            dot={false}
+            connectNulls={false}
+            isAnimationActive={false}
           />
           <Line
             type="monotone"

@@ -149,6 +149,7 @@ export function recordedTruth(face, table) {
       marker_label: silent
         ? null
         : `${leg} FLOOR · RECORDED ${floor}¢ @ ${minutes.toFixed(2)}m to bell — ${RULER}`,
+      chart_label: silent ? null : `recorded floor ${floor}¢ · ${Math.trunc(minutes)}m to bell`,
       markers: {},
     };
   }
@@ -175,6 +176,7 @@ export function recordedTruth(face, table) {
       reason: pairReason,
       line: `best capturable = STORE SILENT — ${pairReason}`,
       discount_line: "STORE SILENT",
+      compact_line: `best capturable STORE SILENT — ${pairReason}`,
     };
   else {
     const fav = truth.legs[truth.favorite_leg].floor_cents,
@@ -186,6 +188,7 @@ export function recordedTruth(face, table) {
       reason: null,
       line: `best capturable = ${fav} + ${dog} = ${sum}¢`,
       discount_line: `${100 - sum}¢ under par`,
+      compact_line: `best capturable ${sum}¢ · ${100 - sum}¢ under par`,
     };
   }
   return truth;

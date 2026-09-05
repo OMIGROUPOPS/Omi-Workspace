@@ -20,6 +20,16 @@ const ALT = "KXATPMATCH-26JUL12ALTGAS",
   URS = "KXATPCHALLENGERMATCH-26JUL14URSPAL";
 const face = (id) =>
   JSON.parse(fs.readFileSync(path.join(here, "data", `${id}.face.json`)));
+function withoutActionDisplay(face) {
+  const copy = structuredClone(face);
+  delete copy.render.bid_actions;
+  const hover = copy.render.columns.indexOf("hover_lines");
+  if (hover >= 0) {
+    copy.render.columns.splice(hover, 1);
+    for (const tick of copy.render.ticks) tick.splice(hover, 1);
+  }
+  return copy;
+}
 
 test("exact pinned records, SHA256 and original CSV columns", () => {
   for (const id of [ALT, URS]) {
@@ -66,12 +76,12 @@ test("ruler refresh leaves every existing OS, tape, benchmark and receipt field 
         { cwd: root, maxBuffer: 32 * 1024 * 1024 },
       ),
     );
-    const current = face(id);
+    const current = withoutActionDisplay(face(id));
     delete current.truth;
     assert.deepEqual(current, original);
     const rebuilt = structuredClone(original);
     attachRecordedTruth(rebuilt, table);
-    assert.deepEqual(rebuilt, face(id));
+    assert.deepEqual(rebuilt, withoutActionDisplay(face(id)));
   }
 });
 test("UNKNOWN, NO_FORMATION and EMPTY cannot turn finite fixture floors into a ruler", () => {

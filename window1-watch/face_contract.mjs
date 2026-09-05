@@ -298,8 +298,13 @@ export async function extendFace(face, { here, eventId, benchPath }) {
       const l = row.legs[leg];
       if (row.kind === "DECISION_STAGE") current[leg] = l;
       const action = l?.action?.name ?? l?.rest?.action;
+      // Explicit uncredited standing-state disappearance, not a synthetic bell cancel.
+      if (row.standing?.[leg]?.credited === false && row.standing[leg].standing_target_cents === null)
+        rest[leg] = null;
       if (["PLACE_REST", "REPRICE_REST"].includes(action)) rest[leg] = l.rest;
-      if (["PULL_REST", "CANCEL_REST"].includes(action)) rest[leg] = null;
+      if (action === "HOLD_REST" && finite(l.action?.target_cents) && l.action.target_cents !== rest[leg]?.cents)
+        rest[leg] = { cents: l.action.target_cents, lane: l.action.lane ?? null, action };
+      if (["PULL_REST", "CANCEL_REST", "STAND_DOWN"].includes(action)) rest[leg] = null;
       if (l?.fill) {
         filled[leg] = l.fill.cents;
         rest[leg] = null;

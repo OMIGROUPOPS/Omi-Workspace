@@ -264,3 +264,95 @@ The refresh changes only top-level truth and any necessary display geometry.
 Pinned-source discrepancy: ALTGAS is 58¢ at **3362.5583333333334m**, 38¢ at
 **425.5383333325386m** on the existing game's bell, not approximately 3940/330m.
 URSPAL keeps the existing trace bell; its table bell is 2853 seconds later.
+
+## Visible ruler, bid-action markers and fill cards
+
+`chart_actions.mjs` is a face-only receipt projection, invoked by the trace-backed
+`build_face_data.mjs` after the ruler is attached. For existing faces, run
+`node window1-watch/refresh_chart_actions.mjs <event_id> [<event_id> ...]`, then
+`npm run face:data` in `window1-watch/shell`. This reads the existing full stage
+`.json.gz` receipts, verifies their event/trace-row binding, and preserves the OS
+dictionary, tape, bench and provenance. It neither executes nor imports the OS.
+
+### Token gloss table
+
+Raw tokens are always displayed next to these exact operator-supplied glosses.
+Matching is exact except the three explicitly licensed prefixes. Unknown or
+absent tokens have gloss `STORE SILENT`. A lane gloss is never substituted for an
+unknown `action.reason` gloss, and no token is inferred from another field.
+
+| Raw token / prefix | Plain-English gloss |
+|---|---|
+| INSUFFICIENT_AUTHORITY_NO_WRITER | no organ wrote this; the library prior was executed |
+| LADDER_SHRINK_Q_CLIP_WRITER | a cheap ending died; bid stepped to the ladder |
+| PREDICTION_SEAT_IMMUNE | frozen by the seat until its deadline |
+| IMMUNITY_HOLD | frozen by the seat until its deadline |
+| FLOOR_CAPABLE_WRITER | the two internal views disagreed; posted anyway |
+| PAL_ATOMIC_* / GIU_* / LAJSVA_* | named hand (bed-only branch) |
+| DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT | views disagree; no bid |
+| BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE | STORE SILENT |
+| Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK | STORE SILENT |
+| Any other or absent token | STORE SILENT |
+
+The last two named rows are observed ALTGAS action reasons, not new interpretations.
+Other encountered URSPAL reasons include
+`COHERENT_LIVE_DEADLINE_PREDICTION_SEATED_AT_UNIFIED_AIM_CONDUCT_POSTERIOR`,
+`PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT`, and
+`NON_PRINT_DEAD_OR_SHALLOW_REST_RESEATED_TO_HIGHEST_POSTABLE_LIVE_LADDER_RUNG`:
+each remains raw with `STORE SILENT` gloss. Its `PAL_ATOMIC_...` reasons use the
+explicit bed-only prefix gloss above.
+
+### Stored chart fields
+
+| Key | Source / display derivation |
+|---|---|
+| truth.legs[leg].chart_label | `recorded floor <floor_cents>¢ · <whole minutes>m to bell`; whole minutes truncated toward zero for the compact label only. Full precision remains in `minutes_to_bell` and the two-decimal flag hover. Source remains pinned truth @ c0056976, never tape minima |
+| truth.pair.compact_line | `best capturable <sum_cents>¢ · <discount_cents>¢ under par`, or the explicit unavailable reason. Existing full arithmetic `pair.line` retained |
+| render.ticks[].hover_lines | Preformatted source-clock label and both as-of tape books/last from that frame; absent values say STORE SILENT. Browser displays the strings without calculating prices/text |
+| render.bid_actions[] | Receipt-ordered action display records; ▲ PLACE_REST, ◆ REPRICE_REST or HOLD_REST with changed finite target, ✕ explicit cancel/pull/stand-down or observed uncredited standing target disappearance, ● FILL_EVENT |
+| bid_actions[].id / leg / kind / glyph | Stable receipt-id + leg + action ordinal; source leg; display category PLACE/REPRICE/REMOVE/FILL; licensed marker glyph. A HOLD remains raw HOLD_REST even though it uses the diamond |
+| receipt / receipt_id / receipt_index / trace_row / detail_url | Original receipt binding and full inspector URL; equal-time receipts are not merged |
+| t / timestamp_epoch / minutes_to_bell | Existing face receipt hours, original decision epoch or fill context epoch, and existing trace-bell minutes. No prompt-example timestamps are used |
+| old_cents / new_cents / old_known / new_known | Old standing target from `reads.half_pair_state.value.legs[leg].standing_target_cents`, else explicit envelope `active_target_before_cents`, else previously observed rest; new target from action. Explicit null means none; absent state means STORE SILENT, distinguished by known flags |
+| marker_cents | New target for PLACE/REPRICE/changed HOLD; former target for removal/fill. No invented target when missing |
+| raw.action / reason | Exact derivation `action.action` / `action.reason`. FILL_EVENT is the source row kind, not a fabricated REST action. Fill rows have no action.reason, so it stays null |
+| raw.winner_lane | `layered_dual_belief.decision_arbitration.winner.lane`, NOT an envelope writer-lane fallback |
+| raw.envelope_mode | `layered_dual_belief.envelope_placement.mode` |
+| gloss | Approved table lookup for each raw field; unknown/null => STORE SILENT |
+| sentence | Exact `os[receipt_index].legs[leg].sentence` projection. Includes status/P/Q/X/q_author/x_author/plain_sentence. Legacy X is phase-projection cents, not the separately stored deadline |
+| book | Exact receipt `reads.books.value[leg]`, including bid_cents, ask_cents, last_trade_cents and source receipt. Never replace an absent last trade with tape, midpoint or running low |
+| observation | Null normally. If a previously observed rest disappears from an uncredited half-pair snapshot without a removal action, explicitly states that source transition; raw action/reason stay absent. Credited disappearance is represented once by FILL_EVENT, not a duplicate cancel |
+| label / hover_lines | Builder-formatted clock, raw action, old→new, raw winner/mode/reason + separate glosses, exact book, sentence fields and unabridged stored plain_sentence |
+| markers.play / inspection | Normalized time progress and downward price coordinate for each axis; `display_progress` clamps only the edge hit target, `boundary` and `label` disclose an out-of-axis receipt. Original source time is unchanged |
+| stack_offset_px | Successive coincident leg/time/price receipts offset their hit target by 18 display pixels to remain independently hoverable (e.g. simultaneous GAS PLACE + fill). No time or price changes |
+
+Consecutive HOLD_REST rows with no target change get no marker. Their rest remains
+the dashed line. Changed HOLD targets and explicit uncredited disappearance also
+feed the builder's existing display rest carry; no new OS action is created.
+There is no synthetic cancel at bell: existing miss fading remains separate.
+Recorded floor lines are solid, full plot width, at 50% side-color alpha. The ruler
+is retrospective and deliberately not clipped by the causal replay playhead.
+Bid markers and fill cards are shown only once their receipt ordinal is reached.
+
+### Fill card fields (`render.bid_actions[].fill`)
+
+| Key | Source / derivation |
+|---|---|
+| context | Original `fill_event_receipt.context`, retained without reinterpreting execution credit |
+| cents / triggering_print_cents | Context `entry_cents` / `triggering_print_price_cents`; execution limit and triggering print are distinct |
+| place_receipt / place_receipt_id / place_timestamp_epoch | Most recent PLACE_REST for that leg's uninterrupted standing-rest lineage. REPRICE does not reset it; cancel/pull/uncredited disappearance/fill clears it |
+| placing_sentence / placing_sentence_lines | Exact sentence and builder-formatted status/P/Q/X/authors/plain_sentence from that PLACE, not the latest reprice or a belief fabricated at the fill. Full text is available in the card's expandable sentence |
+| rest_age_minutes | `(fill_timestamp_epoch - original PLACE timestamp_epoch) / 60`; missing PLACE or negative age => null / STORE SILENT. No nearest-row timestamp guess |
+| recorded_floor_cents | Only `truth.legs[leg].floor_cents`; absent/unverified ruler => null |
+| floor_difference_cents / floor_line | `entry_cents - recorded_floor_cents`; absolute difference labeled above/below the recorded floor. Null inputs => STORE SILENT |
+| summary | Stored `<leg> filled <entry>¢ · <minutes>m to bell · print <print>¢ · rest had stood <age>m`. Clock and age display up to two decimals; full values retained |
+
+FILL_EVENT rows themselves have no decision sentence, winner, envelope, reason or
+book. These remain STORE SILENT in the fill marker hover; the separate *placing*
+sentence is explicitly sourced in its card rather than relabeled as a fill-time belief.
+ALT proof: four reprices 55→49→55→49→45; each stored reason is
+`BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE`. GAS's card reads
+`GAS filled 42¢ · 2880.73m to bell · print 41¢ · rest had stood 0m` and
+`4¢ above floor 38¢`. The example 2965m does not match this trace's clock.
+URSPAL's PAL fill is 39¢ against the separate recorded ruler of 40¢; the card
+truthfully says `1¢ below floor 40¢`, rather than altering either historical source.

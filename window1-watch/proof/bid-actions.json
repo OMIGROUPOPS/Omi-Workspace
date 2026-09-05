@@ -1,0 +1,378 @@
+{
+  "alt_reprices": [
+    {
+      "id": "9da495bf87800a64dd72f55dffcfc4fe8c9a9d1b6c07e4f15aadd44f044f6e82:ALT:1",
+      "leg": "ALT",
+      "kind": "REPRICE",
+      "glyph": "◆",
+      "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-360",
+      "receipt_id": "9da495bf87800a64dd72f55dffcfc4fe8c9a9d1b6c07e4f15aadd44f044f6e82",
+      "receipt_index": 24,
+      "trace_row": 1752,
+      "detail_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/9da495bf87800a64dd72f55dffcfc4fe8c9a9d1b6c07e4f15aadd44f044f6e82.json",
+      "t": 14.92388888888889,
+      "timestamp_epoch": 1783831459.000001,
+      "minutes_to_bell": 3395.683333317439,
+      "old_cents": 55,
+      "new_cents": 49,
+      "marker_cents": 49,
+      "old_known": true,
+      "new_known": true,
+      "raw": {
+        "action": "REPRICE_REST",
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+        "winner_lane": "FLOOR_CAPABLE_WRITER",
+        "envelope_mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+      },
+      "observation": null,
+      "sentence": {
+        "status": "RESOLVED",
+        "P": 59,
+        "Q": 49,
+        "X": 57,
+        "q_author": "PRIOR_ONLY",
+        "x_author": "LIBRARY_FRACTION_PRIOR",
+        "plain_sentence": "believes ALT at 59¢ [OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=3e9ee739-aa2a-7e6a-586c-cc7000fe5f8a] at 3396min-to-bell with 3.14 vol_log1p in ATP_MAIN, using 7 specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE) + KXATPMATCH-25OCT15GIRDAV@0.78 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-fe5a9cce1bf9699a0887ddf0c1ebd858a33f35603dd23ebeb52310a1227d9660], SHOULD drift to 49¢ by 2974min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1783856743.9877975; deadline-emitted-now=1783831459.000001; deadline-receipt=KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-360]",
+        "family": "INTERIM_UP_TRAVEL",
+        "predicted_minutes_to_bell": 2974,
+        "authority_source": "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET"
+      },
+      "book": {
+        "bid_cents": 57,
+        "ask_cents": 58,
+        "last_trade_cents": 59,
+        "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-360"
+      },
+      "gloss": {
+        "action": "STORE SILENT",
+        "reason": "STORE SILENT",
+        "winner_lane": "the two internal views disagreed; posted anyway",
+        "envelope_mode": "STORE SILENT"
+      },
+      "label": "ALT REPRICE_REST · 55¢ → 49¢ · 3395.68m to bell",
+      "hover_lines": [
+        "ALT · 3395.68m to bell · REPRICE_REST · 55¢ → 49¢",
+        "winner.lane: FLOOR_CAPABLE_WRITER · the two internal views disagreed; posted anyway",
+        "envelope mode: PRICING_AUTHORITY_TARGET_EXECUTED · STORE SILENT",
+        "action.reason: BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE · STORE SILENT",
+        "book bid 57¢ / ask 58¢ / last 59¢",
+        "status RESOLVED · P 59¢ · Q 49¢ · X 57¢",
+        "q_author PRIOR_ONLY · x_author LIBRARY_FRACTION_PRIOR",
+        "believes ALT at 59¢ [OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=3e9ee739-aa2a-7e6a-586c-cc7000fe5f8a] at 3396min-to-bell with 3.14 vol_log1p in ATP_MAIN, using 7 specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE) + KXATPMATCH-25OCT15GIRDAV@0.78 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-fe5a9cce1bf9699a0887ddf0c1ebd858a33f35603dd23ebeb52310a1227d9660], SHOULD drift to 49¢ by 2974min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1783856743.9877975; deadline-emitted-now=1783831459.000001; deadline-receipt=KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-360]"
+      ],
+      "markers": {
+        "play": {
+          "progress": 0.14327927419127076,
+          "display_progress": 0.14327927419127076,
+          "boundary": null,
+          "price": 0.5333333333333333,
+          "label": "ALT REPRICE_REST · 55¢ → 49¢ · 3395.68m to bell"
+        },
+        "inspection": {
+          "progress": 0.20867140254944908,
+          "display_progress": 0.20867140254944908,
+          "boundary": null,
+          "price": 0.5113636363636364,
+          "label": "ALT REPRICE_REST · 55¢ → 49¢ · 3395.68m to bell"
+        }
+      },
+      "stack_offset_px": 0
+    },
+    {
+      "id": "725fd6457518711e753186535d2c55933125d42ee8dc30566eb208d7ec084acd:ALT:3",
+      "leg": "ALT",
+      "kind": "REPRICE",
+      "glyph": "◆",
+      "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+      "receipt_id": "725fd6457518711e753186535d2c55933125d42ee8dc30566eb208d7ec084acd",
+      "receipt_index": 42,
+      "trace_row": 1763,
+      "detail_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/725fd6457518711e753186535d2c55933125d42ee8dc30566eb208d7ec084acd.json",
+      "t": 23.506452777518167,
+      "timestamp_epoch": 1783862356.23,
+      "minutes_to_bell": 2880.729499999683,
+      "old_cents": 49,
+      "new_cents": 55,
+      "marker_cents": 55,
+      "old_known": true,
+      "new_known": true,
+      "raw": {
+        "action": "REPRICE_REST",
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+        "winner_lane": "FLOOR_CAPABLE_WRITER",
+        "envelope_mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+      },
+      "observation": null,
+      "sentence": {
+        "status": "RESOLVED",
+        "P": 58,
+        "Q": 55,
+        "X": 56,
+        "q_author": "PRIOR_REWEIGHTED_BY_OWN_WALK",
+        "x_author": "LIBRARY_FRACTION_PRIOR",
+        "plain_sentence": "believes ALT at 58¢ [OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=7db05155-abd3-6f01-4a2d-ba1f6a783113] at 2881min-to-bell with 5.93 vol_log1p in ATP_MAIN, using 7 specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE) + KXATPMATCH-25OCT15GIRDAV@0.83 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-8b76bb53bd51c1851c14659dddd88c0118cf28dc7bcc0e4c21dce674ebee7ed1], SHOULD drift to 55¢ by 256min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784019869.238349; deadline-emitted-now=1783862356.23; deadline-receipt=87517932-7806-63a5-6104-8b6bf4d17f87]",
+        "family": "INTERIM_UP_TRAVEL",
+        "predicted_minutes_to_bell": 256,
+        "authority_source": "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET"
+      },
+      "book": {
+        "bid_cents": 57,
+        "ask_cents": 59,
+        "last_trade_cents": 58,
+        "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1070"
+      },
+      "gloss": {
+        "action": "STORE SILENT",
+        "reason": "STORE SILENT",
+        "winner_lane": "the two internal views disagreed; posted anyway",
+        "envelope_mode": "STORE SILENT"
+      },
+      "label": "ALT REPRICE_REST · 49¢ → 55¢ · 2880.73m to bell",
+      "hover_lines": [
+        "ALT · 2880.73m to bell · REPRICE_REST · 49¢ → 55¢",
+        "winner.lane: FLOOR_CAPABLE_WRITER · the two internal views disagreed; posted anyway",
+        "envelope mode: PRICING_AUTHORITY_TARGET_EXECUTED · STORE SILENT",
+        "action.reason: BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE · STORE SILENT",
+        "book bid 57¢ / ask 59¢ / last 58¢",
+        "status RESOLVED · P 58¢ · Q 55¢ · X 56¢",
+        "q_author PRIOR_REWEIGHTED_BY_OWN_WALK · x_author LIBRARY_FRACTION_PRIOR",
+        "believes ALT at 58¢ [OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=7db05155-abd3-6f01-4a2d-ba1f6a783113] at 2881min-to-bell with 5.93 vol_log1p in ATP_MAIN, using 7 specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE) + KXATPMATCH-25OCT15GIRDAV@0.83 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-8b76bb53bd51c1851c14659dddd88c0118cf28dc7bcc0e4c21dce674ebee7ed1], SHOULD drift to 55¢ by 256min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784019869.238349; deadline-emitted-now=1783862356.23; deadline-receipt=87517932-7806-63a5-6104-8b6bf4d17f87]"
+      ],
+      "markers": {
+        "play": {
+          "progress": 0.2732005826682215,
+          "display_progress": 0.2732005826682215,
+          "boundary": null,
+          "price": 0.3333333333333333,
+          "label": "ALT REPRICE_REST · 49¢ → 55¢ · 2880.73m to bell"
+        },
+        "inspection": {
+          "progress": 0.3286760244978145,
+          "display_progress": 0.3286760244978145,
+          "boundary": null,
+          "price": 0.4431818181818182,
+          "label": "ALT REPRICE_REST · 49¢ → 55¢ · 2880.73m to bell"
+        }
+      },
+      "stack_offset_px": 0
+    },
+    {
+      "id": "a264aa519a169bbcfe3a8a7a5f54a15902568b52746c184fecbba83ddae889a6:ALT:5",
+      "leg": "ALT",
+      "kind": "REPRICE",
+      "glyph": "◆",
+      "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+      "receipt_id": "a264aa519a169bbcfe3a8a7a5f54a15902568b52746c184fecbba83ddae889a6",
+      "receipt_index": 120,
+      "trace_row": 1812,
+      "detail_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/a264aa519a169bbcfe3a8a7a5f54a15902568b52746c184fecbba83ddae889a6.json",
+      "t": 68.69725388864676,
+      "timestamp_epoch": 1784025043.114,
+      "minutes_to_bell": 169.28143333196715,
+      "old_cents": 55,
+      "new_cents": 49,
+      "marker_cents": 49,
+      "old_known": true,
+      "new_known": true,
+      "raw": {
+        "action": "REPRICE_REST",
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+        "winner_lane": "FLOOR_CAPABLE_WRITER",
+        "envelope_mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+      },
+      "observation": null,
+      "sentence": {
+        "status": "RESOLVED",
+        "P": 58,
+        "Q": 49,
+        "X": 62,
+        "q_author": "PRIOR_ONLY",
+        "x_author": "LIBRARY_FRACTION_PRIOR",
+        "plain_sentence": "believes ALT at 58¢ [OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=7db05155-abd3-6f01-4a2d-ba1f6a783113] at 169min-to-bell with 9.6 vol_log1p in ATP_MAIN, using 7 specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE) + KXATPMATCH-25OCT15GIRDAV@0.75 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-efe569f7fc23b0ff9f89ea9ce435d102b2d3281646d7eed716b64c8ee1cf898d], SHOULD drift to 49¢ by 78min-to-bell [PHASE_CENTRAL_ESTIMATE=4¢; CENTRAL_ESTIMATE_RANK=0.518781; CENTRAL_MEMBERS=7481; CENTRAL_CELL=P90_100; deadline-epoch=1784030504.8183334; deadline-emitted-now=1784025043.114; deadline-receipt=132195bc-2998-60e0-053e-da2627a5edaa]",
+        "family": "INTERIM_UP_TRAVEL",
+        "predicted_minutes_to_bell": 78,
+        "authority_source": "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET"
+      },
+      "book": {
+        "bid_cents": 61,
+        "ask_cents": 62,
+        "last_trade_cents": 62,
+        "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-16282"
+      },
+      "gloss": {
+        "action": "STORE SILENT",
+        "reason": "STORE SILENT",
+        "winner_lane": "the two internal views disagreed; posted anyway",
+        "envelope_mode": "STORE SILENT"
+      },
+      "label": "ALT REPRICE_REST · 55¢ → 49¢ · 169.28m to bell",
+      "hover_lines": [
+        "ALT · 169.28m to bell · REPRICE_REST · 55¢ → 49¢",
+        "winner.lane: FLOOR_CAPABLE_WRITER · the two internal views disagreed; posted anyway",
+        "envelope mode: PRICING_AUTHORITY_TARGET_EXECUTED · STORE SILENT",
+        "action.reason: BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE · STORE SILENT",
+        "book bid 61¢ / ask 62¢ / last 62¢",
+        "status RESOLVED · P 58¢ · Q 49¢ · X 62¢",
+        "q_author PRIOR_ONLY · x_author LIBRARY_FRACTION_PRIOR",
+        "believes ALT at 58¢ [OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=7db05155-abd3-6f01-4a2d-ba1f6a783113] at 169min-to-bell with 9.6 vol_log1p in ATP_MAIN, using 7 specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE) + KXATPMATCH-25OCT15GIRDAV@0.75 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-efe569f7fc23b0ff9f89ea9ce435d102b2d3281646d7eed716b64c8ee1cf898d], SHOULD drift to 49¢ by 78min-to-bell [PHASE_CENTRAL_ESTIMATE=4¢; CENTRAL_ESTIMATE_RANK=0.518781; CENTRAL_MEMBERS=7481; CENTRAL_CELL=P90_100; deadline-epoch=1784030504.8183334; deadline-emitted-now=1784025043.114; deadline-receipt=132195bc-2998-60e0-053e-da2627a5edaa]"
+      ],
+      "markers": {
+        "play": {
+          "progress": 0.9572908018226718,
+          "display_progress": 0.9572908018226718,
+          "boundary": null,
+          "price": 0.5333333333333333,
+          "label": "ALT REPRICE_REST · 55¢ → 49¢ · 169.28m to bell"
+        },
+        "inspection": {
+          "progress": 0.9605507268894434,
+          "display_progress": 0.9605507268894434,
+          "boundary": null,
+          "price": 0.5113636363636364,
+          "label": "ALT REPRICE_REST · 55¢ → 49¢ · 169.28m to bell"
+        }
+      },
+      "stack_offset_px": 0
+    },
+    {
+      "id": "dc8492821e528a25c832b531203e930d8263df2af8c6c5b8416ad0a88bad3cdd:ALT:6",
+      "leg": "ALT",
+      "kind": "REPRICE",
+      "glyph": "◆",
+      "receipt": "033693bd-187f-42e1-af1e-7e37eb886d60",
+      "receipt_id": "dc8492821e528a25c832b531203e930d8263df2af8c6c5b8416ad0a88bad3cdd",
+      "receipt_index": 124,
+      "trace_row": 1815,
+      "detail_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/dc8492821e528a25c832b531203e930d8263df2af8c6c5b8416ad0a88bad3cdd.json",
+      "t": 69.21703111085627,
+      "timestamp_epoch": 1784026914.312,
+      "minutes_to_bell": 138.0947999993964,
+      "old_cents": 49,
+      "new_cents": 45,
+      "marker_cents": 45,
+      "old_known": true,
+      "new_known": true,
+      "raw": {
+        "action": "REPRICE_REST",
+        "reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+        "winner_lane": "FLOOR_CAPABLE_WRITER",
+        "envelope_mode": "PRICING_AUTHORITY_TARGET_EXECUTED"
+      },
+      "observation": null,
+      "sentence": {
+        "status": "RESOLVED",
+        "P": 58,
+        "Q": 45,
+        "X": 62,
+        "q_author": "PRIOR_ONLY",
+        "x_author": "LIBRARY_FRACTION_PRIOR",
+        "plain_sentence": "believes ALT at 58¢ [OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=7db05155-abd3-6f01-4a2d-ba1f6a783113] at 138min-to-bell with 9.64 vol_log1p in ATP_MAIN, using 7 specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE) + KXATPMATCH-25OCT15GIRDAV@0.73 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-3f3eb585f4fa76f142c09ebfe14d2082345d8b5227ce99267db1ec641477a71c], SHOULD drift to 45¢ by 4min-to-bell [PHASE_CENTRAL_ESTIMATE=4¢; CENTRAL_ESTIMATE_RANK=0.518781; CENTRAL_MEMBERS=7481; CENTRAL_CELL=P90_100; deadline-epoch=1784034936.3121636; deadline-emitted-now=1784026914.312; deadline-receipt=033693bd-187f-42e1-af1e-7e37eb886d60]",
+        "family": "INTERIM_UP_TRAVEL",
+        "predicted_minutes_to_bell": 4,
+        "authority_source": "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET"
+      },
+      "book": {
+        "bid_cents": 62,
+        "ask_cents": 63,
+        "last_trade_cents": 63,
+        "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-16559"
+      },
+      "gloss": {
+        "action": "STORE SILENT",
+        "reason": "STORE SILENT",
+        "winner_lane": "the two internal views disagreed; posted anyway",
+        "envelope_mode": "STORE SILENT"
+      },
+      "label": "ALT REPRICE_REST · 49¢ → 45¢ · 138.09m to bell",
+      "hover_lines": [
+        "ALT · 138.09m to bell · REPRICE_REST · 49¢ → 45¢",
+        "winner.lane: FLOOR_CAPABLE_WRITER · the two internal views disagreed; posted anyway",
+        "envelope mode: PRICING_AUTHORITY_TARGET_EXECUTED · STORE SILENT",
+        "action.reason: BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE · STORE SILENT",
+        "book bid 62¢ / ask 63¢ / last 63¢",
+        "status RESOLVED · P 58¢ · Q 45¢ · X 62¢",
+        "q_author PRIOR_ONLY · x_author LIBRARY_FRACTION_PRIOR",
+        "believes ALT at 58¢ [OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=7db05155-abd3-6f01-4a2d-ba1f6a783113] at 138min-to-bell with 9.64 vol_log1p in ATP_MAIN, using 7 specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE) + KXATPMATCH-25OCT15GIRDAV@0.73 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-3f3eb585f4fa76f142c09ebfe14d2082345d8b5227ce99267db1ec641477a71c], SHOULD drift to 45¢ by 4min-to-bell [PHASE_CENTRAL_ESTIMATE=4¢; CENTRAL_ESTIMATE_RANK=0.518781; CENTRAL_MEMBERS=7481; CENTRAL_CELL=P90_100; deadline-epoch=1784034936.3121636; deadline-emitted-now=1784026914.312; deadline-receipt=033693bd-187f-42e1-af1e-7e37eb886d60]"
+      ],
+      "markers": {
+        "play": {
+          "progress": 0.9651590959247923,
+          "display_progress": 0.9651590959247923,
+          "boundary": null,
+          "price": 0.6666666666666666,
+          "label": "ALT REPRICE_REST · 49¢ → 45¢ · 138.09m to bell"
+        },
+        "inspection": {
+          "progress": 0.9678184466359009,
+          "display_progress": 0.9678184466359009,
+          "boundary": null,
+          "price": 0.5568181818181818,
+          "label": "ALT REPRICE_REST · 49¢ → 45¢ · 138.09m to bell"
+        }
+      },
+      "stack_offset_px": 0
+    }
+  ],
+  "fill": {
+    "cents": 42,
+    "triggering_print_cents": 41,
+    "context": {
+      "event_id": "KXATPMATCH-26JUL12ALTGAS",
+      "leg_id": "GAS",
+      "entry_cents": 42,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 41,
+      "fill_timestamp_epoch": 1783862356.23,
+      "prior_standing_target_cents": 42,
+      "standing_license_basis": "Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK",
+      "standing_license_receipt": "71ecd139-fd52-6d15-75d0-27767662d075",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    "place_receipt": "71ecd139-fd52-6d15-75d0-27767662d075",
+    "place_receipt_id": "6c14e0d1947ae4d0c322f7a76f1012014a6a7ada56952a6cb1d6e4b545c8c171",
+    "place_timestamp_epoch": 1783862356.23,
+    "placing_sentence": {
+      "status": "RESOLVED",
+      "P": 42,
+      "Q": 42,
+      "X": 40,
+      "q_author": "PRIOR_REWEIGHTED_BY_OWN_WALK",
+      "x_author": "LIBRARY_FRACTION_PRIOR",
+      "plain_sentence": "believes GAS at 42¢ [OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=71ecd139-fd52-6d15-75d0-27767662d075] at 2881min-to-bell with 5.9 vol_log1p in ATP_MAIN, using 7 specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE) + KXATPMATCH-25OCT15GIRDAV@0.86 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-e1e295313ef37cde104b697c729ddccf57176405ded9a62da8ba875bd8bbe239], SHOULD drift to 42¢ by 112min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784028470.1648352; deadline-emitted-now=1783862356.23; deadline-receipt=71ecd139-fd52-6d15-75d0-27767662d075]",
+      "family": "INTERIM_DOWN_TRAVEL",
+      "predicted_minutes_to_bell": 112,
+      "authority_source": "PANEL_PRIOR_UPDATED_BY_GRADED_CURRENT_GAME_OWN_EVIDENCE"
+    },
+    "placing_sentence_lines": [
+      "status RESOLVED · P 42¢ · Q 42¢ · X 40¢",
+      "q_author PRIOR_REWEIGHTED_BY_OWN_WALK · x_author LIBRARY_FRACTION_PRIOR",
+      "believes GAS at 42¢ [OBSERVED_TRUE_TRADE_LOW; evidenced-receipt=71ecd139-fd52-6d15-75d0-27767662d075] at 2881min-to-bell with 5.9 vol_log1p in ATP_MAIN, using 7 specialist member cells (V3 map @ac68e3bc; SOURCE_KEY=LIBRARY_CLOSE_CENTS; RUNTIME_REKEY=NONE) + KXATPMATCH-25OCT15GIRDAV@0.86 [FOUNDATION_MINUTE_BELL_BOUNDED/MINUTE; MACRO/MICRO; CR-e1e295313ef37cde104b697c729ddccf57176405ded9a62da8ba875bd8bbe239], SHOULD drift to 42¢ by 112min-to-bell [PHASE_CENTRAL_ESTIMATE=-2¢; CENTRAL_ESTIMATE_RANK=0.489985; CENTRAL_MEMBERS=1298; CENTRAL_CELL=P10_30; deadline-epoch=1784028470.1648352; deadline-emitted-now=1783862356.23; deadline-receipt=71ecd139-fd52-6d15-75d0-27767662d075]"
+    ],
+    "rest_age_minutes": 0,
+    "recorded_floor_cents": 38,
+    "floor_difference_cents": 4,
+    "floor_line": "4¢ above floor 38¢",
+    "summary": "GAS filled 42¢ · 2880.73m to bell · print 41¢ · rest had stood 0m"
+  },
+  "mobile": {
+    "screen": 390,
+    "document": 390
+  },
+  "frame_timing": {
+    "samples": 360,
+    "median_ms": 6.099999904632568,
+    "max_ms": 20.600000023841858,
+    "over_16_67_ms": 2
+  },
+  "urspal_fills": [
+    "PAL filled 39¢ · 3.01m to bell · print 39¢ · rest had stood 348.42m\n\n1¢ below floor 40¢\n\nstatus RESOLVED · P 40¢ · Q 39¢ · X 38¢\n\nSentence that placed the rest",
+    "URS filled 58¢ · 159.16m to bell · print 57¢ · rest had stood 446.67m\n\n1¢ above floor 57¢\n\nstatus RESOLVED · P 66¢ · Q 55¢ · X 63¢\n\nSentence that placed the rest"
+  ],
+  "browser": {
+    "page_errors": [],
+    "all_four_reprice_hovers": true,
+    "receipt_order_reveal": true,
+    "solid_half_alpha_floors": true
+  }
+}

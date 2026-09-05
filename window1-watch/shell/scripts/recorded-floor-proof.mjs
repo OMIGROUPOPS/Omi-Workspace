@@ -18,7 +18,7 @@ try {
     assert.equal(truth.table_commit, "c0056976c446afcb4d9603796a2e06c068ee94d6");
     for (const leg of Object.values(truth.legs))
       assert.ok((await hud.innerText()).includes(leg.line));
-    assert.ok((await hud.innerText()).includes(truth.pair.line));
+    assert.ok((await hud.innerText()).includes(truth.pair.compact_line));
     assert.ok((await hud.innerText()).includes(truth.pair.discount_line));
     assert.equal(await page.locator(".recorded-floor-line").count(), 2);
     assert.equal(await page.locator(".recorded-floor-flag").count(), 2);

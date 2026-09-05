@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import { extendFace, bindCustody, writeGameIndex, inspectorSummary } from "./face_contract.mjs";
 import { packFace } from "./face_encoding.mjs";
 import { readPinnedTruth, attachRecordedTruth } from "./recorded_truth.mjs";
+import { chartSource, attachChartActions } from "./chart_actions.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const dataPath = path.join(here, "data", "altgas.json");
@@ -165,6 +166,7 @@ async function loadRawFromTrace(file, event, custodyTapeDir) {
   const lines = readline.createInterface({ input, crlfDelay: Infinity });
   const stages = [];
   const others = [];
+  const chartSources = new Map();
   let firstStage = null;
   let traceLines = 0;
   let matched = 0;
@@ -174,6 +176,7 @@ async function loadRawFromTrace(file, event, custodyTapeDir) {
     const row = JSON.parse(line);
     if (row?.event_id !== event) continue;
     matched += 1;
+    if (["DECISION_STAGE", "FILL_EVENT"].includes(row.kind)) chartSources.set(traceLines, chartSource(row));
     const receipt = row.receipt ?? row.fill_event_receipt?.captured_at_receipt ?? null;
     const receiptId = crypto.createHash("sha256").update(`${row.kind}\0${receipt}\0${traceLines}`).digest("hex");
     const detail = { source: { event_id: event, trace_row: traceLines, receipt }, inspector: inspectorSummary(row), row };
@@ -204,6 +207,7 @@ async function loadRawFromTrace(file, event, custodyTapeDir) {
   const traceSha256 = hash.digest("hex");
   return {
     legs,
+    chartSources,
     category: firstStage?.reads?.category?.value?.category ?? null,
     formation_end_epoch: Object.values(firstStage?.layers?.micro?.context?.beliefs ?? {}).map(b => b.own_evidence?.formation_end_epoch).find(Number.isFinite) ?? null,
     provenance: {
@@ -395,6 +399,7 @@ const face = {
 // legacy page. Tune-test is the explicit trace-backed path, with full inspectors.
 if (tracePath) await extendFace(face, { here, eventId, benchPath: args.bench });
 attachRecordedTruth(face, readPinnedTruth(path.resolve(here, "..")));
+if (tracePath) attachChartActions(face, raw.chartSources);
 
 const payload = `${JSON.stringify(tracePath ? packFace(face) : face)}\n`;
 const compressedPayload = zlib.gzipSync(payload);

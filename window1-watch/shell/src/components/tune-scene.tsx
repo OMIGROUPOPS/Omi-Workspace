@@ -32,7 +32,7 @@ export function TuneHud({
               ))}
             </div>
             <p className="mt-1 text-xs tabular-nums">
-              {game.face.truth.pair.line} · {game.face.truth.pair.discount_line}
+              {game.face.truth.pair.compact_line}
             </p>
             <details className="mt-1 text-[10px] text-muted">
               <summary>Recorded ruler source</summary>

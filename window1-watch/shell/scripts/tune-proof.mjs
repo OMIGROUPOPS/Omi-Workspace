@@ -114,9 +114,9 @@ try {
   await page.getByLabel("Replay receipt and tape frames").fill(String(simultaneous.rest_frame));
   assert.equal(Number(await scene.getAttribute("data-receipt-index")), simultaneous.rest_index);
   assert.match(await page.getByLabel("Tune test HUD").innerText(), /GAS 42¢/);
-  assert.equal(await page.getByRole("button", { name: "GAS fill 42¢", exact: true }).count(), 0);
+  assert.equal(await page.locator('[data-action-kind="FILL"]').count(), 0);
   await page.getByLabel("Replay receipt and tape frames").fill(String(simultaneous.fill_frame));
-  assert.equal(await page.getByRole("button", { name: "GAS fill 42¢", exact: true }).count(), 1);
+  assert.equal(await page.locator('[data-action-kind="FILL"]').count(), 1);
   assert.match(await page.getByLabel("Tune test HUD").innerText(), /GAS none/);
   report.same_timestamp_receipts = simultaneous;
   report.clip = await page

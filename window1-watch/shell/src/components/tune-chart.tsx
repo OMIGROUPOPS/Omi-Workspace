@@ -12,6 +12,7 @@ import {
   YAxis,
 } from "recharts";
 import { SILENT, type LoadedGame, type Frame } from "@/lib/tune-tape";
+import { BidActionMarkers } from "./bid-action-markers";
 type Props = { game: LoadedGame; frame: number; side: string; onReceipt: (index: number) => void };
 const price = (v: unknown) => (v == null ? SILENT : `${v}¢`);
 function ChartTip({
@@ -34,13 +35,9 @@ function ChartTip({
     return null;
   return (
     <div className="rounded-md border border-border bg-raised px-3 py-2 text-xs text-fg">
-      <p>{row.clock_label}</p>
-      <p>
-        First book {price(row.firstBid)} / {price(row.firstAsk)} · last {price(row.firstLast)}
-      </p>
-      <p>
-        Second book {price(row.secondBid)} / {price(row.secondAsk)} · last {price(row.secondLast)}
-      </p>
+      {(row.hover_lines ?? [SILENT]).map((line, i) => (
+        <p key={i}>{line}</p>
+      ))}
     </div>
   );
 }
@@ -107,8 +104,8 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
               className="recorded-floor-line"
               y={recordedFloor.floor_cents}
               stroke={stroke}
-              strokeOpacity={0.25}
-              strokeDasharray="2 5"
+              strokeOpacity={0.5}
+              strokeWidth={1.5}
             />
           ) : null}
           {game.face.render.checkpoints.map((c) => (
@@ -215,7 +212,7 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
             aria-label={rulerMarker.label}
             title={rulerMarker.label}
             data-boundary={rulerMarker.boundary}
-            className="recorded-floor-flag pointer-events-auto absolute z-10 -translate-x-1/2 -translate-y-full text-sm opacity-65"
+            className="recorded-floor-flag pointer-events-auto absolute z-10 -translate-x-1/2 -translate-y-full rounded bg-bg/90 px-1 text-lg leading-none"
             style={{
               color: stroke,
               left: `calc(36px + (100% - 44px) * ${rulerMarker.display_progress})`,
@@ -225,38 +222,22 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
             {rulerMarker.glyph}
           </span>
         ) : null}
+        {rulerMarker?.price != null ? (
+          <p
+            className="recorded-floor-label pointer-events-none absolute left-[40px] z-10 translate-y-[3px] rounded bg-bg/85 px-1 text-[11px]"
+            style={{ color: stroke, top: `calc(16px + (100% - 46px) * ${rulerMarker.price})` }}
+          >
+            {recordedFloor?.chart_label}
+          </p>
+        ) : null}
         <div className="tune-playhead pointer-events-none absolute bottom-[30px] top-4 border-l border-dashed border-muted" />
-        {game.face.render.fill_events
-          .filter(
-            (f) =>
-              f.leg === side && now.receipt_index != null && f.receipt_index <= now.receipt_index,
-          )
-          .map((f) => {
-            const x = now.pre_first_tick ? f.inspection_progress : f.plot_progress;
-            const y = now.pre_first_tick ? f.inspection_price : f.plot_price;
-            if (y == null || x < 0 || x > 1) return null;
-            return (
-              <button
-                key={f.receipt_index}
-                aria-label={f.label}
-                title={f.label}
-                onClick={() => onReceipt(f.receipt_index)}
-                className="fill-burst absolute z-10 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border border-fg"
-                style={{
-                  background: stroke,
-                  left: `calc(36px + (100% - 44px) * ${x})`,
-                  top: `calc(16px + (100% - 46px) * ${y})`,
-                }}
-              >
-                <span
-                  className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-[11px]"
-                  style={{ color: stroke }}
-                >
-                  {f.label}
-                </span>
-              </button>
-            );
-          })}
+        <BidActionMarkers
+          actions={game.face.render.bid_actions ?? []}
+          now={now}
+          side={side}
+          color={stroke}
+          onReceipt={onReceipt}
+        />
       </div>
       {atBell && miss ? <p className="text-xs text-muted">{miss.label}</p> : null}
     </section>

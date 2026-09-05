@@ -73,6 +73,7 @@ export type Checkpoint = {
   bench: Bench | null;
 };
 export type Frame = {
+  hover_lines: string[];
   minutesToBell: number;
   hours: number;
   clock_label: string;
@@ -94,6 +95,30 @@ export type Frame = {
   secondBand: [number, number] | null;
   secondQ10: number | null;
 };
+export type BidAction = {
+  id: string;
+  leg: string;
+  kind: string;
+  glyph: string;
+  stack_offset_px: number;
+  label: string;
+  receipt_index: number;
+  hover_lines: string[];
+  markers: Record<
+    string,
+    {
+      display_progress: number;
+      boundary: string | null;
+      price: number | null;
+      label: string;
+    }
+  >;
+  fill?: {
+    summary: string;
+    floor_line: string;
+    placing_sentence_lines: string[];
+  };
+};
 export type FaceData = {
   version: number;
   legs: string[];
@@ -113,6 +138,7 @@ export type FaceData = {
         floor_cents: number | null;
         minutes_to_bell: number | null;
         marker_label: string | null;
+        chart_label: string | null;
         markers: Record<
           string,
           {
@@ -126,7 +152,7 @@ export type FaceData = {
         >;
       }
     >;
-    pair: { line: string; discount_line: string };
+    pair: { line: string; discount_line: string; compact_line: string };
   };
   provenance: Record<string, string | null>;
   bell: { t: number; timestamp_epoch: number; source: string | null };
@@ -139,6 +165,7 @@ export type FaceData = {
   };
   os: Receipt[];
   render: {
+    bid_actions: BidAction[];
     columns: string[];
     ticks: unknown[][];
     total_frames: number;

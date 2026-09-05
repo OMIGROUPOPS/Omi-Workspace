@@ -1,1 +1,7 @@
+.runtime/
 data/altgas.json
+data/*.export.json
+data/*.tmp
+data/*.stages/*.json
+shell/public/data/
+proof/*.log

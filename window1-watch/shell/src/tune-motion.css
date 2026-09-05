@@ -1,0 +1,50 @@
+@keyframes scene-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fill-burst {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.scene-card {
+  animation: scene-enter 180ms ease-out;
+}
+.checkpoint-flag {
+  transition: border-color 120ms ease-out;
+}
+.fill-burst {
+  animation: fill-burst 220ms ease-out;
+}
+.tune-history .recharts-line,
+.tune-history .recharts-area,
+.tune-history .recharts-reference-dot {
+  /* 36px Y axis, 8px right margin, matching the unchanged chart geometry. */
+  clip-path: inset(0 calc(8px + (100% - 44px) * var(--replay-remaining)) 0 0) view-box;
+}
+.tune-playhead {
+  left: calc(36px + (100% - 44px) * var(--replay-progress));
+}
+.tune-history[data-rest-miss="true"] .rest-history {
+  opacity: 0.2;
+  transition: opacity 300ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene-card,
+  .fill-burst {
+    animation: none;
+  }
+  .checkpoint-flag,
+  .rest-history {
+    transition: none;
+  }
+}

@@ -3,6 +3,8 @@
 // (contract: window1-watch/FIELDS.md, produced by export_watch.mjs + build_face_data.mjs from the OS trace
 // and the custody tapes). No anchors, no mirrors, no synthetic spread, no hand-written beats.
 // A value with no store is null. Text is assembled only from stored fields and numbers.
+// FACE v2 uses a builder-projected, multi-event contract. Legacy exports remain for the original shell.
+export { loadGameIndex, loadTuneGame, loadReceipt, frameForReceipt } from "./tune-tape";
 
 export type Side = "ALT" | "GAS";
 

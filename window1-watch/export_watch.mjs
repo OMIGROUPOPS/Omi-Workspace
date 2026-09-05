@@ -24,6 +24,7 @@ const args = Object.fromEntries(process.argv.slice(2).reduce((acc, a, i, arr) =>
   return acc;
 }, []));
 const EVENT = args.event, TRACE = args.trace, TAPE_DIR = args["tape-dir"] || null;
+const MANIFEST_ONLY = args["manifest-only"] === true;
 const OUT = args.out || `window1-watch/data/${(EVENT || "event").split("-").pop().toLowerCase()}.json`;
 if (!EVENT || !TRACE) { console.error("need --event <event_id> --trace <REPAIR_FOUR_GAME_TRACE.jsonl.gz> [--tape-dir <dir>]"); process.exit(2); }
 
@@ -41,7 +42,11 @@ function keyTree(obj, depth = 0, max = 4, prefix = "", out = []) {
   }
   return out;
 }
-function sha256File(file) { return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex"); }
+async function sha256File(file) {
+  const hash = crypto.createHash("sha256");
+  for await (const chunk of fs.createReadStream(file)) hash.update(chunk);
+  return hash.digest("hex");
+}
 
 // ---------- stream the trace ----------
 async function* lines(file) {
@@ -57,7 +62,7 @@ let firstStage = null, firstOther = {};
 let total = 0, matched = 0;
 for await (const line of lines(TRACE)) {
   total += 1;
-  let row; try { row = JSON.parse(line); } catch { continue; }
+  let row; try { row = JSON.parse(line); } catch (error) { if (MANIFEST_ONLY) throw error; continue; }
   const ev = row.event_id ?? get(row, "state.event_id");
   if (ev !== EVENT) continue;
   matched += 1;
@@ -67,6 +72,7 @@ for await (const line of lines(TRACE)) {
   if (kind === "DECISION_STAGE") {
     if (!firstStage) firstStage = row;
     const legs = Object.keys(get(row, "reads.books.value") ?? get(row, "reads.drift.value") ?? {});
+    if (MANIFEST_ONLY) { if (!stages.length) stages.push({ legs }); continue; }
     stages.push({
       kind, trigger: row.trigger ?? null, receipt: row.receipt ?? null,
       timestamp_epoch: row.timestamp_epoch ?? null, hours_from_discovery: row.hours_from_discovery ?? null,
@@ -86,7 +92,7 @@ for await (const line of lines(TRACE)) {
     });
   } else {
     if (!firstOther[kind]) firstOther[kind] = row;
-    others.push(row);   // copied whole; the face decides which kinds it draws (FILL rows especially)
+    if (!MANIFEST_ONLY) others.push(row);   // manifest mode is an index; builder streams the full source itself
   }
 }
 if (matched === 0) { console.error(`No rows for ${EVENT} in ${TRACE} (${total} lines).`); process.exit(3); }
@@ -101,12 +107,12 @@ if (TAPE_DIR) {
     if (!fs.existsSync(f)) { tape[leg] = SILENT([f]); continue; }
     const text = zlib.gunzipSync(fs.readFileSync(f)).toString("utf8").split(/\r?\n/).filter(Boolean);
     const header = text[0].split(",");
-    tape[leg] = { file: f, sha256: sha256File(f), header, rows: text.length - 1, sample: text.slice(1, 4) };  // header + sample only on this pass; full rows once columns are named
+    tape[leg] = { file: f, sha256: await sha256File(f), header, rows: text.length - 1, sample: text.slice(1, 4) };
   }
 }
 
 const out = {
-  provenance: { event_id: EVENT, trace_path: TRACE, trace_sha256: sha256File(TRACE), trace_lines: total, rows_for_event: matched, kinds, exported_at: new Date().toISOString(), exporter: "export_watch.mjs v2" },
+  provenance: { event_id: EVENT, trace_path: TRACE, trace_sha256: await sha256File(TRACE), trace_lines: total, rows_for_event: matched, kinds, exported_at: new Date().toISOString(), exporter: "export_watch.mjs v2", manifest_only: MANIFEST_ONLY },
   legs: stages[0]?.legs ?? [],
   bell: firstStage ? { hours_to_truth_bell_at_first_stage: get(firstStage, "reads.time_in_window.value.hours_to_truth_bell"), bell_source: get(firstStage, "reads.time_in_window.value.bell_source"), first_stage_epoch: firstStage.timestamp_epoch } : SILENT(["reads.time_in_window"]),
   stages,

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { TuneTest } from "@/components/tune-test";
 import { useEffect, useState } from "react";
 import { AtlasChart } from "@/components/atlas-chart";
 import { OsBody } from "@/components/os-body";
@@ -13,7 +14,7 @@ import {
   loadTape,
 } from "@/lib/tape";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({ component: TuneTest });
 
 function Home() {
   const [hours, setHours] = useState(0);

@@ -1,0 +1,285 @@
+{
+  "ALTGAS": {
+    "event": "KXATPMATCH-26JUL12ALTGAS",
+    "provenance": {
+      "event_id": "KXATPMATCH-26JUL12ALTGAS",
+      "trace_sha256": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+      "trace_path": "C:\\tmp\\v54_altgas_extra_2dfb5b0a_20260902_run2_custody\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "os_sha256": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+      "os_hash_source": "C:\\tmp\\v54_altgas_extra_2dfb5b0a_20260902_run2\\PRINT_PRICED_RESIDUE_SWEEP.json",
+      "custody_manifest_sha256": "0dd733f9db4e57319bdf5b3009fb315f22ebb8f538c24dafbeecf043df0a2cda",
+      "os_receipt_sha256": "55442dc9ba7e6c113790989262b1fc0cfe35a80ac671154b2006696ff3c09b7b",
+      "bench_sha256": "12df2861b5298fe45c141cc84c7924b326fa0ee347faad391d4a35fa0d79d2f1",
+      "bench_label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+    },
+    "verification": {
+      "ALT": {
+        "first_rest": {
+          "receipt": "49fc71e7-75ce-5546-9c79-30b8a02aaeb2",
+          "receipt_id": "522963dc9cf2f8b16fe96b92d95f02904ac72487c456e69adce36ecf8e1d5c8f",
+          "detail_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/522963dc9cf2f8b16fe96b92d95f02904ac72487c456e69adce36ecf8e1d5c8f.json",
+          "t": 5.38860166642401,
+          "minutes_to_bell": 3967.800566665332,
+          "cents": 55,
+          "lane": "INSUFFICIENT_AUTHORITY_NO_WRITER",
+          "authority_source": "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET"
+        },
+        "first_fill": null
+      },
+      "GAS": {
+        "first_rest": {
+          "receipt": "71ecd139-fd52-6d15-75d0-27767662d075",
+          "receipt_id": "6c14e0d1947ae4d0c322f7a76f1012014a6a7ada56952a6cb1d6e4b545c8c171",
+          "detail_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/6c14e0d1947ae4d0c322f7a76f1012014a6a7ada56952a6cb1d6e4b545c8c171.json",
+          "t": 23.506452777518167,
+          "minutes_to_bell": 2880.729499999683,
+          "cents": 42,
+          "lane": "LADDER_SHRINK_Q_CLIP_WRITER",
+          "authority_source": "PANEL_PRIOR_UPDATED_BY_GRADED_CURRENT_GAME_OWN_EVIDENCE"
+        },
+        "first_fill": {
+          "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+          "receipt_id": "469da5e9de99d3f3f06c5a372fa416eaa7021dd7df77fa9d00d2b698628eb749",
+          "detail_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/469da5e9de99d3f3f06c5a372fa416eaa7021dd7df77fa9d00d2b698628eb749.json",
+          "t": 23.506452777518167,
+          "minutes_to_bell": 2880.729499999683,
+          "cents": 42,
+          "lane": null,
+          "authority_source": null
+        }
+      }
+    },
+    "gate": {
+      "minutesToBell": 480,
+      "label": "480m",
+      "playable": true,
+      "position_percent": 87.88974388885552,
+      "bench": {
+        "minutes_to_bell": 480,
+        "status": "SCORABLE",
+        "validity": {
+          "status": "OK",
+          "share": 0.13855733085440752,
+          "ess": 111.09115467676095,
+          "label": "13.86%",
+          "meter_percent": 13.855733085440752
+        },
+        "roles": {
+          "ALT": "CLIMBER",
+          "GAS": "FALLER"
+        },
+        "rules": {
+          "BASE": {
+            "ess": 2263,
+            "label": "2263.00",
+            "status": "OK",
+            "sides": {
+              "ALT": {
+                "status": "OK",
+                "ess": 1108,
+                "family": "ONE_STEP_UP"
+              },
+              "GAS": {
+                "status": "OK",
+                "ess": 892,
+                "family": "ONE_STEP_DOWN"
+              }
+            }
+          },
+          "FIRST-TICK-ONLY": {
+            "ess": 877.0003822478411,
+            "label": "877.00",
+            "status": "OK",
+            "sides": {
+              "ALT": {
+                "status": "OK",
+                "ess": 373.61110532941433,
+                "family": "ONE_STEP_UP"
+              },
+              "GAS": {
+                "status": "OK",
+                "ess": 296.50743491981535,
+                "family": "ONE_STEP_DOWN"
+              }
+            }
+          },
+          "HARD": {
+            "ess": 190.50247375860542,
+            "label": "190.50",
+            "status": "NO-CALL: one or both role-filtered sides below ESS 10",
+            "sides": {
+              "ALT": {
+                "status": "NO-CALL: ESS < 10",
+                "ess": 2.8884316101859433,
+                "family": null
+              },
+              "GAS": {
+                "status": "NO-CALL: ESS < 10",
+                "ess": 1.1588560507292622,
+                "family": null
+              }
+            }
+          },
+          "SOFT": {
+            "ess": 187.69357541671337,
+            "label": "187.69",
+            "status": "NO-CALL: one or both role-filtered sides below ESS 10",
+            "sides": {
+              "ALT": {
+                "status": "NO-CALL: ESS < 10",
+                "ess": 3.4673515250634592,
+                "family": null
+              },
+              "GAS": {
+                "status": "NO-CALL: ESS < 10",
+                "ess": 1.584672837828349,
+                "family": null
+              }
+            }
+          },
+          "STEP-FORECAST": {
+            "ess": 456.5245764018988,
+            "label": "456.52",
+            "status": "OK",
+            "sides": {
+              "ALT": {
+                "status": "OK",
+                "ess": 104.49696983252454,
+                "family": "LATE_BREAK_UP"
+              },
+              "GAS": {
+                "status": "OK",
+                "ess": 86.23117129047459,
+                "family": "SLEEPER"
+              }
+            }
+          },
+          "TAXONOMY-NULL": {
+            "ess": null,
+            "label": "STORE SILENT",
+            "status": "PARTIAL_OR_NO_CALL: numerical null unavailable on one or both sides",
+            "sides": {
+              "ALT": {
+                "status": "OK",
+                "ess": 24,
+                "family": "DRIFT_UP"
+              },
+              "GAS": {
+                "status": "NO-CALL: prior row effective count < 10",
+                "ess": 5,
+                "family": null
+              }
+            }
+          }
+        }
+      },
+      "frame": 215,
+      "receipt_index": 94
+    },
+    "frames": 375
+  },
+  "inspector": {
+    "lane": "INSUFFICIENT_AUTHORITY_NO_WRITER",
+    "authority_source": "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET",
+    "lazy_requests": [
+      "http://127.0.0.1:8080/data/KXATPMATCH-26JUL12ALTGAS.stages/522963dc9cf2f8b16fe96b92d95f02904ac72487c456e69adce36ecf8e1d5c8f.json"
+    ]
+  },
+  "URSPAL": {
+    "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+    "provenance": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "trace_sha256": "ab2345dea8b3db2237dca97bf03f3fcece95eae334e3f4940f5b6583271171a0",
+      "trace_path": "C:\\tmp\\v54_insufficient_evidence_veto_e53df11_20260902_run1_custody\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "os_sha256": "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2",
+      "os_hash_source": "C:\\tmp\\v54_insufficient_evidence_veto_e53df11_20260902_run1\\PRINT_PRICED_RESIDUE_SWEEP.json",
+      "custody_manifest_sha256": "77dc01e884fcc4794ff46557453d7d6fbe8105139da6509133afddce205f08e6",
+      "os_receipt_sha256": "8dcb0d00b9bac53185a1d9201a55d56cd826b420a6345eb1daffc028cc6eb24f",
+      "bench_sha256": "12df2861b5298fe45c141cc84c7924b326fa0ee347faad391d4a35fa0d79d2f1",
+      "bench_label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+    },
+    "verification": {
+      "PAL": {
+        "first_rest": {
+          "receipt": "038f03f3-2dcd-7363-da5f-06677e3be932",
+          "receipt_id": "a209c094ec1cb102d6f0ba02e79f760c61d5d7cedd1da9923dac95a6ab3cf79d",
+          "detail_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/a209c094ec1cb102d6f0ba02e79f760c61d5d7cedd1da9923dac95a6ab3cf79d.json",
+          "t": 6.167399166425069,
+          "minutes_to_bell": 351.42271666526796,
+          "cents": 39,
+          "lane": "PREDICTION_SEAT_WRITER",
+          "authority_source": "IMMUNE_PREDICTION_SEAT_FROM_UNIFIED_CONDITIONED_BELIEF_POSTERIOR"
+        },
+        "first_fill": {
+          "receipt": "11b32855-2577-5868-896c-0afb9e64bb69",
+          "receipt_id": "7348c05b2954695b0b57362b6c5f748fa3ab1147651fc1a2b0a62a8ef3976a9c",
+          "detail_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7348c05b2954695b0b57362b6c5f748fa3ab1147651fc1a2b0a62a8ef3976a9c.json",
+          "t": 11.974332221945128,
+          "minutes_to_bell": 3.0067333340644353,
+          "cents": 39,
+          "lane": null,
+          "authority_source": null
+        }
+      },
+      "URS": {
+        "first_rest": {
+          "receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+          "receipt_id": "6577976f8ca4dc95f3affa16650541504a26d91a141542d5aea8a7f83cdfe89f",
+          "detail_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/6577976f8ca4dc95f3affa16650541504a26d91a141542d5aea8a7f83cdfe89f.json",
+          "t": 1.927276110847791,
+          "minutes_to_bell": 605.8300999999046,
+          "cents": 55,
+          "lane": "INSUFFICIENT_AUTHORITY_NO_WRITER",
+          "authority_source": "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET"
+        },
+        "first_fill": {
+          "receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+          "receipt_id": "c90783403183042f5e529c2d66be664e52b55a8d8c9a14c1375009fb6e760a32",
+          "detail_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/c90783403183042f5e529c2d66be664e52b55a8d8c9a14c1375009fb6e760a32.json",
+          "t": 9.371833333041932,
+          "minutes_to_bell": 159.15666666825615,
+          "cents": 58,
+          "lane": null,
+          "authority_source": null
+        }
+      }
+    },
+    "gate": {
+      "minutesToBell": 480,
+      "label": "480m",
+      "playable": false,
+      "position_percent": null,
+      "bench": null,
+      "frame": 60,
+      "receipt_index": 27
+    },
+    "frames": 3332
+  },
+  "controls": {
+    "picker_updates_url": true,
+    "next_receipt": true,
+    "previous_receipt": true,
+    "next_checkpoint": "480 → 360"
+  },
+  "same_timestamp_receipts": {
+    "rest_index": 41,
+    "fill_index": 48,
+    "rest_time": 23.506452777518167,
+    "fill_time": 23.506452777518167,
+    "rest_frame": 82,
+    "fill_frame": 89
+  },
+  "clip": "inset(0px calc(72.6799% - 23.9792px) 0px 0px) view-box",
+  "playbackFrameTiming": {
+    "samples": 360,
+    "median_ms": 6.099999904632568,
+    "max_ms": 10,
+    "over_16_67_ms": 0,
+    "note": "Headless Chrome, development server, during receipt playback; not a hardware-independent 60fps guarantee"
+  },
+  "mobile": {
+    "viewport": 390,
+    "document_width": 390
+  },
+  "page_errors": []
+}

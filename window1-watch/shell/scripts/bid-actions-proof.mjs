@@ -35,16 +35,16 @@ try {
   );
   report.fill = stored.find((a) => a.fill).fill;
   const card = page.locator(".fill-label-card");
-  assert.ok((await card.innerText()).includes(report.fill.summary));
-  assert.ok((await card.innerText()).includes("4¢ above floor 38¢"));
+  assert.deepEqual(await card.locator('[data-card-line]').allInnerTexts(), stored.find(a=>a.fill).card_lines);
+  assert.ok((await card.innerText()).includes("4¢ above the recorded floor (38¢)"));
   await card.locator("summary").click();
   assert.ok((await card.innerText()).includes(report.fill.placing_sentence.plain_sentence));
   await card.locator("summary").click();
   const first = page.locator(`[data-action-id="${report.alt_reprices[0].id}"]`);
   await first.hover();
-  assert.equal(
-    await page.getByRole("tooltip").innerText(),
-    report.alt_reprices[0].hover_lines.join("\n\n"),
+  assert.deepEqual(
+    await page.getByRole("tooltip").locator('[data-card-line]').allInnerTexts(),
+    report.alt_reprices[0].card_lines,
   );
   await page.mouse.move(0, 0);
   await page.getByRole("tooltip").waitFor({ state: "hidden" });
@@ -58,10 +58,12 @@ try {
   await page.getByRole("button", { name: "Checkpoint 5 minutes to bell", exact: true }).click();
   for (const a of report.alt_reprices) {
     await page.locator(`[data-action-id="${a.id}"]`).hover();
+    await page.getByRole("tooltip").locator("summary").click();
     const tip = await page.getByRole("tooltip").innerText();
     for (const line of a.hover_lines) assert.ok(tip.includes(line));
     assert.ok(tip.includes(a.raw.reason));
     await page.mouse.move(0, 0);
+    await page.getByRole("tooltip").waitFor({state:"hidden"});
   }
   // Same-clock PLACE and fill each keep an independent hit target; receipt-order reveal.
   const order = await page.evaluate(() => {

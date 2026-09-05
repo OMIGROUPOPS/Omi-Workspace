@@ -1,0 +1,90 @@
+{
+  "mobile": {
+    "screen": 390,
+    "document": 390
+  },
+  "cards": [
+    {
+      "t": 14.92388888888889,
+      "lines": [
+        "ALT · Moved bid 55¢ → 49¢",
+        "Why: the library aimed at 49¢; ALT's own trading didn't change it",
+        "Believed: ALT at 59¢ now, should reach 49¢ by 49:34 to bell",
+        "Book then: 57 / 58, last 59 · 3395.68m"
+      ],
+      "raw_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+    },
+    {
+      "t": 23.506452777518167,
+      "lines": [
+        "ALT · Moved bid 49¢ → 55¢",
+        "Why: the library aimed at 55¢, adjusted by ALT's own trading",
+        "Believed: ALT at 58¢ now, should reach 55¢ by 4:16 to bell",
+        "Book then: 57 / 59, last 58 · 2880.73m"
+      ],
+      "raw_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+    },
+    {
+      "t": 68.69725388864676,
+      "lines": [
+        "ALT · Moved bid 55¢ → 49¢",
+        "Why: the library aimed at 49¢; ALT's own trading didn't change it",
+        "Believed: ALT at 58¢ now, should reach 49¢ by 1:18 to bell",
+        "Book then: 61 / 62, last 62 · 169.28m"
+      ],
+      "raw_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+    },
+    {
+      "t": 69.21703111085627,
+      "lines": [
+        "ALT · Moved bid 49¢ → 45¢",
+        "Why: the library aimed at 45¢; ALT's own trading didn't change it",
+        "Believed: ALT at 58¢ now, should reach 45¢ by 0:04 to bell",
+        "Book then: 62 / 63, last 63 · 138.09m"
+      ],
+      "raw_reason": "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE"
+    },
+    {
+      "t": 23.506452777518167,
+      "lines": [
+        "GAS · Filled at 42¢",
+        "Why: bid was sitting at 42¢ when a 41¢ trade printed",
+        "Believed: GAS at 42¢ now, should reach 42¢ by 1:52 to bell",
+        "4¢ above the recorded floor (38¢) · rest stood 0m"
+      ],
+      "raw_reason": null
+    }
+  ],
+  "pool_low_ess": [
+    {
+      "gate": 60,
+      "ess": 5.205261766044498,
+      "label": "—",
+      "hover_note": "too few games to trust (ESS 5.205261766044498)",
+      "meter_percent": null
+    },
+    {
+      "gate": 30,
+      "ess": 6.489069578772854,
+      "label": "—",
+      "hover_note": "too few games to trust (ESS 6.489069578772854)",
+      "meter_percent": null
+    },
+    {
+      "gate": 5,
+      "ess": 7.199945177289488,
+      "label": "—",
+      "hover_note": "too few games to trust (ESS 7.199945177289488)",
+      "meter_percent": null
+    }
+  ],
+  "checks": {
+    "four_physical_lines": true,
+    "raw_details_closed_by_default": true,
+    "raw_fields_retained": true,
+    "squares_and_fill_dot_only": true,
+    "floor_hover": true,
+    "pool_label": true,
+    "page_errors": []
+  }
+}

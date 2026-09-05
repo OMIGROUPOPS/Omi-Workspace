@@ -41,7 +41,7 @@ test("ALT's four exact reprices preserve raw reasons, winners, books and sentenc
       d = s.derivations.find((d) => d.leg === a.leg);
     assert.equal(a.raw.reason, d.action.reason);
     assert.equal(a.raw.reason, "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE");
-    assert.equal(a.gloss.reason, "STORE SILENT");
+    assert.equal(a.gloss.reason, "the existing price forecast was used");
     assert.equal(a.raw.winner_lane, d.winner_lane);
     assert.equal(a.raw.envelope_mode, d.envelope_mode);
     assert.deepEqual(a.book, s.books.ALT);
@@ -104,10 +104,9 @@ test("approved token map and bed prefixes only; no conjectural gloss", () => {
     "frozen by the seat until its deadline",
   );
   for (const token of ["PAL_ATOMIC_Q_TEST", "GIU_TEST", "LAJSVA_TEST"])
-    assert.equal(tokenGloss(token), "named hand (bed-only branch)");
+    assert.equal(tokenGloss(token), "named hand — a branch that only runs on this game");
   for (const token of [
     null,
-    "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
     "NEW_UNMAPPED_REASON",
   ])
     assert.equal(tokenGloss(token), "STORE SILENT");

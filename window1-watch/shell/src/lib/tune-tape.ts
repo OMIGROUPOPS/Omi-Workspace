@@ -43,6 +43,7 @@ export type Receipt = {
   };
 };
 export type Bench = {
+  pool_accuracy: { label: string; hover_note: string; meter_percent: number | null };
   minutes_to_bell: number;
   status: string | null;
   validity: {
@@ -96,6 +97,8 @@ export type Frame = {
   secondQ10: number | null;
 };
 export type BidAction = {
+  card_lines: string[];
+  details_lines: string[];
   id: string;
   leg: string;
   kind: string;
@@ -147,6 +150,7 @@ export type FaceData = {
             boundary: string | null;
             glyph: string;
             label: string;
+            hover_note: string;
             price: number | null;
           }
         >;
@@ -165,6 +169,8 @@ export type FaceData = {
   };
   os: Receipt[];
   render: {
+    marker_legend: string;
+    pool_accuracy: { heading: string; hover_note: string; absent_label: string };
     bid_actions: BidAction[];
     columns: string[];
     ticks: unknown[][];

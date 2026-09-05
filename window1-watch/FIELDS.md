@@ -356,3 +356,147 @@ ALT proof: four reprices 55→49→55→49→45; each stored reason is
 `4¢ above floor 38¢`. The example 2965m does not match this trace's clock.
 URSPAL's PAL fill is 39¢ against the separate recorded ruler of 40¢; the card
 truthfully says `1¢ below floor 40¢`, rather than altering either historical source.
+
+## Plain-English cards (current display contract)
+
+This section supersedes the earlier long-hover presentation and unknown-token
+gloss rule. Default bid/fill cards contain exactly four builder-written lines in
+`render.bid_actions[].card_lines`; the inline `details ▸` toggle is closed on each
+new card. `details_lines` retains all original tokens, raw sentence, book and
+deadline values. No token is removed from the source. A card line does not wrap;
+on a narrow screen its text area scrolls horizontally instead of growing beyond
+four lines. Expanding details is the only way to reveal the long raw content.
+
+`plain_cards.mjs` reads the following table as data. These are display translations,
+not new laws, prices, orders, or claims that the OS has a new organ. All 64 distinct
+action/reason/lane/mode/authority/status tokens observed across GIUBAR, URSPAL,
+LAJSVA, DANPRA and ALTGAS in the two custody traces have entries or licensed prefix
+matches. The custody SHA256s, event row counts and tokens are in
+`proof/card-token-inventory.json`. The actual picker currently has two face files
+(ALTGAS and URSPAL); this change audits all five stories without adding games.
+
+<!-- plain-card-gloss:start -->
+| Token | Gloss |
+|---|---|
+| ACTIVE_REST_HOLD | kept the existing bid |
+| ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST | only the ask changed; kept the existing bid |
+| ASK_ONLY_TICK_VETO_STAND_DOWN | only the ask changed; no new bid |
+| AT_FLOOR_IMMUNITY_HOLD_ALL_ROUTINE_MOVERS | frozen by the seat until its deadline |
+| BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE | the existing price forecast was used |
+| CARRIED_CONVICTION_Q75_BASIS_RESTATED_SURVIVORS_HOLD | kept the bid after updating the remaining outcomes |
+| CARRIED_CONVICTION_WRITER | carried the existing price belief forward |
+| COHERENT_ENVELOPE_WRITER | the two internal views agreed on a bid |
+| COHERENT_LIVE_DEADLINE_PREDICTION_SEATED_AT_UNIFIED_AIM_CONDUCT_POSTERIOR | the agreed forecast became a protected bid with a deadline |
+| DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT | views disagree; no bid |
+| ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET | the library supplied the forecast; this game's trading had not changed it |
+| FLOOR_CAPABLE_WRITER | the two internal views disagreed; posted anyway |
+| HOLD_REST | kept the bid |
+| IMMUNE_PREDICTION_SEAT_FROM_UNIFIED_CONDITIONED_BELIEF_POSTERIOR | frozen by the seat until its deadline |
+| INSUFFICIENT_AUTHORITY_NO_WRITER | no organ wrote this; the library prior was executed |
+| INSUFFICIENT_AUTHORITY_STAND_DOWN | no price-writing organ had enough support; no new bid |
+| INSUFFICIENT_EVIDENCE | not enough evidence to make this call |
+| LADDER_SHRINK_NEXT_LIVE_RUNG_ADMITTED | used the next remaining ladder price |
+| LADDER_SHRINK_NEXT_LIVE_RUNG_WRITER | a cheap ending died; used the next remaining ladder price |
+| LADDER_SHRINK_Q_CLIP_ADMITTED | a cheap ending died; the ladder allowed a bid change |
+| LADDER_SHRINK_Q_CLIP_PAIR_VETO_HOLD | the pair limit blocked the ladder move; kept the bid |
+| LADDER_SHRINK_Q_CLIP_WRITER | a cheap ending died; bid stepped to the ladder |
+| LAJSVA_* | named hand — a branch that only runs on this game |
+| LAYERED_COHERENT_ENVELOPE_Q75_INSIDE_SPREAD_REACH | the agreed forecast supplied a reachable bid inside the spread |
+| LIBRARY_FRACTION_PRIOR | the library supplied the forecast deadline |
+| LICENSED_FLOOR_TENURE | the observed low had enough support to be used |
+| LIVE_LADDER_RESEAT_WRITER | moved to a remaining ladder price that could be posted |
+| LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD | the locked book blocked a new bid; kept the existing bid |
+| LOCKED_BOOK_PLACEMENT_VETO_EXISTING_REST_HELD | the locked book blocked a new bid; kept the existing bid |
+| NON_PRINT_DEAD_OR_SHALLOW_REST_RESEATED_TO_HIGHEST_POSTABLE_LIVE_LADDER_RUNG | moved a dead or shallow bid to the highest postable remaining ladder price |
+| NON_PRINT_HIGHEST_POSTABLE_LIVE_LADDER_RUNG_ADMITTED | used the highest remaining ladder price that could be posted |
+| NO_ACTION | no bid action was selected |
+| OWN_EVIDENCED_LIVE_TOUCH_ENVELOPE_NULL | this game's trading supplied no usable bid |
+| PAIR_VETO_SKIPS_LADDER_CLIP_AND_HOLDS_WITHOUT_ABORT | the pair limit blocked the ladder move; kept the bid |
+| PAL_ATOMIC_* | named hand — a branch that only runs on this game |
+| PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_NO_LIVE_PREDICTION_SEAT | named hand — a branch that only runs on this game |
+| PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_PREDICTION_SEAT_EXIT | named hand — a branch that only runs on this game |
+| PANEL_PRIOR_UPDATED_BY_GRADED_CURRENT_GAME_OWN_EVIDENCE | the library forecast was adjusted by this game's own trading |
+| PLACE_REST | placed a bid |
+| POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST | the new price would take an offer; kept the existing bid |
+| POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST | the price would take an offer; no bid was posted |
+| PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR | posted a protected bid at the combined forecast price |
+| PREDICTION_SEAT_IMMUNE_UNTIL_TRACED_SUPPORT_OVERTURN_OR_OWN_DEADLINE_EXPIRY | frozen until its support is overturned or its deadline arrives |
+| PREDICTION_SEAT_IMMUNITY | frozen by the seat until its deadline |
+| PREDICTION_SEAT_IMMUNITY_HOLD_FROM_SEATING | frozen by the seat until its deadline |
+| PREDICTION_SEAT_OWN_CONVICTION_LINEAGE | kept the forecast that originally placed the protected bid |
+| PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT | this game's updated belief reset its protected bid |
+| PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT | this game's updated belief reset its protected bid |
+| PREDICTION_SEAT_WRITER | the forecast placed a protected bid with a deadline |
+| PRICING_AUTHORITY_SILENT_EXISTING_REST_HELD | no new price forecast; kept the existing bid |
+| PRICING_AUTHORITY_SILENT_HOLD_EXISTING_REST | no new price forecast; kept the existing bid |
+| PRICING_AUTHORITY_TARGET_EXECUTED | posted the price the forecast supplied |
+| PRIOR_ONLY | the library supplied the price forecast |
+| PRIOR_REWEIGHTED_BY_OWN_WALK | the library forecast was adjusted by this game's own trading |
+| Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK | a cheap ending died; bid stepped to the ladder |
+| Q_UNPOSTABLE_NEXT_SURVIVING_LADDER_RUNG_BELOW_ASK_ADMITTED | the forecast price could not be posted; used a remaining ladder price below the ask |
+| REPRICE_REST | moved the bid |
+| RESOLVED | the OS made a price call |
+| GIU_* | named hand — a branch that only runs on this game |
+| PREDICTION_SEAT_IMMUNE | frozen by the seat until its deadline |
+| IMMUNITY_HOLD | frozen by the seat until its deadline |
+| OVERLAP_MEMBERS | similar games supplied the price forecast |
+| OVERLAP_MEMBERS_FROM_OWN_RANGE_AT_PHASE | games overlapping this game's traded range supplied the forecast |
+| OVERLAP_MEMBER_FLOOR_FRACTIONS | similar games supplied the forecast deadline |
+| CANCEL_REST | pulled the bid |
+| PULL_REST | pulled the bid |
+| STAND_DOWN | pulled the bid |
+| FILL_EVENT | the standing bid filled |
+<!-- plain-card-gloss:end -->
+
+### Four-line templates and selection rules
+
+1. `<side> · Placed bid at <new>¢`, `Moved bid <old>¢ → <new>¢`,
+   `Pulled bid`, or `Filled at <entry>¢`; values are the existing stored action fields.
+2. `Why: <gloss>`. A missing translation in any present reason/lane/mode/author/source/
+   status/action is explicit: `Why: not translated yet (<raw token>)`. With all tokens
+   known, use the reason's gloss, else the winner-lane gloss. Two contextual cases:
+   - `BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE` + `PRIOR_ONLY` +
+     `ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET`:
+     `the library aimed at <Q>¢; <side>'s own trading didn't change it`.
+   - The same reason + `PRIOR_REWEIGHTED_BY_OWN_WALK`:
+     `the library aimed at <Q>¢, adjusted by <side>'s own trading`.
+     With `OVERLAP_MEMBERS`: `similar games pointed to <Q>¢`.
+   - The ladder-shrink reason uses `down` or `up` only if both stored old/new prices
+     exist and differ; otherwise `to`. These are words about the recorded move,
+     not an inference from the tape slope.
+3. `Believed: <side> at <P>¢ now, should reach <Q>¢ by <h:mm> to bell`.
+   New `bid_actions[].deadline` stores the original stage belief's `deadline` object
+   and `predicted_minutes_to_bell`. Clock source is **deadline.deadline_minutes_to_bell**,
+   with explicit stored `predicted_minutes_to_bell` fallback, truncated to a whole
+   minute for h:mm formatting. Absent/negative time => STORE SILENT. Legacy `sentence.X`
+   remains unchanged in cents and is never used as a clock. Fill cards use the
+   original PLACE's `placing_sentence` and new `fill.placing_deadline`.
+4. Bid: `Book then: <bid> / <ask>, last <last> · <minutes-to-bell>m`, exact receipt
+   book fields, no midpoint/last/tape substitution. Fill: `<difference>¢ above/below
+   the recorded floor (<floor>¢) · rest stood <age>m`. Fill Why is `bid was sitting at
+   <entry>¢ when a <triggering_print>¢ trade printed`, both values from fill context.
+
+The dot remains the fill marker; all other bid actions use a small square. Stored
+`render.marker_legend` is `▪ bid action · ● fill · ⚑ recorded floor`.
+New `truth.legs[leg].hover_note` and `markers.<axis>.hover_note` say:
+`Recorded floor <c>¢ printed here · <whole minutes>m to bell · from the truth table
+(not an OS input)`. An edge flag adds a plain-English before/after-span disclosure.
+
+### Pool accuracy (not an OS organ)
+
+`render.pool_accuracy.heading` is `POOL ACCURACY · bench only`; `hover_note` is the
+operator-specified description of both-side last-hour within-1¢ accuracy; absent
+data label is STORE SILENT. Each existing `checkpoints[].bench.pool_accuracy` is a
+display-only projection of its unchanged `bench.validity` values:
+
+| Key | Rule |
+|---|---|
+| label | ESS < 10 => `—`; finite ESS >= 10 and status OK and finite share => percentage with two decimals; otherwise STORE SILENT |
+| hover_note | ESS < 10 => `too few games to trust (ESS <n>)`, exact stored n (no rounding up across 10); otherwise the full bench-only description |
+| meter_percent | share ×100 only when finite ESS >=10 and status OK; otherwise null |
+
+Exact normal hover: "Of the past games the bench pool was using at this gate, the
+share that called the last hour's move on both sides within 1¢. Bench measurement
+— the OS doesn't have this organ yet."
+The original validity share, ESS, status and clock-mismatch policy are untouched.
+URSPAL's mismatched bench clock stays STORE SILENT, not a reconstructed percentage.

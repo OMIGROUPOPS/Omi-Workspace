@@ -150,6 +150,7 @@ export function recordedTruth(face, table) {
         ? null
         : `${leg} FLOOR · RECORDED ${floor}¢ @ ${minutes.toFixed(2)}m to bell — ${RULER}`,
       chart_label: silent ? null : `recorded floor ${floor}¢ · ${Math.trunc(minutes)}m to bell`,
+      hover_note: silent ? null : `Recorded floor ${floor}¢ printed here · ${Math.trunc(minutes)}m to bell · from the truth table (not an OS input)`,
       markers: {},
     };
   }
@@ -229,6 +230,7 @@ export function attachRecordedTruth(face, table) {
               ? "⚑▶"
               : "⚑",
         label: `${leg.marker_label}${boundary ? ` · ${boundary} (edge flag; original time unchanged)` : ""}`,
+        hover_note: `${leg.hover_note}${boundary ? ` · ${boundary === "BEFORE_AXIS" ? "before" : "after"} the plotted span (edge flag)` : ""}`,
         price: high === low ? 0.5 : (high - leg.floor_cents) / (high - low),
       };
     }

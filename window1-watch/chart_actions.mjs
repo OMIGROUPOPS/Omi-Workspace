@@ -2,6 +2,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import zlib from "node:zlib";
+import { plainCard, cardGloss, attachPoolAccuracy } from "./plain_cards.mjs";
 
 const SILENT = "STORE SILENT";
 const finite = (v) => typeof v === "number" && Number.isFinite(v);
@@ -10,22 +11,7 @@ const cents = (v) => (finite(v) ? `${v}¢` : SILENT);
 const rest = (v) => (v === null ? "none" : cents(v));
 const minutes = (v) => (finite(v) ? `${Number(v.toFixed(2))}m` : SILENT);
 export function tokenGloss(token) {
-  const known = {
-    INSUFFICIENT_AUTHORITY_NO_WRITER:
-      "no organ wrote this; the library prior was executed",
-    LADDER_SHRINK_Q_CLIP_WRITER:
-      "a cheap ending died; bid stepped to the ladder",
-    PREDICTION_SEAT_IMMUNE: "frozen by the seat until its deadline",
-    IMMUNITY_HOLD: "frozen by the seat until its deadline",
-    FLOOR_CAPABLE_WRITER: "the two internal views disagreed; posted anyway",
-    DISAGREES_HOLD_OR_REDERIVE_NO_PLACEMENT: "views disagree; no bid",
-  };
-  return (
-    (Object.hasOwn(known, token) ? known[token] : null) ??
-    (/^(PAL_ATOMIC_|GIU_|LAJSVA_)/.test(token ?? "")
-      ? "named hand (bed-only branch)"
-      : SILENT)
-  );
+  return cardGloss(token) ?? SILENT;
 }
 const tokenLine = (label, token) =>
   `${label}: ${value(token)} · ${tokenGloss(token)}`;
@@ -46,6 +32,17 @@ export function chartSource(row) {
       row.fill_event_receipt?.context?.fill_timestamp_epoch ??
       null,
     books: row.reads?.books?.value ?? null,
+    deadlines: Object.fromEntries(
+      Object.entries(row.layers?.micro?.context?.beliefs ?? {}).map(
+        ([leg, b]) => [
+          leg,
+          {
+            deadline: b.deadline ?? null,
+            predicted_minutes_to_bell: b.predicted_minutes_to_bell ?? null,
+          },
+        ],
+      ),
+    ),
     standing: Object.fromEntries(
       Object.entries(row.reads?.half_pair_state?.value?.legs ?? {}).map(
         ([leg, s]) => [
@@ -117,14 +114,7 @@ export function attachChartActions(face, sources) {
   const add = (r, leg, src, d, old, next, kind, observation = null) => {
     const sentence = r.legs[leg]?.sentence ?? null;
     const book = src.books?.[leg] ?? null;
-    const marker =
-      kind === "PLACE"
-        ? "▲"
-        : kind === "FILL"
-          ? "●"
-          : kind === "REMOVE"
-            ? "✕"
-            : "◆";
+    const marker = kind === "FILL" ? "●" : "▪";
     const level = kind === "REMOVE" || kind === "FILL" ? old : next;
     const raw = {
       action: kind === "FILL" ? r.kind : (d?.action?.action ?? null),
@@ -153,6 +143,7 @@ export function attachChartActions(face, sources) {
       raw,
       observation,
       sentence,
+      deadline: src.deadlines?.[leg] ?? null,
       book,
       gloss: Object.fromEntries(
         Object.entries(raw).map(([k, v]) => [k, tokenGloss(v)]),
@@ -211,6 +202,7 @@ export function attachChartActions(face, sources) {
         place_receipt_id: place?.receipt_id ?? null,
         place_timestamp_epoch: place?.timestamp_epoch ?? null,
         placing_sentence: place?.sentence ?? null,
+        placing_deadline: place?.deadline ?? null,
         placing_sentence_lines: sentenceLines(place?.sentence),
         rest_age_minutes: age != null && age >= 0 ? age : null,
         recorded_floor_cents: floor,
@@ -281,6 +273,21 @@ export function attachChartActions(face, sources) {
   // Identical-time/price receipts retain individual hit targets around the exact anchor.
   const stacks = new Map();
   for (const event of events) {
+    event.card_lines = plainCard(event);
+    event.details_lines = [
+      ...event.hover_lines,
+      `deadline: ${JSON.stringify(event.deadline)}`,
+      ...(event.fill
+        ? [
+            ...event.fill.placing_sentence_lines,
+            `placing deadline: ${JSON.stringify(event.fill.placing_deadline)}`,
+          ]
+        : []),
+      ...Object.entries(event.raw).map(
+        ([field, token]) =>
+          `${field}: ${token ?? "STORE SILENT"} · ${cardGloss(token) ?? "not translated yet"}`,
+      ),
+    ];
     const key = JSON.stringify([
       event.leg,
       event.minutes_to_bell,
@@ -291,6 +298,8 @@ export function attachChartActions(face, sources) {
     stacks.set(key, ordinal + 1);
   }
   face.render.bid_actions = events;
+  face.render.marker_legend = "▪ bid action · ● fill · ⚑ recorded floor";
+  attachPoolAccuracy(face);
   // All chart hover strings are written here, never composed from prices in React.
   let hoverIndex = face.render.columns.indexOf("hover_lines");
   if (hoverIndex < 0) hoverIndex = face.render.columns.push("hover_lines") - 1;

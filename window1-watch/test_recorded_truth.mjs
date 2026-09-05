@@ -23,6 +23,9 @@ const face = (id) =>
 function withoutActionDisplay(face) {
   const copy = structuredClone(face);
   delete copy.render.bid_actions;
+  delete copy.render.pool_accuracy;
+  delete copy.render.marker_legend;
+  for (const c of copy.render.checkpoints) if (c.bench) delete c.bench.pool_accuracy;
   const hover = copy.render.columns.indexOf("hover_lines");
   if (hover >= 0) {
     copy.render.columns.splice(hover, 1);

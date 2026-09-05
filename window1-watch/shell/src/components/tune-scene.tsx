@@ -31,9 +31,7 @@ export function TuneHud({
                 </p>
               ))}
             </div>
-            <p className="mt-1 text-xs tabular-nums">
-              {game.face.truth.pair.compact_line}
-            </p>
+            <p className="mt-1 text-xs tabular-nums">{game.face.truth.pair.compact_line}</p>
             <details className="mt-1 text-[10px] text-muted">
               <summary>Recorded ruler source</summary>
               <p className="break-all">
@@ -52,11 +50,7 @@ export function TuneHud({
         <div className="min-w-0">
           <p className="text-xs uppercase tracking-[0.14em] text-muted">Brain · sentence</p>
           {game.face.legs.map((l, i) => (
-            <p
-              key={l}
-              title={d?.legs[l]?.sentence}
-              className={`truncate text-xs ${i === 0 ? "text-alt" : "text-gas"}`}
-            >
+            <p key={l} className={`truncate text-xs ${i === 0 ? "text-alt" : "text-gas"}`}>
               {l}: {d?.legs[l]?.sentence ?? SILENT}
             </p>
           ))}
@@ -97,12 +91,25 @@ export function TuneHud({
             {game.face.legs.map((l) => `${l} ${d?.legs[l]?.rest_label ?? SILENT}`).join(" · ")}
           </p>
         </div>
-        <div>
-          <p className="text-xs uppercase tracking-[0.14em] text-muted">Validity · bench only</p>
-          <p className="text-xs tabular-nums">{bench?.validity.label ?? SILENT}</p>
+        <div aria-label="Pool accuracy">
+          <p
+            title={game.face.render.pool_accuracy.hover_note}
+            className="text-xs tracking-[0.14em] text-muted"
+          >
+            {game.face.render.pool_accuracy.heading}
+          </p>
+          <p
+            title={bench?.pool_accuracy.hover_note ?? game.face.render.pool_accuracy.hover_note}
+            className="pool-accuracy-value text-xs tabular-nums"
+          >
+            {bench?.pool_accuracy.label ?? game.face.render.pool_accuracy.absent_label}
+          </p>
           <div className="mt-1 h-1 bg-raised">
-            {bench?.validity.meter_percent != null ? (
-              <div className="h-1 bg-good" style={{ width: `${bench.validity.meter_percent}%` }} />
+            {bench?.pool_accuracy.meter_percent != null ? (
+              <div
+                className="h-1 bg-good"
+                style={{ width: `${bench.pool_accuracy.meter_percent}%` }}
+              />
             ) : null}
           </div>
           {bench ? <p className="text-xs text-muted">as of {bench.minutes_to_bell}m</p> : null}

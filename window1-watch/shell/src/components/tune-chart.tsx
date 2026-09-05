@@ -189,6 +189,7 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
             Grey = book. Bright = last trade. Dashed = our bid. Shade = where lookalikes went from
             here (25–75%).
           </p>
+          <p className="mt-1 text-xs text-muted">{game.face.render.marker_legend}</p>
         </div>
         <div className="text-right tabular-nums">
           <p className="font-display text-3xl leading-none">{price(last)}</p>
@@ -209,8 +210,8 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
         {rulerMarker?.price != null ? (
           <span
             role="img"
-            aria-label={rulerMarker.label}
-            title={rulerMarker.label}
+            aria-label={rulerMarker.hover_note}
+            title={rulerMarker.hover_note}
             data-boundary={rulerMarker.boundary}
             className="recorded-floor-flag pointer-events-auto absolute z-10 -translate-x-1/2 -translate-y-full rounded bg-bg/90 px-1 text-lg leading-none"
             style={{

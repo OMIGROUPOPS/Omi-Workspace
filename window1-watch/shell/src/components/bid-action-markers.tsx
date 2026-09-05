@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import { type BidAction, type Frame } from "@/lib/tune-tape";
+import { FourLineCard } from "./four-line-card";
 
 // Only selection and pixel placement happen here. Every label/hover line is stored.
 export function BidActionMarkers({
@@ -30,7 +31,11 @@ export function BidActionMarkers({
   const show = (action: BidAction, element: HTMLElement) => {
     cancelHide();
     const box = element.getBoundingClientRect();
-    setHover({ action, left: Math.max(8, Math.min(box.left, window.innerWidth - 488)), top: 8 });
+    setHover({
+      action,
+      left: Math.max(8, Math.min(box.left, window.innerWidth - 800)),
+      top: Math.max(8, Math.min(box.bottom + 8, window.innerHeight - 160)),
+    });
   };
   return (
     <>
@@ -69,25 +74,13 @@ export function BidActionMarkers({
               </button>
               {a.fill ? (
                 <div
-                  className="fill-label-card absolute bottom-4 w-[280px] max-w-[70vw] rounded border border-border bg-bg/95 p-2 text-[11px] text-fg shadow-md"
+                  className="fill-label-card absolute bottom-4 w-max max-w-[calc(100vw-90px)] rounded border border-border bg-raised p-2 text-fg shadow-md"
                   style={{
                     left: point.display_progress > 0.6 ? "auto" : "-24px",
                     right: point.display_progress > 0.6 ? "-12px" : "auto",
                   }}
                 >
-                  <p className="font-medium leading-snug" style={{ color }}>
-                    {a.fill.summary}
-                  </p>
-                  <p className="mt-1 text-muted">{a.fill.floor_line}</p>
-                  <p className="mt-1 text-muted">{a.fill.placing_sentence_lines[0]}</p>
-                  <details className="mt-1">
-                    <summary className="cursor-pointer">Sentence that placed the rest</summary>
-                    <div className="mt-1 max-h-40 space-y-1 overflow-auto break-words text-muted">
-                      {a.fill.placing_sentence_lines.map((line, i) => (
-                        <p key={i}>{line}</p>
-                      ))}
-                    </div>
-                  </details>
+                  <FourLineCard lines={a.card_lines} details={a.details_lines} color={color} />
                 </div>
               ) : null}
             </div>
@@ -105,14 +98,20 @@ export function BidActionMarkers({
               onKeyDown={(e) => {
                 if (e.key === "Escape") setHover(null);
               }}
-              className="bid-action-tooltip fixed z-50 max-h-[calc(100vh-16px)] w-[472px] max-w-[calc(100vw-16px)] space-y-2 overflow-auto rounded-md border border-border bg-raised p-3 text-xs leading-relaxed text-fg shadow-lg"
-              style={{ left: hover.left, top: hover.top }}
+              className="bid-action-tooltip fixed z-50 max-h-[calc(100vh-16px)] w-max max-w-[calc(100vw-16px)] overflow-auto rounded-md border border-border bg-raised p-3 text-fg shadow-lg"
+              style={{
+                left: hover.left,
+                top: hover.top,
+                maxWidth: "min(760px, calc(100vw - 16px))",
+                maxHeight: `calc(100vh - ${hover.top + 8}px)`,
+              }}
             >
-              {hover.action.hover_lines.map((line, i) => (
-                <p key={i} className="break-words">
-                  {line}
-                </p>
-              ))}
+              <FourLineCard
+                key={hover.action.id}
+                lines={hover.action.card_lines}
+                details={hover.action.details_lines}
+                color={color}
+              />
             </div>,
             document.body,
           )

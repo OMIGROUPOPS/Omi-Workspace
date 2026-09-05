@@ -8,6 +8,7 @@ import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { extendFace, bindCustody, writeGameIndex, inspectorSummary } from "./face_contract.mjs";
 import { packFace } from "./face_encoding.mjs";
+import { readPinnedTruth, attachRecordedTruth } from "./recorded_truth.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const dataPath = path.join(here, "data", "altgas.json");
@@ -393,6 +394,7 @@ const face = {
 // Keep the original no-argument exporter contract for rerun_altgas.ps1 and its
 // legacy page. Tune-test is the explicit trace-backed path, with full inspectors.
 if (tracePath) await extendFace(face, { here, eventId, benchPath: args.bench });
+attachRecordedTruth(face, readPinnedTruth(path.resolve(here, "..")));
 
 const payload = `${JSON.stringify(tracePath ? packFace(face) : face)}\n`;
 const compressedPayload = zlib.gzipSync(payload);

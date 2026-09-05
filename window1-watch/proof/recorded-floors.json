@@ -1,0 +1,204 @@
+{
+  "altgas": {
+    "role": "RULER — NOT AN OS INPUT",
+    "event_id": "KXATPMATCH-26JUL12ALTGAS",
+    "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+    "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+    "row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+    "row_number": 2,
+    "row_csv": "26JUL12ALTGAS,KXATPMATCH-26JUL12ALTGAS,ATP_MAIN,1783777733,1783777733,1784035200,1783854000.0,ALT,GAS,1783790234,57.0,58,1783833446.5,65,1784035191.2,26863.91,16855.19,MOVER,8.0,1783862363,,,,1783790234,43.0,38,1784009667.7,38,1784035157.2,9760.39,3821.17,MOVER,-5.0,1783862363,41,1783877860.5,PRE_BELL_VALID,1783790234,1784035200,1784114025.0,,1784041324.0,1784035200,MACHINE_RECEIPT,\"EXACT (26 receipts, zero spread)\",1783790234,1784035200,OK,PARTIAL_FOR_REASON,",
+    "verified_span": "OK",
+    "status": "OK",
+    "reason": null,
+    "span_start_epoch": 1783790234,
+    "span_end_epoch": 1784035200,
+    "bell_epoch": 1784035200,
+    "bell_source": "face.bell.timestamp_epoch",
+    "table_bell_epoch": 1784035200,
+    "table_bell_source": "MACHINE_RECEIPT",
+    "table_bell_delta_seconds": 0,
+    "legs": {
+      "ALT": {
+        "status": "OK",
+        "reason": null,
+        "source_columns": {
+          "floor_cents": "legA_floor_c",
+          "floor_epoch": "legA_floor_epoch",
+          "anchor_cents": "legA_open_postformation_c"
+        },
+        "anchor_cents": 57,
+        "floor_cents": 58,
+        "floor_epoch": 1783833446.5,
+        "minutes_to_bell": 3362.5583333333334,
+        "line": "ALT 58¢ @ 3362.56m to bell",
+        "marker_label": "ALT FLOOR · RECORDED 58¢ @ 3362.56m to bell — RULER — NOT AN OS INPUT",
+        "markers": {
+          "play": {
+            "progress": 0.15163661238896195,
+            "display_progress": 0.15163661238896195,
+            "boundary": null,
+            "glyph": "⚑",
+            "label": "ALT FLOOR · RECORDED 58¢ @ 3362.56m to bell — RULER — NOT AN OS INPUT",
+            "price": 0.23333333333333334
+          },
+          "inspection": {
+            "progress": 0.21639083843464485,
+            "display_progress": 0.21639083843464485,
+            "boundary": null,
+            "glyph": "⚑",
+            "label": "ALT FLOOR · RECORDED 58¢ @ 3362.56m to bell — RULER — NOT AN OS INPUT",
+            "price": 0.4090909090909091
+          }
+        }
+      },
+      "GAS": {
+        "status": "OK",
+        "reason": null,
+        "source_columns": {
+          "floor_cents": "legB_floor_c",
+          "floor_epoch": "legB_floor_epoch",
+          "anchor_cents": "legB_open_postformation_c"
+        },
+        "anchor_cents": 43,
+        "floor_cents": 38,
+        "floor_epoch": 1784009667.7,
+        "minutes_to_bell": 425.5383333325386,
+        "line": "GAS 38¢ @ 425.54m to bell",
+        "marker_label": "GAS FLOOR · RECORDED 38¢ @ 425.54m to bell — RULER — NOT AN OS INPUT",
+        "markers": {
+          "play": {
+            "progress": 0.8926379541298622,
+            "display_progress": 0.8926379541298622,
+            "boundary": null,
+            "glyph": "⚑",
+            "label": "GAS FLOOR · RECORDED 38¢ @ 425.54m to bell — RULER — NOT AN OS INPUT",
+            "price": 0.9
+          },
+          "inspection": {
+            "progress": 0.900832728077591,
+            "display_progress": 0.900832728077591,
+            "boundary": null,
+            "glyph": "⚑",
+            "label": "GAS FLOOR · RECORDED 38¢ @ 425.54m to bell — RULER — NOT AN OS INPUT",
+            "price": 0.6363636363636364
+          }
+        }
+      }
+    },
+    "favorite_leg": "ALT",
+    "underdog_leg": "GAS",
+    "pair": {
+      "sum_cents": 96,
+      "discount_cents": 4,
+      "reason": null,
+      "line": "best capturable = 58 + 38 = 96¢",
+      "discount_line": "4¢ under par"
+    }
+  },
+  "urspal": {
+    "role": "RULER — NOT AN OS INPUT",
+    "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+    "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+    "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+    "row_sha256": "b68855b99823a597a79bce4f667d6a1540b24799154da2593fe72ebe8f651313",
+    "row_number": 362,
+    "row_csv": "26JUL14URSPAL,KXATPCHALLENGERMATCH-26JUL14URSPAL,ATP_CHALL,1783998959,1783998959,1784042040,1784052000.0,PAL,URS,1784001495,38.0,40,1784021161.6,41,1784042037.6,715.49,296.68,STILL,3.0,,,,,1784001495,62.0,57,1784032697.6,61,1784041639.6,572.42,340.87,STILL,-1.0,,,,,1784001495,,,1784045100.0,1784049603.0,1784045100.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784001495,1784042040,OK,NEITHER_FOR_REASON,",
+    "verified_span": "OK",
+    "status": "OK",
+    "reason": null,
+    "span_start_epoch": 1784001495,
+    "span_end_epoch": 1784042040,
+    "bell_epoch": 1784042247,
+    "bell_source": "face.bell.timestamp_epoch",
+    "table_bell_epoch": 1784045100,
+    "table_bell_source": "TAPE_INFERENCE",
+    "table_bell_delta_seconds": 2853,
+    "legs": {
+      "PAL": {
+        "status": "OK",
+        "reason": null,
+        "source_columns": {
+          "floor_cents": "legA_floor_c",
+          "floor_epoch": "legA_floor_epoch",
+          "anchor_cents": "legA_open_postformation_c"
+        },
+        "anchor_cents": 38,
+        "floor_cents": 40,
+        "floor_epoch": 1784021161.6,
+        "minutes_to_bell": 351.4233333349228,
+        "line": "PAL 40¢ @ 351.42m to bell",
+        "marker_label": "PAL FLOOR · RECORDED 40¢ @ 351.42m to bell — RULER — NOT AN OS INPUT",
+        "markers": {
+          "play": {
+            "progress": -0.0000017547802848316508,
+            "display_progress": 0,
+            "boundary": "BEFORE_AXIS",
+            "glyph": "◀⚑",
+            "label": "PAL FLOOR · RECORDED 40¢ @ 351.42m to bell — RULER — NOT AN OS INPUT · BEFORE_AXIS (edge flag; original time unchanged)",
+            "price": 0.7272727272727273
+          },
+          "inspection": {
+            "progress": 0.5129042690685665,
+            "display_progress": 0.5129042690685665,
+            "boundary": null,
+            "glyph": "⚑",
+            "label": "PAL FLOOR · RECORDED 40¢ @ 351.42m to bell — RULER — NOT AN OS INPUT",
+            "price": 0.6043956043956044
+          }
+        }
+      },
+      "URS": {
+        "status": "OK",
+        "reason": null,
+        "source_columns": {
+          "floor_cents": "legB_floor_c",
+          "floor_epoch": "legB_floor_epoch",
+          "anchor_cents": "legB_open_postformation_c"
+        },
+        "anchor_cents": 62,
+        "floor_cents": 57,
+        "floor_epoch": 1784032697.6,
+        "minutes_to_bell": 159.15666666825612,
+        "line": "URS 57¢ @ 159.16m to bell",
+        "marker_label": "URS FLOOR · RECORDED 57¢ @ 159.16m to bell — RULER — NOT AN OS INPUT",
+        "markers": {
+          "play": {
+            "progress": 0.5471076310076628,
+            "display_progress": 0.5471076310076628,
+            "boundary": null,
+            "glyph": "⚑",
+            "label": "URS FLOOR · RECORDED 57¢ @ 159.16m to bell — RULER — NOT AN OS INPUT",
+            "price": 0.21212121212121213
+          },
+          "inspection": {
+            "progress": 0.7793984475996639,
+            "display_progress": 0.7793984475996639,
+            "boundary": null,
+            "glyph": "⚑",
+            "label": "URS FLOOR · RECORDED 57¢ @ 159.16m to bell — RULER — NOT AN OS INPUT",
+            "price": 0.4175824175824176
+          }
+        }
+      }
+    },
+    "favorite_leg": "URS",
+    "underdog_leg": "PAL",
+    "pair": {
+      "sum_cents": 97,
+      "discount_cents": 3,
+      "reason": null,
+      "line": "best capturable = 57 + 40 = 97¢",
+      "discount_line": "3¢ under par"
+    }
+  },
+  "browser": {
+    "page_errors": [],
+    "mobile": {
+      "screen": 390,
+      "document": 390
+    },
+    "hud_and_two_floor_markers": true
+  }
+}

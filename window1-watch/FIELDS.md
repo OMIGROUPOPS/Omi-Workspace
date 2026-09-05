@@ -215,3 +215,52 @@ inspector can retain its complete original row; `rerun_game.ps1` always supplies
 For the requested ab2345de URSPAL trace, 480m is BEFORE the first real pair tick.
 Also its stored bench bell differs from its trace bell. The 480 inspection must not
 be presented as a playable checkpoint or as an aligned bench evaluation.
+
+## Recorded floors — RULER — NOT AN OS INPUT
+
+`recorded_truth.mjs` reads only the git blob at
+`c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv`.
+It never reads the working-tree version or substitutes a tape/trace/bench minimum.
+The actual CSV column names are `legA_floor_c` / `legB_floor_c` and
+`legA_floor_epoch` / `legB_floor_epoch`; the normalized per-side output calls them
+`floor_cents` and `floor_epoch`. Join is exact `event_id` plus `legA`/`legB` id.
+
+| Key under top-level `truth` | Meaning / derivation |
+|---|---|
+| role | Literal `RULER — NOT AN OS INPUT`; retrospective, never a prediction or a fill credit |
+| event_id / table_commit / table_path / table_sha256 | Exact join id, full pinned git commit, path, SHA256 of the full git-blob bytes |
+| row_sha256 / row_number / row_csv | SHA256 of the exact UTF-8 CSV record excluding only its terminating CR/LF; one-based CSV record ordinal including the header; original record retained for independent verification (quotes/spacing unchanged) |
+| verified_span / status / reason | Original span status; only `OK` licenses floors. UNKNOWN / NO_FORMATION / EMPTY and missing rows remain STORE SILENT with the literal status/reason |
+| span_start_epoch / span_end_epoch | Original verified span bounds; missing bounds or a floor outside them cannot license a marker |
+| bell_epoch / bell_source | Existing game's `face.bell.timestamp_epoch`, the explicit clock conversion input, not a replacement truth-table bell |
+| table_bell_epoch / table_bell_source / table_bell_delta_seconds | Original table bell and source, and table bell minus face bell; preserve any clock disagreement |
+| legs[leg].source_columns / anchor_cents | Exact CSV column names and that side's `open_postformation_c`; used only for favorite/underdog display order |
+| legs[leg].floor_cents / floor_epoch | Recorded verified-span floor and its original epoch; null if unverified/missing |
+| legs[leg].minutes_to_bell | `(face.bell.timestamp_epoch - floor_epoch) / 60`; never use the expected approximate time from a prompt |
+| legs[leg].status / reason / line / marker_label | Leg-level availability/reason and builder-formatted floor, time (two decimals), and ruler label |
+| favorite_leg / underdog_leg | Higher/lower recorded postformation open; equal or missing opens do not invent an orientation |
+| pair.sum_cents / discount_cents | Favorite floor + underdog floor, and `100 - sum`; only when both floors and orientation are available |
+| pair.line / discount_line / reason | `best capturable = <fav floor> + <dog floor> = <sum>¢`, `<discount>¢ under par`, or explicit STORE SILENT reason. This is a hindsight ruler, not a claim our orders could fill there |
+| legs[leg].markers.play / inspection | Builder-authored normalized time `progress` and downward price `price` coordinates on the corresponding chart axis |
+
+Marker `display_progress` clamps the display coordinate to the visible axis only.
+If outside, `boundary`, `glyph` and `label` explicitly identify an edge flag before
+or after the visible span; the original floor epoch/minutes are never clamped.
+For a flat price axis, marker `price=0.5` means its visual midpoint, not a new price.
+PAL's table epoch is 0.037s before this trace's first pair tick, so its normal-play
+flag is explicitly an edge flag; its inspection-axis flag is at the exact time.
+
+Recorded horizontal lines and time flags are deliberately visible across replay,
+including before the floor was observed, and separately labeled as the ruler.
+They do not enter `os`, receipt stepping, rests, fills, sentences, membership or bench
+metrics. Display-only axis bounds can expand to include a recorded floor; fill
+marker pixel coordinates are then reprojected without changing fill cents/time.
+
+`build_face_data.mjs` adds the ruler after OS/trace projection. To update existing
+faces without a replay or rewriting inspector rows:
+`node window1-watch/refresh_recorded_truth.mjs <event_id> [<event_id> ...]`.
+The refresh changes only top-level truth and any necessary display geometry.
+
+Pinned-source discrepancy: ALTGAS is 58¢ at **3362.5583333333334m**, 38¢ at
+**425.5383333325386m** on the existing game's bell, not approximately 3940/330m.
+URSPAL keeps the existing trace bell; its table bell is 2853 seconds later.

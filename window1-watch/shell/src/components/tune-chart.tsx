@@ -55,6 +55,8 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
     rest = first ? now.firstRest : now.secondRest,
     atBell = frame === game.frames.length - 1,
     miss = game.face.render.misses.find((m) => m.leg === side);
+  const recordedFloor = game.face.truth?.legs[side];
+  const rulerMarker = recordedFloor?.markers[now.pre_first_tick ? "inspection" : "play"];
   const current = useRef(now);
   current.current = now;
   // The path is static. A source-clock clip reveals only the causal portion, while
@@ -100,6 +102,15 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
             width={36}
           />
           <Tooltip content={<ChartTip current={current} />} />
+          {recordedFloor?.status === "OK" && recordedFloor.floor_cents != null ? (
+            <ReferenceLine
+              className="recorded-floor-line"
+              y={recordedFloor.floor_cents}
+              stroke={stroke}
+              strokeOpacity={0.25}
+              strokeDasharray="2 5"
+            />
+          ) : null}
           {game.face.render.checkpoints.map((c) => (
             <ReferenceLine
               key={c.minutesToBell}
@@ -198,6 +209,22 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
         }
       >
         {plot}
+        {rulerMarker?.price != null ? (
+          <span
+            role="img"
+            aria-label={rulerMarker.label}
+            title={rulerMarker.label}
+            data-boundary={rulerMarker.boundary}
+            className="recorded-floor-flag pointer-events-auto absolute z-10 -translate-x-1/2 -translate-y-full text-sm opacity-65"
+            style={{
+              color: stroke,
+              left: `calc(36px + (100% - 44px) * ${rulerMarker.display_progress})`,
+              top: `calc(16px + (100% - 46px) * ${rulerMarker.price})`,
+            }}
+          >
+            {rulerMarker.glyph}
+          </span>
+        ) : null}
         <div className="tune-playhead pointer-events-none absolute bottom-[30px] top-4 border-l border-dashed border-muted" />
         {game.face.render.fill_events
           .filter(

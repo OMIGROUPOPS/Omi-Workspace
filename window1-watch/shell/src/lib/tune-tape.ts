@@ -98,6 +98,36 @@ export type FaceData = {
   version: number;
   legs: string[];
   category: string | null;
+  truth?: {
+    role: string;
+    table_commit: string;
+    row_sha256: string | null;
+    status: string;
+    reason: string | null;
+    legs: Record<
+      string,
+      {
+        status: string;
+        reason: string | null;
+        line: string;
+        floor_cents: number | null;
+        minutes_to_bell: number | null;
+        marker_label: string | null;
+        markers: Record<
+          string,
+          {
+            progress: number;
+            display_progress: number;
+            boundary: string | null;
+            glyph: string;
+            label: string;
+            price: number | null;
+          }
+        >;
+      }
+    >;
+    pair: { line: string; discount_line: string };
+  };
   provenance: Record<string, string | null>;
   bell: { t: number; timestamp_epoch: number; source: string | null };
   first_tick: { epoch: number; mtb_first: number; source: string; clock_label: string };

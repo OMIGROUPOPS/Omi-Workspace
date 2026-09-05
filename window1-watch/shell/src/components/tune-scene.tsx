@@ -15,6 +15,39 @@ export function TuneHud({
       aria-label="Tune test HUD"
       className="sticky top-0 z-20 rounded-md border border-border bg-bg/95 p-3 backdrop-blur-sm"
     >
+      <div aria-label="FLOOR · RECORDED" className="mb-3 border-b border-border pb-3">
+        <div className="flex flex-wrap items-center justify-between gap-1">
+          <p className="text-xs uppercase tracking-[0.14em] text-muted">FLOOR · RECORDED</p>
+          <p className="text-[10px] uppercase tracking-[0.1em] text-muted">
+            RULER — NOT AN OS INPUT
+          </p>
+        </div>
+        {game.face.truth ? (
+          <>
+            <div className="mt-1 flex flex-wrap gap-x-6 gap-y-1 text-xs tabular-nums">
+              {game.face.legs.map((leg, i) => (
+                <p key={leg} className={i === 0 ? "text-alt" : "text-gas"}>
+                  {game.face.truth?.legs[leg]?.line ?? SILENT}
+                </p>
+              ))}
+            </div>
+            <p className="mt-1 text-xs tabular-nums">
+              {game.face.truth.pair.line} · {game.face.truth.pair.discount_line}
+            </p>
+            <details className="mt-1 text-[10px] text-muted">
+              <summary>Recorded ruler source</summary>
+              <p className="break-all">
+                W1_GROUND_TRUTH_TABLE.csv @ {game.face.truth.table_commit} · row sha256{" "}
+                {game.face.truth.row_sha256 ?? SILENT}
+              </p>
+            </details>
+          </>
+        ) : (
+          <p className="mt-1 text-xs">
+            STORE SILENT — recorded truth has not been built for this face
+          </p>
+        )}
+      </div>
       <div className="grid gap-3 lg:grid-cols-[2fr_1fr_1fr_1fr]">
         <div className="min-w-0">
           <p className="text-xs uppercase tracking-[0.14em] text-muted">Brain · sentence</p>

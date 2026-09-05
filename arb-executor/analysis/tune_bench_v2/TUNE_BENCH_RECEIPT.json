@@ -1,0 +1,378 @@
+{
+  "categories": [
+    "ATP_MAIN"
+  ],
+  "census": {
+    "ATP_CHALL:different_leg_bells_no_common_clock": 21,
+    "ATP_CHALL:first_tick_tie_STORE_SILENT": 33,
+    "ATP_CHALL:no_first_true_trade": 7,
+    "ATP_CHALL:oriented_pairs": 3489,
+    "ATP_CHALL:pair_events": 3550,
+    "ATP_MAIN:first_tick_tie_STORE_SILENT": 33,
+    "ATP_MAIN:no_first_true_trade": 26,
+    "ATP_MAIN:oriented_pairs": 2436,
+    "ATP_MAIN:pair_events": 2495,
+    "WTA_CHALL:different_leg_bells_no_common_clock": 4,
+    "WTA_CHALL:first_tick_tie_STORE_SILENT": 6,
+    "WTA_CHALL:oriented_pairs": 579,
+    "WTA_CHALL:pair_events": 589,
+    "WTA_MAIN:different_leg_bells_no_common_clock": 1,
+    "WTA_MAIN:first_tick_tie_STORE_SILENT": 28,
+    "WTA_MAIN:no_first_true_trade": 23,
+    "WTA_MAIN:oriented_pairs": 2314,
+    "WTA_MAIN:pair_events": 2366
+  },
+  "clock": "Reconstruct each leg's epoch from its own formation/bell fraction, align both by their common bell; reject discordant bells. Sample largest member epoch <= bell - minutes_to_bell*60.",
+  "determinism": "fixed event_id/timestamp order; exact inverse weighted CDF; no randomness or runtime stamps in artifacts; --verify-repeat byte-compares both builds",
+  "exact_print_counts": {
+    "cache_bytes": 6890105,
+    "cache_path": "C:\\tmp\\tune_bench_v2_print_counts.json.gz",
+    "cache_sha256": "37aceaeab8f6592f0da7aef4218483cbcd2b1a1b49c4ca73b9423220d1a9373a",
+    "calibration_scope": "All oriented library legs in category, no named games. Retrospective data-set scale, not per-query walk-forward calibration.",
+    "category_print_count_distributions": {
+      "ATP_CHALL": {
+        "count": 6978,
+        "max": 2428.0,
+        "mean": 162.2922040699341,
+        "min": 1.0,
+        "q10": 43.0,
+        "q25": 74.0,
+        "q50": 124.0,
+        "q75": 200.0,
+        "q90": 309.0
+      },
+      "ATP_MAIN": {
+        "count": 4872,
+        "max": 7620.0,
+        "mean": 327.5576765188834,
+        "min": 1.0,
+        "q10": 65.0,
+        "q25": 122.0,
+        "q50": 212.0,
+        "q75": 373.0,
+        "q90": 706.0
+      },
+      "WTA_CHALL": {
+        "count": 1158,
+        "max": 1909.0,
+        "mean": 139.42832469775476,
+        "min": 1.0,
+        "q10": 39.0,
+        "q25": 68.0,
+        "q50": 110.0,
+        "q75": 172.0,
+        "q90": 263.0
+      },
+      "WTA_MAIN": {
+        "count": 4628,
+        "max": 3054.0,
+        "mean": 225.65406222990492,
+        "min": 1.0,
+        "q10": 48.0,
+        "q25": 99.0,
+        "q50": 168.0,
+        "q75": 272.0,
+        "q90": 428.0
+      }
+    },
+    "census": {
+      "bound_minute_rows": 6874235,
+      "nonzero_minute_rows": 1505447,
+      "source_rows_scanned": 9330878,
+      "true_print_count": 3988612
+    },
+    "count_rule": "Exact sum of trade_count_in_minute over formation_end_epoch <= minute_ts < bell_epoch; sparse cumulative counts at source minute timestamps. Counts are neither changed-price counts nor volume.",
+    "extract_leg_count": 18000,
+    "extract_row_count": 1505447,
+    "extract_row_definition": "one (ticker, minute_ts, cumulative_trade_count) observation for every nonzero-trade minute within the filed library spans",
+    "library_sha256": "019d84b0500a79c5d762d95ae7f481c3ae9a5bd5f0818f81aea9207a27fdd76e",
+    "schema": "EXACT_PARQUET_TRADE_COUNT_ADAPTER_V1",
+    "sleeper_p10_by_category": {
+      "ATP_CHALL": 43.0,
+      "ATP_MAIN": 65.0,
+      "WTA_CHALL": 39.0,
+      "WTA_MAIN": 48.0
+    },
+    "source_columns": {
+      "minute_ts": "int64",
+      "ticker": "large_string",
+      "trade_count_in_minute": "int64"
+    },
+    "source_path": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+    "source_rows": 9330878,
+    "source_sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4"
+  },
+  "family_census": {
+    "ATP_CHALL:DRIFT_DOWN": 122,
+    "ATP_CHALL:DRIFT_UP": 200,
+    "ATP_CHALL:EARLY_SET_DOWN": 79,
+    "ATP_CHALL:EARLY_SET_UP": 72,
+    "ATP_CHALL:GRIND_WOBBLE_DOWN": 8,
+    "ATP_CHALL:GRIND_WOBBLE_UP": 25,
+    "ATP_CHALL:LATE_BREAK_DOWN": 1210,
+    "ATP_CHALL:LATE_BREAK_UP": 1305,
+    "ATP_CHALL:ONE_STEP_DOWN": 568,
+    "ATP_CHALL:ONE_STEP_UP": 404,
+    "ATP_CHALL:QUIET_WOBBLE": 959,
+    "ATP_CHALL:ROUND_TRIP": 1335,
+    "ATP_CHALL:SLEEPER": 691,
+    "ATP_MAIN:DRIFT_DOWN": 120,
+    "ATP_MAIN:DRIFT_UP": 175,
+    "ATP_MAIN:EARLY_SET_DOWN": 161,
+    "ATP_MAIN:EARLY_SET_UP": 199,
+    "ATP_MAIN:GRIND_WOBBLE_DOWN": 26,
+    "ATP_MAIN:GRIND_WOBBLE_UP": 37,
+    "ATP_MAIN:LATE_BREAK_DOWN": 574,
+    "ATP_MAIN:LATE_BREAK_UP": 627,
+    "ATP_MAIN:ONE_STEP_DOWN": 419,
+    "ATP_MAIN:ONE_STEP_UP": 520,
+    "ATP_MAIN:QUIET_WOBBLE": 555,
+    "ATP_MAIN:ROUND_TRIP": 973,
+    "ATP_MAIN:SLEEPER": 486,
+    "WTA_CHALL:DRIFT_DOWN": 19,
+    "WTA_CHALL:DRIFT_UP": 27,
+    "WTA_CHALL:EARLY_SET_DOWN": 13,
+    "WTA_CHALL:EARLY_SET_UP": 3,
+    "WTA_CHALL:GRIND_WOBBLE_DOWN": 1,
+    "WTA_CHALL:GRIND_WOBBLE_UP": 4,
+    "WTA_CHALL:LATE_BREAK_DOWN": 258,
+    "WTA_CHALL:LATE_BREAK_UP": 268,
+    "WTA_CHALL:ONE_STEP_DOWN": 95,
+    "WTA_CHALL:ONE_STEP_UP": 46,
+    "WTA_CHALL:QUIET_WOBBLE": 140,
+    "WTA_CHALL:ROUND_TRIP": 179,
+    "WTA_CHALL:SLEEPER": 105,
+    "WTA_MAIN:DRIFT_DOWN": 135,
+    "WTA_MAIN:DRIFT_UP": 159,
+    "WTA_MAIN:EARLY_SET_DOWN": 159,
+    "WTA_MAIN:EARLY_SET_UP": 142,
+    "WTA_MAIN:GRIND_WOBBLE_DOWN": 11,
+    "WTA_MAIN:GRIND_WOBBLE_UP": 20,
+    "WTA_MAIN:LATE_BREAK_DOWN": 639,
+    "WTA_MAIN:LATE_BREAK_UP": 711,
+    "WTA_MAIN:ONE_STEP_DOWN": 449,
+    "WTA_MAIN:ONE_STEP_UP": 491,
+    "WTA_MAIN:QUIET_WOBBLE": 446,
+    "WTA_MAIN:ROUND_TRIP": 809,
+    "WTA_MAIN:SLEEPER": 457
+  },
+  "gates_minutes_to_bell": [
+    2880,
+    2160,
+    1440,
+    1080,
+    720,
+    480,
+    360,
+    240,
+    180,
+    120,
+    90,
+    60,
+    30,
+    15,
+    5
+  ],
+  "inherited_helpers": {
+    "functions": [
+      "sha256_file",
+      "stable_json",
+      "distribution",
+      "inverse_weighted_quantile",
+      "ess"
+    ],
+    "path": "arb-executor/analysis/tune_bench_floor_calls.py",
+    "sha256": "7e605a8cceded5f9a4a3ab29f375f0e1ae90320d3a45caa3169ef52ac7b404ba"
+  },
+  "input_library": {
+    "bytes": 26628883,
+    "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY.jsonl.gz",
+    "sha256": "019d84b0500a79c5d762d95ae7f481c3ae9a5bd5f0818f81aea9207a27fdd76e"
+  },
+  "label": "PROOF RUN \u2014 STALE LIBRARY (ends 2026-05-01) \u2014 NOT A RULING",
+  "limitations": [
+    "The supplied proof library ends 2026-05-01, so this is proof of execution, not evidence for a July trading ruling.",
+    "Prior trendpath used first-hour-median discovery and flow onset; the operator explicitly replaces both with first true-traded pair discovery and bell slices, and replaces count thresholds with ESS < 10.",
+    "The two taxonomy bench choices are operator-authorized: SLEEPER below category p10 actual trade counts; absolute net after first quarter <=2c for flat-after. Category p10 is retrospective full-library scale, not walk-forward calibration.",
+    "The fixed July family/depth tables are a requested retrospective null, not out-of-sample calibration on the June-era proof. Its family call uses only the observed gate prefix, never the query's realized future family.",
+    "Exact print counts are joined from the bound source parquet. June paths still lack canonical onsets; corresponding live coordinates stay null, never formation relabelled as onset.",
+    "First_tick means the first causal state at which both legs have traded since formation, not a requirement for simultaneous trades. Orientation is by the two first_tick prices; equal prices are excluded.",
+    "Role-open is separate from pool discovery: library postformation_open_cents when supplied, otherwise its filed anchor_cents; named checks use the filed truth-table postformation open. Neither is replaced by a later first-trade price.",
+    "Member missing observations cause no weight update, not a fabricated tick or death; the member stays in the original pool and can forecast only when its clock is observed. Reported availability counts distinguish this.",
+    "Seven price coordinates stay in cents. Volume is a separate log1p likelihood on pair contract-volume increments over each gate interval; no contracts enter the cents distance.",
+    "SOFT updates the seven-price likelihood at every stored tick; volume is multiplied once per completed gate interval. HARD keeps its median-price kill rule (binary price factor) and applies the separate volume factor once per gate; no extra soft-price rule is added to HARD.",
+    "The role-only null has filed depth but no unique numeric early/late timing scalar. Such timing stays silent; family-null rows use their exact published medians, even if that predicted floor lies before the query gate.",
+    "Literal tau-to-minutes replacement retains ORDER4's 0.10 tolerance as 0.10 minutes; absolute timing errors in minutes are primary.",
+    "ORDER4 reach uses the running low after placement, which can retain a past dip. A separate future_print_reached flag exposes that; neither minute path metric certifies a maker fill.",
+    "No full-worktree OS, builder, shape-organ or face edits are made; this tool reads only explicit library and named-check inputs."
+  ],
+  "no_call": "ESS < 10 after role/availability filter, counted explicitly with separate denominators; never replace with a different pool",
+  "prior_art": {
+    "GATE_POLICY_EVAL_LIVE_COORDS": {
+      "commit": "71de534a",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+      "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e"
+    },
+    "PER_SHAPE_FLOOR_DEPTH_TABLES": {
+      "commit": "8ab4f2d9",
+      "csv_sha256": "718840b56da6a57ca82ec3fc3892443e392a11d7e96994625e48b3b0df4970f9",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+      "rows_including_ALL": 52,
+      "scope_warning": "Filed July taxonomy medians post-date the stale June proof and include named July games; this fixed null is a requested retrospective comparator, not out-of-sample evidence.",
+      "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70"
+    },
+    "RECOGNITION_OPERATING_POINT": {
+      "commit": "41c1f724",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RECOGNITION_OPERATING_POINT.json",
+      "sha256": "e2a216299804ba16b6dec4d1b0f09e60babbae2be6a6e59135629b1c5d3a3011"
+    },
+    "SHAPE_TAXONOMY_BUILD1": {
+      "commit": "e269779b",
+      "label_csv_sha256": "3e99b58929e05e71c1190f432671bbfc718e48019f1bc246ee7c426955d5c330",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+      "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+      "signature_method_verbatim": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)"
+    },
+    "V52p_ROLE_DOWN_DEPTH_AGGREGATE": {
+      "commit": "020b775c",
+      "path": ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817/ROLE_DOWN_DEPTH_AGGREGATE.json",
+      "sha256": "acc0f06361e7c0cfbcce733db2dd6c93215f2fe918788046c6dd873849de029b"
+    },
+    "numerical_null_rules": {
+      "called_family": "exact family/category depth_below_open_c.med and floor_pos.med, never ALL fallback",
+      "level": "post-formation open minus median depth (negative depths preserved, not clipped)",
+      "minutes_to_bell": "(1 - median floor position) * verified span minutes; no gate clipping",
+      "missing_category": "STORE_SILENT; no cross-category or ALL borrowing",
+      "negative_depth_row_count": 15,
+      "numerical_scope": "floor point/timing only; no fabricated full path or prediction band",
+      "role_only_climber": "zero depth as requested; no early-position scalar is stated in either cited file",
+      "role_only_faller": "the filed V52p category down-depth aggregate, full precision",
+      "role_only_timing": "STORE_SILENT: qualitative early/late is not a numeric role-only timing predictor"
+    },
+    "taxonomy_bench_choices": {
+      "causal_family_adaptation": "At a receipt only, normalize formation through the current gate into 17 samples; do not use or forward-fill into the unknown remainder. Realized labels use formation through bell.",
+      "direction": "early/late shares are signed relative to net; reversals omit zero steps",
+      "flat_after": "abs(net after first quarter) <= 2 cents; operator-authorized bench choice, not taxonomy law",
+      "quiet_wobble_prose_caveat": "The inherited travel split does not mathematically guarantee the prose 5-cent band. quiet_wobble_prose_band_exception is exposed; no new cutoff is introduced.",
+      "rule_order": [
+        "SLEEPER",
+        "ROUND_TRIP_OR_QUIET_WOBBLE",
+        "LATE_BREAK",
+        "EARLY_SET",
+        "ONE_STEP",
+        "GRIND_WOBBLE",
+        "DRIFT"
+      ],
+      "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
+      "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
+    },
+    "trendpath_build.py": {
+      "commit": "66b50db3",
+      "path": "arb-executor/analysis/trendpath_build.py",
+      "sha256": "626edf547e4aa7e327928e695e2f4ecfd40cd59fadf2e8e8384bb351d8f1dd17"
+    }
+  },
+  "replay_and_reporting_proof": {
+    "byte_identical_full_replay_artifact_sha256": {
+      "NAMED_CHECKS": "12df2861b5298fe45c141cc84c7924b326fa0ee347faad391d4a35fa0d79d2f1",
+      "RECEIPT": "35add1f6d2035336404ee729a3cb419a5aa1ac1e8350c73db6b0a248a007ab75",
+      "SCOREBOARD": "02f2a6977efc0ebefe2a888998ab4aa3229dd15317dae3cbccef687d7574586f",
+      "SUMMARY": "b9e3800d1e3534f2b81ac10f15b3f58256c3465eba0106313cd456622842daa1"
+    },
+    "correction": "Reporting only: retain conditional means; add per-eligible-query reach and discount companions using stored mean * stored n / eligible queries. NO-CALL contributes no bid and zero reach/discount, not a zero floor error. No simulation or predictions were changed.",
+    "frozen_full_replay_evidence_path": "C:\\tmp\\tune_bench_v2_full_replay_20260904",
+    "full_replay_passes": 2,
+    "full_replay_script_sha256": "8ea0846aff448aff25defe5ee067da17757973b7dabf4642af960061cd043c9d",
+    "nonfunction_module_statements_ast_unchanged": true,
+    "reporting_only_source_diff": "--- full-replay-source\n+++ committed-reporting-source\n@@ -1221,17 +1221,60 @@\n     return dict(queries=cell[\"queries\"], statuses=dict(cell[\"statuses\"]), metrics=stats, family=families)\n \n \n+def score_denominators():\n+    return dict(\n+        errors=\"Path/floor errors and family accuracy use their own called-side or called-pair denominators; NO-CALL is not a zero prediction error.\",\n+        conditional_utility=\"Existing pair_reach metrics retain their conditional-on-pair-call means and n.\",\n+        eligible_utility=\"eligible_query_utility adds mean * called n / scorable_queries for pair reach and discount. A NO-CALL issues no bid and contributes zero reach/discount; it stays distinct from NOT_POSTABLE.\",\n+        point_null=\"TAXONOMY-NULL has no evaluated bid/reach model, so its utility stays undefined rather than zero.\")\n+\n+\n+def add_eligible_utility(scoreboard):\n+    \"\"\"Reporting only: preserve all predictions and conditional metric values.\"\"\"\n+    for category in scoreboard[\"categories\"].values():\n+        for gate in category[\"gates\"].values():\n+            eligible = gate[\"scorable_queries\"]\n+            for rule, cell in gate.get(\"rules\", {}).items():\n+                called = cell[\"statuses\"].get(\"OK\", 0)\n+                if not 0 <= called <= eligible:\n+                    raise ValueError(\"INVALID_CALLED_QUERY_DENOMINATOR\")\n+                utility = dict(eligible_queries=eligible, called_pair_queries=called,\n+                    no_call_or_partial_queries=eligible-called,\n+                    status=\"OK\" if eligible else \"NO_SCORABLE_QUERIES\")\n+                for quantile in (\"q25\", \"q50\"):\n+                    if rule == \"TAXONOMY-NULL\":\n+                        utility[quantile] = None\n+                        utility[\"status\"] = \"NOT_EVALUATED_FOR_POINT_NULL\"\n+                        continue\n+                    prefix = \"pair_reach.\"+quantile+\".\"\n+                    discount = cell[\"metrics\"].get(prefix+\"expected_pair_discount_contribution\", {})\n+                    reach = cell[\"metrics\"].get(prefix+\"reached\", {})\n+                    if discount.get(\"n\", 0) != called or reach.get(\"n\", 0) != called:\n+                        raise ValueError(\"UTILITY_CALL_DENOMINATOR_MISMATCH:\"+rule)\n+                    discount_total = discount[\"mean\"]*called if called else 0.0\n+                    reached_total = reach[\"mean\"]*called if called else 0.0\n+                    utility[quantile] = dict(\n+                        discount_cents_per_called_pair=discount.get(\"mean\"),\n+                        discount_cents_per_eligible_query=discount_total/eligible if eligible else None,\n+                        pair_reach_rate_per_called_pair=reach.get(\"mean\"),\n+                        pair_reach_rate_per_eligible_query=reached_total/eligible if eligible else None,\n+                        formula=\"conditional mean * called_pair_queries / eligible_queries\")\n+                cell[\"eligible_query_utility\"] = utility\n+    return scoreboard\n+\n+\n def summarize(scoreboard):\n     def number(x):\n         return \"\u2014\" if x is None else f\"{x:.3f}\"\n     def get(cell, key, stat=\"mean\"):\n         return cell.get(\"metrics\", {}).get(key, {}).get(stat)\n-    out = [\"# \" + scoreboard[\"label\"], \"\", \"No selection, no trading ruling. Minute-book reach is diagnostic only.\", \"\"]\n+    out = [\"# \" + scoreboard[\"label\"], \"\", \"No selection, no trading ruling. Minute-book reach is diagnostic only.\", \"\",\n+           \"Error means are conditional on called sides. Utility shows both called-pair and all-eligible-query denominators; NO-CALL contributes zero only to reach/discount utility. These are not matched-cohort comparisons.\", \"\"]\n     for category, section in scoreboard[\"categories\"].items():\n         out += [f\"## {category}\", \"\"]\n         for level, key in ((\"MACRO \u2014 favorite / underdog last-path MAE\", \"path_last_mae_cents\"),\n                            (\"MICRO \u2014 floor MAE / median absolute error, favorite then underdog\", \"floor_absolute_error_cents\"),\n-                           (\"MICRO-MICRO \u2014 pair reach \u00d7 discount contribution (q50)\", None)):\n+                           (\"MICRO-MICRO \u2014 q50 pair reach \u00d7 discount, per called pair / per eligible query\", None)):\n             out += [f\"### {level}\", \"\", \"| Rule | \" + \" | \".join(map(str, GATES)) + \" |\",\n                     \"|---|\" + \"---|\"*len(GATES)]\n             for rule in RULES:\n@@ -1241,7 +1284,8 @@\n                     if not cell:\n                         cols.append(\"\u2014\")\n                     elif key is None:\n-                        cols.append(number(get(cell, \"pair_reach.q50.expected_pair_discount_contribution\")))\n+                        companion = (cell.get(\"eligible_query_utility\", {}).get(\"q50\") or {}).get(\"discount_cents_per_eligible_query\")\n+                        cols.append(number(get(cell, \"pair_reach.q50.expected_pair_discount_contribution\"))+\" / \"+number(companion))\n                     else:\n                         vals = [number(get(cell, f\"sides.{side}.{key}\")) for side in SIDES]\n                         if key == \"floor_absolute_error_cents\":\n@@ -1254,6 +1298,17 @@\n             row = section[\"gates\"].get(str(gate), {})\n             base = row.get(\"rules\", {}).get(\"BASE\", {})\n             out.append(f\"| {gate} | {row.get('scorable_queries', 0)} | {number(section['initial_ess']['q50'])} | {base.get('statuses', {}).get('OK', 0)} |\")\n+        out.append(\"\")\n+        out += [\"### Per-side call denominators \u2014 favorite / underdog\", \"\",\n+                \"| Gate | Eligible pairs | \" + \" | \".join(RULES) + \" |\",\n+                \"|---:|---:|\" + \"---|\"*len(RULES)]\n+        for gate in GATES:\n+            row = section[\"gates\"].get(str(gate), {})\n+            cells = []\n+            for rule in RULES:\n+                metrics = row.get(\"rules\", {}).get(rule, {}).get(\"metrics\", {})\n+                cells.append(\" / \".join(str(metrics.get(f\"sides.{side}.floor_absolute_error_cents\", {}).get(\"n\", 0)) for side in SIDES))\n+            out.append(\"| \" + \" | \".join([str(gate), str(row.get(\"scorable_queries\", 0)), *cells]) + \" |\")\n         out.append(\"\")\n     out += [\"## Declared limits\", \"\"] + [\"- \" + line for line in scoreboard[\"limitations\"]]\n     return \"\\n\".join(out)+\"\\n\"\n@@ -1376,9 +1431,11 @@\n                    FIRST_TICK_ONLY=\"w0 unchanged\", BASE=\"all category+discovery-oriented eligible members weight 1; same role gate\",\n                    role=\"last - postformation_open >=2 CLIMBER, <=-2 FALLER; otherwise NOT_CALLABLE and bypass role filter\"),\n         no_call=\"ESS < 10 after role/availability filter, counted explicitly with separate denominators; never replace with a different pool\",\n+        score_denominators=score_denominators(),\n         determinism=\"fixed event_id/timestamp order; exact inverse weighted CDF; no randomness or runtime stamps in artifacts; --verify-repeat byte-compares both builds\",\n         limitations=limitations)\n     output[\"query_set_audit\"] = query_audit\n+    add_eligible_utility(output)\n     args.out.mkdir(parents=True, exist_ok=True)\n     paths = {}\n     for name, data in ((\"SCOREBOARD\", output), (\"RECEIPT\", receipt), (\"NAMED_CHECKS\", named)):\n@@ -1562,7 +1619,22 @@\n         for result in worker_results:\n             result_bytes = json.dumps(result, sort_keys=True, separators=(\",\", \":\")).encode(\"utf-8\")\n             assert result_bytes == direct_bytes\n-    print(\"SELF-TEST PASS: quantiles; exact counts; ESS/no-call family boundary; cached forecasts; separate price/volume factors; future-mutation causality; walk-forward exclusions; direct/1-worker/2-worker byte equality\", flush=True)\n+    utility_metrics = {}\n+    for q in (\"q25\", \"q50\"):\n+        utility_metrics[f\"pair_reach.{q}.expected_pair_discount_contribution\"] = dict(n=24, mean=7/6)\n+        utility_metrics[f\"pair_reach.{q}.reached\"] = dict(n=24, mean=.5)\n+    utility_board = dict(categories=dict(ATP_MAIN=dict(gates={\"2160\": dict(scorable_queries=427, rules={\n+        \"SOFT\": dict(statuses=dict(OK=24), metrics=utility_metrics),\n+        \"HARD\": dict(statuses={}, metrics={}),\n+        \"TAXONOMY-NULL\": dict(statuses={}, metrics={})})})))\n+    add_eligible_utility(utility_board)\n+    utility_rows = utility_board[\"categories\"][\"ATP_MAIN\"][\"gates\"][\"2160\"][\"rules\"]\n+    assert math.isclose(utility_rows[\"SOFT\"][\"eligible_query_utility\"][\"q50\"][\"discount_cents_per_eligible_query\"], 28/427)\n+    assert utility_rows[\"SOFT\"][\"metrics\"] == utility_metrics\n+    assert utility_rows[\"HARD\"][\"eligible_query_utility\"][\"q50\"][\"discount_cents_per_eligible_query\"] == 0\n+    assert utility_rows[\"HARD\"][\"eligible_query_utility\"][\"q50\"][\"discount_cents_per_called_pair\"] is None\n+    assert utility_rows[\"TAXONOMY-NULL\"][\"eligible_query_utility\"][\"q50\"] is None\n+    print(\"SELF-TEST PASS: quantiles; exact counts; ESS/no-call family boundary; cached forecasts; separate price/volume factors; future-mutation causality; walk-forward exclusions; direct/1-worker/2-worker byte equality; eligible-query utility denominators\", flush=True)\n \n \n def main():\n",
+    "reporting_passes": 2,
+    "reporting_script_sha256": "6561f991039def174001f17f8aedc450d4bdcfd929bd905905e57c9547439282",
+    "unchanged_model_and_input_functions_ast_verified": [
+      "Leg",
+      "Pair",
+      "add_cell",
+      "attach_print_counts",
+      "bind_numerical_null",
+      "bind_prior_art",
+      "build_print_count_cache",
+      "classify_leg",
+      "clean",
+      "date_key",
+      "family",
+      "family_distribution",
+      "finish_cell",
+      "first_bind",
+      "forecast",
+      "forecast_context",
+      "gate_coordinates",
+      "init_worker",
+      "initial_pool",
+      "label_pairs",
+      "load_library",
+      "load_named_inputs",
+      "main",
+      "new_cell",
+      "null_forecast",
+      "numeric_leaves",
+      "numerical_null",
+      "pinned",
+      "quantile_cube",
+      "relative_weights",
+      "role",
+      "simulate",
+      "taxonomy_features",
+      "taxonomy_print_count",
+      "taxonomy_signature",
+      "volume_likelihood",
+      "worker_query"
+    ],
+    "validation": "Both full scenario replays were byte-identical before correction. Both deterministic aggregate-only report passes are byte-compared; removing the added utility fields exactly restores the frozen scoreboard. Named checks are byte-unchanged."
+  },
+  "rules": {
+    "BASE": "all category+discovery-oriented eligible members weight 1; same role gate",
+    "FIRST_TICK_ONLY": "w0 unchanged",
+    "HARD": "drop if contemporaneous mean seven-price distance exceeds weighted median among available surviving members; ties stay; w0 times prior gate-volume factors",
+    "SOFT": "seven-price tick likelihood product times separate gate-volume factor",
+    "STEP_FORECAST": "at next gate multiply seven-price move-error likelihood and separate log-volume likelihood; VALIDITY uses frozen pre-update forecast weights and both lasts within 1 cent",
+    "role": "last - postformation_open >=2 CLIMBER, <=-2 FALLER; otherwise NOT_CALLABLE and bypass role filter"
+  },
+  "score_denominators": {
+    "conditional_utility": "Existing pair_reach metrics retain their conditional-on-pair-call means and n.",
+    "eligible_utility": "eligible_query_utility adds mean * called n / scorable_queries for pair reach and discount. A NO-CALL issues no bid and contributes zero reach/discount; it stays distinct from NOT_POSTABLE.",
+    "errors": "Path/floor errors and family accuracy use their own called-side or called-pair denominators; NO-CALL is not a zero prediction error.",
+    "point_null": "TAXONOMY-NULL has no evaluated bid/reach model, so its utility stays undefined rather than zero."
+  },
+  "script_sha256": "6561f991039def174001f17f8aedc450d4bdcfd929bd905905e57c9547439282",
+  "selected_query_limit": null,
+  "series": [
+    "fav_last",
+    "fav_bid",
+    "fav_ask",
+    "dog_last",
+    "dog_bid",
+    "dog_ask",
+    "mirror_gap",
+    "volume_cum_delta"
+  ],
+  "source_receipt": {
+    "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_RECEIPT.json",
+    "sha256": "a4043b882865c472a34bd2a2c3c79d0e5df0d6cda4d9ab47cacc29b446bb39a3"
+  },
+  "units": {
+    "application": "SOFT and STEP weights multiply distinct k_price and k_volume factors; HARD price gate is its inherited binary median-distance selector; no engine similarity weight/scale is copied into either formula",
+    "engine_transform": {
+      "declaration": "SIMILARITY_DECLARATION",
+      "field": "volume_log1p",
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "sha256": "976ed9d788327fdefec2fb93bd92e974377368face8a513d660261a792bd2399"
+    },
+    "k_price_soft": "1/(1+mean absolute seven-price level difference), multiplied in tick order",
+    "k_price_step": "1/(1+sum absolute errors of seven-price gate-to-next-gate moves)",
+    "k_volume": "1/(1+abs(log1p(delta_volume_member)-log1p(delta_volume_query)))",
+    "price": "cents; seven-series price likelihood only",
+    "volume": "log1p(pair contracts accumulated over gate)"
+  },
+  "volume_mode": "separate-log1p",
+  "w0": "1/(1+abs(delta_fav_first)+abs(delta_dog_first)) * 1/(1+abs(delta_mtb_first)/query.mtb_first)",
+  "walk_forward": "member.bell_epoch < query.formation_end_epoch; leave-self-out; exclude same event_date; category separate; no distance/count cutoff. Fixed retrospective taxonomy-scale/null calibration is disclosed separately, not claimed walk-forward."
+}

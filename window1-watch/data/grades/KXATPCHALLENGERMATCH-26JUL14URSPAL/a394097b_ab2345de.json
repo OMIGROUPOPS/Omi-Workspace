@@ -12531,6 +12531,4192 @@
         }
       },
       "timestamp": "2026-09-06T17:58:36.624Z"
+    },
+    {
+      "version": 1,
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "provenance": {
+        "os_sha256": "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2",
+        "trace_sha256": "ab2345dea8b3db2237dca97bf03f3fcece95eae334e3f4940f5b6583271171a0",
+        "bench_sha256": "12df2861b5298fe45c141cc84c7924b326fa0ee347faad391d4a35fa0d79d2f1",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "truth_row_sha256": "b68855b99823a597a79bce4f667d6a1540b24799154da2593fe72ebe8f651313",
+        "face_sha256": "a6dc87f1d96d76baa0eafa439895b3753836888f490778b6e2036d5842c32825",
+        "stage_inputs_sha256": "1fafd44753847b9680645db5a4f77a68c0602a4179fe37c22a93de20b8d43c01",
+        "stage_files_count": 1206,
+        "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+        "receipt_sha256": "26308b440b79dcbd607d1b629a4f6cfb149fec6b6a7cf15b429260dead041e9a",
+        "grade_builder_sha256": "76b764bef92260d71b1118e10351f81f5d15c2ec15036031f11bf3fadeca9e8a",
+        "grade_contract_sha256": "840311c8019c498fef30e348aaca61cf4f4a8b82f105d2f4fb6ddfbf87b9bb61",
+        "fields_sha256": "25cb8e1e074af8d83664fcb645ea41fd5a1abe0cbf4626f85015233754aa3b40",
+        "os_commit": "ed3b813ba9c3e383b223dba0f4f75751b2fb24e7",
+        "os_commit_order": 2994,
+        "grading_commit": "00f67fa14031c44ab6e773a9d013fb0bce78ff1d"
+      },
+      "SENTENCE": {
+        "receipts_total": 1206,
+        "receipts_with_sentence": 1147,
+        "leg_receipts_total": 2394,
+        "leg_receipts_with_sentence": 2337,
+        "q_organ_leg_receipts": 0,
+        "x_organ_leg_receipts": 0,
+        "share_q_authored_by_organ": 0,
+        "share_x_authored_by_organ": 0,
+        "non_organ_q_authors": [
+          "PRIOR_ONLY",
+          "LIBRARY_FRACTION_PRIOR",
+          "INSUFFICIENT_EVIDENCE",
+          "STORE SILENT",
+          "PRIOR_REWEIGHTED_BY_OWN_WALK"
+        ],
+        "named_tokens_found": [
+          "PAL_ATOMIC_LIVE_TOP_LADDER_Q_SEAT_REST",
+          "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE",
+          "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_SYNC",
+          "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+          "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+          "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_NO_LIVE_PREDICTION_SEAT",
+          "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_PREDICTION_SEAT_EXIT"
+        ],
+        "named_token_evidence": [
+          {
+            "token": "PAL_ATOMIC_LIVE_TOP_LADDER_Q_SEAT_REST",
+            "count": 8392,
+            "first_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2906",
+            "first_field": "layers.micro.context.beliefs.PAL.predicted_level_author"
+          },
+          {
+            "token": "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE",
+            "count": 1049,
+            "first_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2906",
+            "first_field": "derivations.0.layered_dual_belief.envelope_placement.mode"
+          },
+          {
+            "token": "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_SYNC",
+            "count": 19352,
+            "first_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2906",
+            "first_field": "derivations.0.derivation.pricing_authority.prediction_seat.latest_revision.revision"
+          },
+          {
+            "token": "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+            "count": 5257,
+            "first_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2906",
+            "first_field": "derivations.0.derivation.target_basis"
+          },
+          {
+            "token": "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+            "count": 2098,
+            "first_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2906",
+            "first_field": "derivations.0.layered_dual_belief.decision_arbitration.winner.lane"
+          },
+          {
+            "token": "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_NO_LIVE_PREDICTION_SEAT",
+            "count": 20,
+            "first_receipt": "a529177f-2dbf-74ab-6105-8f02b6f6c01b",
+            "first_field": "derivations.0.derivation.target_basis"
+          },
+          {
+            "token": "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_PREDICTION_SEAT_EXIT",
+            "count": 5,
+            "first_receipt": "a529177f-2dbf-74ab-6105-8f02b6f6c01b",
+            "first_field": "derivations.0.layered_dual_belief.envelope_placement.mode"
+          }
+        ],
+        "author_counts": {
+          "q": {
+            "STORE SILENT": 2394
+          },
+          "x": {
+            "STORE SILENT": 2394
+          }
+        },
+        "authorship_scope": "Author-token metric excluding prior-only badges, including PRIOR_REWEIGHTED_BY_OWN_WALK; not certification of the Gate-1 own-receipt/weight chain.",
+        "gate_1_authorship_certification": "STORE SILENT",
+        "gate_1_reason": "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1."
+      },
+      "MACRO": {
+        "last_gate": 5,
+        "receipt": "a529177f-2dbf-74ab-6105-8f02b6f6c01b",
+        "legs": {
+          "PAL": {
+            "realized_family": "STORE SILENT",
+            "family_called_at_last_gate": "INTERIM_UP_TRAVEL",
+            "family_match": "STORE SILENT",
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {},
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          "URS": {
+            "realized_family": "STORE SILENT",
+            "family_called_at_last_gate": "STORE SILENT",
+            "family_match": "STORE SILENT",
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {},
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          }
+        },
+        "pile_ess_at_last_gate": "STORE SILENT",
+        "pool_accuracy_by_gate": [
+          {
+            "gate": 720,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          {
+            "gate": 480,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          {
+            "gate": 360,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          {
+            "gate": 240,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          {
+            "gate": 180,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          {
+            "gate": 120,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          {
+            "gate": 90,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          {
+            "gate": 60,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          {
+            "gate": 30,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          {
+            "gate": 15,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          },
+          {
+            "gate": 5,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "CLOCK_MISMATCH_STORE_SILENT"
+          }
+        ],
+        "bench_label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING",
+        "bench_reason": "CLOCK_MISMATCH_STORE_SILENT",
+        "ess_source": "Bench validity pool, not OS membership ESS"
+      },
+      "MICRO": {
+        "last_gate": 5,
+        "legs": {
+          "PAL": {
+            "gate": 5,
+            "leg": "PAL",
+            "receipt": "a529177f-2dbf-74ab-6105-8f02b6f6c01b",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 2,
+            "floor_error_cents": 8,
+            "timing_error_minutes": 349.4233333349228,
+            "recorded_floor_cents": 40,
+            "recorded_floor_minutes_to_bell": 351.4233333349228,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          },
+          "URS": {
+            "gate": 5,
+            "leg": "URS",
+            "receipt": "a529177f-2dbf-74ab-6105-8f02b6f6c01b",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT",
+            "recorded_floor_cents": 57,
+            "recorded_floor_minutes_to_bell": 159.15666666825612,
+            "first_gate_within_2c_and_held": null,
+            "reason": "NO_POSTERIOR_Q50_AT_LAST_GATE"
+          }
+        },
+        "gate_calls": [
+          {
+            "gate": 720,
+            "leg": "PAL",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1",
+            "called_q50_floor_cents": 41,
+            "called_floor_minutes_to_bell": 50,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 301.4233333349228
+          },
+          {
+            "gate": 480,
+            "leg": "PAL",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-425",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 30,
+            "floor_error_cents": 8,
+            "timing_error_minutes": 321.4233333349228
+          },
+          {
+            "gate": 360,
+            "leg": "PAL",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-975",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 13,
+            "floor_error_cents": 8,
+            "timing_error_minutes": 338.4233333349228
+          },
+          {
+            "gate": 240,
+            "leg": "PAL",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-27342",
+            "called_q50_floor_cents": 39,
+            "called_floor_minutes_to_bell": 1,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 350.4233333349228
+          },
+          {
+            "gate": 180,
+            "leg": "PAL",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-30675",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 21,
+            "floor_error_cents": 8,
+            "timing_error_minutes": 330.4233333349228
+          },
+          {
+            "gate": 120,
+            "leg": "PAL",
+            "receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 21,
+            "floor_error_cents": 8,
+            "timing_error_minutes": 330.4233333349228
+          },
+          {
+            "gate": 90,
+            "leg": "PAL",
+            "receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 21,
+            "floor_error_cents": 8,
+            "timing_error_minutes": 330.4233333349228
+          },
+          {
+            "gate": 60,
+            "leg": "PAL",
+            "receipt": "c01fa53a-64e3-7231-8731-1f3572179365",
+            "called_q50_floor_cents": 39,
+            "called_floor_minutes_to_bell": 30,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 321.4233333349228
+          },
+          {
+            "gate": 30,
+            "leg": "PAL",
+            "receipt": "c01fa53a-64e3-7231-8731-1f3572179365",
+            "called_q50_floor_cents": 39,
+            "called_floor_minutes_to_bell": 30,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 321.4233333349228
+          },
+          {
+            "gate": 15,
+            "leg": "PAL",
+            "receipt": "c01fa53a-64e3-7231-8731-1f3572179365",
+            "called_q50_floor_cents": 39,
+            "called_floor_minutes_to_bell": 30,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 321.4233333349228
+          },
+          {
+            "gate": 5,
+            "leg": "PAL",
+            "receipt": "a529177f-2dbf-74ab-6105-8f02b6f6c01b",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 2,
+            "floor_error_cents": 8,
+            "timing_error_minutes": 349.4233333349228
+          },
+          {
+            "gate": 720,
+            "leg": "URS",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1",
+            "called_q50_floor_cents": 51,
+            "called_floor_minutes_to_bell": 11,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 148.15666666825612
+          },
+          {
+            "gate": 480,
+            "leg": "URS",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-425",
+            "called_q50_floor_cents": 64,
+            "called_floor_minutes_to_bell": 104,
+            "floor_error_cents": 7,
+            "timing_error_minutes": 55.15666666825612
+          },
+          {
+            "gate": 360,
+            "leg": "URS",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-975",
+            "called_q50_floor_cents": 58,
+            "called_floor_minutes_to_bell": 104,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 55.15666666825612
+          },
+          {
+            "gate": 240,
+            "leg": "URS",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-27342",
+            "called_q50_floor_cents": 58,
+            "called_floor_minutes_to_bell": 104,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 55.15666666825612
+          },
+          {
+            "gate": 180,
+            "leg": "URS",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-30675",
+            "called_q50_floor_cents": 58,
+            "called_floor_minutes_to_bell": 32,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 127.15666666825612
+          },
+          {
+            "gate": 120,
+            "leg": "URS",
+            "receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 90,
+            "leg": "URS",
+            "receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 60,
+            "leg": "URS",
+            "receipt": "c01fa53a-64e3-7231-8731-1f3572179365",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 30,
+            "leg": "URS",
+            "receipt": "c01fa53a-64e3-7231-8731-1f3572179365",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 15,
+            "leg": "URS",
+            "receipt": "c01fa53a-64e3-7231-8731-1f3572179365",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 5,
+            "leg": "URS",
+            "receipt": "a529177f-2dbf-74ab-6105-8f02b6f6c01b",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          }
+        ]
+      },
+      "HANDS": {
+        "actions": [
+          {
+            "receipt": "202f2bef-d8ac-4abd-6613-7e48b7eda7d8",
+            "leg": "URS",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 605.8300999999046,
+            "old_cents": null,
+            "new_cents": 55,
+            "writer_class": "HAND",
+            "tokens": [
+              "PLACE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/6577976f8ca4dc95f3affa16650541504a26d91a141542d5aea8a7f83cdfe89f.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-567",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 598.8499998331071,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/cca6ba20abbd903d61e3b2887ff830c8de24e140df17bc150bc7c96f7fa83d55.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-266",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 588.4333328167597,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/be7b175f8b56f2ac562e114e5daa3a615d1680eb5b68277e13449a05600ed8d5.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-641",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 587.3499999483427,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/4da5e372764ce5526c89cdaba0f01aba8b3d76868a3b755f6b5414fc4dad0451.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2563",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 361.4833333015442,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7408ea4eb7283e29456ce10676e92718461e61db1300984ffc6c163c4668502d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2677",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 358.533333281676,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/59c434ebcfce86b8f3f69d5073791c321c16dd4c07d70bb0f549788f3b444c66.json"
+          },
+          {
+            "receipt": "038f03f3-2dcd-7363-da5f-06677e3be932",
+            "leg": "PAL",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 351.42271666526796,
+            "old_cents": null,
+            "new_cents": 39,
+            "writer_class": "SEAT",
+            "tokens": [
+              "PLACE_REST",
+              "COHERENT_LIVE_DEADLINE_PREDICTION_SEATED_AT_UNIFIED_AIM_CONDUCT_POSTERIOR",
+              "PREDICTION_SEAT_WRITER",
+              "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/a209c094ec1cb102d6f0ba02e79f760c61d5d7cedd1da9923dac95a6ab3cf79d.json"
+          },
+          {
+            "receipt": "038f03f3-2dcd-7363-da5f-06677e3be932",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 351.42271666526796,
+            "old_cents": 58,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "COHERENT_LIVE_DEADLINE_PREDICTION_SEATED_AT_UNIFIED_AIM_CONDUCT_POSTERIOR",
+              "PREDICTION_SEAT_WRITER",
+              "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/a209c094ec1cb102d6f0ba02e79f760c61d5d7cedd1da9923dac95a6ab3cf79d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-2906",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 351.42271664937334,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/2f1ffc1d5b9987397d23c14bd7aae2969b399fe613fa1f3423be5490bda2f17a.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2058",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 317.59999983310695,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/9740db0fe0e815968d9c7e21ebd375b561f5f322ce961075140189db38fe8605.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2066",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 317.5499999324481,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/2003a68c7f2e20b8681ac3e6873f75396ddc2c5a82bcfc1ede73124c61e96553.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3444",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 316.8166666348775,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/ad81dce94bda06322b775ba1fc763ec41a45c500ad00665cfd47bae8ab98075e.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2093",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 316.6166666507721,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/84fe658ce3ca3f753760f4316a0f42176a75bd8d5036acf7f4b4784fa6feeba4.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2144",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 312.49999988476435,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/d6139294567c0718877249eb7a547876b15f3285f2b3239b7c4747fdc35eefcd.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2148",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 312.4666665991147,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/245a5e422618e6fccc508d69f99dcd21d6ff36ea96908e4789dc891fe87570f9.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2157",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 312.23333326578137,
+            "old_cents": 43,
+            "new_cents": 34,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/ab6f4aa80f7ab933b76e06c438dc1594cd4897d366b6f134556517b6e2eb54c3.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2162",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 312.1166665832202,
+            "old_cents": 34,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/eddd342ae700daa1cffe19d8158996a9a6f065fb761d9f2addb077af7cf5c6c9.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2183",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 311.9999999324481,
+            "old_cents": 43,
+            "new_cents": 34,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/76d8e2a303fe0283268bd1488b473b0417627cab97b223f84b52557b6dbb711b.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2187",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 311.9333333015442,
+            "old_cents": 34,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7b25b947c76fb029b43f4a707b3b9ff6b4871e154b21ffb905c398ef8570fb73.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2205",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 311.74999998410544,
+            "old_cents": 43,
+            "new_cents": 34,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/b3c93e28e01925e848e35f92753354376a9514961b67b748c0c7e117d48c3971.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2212",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 311.66666658322015,
+            "old_cents": 34,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/04d3e0d1995f4585de2502ca188f8a01f1f22171bfe9bfad8bb2776ca974d9ea.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3608",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 299.6499999841054,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/da00731d398f45f2c766506cd4eb59f7812602365461e91d54728495e338f0b6.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2970",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 299.4666666348775,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/b60e839dcb4afd8c6419660c0f1d7b0c6801df302fc3eab35129d4573d170355.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3641",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 299.2666665991147,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/53f33918f2e33c5939798d7573e3cb4fc5d60c778a04ac1182f04cbf8844d703.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3752",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 299.21666581630706,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/9798f80cf7fe8b855f5faa1587dfcece0206197ac01200bd102f2e32b2964026.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3799",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 299.1499999841054,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/be2535454632ae587a201e1f54a43d32353bdb5e5094136d612a7f091b3d18bd.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4364",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 297.5833330829938,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/5916f8070f94d0e2f70e802d98e51a1b60b033aeae46af1fa492cef397e52133.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4377",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 297.5666664481163,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/5761d245cfee84b2d22c152fe1f5ab2061398ca5282bfc24256c1cb47cc10be1.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3068",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 297.34999996821085,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/2366517e3796c58d9d5aeb6393c1a9e8799faf5b5da5f11562d9e9f8c6608f4e.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4496",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 297.2999999841054,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/cbc7d3cd4b2d96ab6e858c8130a0caf773542748325e9bb7861f54d1ddd6326a.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-4946",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 295.8833316485087,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/90dd3aec104cca291803cdbde7ae6b50f229d81ad3e3c8cf2c5e603bef83e7b4.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-5055",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 295.7999999006589,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/28f799791fb273a92bddad9eb06a69e6d671361670893d59c438db46547474d6.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-5700",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 295.4833328485489,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/5bfc0f95c9299c088104b6c16de32936338ac3712c3ce125359d682272b8c083.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-5771",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 295.31666548252105,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/d676821278b5467518688a7c5bbe5571bf4b3c18e05d1a10704b5a6a1080a333.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-6046",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 295.14999853372575,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/4782229f45883ecbd4a1e1521c4643dbf5cfce063c01d348ec98415788f377cc.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-6265",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 295.09999843438464,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/3cb4487f89839d52570cd2f57502d4bb0e9673804a2dc0f3b86b1aac26845773.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3127",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 293.11666665077206,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/dc9b8678947df86253638c9c2cb5266bc223ff30c4170a2086f776ee1c13ddf6.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-7037",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 293.0999999165535,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/378d1c877ad6a3af6e0f20155eebdb2a68cd3a540b3ca54b39b20252ce1042d3.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3134",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 291.4833333015442,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/65cf9c67e442cdc21f3bde0827c0aa8c470fc4d5cf5c939b934fbc62f8cd0419.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-7268",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 291.43333328167597,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/331537f329ef371715be78c3fee933af2e32e7dda575d7c3f2bcdb65b4c58ed1.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3144",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 291.3666666150093,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/5c0ff3f06af923011de13328d67bd7a02ddb8fe87c0b5cdf5a9feea66f2256b9.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-7276",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 291.34999996821085,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/b5b12f90aa018efa336437b90e07b6264edd7e1b989faf11a6c6e022188bfa24.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3154",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 290.8499999841054,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/ba700f3b6cec334211c88918d9fbf2b39a94ddf5cb1898c31acd0c70a20815df.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-7361",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 290.8166664838791,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/8aec3f53c372699b58bc560c88d96ec77008301d2435c3bcbea3f530b2c70624.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-9167",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 289.6333332657814,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/f58ecc50dedf914bca4a44f8dcea42c76402579391968fb371cc1ce69005e543.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17389",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 285.48333298365276,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/df810b150a4a04a489d3f60896fb544875527f1291b06084bb7f19bd87002890.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3210",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 285.2833333015442,
+            "old_cents": 39,
+            "new_cents": 34,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/8564a4028780371e9e81f72becda57b692b285c6f1a12a321d146d1f256cf052.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3210",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 285.2833333015442,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/8564a4028780371e9e81f72becda57b692b285c6f1a12a321d146d1f256cf052.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17439",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 285.21666661500933,
+            "old_cents": 34,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/bd8b6ecd4a292df51d3854783dd0e1a590632da987b79c319b084c7c01ef511c.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17476",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 285.09999984900156,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/fc000014fd17df61fde6c43a857bdd01a8b732742e3ec6f419b1cbe58382e9a2.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17481",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 285.0666665832201,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/432f5edabc29d0f26662a8fedd5d31697a00f9708f856f6cf7ab49b4b8a356a8.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17619",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 284.7166665991147,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/180c023a70bfbae19149be9c954f0217a77ee651dbe9c47c6b5fe01c95b0d47d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17629",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 284.699999833107,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/eceb87fdf2b626855401358a4a568b227f24cb279946cb34948288d4d0667724.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17636",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 284.66666655143104,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/857247c5f5c1c88b61f221c92350c8ade7936f6fdc7aa9600c264c6279228229.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17654",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 284.6499997019768,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/551b2530772707102ad421d7bcdbf68a05ba7adb4db608f485df4b47f73245f4.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3232",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 284.5333332657814,
+            "old_cents": 39,
+            "new_cents": 34,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/865b4bfc5422c520c97334bd60b91f7061de3f0b621c6e8fca30f4338b9cf246.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3232",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 284.5333332657814,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/865b4bfc5422c520c97334bd60b91f7061de3f0b621c6e8fca30f4338b9cf246.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3240",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 284.5166665315628,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/f830510e33d97269434b8c3eff4702fb9652961b5437f3e5062e85025835698e.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17676",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 284.49999988476435,
+            "old_cents": 34,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/e9b554fb70801e216b7cf684f10b6893769e09eca6c19045b51440d01cefc84f.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17696",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 284.0333333015442,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/6a57b3f168eaffad94ac6c946c3e3afcf248f9abe41d95f6c68ac7da75de11b3.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17703",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 284.016666551431,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/10357bcfad931599ed3ca988abb6c79dc0af78c69228a88489031b9089df55ef.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17725",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 283.94999980131786,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/4619cff6302fad8ce214c5768ac2bf5ef543d46fdc0aba91d1d151dd4636f716.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17731",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 283.9166665673256,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/ec46d31683cd11475e5f248b315734244a0a4f0d9695177659f0e3fb2ef5b966.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17750",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 283.88333315054575,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/bb637ae5ba04adb8245091714d987a169eb006ef670fbec4cb518748e87fd2e6.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17759",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 283.8666665156682,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/72fe6af8bc22670ba154a23210fc4f851a7bfbfb287ca97b5a8147dca7c97d72.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17765",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 283.8333332339922,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/6302d7363d80edae963195db66eba92951e2ac5a733207a082261431f445bdac.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17798",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 283.76666631698606,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/a6268d2ee3b973e5999b60becfe308e0de4ce9194638a5de19085d9455db8000.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17827",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 283.116666551431,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/5b7382a0e2e3c88291e009e6bb06ea92517252d2a0d072f9aa44bada124a5e72.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17859",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 283.04999996821084,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/1deee6a53f5bbd8ba7d95891a9405a71cd45989d6e8ecda90a766fd5fe14f179.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17890",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.9666664997737,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7cb0af8b730c25c3fa1899cc0368f060ed5a8d7e398a2496d3402e6d42293658.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17895",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.9166666507721,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/2a9b86a868ffe22f59d898ade5ac5fc55b4155d162f822a2a518557c433f33cb.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17916",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.84999996821085,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/2a4d959b37cc8031c69c2e97ad189983c3c9da6100a6a90038f42fd10b082300.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17922",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.8333332339922,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/5fba9b28ea579eecbb715ad5b69909249dd419369dd9b0ef3ea5efec5994641b.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17927",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.7999999165535,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/87b9d822159fafcce54fa6ac4c796d2c057bdca65be49ede2ca920958567b49f.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17962",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.69999983310703,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/d2ada33aaea67fcae88a2e7e32ab9325bcffd8efe57d7e177457e14cf182173d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17968",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.6666665673256,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/5b90ef24bd64ad316b0f79a50f1c76b4fd21e3c1e83ffaea44eeea46f14bd05c.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17973",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.6333332498868,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/bb516d7e4c65bf353fb9132c2c220a1e43f8963540c5637e6ca86cd94cdc9a94.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-17992",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.5666664481163,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/9a3bff3cb0b879833b7e91d49b3727f72f5126ad7edb98f65f397986cf071e53.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18008",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.1166666348775,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/31a9e873f7860676ba8ba0952a0355586d906677053fc2ae64f62da3a5eb44ce.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18023",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 282.08333315054574,
+            "old_cents": 58,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/f54e4d1f480c778cad81813d53931c0f3e7daccac441ea78c6bec41ad1ae9274.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18066",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 281.799999765555,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/9f047180d41fac496a0930555da7120a1c56076df375afe989dee8c8cc5d8f1f.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18087",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 281.7333331982295,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/2f99375b89e4dabaac88e993cbdcf905522d37a256b625f62415240e8b927de1.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18118",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 281.53333331743875,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7488ff2a5b80cb2f623bdac0bee47be839e33beaa2c881d75e40ddba27360bc8.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18162",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 280.8833330353101,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7318c54bbfb0d3af1b341c668bb98102434572af06d682fd8ed3ebda7736a713.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18182",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 280.86666633288064,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/fb462fed0d62f4752501fb94659c7e05836af3965c2042c13eff94a690c2297b.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18239",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 280.71666643222176,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/997483e5b4aa5e55cc2a3c4091d4bc4aedb13cca3dd142b7b29d381b3eb2e300.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18268",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 280.6499999165535,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/14714e540d6b94c48a3ce31146c59f513321529dfa50cf49280f1c65976228e9.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18303",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 280.53333319822946,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/2bcddd004ce8b1a2494cfe70a6862e705753bb0ea4653e05d997a43d8bb64302.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18323",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 280.49999988476435,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/acefde6646b03aab2be5ce86fde6500617ecb47dbf6e2ba63e560424de98e612.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18382",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.9833331505458,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/47d6dd0e111515a02978c1c08e860edb307682ad26a48ea73aeafd3e63268dbd.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18392",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.9666664997737,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/4d6d6fc08661234e1c048bd7f9086a85c204e9c4dc7a9b1c35f985ce3e6d0bd7.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3405",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.833333281676,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/9cd57b2bcb66bb01d08f402ff2ba0d4f1c565aa0e49089f775cde83f9a3b8d09.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18426",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.7999998648961,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/8c5ebd8f339314af64e8dbe0891d3590762ec57532f861d72099bed9f508a418.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18426",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.7999998648961,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/8c5ebd8f339314af64e8dbe0891d3590762ec57532f861d72099bed9f508a418.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18449",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.74999994834263,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/ef5fd128c491830e000599b61d0e603a36e163fdd802b85ef7a056a5d15753ba.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18492",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.6166664838791,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/9466c85298b6ecafe1142129f3d52627ae29d57f73c8d2561124b69b78de28bc.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3440",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.58333319822947,
+            "old_cents": 39,
+            "new_cents": 34,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/1bee0f52ea4452a381a408edb2ba9d7656dad5befe1291cedbd24bebc881483d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18506",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.566666551431,
+            "old_cents": 34,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/1f7bd9b34135aaeb5166be7674898e490149bf15518578d7cdfe2f159f1b215c.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18506",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.566666551431,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/1f7bd9b34135aaeb5166be7674898e490149bf15518578d7cdfe2f159f1b215c.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18532",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.4499998648961,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/0191e63ac157c9bb9a59e384aea65771bbd518b48007430040f9c3ee6266a87b.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18537",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.4166666150093,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/dd5ed1e90748f7e8a898f524eccc2c187ac63fbd46deb7d55f0ef06b3592808d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3451",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.28333328167594,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/a262a0768d0b828dbfbd34a767c3b7f6d4d106f1de38181478b58e3cd4c27fd8.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18569",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.2666665315628,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7a812bb9db4f9885e6b1d0e865b6d274eee520c1d801b6d9f13f3fd9e8d3a16a.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18589",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.1666666348775,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/05bfff3b70e6ea5aaf76c67bace19da0a0a1ad90f6212862226092e3429f4436.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18593",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.14999993244805,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7f31cfa3add1ebb289d04e095ecba4399ddda575d4ec06ff40415cb4cf98853d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3456",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.08333331743876,
+            "old_cents": 39,
+            "new_cents": 34,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/3575494cd9a64caecc1c98bdbf244631ebc016f00f182085c8a661f7a6b5e750.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3456",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 279.08333331743876,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/3575494cd9a64caecc1c98bdbf244631ebc016f00f182085c8a661f7a6b5e750.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18600",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.9166666150093,
+            "old_cents": 34,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/55138152a64b92618437e0c8b77ed8f22cbf8d1054a756afb5cfd40b482f3cfd.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18605",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.8999999165535,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/12fa78a5844243e1de4a5b5c4a3fb226e300155e598288d14610ce34d9da48e7.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18617",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.86666653156277,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/d5858bddcdc18bb1d2bca997caa19db3031cffc2dfeccfd55423ec582afe3b99.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18631",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.849999765555,
+            "old_cents": 58,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/092de45ce897c76c5460b166da10d8b63b1987f82e58629fb40489299655aac4.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18643",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.79999993244803,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/be13ab7722c90cd23116b2d960b139f6be7ef6b5e5053e521c751b02f949b3b0.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18707",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.64999993244805,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/a2cd1b0c6bdc09fea5d23417971e54890a0f3fce780bb2df31dc3b4e5feead2d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18718",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.59999996821085,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/b4dff65a84a7615206bdb1dd862346fd40c73f510e9257531336f75bb523e341.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18726",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.4999998648961,
+            "old_cents": 58,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/8f932239320ddb69a25774724467881b4844577f3a9337aee5ea58f6c3141322.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18731",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.48333324988687,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/cff7411a863e916e473ce87b6967dbe3999378d30252f945bd13ea1e09546bc5.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18760",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.3666666507721,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/dc57c54a6e6023ec94134980e48240bb6fca2bfe04f931951ef4afcdefa4f4da.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18765",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.3499999165535,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/eda749ee55c8f0edfc64310b945f388b21f2c66490a0e18a920f0b5f90d37175.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18770",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.2999999165535,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/42b730723e5d084bfe3e66de3273d99bd625987d561afec73d714945ac8612fb.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18771",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.28333331743875,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/6676e8a674c911969d6437976abab6a71904d275ed4b0756c39c5c75d30162c2.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18774",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.2666666150093,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/a1715853e8232b0783a895aa3e7caa2ed46f64c520747f9a9390d4bf44895e87.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18798",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.1833331664403,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/63170f56fb12e9a7bcf45ef8743b0030e7ef4fd05e309aaa6315133346ed3ec1.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18812",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.16666643222175,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/f02d9018c35f11805b79549e5744332707edf5ae9bc1562111815e9153db5b05.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18818",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.13333323399223,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/edaab1cc62eb46a6ee689d48f530e4d4e10c66b54e40e2aa07cf6cc4786de8ae.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3477",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.0833333015442,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/55212df055f40826eadeca0c22e9cc84e6b001704861e2aa983dc50742521de5.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18832",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 278.06666651566826,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/2b440ffe152f81d0511e4bfa81c5e5b1342d679e00e33c0025e8f92eecf808c4.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18848",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 277.99999986489615,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7cb84ac5b2d74be9907b21215574e93d63f6cafed465100f8aa887545ada9da8.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18854",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 277.96666656732555,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/6e9196ea636d078b80a1c4f325b0ca8e84a2edc9a99041121624d3e9eb6e66f4.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18860",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 277.9333332339923,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/517e252a6d50c85441f9ef0cfeb5ac4b684a33e4f67bee5e1c75618623e74457.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18890",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 277.84999971787136,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/5c927211ab4c7191a969910fcefb2a2126be9bdf234dd388ac0701bc549508bc.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18912",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 277.48333326578137,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/e203cc447cde40ff623465a94e9b9cd0f42887045edb2629da286f8a2a527c09.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18913",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 277.4499999841054,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/50d8319471c770854f1c14fa9770efe1be34b9f10d1ca9b42dd9a914c1757374.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18920",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 277.416666551431,
+            "old_cents": 58,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/dbd0b70a91493d845f5be01173e6073a219a648b8ae506015b725c6193c84c0a.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3490",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 276.7666666507721,
+            "old_cents": 39,
+            "new_cents": 34,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/564cf3868437c87dd1290f2477c3e041841968cd403047f969cf80faff6310ff.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3490",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 276.7666666507721,
+            "old_cents": 54,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/564cf3868437c87dd1290f2477c3e041841968cd403047f969cf80faff6310ff.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18933",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 276.64999996821086,
+            "old_cents": 34,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/bba0c7c1d5980657ef3e5172f9222e0890054dc78a358684b28f432c0c65f09d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18940",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 276.3333333015442,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/e18f9b3ab62915f085bdb76ffa617eb497117885f1942a8c6ee568c828de2a91.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18970",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 276.283333114783,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7d74bdccf6fc15aa386b41d357b95be0f7bcffaf4edbb9bfb5159c5280b902c5.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-18982",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 276.19999998410543,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/94fe2caa8ee9fedde121c747a2ffdb5168f3df327a9236aee3924097133809e7.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19019",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 276.13333315054575,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/9f8208307d47dcbf69cd277b8dd10778934ac9e3ce7fc949497a80c773a7bdf0.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19032",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 276.09999993244804,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/ee463961c2b0835834b8ba614d7ece3b757198b729d58bc2779f6038b2cc2bd4.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3501",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 275.99999998410544,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/a0c48009eebba9481c274db82db0bf6119c7a41bff568c3f78cb23792889bd04.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19056",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 275.9833329319954,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/c77aea3e9f562f3d765b99d3b050c9a67dcc04bc8c56f9308bdabffd0c04f880.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19093",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 275.9499997496605,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/d77baf5ed8adc1c709bf84c7d17274790f4f01dbc9bbdaecd1a17e0ed93a07f5.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19099",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 275.91666659911476,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/bbbc36884eb98e9fcd891d8d6274ccbf19aea5c82762bbe781c451a82484d0bb.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19114",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 275.86666659911475,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/bdaa96e13dbdf9fe8d50a56ad34fbdfa09ea883a53ec0805ba1874f7bd2f74da.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19115",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 275.8499999841054,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/d10ff53db4e8ccb0e32e43c2decbd22b3af93492ed0c6e4887db3bf43368e638.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19169",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 275.4999999324481,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/0dcc95ec441dedcd4331d98910d964d1e63b51e7ec99f7499de57b824a1c8322.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19170",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 275.4666666507721,
+            "old_cents": 58,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/aaaa8ff22292571e6abc16e32a4187d0f3ea13dde9dc589b651a255e10d3bf00.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3507",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 275.06666663487755,
+            "old_cents": 39,
+            "new_cents": 34,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/6ac895180985c19df068ae910a59715dc1d7a4143a0a89fab655a751f8f5dc7e.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19243",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 275.04999996821084,
+            "old_cents": 34,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/79b12288f95578d3229261e33f16e549efcedb9261c6686c80cb9a96efd6b7e7.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3511",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 272.8666666348775,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/62926e6447dd2cba43b1e9ddb5295b789cd7c7d2989f2a0c2dc7f2a5e9aa6907.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19519",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 272.8333332657814,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7b205f3cf25765ac62a579296aa02583c6bd31319e9115df35418dab592c7f15.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19629",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 272.2166664679845,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/1e18991599c67c2c44ed8078b912535d7946eb080a843ffb7f68d35e4d3a08bc.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-19647",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 272.18333323399224,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/a77e362b753af9443ea921b8c19eb3373d46315356cf3c3d5b682d410a119b9c.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-20403",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 266.733333281676,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/28e68093cfb1646aa43c4e209821aaded67f1c425dc63a5d3e589c3045ec6d54.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-20494",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 266.71666514873505,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/792f1dc7d92a708ff598747241c13c80c52817d4186157bc47f20442df2753a0.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-21095",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 266.19999986489614,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/ccef8d3baeb6aaac67c24959d68282a2bd17bcb38d362d1edce804c5d0483c95.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-21110",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 266.1666666348775,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/ddcb5d147289fb4b79875fdbc210f302a0834d8fb119f926ffc217e41836b70f.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-21530",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 265.31666498184205,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/4f33f8803e3dd61a413e983fc278d330d75a1faec3f28722cc4469be94193fdb.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-21588",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 265.2833332657814,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/e54b56fe4382e79f1b6698d8e1b703168f07048b9ab211163a95b5f5c9e0b555.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-23055",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 262.0999990502993,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/ee71d612bd172cfc1d508499f5f1d205be320ce8f207e339f529e73f4894eb9c.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-23191",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 262.01666651566825,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/3605eaf17af496f9e6a7a13a59aaec4893168756899061ee4cefebd5bbaae445.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3543",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 261.51666661500934,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/3aa5f1a802a727abd2ae76b608acaf20ef38754c09113e193452f16ff6f48edc.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-23706",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 260.89999938408533,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/707dfc2965afe3c93fb636432a4ac98ccdd70092781e46c323cef5c2e0bba873.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-23833",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 260.81666491826377,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/33ab79e6299261d89f9412f16af37397a7d107451ef0565cc9542629d1136cad.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-24061",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 260.4833326498667,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/198cea39a74bb75be1b1b0f445f588715f9fc85b92ebe18f6692ef30f48c2c93.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3560",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 257.5333333015442,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/2330704233d1f9d321038ad56534857507b616f878e5e340e79dcd10727c3baa.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-25568",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 257.49999996821083,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/50d4f0389887850db7ac0a101954d06962b97225c1f5907f75e826cdfa93707f.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3566",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 256.9499999682109,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/67282cfaad9024ac82cd6cbc3d33dfcbffbbe9029d36fb1a83cad72ae86571f2.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-25620",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 256.8833332180977,
+            "old_cents": 43,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/116564ec5e2f8bd5226e6dec49a6fbbafda0e798160277875162a01bbaf1a620.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3643",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 233.5166666150093,
+            "old_cents": 39,
+            "new_cents": 43,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/5155c8992c8b65931d3211507e3f83594aef24e5d487674824b022d6b1d82f56.json"
+          },
+          {
+            "receipt": "af7cc4fa-1eaf-6175-e09a-7ac8778c3049",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 233.1760166684786,
+            "old_cents": 43,
+            "new_cents": 31,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/dc2ac245ebd5ef0336df68b36441761ac6666a3f1af29a4a452b35151c1a454a.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-28125",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 222.96666661500933,
+            "old_cents": 31,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7a8749aad5c099dd04af9b1dfdc25d6add9c55f255c2fea1c6eb2bf11e48305c.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3794",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 216.3166666150093,
+            "old_cents": 39,
+            "new_cents": 32,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/a18ca6920403b76de442fc0e9250c6bdc7b417e0de0bdeef4714c0360a6837ef.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-28252",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 216.0999999841054,
+            "old_cents": 32,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/da21556dd999fdfe17a66793615281848baca32bbb8d5d7e0b0bda326d608861.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3931",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 209.3833333174388,
+            "old_cents": 39,
+            "new_cents": 31,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/b9d929b18b53547666e33829580c364525a6f7cf3b472544b4f3c06e4df75944.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29683",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 205.24999998410547,
+            "old_cents": 31,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/b6e512cf9c3f39d2da8e5d3376a79d5b08455795005e52fef37b4e369d4eeeb4.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4052",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 203.88333326578135,
+            "old_cents": 39,
+            "new_cents": 32,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/f3c95857e76a7ba6a6dee00f70ea5f6a3b54de3a25c8fb7f8898ef7c52704e42.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29931",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 199.81666661500927,
+            "old_cents": 32,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/da52a4f6a685f253894e789f883dd4e87434b522f1550fa6d4a3e84738815c73.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4095",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 199.3166666150093,
+            "old_cents": 39,
+            "new_cents": 32,
+            "writer_class": "SEAT",
+            "tokens": [
+              "REPRICE_REST",
+              "PREDICTION_SEAT_REDERIVED_TO_OWN_UPDATED_CONVICTION_SAME_RECEIPT",
+              "PREDICTION_SEAT_OWN_CONVICTION_LINEAGE",
+              "PREDICTION_SEAT_OWN_CONVICTION_RESEAT_SAME_RECEIPT"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/215266d13a25661d6acf7eb43b2b74c7c9446f25e41e7ee66314ae47b0b9f148.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-29977",
+            "leg": "PAL",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 198.73333328167593,
+            "old_cents": 32,
+            "new_cents": 39,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+              "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+              "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/3b738a538db7e35f85b823757613b6f293168271c0ab2e2dc37d3d71685f2009.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-4299",
+            "leg": "URS",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 185.0666666507721,
+            "old_cents": 55,
+            "new_cents": 58,
+            "writer_class": "RUNG",
+            "tokens": [
+              "REPRICE_REST",
+              "NON_PRINT_DEAD_OR_SHALLOW_REST_RESEATED_TO_HIGHEST_POSTABLE_LIVE_LADDER_RUNG",
+              "LIVE_LADDER_RESEAT_WRITER",
+              "NON_PRINT_HIGHEST_POSTABLE_LIVE_LADDER_RUNG_ADMITTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7bf406a91f5207b08b3fd81ff5e5c5e3b6a25e0eefb306c7cc62a95a3abce69f.json"
+          },
+          {
+            "receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "leg": "URS",
+            "action": "FILL_EVENT",
+            "kind": "FILL",
+            "minutes_to_bell": 159.15666666825615,
+            "old_cents": 58,
+            "new_cents": null,
+            "writer_class": "HAND",
+            "tokens": [
+              "FILL_EVENT",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "ENGINE_VOTES_LICENSED_DEPTH_PRIOR_WITH_NO_OWN_EVIDENCE_YET"
+            ],
+            "rest_age_at_fill_minutes": 446.6734333316485,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/c90783403183042f5e529c2d66be664e52b55a8d8c9a14c1375009fb6e760a32.json"
+          },
+          {
+            "receipt": "11b32855-2577-5868-896c-0afb9e64bb69",
+            "leg": "PAL",
+            "action": "FILL_EVENT",
+            "kind": "FILL",
+            "minutes_to_bell": 3.0067333340644353,
+            "old_cents": 39,
+            "new_cents": null,
+            "writer_class": "SEAT",
+            "tokens": [
+              "FILL_EVENT",
+              "COHERENT_LIVE_DEADLINE_PREDICTION_SEATED_AT_UNIFIED_AIM_CONDUCT_POSTERIOR",
+              "PREDICTION_SEAT_WRITER",
+              "PREDICTION_SEAT_WRITER",
+              "PREDICTION_SEATED_REST_AT_UNIFIED_POSTERIOR_FLOOR",
+              "IMMUNE_PREDICTION_SEAT_FROM_UNIFIED_CONDITIONED_BELIEF_POSTERIOR"
+            ],
+            "rest_age_at_fill_minutes": 348.41598333120345,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.stages/7348c05b2954695b0b57362b6c5f748fa3ab1147651fc1a2b0a62a8ef3976a9c.json"
+          }
+        ],
+        "placement_rows": 183,
+        "rest_age_at_fill_minutes": [
+          {
+            "leg": "URS",
+            "receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+            "minutes": 446.6734333316485
+          },
+          {
+            "leg": "PAL",
+            "receipt": "11b32855-2577-5868-896c-0afb9e64bb69",
+            "minutes": 348.41598333120345
+          }
+        ],
+        "post_only_violations": 0,
+        "observed_post_only_violations": 0,
+        "post_only_uncheckable": 0,
+        "pre_formation_placements": 0,
+        "observed_pre_formation_placements": 0,
+        "formation_uncheckable": 0,
+        "same_second_fills": 0,
+        "fill_age_uncheckable": 0,
+        "writer_class_unmapped": 0,
+        "violation_receipts": []
+      },
+      "OUTCOME": {
+        "legs": {
+          "PAL": {
+            "filled": true,
+            "cents": 39,
+            "vs_floor_cents": -1,
+            "fill_epoch": 1784042066.596,
+            "valid_span_fill": false,
+            "reason": "FILL_OUTSIDE_VERIFIED_SPAN"
+          },
+          "URS": {
+            "filled": true,
+            "cents": 58,
+            "vs_floor_cents": 1,
+            "fill_epoch": 1784032697.6,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "pair_completed": true,
+        "pair_sum": 97,
+        "captured_cents": 0,
+        "best_capturable_cents": 3,
+        "best_capturable_pair_sum_cents": 97,
+        "capture_ratio": 0,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": false
+      },
+      "LETTER": {
+        "letter": "F",
+        "governing_section": "SENTENCE: named tokens",
+        "hard_failures": [
+          "SENTENCE: named tokens"
+        ],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "F",
+            "metrics": {
+              "minimum_q_x_organ_share": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "family_match_share": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "A",
+            "metrics": {
+              "post_only_violations": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "F",
+            "metrics": {
+              "capture_ratio": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "display": {
+        "letter": "F",
+        "label": "Conduct failure · cutoff-independent F",
+        "governing": "SENTENCE: named tokens",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "!",
+            "line": "Q 0% · X 0% organ share",
+            "hover_lines": [
+              "SENTENCE: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0}",
+              "2337/2394 leg sentences · 7 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "PAL: INTERIM_UP_TRAVEL / STORE SILENT · URS: STORE SILENT / STORE SILENT",
+            "hover_lines": [
+              "MACRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":\"STORE SILENT\"}",
+              "Bench: CLOCK_MISMATCH_STORE_SILENT"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "PAL: 8¢ / 349.42m error · URS: STORE SILENT / STORE SILENT error",
+            "hover_lines": [
+              "MICRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":\"STORE SILENT\",\"max_timing_error_minutes\":\"STORE SILENT\"}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "✓",
+            "line": "0 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: A · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":0}",
+              "183 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "0 of 3¢ captured",
+            "hover_lines": [
+              "OUTCOME: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":0}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "receipt": {
+        "version": 1,
+        "role": "REPORT ONLY — no OS inputs changed",
+        "citations": {
+          "PER_GAME_L1_L8": {
+            "path": "C:/tmp/omi-v53-understanding-organ-20260819/.claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/PER_GAME_L1_L8.json",
+            "sha256": "3f5ccde3d50d104910d2a23d9d15c7fc9e9a523895cfffa3aef4a2c14fd24ff1",
+            "bytes": 149794,
+            "commit": "STORE SILENT",
+            "role": "Replaced per-game L1–L8 report. Builder baseline reads rows[].L7_CREDIT.why.",
+            "rows": 5
+          },
+          "HONEST_SCOREBOARD": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/HONEST_SCOREBOARD.md",
+            "sha256": "bad5314cf12877755e922175d053084ba67d9849515a72bdd3e4861c11f49dc0",
+            "bytes": 6585,
+            "commit": "2aa454af4205468de598bc507527e7c608b35d42",
+            "role": "Truth-table offered cents and span-valid captured cents; complete under par, not apparent fills."
+          },
+          "OFFER_DENOMINATOR": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/OFFER_DENOMINATOR.md",
+            "sha256": "2842aacd0821138edee3bcf0d18464ba2f1a9d8dbb2d1016b65f780a69b45c7b",
+            "bytes": 3050,
+            "commit": "ce2e8b7cc84191083c522af3692d467576afca4f",
+            "role": "Definition B: verified-span floors under par; both credited fills inside the span for capture."
+          },
+          "GATE_1_OBJECT": {
+            "path": "artifacts/review_mirror/GATE_1_OBJECT.md",
+            "sha256": "bbeee3207af290c75ca6fb2cf3dfbc36d58afdfb588ed969fd425b40ad365398",
+            "bytes": 2136,
+            "commit": "67378c344419a70ec2b6f05d714c79358da0ea70",
+            "role": "P/Q/X require an author reading this leg; test 1 own receipt weights, test 2 own clock, test 3 no named pricing rule."
+          }
+        },
+        "bench_taxonomy_receipt": {
+          "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
+          "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
+          "bytes": 28853,
+          "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
+          "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
+          "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
+          "bench_choices": {
+            "causal_family_adaptation": "At a receipt only, normalize formation through the current gate into 17 samples; do not use or forward-fill into the unknown remainder. Realized labels use formation through bell.",
+            "direction": "early/late shares are signed relative to net; reversals omit zero steps",
+            "flat_after": "abs(net after first quarter) <= 2 cents; operator-authorized bench choice, not taxonomy law",
+            "quiet_wobble_prose_caveat": "The inherited travel split does not mathematically guarantee the prose 5-cent band. quiet_wobble_prose_band_exception is exposed; no new cutoff is introduced.",
+            "rule_order": [
+              "SLEEPER",
+              "ROUND_TRIP_OR_QUIET_WOBBLE",
+              "LATE_BREAK",
+              "EARLY_SET",
+              "ONE_STEP",
+              "GRIND_WOBBLE",
+              "DRIFT"
+            ],
+            "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
+            "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
+          },
+          "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+        },
+        "rules": {
+          "authorship": "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
+          "missing": "STORE SILENT; no number or author is invented.",
+          "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
+          "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
+          "taxonomy": "Read realized labels from the hash-bound bench, do not reclassify or select a favored benchmark rule.",
+          "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
+        }
+      },
+      "timestamp": "2026-09-06T18:05:23.974Z"
     }
   ]
 }

@@ -91,6 +91,22 @@ test("named symbols disqualify writers; identity metadata and library IDs do not
   assert.equal(g.LETTER.letter, "F");
   assert.ok(g.LETTER.hard_failures.includes("SENTENCE: named tokens"));
 });
+
+test("PRIOR_REWEIGHTED_BY_OWN_WALK is a non-organ Q badge, without changing X", () => {
+  const f = fixture();
+  for (const row of f.decisions)
+    for (const leg of Object.values(row.legs))
+      leg.q_author = "PRIOR_REWEIGHTED_BY_OWN_WALK";
+  const g = run(f);
+  assert.equal(g.SENTENCE.q_organ_leg_receipts, 0);
+  assert.equal(g.SENTENCE.leg_receipts_total, 4);
+  assert.equal(g.SENTENCE.share_q_authored_by_organ, 0);
+  assert.equal(g.SENTENCE.share_x_authored_by_organ, 1);
+  assert.equal(g.SENTENCE.author_counts.q.PRIOR_REWEIGHTED_BY_OWN_WALK, 4);
+  assert.ok(
+    g.SENTENCE.non_organ_q_authors.includes("PRIOR_REWEIGHTED_BY_OWN_WALK"),
+  );
+});
 test("writer table precedence and unknowns", () => {
   assert.equal(
     writerClass(["LADDER_SHRINK_Q_CLIP_WRITER", "PAL_ATOMIC_WRITER"]),
@@ -232,7 +248,10 @@ test("real proofs preserve facts, source citations and missing fields", async ()
     );
   const alt = await read("KXATPMATCH-26JUL12ALTGAS"),
     ur = await read("KXATPCHALLENGERMATCH-26JUL14URSPAL");
-  assert.equal(alt.SENTENCE.share_q_authored_by_organ, 18 / 155);
+  assert.equal(alt.SENTENCE.share_q_authored_by_organ, 0);
+  assert.equal(alt.SENTENCE.q_organ_leg_receipts, 0);
+  assert.equal(alt.SENTENCE.leg_receipts_total, 155);
+  assert.equal(alt.SENTENCE.author_counts.q.PRIOR_REWEIGHTED_BY_OWN_WALK, 18);
   assert.equal(alt.SENTENCE.share_x_authored_by_organ, 0);
   assert.equal(alt.OUTCOME.captured_cents, 0);
   assert.equal(alt.OUTCOME.best_capturable_cents, 4);

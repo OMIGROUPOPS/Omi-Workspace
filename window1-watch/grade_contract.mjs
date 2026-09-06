@@ -14,6 +14,11 @@ const priorAuthors = new Set([
   "INSUFFICIENT_EVIDENCE",
   SILENT,
 ]);
+// 2dfb5b0a stamps this Q badge from print count/slope; it adds no reweighting.
+const nonOrganQAuthors = new Set([
+  ...priorAuthors,
+  "PRIOR_REWEIGHTED_BY_OWN_WALK",
+]);
 const fields = fs.readFileSync(new URL("./FIELDS.md", import.meta.url), "utf8");
 const writerTable = fields
   .split("<!-- grade-writers:start -->")[1]
@@ -157,7 +162,9 @@ export function gradeFace(
   const organ = (d, axis) =>
     d[`${axis}_present`] &&
     typeof d[`${axis}_author`] === "string" &&
-    !priorAuthors.has(d[`${axis}_author`]) &&
+    !(axis === "q" ? nonOrganQAuthors : priorAuthors).has(
+      d[`${axis}_author`],
+    ) &&
     !d.tokens.some((t) => namedToken(t, sides, event));
   const q = entries.filter((d) => organ(d, "q")).length,
     x = entries.filter((d) => organ(d, "x")).length;
@@ -172,6 +179,7 @@ export function gradeFace(
     x_organ_leg_receipts: x,
     share_q_authored_by_organ: ratio(q, entries.length),
     share_x_authored_by_organ: ratio(x, entries.length),
+    non_organ_q_authors: [...nonOrganQAuthors],
     named_tokens_found: [...namedEvidence.keys()].sort(),
     named_token_evidence: [...namedEvidence.values()].sort((a, b) =>
       a.token.localeCompare(b.token),
@@ -187,7 +195,7 @@ export function gradeFace(
       ]),
     ),
     authorship_scope:
-      "Literal author-token metric, not certification of the Gate-1 own-receipt/weight chain.",
+      "Author-token metric excluding prior-only badges, including PRIOR_REWEIGHTED_BY_OWN_WALK; not certification of the Gate-1 own-receipt/weight chain.",
     gate_1_authorship_certification: SILENT,
     gate_1_reason:
       "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1.",

@@ -2,12 +2,12 @@
   "KXATPMATCH-26JUL12ALTGAS": {
     "letter": "F",
     "governing": "HANDS: same-second fill",
-    "q_share": 0.11612903225806452,
+    "q_share": 0,
     "x_share": 0,
     "captured": 0,
     "offered": 4,
     "named_tokens": [],
-    "history_snapshots": 3
+    "history_snapshots": 4
   },
   "KXATPCHALLENGERMATCH-26JUL14URSPAL": {
     "letter": "F",
@@ -25,7 +25,7 @@
       "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_NO_LIVE_PREDICTION_SEAT",
       "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_PREDICTION_SEAT_EXIT"
     ],
-    "history_snapshots": 3
+    "history_snapshots": 4
   },
   "checks": [
     "both loaded grades F",

@@ -560,11 +560,17 @@ named hand. RUNG and SEAT are explicitly not new Q/X authors.
   Q/X organ shares divide qualifying leg decisions by **all** leg decisions;
   missing or INSUFFICIENT authors/targets never qualify. Author must not be
   PRIOR_ONLY/LIBRARY_FRACTION_PRIOR and the action/authority must carry no named
-  token. `q_organ_leg_receipts`, `x_organ_leg_receipts`, `author_counts` expose
-  exact counts. This literal token metric is NOT Gate-1 certification: a label
-  PRIOR_REWEIGHTED_BY_OWN_WALK can qualify without proving Gate-1's own-receipt
-  chain. `gate_1_authorship_certification` stays STORE SILENT, reason supplied.
-  No relabelling to force the operator's expected zero.
+  token. Q additionally excludes PRIOR_REWEIGHTED_BY_OWN_WALK: the
+  `2dfb5b0abf3fdf8669b8750d2780effd44a7319c` diff stamps that badge from own-print
+  count/slope without changing `ownEvidenceChannelGrades` or
+  `conditionPriorDistribution`. A badge is not reweighting or authorship.
+  `non_organ_q_authors` records the full Q exclusion list on the grade.
+  `q_organ_leg_receipts`, `x_organ_leg_receipts`, `author_counts` expose exact
+  counts; raw labels are preserved, not relabelled. X classification is unchanged.
+  Remaining token shares are NOT Gate-1 certification:
+  `gate_1_authorship_certification` stays STORE SILENT, reason supplied.
+  Old history snapshots keep their original grading rule; each new run appends
+  the corrected grade and receipt rather than rewriting history.
 - `named_tokens_found/evidence`: distinct symbolic PAL_*/GIU_*/LAJSVA_* values,
   current leg-prefixed tokens, or event-containing WRITER/GATED/HAND tokens in
   full decision rows, with occurrence count and first field/receipt. Event IDs,

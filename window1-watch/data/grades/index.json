@@ -144,6 +144,54 @@
         "2026-09-06T17:58:36.624Z · run 6",
         "OS commit ed3b813ba9c3e383b223dba0f4f75751b2fb24e7"
       ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-06T18:05:03.614Z",
+      "os_sha": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+      "trace_sha": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+      "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+      "commit_order": 2997,
+      "grading_commit": "00f67fa14031c44ab6e773a9d013fb0bce78ff1d",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "HANDS: same-second fill",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/986b8233_c2fe78f2.json",
+      "revision": 3,
+      "grade_sha256": "c9f07afd20f8b995b5d8ab40027fde11943c799aeb8230b04254ac159e3420f4",
+      "append_order": 6,
+      "x": 132,
+      "y": 88,
+      "hover_lines": [
+        "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1 · F",
+        "HANDS: same-second fill",
+        "2026-09-06T18:05:03.614Z · run 7",
+        "OS commit 2dfb5b0abf3fdf8669b8750d2780effd44a7319c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-06T18:05:23.974Z",
+      "os_sha": "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2",
+      "trace_sha": "ab2345dea8b3db2237dca97bf03f3fcece95eae334e3f4940f5b6583271171a0",
+      "os_commit": "ed3b813ba9c3e383b223dba0f4f75751b2fb24e7",
+      "commit_order": 2994,
+      "grading_commit": "00f67fa14031c44ab6e773a9d013fb0bce78ff1d",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "SENTENCE: named tokens",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/a394097b_ab2345de.json",
+      "revision": 3,
+      "grade_sha256": "0667cf798eef2cff3b49465c33e755a12cc940dae95fb75d90e4f26e2f0731be",
+      "append_order": 7,
+      "x": 132,
+      "y": 88,
+      "hover_lines": [
+        "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2 · F",
+        "SENTENCE: named tokens",
+        "2026-09-06T18:05:23.974Z · run 8",
+        "OS commit ed3b813ba9c3e383b223dba0f4f75751b2fb24e7"
+      ]
     }
   ],
   "axis": {
@@ -158,7 +206,7 @@
   },
   "views": {
     "KXATPMATCH-26JUL12ALTGAS": {
-      "width": 180,
+      "width": 196,
       "height": 126,
       "labels": [
         {
@@ -188,7 +236,7 @@
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14URSPAL": {
-      "width": 180,
+      "width": 196,
       "height": 126,
       "labels": [
         {

@@ -11,13 +11,13 @@
     "stage_inputs_sha256": "1fafd44753847b9680645db5a4f77a68c0602a4179fe37c22a93de20b8d43c01",
     "stage_files_count": 1206,
     "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
-    "receipt_sha256": "03d2dc5a1d6b0a4b94687118348fffda8e639954f5c274de068c9156f9f33687",
-    "grade_builder_sha256": "55d4277017a70b9411a438cf90fa6c11b5fc5dab347f3b0d487033e962f1a658",
-    "grade_contract_sha256": "6ef37e44ce22e774ebd8481bb6788f873fee04ca057b998601c860061e09d997",
-    "fields_sha256": "b6c0550cd0eec0bdedf2475aa596de3819305be9065313ae50d93f37a0e34372",
+    "receipt_sha256": "26308b440b79dcbd607d1b629a4f6cfb149fec6b6a7cf15b429260dead041e9a",
+    "grade_builder_sha256": "76b764bef92260d71b1118e10351f81f5d15c2ec15036031f11bf3fadeca9e8a",
+    "grade_contract_sha256": "840311c8019c498fef30e348aaca61cf4f4a8b82f105d2f4fb6ddfbf87b9bb61",
+    "fields_sha256": "25cb8e1e074af8d83664fcb645ea41fd5a1abe0cbf4626f85015233754aa3b40",
     "os_commit": "ed3b813ba9c3e383b223dba0f4f75751b2fb24e7",
     "os_commit_order": 2994,
-    "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b"
+    "grading_commit": "00f67fa14031c44ab6e773a9d013fb0bce78ff1d"
   },
   "SENTENCE": {
     "receipts_total": 1206,
@@ -28,6 +28,13 @@
     "x_organ_leg_receipts": 0,
     "share_q_authored_by_organ": 0,
     "share_x_authored_by_organ": 0,
+    "non_organ_q_authors": [
+      "PRIOR_ONLY",
+      "LIBRARY_FRACTION_PRIOR",
+      "INSUFFICIENT_EVIDENCE",
+      "STORE SILENT",
+      "PRIOR_REWEIGHTED_BY_OWN_WALK"
+    ],
     "named_tokens_found": [
       "PAL_ATOMIC_LIVE_TOP_LADDER_Q_SEAT_REST",
       "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE",
@@ -89,7 +96,7 @@
         "STORE SILENT": 2394
       }
     },
-    "authorship_scope": "Literal author-token metric, not certification of the Gate-1 own-receipt/weight chain.",
+    "authorship_scope": "Author-token metric excluding prior-only badges, including PRIOR_REWEIGHTED_BY_OWN_WALK; not certification of the Gate-1 own-receipt/weight chain.",
     "gate_1_authorship_certification": "STORE SILENT",
     "gate_1_reason": "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1."
   },
@@ -4167,7 +4174,7 @@
       "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
     },
     "rules": {
-      "authorship": "Literal per-leg author-token share is distinct from Gate-1 evidence-chain certification.",
+      "authorship": "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
       "missing": "STORE SILENT; no number or author is invented.",
       "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
       "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
@@ -4175,5 +4182,5 @@
       "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
     }
   },
-  "timestamp": "2026-09-06T17:58:36.624Z"
+  "timestamp": "2026-09-06T18:05:23.974Z"
 }

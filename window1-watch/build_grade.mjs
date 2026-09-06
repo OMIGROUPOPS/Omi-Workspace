@@ -101,7 +101,7 @@ async function sourceReceipt() {
       : SILENT,
     rules: {
       authorship:
-        "Literal per-leg author-token share is distinct from Gate-1 evidence-chain certification.",
+        "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
       missing: "STORE SILENT; no number or author is invented.",
       outcomes:
         "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",

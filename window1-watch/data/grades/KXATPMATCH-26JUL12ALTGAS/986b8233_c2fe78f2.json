@@ -1,0 +1,2753 @@
+{
+  "version": 1,
+  "event": "KXATPMATCH-26JUL12ALTGAS",
+  "os_sha256": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+  "trace_sha256": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+  "grades": [
+    {
+      "version": 1,
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "provenance": {
+        "os_sha256": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+        "trace_sha256": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+        "bench_sha256": "12df2861b5298fe45c141cc84c7924b326fa0ee347faad391d4a35fa0d79d2f1",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "truth_row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+        "face_sha256": "b738c541e8fb1bb39ccf26d4c3986f12db714e2c2683f04ed68b1886280e2c74",
+        "rubric_sha256": "f37dc320bb2b21f92b97223a7f949487141d5e782232782b5444987021cb53b1",
+        "receipt_sha256": "03d2dc5a1d6b0a4b94687118348fffda8e639954f5c274de068c9156f9f33687",
+        "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+        "os_commit_order": 2997,
+        "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b"
+      },
+      "SENTENCE": {
+        "receipts_total": 123,
+        "receipts_with_sentence": 9,
+        "leg_receipts_total": 155,
+        "leg_receipts_with_sentence": 93,
+        "q_organ_leg_receipts": 18,
+        "x_organ_leg_receipts": 0,
+        "share_q_authored_by_organ": 0.11612903225806452,
+        "share_x_authored_by_organ": 0,
+        "named_tokens_found": [],
+        "named_token_evidence": [],
+        "author_counts": {
+          "q": {
+            "INSUFFICIENT_EVIDENCE": 27,
+            "PRIOR_ONLY": 110,
+            "PRIOR_REWEIGHTED_BY_OWN_WALK": 18
+          },
+          "x": {
+            "INSUFFICIENT_EVIDENCE": 27,
+            "LIBRARY_FRACTION_PRIOR": 128
+          }
+        },
+        "authorship_scope": "Literal author-token metric, not certification of the Gate-1 own-receipt/weight chain.",
+        "gate_1_authorship_certification": "STORE SILENT",
+        "gate_1_reason": "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1."
+      },
+      "MACRO": {
+        "last_gate": 5,
+        "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+        "legs": {
+          "ALT": {
+            "realized_family": "DRIFT_UP",
+            "family_called_at_last_gate": "INTERIM_UP_TRAVEL",
+            "family_match": false,
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {
+              "BASE": {
+                "called_family": "ONE_STEP_UP",
+                "realized_family": "DRIFT_UP",
+                "ess": 1423,
+                "status": "OK"
+              },
+              "FIRST-TICK-ONLY": {
+                "called_family": "LATE_BREAK_UP",
+                "realized_family": "DRIFT_UP",
+                "ess": 506.5829036562177,
+                "status": "OK"
+              },
+              "HARD": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "SOFT": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "STEP-FORECAST": {
+                "called_family": "SLEEPER",
+                "realized_family": "DRIFT_UP",
+                "ess": 12.698580460231325,
+                "status": "OK"
+              },
+              "TAXONOMY-NULL": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 6,
+                "status": "NO-CALL: prior row effective count < 10"
+              }
+            },
+            "reason": null
+          },
+          "GAS": {
+            "realized_family": "LATE_BREAK_DOWN",
+            "family_called_at_last_gate": "STORE SILENT",
+            "family_match": "STORE SILENT",
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {
+              "BASE": {
+                "called_family": "ONE_STEP_DOWN",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 1207,
+                "status": "OK"
+              },
+              "FIRST-TICK-ONLY": {
+                "called_family": "LATE_BREAK_DOWN",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 419.38635073868807,
+                "status": "OK"
+              },
+              "HARD": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "SOFT": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "STEP-FORECAST": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 6.81734395023693,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "TAXONOMY-NULL": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 5,
+                "status": "NO-CALL: prior row effective count < 10"
+              }
+            },
+            "reason": null
+          }
+        },
+        "pile_ess_at_last_gate": 7.199945177289488,
+        "pool_accuracy_by_gate": [
+          {
+            "gate": 2880,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "NO_PREVIOUS_GATE",
+            "reason": null
+          },
+          {
+            "gate": 2160,
+            "share": 0.35006293478547085,
+            "ess": 55.50794427205719,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 1440,
+            "share": 0.341342148050145,
+            "ess": 84.58915104839707,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 1080,
+            "share": 0.48153954509146024,
+            "ess": 52.523746672921035,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 720,
+            "share": 0.3172597563750742,
+            "ess": 90.7614421823488,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 480,
+            "share": 0.13855733085440752,
+            "ess": 111.09115467676095,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 360,
+            "share": 0.44562309826552454,
+            "ess": 54.51901848619684,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 240,
+            "share": 0.6777867297004491,
+            "ess": 37.09169167580108,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 180,
+            "share": 0.8307950167382477,
+            "ess": 17.521624732279566,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 120,
+            "share": 0.48598407346628875,
+            "ess": 20.94291186106652,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 90,
+            "share": 0.4638606819174566,
+            "ess": 20.301056524458062,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 60,
+            "share": 0.22502974712695634,
+            "ess": 5.205261766044498,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 30,
+            "share": 0.10327829461214254,
+            "ess": 6.489069578772854,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 15,
+            "share": 0.08564619878751747,
+            "ess": 12.911547533999823,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 5,
+            "share": 0.21085129731080082,
+            "ess": 7.199945177289488,
+            "status": "OK",
+            "reason": null
+          }
+        ],
+        "bench_label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING",
+        "bench_reason": null,
+        "ess_source": "Bench validity pool, not OS membership ESS"
+      },
+      "MICRO": {
+        "last_gate": 5,
+        "legs": {
+          "ALT": {
+            "gate": 5,
+            "leg": "ALT",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": 9,
+            "timing_error_minutes": "STORE SILENT",
+            "recorded_floor_cents": 58,
+            "recorded_floor_minutes_to_bell": 3362.5583333333334,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          },
+          "GAS": {
+            "gate": 5,
+            "leg": "GAS",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT",
+            "recorded_floor_cents": 38,
+            "recorded_floor_minutes_to_bell": 425.5383333325386,
+            "first_gate_within_2c_and_held": "STORE SILENT",
+            "reason": "NO_POSTERIOR_Q50_AT_LAST_GATE"
+          }
+        },
+        "gate_calls": [
+          {
+            "gate": 2880,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1074",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 418,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 2944.5583333333334
+          },
+          {
+            "gate": 2160,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1882",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 175,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3187.5583333333334
+          },
+          {
+            "gate": 1440,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2428",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 175,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3187.5583333333334
+          },
+          {
+            "gate": 1080,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16242",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": 175,
+            "floor_error_cents": 9,
+            "timing_error_minutes": 3187.5583333333334
+          },
+          {
+            "gate": 720,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-17838",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": 16,
+            "floor_error_cents": 9,
+            "timing_error_minutes": 3346.5583333333334
+          },
+          {
+            "gate": 480,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18806",
+            "called_q50_floor_cents": 45,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 13,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 360,
+            "leg": "ALT",
+            "receipt": "f473c638-e358-71db-ba0e-be0239dcc87f",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": 78,
+            "floor_error_cents": 9,
+            "timing_error_minutes": 3284.5583333333334
+          },
+          {
+            "gate": 240,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 180,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 120,
+            "leg": "ALT",
+            "receipt": "5591b0fe-ed11-49ea-9239-0d62e3d9e9e9",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 90,
+            "leg": "ALT",
+            "receipt": "ce9cd54e-6efe-6d5e-137f-9aeb1f71f09e",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 60,
+            "leg": "ALT",
+            "receipt": "893d0bd2-fe7f-5280-714e-78756e068e81",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 30,
+            "leg": "ALT",
+            "receipt": "29bf985f-4ff3-61ba-0f46-edfaf8294574",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 15,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21656",
+            "called_q50_floor_cents": 53,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 5,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 5,
+            "leg": "ALT",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": 9,
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 2880,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1074",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 2160,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1882",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 1440,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2428",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 1080,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16242",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 720,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-17838",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 480,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18806",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 360,
+            "leg": "GAS",
+            "receipt": "f473c638-e358-71db-ba0e-be0239dcc87f",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 240,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 180,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 120,
+            "leg": "GAS",
+            "receipt": "5591b0fe-ed11-49ea-9239-0d62e3d9e9e9",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 90,
+            "leg": "GAS",
+            "receipt": "ce9cd54e-6efe-6d5e-137f-9aeb1f71f09e",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 60,
+            "leg": "GAS",
+            "receipt": "893d0bd2-fe7f-5280-714e-78756e068e81",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 30,
+            "leg": "GAS",
+            "receipt": "29bf985f-4ff3-61ba-0f46-edfaf8294574",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 15,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21656",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 5,
+            "leg": "GAS",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          }
+        ]
+      },
+      "HANDS": {
+        "actions": [
+          {
+            "receipt": "49fc71e7-75ce-5546-9c79-30b8a02aaeb2",
+            "leg": "ALT",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 3967.800566665332,
+            "old_cents": null,
+            "new_cents": 55,
+            "writer_class": "HAND",
+            "tokens": [
+              "PLACE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/522963dc9cf2f8b16fe96b92d95f02904ac72487c456e69adce36ecf8e1d5c8f.json"
+          },
+          {
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-360",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 3395.683333317439,
+            "old_cents": 55,
+            "new_cents": 49,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/9da495bf87800a64dd72f55dffcfc4fe8c9a9d1b6c07e4f15aadd44f044f6e82.json"
+          },
+          {
+            "receipt": "71ecd139-fd52-6d15-75d0-27767662d075",
+            "leg": "GAS",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 2880.729499999683,
+            "old_cents": null,
+            "new_cents": 42,
+            "writer_class": "RUNG",
+            "tokens": [
+              "PLACE_REST",
+              "Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK",
+              "LADDER_SHRINK_Q_CLIP_WRITER",
+              "LADDER_SHRINK_Q_CLIP_ADMITTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/6c14e0d1947ae4d0c322f7a76f1012014a6a7ada56952a6cb1d6e4b545c8c171.json"
+          },
+          {
+            "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 2880.729499999683,
+            "old_cents": 49,
+            "new_cents": 55,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/725fd6457518711e753186535d2c55933125d42ee8dc30566eb208d7ec084acd.json"
+          },
+          {
+            "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+            "leg": "GAS",
+            "action": "FILL_EVENT",
+            "kind": "FILL",
+            "minutes_to_bell": 2880.729499999683,
+            "old_cents": 42,
+            "new_cents": null,
+            "writer_class": "SAME_SECOND",
+            "tokens": [
+              "FILL_EVENT",
+              "Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK",
+              "LADDER_SHRINK_Q_CLIP_WRITER",
+              "LADDER_SHRINK_Q_CLIP_WRITER",
+              "LADDER_SHRINK_Q_CLIP_ADMITTED",
+              "PANEL_PRIOR_UPDATED_BY_GRADED_CURRENT_GAME_OWN_EVIDENCE",
+              "PRIOR_REWEIGHTED_BY_OWN_WALK",
+              "LIBRARY_FRACTION_PRIOR"
+            ],
+            "rest_age_at_fill_minutes": 0,
+            "same_second_fill": true,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/469da5e9de99d3f3f06c5a372fa416eaa7021dd7df77fa9d00d2b698628eb749.json"
+          },
+          {
+            "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 169.28143333196715,
+            "old_cents": 55,
+            "new_cents": 49,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/a264aa519a169bbcfe3a8a7a5f54a15902568b52746c184fecbba83ddae889a6.json"
+          },
+          {
+            "receipt": "033693bd-187f-42e1-af1e-7e37eb886d60",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 138.0947999993964,
+            "old_cents": 49,
+            "new_cents": 45,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/dc8492821e528a25c832b531203e930d8263df2af8c6c5b8416ad0a88bad3cdd.json"
+          }
+        ],
+        "placement_rows": 6,
+        "rest_age_at_fill_minutes": [
+          {
+            "leg": "GAS",
+            "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+            "minutes": 0
+          }
+        ],
+        "post_only_violations": 0,
+        "observed_post_only_violations": 0,
+        "post_only_uncheckable": 0,
+        "pre_formation_placements": 0,
+        "observed_pre_formation_placements": 0,
+        "formation_uncheckable": 0,
+        "same_second_fills": 1,
+        "violation_receipts": []
+      },
+      "OUTCOME": {
+        "legs": {
+          "ALT": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          },
+          "GAS": {
+            "filled": true,
+            "cents": 42,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1783862356.23,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "best_capturable_pair_sum_cents": 96,
+        "capture_ratio": 0,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": false
+      },
+      "LETTER": {
+        "letter": "F",
+        "governing_section": "HANDS: same-second fill",
+        "hard_failures": [
+          "HANDS: same-second fill"
+        ],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "F",
+            "metrics": {
+              "minimum_q_x_organ_share": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "family_match_share": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "A",
+            "metrics": {
+              "post_only_violations": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "F",
+            "metrics": {
+              "capture_ratio": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "display": {
+        "letter": "F",
+        "label": "Conduct failure · cutoff-independent F",
+        "governing": "HANDS: same-second fill",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "!",
+            "line": "Q 0.12 · X 0 organ share",
+            "hover_lines": [
+              "SENTENCE: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0}",
+              "93/155 leg sentences · 0 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "ALT: INTERIM_UP_TRAVEL / DRIFT_UP · GAS: STORE SILENT / LATE_BREAK_DOWN",
+            "hover_lines": [
+              "MACRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":\"STORE SILENT\"}",
+              "Bench: PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "ALT: 9¢ / STORE SILENTm error · GAS: STORE SILENT¢ / STORE SILENTm error",
+            "hover_lines": [
+              "MICRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":\"STORE SILENT\",\"max_timing_error_minutes\":\"STORE SILENT\"}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "!",
+            "line": "1 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: A · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":0}",
+              "6 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "0 of 4¢ captured",
+            "hover_lines": [
+              "OUTCOME: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":0}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "receipt": {
+        "version": 1,
+        "role": "REPORT ONLY — no OS inputs changed",
+        "citations": {
+          "PER_GAME_L1_L8": {
+            "path": "C:/tmp/omi-v53-understanding-organ-20260819/.claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/PER_GAME_L1_L8.json",
+            "sha256": "3f5ccde3d50d104910d2a23d9d15c7fc9e9a523895cfffa3aef4a2c14fd24ff1",
+            "bytes": 149794,
+            "commit": "STORE SILENT",
+            "role": "Replaced per-game L1–L8 report. Builder baseline reads rows[].L7_CREDIT.why.",
+            "rows": 5
+          },
+          "HONEST_SCOREBOARD": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/HONEST_SCOREBOARD.md",
+            "sha256": "bad5314cf12877755e922175d053084ba67d9849515a72bdd3e4861c11f49dc0",
+            "bytes": 6585,
+            "commit": "2aa454af4205468de598bc507527e7c608b35d42",
+            "role": "Truth-table offered cents and span-valid captured cents; complete under par, not apparent fills."
+          },
+          "OFFER_DENOMINATOR": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/OFFER_DENOMINATOR.md",
+            "sha256": "2842aacd0821138edee3bcf0d18464ba2f1a9d8dbb2d1016b65f780a69b45c7b",
+            "bytes": 3050,
+            "commit": "ce2e8b7cc84191083c522af3692d467576afca4f",
+            "role": "Definition B: verified-span floors under par; both credited fills inside the span for capture."
+          },
+          "GATE_1_OBJECT": {
+            "path": "artifacts/review_mirror/GATE_1_OBJECT.md",
+            "sha256": "bbeee3207af290c75ca6fb2cf3dfbc36d58afdfb588ed969fd425b40ad365398",
+            "bytes": 2136,
+            "commit": "67378c344419a70ec2b6f05d714c79358da0ea70",
+            "role": "P/Q/X require an author reading this leg; test 1 own receipt weights, test 2 own clock, test 3 no named pricing rule."
+          }
+        },
+        "bench_taxonomy_receipt": {
+          "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
+          "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
+          "bytes": 28853,
+          "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
+          "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
+          "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
+          "bench_choices": {
+            "causal_family_adaptation": "At a receipt only, normalize formation through the current gate into 17 samples; do not use or forward-fill into the unknown remainder. Realized labels use formation through bell.",
+            "direction": "early/late shares are signed relative to net; reversals omit zero steps",
+            "flat_after": "abs(net after first quarter) <= 2 cents; operator-authorized bench choice, not taxonomy law",
+            "quiet_wobble_prose_caveat": "The inherited travel split does not mathematically guarantee the prose 5-cent band. quiet_wobble_prose_band_exception is exposed; no new cutoff is introduced.",
+            "rule_order": [
+              "SLEEPER",
+              "ROUND_TRIP_OR_QUIET_WOBBLE",
+              "LATE_BREAK",
+              "EARLY_SET",
+              "ONE_STEP",
+              "GRIND_WOBBLE",
+              "DRIFT"
+            ],
+            "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
+            "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
+          },
+          "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+        },
+        "rules": {
+          "authorship": "Literal per-leg author-token share is distinct from Gate-1 evidence-chain certification.",
+          "missing": "STORE SILENT; no number or author is invented.",
+          "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
+          "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
+          "taxonomy": "Read realized labels from the hash-bound bench, do not reclassify or select a favored benchmark rule.",
+          "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
+        }
+      },
+      "timestamp": "2026-09-06T17:48:50.060Z"
+    },
+    {
+      "version": 1,
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "provenance": {
+        "os_sha256": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+        "trace_sha256": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+        "bench_sha256": "12df2861b5298fe45c141cc84c7924b326fa0ee347faad391d4a35fa0d79d2f1",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "truth_row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+        "face_sha256": "b738c541e8fb1bb39ccf26d4c3986f12db714e2c2683f04ed68b1886280e2c74",
+        "rubric_sha256": "f37dc320bb2b21f92b97223a7f949487141d5e782232782b5444987021cb53b1",
+        "receipt_sha256": "03d2dc5a1d6b0a4b94687118348fffda8e639954f5c274de068c9156f9f33687",
+        "grade_builder_sha256": "987cacdf303f62dc2bead0f0433967db2be42100f1c7922de5c0b960998693bf",
+        "grade_contract_sha256": "a53da2c405b02a55ca24675d360b298c5ee80aa738254e31ff9e9d3fb45b062b",
+        "fields_sha256": "b8aa320f8523897d90cbd8110d50d29281461e7bb6e3ccec34595c53deab914b",
+        "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+        "os_commit_order": 2997,
+        "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b"
+      },
+      "SENTENCE": {
+        "receipts_total": 123,
+        "receipts_with_sentence": 9,
+        "leg_receipts_total": 155,
+        "leg_receipts_with_sentence": 93,
+        "q_organ_leg_receipts": 18,
+        "x_organ_leg_receipts": 0,
+        "share_q_authored_by_organ": 0.11612903225806452,
+        "share_x_authored_by_organ": 0,
+        "named_tokens_found": [],
+        "named_token_evidence": [],
+        "author_counts": {
+          "q": {
+            "INSUFFICIENT_EVIDENCE": 27,
+            "PRIOR_ONLY": 110,
+            "PRIOR_REWEIGHTED_BY_OWN_WALK": 18
+          },
+          "x": {
+            "INSUFFICIENT_EVIDENCE": 27,
+            "LIBRARY_FRACTION_PRIOR": 128
+          }
+        },
+        "authorship_scope": "Literal author-token metric, not certification of the Gate-1 own-receipt/weight chain.",
+        "gate_1_authorship_certification": "STORE SILENT",
+        "gate_1_reason": "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1."
+      },
+      "MACRO": {
+        "last_gate": 5,
+        "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+        "legs": {
+          "ALT": {
+            "realized_family": "DRIFT_UP",
+            "family_called_at_last_gate": "INTERIM_UP_TRAVEL",
+            "family_match": false,
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {
+              "BASE": {
+                "called_family": "ONE_STEP_UP",
+                "realized_family": "DRIFT_UP",
+                "ess": 1423,
+                "status": "OK"
+              },
+              "FIRST-TICK-ONLY": {
+                "called_family": "LATE_BREAK_UP",
+                "realized_family": "DRIFT_UP",
+                "ess": 506.5829036562177,
+                "status": "OK"
+              },
+              "HARD": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "SOFT": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "STEP-FORECAST": {
+                "called_family": "SLEEPER",
+                "realized_family": "DRIFT_UP",
+                "ess": 12.698580460231325,
+                "status": "OK"
+              },
+              "TAXONOMY-NULL": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 6,
+                "status": "NO-CALL: prior row effective count < 10"
+              }
+            },
+            "reason": null
+          },
+          "GAS": {
+            "realized_family": "LATE_BREAK_DOWN",
+            "family_called_at_last_gate": "STORE SILENT",
+            "family_match": "STORE SILENT",
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {
+              "BASE": {
+                "called_family": "ONE_STEP_DOWN",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 1207,
+                "status": "OK"
+              },
+              "FIRST-TICK-ONLY": {
+                "called_family": "LATE_BREAK_DOWN",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 419.38635073868807,
+                "status": "OK"
+              },
+              "HARD": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "SOFT": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "STEP-FORECAST": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 6.81734395023693,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "TAXONOMY-NULL": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 5,
+                "status": "NO-CALL: prior row effective count < 10"
+              }
+            },
+            "reason": null
+          }
+        },
+        "pile_ess_at_last_gate": 7.199945177289488,
+        "pool_accuracy_by_gate": [
+          {
+            "gate": 2880,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "NO_PREVIOUS_GATE",
+            "reason": null
+          },
+          {
+            "gate": 2160,
+            "share": 0.35006293478547085,
+            "ess": 55.50794427205719,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 1440,
+            "share": 0.341342148050145,
+            "ess": 84.58915104839707,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 1080,
+            "share": 0.48153954509146024,
+            "ess": 52.523746672921035,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 720,
+            "share": 0.3172597563750742,
+            "ess": 90.7614421823488,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 480,
+            "share": 0.13855733085440752,
+            "ess": 111.09115467676095,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 360,
+            "share": 0.44562309826552454,
+            "ess": 54.51901848619684,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 240,
+            "share": 0.6777867297004491,
+            "ess": 37.09169167580108,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 180,
+            "share": 0.8307950167382477,
+            "ess": 17.521624732279566,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 120,
+            "share": 0.48598407346628875,
+            "ess": 20.94291186106652,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 90,
+            "share": 0.4638606819174566,
+            "ess": 20.301056524458062,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 60,
+            "share": 0.22502974712695634,
+            "ess": 5.205261766044498,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 30,
+            "share": 0.10327829461214254,
+            "ess": 6.489069578772854,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 15,
+            "share": 0.08564619878751747,
+            "ess": 12.911547533999823,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 5,
+            "share": 0.21085129731080082,
+            "ess": 7.199945177289488,
+            "status": "OK",
+            "reason": null
+          }
+        ],
+        "bench_label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING",
+        "bench_reason": null,
+        "ess_source": "Bench validity pool, not OS membership ESS"
+      },
+      "MICRO": {
+        "last_gate": 5,
+        "legs": {
+          "ALT": {
+            "gate": 5,
+            "leg": "ALT",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": 9,
+            "timing_error_minutes": "STORE SILENT",
+            "recorded_floor_cents": 58,
+            "recorded_floor_minutes_to_bell": 3362.5583333333334,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          },
+          "GAS": {
+            "gate": 5,
+            "leg": "GAS",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT",
+            "recorded_floor_cents": 38,
+            "recorded_floor_minutes_to_bell": 425.5383333325386,
+            "first_gate_within_2c_and_held": "STORE SILENT",
+            "reason": "NO_POSTERIOR_Q50_AT_LAST_GATE"
+          }
+        },
+        "gate_calls": [
+          {
+            "gate": 2880,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1074",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 418,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 2944.5583333333334
+          },
+          {
+            "gate": 2160,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1882",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 175,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3187.5583333333334
+          },
+          {
+            "gate": 1440,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2428",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 175,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3187.5583333333334
+          },
+          {
+            "gate": 1080,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16242",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": 175,
+            "floor_error_cents": 9,
+            "timing_error_minutes": 3187.5583333333334
+          },
+          {
+            "gate": 720,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-17838",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": 16,
+            "floor_error_cents": 9,
+            "timing_error_minutes": 3346.5583333333334
+          },
+          {
+            "gate": 480,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18806",
+            "called_q50_floor_cents": 45,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 13,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 360,
+            "leg": "ALT",
+            "receipt": "f473c638-e358-71db-ba0e-be0239dcc87f",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": 78,
+            "floor_error_cents": 9,
+            "timing_error_minutes": 3284.5583333333334
+          },
+          {
+            "gate": 240,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 180,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 120,
+            "leg": "ALT",
+            "receipt": "5591b0fe-ed11-49ea-9239-0d62e3d9e9e9",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 90,
+            "leg": "ALT",
+            "receipt": "ce9cd54e-6efe-6d5e-137f-9aeb1f71f09e",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 60,
+            "leg": "ALT",
+            "receipt": "893d0bd2-fe7f-5280-714e-78756e068e81",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 30,
+            "leg": "ALT",
+            "receipt": "29bf985f-4ff3-61ba-0f46-edfaf8294574",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 15,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21656",
+            "called_q50_floor_cents": 53,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 5,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 5,
+            "leg": "ALT",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": 9,
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 2880,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1074",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 2160,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1882",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 1440,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2428",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 1080,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16242",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 720,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-17838",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 480,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18806",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 360,
+            "leg": "GAS",
+            "receipt": "f473c638-e358-71db-ba0e-be0239dcc87f",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 240,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 180,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 120,
+            "leg": "GAS",
+            "receipt": "5591b0fe-ed11-49ea-9239-0d62e3d9e9e9",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 90,
+            "leg": "GAS",
+            "receipt": "ce9cd54e-6efe-6d5e-137f-9aeb1f71f09e",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 60,
+            "leg": "GAS",
+            "receipt": "893d0bd2-fe7f-5280-714e-78756e068e81",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 30,
+            "leg": "GAS",
+            "receipt": "29bf985f-4ff3-61ba-0f46-edfaf8294574",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 15,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21656",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 5,
+            "leg": "GAS",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          }
+        ]
+      },
+      "HANDS": {
+        "actions": [
+          {
+            "receipt": "49fc71e7-75ce-5546-9c79-30b8a02aaeb2",
+            "leg": "ALT",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 3967.800566665332,
+            "old_cents": null,
+            "new_cents": 55,
+            "writer_class": "HAND",
+            "tokens": [
+              "PLACE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/522963dc9cf2f8b16fe96b92d95f02904ac72487c456e69adce36ecf8e1d5c8f.json"
+          },
+          {
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-360",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 3395.683333317439,
+            "old_cents": 55,
+            "new_cents": 49,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/9da495bf87800a64dd72f55dffcfc4fe8c9a9d1b6c07e4f15aadd44f044f6e82.json"
+          },
+          {
+            "receipt": "71ecd139-fd52-6d15-75d0-27767662d075",
+            "leg": "GAS",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 2880.729499999683,
+            "old_cents": null,
+            "new_cents": 42,
+            "writer_class": "RUNG",
+            "tokens": [
+              "PLACE_REST",
+              "Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK",
+              "LADDER_SHRINK_Q_CLIP_WRITER",
+              "LADDER_SHRINK_Q_CLIP_ADMITTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/6c14e0d1947ae4d0c322f7a76f1012014a6a7ada56952a6cb1d6e4b545c8c171.json"
+          },
+          {
+            "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 2880.729499999683,
+            "old_cents": 49,
+            "new_cents": 55,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/725fd6457518711e753186535d2c55933125d42ee8dc30566eb208d7ec084acd.json"
+          },
+          {
+            "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+            "leg": "GAS",
+            "action": "FILL_EVENT",
+            "kind": "FILL",
+            "minutes_to_bell": 2880.729499999683,
+            "old_cents": 42,
+            "new_cents": null,
+            "writer_class": "SAME_SECOND",
+            "tokens": [
+              "FILL_EVENT",
+              "Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK",
+              "LADDER_SHRINK_Q_CLIP_WRITER",
+              "LADDER_SHRINK_Q_CLIP_WRITER",
+              "LADDER_SHRINK_Q_CLIP_ADMITTED",
+              "PANEL_PRIOR_UPDATED_BY_GRADED_CURRENT_GAME_OWN_EVIDENCE",
+              "PRIOR_REWEIGHTED_BY_OWN_WALK",
+              "LIBRARY_FRACTION_PRIOR"
+            ],
+            "rest_age_at_fill_minutes": 0,
+            "same_second_fill": true,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/469da5e9de99d3f3f06c5a372fa416eaa7021dd7df77fa9d00d2b698628eb749.json"
+          },
+          {
+            "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 169.28143333196715,
+            "old_cents": 55,
+            "new_cents": 49,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/a264aa519a169bbcfe3a8a7a5f54a15902568b52746c184fecbba83ddae889a6.json"
+          },
+          {
+            "receipt": "033693bd-187f-42e1-af1e-7e37eb886d60",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 138.0947999993964,
+            "old_cents": 49,
+            "new_cents": 45,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/dc8492821e528a25c832b531203e930d8263df2af8c6c5b8416ad0a88bad3cdd.json"
+          }
+        ],
+        "placement_rows": 6,
+        "rest_age_at_fill_minutes": [
+          {
+            "leg": "GAS",
+            "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+            "minutes": 0
+          }
+        ],
+        "post_only_violations": 0,
+        "observed_post_only_violations": 0,
+        "post_only_uncheckable": 0,
+        "pre_formation_placements": 0,
+        "observed_pre_formation_placements": 0,
+        "formation_uncheckable": 0,
+        "same_second_fills": 1,
+        "fill_age_uncheckable": 0,
+        "writer_class_unmapped": 0,
+        "violation_receipts": []
+      },
+      "OUTCOME": {
+        "legs": {
+          "ALT": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          },
+          "GAS": {
+            "filled": true,
+            "cents": 42,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1783862356.23,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "best_capturable_pair_sum_cents": 96,
+        "capture_ratio": 0,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": false
+      },
+      "LETTER": {
+        "letter": "F",
+        "governing_section": "HANDS: same-second fill",
+        "hard_failures": [
+          "HANDS: same-second fill"
+        ],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "F",
+            "metrics": {
+              "minimum_q_x_organ_share": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "family_match_share": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "A",
+            "metrics": {
+              "post_only_violations": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "F",
+            "metrics": {
+              "capture_ratio": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "display": {
+        "letter": "F",
+        "label": "Conduct failure · cutoff-independent F",
+        "governing": "HANDS: same-second fill",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "!",
+            "line": "Q 11.61% · X 0% organ share",
+            "hover_lines": [
+              "SENTENCE: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0}",
+              "93/155 leg sentences · 0 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "ALT: INTERIM_UP_TRAVEL / DRIFT_UP · GAS: STORE SILENT / LATE_BREAK_DOWN",
+            "hover_lines": [
+              "MACRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":\"STORE SILENT\"}",
+              "Bench: PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "ALT: 9¢ / STORE SILENT error · GAS: STORE SILENT / STORE SILENT error",
+            "hover_lines": [
+              "MICRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":\"STORE SILENT\",\"max_timing_error_minutes\":\"STORE SILENT\"}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "!",
+            "line": "1 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: A · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":0}",
+              "6 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "0 of 4¢ captured",
+            "hover_lines": [
+              "OUTCOME: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":0}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "receipt": {
+        "version": 1,
+        "role": "REPORT ONLY — no OS inputs changed",
+        "citations": {
+          "PER_GAME_L1_L8": {
+            "path": "C:/tmp/omi-v53-understanding-organ-20260819/.claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/PER_GAME_L1_L8.json",
+            "sha256": "3f5ccde3d50d104910d2a23d9d15c7fc9e9a523895cfffa3aef4a2c14fd24ff1",
+            "bytes": 149794,
+            "commit": "STORE SILENT",
+            "role": "Replaced per-game L1–L8 report. Builder baseline reads rows[].L7_CREDIT.why.",
+            "rows": 5
+          },
+          "HONEST_SCOREBOARD": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/HONEST_SCOREBOARD.md",
+            "sha256": "bad5314cf12877755e922175d053084ba67d9849515a72bdd3e4861c11f49dc0",
+            "bytes": 6585,
+            "commit": "2aa454af4205468de598bc507527e7c608b35d42",
+            "role": "Truth-table offered cents and span-valid captured cents; complete under par, not apparent fills."
+          },
+          "OFFER_DENOMINATOR": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/OFFER_DENOMINATOR.md",
+            "sha256": "2842aacd0821138edee3bcf0d18464ba2f1a9d8dbb2d1016b65f780a69b45c7b",
+            "bytes": 3050,
+            "commit": "ce2e8b7cc84191083c522af3692d467576afca4f",
+            "role": "Definition B: verified-span floors under par; both credited fills inside the span for capture."
+          },
+          "GATE_1_OBJECT": {
+            "path": "artifacts/review_mirror/GATE_1_OBJECT.md",
+            "sha256": "bbeee3207af290c75ca6fb2cf3dfbc36d58afdfb588ed969fd425b40ad365398",
+            "bytes": 2136,
+            "commit": "67378c344419a70ec2b6f05d714c79358da0ea70",
+            "role": "P/Q/X require an author reading this leg; test 1 own receipt weights, test 2 own clock, test 3 no named pricing rule."
+          }
+        },
+        "bench_taxonomy_receipt": {
+          "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
+          "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
+          "bytes": 28853,
+          "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
+          "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
+          "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
+          "bench_choices": {
+            "causal_family_adaptation": "At a receipt only, normalize formation through the current gate into 17 samples; do not use or forward-fill into the unknown remainder. Realized labels use formation through bell.",
+            "direction": "early/late shares are signed relative to net; reversals omit zero steps",
+            "flat_after": "abs(net after first quarter) <= 2 cents; operator-authorized bench choice, not taxonomy law",
+            "quiet_wobble_prose_caveat": "The inherited travel split does not mathematically guarantee the prose 5-cent band. quiet_wobble_prose_band_exception is exposed; no new cutoff is introduced.",
+            "rule_order": [
+              "SLEEPER",
+              "ROUND_TRIP_OR_QUIET_WOBBLE",
+              "LATE_BREAK",
+              "EARLY_SET",
+              "ONE_STEP",
+              "GRIND_WOBBLE",
+              "DRIFT"
+            ],
+            "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
+            "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
+          },
+          "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+        },
+        "rules": {
+          "authorship": "Literal per-leg author-token share is distinct from Gate-1 evidence-chain certification.",
+          "missing": "STORE SILENT; no number or author is invented.",
+          "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
+          "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
+          "taxonomy": "Read realized labels from the hash-bound bench, do not reclassify or select a favored benchmark rule.",
+          "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
+        }
+      },
+      "timestamp": "2026-09-06T17:52:56.951Z"
+    },
+    {
+      "version": 1,
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "provenance": {
+        "os_sha256": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+        "trace_sha256": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+        "bench_sha256": "12df2861b5298fe45c141cc84c7924b326fa0ee347faad391d4a35fa0d79d2f1",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "truth_row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+        "face_sha256": "b738c541e8fb1bb39ccf26d4c3986f12db714e2c2683f04ed68b1886280e2c74",
+        "stage_inputs_sha256": "86219046f90a746f43c4681f1ec4ff32369b439547900a746bdfcb0c018d2405",
+        "stage_files_count": 123,
+        "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+        "receipt_sha256": "03d2dc5a1d6b0a4b94687118348fffda8e639954f5c274de068c9156f9f33687",
+        "grade_builder_sha256": "55d4277017a70b9411a438cf90fa6c11b5fc5dab347f3b0d487033e962f1a658",
+        "grade_contract_sha256": "6ef37e44ce22e774ebd8481bb6788f873fee04ca057b998601c860061e09d997",
+        "fields_sha256": "b6c0550cd0eec0bdedf2475aa596de3819305be9065313ae50d93f37a0e34372",
+        "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+        "os_commit_order": 2997,
+        "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b"
+      },
+      "SENTENCE": {
+        "receipts_total": 123,
+        "receipts_with_sentence": 9,
+        "leg_receipts_total": 155,
+        "leg_receipts_with_sentence": 93,
+        "q_organ_leg_receipts": 18,
+        "x_organ_leg_receipts": 0,
+        "share_q_authored_by_organ": 0.11612903225806452,
+        "share_x_authored_by_organ": 0,
+        "named_tokens_found": [],
+        "named_token_evidence": [],
+        "author_counts": {
+          "q": {
+            "INSUFFICIENT_EVIDENCE": 27,
+            "PRIOR_ONLY": 110,
+            "PRIOR_REWEIGHTED_BY_OWN_WALK": 18
+          },
+          "x": {
+            "INSUFFICIENT_EVIDENCE": 27,
+            "LIBRARY_FRACTION_PRIOR": 128
+          }
+        },
+        "authorship_scope": "Literal author-token metric, not certification of the Gate-1 own-receipt/weight chain.",
+        "gate_1_authorship_certification": "STORE SILENT",
+        "gate_1_reason": "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1."
+      },
+      "MACRO": {
+        "last_gate": 5,
+        "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+        "legs": {
+          "ALT": {
+            "realized_family": "DRIFT_UP",
+            "family_called_at_last_gate": "INTERIM_UP_TRAVEL",
+            "family_match": false,
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {
+              "BASE": {
+                "called_family": "ONE_STEP_UP",
+                "realized_family": "DRIFT_UP",
+                "ess": 1423,
+                "status": "OK"
+              },
+              "FIRST-TICK-ONLY": {
+                "called_family": "LATE_BREAK_UP",
+                "realized_family": "DRIFT_UP",
+                "ess": 506.5829036562177,
+                "status": "OK"
+              },
+              "HARD": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "SOFT": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "STEP-FORECAST": {
+                "called_family": "SLEEPER",
+                "realized_family": "DRIFT_UP",
+                "ess": 12.698580460231325,
+                "status": "OK"
+              },
+              "TAXONOMY-NULL": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 6,
+                "status": "NO-CALL: prior row effective count < 10"
+              }
+            },
+            "reason": null
+          },
+          "GAS": {
+            "realized_family": "LATE_BREAK_DOWN",
+            "family_called_at_last_gate": "STORE SILENT",
+            "family_match": "STORE SILENT",
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {
+              "BASE": {
+                "called_family": "ONE_STEP_DOWN",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 1207,
+                "status": "OK"
+              },
+              "FIRST-TICK-ONLY": {
+                "called_family": "LATE_BREAK_DOWN",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 419.38635073868807,
+                "status": "OK"
+              },
+              "HARD": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "SOFT": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "STEP-FORECAST": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 6.81734395023693,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "TAXONOMY-NULL": {
+                "called_family": "STORE SILENT",
+                "realized_family": "LATE_BREAK_DOWN",
+                "ess": 5,
+                "status": "NO-CALL: prior row effective count < 10"
+              }
+            },
+            "reason": "NO_OS_FAMILY_AT_LAST_GATE"
+          }
+        },
+        "pile_ess_at_last_gate": 7.199945177289488,
+        "pool_accuracy_by_gate": [
+          {
+            "gate": 2880,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "NO_PREVIOUS_GATE",
+            "reason": null
+          },
+          {
+            "gate": 2160,
+            "share": 0.35006293478547085,
+            "ess": 55.50794427205719,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 1440,
+            "share": 0.341342148050145,
+            "ess": 84.58915104839707,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 1080,
+            "share": 0.48153954509146024,
+            "ess": 52.523746672921035,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 720,
+            "share": 0.3172597563750742,
+            "ess": 90.7614421823488,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 480,
+            "share": 0.13855733085440752,
+            "ess": 111.09115467676095,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 360,
+            "share": 0.44562309826552454,
+            "ess": 54.51901848619684,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 240,
+            "share": 0.6777867297004491,
+            "ess": 37.09169167580108,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 180,
+            "share": 0.8307950167382477,
+            "ess": 17.521624732279566,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 120,
+            "share": 0.48598407346628875,
+            "ess": 20.94291186106652,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 90,
+            "share": 0.4638606819174566,
+            "ess": 20.301056524458062,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 60,
+            "share": 0.22502974712695634,
+            "ess": 5.205261766044498,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 30,
+            "share": 0.10327829461214254,
+            "ess": 6.489069578772854,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 15,
+            "share": 0.08564619878751747,
+            "ess": 12.911547533999823,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 5,
+            "share": 0.21085129731080082,
+            "ess": 7.199945177289488,
+            "status": "OK",
+            "reason": null
+          }
+        ],
+        "bench_label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING",
+        "bench_reason": null,
+        "ess_source": "Bench validity pool, not OS membership ESS"
+      },
+      "MICRO": {
+        "last_gate": 5,
+        "legs": {
+          "ALT": {
+            "gate": 5,
+            "leg": "ALT",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": 9,
+            "timing_error_minutes": "STORE SILENT",
+            "recorded_floor_cents": 58,
+            "recorded_floor_minutes_to_bell": 3362.5583333333334,
+            "first_gate_within_2c_and_held": null,
+            "reason": "NO_DEADLINE_AT_LAST_GATE"
+          },
+          "GAS": {
+            "gate": 5,
+            "leg": "GAS",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT",
+            "recorded_floor_cents": 38,
+            "recorded_floor_minutes_to_bell": 425.5383333325386,
+            "first_gate_within_2c_and_held": "STORE SILENT",
+            "reason": "NO_POSTERIOR_Q50_AT_LAST_GATE"
+          }
+        },
+        "gate_calls": [
+          {
+            "gate": 2880,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1074",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 418,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 2944.5583333333334
+          },
+          {
+            "gate": 2160,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1882",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 175,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3187.5583333333334
+          },
+          {
+            "gate": 1440,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2428",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 175,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3187.5583333333334
+          },
+          {
+            "gate": 1080,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16242",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": 175,
+            "floor_error_cents": 9,
+            "timing_error_minutes": 3187.5583333333334
+          },
+          {
+            "gate": 720,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-17838",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": 16,
+            "floor_error_cents": 9,
+            "timing_error_minutes": 3346.5583333333334
+          },
+          {
+            "gate": 480,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18806",
+            "called_q50_floor_cents": 45,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 13,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 360,
+            "leg": "ALT",
+            "receipt": "f473c638-e358-71db-ba0e-be0239dcc87f",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": 78,
+            "floor_error_cents": 9,
+            "timing_error_minutes": 3284.5583333333334
+          },
+          {
+            "gate": 240,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 180,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": 55,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 120,
+            "leg": "ALT",
+            "receipt": "5591b0fe-ed11-49ea-9239-0d62e3d9e9e9",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 90,
+            "leg": "ALT",
+            "receipt": "ce9cd54e-6efe-6d5e-137f-9aeb1f71f09e",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 60,
+            "leg": "ALT",
+            "receipt": "893d0bd2-fe7f-5280-714e-78756e068e81",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 30,
+            "leg": "ALT",
+            "receipt": "29bf985f-4ff3-61ba-0f46-edfaf8294574",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 15,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21656",
+            "called_q50_floor_cents": 53,
+            "called_floor_minutes_to_bell": 4,
+            "floor_error_cents": 5,
+            "timing_error_minutes": 3358.5583333333334
+          },
+          {
+            "gate": 5,
+            "leg": "ALT",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": 9,
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 2880,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1074",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 2160,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1882",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 1440,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2428",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 1080,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16242",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 720,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-17838",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 480,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18806",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 360,
+            "leg": "GAS",
+            "receipt": "f473c638-e358-71db-ba0e-be0239dcc87f",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 240,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 180,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 120,
+            "leg": "GAS",
+            "receipt": "5591b0fe-ed11-49ea-9239-0d62e3d9e9e9",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 90,
+            "leg": "GAS",
+            "receipt": "ce9cd54e-6efe-6d5e-137f-9aeb1f71f09e",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 60,
+            "leg": "GAS",
+            "receipt": "893d0bd2-fe7f-5280-714e-78756e068e81",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 30,
+            "leg": "GAS",
+            "receipt": "29bf985f-4ff3-61ba-0f46-edfaf8294574",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 15,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21656",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 5,
+            "leg": "GAS",
+            "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          }
+        ]
+      },
+      "HANDS": {
+        "actions": [
+          {
+            "receipt": "49fc71e7-75ce-5546-9c79-30b8a02aaeb2",
+            "leg": "ALT",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 3967.800566665332,
+            "old_cents": null,
+            "new_cents": 55,
+            "writer_class": "HAND",
+            "tokens": [
+              "PLACE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "INSUFFICIENT_AUTHORITY_NO_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/522963dc9cf2f8b16fe96b92d95f02904ac72487c456e69adce36ecf8e1d5c8f.json"
+          },
+          {
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-360",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 3395.683333317439,
+            "old_cents": 55,
+            "new_cents": 49,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/9da495bf87800a64dd72f55dffcfc4fe8c9a9d1b6c07e4f15aadd44f044f6e82.json"
+          },
+          {
+            "receipt": "71ecd139-fd52-6d15-75d0-27767662d075",
+            "leg": "GAS",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 2880.729499999683,
+            "old_cents": null,
+            "new_cents": 42,
+            "writer_class": "RUNG",
+            "tokens": [
+              "PLACE_REST",
+              "Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK",
+              "LADDER_SHRINK_Q_CLIP_WRITER",
+              "LADDER_SHRINK_Q_CLIP_ADMITTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/6c14e0d1947ae4d0c322f7a76f1012014a6a7ada56952a6cb1d6e4b545c8c171.json"
+          },
+          {
+            "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 2880.729499999683,
+            "old_cents": 49,
+            "new_cents": 55,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/725fd6457518711e753186535d2c55933125d42ee8dc30566eb208d7ec084acd.json"
+          },
+          {
+            "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+            "leg": "GAS",
+            "action": "FILL_EVENT",
+            "kind": "FILL",
+            "minutes_to_bell": 2880.729499999683,
+            "old_cents": 42,
+            "new_cents": null,
+            "writer_class": "SAME_SECOND",
+            "tokens": [
+              "FILL_EVENT",
+              "Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK",
+              "LADDER_SHRINK_Q_CLIP_WRITER",
+              "LADDER_SHRINK_Q_CLIP_WRITER",
+              "LADDER_SHRINK_Q_CLIP_ADMITTED",
+              "PANEL_PRIOR_UPDATED_BY_GRADED_CURRENT_GAME_OWN_EVIDENCE",
+              "PRIOR_REWEIGHTED_BY_OWN_WALK",
+              "LIBRARY_FRACTION_PRIOR"
+            ],
+            "rest_age_at_fill_minutes": 0,
+            "same_second_fill": true,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/469da5e9de99d3f3f06c5a372fa416eaa7021dd7df77fa9d00d2b698628eb749.json"
+          },
+          {
+            "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 169.28143333196715,
+            "old_cents": 55,
+            "new_cents": 49,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/a264aa519a169bbcfe3a8a7a5f54a15902568b52746c184fecbba83ddae889a6.json"
+          },
+          {
+            "receipt": "033693bd-187f-42e1-af1e-7e37eb886d60",
+            "leg": "ALT",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 138.0947999993964,
+            "old_cents": 49,
+            "new_cents": 45,
+            "writer_class": "HAND",
+            "tokens": [
+              "REPRICE_REST",
+              "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE",
+              "FLOOR_CAPABLE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/dc8492821e528a25c832b531203e930d8263df2af8c6c5b8416ad0a88bad3cdd.json"
+          }
+        ],
+        "placement_rows": 6,
+        "rest_age_at_fill_minutes": [
+          {
+            "leg": "GAS",
+            "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
+            "minutes": 0
+          }
+        ],
+        "post_only_violations": 0,
+        "observed_post_only_violations": 0,
+        "post_only_uncheckable": 0,
+        "pre_formation_placements": 0,
+        "observed_pre_formation_placements": 0,
+        "formation_uncheckable": 0,
+        "same_second_fills": 1,
+        "fill_age_uncheckable": 0,
+        "writer_class_unmapped": 0,
+        "violation_receipts": []
+      },
+      "OUTCOME": {
+        "legs": {
+          "ALT": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          },
+          "GAS": {
+            "filled": true,
+            "cents": 42,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1783862356.23,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "best_capturable_pair_sum_cents": 96,
+        "capture_ratio": 0,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": false
+      },
+      "LETTER": {
+        "letter": "F",
+        "governing_section": "HANDS: same-second fill",
+        "hard_failures": [
+          "HANDS: same-second fill"
+        ],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "F",
+            "metrics": {
+              "minimum_q_x_organ_share": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "family_match_share": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "A",
+            "metrics": {
+              "post_only_violations": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "F",
+            "metrics": {
+              "capture_ratio": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "display": {
+        "letter": "F",
+        "label": "Conduct failure · cutoff-independent F",
+        "governing": "HANDS: same-second fill",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "!",
+            "line": "Q 11.61% · X 0% organ share",
+            "hover_lines": [
+              "SENTENCE: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0}",
+              "93/155 leg sentences · 0 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "ALT: INTERIM_UP_TRAVEL / DRIFT_UP · GAS: STORE SILENT / LATE_BREAK_DOWN",
+            "hover_lines": [
+              "MACRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":\"STORE SILENT\"}",
+              "Bench: PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "ALT: 9¢ / STORE SILENT error · GAS: STORE SILENT / STORE SILENT error",
+            "hover_lines": [
+              "MICRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":\"STORE SILENT\",\"max_timing_error_minutes\":\"STORE SILENT\"}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "!",
+            "line": "1 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: A · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":0}",
+              "6 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "0 of 4¢ captured",
+            "hover_lines": [
+              "OUTCOME: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":0}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "receipt": {
+        "version": 1,
+        "role": "REPORT ONLY — no OS inputs changed",
+        "citations": {
+          "PER_GAME_L1_L8": {
+            "path": "C:/tmp/omi-v53-understanding-organ-20260819/.claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/PER_GAME_L1_L8.json",
+            "sha256": "3f5ccde3d50d104910d2a23d9d15c7fc9e9a523895cfffa3aef4a2c14fd24ff1",
+            "bytes": 149794,
+            "commit": "STORE SILENT",
+            "role": "Replaced per-game L1–L8 report. Builder baseline reads rows[].L7_CREDIT.why.",
+            "rows": 5
+          },
+          "HONEST_SCOREBOARD": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/HONEST_SCOREBOARD.md",
+            "sha256": "bad5314cf12877755e922175d053084ba67d9849515a72bdd3e4861c11f49dc0",
+            "bytes": 6585,
+            "commit": "2aa454af4205468de598bc507527e7c608b35d42",
+            "role": "Truth-table offered cents and span-valid captured cents; complete under par, not apparent fills."
+          },
+          "OFFER_DENOMINATOR": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/OFFER_DENOMINATOR.md",
+            "sha256": "2842aacd0821138edee3bcf0d18464ba2f1a9d8dbb2d1016b65f780a69b45c7b",
+            "bytes": 3050,
+            "commit": "ce2e8b7cc84191083c522af3692d467576afca4f",
+            "role": "Definition B: verified-span floors under par; both credited fills inside the span for capture."
+          },
+          "GATE_1_OBJECT": {
+            "path": "artifacts/review_mirror/GATE_1_OBJECT.md",
+            "sha256": "bbeee3207af290c75ca6fb2cf3dfbc36d58afdfb588ed969fd425b40ad365398",
+            "bytes": 2136,
+            "commit": "67378c344419a70ec2b6f05d714c79358da0ea70",
+            "role": "P/Q/X require an author reading this leg; test 1 own receipt weights, test 2 own clock, test 3 no named pricing rule."
+          }
+        },
+        "bench_taxonomy_receipt": {
+          "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
+          "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
+          "bytes": 28853,
+          "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
+          "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
+          "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
+          "bench_choices": {
+            "causal_family_adaptation": "At a receipt only, normalize formation through the current gate into 17 samples; do not use or forward-fill into the unknown remainder. Realized labels use formation through bell.",
+            "direction": "early/late shares are signed relative to net; reversals omit zero steps",
+            "flat_after": "abs(net after first quarter) <= 2 cents; operator-authorized bench choice, not taxonomy law",
+            "quiet_wobble_prose_caveat": "The inherited travel split does not mathematically guarantee the prose 5-cent band. quiet_wobble_prose_band_exception is exposed; no new cutoff is introduced.",
+            "rule_order": [
+              "SLEEPER",
+              "ROUND_TRIP_OR_QUIET_WOBBLE",
+              "LATE_BREAK",
+              "EARLY_SET",
+              "ONE_STEP",
+              "GRIND_WOBBLE",
+              "DRIFT"
+            ],
+            "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
+            "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
+          },
+          "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+        },
+        "rules": {
+          "authorship": "Literal per-leg author-token share is distinct from Gate-1 evidence-chain certification.",
+          "missing": "STORE SILENT; no number or author is invented.",
+          "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
+          "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
+          "taxonomy": "Read realized labels from the hash-bound bench, do not reclassify or select a favored benchmark rule.",
+          "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
+        }
+      },
+      "timestamp": "2026-09-06T17:58:18.310Z"
+    }
+  ]
+}

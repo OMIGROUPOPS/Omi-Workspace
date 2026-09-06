@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "grades": [
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-06T17:48:50.060Z",
+      "os_sha": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+      "trace_sha": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+      "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+      "commit_order": 2997,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "HANDS: same-second fill",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/986b8233_c2fe78f2.json",
+      "revision": 0,
+      "grade_sha256": "77e557dedcff55fd57276a60665db9a032b7bf0c4581556cb43b64fce7e49b8b",
+      "append_order": 0,
+      "x": 30,
+      "y": 88,
+      "hover_lines": [
+        "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1 · F",
+        "HANDS: same-second fill",
+        "2026-09-06T17:48:50.060Z · run 1",
+        "OS commit 2dfb5b0abf3fdf8669b8750d2780effd44a7319c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-06T17:49:19.309Z",
+      "os_sha": "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2",
+      "trace_sha": "ab2345dea8b3db2237dca97bf03f3fcece95eae334e3f4940f5b6583271171a0",
+      "os_commit": "ed3b813ba9c3e383b223dba0f4f75751b2fb24e7",
+      "commit_order": 2994,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "SENTENCE: named tokens",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/a394097b_ab2345de.json",
+      "revision": 0,
+      "grade_sha256": "529d0e18dc99f721cb3d756bbbcf3d2dc8fb0fd50b342e68ccef6ea96ceeb2f8",
+      "append_order": 1,
+      "x": 30,
+      "y": 88,
+      "hover_lines": [
+        "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2 · F",
+        "SENTENCE: named tokens",
+        "2026-09-06T17:49:19.309Z · run 2",
+        "OS commit ed3b813ba9c3e383b223dba0f4f75751b2fb24e7"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-06T17:52:56.951Z",
+      "os_sha": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+      "trace_sha": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+      "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+      "commit_order": 2997,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "HANDS: same-second fill",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/986b8233_c2fe78f2.json",
+      "revision": 1,
+      "grade_sha256": "b90ff6995b6fd8dafd9674a668a07a6c18b59dfca513eb5d3aed095e7989ed33",
+      "append_order": 2,
+      "x": 64,
+      "y": 88,
+      "hover_lines": [
+        "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1 · F",
+        "HANDS: same-second fill",
+        "2026-09-06T17:52:56.951Z · run 3",
+        "OS commit 2dfb5b0abf3fdf8669b8750d2780effd44a7319c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-06T17:53:14.785Z",
+      "os_sha": "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2",
+      "trace_sha": "ab2345dea8b3db2237dca97bf03f3fcece95eae334e3f4940f5b6583271171a0",
+      "os_commit": "ed3b813ba9c3e383b223dba0f4f75751b2fb24e7",
+      "commit_order": 2994,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "SENTENCE: named tokens",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/a394097b_ab2345de.json",
+      "revision": 1,
+      "grade_sha256": "2c584c77727530a9d0617916e3c032caac19350c763598ce975723ff1c410e9b",
+      "append_order": 3,
+      "x": 64,
+      "y": 88,
+      "hover_lines": [
+        "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2 · F",
+        "SENTENCE: named tokens",
+        "2026-09-06T17:53:14.785Z · run 4",
+        "OS commit ed3b813ba9c3e383b223dba0f4f75751b2fb24e7"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-06T17:58:18.310Z",
+      "os_sha": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+      "trace_sha": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+      "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+      "commit_order": 2997,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "HANDS: same-second fill",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/986b8233_c2fe78f2.json",
+      "revision": 2,
+      "grade_sha256": "9c9a5f33b6114ce37165602a700823aab02487769cb7ec00f481dac493f6f128",
+      "append_order": 4,
+      "x": 98,
+      "y": 88,
+      "hover_lines": [
+        "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1 · F",
+        "HANDS: same-second fill",
+        "2026-09-06T17:58:18.310Z · run 5",
+        "OS commit 2dfb5b0abf3fdf8669b8750d2780effd44a7319c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-06T17:58:36.624Z",
+      "os_sha": "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2",
+      "trace_sha": "ab2345dea8b3db2237dca97bf03f3fcece95eae334e3f4940f5b6583271171a0",
+      "os_commit": "ed3b813ba9c3e383b223dba0f4f75751b2fb24e7",
+      "commit_order": 2994,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "SENTENCE: named tokens",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/a394097b_ab2345de.json",
+      "revision": 2,
+      "grade_sha256": "9b792678fa114d7941ffd7d4f0ee458750d207b874a4a4a5b31821219e7c5a3c",
+      "append_order": 5,
+      "x": 98,
+      "y": 88,
+      "hover_lines": [
+        "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2 · F",
+        "SENTENCE: named tokens",
+        "2026-09-06T17:58:36.624Z · run 6",
+        "OS commit ed3b813ba9c3e383b223dba0f4f75751b2fb24e7"
+      ]
+    }
+  ],
+  "axis": {
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F",
+      "STORE SILENT"
+    ]
+  },
+  "views": {
+    "KXATPMATCH-26JUL12ALTGAS": {
+      "width": 180,
+      "height": 126,
+      "labels": [
+        {
+          "letter": "A",
+          "y": 16
+        },
+        {
+          "letter": "B",
+          "y": 34
+        },
+        {
+          "letter": "C",
+          "y": 52
+        },
+        {
+          "letter": "D",
+          "y": 70
+        },
+        {
+          "letter": "F",
+          "y": 88
+        },
+        {
+          "letter": "—",
+          "y": 106
+        }
+      ]
+    },
+    "KXATPCHALLENGERMATCH-26JUL14URSPAL": {
+      "width": 180,
+      "height": 126,
+      "labels": [
+        {
+          "letter": "A",
+          "y": 16
+        },
+        {
+          "letter": "B",
+          "y": 34
+        },
+        {
+          "letter": "C",
+          "y": 52
+        },
+        {
+          "letter": "D",
+          "y": 70
+        },
+        {
+          "letter": "F",
+          "y": 88
+        },
+        {
+          "letter": "—",
+          "y": 106
+        }
+      ]
+    }
+  }
+}

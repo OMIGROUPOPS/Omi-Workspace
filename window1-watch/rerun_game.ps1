@@ -88,6 +88,8 @@ if ($receiptDir) { $faceArgs += @('--receipt-dir',$receiptDir) }
 if ($Bench) { $faceArgs += @('--bench',$Bench) }
 & node (Join-Path $PSScriptRoot 'build_face_data.mjs') @faceArgs
 if ($LASTEXITCODE -ne 0) { throw "Face builder failed: $LASTEXITCODE" }
+& node (Join-Path $PSScriptRoot 'build_grade.mjs') --event $Event
+if ($LASTEXITCODE -ne 0) { throw 'Grade builder failed' }
 & node (Join-Path $PSScriptRoot 'shell\scripts\copy-face-data.mjs')
 if ($LASTEXITCODE -ne 0) { throw 'Face data publication failed' }
 & node (Join-Path $PSScriptRoot 'verify_game.mjs') $facePath

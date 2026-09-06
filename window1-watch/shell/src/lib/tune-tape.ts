@@ -215,7 +215,42 @@ export type Game = {
   url: string;
   version: number;
 };
-export type LoadedGame = { face: FaceData; frames: Frame[] };
+export type Grade = {
+  event: string;
+  timestamp: string;
+  provenance: { os_sha256: string; trace_sha256: string; face_sha256: string };
+  LETTER: { letter: string; governing_section: string };
+  display: {
+    letter: string;
+    label: string;
+    governing: string;
+    sections: { name: string; mark: string; line: string; hover_lines: string[] }[];
+  };
+};
+export type GradeHistory = {
+  event: string;
+  url: string;
+  revision: number;
+  timestamp: string;
+  os_sha: string;
+  letter: string;
+  x: number;
+  y: number;
+  hover_lines: string[];
+};
+export type GradeHistoryView = {
+  width: number;
+  height: number;
+  labels: { letter: string; y: number }[];
+};
+export type LoadedGame = {
+  face: FaceData;
+  frames: Frame[];
+  grade?: Grade | null;
+  grade_status?: string;
+  history?: GradeHistory[];
+  history_view?: GradeHistoryView | null;
+};
 async function json<T>(url: string, signal?: AbortSignal): Promise<T> {
   const response = await fetch(url, { signal, cache: "no-cache" });
   if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
@@ -224,7 +259,13 @@ async function json<T>(url: string, signal?: AbortSignal): Promise<T> {
 export const loadGameIndex = (signal?: AbortSignal) =>
   json<{ games: Game[] }>("/data/index.json", signal);
 export async function loadTuneGame(url: string, signal?: AbortSignal): Promise<LoadedGame> {
-  const face = await json<FaceData>(url, signal);
+  const response = await fetch(url, { signal, cache: "no-cache" });
+  if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+  const bytes = await response.arrayBuffer();
+  const face = JSON.parse(new TextDecoder().decode(bytes)) as FaceData;
+  const faceSha = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)))
+    .map((n) => n.toString(16).padStart(2, "0"))
+    .join("");
   const dictionary = (face as FaceData & { dictionary?: unknown[] }).dictionary;
   if (dictionary) {
     const decode = (v: unknown): unknown =>
@@ -249,7 +290,37 @@ export async function loadTuneGame(url: string, signal?: AbortSignal): Promise<L
         face.render.columns.map((key, index) => [key, row[index]]),
       ) as unknown as Frame,
   );
-  return { face, frames };
+  const optional = async <T>(path: string): Promise<T | null> => {
+    const r = await fetch(path, { signal, cache: "no-cache" });
+    if (r.status === 404) return null;
+    if (!r.ok) throw new Error(`${path}: HTTP ${r.status}`);
+    // Vite may serve its HTML fallback for a not-yet-built grade.
+    if (!r.headers.get("content-type")?.includes("application/json")) return null;
+    return r.json();
+  };
+  const [candidate, index] = await Promise.all([
+    optional<Grade>(`/data/${face.provenance.event_id}.grade.json`),
+    optional<{ grades: GradeHistory[]; views: Record<string, GradeHistoryView> }>(
+      "/data/grades/index.json",
+    ),
+  ]);
+  const bound =
+    candidate?.event === face.provenance.event_id &&
+    candidate.provenance.os_sha256 === face.provenance.os_sha256 &&
+    candidate.provenance.trace_sha256 === face.provenance.trace_sha256 &&
+    candidate.provenance.face_sha256 === faceSha;
+  return {
+    face,
+    frames,
+    grade: bound ? candidate : null,
+    grade_status: candidate
+      ? bound
+        ? "OK"
+        : "STORE SILENT — grade does not match this face; rebuild the grade"
+      : "STORE SILENT — no grade built",
+    history: index?.grades.filter((g) => g.event === face.provenance.event_id) ?? [],
+    history_view: index?.views[face.provenance.event_id ?? ""] ?? null,
+  };
 }
 export const loadReceipt = (url: string, signal?: AbortSignal) =>
   json<{ source: unknown; inspector: unknown; row: unknown }>(url, signal);

@@ -1,4 +1,5 @@
 import { SILENT, type LoadedGame, type Receipt, type Bench } from "@/lib/tune-tape";
+import { GradePanel } from "./grade-panel";
 const shown = (v: unknown) => (v == null ? SILENT : String(v));
 export function TuneHud({
   game,
@@ -15,6 +16,7 @@ export function TuneHud({
       aria-label="Tune test HUD"
       className="sticky top-0 z-20 rounded-md border border-border bg-bg/95 p-3 backdrop-blur-sm"
     >
+      <GradePanel game={game} />
       <div aria-label="FLOOR · RECORDED" className="mb-3 border-b border-border pb-3">
         <div className="flex flex-wrap items-center justify-between gap-1">
           <p className="text-xs uppercase tracking-[0.14em] text-muted">FLOOR · RECORDED</p>

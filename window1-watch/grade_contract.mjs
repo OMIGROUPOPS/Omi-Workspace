@@ -1,0 +1,623 @@
+// Report-card measurements only. No engine imports, orders or price production.
+import fs from "node:fs";
+export const SILENT = "STORE SILENT";
+const finite = (n) => typeof n === "number" && Number.isFinite(n);
+const value = (n) => (finite(n) ? n : SILENT);
+const ratio = (n, d) => (d ? n / d : SILENT);
+const shown = (n) =>
+  finite(n) ? String(Number(n.toFixed(2))) : String(n ?? SILENT);
+const unit = (n, suffix) => (finite(n) ? `${shown(n)}${suffix}` : SILENT);
+const percent = (n) => (finite(n) ? `${shown(n * 100)}%` : SILENT);
+const priorAuthors = new Set([
+  "PRIOR_ONLY",
+  "LIBRARY_FRACTION_PRIOR",
+  "INSUFFICIENT_EVIDENCE",
+  SILENT,
+]);
+const fields = fs.readFileSync(new URL("./FIELDS.md", import.meta.url), "utf8");
+const writerTable = fields
+  .split("<!-- grade-writers:start -->")[1]
+  ?.split("<!-- grade-writers:end -->")[0];
+if (!writerTable) throw new Error("FIELDS.md: missing grade writer classes");
+const writers = writerTable
+  .split(/\r?\n/)
+  .filter((l) => l.startsWith("| ") && !l.startsWith("| Token"))
+  .map((l) =>
+    l
+      .split("|")
+      .map((s) => s.trim())
+      .slice(1, 3),
+  );
+const match = (token, pattern) =>
+  pattern.endsWith("*")
+    ? token?.startsWith(pattern.slice(0, -1))
+    : token === pattern;
+
+export function namedToken(token, legs = [], event = "") {
+  if (typeof token !== "string") return false;
+  return (
+    /^(PAL_|GIU_|LAJSVA_)/.test(token) ||
+    legs.some((l) => token.startsWith(l + "_")) ||
+    (event && token.includes(event) && /WRITER|GATED|HAND/.test(token))
+  );
+}
+export function writerClass(tokens, sameSecond = false) {
+  if (sameSecond) return "SAME_SECOND";
+  // Table order establishes precedence (named hand before ladder/seat).
+  for (const [pattern, cls] of writers)
+    if (tokens.some((t) => match(t, pattern))) return cls;
+  return SILENT;
+}
+export function scanNamed(root, legs, event, visit, field = "") {
+  if (typeof root === "string") {
+    // Exact symbolic values, not prose, library event identities, or receipt paths.
+    if (/^[A-Z0-9_-]+$/.test(root) && namedToken(root, legs, event))
+      visit(root, field);
+  } else if (root && typeof root === "object") {
+    for (const [key, v] of Object.entries(root)) {
+      if (
+        [
+          "event_id",
+          "leg_id",
+          "receipt",
+          "source_receipt",
+          "receipt_id",
+        ].includes(key)
+      )
+        continue;
+      scanNamed(v, legs, event, visit, field ? `${field}.${key}` : key);
+    }
+  }
+}
+export function projectDecision(row, face) {
+  const legs = {};
+  for (const d of row.derivations ?? []) {
+    const l = d.leg_id,
+      a = d.derivation?.pricing_authority,
+      b = row.layers?.micro?.context?.beliefs?.[l];
+    const deadline = b?.deadline;
+    const tokens = [
+      d.action?.reason,
+      d.layered_dual_belief?.decision_arbitration?.winner?.lane,
+      d.layered_dual_belief?.envelope_placement?.writer_lane,
+      d.layered_dual_belief?.envelope_placement?.mode,
+      a?.authority_source,
+      b?.q_author,
+      b?.x_author,
+    ].filter(Boolean);
+    legs[l] = {
+      has_sentence:
+        !!b?.plain_sentence &&
+        finite(b?.current_cents) &&
+        finite(b?.predicted_cents) &&
+        finite(
+          deadline?.deadline_minutes_to_bell ?? b?.predicted_minutes_to_bell,
+        ),
+      q_author: b?.q_author ?? null,
+      x_author: b?.x_author ?? null,
+      q_present: finite(b?.predicted_cents),
+      x_present: finite(
+        deadline?.deadline_minutes_to_bell ?? b?.predicted_minutes_to_bell,
+      ),
+      tokens,
+      family: b?.family ?? row.layers?.macro?.context?.families?.[l] ?? null,
+      q50: a?.true_conditioning?.posterior_q50_cents ?? null,
+      floor_mtb:
+        deadline?.deadline_minutes_to_bell ??
+        b?.predicted_minutes_to_bell ??
+        null,
+      action: d.action ?? null,
+      ask: row.reads?.books?.value?.[l]?.ask_cents ?? null,
+      formation_end:
+        d.derivation?.formation_end_epoch ?? face.formation_end_epoch ?? null,
+      // Explicit weights and unique own prints; an author token alone is not Gate-1 proof.
+      own_print_receipts: b?.own_print_receipts ?? [],
+      evidence_rows: a?.own_evidence_rows ?? [],
+    };
+  }
+  return { epoch: row.timestamp_epoch, receipt: row.receipt, legs };
+}
+function metricGrade(v, rule, rubric) {
+  if (!finite(v)) return SILENT;
+  for (const letter of rubric.letters.filter((l) => l !== "F")) {
+    const c = rule.cutoffs[letter];
+    if (!finite(c)) throw new Error(`Invalid PLACEHOLDER cutoff ${letter}`);
+    if (rule.direction === "min" ? v >= c : v <= c) return letter;
+  }
+  return "F";
+}
+export function worstLetter(letters, rubric) {
+  if (letters.includes("F")) return "F";
+  if (!letters.length || letters.includes(SILENT)) return SILENT;
+  return letters.reduce((a, b) =>
+    rubric.letters.indexOf(a) > rubric.letters.indexOf(b) ? a : b,
+  );
+}
+function maxComplete(values) {
+  return values.length && values.every(finite) ? Math.max(...values) : SILENT;
+}
+
+export function gradeFace(
+  face,
+  decisions,
+  namedEvidence,
+  bench,
+  rubric,
+  provenance,
+) {
+  const event = face.provenance.event_id,
+    sides = face.legs;
+  const entries = decisions.flatMap((r) =>
+    Object.entries(r.legs).map(([leg, d]) => ({
+      ...d,
+      leg,
+      receipt: r.receipt,
+    })),
+  );
+  const organ = (d, axis) =>
+    d[`${axis}_present`] &&
+    typeof d[`${axis}_author`] === "string" &&
+    !priorAuthors.has(d[`${axis}_author`]) &&
+    !d.tokens.some((t) => namedToken(t, sides, event));
+  const q = entries.filter((d) => organ(d, "q")).length,
+    x = entries.filter((d) => organ(d, "x")).length;
+  const sentence = {
+    receipts_total: decisions.length,
+    receipts_with_sentence: decisions.filter((r) =>
+      sides.every((l) => r.legs[l]?.has_sentence),
+    ).length,
+    leg_receipts_total: entries.length,
+    leg_receipts_with_sentence: entries.filter((d) => d.has_sentence).length,
+    q_organ_leg_receipts: q,
+    x_organ_leg_receipts: x,
+    share_q_authored_by_organ: ratio(q, entries.length),
+    share_x_authored_by_organ: ratio(x, entries.length),
+    named_tokens_found: [...namedEvidence.keys()].sort(),
+    named_token_evidence: [...namedEvidence.values()].sort((a, b) =>
+      a.token.localeCompare(b.token),
+    ),
+    author_counts: Object.fromEntries(
+      ["q", "x"].map((axis) => [
+        axis,
+        entries.reduce((out, d) => {
+          const token = d[`${axis}_author`] ?? SILENT;
+          out[token] = (out[token] ?? 0) + 1;
+          return out;
+        }, {}),
+      ]),
+    ),
+    authorship_scope:
+      "Literal author-token metric, not certification of the Gate-1 own-receipt/weight chain.",
+    gate_1_authorship_certification: SILENT,
+    gate_1_reason:
+      "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1.",
+  };
+  const gates = face.render.checkpoints.map((c) => {
+    const stage = decisions
+      .filter(
+        (r) => r.epoch <= face.bell.timestamp_epoch - c.minutesToBell * 60,
+      )
+      .at(-1);
+    return { gate: c.minutesToBell, receipt: stage?.receipt ?? null, stage };
+  });
+  const last = gates.at(-1),
+    benchAligned = face.bench?.clock_status === "ALIGNED";
+  const benchEvent =
+    bench &&
+    Object.values(bench.events ?? {}).find((e) => e.event_id === event);
+  const benchLast = benchAligned
+    ? benchEvent?.gates?.[String(last?.gate)]
+    : null;
+  const benchReason = !benchEvent
+    ? "NO_BOUND_BENCH_EVENT"
+    : !benchAligned
+      ? face.bench.clock_status
+      : null;
+  const macro = {
+    last_gate: last?.gate ?? SILENT,
+    receipt: last?.receipt,
+    legs: {},
+    pile_ess_at_last_gate: value(benchLast?.validity?.ess),
+    pool_accuracy_by_gate: gates.map((g) => {
+      const v = benchAligned
+        ? benchEvent?.gates?.[String(g.gate)]?.validity
+        : null;
+      return {
+        gate: g.gate,
+        share: value(v?.weighted_share),
+        ess: value(v?.ess),
+        status: v?.status ?? SILENT,
+        reason: benchReason ?? (!v ? "NO_STORED_VALIDITY" : null),
+      };
+    }),
+    bench_label: face.bench?.label ?? SILENT,
+    bench_reason: benchReason,
+    ess_source: "Bench validity pool, not OS membership ESS",
+  };
+  const micro = { last_gate: last?.gate ?? SILENT, legs: {}, gate_calls: [] };
+  for (const leg of sides) {
+    const bside =
+      benchEvent?.first_tick?.favorite === leg
+        ? "favorite"
+        : benchEvent?.first_tick?.underdog === leg
+          ? "underdog"
+          : null;
+    const rules = Object.fromEntries(
+      Object.entries(benchLast?.rules ?? {}).map(([key, r]) => [
+        key,
+        {
+          called_family:
+            r.sides?.[bside]?.status === "OK"
+              ? (r.sides[bside].family?.top ?? SILENT)
+              : SILENT,
+          realized_family: r.sides?.[bside]?.realized_family ?? SILENT,
+          ess: value(r.sides?.[bside]?.ess),
+          status: r.sides?.[bside]?.status ?? SILENT,
+        },
+      ]),
+    );
+    // Realized label already computed by the bound bench taxonomy. Never substitute an OS family.
+    const realized = [
+      ...new Set(
+        Object.values(rules)
+          .map((r) => r.realized_family)
+          .filter((r) => r !== SILENT),
+      ),
+    ];
+    if (realized.length > 1)
+      throw new Error(`Contradictory realized bench families: ${leg}`);
+    const actual = realized[0] ?? SILENT,
+      called = last?.stage?.legs?.[leg]?.family ?? SILENT;
+    macro.legs[leg] = {
+      realized_family: actual,
+      family_called_at_last_gate: called,
+      family_match:
+        actual === SILENT || called === SILENT ? SILENT : called === actual,
+      family_call_source:
+        "OS belief.family (raw vocabulary; not a bench-pool family)",
+      bench_families_by_rule: rules,
+      reason:
+        benchReason ??
+        (actual === SILENT
+          ? "NO_REALIZED_TAXONOMY_LABEL"
+          : called === SILENT
+            ? "NO_OS_FAMILY_AT_LAST_GATE"
+            : null),
+    };
+    const truth = face.truth?.legs?.[leg],
+      verified = truth?.status === "OK";
+    const calls = gates.map((g) => {
+      const d = g.stage?.legs?.[leg];
+      const err =
+        verified && finite(d?.q50)
+          ? Math.abs(d.q50 - truth.floor_cents)
+          : SILENT;
+      return {
+        gate: g.gate,
+        leg,
+        receipt: g.receipt,
+        called_q50_floor_cents: value(d?.q50),
+        called_floor_minutes_to_bell: value(d?.floor_mtb),
+        floor_error_cents: err,
+        timing_error_minutes:
+          verified && finite(d?.floor_mtb)
+            ? Math.abs(d.floor_mtb - truth.minutes_to_bell)
+            : SILENT,
+      };
+    });
+    const ending = calls.at(-1);
+    const firstHeld = calls.find(
+      (c, i) =>
+        finite(c.floor_error_cents) &&
+        c.floor_error_cents <= 2 &&
+        calls
+          .slice(i)
+          .every(
+            (v) => finite(v.floor_error_cents) && v.floor_error_cents <= 2,
+          ),
+    );
+    micro.legs[leg] = {
+      ...ending,
+      recorded_floor_cents: verified ? truth.floor_cents : SILENT,
+      recorded_floor_minutes_to_bell: verified ? truth.minutes_to_bell : SILENT,
+      first_gate_within_2c_and_held:
+        firstHeld?.gate ??
+        (calls.some((c) => finite(c.floor_error_cents)) ? null : SILENT),
+      reason: !verified
+        ? (truth?.reason ?? "NO_VERIFIED_TRUTH")
+        : ending?.floor_error_cents === SILENT
+          ? "NO_POSTERIOR_Q50_AT_LAST_GATE"
+          : ending?.timing_error_minutes === SILENT
+            ? "NO_DEADLINE_AT_LAST_GATE"
+            : null,
+    };
+    micro.gate_calls.push(...calls);
+  }
+  const byReceipt = new Map(decisions.map((d) => [d.receipt, d]));
+  const actions = face.render.bid_actions.map((a) => {
+    const raw = Object.values(a.raw ?? {}).filter((v) => typeof v === "string");
+    const sameSecond =
+      a.kind === "FILL" &&
+      finite(a.fill?.rest_age_minutes) &&
+      a.fill.rest_age_minutes === 0;
+    let tokens = raw;
+    if (a.kind === "FILL")
+      tokens = [
+        ...raw,
+        ...(byReceipt.get(a.fill?.place_receipt)?.legs?.[a.leg]?.tokens ?? []),
+      ];
+    return {
+      receipt: a.receipt,
+      leg: a.leg,
+      action: a.raw?.action ?? a.kind,
+      kind: a.kind,
+      minutes_to_bell: value(a.minutes_to_bell),
+      old_cents: a.old_cents,
+      new_cents: a.new_cents,
+      writer_class: writerClass(tokens, sameSecond),
+      tokens,
+      rest_age_at_fill_minutes:
+        a.kind === "FILL" ? value(a.fill?.rest_age_minutes) : null,
+      same_second_fill: sameSecond,
+      source_url: a.detail_url,
+    };
+  });
+  const placed = decisions.flatMap((r) =>
+    Object.entries(r.legs)
+      .filter(([, d]) =>
+        ["PLACE_REST", "REPRICE_REST"].includes(
+          d.action?.type ?? d.action?.name ?? d.action?.action,
+        ),
+      )
+      .map(([leg, d]) => ({ r, d, leg })),
+  );
+  const postOnlyUnknown = placed.filter(
+    ({ d }) => !finite(d.action?.target_cents) || !finite(d.ask),
+  );
+  const badPost = placed.filter(
+    ({ d }) =>
+      finite(d.action?.target_cents) &&
+      finite(d.ask) &&
+      d.action.target_cents >= d.ask,
+  );
+  const formationUnknown = placed.filter(
+    ({ d, r }) => !finite(d.formation_end) || !finite(r.epoch),
+  );
+  const pre = placed.filter(
+    ({ d, r }) => finite(d.formation_end) && r.epoch < d.formation_end,
+  );
+  const hands = {
+    actions,
+    placement_rows: placed.length,
+    rest_age_at_fill_minutes: actions
+      .filter((a) => a.kind === "FILL")
+      .map((a) => ({
+        leg: a.leg,
+        receipt: a.receipt,
+        minutes: a.rest_age_at_fill_minutes,
+      })),
+    post_only_violations: postOnlyUnknown.length ? SILENT : badPost.length,
+    observed_post_only_violations: badPost.length,
+    post_only_uncheckable: postOnlyUnknown.length,
+    pre_formation_placements: formationUnknown.length ? SILENT : pre.length,
+    observed_pre_formation_placements: pre.length,
+    formation_uncheckable: formationUnknown.length,
+    same_second_fills: actions.filter((a) => a.same_second_fill).length,
+    fill_age_uncheckable: actions.filter(
+      (a) => a.kind === "FILL" && !finite(a.rest_age_at_fill_minutes),
+    ).length,
+    writer_class_unmapped: actions.filter((a) => a.writer_class === SILENT)
+      .length,
+    violation_receipts: [
+      ...new Set([...badPost, ...pre].map((p) => p.r.receipt)),
+    ],
+  };
+  const outcome = {
+    legs: {},
+    pair_completed: false,
+    pair_sum: SILENT,
+    captured_cents: SILENT,
+    best_capturable_cents: value(face.truth?.pair?.discount_cents),
+    best_capturable_pair_sum_cents: value(face.truth?.pair?.sum_cents),
+    capture_ratio: SILENT,
+    definition:
+      "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+  };
+  for (const leg of sides) {
+    const fills = face.render.bid_actions.filter(
+      (a) => a.leg === leg && a.kind === "FILL",
+    );
+    if (fills.length > 1)
+      throw new Error(
+        `Multiple credited fills for ${leg}; no aggregation rule supplied`,
+      );
+    const f = fills[0],
+      ruler = face.truth?.legs?.[leg];
+    const spanKnown =
+      face.truth?.status === "OK" &&
+      finite(face.truth.span_start_epoch) &&
+      finite(face.truth.span_end_epoch);
+    const valid = f
+      ? spanKnown && finite(f.timestamp_epoch)
+        ? f.timestamp_epoch >= face.truth.span_start_epoch &&
+          f.timestamp_epoch < face.truth.span_end_epoch
+        : SILENT
+      : false;
+    outcome.legs[leg] = {
+      filled: !!f,
+      cents: f ? value(f.fill?.cents) : null,
+      vs_floor_cents:
+        f && ruler?.status === "OK"
+          ? value(f.fill?.floor_difference_cents)
+          : f
+            ? SILENT
+            : null,
+      fill_epoch: f?.timestamp_epoch ?? null,
+      valid_span_fill: valid,
+      reason:
+        f && valid === SILENT
+          ? "NO_VERIFIED_FILL_SPAN"
+          : f && !valid
+            ? "FILL_OUTSIDE_VERIFIED_SPAN"
+            : null,
+    };
+  }
+  const olegs = Object.values(outcome.legs);
+  outcome.pair_completed = olegs.every((l) => l.filled);
+  outcome.pair_sum =
+    outcome.pair_completed && olegs.every((l) => finite(l.cents))
+      ? olegs.reduce((a, l) => a + l.cents, 0)
+      : null;
+  outcome.valid_pair_completed = olegs.some((l) => l.valid_span_fill === SILENT)
+    ? SILENT
+    : olegs.every((l) => l.valid_span_fill === true);
+  if (outcome.valid_pair_completed !== SILENT)
+    outcome.captured_cents =
+      outcome.valid_pair_completed && finite(outcome.pair_sum)
+        ? Math.max(0, 100 - outcome.pair_sum)
+        : 0;
+  if (
+    finite(outcome.captured_cents) &&
+    finite(outcome.best_capturable_cents) &&
+    outcome.best_capturable_cents > 0
+  )
+    outcome.capture_ratio =
+      outcome.captured_cents / outcome.best_capturable_cents;
+  const metrics = {
+    SENTENCE: {
+      minimum_q_x_organ_share: [
+        sentence.share_q_authored_by_organ,
+        sentence.share_x_authored_by_organ,
+      ].every(finite)
+        ? Math.min(
+            sentence.share_q_authored_by_organ,
+            sentence.share_x_authored_by_organ,
+          )
+        : SILENT,
+    },
+    MACRO: {
+      family_match_share: Object.values(macro.legs).every(
+        (l) => typeof l.family_match === "boolean",
+      )
+        ? Object.values(macro.legs).filter((l) => l.family_match).length /
+          sides.length
+        : SILENT,
+    },
+    MICRO: {
+      max_floor_error_cents: maxComplete(
+        Object.values(micro.legs).map((l) => l.floor_error_cents),
+      ),
+      max_timing_error_minutes: maxComplete(
+        Object.values(micro.legs).map((l) => l.timing_error_minutes),
+      ),
+    },
+    HANDS: {
+      post_only_violations:
+        hands.fill_age_uncheckable ||
+        hands.writer_class_unmapped ||
+        hands.formation_uncheckable
+          ? SILENT
+          : hands.post_only_violations,
+    },
+    OUTCOME: { capture_ratio: outcome.capture_ratio },
+  };
+  const sectionGrades = Object.fromEntries(
+    Object.entries(metrics).map(([name, m]) => {
+      const rule = rubric.sections[name];
+      const grades = rule.metrics
+        ? Object.entries(rule.metrics).map(([k, r]) =>
+            metricGrade(m[k], r, rubric),
+          )
+        : [metricGrade(m[rule.metric], rule, rubric)];
+      return [
+        name,
+        {
+          letter: worstLetter(grades, rubric),
+          metrics: m,
+          status: rubric.status,
+        },
+      ];
+    }),
+  );
+  const hard = [
+    sentence.named_tokens_found.length ? "SENTENCE: named tokens" : null,
+    pre.length ? "HANDS: pre-formation placements" : null,
+    hands.same_second_fills ? "HANDS: same-second fill" : null,
+  ].filter(Boolean);
+  const letter = hard.length
+    ? "F"
+    : worstLetter(
+        Object.values(sectionGrades).map((s) => s.letter),
+        rubric,
+      );
+  const governing = hard.length
+    ? hard.join(" · ")
+    : Object.entries(sectionGrades)
+        .filter(([, s]) => s.letter === letter)
+        .map(([k]) => k)
+        .join(" · ");
+  const sections = {
+    SENTENCE: sentence,
+    MACRO: macro,
+    MICRO: micro,
+    HANDS: hands,
+    OUTCOME: outcome,
+  };
+  const summaries = {
+    SENTENCE: `Q ${percent(sentence.share_q_authored_by_organ)} · X ${percent(sentence.share_x_authored_by_organ)} organ share`,
+    MACRO: sides
+      .map(
+        (l) =>
+          `${l}: ${macro.legs[l].family_called_at_last_gate} / ${macro.legs[l].realized_family}`,
+      )
+      .join(" · "),
+    MICRO: sides
+      .map(
+        (l) =>
+          `${l}: ${unit(micro.legs[l].floor_error_cents, "¢")} / ${unit(micro.legs[l].timing_error_minutes, "m")} error`,
+      )
+      .join(" · "),
+    HANDS: `${hands.same_second_fills} same-second · ${shown(hands.post_only_violations)} post-only · ${shown(hands.pre_formation_placements)} pre-formation`,
+    OUTCOME: `${shown(outcome.captured_cents)} of ${shown(outcome.best_capturable_cents)}¢ captured`,
+  };
+  return {
+    version: 1,
+    event,
+    provenance,
+    ...sections,
+    LETTER: {
+      letter,
+      governing_section: governing,
+      hard_failures: hard,
+      section_grades: sectionGrades,
+      rubric_status: rubric.status,
+    },
+    display: {
+      letter,
+      label: hard.length
+        ? "Conduct failure · cutoff-independent F"
+        : rubric.status,
+      governing,
+      sections: Object.entries(sections).map(([name, section]) => ({
+        name,
+        mark:
+          sectionGrades[name].letter === "A" &&
+          !hard.some((h) => h.startsWith(name))
+            ? "✓"
+            : "!",
+        line: summaries[name],
+        hover_lines: [
+          `${name}: ${sectionGrades[name].letter} · ${rubric.status}`,
+          JSON.stringify(metrics[name]),
+          name === "SENTENCE"
+            ? `${sentence.leg_receipts_with_sentence}/${entries.length} leg sentences · ${sentence.named_tokens_found.length} named tokens`
+            : name === "MACRO"
+              ? `Bench: ${macro.bench_reason ?? macro.bench_label}`
+              : name === "HANDS"
+                ? `${placed.length} placement/reprice rows checked`
+                : "See full grade JSON for all receipts and gates",
+        ],
+      })),
+    },
+  };
+}

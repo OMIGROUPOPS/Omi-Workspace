@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "role": "REPORT ONLY — no OS inputs changed",
+  "citations": {
+    "PER_GAME_L1_L8": {
+      "path": "C:/tmp/omi-v53-understanding-organ-20260819/.claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/PER_GAME_L1_L8.json",
+      "sha256": "3f5ccde3d50d104910d2a23d9d15c7fc9e9a523895cfffa3aef4a2c14fd24ff1",
+      "bytes": 149794,
+      "commit": "STORE SILENT",
+      "role": "Replaced per-game L1–L8 report. Builder baseline reads rows[].L7_CREDIT.why.",
+      "rows": 5
+    },
+    "HONEST_SCOREBOARD": {
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/HONEST_SCOREBOARD.md",
+      "sha256": "bad5314cf12877755e922175d053084ba67d9849515a72bdd3e4861c11f49dc0",
+      "bytes": 6585,
+      "commit": "2aa454af4205468de598bc507527e7c608b35d42",
+      "role": "Truth-table offered cents and span-valid captured cents; complete under par, not apparent fills."
+    },
+    "OFFER_DENOMINATOR": {
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/OFFER_DENOMINATOR.md",
+      "sha256": "2842aacd0821138edee3bcf0d18464ba2f1a9d8dbb2d1016b65f780a69b45c7b",
+      "bytes": 3050,
+      "commit": "ce2e8b7cc84191083c522af3692d467576afca4f",
+      "role": "Definition B: verified-span floors under par; both credited fills inside the span for capture."
+    },
+    "GATE_1_OBJECT": {
+      "path": "artifacts/review_mirror/GATE_1_OBJECT.md",
+      "sha256": "bbeee3207af290c75ca6fb2cf3dfbc36d58afdfb588ed969fd425b40ad365398",
+      "bytes": 2136,
+      "commit": "67378c344419a70ec2b6f05d714c79358da0ea70",
+      "role": "P/Q/X require an author reading this leg; test 1 own receipt weights, test 2 own clock, test 3 no named pricing rule."
+    }
+  },
+  "bench_taxonomy_receipt": {
+    "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
+    "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
+    "bytes": 28853,
+    "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
+    "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
+    "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
+    "bench_choices": {
+      "causal_family_adaptation": "At a receipt only, normalize formation through the current gate into 17 samples; do not use or forward-fill into the unknown remainder. Realized labels use formation through bell.",
+      "direction": "early/late shares are signed relative to net; reversals omit zero steps",
+      "flat_after": "abs(net after first quarter) <= 2 cents; operator-authorized bench choice, not taxonomy law",
+      "quiet_wobble_prose_caveat": "The inherited travel split does not mathematically guarantee the prose 5-cent band. quiet_wobble_prose_band_exception is exposed; no new cutoff is introduced.",
+      "rule_order": [
+        "SLEEPER",
+        "ROUND_TRIP_OR_QUIET_WOBBLE",
+        "LATE_BREAK",
+        "EARLY_SET",
+        "ONE_STEP",
+        "GRIND_WOBBLE",
+        "DRIFT"
+      ],
+      "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
+      "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
+    },
+    "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+  },
+  "rules": {
+    "authorship": "Literal per-leg author-token share is distinct from Gate-1 evidence-chain certification.",
+    "missing": "STORE SILENT; no number or author is invented.",
+    "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
+    "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
+    "taxonomy": "Read realized labels from the hash-bound bench, do not reclassify or select a favored benchmark rule.",
+    "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
+  }
+}

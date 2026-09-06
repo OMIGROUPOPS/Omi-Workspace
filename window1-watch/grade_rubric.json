@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+  "letters": ["A", "B", "C", "D", "F"],
+  "missing": "STORE SILENT; never impute a passing value",
+  "hard_failures": [
+    "named_tokens_found",
+    "pre_formation_placements",
+    "same_second_fill"
+  ],
+  "sections": {
+    "SENTENCE": {
+      "metric": "minimum_q_x_organ_share",
+      "direction": "min",
+      "cutoffs": { "A": 0.95, "B": 0.8, "C": 0.6, "D": 0.4 }
+    },
+    "MACRO": {
+      "metric": "family_match_share",
+      "direction": "min",
+      "cutoffs": { "A": 1, "B": 0.75, "C": 0.5, "D": 0.25 }
+    },
+    "MICRO": {
+      "metrics": {
+        "max_floor_error_cents": {
+          "direction": "max",
+          "cutoffs": { "A": 2, "B": 4, "C": 6, "D": 10 }
+        },
+        "max_timing_error_minutes": {
+          "direction": "max",
+          "cutoffs": { "A": 30, "B": 60, "C": 120, "D": 240 }
+        }
+      }
+    },
+    "HANDS": {
+      "metric": "post_only_violations",
+      "direction": "max",
+      "cutoffs": { "A": 0, "B": 1, "C": 2, "D": 3 }
+    },
+    "OUTCOME": {
+      "metric": "capture_ratio",
+      "direction": "min",
+      "cutoffs": { "A": 0.9, "B": 0.75, "C": 0.5, "D": 0.25 }
+    }
+  }
+}

@@ -500,3 +500,148 @@ share that called the last hour's move on both sides within 1¢. Bench measureme
 — the OS doesn't have this organ yet."
 The original validity share, ESS, status and clock-mismatch policy are untouched.
 URSPAL's mismatched bench clock stays STORE SILENT, not a reconstructed percentage.
+
+## Grade card + history — report only, never an OS input
+
+`node window1-watch/build_grade.mjs --event <event>` reads that face and its bound
+full receipt files. It writes `<event>.grade.json`, `GRADE_RECEIPT.json`, and appends
+history. `rerun_game.ps1` runs it after the face builder, before publishing data.
+It never imports the OS, runs a replay, or rewrites a face/stage/tape/truth/bench.
+
+### Writer classes (extension of the plain-English gloss table)
+
+Order is significant: the first matching row across action reason, lane, mode,
+and author/source wins. Same-second FILL overrides the table. A fill inherits its
+original PLACE's writer tokens. Unknown = STORE SILENT, never assumed ORGAN.
+HAND means execution without demonstrated organ authorship, not necessarily a
+named hand. RUNG and SEAT are explicitly not new Q/X authors.
+
+<!-- grade-writers:start -->
+| Token | Class | Meaning |
+| PAL_* | HAND | named game-specific hand |
+| GIU_* | HAND | named game-specific hand |
+| LAJSVA_* | HAND | named game-specific hand |
+| LADDER_* | RUNG | remaining ladder or cheap-ending writer |
+| LIVE_LADDER_* | RUNG | remaining ladder writer |
+| Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK | RUNG | cheap ending died |
+| NON_PRINT_* | RUNG | ladder reseat |
+| Q_UNPOSTABLE_NEXT_SURVIVING_LADDER_RUNG_BELOW_ASK_ADMITTED | RUNG | postable ladder fallback |
+| PREDICTION_SEAT* | SEAT | forecast seat or immunity |
+| PREDICTION_SEATED_* | SEAT | protected forecast bid |
+| IMMUNITY_* | SEAT | frozen by seat |
+| ACTIVE_REST_HOLD | SEAT | carried standing bid |
+| OVERLAP_MEMBERS* | ORGAN | own-range membership forecast |
+| COHERENT_ENVELOPE_WRITER | ORGAN | coherent forecast |
+| OWN_TOUCH_WRITER | ORGAN | own-evidence writer |
+| CARRIED_CONVICTION_WRITER | SEAT | carried forecast |
+| FLOOR_CAPABLE_WRITER | HAND | views disagreed; posted anyway |
+| INSUFFICIENT_AUTHORITY_NO_WRITER | HAND | library prior executed, no writer |
+| BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE | HAND | authority execution, not authorship proof |
+| POST_ONLY_* | HAND | execution veto |
+| DISAGREES_* | HAND | disagreement veto |
+| PRICING_AUTHORITY_SILENT_* | SEAT | existing rest carried |
+| LOCKED_BOOK_* | HAND | execution veto |
+| NO_ACTION | HAND | no writer selected |
+<!-- grade-writers:end -->
+
+### Grade fields and denominators
+
+- `version`, `event`, `provenance`: schema, exact face event, historical OS/trace/
+  bench hashes, truth commit/row hash, face hash, rubric hash, receipt hash,
+  source OS commit/topological commit count (STORE SILENT if not locatable), and
+  face-worktree HEAD at grading. Today's OS never replaces the face's OS hash.
+  Builder, grade-contract and FIELDS byte hashes identify the exact grading code
+  and writer mapping, including before the resulting artifact is committed.
+  `stage_inputs_sha256` hashes ordered `relative URL + NUL + gzip file SHA + LF`
+  records for all inspected DECISION_STAGE files; `stage_files_count` is their count.
+- `SENTENCE.receipts_total`: DECISION_STAGE count, not FLOOR_PRINT/FILL_EVENT.
+  `receipts_with_sentence`: both legs have a stored plain sentence, finite P, Q,
+  and deadline. `leg_receipts_total/with_sentence` expose the side denominator.
+  Q/X organ shares divide qualifying leg decisions by **all** leg decisions;
+  missing or INSUFFICIENT authors/targets never qualify. Author must not be
+  PRIOR_ONLY/LIBRARY_FRACTION_PRIOR and the action/authority must carry no named
+  token. `q_organ_leg_receipts`, `x_organ_leg_receipts`, `author_counts` expose
+  exact counts. This literal token metric is NOT Gate-1 certification: a label
+  PRIOR_REWEIGHTED_BY_OWN_WALK can qualify without proving Gate-1's own-receipt
+  chain. `gate_1_authorship_certification` stays STORE SILENT, reason supplied.
+  No relabelling to force the operator's expected zero.
+- `named_tokens_found/evidence`: distinct symbolic PAL_*/GIU_*/LAJSVA_* values,
+  current leg-prefixed tokens, or event-containing WRITER/GATED/HAND tokens in
+  full decision rows, with occurrence count and first field/receipt. Event IDs,
+  leg IDs, receipt metadata and library identities are not writer tokens.
+  This is an on-row audit; unrecorded code branches cannot be certified absent.
+- `MACRO.last_gate/receipt/legs`: final stored atlas checkpoint (smallest
+  minutes-to-bell), last causal decision at that gate. Raw OS `belief.family`
+  versus bound bench `realized_family`; different vocabularies are not silently
+  translated. `bench_families_by_rule` preserves all six comparators; no best
+  rule is selected retrospectively. `family_match` is exact-token equality.
+  `pile_ess_at_last_gate` is explicitly the bench validity pool ESS, NOT OS
+  membership ESS. `pool_accuracy_by_gate` stores share, ESS, status and reason.
+  No bound bench or clock mismatch => STORE SILENT. Stale-library label retained.
+- `MICRO`: per leg, last-gate `called_q50_floor_cents` comes only from raw
+  `derivation.pricing_authority.true_conditioning.posterior_q50_cents`, not the
+  modal bid Q, a bench forecast, or a candidate band. Timing is raw belief
+  `deadline.deadline_minutes_to_bell`, then explicit predicted_minutes_to_bell.
+  Errors are absolute distances to truth's floor and clock. `gate_calls` records
+  the same measurement at every checkpoint. `first_gate_within_2c_and_held` is
+  first chronological gate whose error and EVERY remaining gate's error are
+  <=2; no missing gate is skipped. Null = measured but never held; STORE SILENT
+  = no measurable call. Held means through the final stored gate, not to bell.
+- `HANDS.actions`: all chart bid actions (including changed HOLD/disappearance),
+  raw tokens, writer class, receipt/source URL, old/new cents, minute-to-bell.
+  Original PLACE-to-fill elapsed minutes; exact equal epochs = same-second fill
+  (no rounding tolerance). Placement checks include PLACE_REST and REPRICE_REST:
+  target >= contemporaneous ask violates post-only; epoch < stored formation end
+  is pre-formation. Unknown inputs make total STORE SILENT; observed violations
+  and uncheckable counts remain separate. No unchanged HOLD is a new placement.
+  `fill_age_uncheckable` and `writer_class_unmapped` expose gaps; any such gap or
+  missing formation prevents a passing HANDS section instead of inventing safety.
+- `OUTCOME.legs`: recorded filled/cents/epoch and signed entry minus ruler floor.
+  `valid_span_fill` requires truth OK and formation <= fill epoch < verified bell.
+  `pair_completed/pair_sum` are recorded fills; `valid_pair_completed` adds span
+  checks. Captured = max(0,100-sum) for a valid complete, otherwise zero; unknown
+  fill span remains STORE SILENT. Partial pairs capture zero, never unrealized
+  profit. `best_capturable_cents` = truth discount (4 for ALTGAS), distinct from
+  `best_capturable_pair_sum_cents` = truth floors' sum (96). Ratio = captured /
+  positive offered discount, otherwise STORE SILENT. Do not clamp ratios to 1.
+  Conduct F does not erase the separately reported mechanical span-valid outcome.
+- `LETTER`: hard F for any named token, observed pre-formation placement, or
+  same-second fill. Else worst section letter; missing section means STORE SILENT
+  unless another section already proves F. `governing_section`, hard failures,
+  section metrics and rubric status are explicit. `display` stores all HUD lines,
+  hover numbers and marks: only an A section without a hard failure gets ✓;
+  other sections get attention (!). All cutoff letters remain PLACEHOLDER.
+
+### PLACEHOLDER cutoffs — edit grade_rubric.json, not the OS
+
+| Section metric | A | B | C | D | F |
+|---|---:|---:|---:|---:|---|
+| min(Q share, X share), minimum | .95 | .80 | .60 | .40 | below D |
+| raw OS/realized family match share, minimum | 1 | .75 | .50 | .25 | below D |
+| worst-side floor error cents, maximum | 2 | 4 | 6 | 10 | above D |
+| worst-side timing error minutes, maximum | 30 | 60 | 120 | 240 | above D |
+| post-only violations, maximum | 0 | 1 | 2 | 3 | above D |
+| capture ratio, minimum | .90 | .75 | .50 | .25 | below D |
+
+MICRO uses the worse of floor and timing. These are **PLACEHOLDER bench choices**,
+not inherited law or calibrated performance thresholds. The hard F conditions
+come directly from the operator and do not depend on these cutoffs.
+
+### Append-only grading history
+
+`data/grades/<event>/<os_sha8>_<trace_sha8>.json` contains `grades[]`: a new full
+snapshot is appended on every invocation, preserving earlier snapshots even if
+rubric/code changes while OS+trace stay identical. `data/grades/index.json`
+lists every snapshot's timestamp, provenance, letter, ratio, source file/revision,
+grade hash, governing section and builder-written plot coordinates/hover lines.
+Exact-hash collisions are rejected. Index order is OS commit ancestry count,
+then recorded append order; absent commit is disclosed, ordered last. Within a
+game, x is commit order with reruns tied by append order; y follows rubric letter
+order, with an explicit STORE SILENT row. Loading shows current `<event>.grade.json`
+only when its OS/trace/face hashes agree with the loaded face. History is separate
+and never replaces the current game's data or receipts. Missing grade shows STORE
+SILENT; stale binding shows a mismatch notice, never a different OS's letter.
+
+`GRADE_RECEIPT.json` binds all four prior-art files by SHA and location/commit,
+plus the bench taxonomy receipt. Each grade retains that complete receipt and its
+hash, so later source changes cannot rewrite historical citations.

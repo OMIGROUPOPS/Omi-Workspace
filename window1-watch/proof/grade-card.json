@@ -1,0 +1,40 @@
+{
+  "KXATPMATCH-26JUL12ALTGAS": {
+    "letter": "F",
+    "governing": "HANDS: same-second fill",
+    "q_share": 0.11612903225806452,
+    "x_share": 0,
+    "captured": 0,
+    "offered": 4,
+    "named_tokens": [],
+    "history_snapshots": 3
+  },
+  "KXATPCHALLENGERMATCH-26JUL14URSPAL": {
+    "letter": "F",
+    "governing": "SENTENCE: named tokens",
+    "q_share": 0,
+    "x_share": 0,
+    "captured": 0,
+    "offered": 3,
+    "named_tokens": [
+      "PAL_ATOMIC_LIVE_TOP_LADDER_Q_SEAT_REST",
+      "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_REPRICE",
+      "PAL_ATOMIC_Q_SEAT_REST_LIVE_TOP_LADDER_SYNC",
+      "PAL_ATOMIC_Q_SEAT_REST_REPRICED_TO_LIVE_TOP_LADDER_RUNG",
+      "PAL_ATOMIC_Q_SEAT_REST_WRITER",
+      "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_NO_LIVE_PREDICTION_SEAT",
+      "PAL_LIVE_TOP_LADDER_RUNG_HELD_AFTER_PREDICTION_SEAT_EXIT"
+    ],
+    "history_snapshots": 3
+  },
+  "checks": [
+    "both loaded grades F",
+    "five stored section lines and hover numbers",
+    "repeat history retained",
+    "floors still present",
+    "mobile no horizontal overflow",
+    "mismatched grade rejected",
+    "missing grade STORE SILENT",
+    "no page errors"
+  ]
+}

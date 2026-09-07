@@ -1,0 +1,504 @@
+{
+ "label": "CONSOLIDATION_RECEIPT",
+ "date": "2026-09-04",
+ "pass": "SUBSECOND CONSOLIDATION - INGEST PASS",
+ "host": "droplet A 104.131.191.95",
+ "repo": "/root/Omi-Workspace/arb-executor",
+ "store": "/root/Omi-Workspace/arb-executor/state/subsecond_store.db",
+ "store_realpath": "/mnt/omi-trading-data-nyc3/subsecond/subsecond_store.db",
+ "store_note": "state/subsecond_store.db is a symlink to /mnt/omi-trading-data-nyc3/subsecond/subsecond_store.db since 2026-09-06T05:08Z: the root disk (48 GB) reached 95% with the 22.8 GB store on it; the store was compacted with VACUUM INTO onto the data volume and verified (all table counts equal, quick_check ok) before the root copy was removed.",
+ "boundary_capture_dates_inclusive": [
+  "2026-03-20",
+  "2026-07-25"
+ ],
+ "tune_sample_name_dates": [
+  "26JUL11",
+  "26JUL21"
+ ],
+ "backup": {
+  "spec_path": "state/subsecond_store.db.bak_20260904",
+  "sha256": "fecc8d8766cc6572bf84dd46fce49b1e59b80ac77b05db20bf44b223ca62ea93",
+  "bytes": 6376095744,
+  "taken": "2026-09-04T16:13Z before any write",
+  "location_history": "written to /mnt/omi-trading-data-nyc3/backups/ (root disk short) with the spec path as a symlink; moved 2026-09-06T15:14Z to the spec path as a real file on the root disk, sha256 re-verified equal, to free the data volume for the tick load"
+ },
+ "rows_before": {
+  "prints": 25574898,
+  "ingest_log": 28101,
+  "ticks": 0,
+  "dupes": 0,
+  "cadence": 0
+ },
+ "rows_after": {
+  "prints": 66716081,
+  "ingest_log": 90809,
+  "ticks": 45141033,
+  "dupes": 2,
+  "cadence": 60474
+ },
+ "indexes_after": {
+  "ticks": [
+   "t_ev",
+   "t_uq"
+  ],
+  "prints": [
+   "p_tk",
+   "p_ev"
+  ],
+  "ingest_log": [
+   "sqlite_autoindex_ingest_log_1"
+  ]
+ },
+ "runs": [
+  {
+   "run": 1,
+   "start_utc": "2026-09-04T20:52:36Z",
+   "stop_utc": "2026-09-05T07:03Z",
+   "method": "subsecond_consolidate.py v2: per-object rclone cat stream",
+   "did": "legacy resume; validation4_bin 1,678 files -> 5,565,690 change rows (incl. 3 test files); spaces_trades objects 1..2,626",
+   "why_stopped": "~11 s per object: rclone process spawn on the 2 GB droplet (100 MB free RAM, swap in use)"
+  },
+  {
+   "run": 2,
+   "start_utc": "2026-09-05T07:10:00Z",
+   "stop_utc": "2026-09-05T14:02Z",
+   "method": "subsecond_consolidate.py v2b: one persistent SigV4-signed HTTPS connection, bodies in memory",
+   "did": "spaces_trades objects 2,627..30,813 (source complete: 29,003 ingested + 1,810 skipped after boundary); spaces_ticks objects 1..1,851",
+   "why_stopped": "operator method change (staged files + UNIQUE index + INSERT OR IGNORE)"
+  },
+  {
+   "run": 3,
+   "start_utc": "2026-09-05T14:36Z",
+   "method": "stage_driver.sh + subsecond_stage_ingest.py",
+   "did": "VACUUM INTO data volume (2,566 s), verification (6,027 s), store swap, index changes, April/May/June/July batches; see incidents for the interruptions",
+   "end_utc": "2026-09-07T00:56:05Z (receipt written; attempts: 14:36Z Sep 5 aborted 16:59Z on a verification-snippet bug; 05:08Z Sep 6 aborted 05:24Z on 140 April objects without a last_trade column; 05:31Z killed 08:37Z by the cron-launched consolidator's write lock; 15:17Z stopped by me to re-drop indexes; 15:36Z ran to completion)"
+  }
+ ],
+ "throughput": {
+  "streamed_run1_rclone_cat": {
+   "objects_per_hour": "~330 (spaces_trades, ~11 s per object: rclone process spawn on a 2 GB droplet)"
+  },
+  "streamed_run2_persistent_sigv4": {
+   "spaces_trades": {
+    "objects": 26377,
+    "rows_inserted": 36277699,
+    "objects_per_hour": 9600,
+    "rows_per_hour": 13200000
+   },
+   "spaces_ticks": {
+    "objects": 1851,
+    "rows_inserted": 2776562,
+    "objects_per_hour": 470,
+    "inserted_rows_per_hour": 700000,
+    "raw_rows_parsed_per_hour": 19000000
+   }
+  },
+  "staged_method_per_batch": {
+   "2026-04": {
+    "objects": 658,
+    "rows_inserted": 847754,
+    "seconds": 736,
+    "objects_per_hour": 3219,
+    "inserted_rows_per_hour": 4147843,
+    "raw_rows_per_hour": 82598332,
+    "stage_seconds": 66,
+    "stage_bytes": 385435007
+   },
+   "2026-05": {
+    "objects": 1235,
+    "rows_inserted": 1341455,
+    "seconds": 1698,
+    "objects_per_hour": 2618,
+    "inserted_rows_per_hour": 2844000,
+    "raw_rows_per_hour": 77700000,
+    "stage_seconds": 24,
+    "stage_bytes": 317892608
+   },
+   "2026-06": {
+    "objects": 6397,
+    "rows_inserted": 7386154,
+    "seconds": 7174,
+    "objects_per_hour": 3210,
+    "inserted_rows_per_hour": 3706000,
+    "raw_rows_per_hour": 79800000,
+    "stage_seconds": 164,
+    "stage_bytes": 3081354250,
+    "note": "second attempt; the first (7,724 objects, 8,055,845 rows in 9,120 s) was killed by the cron collision and those objects are counted via ingest_log"
+   },
+   "2026-07": {
+    "objects": 7668,
+    "rows_inserted": 12954243,
+    "seconds": 15223,
+    "objects_per_hour": 1813,
+    "inserted_rows_per_hour": 3063512,
+    "raw_rows_per_hour": 80800000,
+    "stage_seconds": 188,
+    "stage_bytes": 5006048514,
+    "note": "July objects are ~2x the size of April/June objects (0.39 MB vs 0.22 MB gz); raw-row throughput is flat at ~80 M rows/h \u2014 the box is CPU-bound (1 vCPU shared with the live recorders, load ~6-8)"
+   },
+   "staged_total": {
+    "objects": 15958,
+    "rows_inserted": 22529606,
+    "seconds": 24831,
+    "objects_per_hour": 2314,
+    "inserted_rows_per_hour": 3266000,
+    "staging_MB_per_s": 20
+   },
+   "cron_launched_streamed_run_2026-09-06": {
+    "objects": 4941,
+    "rows_inserted": 6216953,
+    "hours": 6.5,
+    "objects_per_hour": 760
+   }
+  },
+  "receipt_queries_seconds": 10253,
+  "store_sha256_seconds": "~520"
+ },
+ "runtime": {
+  "first_write_utc": "2026-09-04T20:52:36Z",
+  "receipt_utc": "2026-09-07T00:56:05Z",
+  "wall_hours": 52.1,
+  "of_which_idle_after_aborts_hours": "~19 (12.0 after the attempt-1 verification abort, ~6.7 after the cron collision)",
+  "ingest_cpu_time_note": "all ingest ran at nice 5 on a 1 vCPU / 2 GB droplet with ~100 MB free RAM and swap in use"
+ },
+ "per_source_month": {
+  "prints": [
+   {
+    "src": "backfill",
+    "month": "2026-05",
+    "rows": 4906302,
+    "distinct_tickers": 2282,
+    "distinct_events": 1147,
+    "events_both_legs": 1135,
+    "objects_ingested_by_name_month": 3908
+   },
+   {
+    "src": "backfill",
+    "month": "2026-06",
+    "rows": 8635562,
+    "distinct_tickers": 4409,
+    "distinct_events": 2209,
+    "events_both_legs": 2200,
+    "objects_ingested_by_name_month": 4274
+   },
+   {
+    "src": "backfill",
+    "month": "2026-07",
+    "rows": 7519520,
+    "distinct_tickers": 2927,
+    "distinct_events": 1468,
+    "events_both_legs": 1459,
+    "objects_ingested_by_name_month": 2911
+   },
+   {
+    "src": "book_transition",
+    "month": "2026-07",
+    "rows": 3629957,
+    "distinct_tickers": 8962,
+    "distinct_events": 4517,
+    "events_both_legs": 4445,
+    "objects_ingested_by_name_month": 15210
+   },
+   {
+    "src": "public_tape",
+    "month": "2026-07",
+    "rows": 883557,
+    "distinct_tickers": 463,
+    "distinct_events": 301,
+    "events_both_legs": 162,
+    "objects_ingested_by_name_month": 476
+   },
+   {
+    "src": "spaces_trades",
+    "month": "2026-04",
+    "rows": 2953988,
+    "distinct_tickers": 1794,
+    "distinct_events": 908,
+    "events_both_legs": 886,
+    "objects_ingested_by_name_month": 1744
+   },
+   {
+    "src": "spaces_trades",
+    "month": "2026-05",
+    "rows": 1796217,
+    "distinct_tickers": 1146,
+    "distinct_events": 588,
+    "events_both_legs": 558,
+    "objects_ingested_by_name_month": 1148
+   },
+   {
+    "src": "spaces_trades",
+    "month": "2026-06",
+    "rows": 16062782,
+    "distinct_tickers": 13980,
+    "distinct_events": 7062,
+    "events_both_legs": 6918,
+    "objects_ingested_by_name_month": 13841
+   },
+   {
+    "src": "spaces_trades",
+    "month": "2026-07",
+    "rows": 20328196,
+    "distinct_tickers": 12296,
+    "distinct_events": 6228,
+    "events_both_legs": 6068,
+    "objects_ingested_by_name_month": 14080
+   }
+  ],
+  "ticks": [
+   {
+    "src": "spaces_ticks",
+    "month": "2026-04",
+    "rows": 2089163,
+    "distinct_tickers": 1788,
+    "distinct_events": 894,
+    "events_both_legs": 894,
+    "objects_ingested_by_name_month": 1730
+   },
+   {
+    "src": "spaces_ticks",
+    "month": "2026-05",
+    "rows": 1325141,
+    "distinct_tickers": 1233,
+    "distinct_events": 617,
+    "events_both_legs": 616,
+    "objects_ingested_by_name_month": 1235
+   },
+   {
+    "src": "spaces_ticks",
+    "month": "2026-06",
+    "rows": 15493068,
+    "distinct_tickers": 14686,
+    "distinct_events": 7343,
+    "events_both_legs": 7343,
+    "objects_ingested_by_name_month": 14140
+   },
+   {
+    "src": "spaces_ticks",
+    "month": "2026-07",
+    "rows": 20667971,
+    "distinct_tickers": 12778,
+    "distinct_events": 6389,
+    "events_both_legs": 6389,
+    "objects_ingested_by_name_month": 13112
+   },
+   {
+    "src": "validation4_bin",
+    "month": "2026-03",
+    "rows": 1880068,
+    "distinct_tickers": 629,
+    "distinct_events": 444,
+    "events_both_legs": 185,
+    "objects_ingested_by_name_month": 632
+   },
+   {
+    "src": "validation4_bin",
+    "month": "2026-04",
+    "rows": 3685622,
+    "distinct_tickers": 1092,
+    "distinct_events": 739,
+    "events_both_legs": 353,
+    "objects_ingested_by_name_month": 1046
+   }
+  ]
+ },
+ "cadence_per_source": [
+  {
+   "src": "validation4_bin",
+   "objects": 1678,
+   "raw_rows": 256175580,
+   "kept_rows": 6735534,
+   "median_of_object_median_gap_raw_s": 1.0,
+   "median_of_object_median_gap_kept_s": 2.0
+  },
+  {
+   "src": "spaces_trades",
+   "objects": 29003,
+   "raw_rows": 41261093,
+   "kept_rows": 41260957,
+   "median_of_object_median_gap_raw_s": 13.5,
+   "median_of_object_median_gap_kept_s": 13.5
+  },
+  {
+   "src": "spaces_ticks",
+   "objects": 29793,
+   "raw_rows": 1016397347,
+   "kept_rows": 54622260,
+   "median_of_object_median_gap_raw_s": 2.0,
+   "median_of_object_median_gap_kept_s": 6.0
+  }
+ ],
+ "dupes": {
+  "dropped_by_streamed_runs_per_source_pair": [
+   {
+    "src_new": "spaces_trades",
+    "src_existing": "book_transition",
+    "table": "prints",
+    "n": 119759
+   },
+   {
+    "src_new": "spaces_trades",
+    "src_existing": "backfill",
+    "table": "prints",
+    "n": 15
+   }
+  ],
+  "kept_cross_source_overlap": {
+   "validation4_bin_rows_also_in_spaces_ticks_on_(ticker,ts,bid,ask,last)": 0
+  },
+  "note": "Runs 1-2 dropped cross-source duplicates (first-seen source kept) and counted them in table dupes; the staged method keeps src inside the UNIQUE key so cross-source overlap is retained and reported as a count instead. Within-object duplicates are removed by the UNIQUE key (IFNULL on bid/ask/last/size because NULLs are distinct under a plain UNIQUE index)."
+ },
+ "src_role": {
+  "ticks": [
+   {
+    "src": "spaces_ticks",
+    "role": "LIBRARY",
+    "rows": 28086877
+   },
+   {
+    "src": "spaces_ticks",
+    "role": "TUNE_SAMPLE",
+    "rows": 11488466
+   },
+   {
+    "src": "validation4_bin",
+    "role": "LIBRARY",
+    "rows": 5565690
+   }
+  ],
+  "prints": [
+   {
+    "src": "backfill",
+    "role": null,
+    "rows": 21061384
+   },
+   {
+    "src": "book_transition",
+    "role": null,
+    "rows": 3629957
+   },
+   {
+    "src": "public_tape",
+    "role": null,
+    "rows": 883557
+   },
+   {
+    "src": "spaces_trades",
+    "role": "LIBRARY",
+    "rows": 31512308
+   },
+   {
+    "src": "spaces_trades",
+    "role": "TUNE_SAMPLE",
+    "rows": 9628875
+   }
+  ]
+ },
+ "ingest_log_by_src": [
+  {
+   "src": "backfill",
+   "objects": 12361,
+   "rows_logged": 21061384,
+   "skipped_after_boundary": 0
+  },
+  {
+   "src": "book_transition",
+   "objects": 15210,
+   "rows_logged": 3629957,
+   "skipped_after_boundary": 0
+  },
+  {
+   "src": "public_tape",
+   "objects": 476,
+   "rows_logged": 883557,
+   "skipped_after_boundary": 0
+  },
+  {
+   "src": "spaces_ticks",
+   "objects": 30217,
+   "rows_logged": 39575343,
+   "skipped_after_boundary": 424
+  },
+  {
+   "src": "spaces_trades",
+   "objects": 30813,
+   "rows_logged": 41141183,
+   "skipped_after_boundary": 1810
+  },
+  {
+   "src": "validation4_bin",
+   "objects": 1678,
+   "rows_logged": 5565690,
+   "skipped_after_boundary": 0
+  },
+  {
+   "src": "ws_log",
+   "objects": 54,
+   "rows_logged": 0,
+   "skipped_after_boundary": 0
+  }
+ ],
+ "md5_mismatches_logged": 0,
+ "gap_ranges": {
+  "census_zero_capture_ranges": [
+   [
+    "2026-03-21",
+    "2026-03-22"
+   ],
+   [
+    "2026-05-05",
+    "2026-05-23"
+   ],
+   [
+    "2026-05-30",
+    "2026-05-30"
+   ]
+  ],
+  "note": "census ranges are ET capture days from the census pass; the store check below uses UTC days over ticks+prints in the boundary \u00e2\u20ac\u201d compare with the zero_capture_day_ranges_in_store_utc_days field."
+ },
+ "zero_capture_day_ranges_in_store_utc_days": [
+  [
+   "2026-05-05",
+   "2026-05-13"
+  ]
+ ],
+ "days_with_capture_in_store": 119,
+ "store_sha256_after": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+ "store_bytes_after": 28337741824,
+ "readers": {
+  "validation4_bin": "struct '<IBB' (uint32 ts, uint8 bid, uint8 ask) per tmp/validation4_step6_real/binary_splitter.py; the writer packs the ET wall clock with calendar.timegm and no offset, so ts is naive America/New_York and is converted to UTC epoch here. The text bbo twin was not used.",
+  "spaces_ticks": "ts_et 12-hour ET string -> UTC epoch; change rows on (bid_1, ask_1, last_trade); 228 April objects predate the last_trade column -> last NULL",
+  "spaces_trades": "ts_et -> UTC epoch; price, count -> prints(price, size)"
+ },
+ "desktop_only_not_ingested": [
+  "fit-local/ticks (desktop)",
+  "prints.jsonl exam captures (desktop /tmp mirrors)",
+  "holdout tapes (desktop)",
+  "ws-depth-source (desktop)",
+  "calibration sqlite (desktop)"
+ ],
+ "unreachable": [
+  "droplet B 159.65.234.55: ssh timeout during the census pass; not ingested"
+ ],
+ "deviations_and_incidents": [
+  "2026-09-05 14:02Z: run 2 stopped for the operator's method change; ~2 hours of poll data show the persistent fetcher was CPU/IO bound at ~470 tick objects/h.",
+  "2026-09-05 14:36Z-15:19Z: root disk 95% full with the 22.8 GB store on it; store compacted with VACUUM INTO onto the data volume (2,566 s), counts verified equal on all five tables with quick_check ok (6,027 s), root copy removed, repo path kept as a symlink.",
+  "2026-09-05 16:59Z: driver attempt 1 aborted on a tuple-unpacking bug in my verification snippet (data had verified); 12 h idle until reattach.",
+  "2026-09-06 05:24Z: 140 April objects failed to parse: 228 April files predate the last_trade column. Fixed to store last NULL (as the streamed runs did for the other 88) and re-ingested.",
+  "2026-09-06 08:35Z: pre-existing /etc/cron.d/omi-subsecond (04:35 ET nightly, not installed by this work) ran analysis/subsecond_consolidate.py, which by then was the v2 script with spaces sources in its default list. It took the write lock (my June ingest died 'database is locked' at 08:37Z), streamed 4,941 July objects / 6,216,953 rows into the store under the streamed method's semantics, and recreated the dropped indexes t_tk/t_key/p_key (+7 GB), taking the data volume to 99%. Stopped 15:10Z. Guards added: consolidator default --sources legacy (v1 behaviour), store lock in both scripts, prep re-drops the three indexes. The cron entry itself was not edited.",
+  "2026-09-06 15:14Z: pre-ingest backup moved from /mnt/.../backups to its spec path on the root disk (sha256 re-verified equal) to free the data volume.",
+  "2026-09-06 15:36Z: indexes re-dropped (1,492,419 free pages reused by the load: the store file did not grow after this point).",
+  "The zero-capture check inside the store spans all sources (legacy Kalshi API backfill prints cover most census gap days); only 2026-05-05..2026-05-13 (UTC days) has no row from any source in the boundary.",
+  "bad_rows (unparseable ts or price fields) across staged batches: 346; streamed runs: 226; all skipped and counted, never inserted.",
+  "prints has no UNIQUE key by design (identical trade rows inside one object are distinct 1 s prints); trades objects were complete before the staged method started and were skipped, not re-read; validation4_ticks were all already logged from run 1 and were skipped, not re-read."
+ ],
+ "constraints": [
+  "read-only against every source; writes only to the store (path kept via symlink, see store_note)",
+  "boundary 2026-03-20..2026-07-25 inclusive per row; objects named 26JUL26+ skipped entirely",
+  "26JUL11..26JUL21 ingested with src_role=TUNE_SAMPLE",
+  "bucket never copied to disk in runs 1-2; the staged method copied month batches to /root/tick_stage and deleted each after its ingest_log check (operator-approved 2026-09-05)",
+  "no cron installed by this work; the pre-existing /etc/cron.d/omi-subsecond nightly (04:35 ET) was found running the modified script and is now guarded (legacy-only default + store lock)",
+  "store not committed"
+ ],
+ "receipt_built_at_utc": "2026-09-06T21:56:29+00:00"
+}

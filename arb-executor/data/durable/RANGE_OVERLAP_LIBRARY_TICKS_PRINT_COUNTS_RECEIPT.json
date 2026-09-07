@@ -1,0 +1,87 @@
+{
+  "builder": {
+    "path": "/mnt/omi-trading-data-nyc3/library/build_tick_library_print_counts.py",
+    "sha256": "1f01d27dd13c0edc47d4229cdb893e2e39b5f579a99f03ceb86f167b5686afbc"
+  },
+  "completed_utc": "2026-09-07T23:01:53.616049+00:00",
+  "counts": {
+    "final_count_matches": 15502,
+    "final_count_mismatches": 0,
+    "grid_identity": "Every library leg, in library order; own floor(native ts) seconds with accepted in-span prints; independent of library change points",
+    "legs_checked": 15502,
+    "rows_checked": 1405183,
+    "total_true_prints_in_spans": 2430670
+  },
+  "cutter": {
+    "inherited_functions": [
+      "accepted_print_rows",
+      "dedupe_print_rows",
+      "store_cut_lock",
+      "open_snapshot"
+    ],
+    "path": "/mnt/omi-trading-data-nyc3/library/build_range_overlap_library_ticks.py",
+    "sha256": "8b513301f2c209a64567b0586818c4c86e38d4133750b56e5cdc4adfc56bfed3"
+  },
+  "dedupe_removed_before_bell": {
+    "backfill -> spaces_trades": 302288,
+    "spaces_trades -> spaces_trades": 13592
+  },
+  "legs_by_category": {
+    "ATP_CHALL": 4604,
+    "ATP_MAIN": 1878,
+    "ITF_M": 3150,
+    "ITF_W": 3004,
+    "WTA_CHALL": 1006,
+    "WTA_MAIN": 1860
+  },
+  "library": {
+    "path": "/mnt/omi-trading-data-nyc3/library/RANGE_OVERLAP_LIBRARY_TICKS.jsonl.gz",
+    "receipt_sha256": "533c3271d8734caa6f1ccd7dc36563a6726a4c540060d3a1b33cfa011596a282",
+    "sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461"
+  },
+  "output": {
+    "bytes": 9021278,
+    "path": "/mnt/omi-trading-data-nyc3/library/print_counts_v2/RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+    "sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c"
+  },
+  "rules": {
+    "count": "Number of accepted true-print rows, including zero-size trades; never volume, book changes, or changed prices",
+    "dedupe": "Before density, anchors, volume and change points, group accepted non-TUNE_SAMPLE true prints by (ticker, floor(ts), price, size). When a key occurs across sources, retain one row: spaces_trades, then public_tape, then backfill; within the surviving source retain the last rowid. Same-source-only repeated prints are preserved. Counts are discarded rows by removed source -> surviving source. Retain the survivor's native timestamp and raw source/role; no store rows are changed.",
+    "dedupe_count_scope": "All accepted pre-bell rows for emitted tickers, including pre-formation, exactly as the cutter queries them",
+    "exam": "Reject July 11-21 event-name dates; never consume TUNE_SAMPLE-tagged rows",
+    "final_check": "Every leg's last sidecar count must equal both the streamed source total and true_print_count_in_span",
+    "gate_join": "Latest sidecar second <= gate epoch; zero before the first accepted print second. Operator-authorized discrete second clock, not subsecond arrival ordering.",
+    "grid": "One row (ticker, second, true_print_count_cum) for every floor(native ts) second with accepted in-span prints, including zero-size prints and seconds absent from the library path. Library grid unchanged.",
+    "span": "Use every library leg's exact formation_end_epoch <= accepted native ts < bell_epoch; no span rederivation",
+    "volume_check": "Cumulative accepted size equals volume_cum at every original library point"
+  },
+  "schema": "TICK_LIBRARY_EXACT_PRINT_COUNTS_V2",
+  "status": "VERIFIED",
+  "store": {
+    "bytes": 28337741824,
+    "hash_scans": 2,
+    "path": "/mnt/omi-trading-data-nyc3/subsecond/subsecond_store.db",
+    "read_only": true,
+    "sha256_end": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "sha256_start": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d"
+  },
+  "store_lock": {
+    "audit_path": "/mnt/omi-trading-data-nyc3/library/print_counts_v2/CUTTER_RUN.lock",
+    "expected_store_sha256": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "held_through_receipt_publication": true,
+    "lock_held": true,
+    "lock_holder": {
+      "host": "ubuntu-s-1vcpu-2gb-nyc3-01",
+      "pid": 348802
+    },
+    "shared_lock_device": 64769,
+    "shared_lock_inode": 1081976,
+    "shared_lock_path": "/root/Omi-Workspace/arb-executor/state/subsecond_store.db.lock",
+    "start_time_utc": "2026-09-07T22:30:21.044407+00:00",
+    "status": "HASHING_END",
+    "store_path": "/mnt/omi-trading-data-nyc3/subsecond/subsecond_store.db",
+    "store_sha256": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "store_sha256_end": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "store_sha256_start": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d"
+  }
+}

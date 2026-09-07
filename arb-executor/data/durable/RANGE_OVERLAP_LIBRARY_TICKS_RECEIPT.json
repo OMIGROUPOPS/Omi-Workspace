@@ -1,0 +1,515 @@
+{
+  "actual_date_span": {
+    "bell_max": "2026-07-11",
+    "formation_min": "2026-04-18"
+  },
+  "anchor_fallback": {
+    "anchor_fallback_pairs_emitted": 486,
+    "anchor_fallback_pairs_switched": 497
+  },
+  "base_commit": "28692162",
+  "bell_cutoff_inclusive_utc_date": "2026-07-11",
+  "builder": {
+    "bytes": 90164,
+    "path": "/mnt/omi-trading-data-nyc3/library/build_range_overlap_library_ticks.py",
+    "sha256": "8b513301f2c209a64567b0586818c4c86e38d4133750b56e5cdc4adfc56bfed3"
+  },
+  "cadence_s": {
+    "basis": "distribution of emitted legs' medians of distinct in-span native timestamp gaps",
+    "legs": 15460,
+    "maximum": 31624.32237792015,
+    "median": 21.5,
+    "minimum": 1.0
+  },
+  "catalog_tickers": 34824,
+  "completed_utc": "2026-09-07T21:06:22.973720+00:00",
+  "consolidation_receipt": {
+    "bytes": 16832,
+    "path": "/mnt/omi-trading-data-nyc3/library/CONSOLIDATION_RECEIPT_20260904.json",
+    "sha256": "ed9b2d2f01cf908d8802ab73673366ace51774b5103a6d9be0e81afb0aaa5668"
+  },
+  "corpus_events": {
+    "bytes": 4221024,
+    "path": "/root/Omi-Workspace/arb-executor/state/corpus_events_v2.jsonl",
+    "sha256": "839f0552fd4edf8e0116d4ba8e8f2bf7808db82396bfd7a0a2b1eadd860a3ebf"
+  },
+  "counts": {
+    "events": 7751,
+    "events_both_legs_with_library_rows": 12468,
+    "events_surveyed": 17750,
+    "legs": 15502,
+    "points": 3836842,
+    "tickers_surveyed": 34824
+  },
+  "differs_from_prior_art": {
+    "anchor": "Latest accepted deduplicated true print at formation; missing June anchor moves the pair's formation to FIRST_BOTH_SIDES_TRADE, explicitly recorded, never a later print borrowed at the old formation.",
+    "vs_28692162_proof": "Derive spans instead of requiring filed 804 bounds; non-TUNE_SAMPLE cross-role boundary join, exam event-name exclusion, source-priority print deduplication and rowid-ordered second close/extrema replace role-only and timestamp-conflict exclusions. Missing June anchors move both formations to first-both-trades. Store is read-only under CC's shared lock with equal start/end hashes and stat/journal guards.",
+    "vs_FUTURE_LOW_RETURN_LIBRARY": "Carries high, last, bid, ask and true-print size-sum beside running low; native grain rather than minute labels.",
+    "vs_June_minute_cut": "Native TICK paths from consolidated store, all tours. Formation inherits June open+120 where available, on observed native-tape minute coverage; otherwise operator-authorized FIRST_BOTH_SIDES_TRADE. Bell prefers specified machine/schedule receipts, then June tier-2 density; no tier-1 price-discovery or expected-expiration substitute. Missing actual calendar minutes break density runs.",
+    "vs_range_spectrum_v1": "Recorder true prints and native book changes, bell-bounded formation-to-bell; not polling snapshots with an onset right edge.",
+    "vs_trendpath_build": "Per-game leg paths, not page percentiles. The pinned source uses first-hour-median discovery; PARALLEL BUILD's first-true-tick discovery is explicitly a new override, not silently attributed to that source."
+  },
+  "elapsed_seconds": 11335.242294806987,
+  "emitted_source_rows": {
+    "prints": {
+      "backfill": 668391,
+      "spaces_trades": 1822761
+    },
+    "ticks": {
+      "spaces_ticks": 10014451
+    }
+  },
+  "events_per_bell_month_both_legs_lawful_span": {
+    "2026-04": 798,
+    "2026-05": 1205,
+    "2026-06": 4105,
+    "2026-07": 1643
+  },
+  "events_per_category": {
+    "ATP_CHALL": 2302,
+    "ATP_MAIN": 939,
+    "ITF_M": 1575,
+    "ITF_W": 1502,
+    "WTA_CHALL": 503,
+    "WTA_MAIN": 930
+  },
+  "events_with_derived_spans_before_path_quality_exclusions": {
+    "2026-04": 812,
+    "2026-05": 1230,
+    "2026-06": 4170,
+    "2026-07": 1662
+  },
+  "excluded_events_by_reason": {
+    "BELL_AFTER_CUTOFF": 602,
+    "EMPTY_FORMATION_TO_BELL_SPAN": 34,
+    "NOT_EXACTLY_TWO_LEGS": 674,
+    "NO_IN_SPAN_TRUE_PRINT": 123,
+    "PAIR_HAS_LEG_WITHOUT_ROWS_IN_SPAN": 51,
+    "TUNE_SAMPLE_EVENT_NAME": 2971,
+    "UNKNOWN_BELL": 5055,
+    "UNKNOWN_FORMATION": 489
+  },
+  "excluded_legs_by_pair_exclusion_reason": {
+    "BELL_AFTER_CUTOFF": 1204,
+    "EMPTY_FORMATION_TO_BELL_SPAN": 68,
+    "NOT_EXACTLY_TWO_LEGS": 674,
+    "NO_IN_SPAN_TRUE_PRINT": 246,
+    "PAIR_HAS_LEG_WITHOUT_ROWS_IN_SPAN": 102,
+    "TUNE_SAMPLE_EVENT_NAME": 5940,
+    "UNKNOWN_BELL": 10110,
+    "UNKNOWN_FORMATION": 978
+  },
+  "exclusion_804_by_name": {
+    "also_TUNE_SAMPLE_tagged_rows": 21117341,
+    "events": 2971,
+    "inclusive_end": "2026-07-21",
+    "inclusive_start": "2026-07-11",
+    "input_rows": 28574607,
+    "tickers": 5940
+  },
+  "exclusion_804_by_tag": {
+    "TUNE_SAMPLE": {
+      "events": 2970,
+      "input_rows": 21117341,
+      "rows_consumed_by_emitted_legs": 0,
+      "rows_not_consumed_by_emitted_legs": 21117341,
+      "tickers": 5939
+    }
+  },
+  "exclusion_804_union_input_rows": 28574607,
+  "exclusion_table": [
+    {
+      "definition": "Event-name YYMMMDD date is 26JUL11 through 26JUL21 inclusive, independent of bell and row role.",
+      "events": 2971,
+      "legs": 5940,
+      "reason": "TUNE_SAMPLE_EVENT_NAME"
+    },
+    {
+      "definition": "Union inventory of ticks/prints has other than exactly two tickers for the event.",
+      "events": 674,
+      "legs": 674,
+      "reason": "NOT_EXACTLY_TWO_LEGS"
+    },
+    {
+      "definition": "A surveyed source row has an event/ticker mismatch or nonfinite timestamp.",
+      "events": 0,
+      "legs": 0,
+      "reason": "SOURCE_EVENT_OR_TIMESTAMP_ERROR"
+    },
+    {
+      "definition": "Event prefix does not match the inherited all-tour category map.",
+      "events": 0,
+      "legs": 0,
+      "reason": "UNKNOWN_CATEGORY"
+    },
+    {
+      "definition": "No finite official_ts, sched_honest, identity-matched machine first_inplay_at, or qualifying both-sides trade-density run.",
+      "events": 5055,
+      "legs": 10110,
+      "reason": "UNKNOWN_BELL"
+    },
+    {
+      "definition": "UTC date of selected bell exceeds the unchanged inclusive 2026-07-11 cutoff.",
+      "events": 602,
+      "legs": 1204,
+      "reason": "BELL_AFTER_CUTOFF"
+    },
+    {
+      "definition": "Either leg has no accepted deduplicated true print before bell.",
+      "events": 489,
+      "legs": 978,
+      "reason": "UNKNOWN_FORMATION"
+    },
+    {
+      "definition": "Resolved formation is absent or at/after bell, including a first-both-trades fallback minute that reaches bell.",
+      "events": 34,
+      "legs": 68,
+      "reason": "EMPTY_FORMATION_TO_BELL_SPAN"
+    },
+    {
+      "definition": "No finite accepted deduplicated print at/before formation after the June-to-first-both pair fallback; a guard, not permission to borrow a future price.",
+      "events": 0,
+      "legs": 0,
+      "reason": "UNKNOWN_CAUSAL_FORMATION_ANCHOR"
+    },
+    {
+      "definition": "At least one exact ticker has no non-TUNE_SAMPLE tick or print at formation <= ts < bell under any stored source.",
+      "events": 51,
+      "legs": 102,
+      "reason": "PAIR_HAS_LEG_WITHOUT_ROWS_IN_SPAN"
+    },
+    {
+      "definition": "Path is empty or has no accepted deduplicated true print at formation <= ts < bell.",
+      "events": 123,
+      "legs": 246,
+      "reason": "NO_IN_SPAN_TRUE_PRINT"
+    },
+    {
+      "definition": "An accepted print before bell has a missing/nonfinite price.",
+      "events": 0,
+      "legs": 0,
+      "reason": "MISSING_TRUE_PRINT_PRICE"
+    },
+    {
+      "definition": "An accepted in-span print has a missing/nonfinite or negative size.",
+      "events": 0,
+      "legs": 0,
+      "reason": "MISSING_OR_INVALID_TRUE_PRINT_SIZE"
+    }
+  ],
+  "exclusions_log": {
+    "bytes": 1837554,
+    "path": "/mnt/omi-trading-data-nyc3/library/RANGE_OVERLAP_LIBRARY_TICKS_EXCLUSIONS.jsonl",
+    "sha256": "c81be6a3086c5be36e0c65b2b00fadf0b99e1f9f262ef8ded118002ad333eed4"
+  },
+  "first_1000_ticker_rate": {
+    "anchor_fallback_pairs_switched": 105,
+    "cross_source_duplicates_removed": 0,
+    "elapsed_seconds": 223.43315250054002,
+    "emitted_events": 197,
+    "eta_seconds": 7549.629887138627,
+    "excluded_events": {
+      "EMPTY_FORMATION_TO_BELL_SPAN": 1,
+      "NOT_EXACTLY_TWO_LEGS": 223,
+      "NO_IN_SPAN_TRUE_PRINT": 2,
+      "UNKNOWN_BELL": 111,
+      "UNKNOWN_FORMATION": 78
+    },
+    "last_event": "KXATPCHALLENGERMATCH-26APR25SAUFUK",
+    "last_ticker": "KXATPCHALLENGERMATCH-26APR25SAUFUK-SAU",
+    "status": "RUNNING",
+    "tickers_done": 1001,
+    "tickers_per_second": 4.480087170580385,
+    "tickers_total": 34824
+  },
+  "first_accepted_print_by_source": {
+    "backfill": {
+      "ts": 1778716800.626871,
+      "utc_date": "2026-05-14"
+    },
+    "spaces_trades": {
+      "ts": 1776545753.0,
+      "utc_date": "2026-04-18"
+    }
+  },
+  "formation_source_legs_by_bell_month": {
+    "2026-04": {
+      "FIRST_BOTH_SIDES_TRADE": 942,
+      "JUNE_OPEN_PLUS_120": 654
+    },
+    "2026-05": {
+      "FIRST_BOTH_SIDES_TRADE": 2356,
+      "JUNE_OPEN_PLUS_120": 54
+    },
+    "2026-06": {
+      "FIRST_BOTH_SIDES_TRADE": 8210
+    },
+    "2026-07": {
+      "FIRST_BOTH_SIDES_TRADE": 3286
+    }
+  },
+  "inherited_builder": {
+    "path": "arb-executor/analysis/build_range_overlap_library.py",
+    "sha256": "3f5009f7e81380a325f9af7a4d4912653d493da2ddf029964a99c3d033f8d736"
+  },
+  "input_role_census": {
+    "LIBRARY": {
+      "events": 13097,
+      "rows": 65164875,
+      "rows_consumed_by_emitted_legs": 11837212,
+      "rows_excluded_by_role": 0,
+      "rows_not_consumed_by_emitted_legs": 53327663,
+      "tickers": 25565
+    },
+    "NULL": {
+      "events": 8477,
+      "rows": 25574898,
+      "rows_consumed_by_emitted_legs": 668391,
+      "rows_excluded_by_role": 0,
+      "rows_not_consumed_by_emitted_legs": 24906507,
+      "tickers": 16882
+    },
+    "TUNE_SAMPLE": {
+      "events": 2970,
+      "rows": 21117341,
+      "rows_consumed_by_emitted_legs": 0,
+      "rows_excluded_by_role": 21117341,
+      "rows_not_consumed_by_emitted_legs": 21117341,
+      "tickers": 5939
+    }
+  },
+  "input_rows_by_event_name_month_source_tag": {
+    "2026-03": {
+      "ticks/validation4_bin/LIBRARY": 2113571
+    },
+    "2026-04": {
+      "prints/spaces_trades/LIBRARY": 2974604,
+      "ticks/spaces_ticks/LIBRARY": 2086489,
+      "ticks/validation4_bin/LIBRARY": 3452119
+    },
+    "2026-05": {
+      "prints/backfill/NULL": 5000716,
+      "prints/spaces_trades/LIBRARY": 1820246,
+      "ticks/spaces_ticks/LIBRARY": 1341455
+    },
+    "2026-06": {
+      "prints/backfill/NULL": 8587642,
+      "prints/spaces_trades/LIBRARY": 16273425,
+      "ticks/spaces_ticks/LIBRARY": 15465073
+    },
+    "2026-07": {
+      "prints/backfill/NULL": 7473026,
+      "prints/book_transition/NULL": 3629957,
+      "prints/public_tape/NULL": 883557,
+      "prints/spaces_trades/LIBRARY": 10444033,
+      "prints/spaces_trades/TUNE_SAMPLE": 9628875,
+      "ticks/spaces_ticks/LIBRARY": 9193860,
+      "ticks/spaces_ticks/TUNE_SAMPLE": 11488466
+    }
+  },
+  "market_metadata": {
+    "bytes": 3308522,
+    "path": "/root/Omi-Workspace/arb-executor/data/durable/g9_metadata.parquet",
+    "sha256": "04622accb9e3c0b63681076c30175950a9ef20e5a4da05e72aa0ff0ad10bb230"
+  },
+  "method": "CONSOLIDATED_STORE_NATIVE_TICK_CUT_WITH_DERIVED_SPANS",
+  "observed_starts": {
+    "bytes": 135168,
+    "path": "/root/Omi-Workspace/arb-executor/state/observed_starts.db",
+    "sha256": "03ba0c4048f92168462f3aad95d1f50f630eb08d2332df7af2924159701a37b0"
+  },
+  "output": {
+    "bytes": 86693550,
+    "path": "/mnt/omi-trading-data-nyc3/library/RANGE_OVERLAP_LIBRARY_TICKS.jsonl.gz",
+    "sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461"
+  },
+  "print_dedupe": {
+    "emitted_duplicates_removed": 315880,
+    "emitted_removed_source_to_survivor": {
+      "backfill": {
+        "spaces_trades": 302288
+      },
+      "spaces_trades": {
+        "spaces_trades": 13592
+      }
+    },
+    "rule": "Before density, anchors, volume and change points, group accepted non-TUNE_SAMPLE true prints by (ticker, floor(ts), price, size). When a key occurs across sources, retain one row: spaces_trades, then public_tape, then backfill; within the surviving source retain the last rowid. Same-source-only repeated prints are preserved. Counts are discarded rows by removed source -> surviving source. Retain the survivor's native timestamp and raw source/role; no store rows are changed.",
+    "scope_note": "survey covers all timestamps of non-exam-name tickers after tag filtering, counted once; emitted counts cover those legs before bell, including inherited preformation low/anchor initialization, not added to survey counts.",
+    "survey_duplicates_removed": 5562207,
+    "survey_removed_source_to_survivor": {
+      "backfill": {
+        "spaces_trades": 4983826
+      },
+      "spaces_trades": {
+        "spaces_trades": 578381
+      }
+    }
+  },
+  "prior_art_bound": [
+    {
+      "commit": "66b50db35e9dcec756ce6366bed1fe44147f8e29",
+      "inherited": "Minutes-before-bell slices and side rule; discovery/ESS/slice extensions are explicit PARALLEL BUILD overrides, not claims about the old source.",
+      "name": "trendpath_build.py",
+      "path": "arb-executor/analysis/trendpath_build.py",
+      "sha256": "626edf547e4aa7e327928e695e2f4ecfd40cd59fadf2e8e8384bb351d8f1dd17"
+    },
+    {
+      "commit": "41c1f7244af3afa4dade63bc9824808090ada41d",
+      "inherited": "Post-formation drift role rule and gate coverage/accuracy; consumed by the scoreboard, not reimplemented in this cutter.",
+      "name": "RECOGNITION_OPERATING_POINT",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RECOGNITION_OPERATING_POINT.md",
+      "sha256": "30cdec3d968098e7cfe120e52b0732fcf77322f13a07b2e0e0414a59031617eb"
+    },
+    {
+      "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+      "inherited": "The filed 13 families and floor-timing null are inherited by the scoreboard; this cutter does not relabel them.",
+      "name": "SHAPE_TAXONOMY_BUILD1",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+      "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599"
+    },
+    {
+      "commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+      "inherited": "Onset/trade-count/travel coordinates, FIRST-BIND and flip-rate scoring are inherited by the scoreboard; no scoring is done here.",
+      "name": "GATE_POLICY_EVAL_LIVE_COORDS",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.md",
+      "sha256": "7cf36d6841fde3f44facc72ece5b14636346960e7daee5756af5ffdc63d9a00a"
+    }
+  ],
+  "prior_art_bundle": {
+    "bytes": 6670,
+    "path": "/mnt/omi-trading-data-nyc3/library/CUTTER_PRIOR_ART.json",
+    "sha256": "2ff52c437430e08c53ce2795e10405523ba2ed402bae4543091c164b00017d97"
+  },
+  "rules": {
+    "backfill_source_proof": {
+      "fields": "Kalshi /markets/trades: created_time -> ts; yes_price_dollars * 100 -> price; count_fp/count -> size (lines 31-32, 52-65). Read-only source classification; writer not invoked.",
+      "path": "/root/Omi-Workspace/arb-executor/analysis/print_backfill.py",
+      "sha256": "bc29c1c72541d1343ebfa9c1361dc25b31ba6dcd4c9be6df526a737ea3307c5f"
+    },
+    "bell": "corpus_events_v2.official_ts, else sched_honest, else event-identity-matched observed_starts.first_inplay_at (discovery upper bound labeled), else June both_sides_trade_density (3 consecutive minutes with >=3 true trades on each side), else UNKNOWN. No expected-expiration/settlement/name-date/onset_est bell substitute.",
+    "book": "ticks.bid and ticks.ask in stored cents, carried between book observations; missing sides remain null.",
+    "change_point": "Group native observations by floor(ts), then order each table's rows by rowid within the second. Emit the second's last book and last true print, retaining all true-print minima/maxima and size sums. Stamp the point at the greatest observed ts in that second (not earlier than any contributing row). Table rowids are independent; their interleaving does not author a cross-table sequence. This is operator-authorized deterministic ordering, not exchange sequence proof. Emit only when at least one of the six values changes; no synthetic formation tick.",
+    "cross_source_duplicates": "Before density, anchors, volume and change points, group accepted non-TUNE_SAMPLE true prints by (ticker, floor(ts), price, size). When a key occurs across sources, retain one row: spaces_trades, then public_tape, then backfill; within the surviving source retain the last rowid. Same-source-only repeated prints are preserved. Counts are discarded rows by removed source -> surviving source. Retain the survivor's native timestamp and raw source/role; no store rows are changed.",
+    "event_date": "The event_id's YYMMMDD calendar label, distinct from bell_utc_date; same-day retrieval hygiene must use the same basis for old and new libraries.",
+    "excluded_inferred_source": "book_transition is a changed-last surrogate, not a true trade; never authors low/high/last/volume.",
+    "floor_fraction": "First accepted true print at the eventual post-formation minimum, on this leg's formation-to-bell clock. No future path labels are inserted into causal points.",
+    "formation_sources": {
+      "FIRST_BOTH_SIDES_TRADE": "Without a market open, or for both legs when either June formation lacks a causal accepted anchor: minute_end(max(first_true_trade_A,first_true_trade_B)), using non-TUNE_SAMPLE deduplicated true prints. Cumulative availability, not simultaneous prints. The pair fallback moves formation itself; it never inserts a future price at the old June formation. Prior formation/source is retained per leg.",
+      "JUNE_OPEN_PLUS_120": "Where g9_metadata.open_time exists: first observed minute end at/after open+120 minutes, before bell and outside June's settlement-minus-300-second zone. Native book/print minutes supply observed coverage; not a manufactured path row."
+    },
+    "high": "Running maximum of accepted prints.price from formation; never ticks.last or book_transition.",
+    "last": "Most recent accepted prints.price at or before native timestamp; no midpoint, anchor, or ticks.last fallback.",
+    "leave_self_out": "Not applied while cutting; scoreboard applies walk-forward, leave-self-out and same-day exclusion.",
+    "low": "Running minimum of accepted prints.price initialized through formation, identical to ORDER 1's prior-low convention; subsequent true prints update it.",
+    "minute_clock": "June's half-open [minute_ts-60,minute_ts) buckets; minute_end(ts)=(floor(ts/60)+1)*60. Only span derivation uses minutes; path stays native.",
+    "pair_hygiene": "Only events with exactly two successful bounded legs emitted; incomplete pairs excluded and counted.",
+    "population": "All ticker events are counted. Event-name dates July 11 through July 21 inclusive are excluded independently of bell. Exactly two legs required; join exact tickers across non-TUNE_SAMPLE roles, preserving labels, then enforce lawful per-leg spans and the unchanged inclusive UTC bell cutoff. Output month is UTC bell month; input month is event-name month.",
+    "resource_policy": "nice 10; source immutable read-only/query_only; stream by ticker; only one pair's minute summaries and native paths resident; SQLite catalogue/temp files and outputs under output directory.",
+    "roles": "TUNE_SAMPLE rows are always filtered before use, including books, density, formation, anchor, presence checks and paths. Other stored roles, including NULL and OTHER, may join without relabeling. All ticks sources may supply book rows; public_tape, ws_log, spaces_trades and verified backfill supply true prints. book_transition remains inferred and excluded as a true print. No rows at/after bell enter a path.",
+    "side": "LEADER if latest accepted deduplicated true-print price at formation >=50, else UNDERDOG. Missing June anchor triggers a pair-wide FIRST_BOTH_SIDES_TRADE formation fallback; no midpoint or future-price borrowing at an earlier formation.",
+    "source_hashes": "Exactly two full store SHA256 scans on a successful cut: once at start and once at end, both while holding the shared writer lock. No mid-cut scan or preverified-hash bypass; publish only when both hashes equal the consolidation receipt hash and stat/journal guards pass.",
+    "source_lock": "Hold CC's subsecond_store.db.lock with flock LOCK_EX from before the starting store hash through the ending hash and receipt publication. Consolidator's LOCK_NB skips; stage ingest's blocking LOCK_EX waits. CUTTER_RUN.lock is a separate audit record, not a second coordination lock.",
+    "span": "Derived per leg; formation_end_epoch <= native ts < bell_epoch. No filed truth-table bounds required.",
+    "tag_804": "Exam exclusion is the union of event-name dates 26JUL11..26JUL21 and TUNE_SAMPLE-tagged rows, regardless of bell. Census counts inspect but never consume those rows as member observations. Name/tag cardinality is measured, not asserted to equal 804.",
+    "true_print_sources": [
+      "public_tape",
+      "ws_log",
+      "spaces_trades",
+      "backfill"
+    ],
+    "validation4": "validation4 (Mar 20-Apr 18) is book-only and supplies no true prints; validation4-only legs yield no library legs by construction. The effective true-print library start is the first spaces_trades date, Apr 18, not Mar 20. Mixed-source tickers still require accepted true prints and lawful spans; input first accepted source dates and actual emitted span are measured in this receipt.",
+    "volume": "Running sum of accepted prints.size at formation <= ts < bell; missing/negative sizes exclude the leg. Stored zero sizes remain zero and are not estimated."
+  },
+  "schema_contract": {
+    "cadence": [
+      "src",
+      "obj",
+      "raw_rows",
+      "kept_rows",
+      "distinct_ts",
+      "median_gap_raw",
+      "median_gap_kept"
+    ],
+    "prints": [
+      "event",
+      "ticker",
+      "ts",
+      "price",
+      "size",
+      "src",
+      "src_role",
+      "obj"
+    ],
+    "ticks": [
+      "event",
+      "ticker",
+      "ts",
+      "bid",
+      "ask",
+      "last",
+      "size",
+      "src",
+      "src_role",
+      "obj"
+    ]
+  },
+  "source_snapshot": {
+    "bytes": 28337741824,
+    "mtime_ns": 1788731781353771231,
+    "path": "/mnt/omi-trading-data-nyc3/subsecond/subsecond_store.db",
+    "sha256": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "sha256_end": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "sha256_start": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "verification": "Full store SHA256 at start and end only, both under CC's exclusive writer lock; matching consolidation hash and unchanged stat/journal guards required before publication."
+  },
+  "source_unchanged": true,
+  "span_method_legs": {
+    "FIRST_BOTH_SIDES_TRADE / CORPUS_SCHED_HONEST:milestone_sportradar": 8080,
+    "FIRST_BOTH_SIDES_TRADE / both_sides_trade_density": 6714,
+    "JUNE_OPEN_PLUS_120 / CORPUS_OFFICIAL_MACHINE_RECEIPT": 2,
+    "JUNE_OPEN_PLUS_120 / CORPUS_SCHED_HONEST:milestone_sportradar": 542,
+    "JUNE_OPEN_PLUS_120 / both_sides_trade_density": 164
+  },
+  "span_prior_art": {
+    "June_producer": {
+      "bytes": 78129,
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\scripts\\build_per_minute_universe.py",
+      "sha256": "eb36d15a2e3a881b0659d5035d0efa1a25deaf21ba81c6d13048e195a5b70370"
+    },
+    "all_tour_categories": {
+      "bytes": 9641,
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\corpus_restamp2.py",
+      "sha256": "4ac201a569ac494b826813144bd7f6beac6300947b6bb19fe126325e61790096"
+    },
+    "future_low": {
+      "bytes": 8014,
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\build_window1_v54_future_low_return_library.py",
+      "sha256": "4a1f2d9ecb93663250313eac873158886cfa11ffa3668a32866bc27dcacf98f9"
+    }
+  },
+  "started_utc": "2026-09-07T17:57:27.477432+00:00",
+  "status": "COMPLETE \u2014 NATIVE TICK LIBRARY \u2014 NOT A BENCH SCORE",
+  "store_lock": {
+    "audit_path": "/mnt/omi-trading-data-nyc3/library/CUTTER_RUN.lock",
+    "expected_store_sha256": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "hash_end_completed_utc": "2026-09-07T21:06:22.287829+00:00",
+    "hash_end_started_utc": "2026-09-07T20:56:08.882426+00:00",
+    "hash_start_completed_utc": "2026-09-07T17:57:27.464796+00:00",
+    "hash_start_started_utc": "2026-09-07T17:47:34.722353+00:00",
+    "held_through_receipt_publication": true,
+    "lock_held": true,
+    "lock_holder": {
+      "host": "ubuntu-s-1vcpu-2gb-nyc3-01",
+      "pid": 262666
+    },
+    "shared_lock_device": 64769,
+    "shared_lock_inode": 1081976,
+    "shared_lock_path": "/root/Omi-Workspace/arb-executor/state/subsecond_store.db.lock",
+    "start_time_utc": "2026-09-07T17:47:34.711998+00:00",
+    "status": "VERIFYING_OUTPUT",
+    "store_path": "/mnt/omi-trading-data-nyc3/subsecond/subsecond_store.db",
+    "store_sha256": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "store_sha256_end": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "store_sha256_start": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d"
+  }
+}

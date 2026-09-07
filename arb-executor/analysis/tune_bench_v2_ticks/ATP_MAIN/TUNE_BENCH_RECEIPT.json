@@ -1,0 +1,381 @@
+{
+  "base_bench": {
+    "commit": "00432041",
+    "path": "arb-executor/analysis/tune_bench_v2_survivorship.py",
+    "sha256": "6561f991039def174001f17f8aedc450d4bdcfd929bd905905e57c9547439282"
+  },
+  "categories": [
+    "ATP_MAIN"
+  ],
+  "census": {
+    "ATP_CHALL:first_tick_tie_STORE_SILENT": 15,
+    "ATP_CHALL:non_three_character_leg_id": 53,
+    "ATP_CHALL:oriented_pairs": 2287,
+    "ATP_CHALL:pair_events": 2302,
+    "ATP_MAIN:first_tick_tie_STORE_SILENT": 11,
+    "ATP_MAIN:non_three_character_leg_id": 23,
+    "ATP_MAIN:oriented_pairs": 928,
+    "ATP_MAIN:pair_events": 939,
+    "ITF_M:first_tick_tie_STORE_SILENT": 23,
+    "ITF_M:non_three_character_leg_id": 8,
+    "ITF_M:oriented_pairs": 1552,
+    "ITF_M:pair_events": 1575,
+    "ITF_W:first_tick_tie_STORE_SILENT": 13,
+    "ITF_W:non_three_character_leg_id": 11,
+    "ITF_W:oriented_pairs": 1489,
+    "ITF_W:pair_events": 1502,
+    "WTA_CHALL:first_tick_tie_STORE_SILENT": 7,
+    "WTA_CHALL:oriented_pairs": 496,
+    "WTA_CHALL:pair_events": 503,
+    "WTA_MAIN:first_tick_tie_STORE_SILENT": 13,
+    "WTA_MAIN:non_three_character_leg_id": 2,
+    "WTA_MAIN:oriented_pairs": 917,
+    "WTA_MAIN:pair_events": 930
+  },
+  "clock": "Exact library path.ts (native last state per second, true-print min/max within second); own pair union of native change points, no minute resampling. Event-name date on both sides. Sample largest member epoch <= bell - minutes_to_bell*60.",
+  "determinism": "fixed event_id/timestamp order; exact inverse weighted CDF; no randomness or runtime stamps in artifacts; --verify-repeat byte-compares both builds",
+  "exact_print_counts": {
+    "calibration_scope": "All oriented library legs in category, no named games. Retrospective data-set scale, not per-query walk-forward calibration.",
+    "category_print_count_distributions": {
+      "ATP_CHALL": {
+        "count": 4574,
+        "max": 2976.0,
+        "mean": 62.666593790992565,
+        "min": 1.0,
+        "q10": 5.0,
+        "q25": 11.0,
+        "q50": 27.0,
+        "q75": 70.0,
+        "q90": 158.0
+      },
+      "ATP_MAIN": {
+        "count": 1856,
+        "max": 16545.0,
+        "mean": 415.7429956896552,
+        "min": 2.0,
+        "q10": 34.0,
+        "q25": 88.0,
+        "q50": 224.0,
+        "q75": 459.0,
+        "q90": 893.0
+      },
+      "ITF_M": {
+        "count": 3104,
+        "max": 1214.0,
+        "mean": 149.2326030927835,
+        "min": 3.0,
+        "q10": 39.0,
+        "q25": 71.0,
+        "q50": 122.0,
+        "q75": 193.0,
+        "q90": 281.0
+      },
+      "ITF_W": {
+        "count": 2978,
+        "max": 1093.0,
+        "mean": 139.8821356615178,
+        "min": 3.0,
+        "q10": 34.0,
+        "q25": 66.0,
+        "q50": 113.0,
+        "q75": 180.0,
+        "q90": 264.0
+      },
+      "WTA_CHALL": {
+        "count": 992,
+        "max": 1682.0,
+        "mean": 47.621975806451616,
+        "min": 1.0,
+        "q10": 4.0,
+        "q25": 8.0,
+        "q50": 20.0,
+        "q75": 52.0,
+        "q90": 123.0
+      },
+      "WTA_MAIN": {
+        "count": 1834,
+        "max": 6350.0,
+        "mean": 228.71374045801528,
+        "min": 1.0,
+        "q10": 17.0,
+        "q25": 43.0,
+        "q50": 109.0,
+        "q75": 246.0,
+        "q90": 486.0
+      }
+    },
+    "checks": {
+      "final_count_matches": 15502,
+      "final_count_mismatches": 0,
+      "grid_identity": "Every library leg, in library order; own floor(native ts) seconds with accepted in-span prints; independent of library change points",
+      "legs_checked": 15502,
+      "rows_checked": 1405183,
+      "total_true_prints_in_spans": 2430670
+    },
+    "gate_join": "Latest sidecar second <= gate epoch; zero before the first print second. Independent accepted-print-second count grid; library price/change-point grid unchanged. Second bucket labels are floor(native ts), not subsecond arrival times.",
+    "sidecar_path": "arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+    "sidecar_receipt_sha256": "89a1be15f323f96ef90556b08130722159cae69c26d33fe461c122894b67918b",
+    "sidecar_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+    "sleeper_p10_by_category": {
+      "ATP_CHALL": 5.0,
+      "ATP_MAIN": 34.0,
+      "ITF_M": 39.0,
+      "ITF_W": 34.0,
+      "WTA_CHALL": 4.0,
+      "WTA_MAIN": 17.0
+    },
+    "source": "true_print_count_in_span from tick-library rows; exact gate-prefix counts from cutter-bound sidecar",
+    "volume_is_not_print_count": true
+  },
+  "family_census": {
+    "ATP_CHALL:DRIFT_DOWN": 81,
+    "ATP_CHALL:DRIFT_UP": 91,
+    "ATP_CHALL:EARLY_SET_DOWN": 98,
+    "ATP_CHALL:EARLY_SET_UP": 97,
+    "ATP_CHALL:GRIND_WOBBLE_DOWN": 5,
+    "ATP_CHALL:GRIND_WOBBLE_UP": 15,
+    "ATP_CHALL:LATE_BREAK_DOWN": 124,
+    "ATP_CHALL:LATE_BREAK_UP": 139,
+    "ATP_CHALL:ONE_STEP_DOWN": 181,
+    "ATP_CHALL:ONE_STEP_UP": 148,
+    "ATP_CHALL:QUIET_WOBBLE": 2512,
+    "ATP_CHALL:ROUND_TRIP": 660,
+    "ATP_CHALL:SLEEPER": 423,
+    "ATP_MAIN:DRIFT_DOWN": 75,
+    "ATP_MAIN:DRIFT_UP": 88,
+    "ATP_MAIN:EARLY_SET_DOWN": 147,
+    "ATP_MAIN:EARLY_SET_UP": 97,
+    "ATP_MAIN:GRIND_WOBBLE_DOWN": 21,
+    "ATP_MAIN:GRIND_WOBBLE_UP": 19,
+    "ATP_MAIN:LATE_BREAK_DOWN": 42,
+    "ATP_MAIN:LATE_BREAK_UP": 49,
+    "ATP_MAIN:ONE_STEP_DOWN": 134,
+    "ATP_MAIN:ONE_STEP_UP": 86,
+    "ATP_MAIN:QUIET_WOBBLE": 430,
+    "ATP_MAIN:ROUND_TRIP": 484,
+    "ATP_MAIN:SLEEPER": 184,
+    "ITF_M:DRIFT_DOWN": 116,
+    "ITF_M:DRIFT_UP": 103,
+    "ITF_M:EARLY_SET_DOWN": 31,
+    "ITF_M:EARLY_SET_UP": 31,
+    "ITF_M:GRIND_WOBBLE_DOWN": 71,
+    "ITF_M:GRIND_WOBBLE_UP": 78,
+    "ITF_M:LATE_BREAK_DOWN": 578,
+    "ITF_M:LATE_BREAK_UP": 545,
+    "ITF_M:ONE_STEP_DOWN": 353,
+    "ITF_M:ONE_STEP_UP": 308,
+    "ITF_M:QUIET_WOBBLE": 89,
+    "ITF_M:ROUND_TRIP": 501,
+    "ITF_M:SLEEPER": 300,
+    "ITF_W:DRIFT_DOWN": 99,
+    "ITF_W:DRIFT_UP": 121,
+    "ITF_W:EARLY_SET_DOWN": 36,
+    "ITF_W:EARLY_SET_UP": 24,
+    "ITF_W:GRIND_WOBBLE_DOWN": 84,
+    "ITF_W:GRIND_WOBBLE_UP": 91,
+    "ITF_W:LATE_BREAK_DOWN": 571,
+    "ITF_W:LATE_BREAK_UP": 526,
+    "ITF_W:ONE_STEP_DOWN": 294,
+    "ITF_W:ONE_STEP_UP": 230,
+    "ITF_W:QUIET_WOBBLE": 112,
+    "ITF_W:ROUND_TRIP": 495,
+    "ITF_W:SLEEPER": 295,
+    "WTA_CHALL:DRIFT_DOWN": 12,
+    "WTA_CHALL:DRIFT_UP": 8,
+    "WTA_CHALL:EARLY_SET_DOWN": 20,
+    "WTA_CHALL:EARLY_SET_UP": 11,
+    "WTA_CHALL:GRIND_WOBBLE_UP": 1,
+    "WTA_CHALL:LATE_BREAK_DOWN": 34,
+    "WTA_CHALL:LATE_BREAK_UP": 33,
+    "WTA_CHALL:ONE_STEP_DOWN": 37,
+    "WTA_CHALL:ONE_STEP_UP": 24,
+    "WTA_CHALL:QUIET_WOBBLE": 632,
+    "WTA_CHALL:ROUND_TRIP": 92,
+    "WTA_CHALL:SLEEPER": 88,
+    "WTA_MAIN:DRIFT_DOWN": 76,
+    "WTA_MAIN:DRIFT_UP": 76,
+    "WTA_MAIN:EARLY_SET_DOWN": 134,
+    "WTA_MAIN:EARLY_SET_UP": 72,
+    "WTA_MAIN:GRIND_WOBBLE_DOWN": 12,
+    "WTA_MAIN:GRIND_WOBBLE_UP": 12,
+    "WTA_MAIN:LATE_BREAK_DOWN": 44,
+    "WTA_MAIN:LATE_BREAK_UP": 48,
+    "WTA_MAIN:ONE_STEP_DOWN": 108,
+    "WTA_MAIN:ONE_STEP_UP": 85,
+    "WTA_MAIN:QUIET_WOBBLE": 636,
+    "WTA_MAIN:ROUND_TRIP": 350,
+    "WTA_MAIN:SLEEPER": 181
+  },
+  "gates_minutes_to_bell": [
+    2880,
+    2160,
+    1440,
+    1080,
+    720,
+    480,
+    360,
+    240,
+    180,
+    120,
+    90,
+    60,
+    30,
+    15,
+    5
+  ],
+  "inherited_helpers": {
+    "functions": [
+      "sha256_file",
+      "stable_json",
+      "distribution",
+      "inverse_weighted_quantile",
+      "ess"
+    ],
+    "path": "arb-executor/analysis/tune_bench_floor_calls.py",
+    "sha256": "7e605a8cceded5f9a4a3ab29f375f0e1ae90320d3a45caa3169ef52ac7b404ba"
+  },
+  "input_library": {
+    "bytes": 86693550,
+    "path": "arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS.jsonl.gz",
+    "sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461"
+  },
+  "label": "RULING RUN \u2014 TICK LIBRARY \u2014 CANDIDATE POOL SCOREBOARD",
+  "limitations": [
+    "RULING RUN \u2014 tick library only, effective April 18 through July 10 event-name dates; UTC bell can be July 11. No June minute-library members. Candidate pool comparison only; no engine edit.",
+    "Prior trendpath used first-hour-median discovery and flow onset; the operator explicitly replaces both with first true-traded pair discovery and bell slices, and replaces count thresholds with ESS < 10.",
+    "The two taxonomy bench choices are operator-authorized: SLEEPER below category p10 actual trade counts; absolute net after first quarter <=2c for flat-after. Category p10 is retrospective full-library scale, not walk-forward calibration.",
+    "Fixed July family/depth medians are the requested retrospective null and include named games; not an out-of-sample fitted baseline. Gate-family calls use causal prefixes only. ITF categories have no filed numerical-null rows: STORE_SILENT, no ALL borrowing.",
+    "SLEEPER category p10 uses true_print_count_in_span from tick-library rows, checked against the exact per-second sidecar. Gate counts use that sidecar; never volume or change-point counts. Canonical onsets absent from the library stay STORE_SILENT.",
+    "First_tick means the first causal state at which both legs have traded since formation, not a requirement for simultaneous trades. Orientation is by the two first_tick prices; equal prices are excluded.",
+    "Role-open is separate from pool discovery: library postformation_open_cents when supplied, otherwise its filed anchor_cents; named checks use the filed truth-table postformation open. Neither is replaced by a later first-trade price.",
+    "Member missing observations cause no weight update, not a fabricated tick or death; the member stays in the original pool and can forecast only when its clock is observed. Reported availability counts distinguish this.",
+    "Seven price coordinates stay in cents. Volume is a separate log1p likelihood on pair contract-volume increments over each gate interval; no contracts enter the cents distance.",
+    "SOFT updates the seven-price likelihood at every stored tick; volume is multiplied once per completed gate interval. HARD keeps its median-price kill rule (binary price factor) and applies the separate volume factor once per gate; no extra soft-price rule is added to HARD.",
+    "The role-only null has filed depth but no unique numeric early/late timing scalar. Such timing stays silent; family-null rows use their exact published medians, even if that predicted floor lies before the query gate.",
+    "Literal tau-to-minutes replacement retains ORDER4's 0.10 tolerance as 0.10 minutes; absolute timing errors in minutes are primary.",
+    "ORDER4 reach still uses the running low after placement (possibly retaining a past dip). The separate future_print_reached diagnostic uses second-close last prices; same-second non-closing prints can be omitted. Neither metric certifies a maker fill; the tick-library receipt licenses MACRO/MICRO, not execution proof.",
+    "No full-worktree OS, builder, shape-organ or face edits are made; this tool reads only explicit library and named-check inputs.",
+    "Named custody files have no SQLite rowid or consolidated cross-source join: deterministic within-second source row order substitutes only for ordering, with trade_id dedupe unchanged. Native exchange true prints and recorded books, no minute closes; second extrema retained."
+  ],
+  "no_call": "ESS < 10 after role/availability filter, counted explicitly with separate denominators; never replace with a different pool",
+  "prior_art": {
+    "GATE_POLICY_EVAL_LIVE_COORDS": {
+      "commit": "71de534a",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+      "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e"
+    },
+    "PER_SHAPE_FLOOR_DEPTH_TABLES": {
+      "commit": "8ab4f2d9",
+      "csv_sha256": "718840b56da6a57ca82ec3fc3892443e392a11d7e96994625e48b3b0df4970f9",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+      "rows_including_ALL": 52,
+      "scope_warning": "Filed July taxonomy medians post-date the stale June proof and include named July games; this fixed null is a requested retrospective comparator, not out-of-sample evidence.",
+      "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70"
+    },
+    "RECOGNITION_OPERATING_POINT": {
+      "commit": "41c1f724",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RECOGNITION_OPERATING_POINT.json",
+      "sha256": "e2a216299804ba16b6dec4d1b0f09e60babbae2be6a6e59135629b1c5d3a3011"
+    },
+    "SHAPE_TAXONOMY_BUILD1": {
+      "commit": "e269779b",
+      "label_csv_sha256": "3e99b58929e05e71c1190f432671bbfc718e48019f1bc246ee7c426955d5c330",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+      "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+      "signature_method_verbatim": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)"
+    },
+    "V52p_ROLE_DOWN_DEPTH_AGGREGATE": {
+      "commit": "020b775c",
+      "path": ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817/ROLE_DOWN_DEPTH_AGGREGATE.json",
+      "sha256": "acc0f06361e7c0cfbcce733db2dd6c93215f2fe918788046c6dd873849de029b"
+    },
+    "numerical_null_rules": {
+      "called_family": "exact family/category depth_below_open_c.med and floor_pos.med, never ALL fallback",
+      "level": "post-formation open minus median depth (negative depths preserved, not clipped)",
+      "minutes_to_bell": "(1 - median floor position) * verified span minutes; no gate clipping",
+      "missing_category": "STORE_SILENT; no cross-category or ALL borrowing",
+      "negative_depth_row_count": 15,
+      "numerical_scope": "floor point/timing only; no fabricated full path or prediction band",
+      "role_only_climber": "zero depth as requested; no early-position scalar is stated in either cited file",
+      "role_only_faller": "the filed V52p category down-depth aggregate, full precision",
+      "role_only_timing": "STORE_SILENT: qualitative early/late is not a numeric role-only timing predictor"
+    },
+    "taxonomy_bench_choices": {
+      "causal_family_adaptation": "At a receipt only, normalize formation through the current gate into 17 samples; do not use or forward-fill into the unknown remainder. Realized labels use formation through bell.",
+      "direction": "early/late shares are signed relative to net; reversals omit zero steps",
+      "flat_after": "abs(net after first quarter) <= 2 cents; operator-authorized bench choice, not taxonomy law",
+      "quiet_wobble_prose_caveat": "The inherited travel split does not mathematically guarantee the prose 5-cent band. quiet_wobble_prose_band_exception is exposed; no new cutoff is introduced.",
+      "rule_order": [
+        "SLEEPER",
+        "ROUND_TRIP_OR_QUIET_WOBBLE",
+        "LATE_BREAK",
+        "EARLY_SET",
+        "ONE_STEP",
+        "GRIND_WOBBLE",
+        "DRIFT"
+      ],
+      "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
+      "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
+    },
+    "trendpath_build.py": {
+      "commit": "66b50db3",
+      "path": "arb-executor/analysis/trendpath_build.py",
+      "sha256": "626edf547e4aa7e327928e695e2f4ecfd40cd59fadf2e8e8384bb351d8f1dd17"
+    }
+  },
+  "rules": {
+    "BASE": "all category+discovery-oriented eligible members weight 1; same role gate",
+    "FIRST_TICK_ONLY": "w0 unchanged",
+    "HARD": "drop if contemporaneous mean seven-price distance exceeds weighted median among available surviving members; ties stay; w0 times prior gate-volume factors",
+    "SOFT": "seven-price tick likelihood product times separate gate-volume factor",
+    "STEP_FORECAST": "at next gate multiply seven-price move-error likelihood and separate log-volume likelihood; VALIDITY uses frozen pre-update forecast weights and both lasts within 1 cent",
+    "role": "last - postformation_open >=2 CLIMBER, <=-2 FALLER; otherwise NOT_CALLABLE and bypass role filter"
+  },
+  "same_player_reporting": "Exact stored leg_id token shared with query (normally three characters). Non-three-character IDs are counted in census, never truncated, padded, or suffix-stripped. This is a token match, not independently verified player identity. Count positive-weight members and weight share, before and after each side's role filter. Reporting only; no weight/membership change. TAXONOMY-NULL has no query-member pool.",
+  "score_denominators": {
+    "conditional_utility": "Existing pair_reach metrics retain their conditional-on-pair-call means and n.",
+    "eligible_utility": "eligible_query_utility adds mean * called n / scorable_queries for pair reach and discount. A NO-CALL issues no bid and contributes zero reach/discount; it stays distinct from NOT_POSTABLE.",
+    "errors": "Path/floor errors and family accuracy use their own called-side or called-pair denominators; NO-CALL is not a zero prediction error.",
+    "point_null": "TAXONOMY-NULL has no evaluated bid/reach model, so its utility stays undefined rather than zero."
+  },
+  "script_sha256": "f88b86e105773af9f6729887b2e99408dd7a17b9031ff00f1b3b06886f3f5a32",
+  "selected_query_limit": null,
+  "series": [
+    "fav_last",
+    "fav_bid",
+    "fav_ask",
+    "dog_last",
+    "dog_bid",
+    "dog_ask",
+    "mirror_gap",
+    "volume_cum_delta"
+  ],
+  "source_receipt": {
+    "path": "arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_RECEIPT.json",
+    "sha256": "533c3271d8734caa6f1ccd7dc36563a6726a4c540060d3a1b33cfa011596a282"
+  },
+  "tick_run_changes": [
+    "Exact tick-library print totals and independent accepted-print-second sidecar for causal gate counts",
+    "Native library timestamps and second-close named custody paths; no library-grid expansion",
+    "Separate ITF_M/ITF_W pools and event-name same-day exclusion",
+    "Exact stored player-token count/weight-share reporting; no membership exclusion",
+    "Category output assembly and receipt/reporting plumbing only; inherited numeric scoring rules unchanged"
+  ],
+  "units": {
+    "application": "SOFT and STEP weights multiply distinct k_price and k_volume factors; HARD price gate is its inherited binary median-distance selector; no engine similarity weight/scale is copied into either formula",
+    "engine_transform": {
+      "declaration": "SIMILARITY_DECLARATION",
+      "field": "volume_log1p",
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "sha256": "976ed9d788327fdefec2fb93bd92e974377368face8a513d660261a792bd2399"
+    },
+    "k_price_soft": "1/(1+mean absolute seven-price level difference), multiplied in tick order",
+    "k_price_step": "1/(1+sum absolute errors of seven-price gate-to-next-gate moves)",
+    "k_volume": "1/(1+abs(log1p(delta_volume_member)-log1p(delta_volume_query)))",
+    "price": "cents; seven-series price likelihood only",
+    "volume": "log1p(pair contracts accumulated over gate)"
+  },
+  "volume_mode": "separate-log1p",
+  "w0": "1/(1+abs(delta_fav_first)+abs(delta_dog_first)) * 1/(1+abs(delta_mtb_first)/query.mtb_first)",
+  "walk_forward": "member.bell_epoch < query.formation_end_epoch; leave-self-out; exclude same event_date; category separate; no distance/count cutoff. Fixed retrospective taxonomy-scale/null calibration is disclosed separately, not claimed walk-forward."
+}

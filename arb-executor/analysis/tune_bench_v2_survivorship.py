@@ -11,6 +11,7 @@ import csv
 import gzip
 import hashlib
 import io
+import itertools
 import json
 import math
 import os
@@ -30,7 +31,7 @@ from tune_bench_floor_calls import (sha256_file, stable_json, distribution,
 
 GATES = (2880, 2160, 1440, 1080, 720, 480, 360, 240, 180, 120, 90, 60, 30, 15, 5)
 QUANTILES = (.10, .25, .50, .75, .90)
-CATEGORIES = ("ATP_MAIN", "ATP_CHALL", "WTA_MAIN", "WTA_CHALL")
+CATEGORIES = ("ATP_MAIN", "ATP_CHALL", "WTA_MAIN", "WTA_CHALL", "ITF_M", "ITF_W")
 RULES = ("SOFT", "HARD", "STEP-FORECAST", "FIRST-TICK-ONLY", "BASE", "TAXONOMY-NULL")
 SERIES = ("fav_last", "fav_bid", "fav_ask", "dog_last", "dog_bid", "dog_ask",
           "mirror_gap", "volume_cum_delta")
@@ -120,7 +121,8 @@ def taxonomy_print_count(leg, stop_epoch=None):
         count_epoch, cumulative = np.asarray(count_epoch), np.asarray(cumulative)
         if len(count_epoch) != len(cumulative):
             raise ValueError("TAXONOMY_PRINT_COUNT_COORDINATE_LENGTH_MISMATCH")
-        valid = (count_epoch >= leg.formation) & (count_epoch < leg.bell) & (count_epoch <= stop)
+        lower = math.floor(leg.formation) if getattr(leg, "count_second_grid", False) else leg.formation
+        valid = (count_epoch >= lower) & (count_epoch < leg.bell) & (count_epoch <= stop)
         indices = np.flatnonzero(valid)
         return float(cumulative[indices[-1]]) if len(indices) else 0.0
     # Named inputs bind exchange print ids, while minute paths cannot use len().
@@ -138,9 +140,11 @@ def taxonomy_signature(leg, stop_epoch=None):
         return None
     grid = np.linspace(leg.formation, stop, 17)
     trade_epoch = np.asarray(leg.trade_epoch, dtype=float)
+    if getattr(leg, "second_close", False):
+        trade_epoch = leg.epoch[leg.epoch >= leg.first_observation_epoch]
     valid = (trade_epoch >= leg.formation) & (trade_epoch < leg.bell) & (trade_epoch <= stop)
     epochs = trade_epoch[valid]
-    prices = getattr(leg, "trade_price", None)
+    prices = None if getattr(leg, "second_close", False) else getattr(leg, "trade_price", None)
     if prices is not None:
         prices = np.asarray(prices, dtype=float)[valid]
     else:
@@ -371,7 +375,7 @@ class Pair:
             for leg in self.legs))
 
 
-def load_named_inputs(root, labels, tape_dir, prints_path):
+def load_named_inputs(root, labels, tape_dir, prints_path, second_close=False):
     """Join real exchange trades with recorder books; snapshots never invent trades.
 
     Named truth coordinates/open anchors come from the filed ground-truth table.
@@ -492,31 +496,34 @@ def load_named_inputs(root, labels, tape_dir, prints_path):
             continue
         trade_at = defaultdict(list)
         for trade in trades:
-            trade_at[trade[0]].append(trade)
+            trade_at[math.floor(trade[0]) if second_close else trade[0]].append(trade)
         book_epochs = sorted(books)
         prior_book_index = int(np.searchsorted(book_epochs, formation, side="left")) - 1
         bid, ask = books[book_epochs[prior_book_index]] if prior_book_index >= 0 else (np.nan, np.nan)
         last = before_trades[-1][2] if before_trades else np.nan
-        volume, count, low = 0.0, 0, np.nan
-        epochs = sorted({formation} | {epoch for epoch in books if epoch >= formation} | set(trade_at))
+        volume, count, low, high = 0.0, 0, np.nan, np.nan
+        epochs = sorted((set() if second_close else {formation}) | {epoch for epoch in books if epoch >= formation} | set(trade_at))
         emitted_epochs, states, volumes, counts, lows = [], [], [], [], []
         previous_state = None
         for epoch in epochs:
             if epoch in books:
                 bid, ask = books[epoch]
-            for _, _, price, size in trade_at.get(epoch, ()):
+            bucket = trade_at.get(epoch, ())
+            ordered_trades = sorted(bucket, key=lambda row: row[1]) if second_close else bucket
+            for _, _, price, size in ordered_trades:
                 last = price
                 volume += size
                 count += 1
                 low = price if not math.isfinite(low) else min(low, price)
-            state = (last, bid, ask, volume, count, low)
+                high = price if not math.isfinite(high) else max(high, price)
+            state = (last, bid, ask, volume, low, high) if second_close else (last, bid, ask, volume, count, low)
             equal = previous_state is not None and all(
                 left == right or (isinstance(left, float) and isinstance(right, float)
                                   and math.isnan(left) and math.isnan(right))
                 for left, right in zip(state, previous_state))
             if equal:
                 continue
-            emitted_epochs.append(epoch)
+            emitted_epochs.append(max([epoch]+[row[0] for row in bucket]) if second_close else epoch)
             states.append((last, bid, ask))
             volumes.append(volume)
             counts.append(count)
@@ -529,6 +536,14 @@ def load_named_inputs(root, labels, tape_dir, prints_path):
                         labels.get((event.split("-")[-1], leg_id)), onset,
                         np.asarray(counts, dtype=np.int64), opened,
                         np.asarray([trade[2] for trade in trades], dtype=float))
+        if second_close:
+            group_leg.count_epoch = np.asarray(sorted(trade_at), dtype=float)
+            group_leg.print_count_cum = np.cumsum([len(trade_at[t]) for t in group_leg.count_epoch], dtype=np.int64)
+            group_leg.count_second_grid = True
+            group_leg.second_close = True
+            group_leg.first_observation_epoch = group_leg.epoch[np.flatnonzero(np.asarray(counts) > 0)[0]]
+            if not len(counts) or counts[-1] != len(trades):
+                raise RuntimeError("NAMED_FINAL_COUNT_NOT_ON_CHANGE_POINT:" + ticker)
         grouped[event].append(group_leg)
         per_leg[ticker] = dict(formation_end_epoch=formation, bell_epoch=bell,
                                verified_span_end_epoch=specs[event].get("span_end_epoch"),
@@ -544,7 +559,8 @@ def load_named_inputs(root, labels, tape_dir, prints_path):
         if len(legs) != 2:
             census["named_pair_no_first_true_trade"] += 1
             continue
-        first_epoch = max(leg.trade_epoch[0] for leg in legs)
+        first_epoch = max(leg.first_observation_epoch if second_close
+                          else leg.trade_epoch[0] for leg in legs)
         first_prices = [leg.sample([first_epoch])[0, 0] for leg in legs]
         if not all(math.isfinite(price) for price in first_prices):
             raise RuntimeError(f"NAMED_FIRST_TRADE_PRICE_MISSING {event}")
@@ -553,10 +569,11 @@ def load_named_inputs(root, labels, tape_dir, prints_path):
             continue
         legs = tuple(sorted(legs, key=lambda leg: -leg.sample([first_epoch])[0, 0]))
         pairs.append(Pair(event, spec["category"], date_key(event), legs,
-                          first_epoch, "NATIVE_TRUE_PRINT_AND_BOOK"))
+                          first_epoch, "SECOND_LAST_STATE_WITH_TRUE_PRINT_EXTREMA" if second_close else "NATIVE_TRUE_PRINT_AND_BOOK"))
         census["named_oriented_pairs"] += 1
     return pairs, dict(sources=sources, census=dict(sorted(census.items())), per_leg=per_leg,
                        rules={
+                           "second_close": ("Group by floor(exchange_ts)/floor(book ts); within each stream use original source row order (custody files have no SQLite rowid), closing last/book; true-print min/max and size sum use all accepted prints in the second; stamp at greatest contributing native ts; no synthetic formation row" if second_close else None),
                            "first_tick": "Exact instant both sides have a true trade since formation; first=minimal causal state with both traded, not simultaneous-minute trades.",
                            "true_trade": "true_print=true; exchange_ts, price_cents, size; identical trade_id rows deduplicated, conflicting identities fail; ties keep source order.",
                            "book": "Native recorder ts_et in America/New_York; bid_1/ask_1 only. Snapshot last_trade is never used.",
@@ -618,6 +635,106 @@ def load_library(path, labels):
         pairs.append(Pair(event, cat, date, legs, first, rows[0].get("grain", "MINUTE")))
         census[f"{cat}:oriented_pairs"] += 1
     return pairs, dict(sorted(census.items()))
+
+
+def load_tick_library(path, labels, count_path):
+    """One leg at a time: native path + hash-bound exact-count sidecar only."""
+    count_receipt_path = count_path.with_name("RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS_RECEIPT.json")
+    count_receipt = json.loads(count_receipt_path.read_text(encoding="utf-8"))
+    if count_receipt["library"]["sha256"] != sha256_file(path):
+        raise ValueError("SIDECAR_LIBRARY_HASH_MISMATCH")
+    if count_receipt["output"]["sha256"] != sha256_file(count_path):
+        raise ValueError("SIDECAR_HASH_MISMATCH")
+    grouped, metadata = defaultdict(list), {}
+    census = Counter()
+    with gzip.open(path, "rt", encoding="utf-8") as stream, gzip.open(count_path, "rt", encoding="utf-8") as counts:
+        count_groups = iter(itertools.groupby((json.loads(line) for line in counts), key=lambda row: row["ticker"]))
+        for line in stream:
+            row = json.loads(line)
+            if row["grain"] != "TICK":
+                raise ValueError("MIXED_GRAIN_REFUSED")
+            event = row["event_id"]
+            if len(row["leg_id"]) != 3:
+                census[row["category"]+":non_three_character_leg_id"] += 1
+            day = date_key(event)
+            if "2026-07-11" <= day <= "2026-07-21":
+                raise ValueError("EXAM_EVENT_IN_TICK_LIBRARY:" + event)
+            if row["event_date"] != day:
+                raise ValueError("EVENT_NAME_DATE_MISMATCH:" + event)
+            points = row["path"]
+            cumulative, count_seconds = [], []
+            ticker, count_rows = next(count_groups)
+            if ticker != row["ticker"]:
+                raise ValueError("SIDECAR_LEG_MISMATCH:" + row["ticker"])
+            for count in count_rows:
+                second = count["second"]
+                if set(count) != {"ticker", "second", "true_print_count_cum"}:
+                    raise ValueError("SIDECAR_SCHEMA_MISMATCH")
+                if not isinstance(second, int) or (count_seconds and second <= count_seconds[-1]):
+                    raise ValueError("SIDECAR_SECONDS_INVALID:" + ticker)
+                if not math.floor(row["formation_end_epoch"]) <= second < row["bell_epoch"]:
+                    raise ValueError("SIDECAR_SECONDS_OUTSIDE_SPAN:" + ticker)
+                value = count["true_print_count_cum"]
+                if isinstance(value, bool) or not isinstance(value, int) or value <= (cumulative[-1] if cumulative else 0):
+                    raise ValueError("SIDECAR_COUNT_INVALID:" + row["ticker"])
+                cumulative.append(value)
+                count_seconds.append(second)
+            if not cumulative or cumulative[-1] != row["true_print_count_in_span"]:
+                raise ValueError("LIBRARY_TOTAL_COUNT_MISMATCH:" + row["ticker"])
+            ep = np.asarray([p["ts"] for p in points], dtype=float)
+            cumulative = np.asarray(cumulative, dtype=np.int64)
+            count_seconds = np.asarray(count_seconds, dtype=float)
+            leg = Leg(row["leg_id"], float(row["anchor_cents"]), float(row["formation_end_epoch"]),
+                float(row["bell_epoch"]), ep,
+                np.asarray([[p[k] for k in ("last_cents", "bid_cents", "ask_cents")] for p in points], dtype=float),
+                np.asarray([p["volume_cum"] for p in points], dtype=float), count_seconds,
+                np.asarray([p["seen_true_trade_low_cents"] for p in points], dtype=float),
+                labels.get((event.split("-")[-1], row["leg_id"])), row.get("onset_epoch"),
+                postformation_open=float(row.get("postformation_open_cents", row["anchor_cents"])),
+                count_epoch=count_seconds, print_count_cum=cumulative)
+            leg.second_close = True
+            leg.count_second_grid = True
+            available = np.flatnonzero(np.floor(ep) >= count_seconds[0])
+            if not len(available):
+                raise ValueError("NO_NATIVE_STATE_AFTER_FIRST_PRINT:" + ticker)
+            leg.first_observation_epoch = ep[available[0]]
+            grouped[event].append(leg)
+            meta = (row["category"], day)
+            if event in metadata and metadata[event] != meta:
+                raise ValueError("PAIR_METADATA_MISMATCH:" + event)
+            metadata[event] = meta
+        if next(count_groups, None) is not None:
+            raise ValueError("SIDECAR_EXTRA_ROW")
+    pairs, totals = [], defaultdict(list)
+    for event, legs in sorted(grouped.items()):
+        category, day = metadata[event]
+        census[category+":pair_events"] += 1
+        reason = ("not_two_legs" if len(legs) != 2 else
+                  "different_leg_bells_no_common_clock" if legs[0].bell != legs[1].bell else
+                  "no_first_true_trade" if any(not len(leg.trade_epoch) for leg in legs) else None)
+        if reason:
+            census[category+":"+reason] += 1
+            continue
+        first = max(leg.first_observation_epoch for leg in legs)
+        prices = [leg.sample([first])[0, 0] for leg in legs]
+        if not all(np.isfinite(prices)) or prices[0] == prices[1]:
+            census[category+(":first_tick_tie_STORE_SILENT" if prices[0] == prices[1] else ":no_first_true_trade")] += 1
+            continue
+        legs = tuple(sorted(legs, key=lambda leg: -leg.sample([first])[0, 0]))
+        pairs.append(Pair(event, category, day, legs, first, "TICK"))
+        totals[category].extend(taxonomy_print_count(leg) for leg in legs)
+        census[category+":oriented_pairs"] += 1
+    thresholds = {category: inverse_weighted_quantile(np.asarray(values), np.ones(len(values)), .10)
+                  for category, values in totals.items()}
+    provenance = dict(source="true_print_count_in_span from tick-library rows; exact gate-prefix counts from cutter-bound sidecar",
+        sidecar_path=str(count_path), sidecar_sha256=count_receipt["output"]["sha256"],
+        sidecar_receipt_sha256=sha256_file(count_receipt_path), checks=count_receipt["counts"],
+        sleeper_p10_by_category=thresholds,
+        category_print_count_distributions={c: distribution(v) for c, v in sorted(totals.items())},
+        calibration_scope="All oriented library legs in category, no named games. Retrospective data-set scale, not per-query walk-forward calibration.",
+        gate_join="Latest sidecar second <= gate epoch; zero before the first print second. Independent accepted-print-second count grid; library price/change-point grid unchanged. Second bucket labels are floor(native ts), not subsecond arrival times.",
+        volume_is_not_print_count=True)
+    return pairs, dict(sorted(census.items())), thresholds, provenance
 
 
 def attach_print_counts(pairs, cache_path, library_path):
@@ -874,10 +991,37 @@ def forecast_context(query, members, gate):
                 member_current=member_current, roles=roles, masks=masks)
 
 
+def same_player_pool(query, members, weights):
+    """Exact stored leg tokens are a reporting match, never an exclusion."""
+    tokens = {leg.leg_id for leg in query.legs}
+    mask = np.asarray([bool(tokens.intersection(leg.leg_id for leg in member.legs))
+                       for member in members], dtype=bool)
+    active = np.asarray(weights) > 0
+    total = float(np.sum(weights))
+    return dict(member_count=int(np.count_nonzero(mask & active)),
+                weight_share=float(np.sum(np.asarray(weights)[mask])/total) if total > 0 else None)
+
+
+def print_close_epochs(leg):
+    """Read second-close prices at their stored timestamps, never before close."""
+    if not getattr(leg, "second_close", False):
+        return leg.trade_epoch
+    seconds = np.asarray(leg.count_epoch)
+    indices = np.searchsorted(np.floor(leg.epoch), seconds, side="left")
+    times = seconds.copy()
+    present = indices < len(leg.epoch)
+    present[present] &= np.floor(leg.epoch[indices[present]]) == seconds[present]
+    times[present] = leg.epoch[indices[present]]
+    # A count-only second has no price change, so its forward-filled last is
+    # already known. No price observation is added to the library grid.
+    return times
+
+
 def forecast(query, members, weights, gate, families, include_paths=False, context=None):
     effective = ess(weights) or 0
     result = dict(ess=effective, member_count=int(np.count_nonzero(weights)),
                   weight_sum=float(weights.sum()), sides={}, shared={})
+    result["same_player"] = same_player_pool(query, members, weights)
     context = context or forecast_context(query, members, gate)
     grid = context["grid"]
     if not len(grid):
@@ -898,6 +1042,7 @@ def forecast(query, members, weights, gate, families, include_paths=False, conte
                            role=roles[i], role_filter_bypassed=roles[i] == "NOT_CALLABLE",
                            family=family_distribution([m.legs[i].family for m in members], sw, families),
                            realized_family=query.legs[i].family)
+        side_result["same_player"] = same_player_pool(query, members, sw)
         result["sides"][side] = side_result
         if side_ess < 10:
             side_result["status"] = "NO-CALL: ESS < 10"
@@ -937,7 +1082,8 @@ def forecast(query, members, weights, gate, families, include_paths=False, conte
             leg = query.legs[i]
             after = leg.epoch > query.bell - gate*60
             reached = postable and bool(np.any(leg.low[after] <= px))
-            true_after = leg.trade_epoch[leg.trade_epoch > query.bell - gate*60]
+            true_epochs = print_close_epochs(leg)
+            true_after = true_epochs[true_epochs > query.bell - gate*60]
             print_reach = postable and bool(np.any(leg.sample(true_after)[:, 0] <= px))
             side_result["reach"][q] = dict(postable=postable, reached=bool(reached),
                                           future_print_reached=bool(print_reach),
@@ -955,6 +1101,7 @@ def forecast(query, members, weights, gate, families, include_paths=False, conte
         result["pair_family"].update(status="NO-CALL: pair-family ESS < 10", top=None)
     result["realized_pair_family"] = query.legs[0].family+"|"+query.legs[1].family
     result["shared"]["ess"] = ess(pw) or 0
+    result["shared"]["same_player"] = same_player_pool(query, members, pw)
     if (ess(pw) or 0) >= 10:
         active = pw > 0
         shared_quantiles = quantile_cube(remainder_values(active, slice(6, None)), pw[active])
@@ -1043,11 +1190,13 @@ def simulate(query, pairs, families, volume_mode="separate-log1p", include_paths
         favorite=query.legs[0].leg_id, underdog=query.legs[1].leg_id,
         discovery_sides=["LEADER" if x >= 50 else "UNDERDOG" for x in query.first[[0, 3]]]),
         initial_count=len(members), initial_ess=ess(w0) or 0, gates={})
+    output["initial_same_player"] = same_player_pool(query, members, w0)
     if not members:
         for gate in GATES:
             output["gates"][str(gate)] = dict(status="SCORABLE" if query.scorable(gate) else "EXCLUDED: no true trade before and after on both sides",
                 recognition=first_bind(query, gate),
-                rules={rule: dict(status="NO-CALL: no walk-forward members", ess=0) for rule in RULES})
+                rules={rule: dict(status="NO-CALL: no walk-forward members", ess=0,
+                    same_player=same_player_pool(query, members, w0)) for rule in RULES})
             if model and query.scorable(gate):
                 output["gates"][str(gate)]["rules"]["TAXONOMY-NULL"] = null_forecast(query, gate, model)
         return clean(output)
@@ -1133,7 +1282,8 @@ def simulate(query, pairs, families, volume_mode="separate-log1p", include_paths
                 continue
             w = weights[rule]
             if gate_result["status"] != "SCORABLE":
-                gate_result["rules"][rule] = dict(status=gate_result["status"], ess=ess(w) or 0)
+                gate_result["rules"][rule] = dict(status=gate_result["status"], ess=ess(w) or 0,
+                    same_player=same_player_pool(query, members, w))
                 continue
             pred = forecast(query, members, w, gate, families, include_paths, context)
             pred["weight_normalization"] = dict(
@@ -1268,7 +1418,7 @@ def summarize(scoreboard):
         return "—" if x is None else f"{x:.3f}"
     def get(cell, key, stat="mean"):
         return cell.get("metrics", {}).get(key, {}).get(stat)
-    out = ["# " + scoreboard["label"], "", "No selection, no trading ruling. Minute-book reach is diagnostic only.", "",
+    out = ["# " + scoreboard["label"], "", "No engine change or automatic rule selection. Book reach is diagnostic only, not execution proof.", "",
            "Error means are conditional on called sides. Utility shows both called-pair and all-eligible-query denominators; NO-CALL contributes zero only to reach/discount utility. These are not matched-cohort comparisons.", ""]
     for category, section in scoreboard["categories"].items():
         out += [f"## {category}", ""]
@@ -1298,6 +1448,21 @@ def summarize(scoreboard):
             row = section["gates"].get(str(gate), {})
             base = row.get("rules", {}).get("BASE", {})
             out.append(f"| {gate} | {row.get('scorable_queries', 0)} | {number(section['initial_ess']['q50'])} | {base.get('statuses', {}).get('OK', 0)} |")
+        out.append("")
+        out += ["### Same-player members — mean count / mean weight share (reporting only)", "",
+                "| Gate | " + " | ".join(RULES) + " |", "|---:|" + "---|"*len(RULES)]
+        for gate in GATES:
+            rows = [audit["gates"].get(str(gate), {}) for event, audit in scoreboard["query_set_audit"].items()
+                    if event in section["query_event_ids"]]
+            values = []
+            for rule in RULES:
+                pools = [row.get(rule, {}).get("same_player") for row in rows]
+                pools = [pool for pool in pools if pool is not None]
+                counts = [pool["member_count"] for pool in pools]
+                shares = [pool["weight_share"] for pool in pools if pool["weight_share"] is not None]
+                values.append(number(float(np.mean(counts)) if counts else None) + " / " +
+                              number(float(np.mean(shares)) if shares else None))
+            out.append("| " + str(gate) + " | " + " | ".join(values) + " |")
         out.append("")
         out += ["### Per-side call denominators — favorite / underdog", "",
                 "| Gate | Eligible pairs | " + " | ".join(RULES) + " |",
@@ -1330,8 +1495,11 @@ def worker_query(event_id):
 def build_outputs(args):
     root = Path(__file__).resolve().parents[2]
     prior_art, labels, families = bind_prior_art(root)
-    pairs, census = load_library(args.library, labels)
-    thresholds, count_receipt = attach_print_counts(pairs, args.print_count_cache, args.library)
+    if args.tick_counts:
+        pairs, census, thresholds, count_receipt = load_tick_library(args.library, labels, args.tick_counts)
+    else:
+        pairs, census = load_library(args.library, labels)
+        thresholds, count_receipt = attach_print_counts(pairs, args.print_count_cache, args.library)
     family_census = label_pairs(pairs, thresholds)
     model = bind_numerical_null(root, prior_art)
     started = time.monotonic()
@@ -1351,7 +1519,13 @@ def build_outputs(args):
         "ORDER4 reach uses the running low after placement, which can retain a past dip. A separate future_print_reached flag exposes that; neither minute path metric certifies a maker fill.",
         "No full-worktree OS, builder, shape-organ or face edits are made; this tool reads only explicit library and named-check inputs.",
     ]
-    output = dict(label=LABEL if args.proof else "BELL-CLOCK SURVIVORSHIP BENCH — NOT A TRADING RULING",
+    if args.tick_counts:
+        limitations[0] = "RULING RUN — tick library only, effective April 18 through July 10 event-name dates; UTC bell can be July 11. No June minute-library members. Candidate pool comparison only; no engine edit."
+        limitations[3] = "Fixed July family/depth medians are the requested retrospective null and include named games; not an out-of-sample fitted baseline. Gate-family calls use causal prefixes only. ITF categories have no filed numerical-null rows: STORE_SILENT, no ALL borrowing."
+        limitations[4] = "SLEEPER category p10 uses true_print_count_in_span from tick-library rows, checked against the exact per-second sidecar. Gate counts use that sidecar; never volume or change-point counts. Canonical onsets absent from the library stay STORE_SILENT."
+        limitations[12] = "ORDER4 reach still uses the running low after placement (possibly retaining a past dip). The separate future_print_reached diagnostic uses second-close last prices; same-second non-closing prints can be omitted. Neither metric certifies a maker fill; the tick-library receipt licenses MACRO/MICRO, not execution proof."
+        limitations.append("Named custody files have no SQLite rowid or consolidated cross-source join: deterministic within-second source row order substitutes only for ordering, with trade_id dedupe unchanged. Native exchange true prints and recorded books, no minute closes; second extrema retained.")
+    output = dict(label=LABEL if args.proof else "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD" if args.tick_counts else "BELL-CLOCK SURVIVORSHIP BENCH — NOT A TRADING RULING",
                   categories={}, limitations=limitations, prior_art=prior_art)
     query_audit = {}
     for category in args.categories:
@@ -1371,10 +1545,13 @@ def build_outputs(args):
             results = (simulate(q, pairs, families, args.volume_mode, model=model) for q in queries)
         for j, (query, result) in enumerate(zip(queries, results)):
             initials.append(result["initial_ess"])
-            audit = dict(initial_count=result["initial_count"], initial_ess=result["initial_ess"], gates={})
+            audit = dict(initial_count=result["initial_count"], initial_ess=result["initial_ess"],
+                         initial_same_player=result["initial_same_player"], gates={})
             for gate, row in result["gates"].items():
                 status[gate][row["status"]] += 1
                 audit["gates"][gate] = {rule: dict(status=pred["status"], ess=pred.get("ess"),
+                    same_player=pred.get("same_player"),
+                    side_same_player={s: p.get("same_player") for s, p in pred.get("sides", {}).items()},
                     side_ess={s: p.get("ess") for s, p in pred.get("sides", {}).items()}) for rule, pred in row.get("rules", {}).items()}
                 audit["gates"][gate]["likelihood_factors"] = row.get("likelihood_factors")
                 if row["status"] == "SCORABLE":
@@ -1387,7 +1564,8 @@ def build_outputs(args):
                 print(f"{category} {j+1}/{len(queries)} queries; {time.monotonic()-started:.1f}s", flush=True)
         if executor:
             executor.shutdown(wait=True)
-        category_output = dict(query_count=len(queries), initial_ess=distribution(initials), gates={})
+        category_output = dict(query_count=len(queries), query_event_ids=[q.event_id for q in queries],
+                               initial_ess=distribution(initials), gates={})
         for gate in GATES:
             key = str(gate)
             scorable = status[key].get("SCORABLE", 0)
@@ -1400,13 +1578,20 @@ def build_outputs(args):
         output["categories"][category] = category_output
     named = dict(label=output["label"], prior_art=prior_art, events={}, input_receipt={})
     if not args.skip_named:
-        named_pairs, provenance = load_named_inputs(root, labels, args.tape_dir, args.prints)
+        named_pairs, provenance = load_named_inputs(root, labels, args.tape_dir, args.prints, second_close=bool(args.tick_counts))
         label_pairs(named_pairs, thresholds)
         named["input_receipt"] = provenance
         for q in named_pairs:
             print(f"named {q.event_id}", flush=True)
             named["events"][q.event_id.split("-")[-1]] = simulate(q, pairs, families, args.volume_mode, args.named_paths, model)
     receipt = dict(label=output["label"], prior_art=prior_art,
+        base_bench=dict(commit="00432041", path="arb-executor/analysis/tune_bench_v2_survivorship.py",
+                        sha256=hashlib.sha256(pinned(root, "00432041", "arb-executor/analysis/tune_bench_v2_survivorship.py")).hexdigest()),
+        tick_run_changes=(["Exact tick-library print totals and independent accepted-print-second sidecar for causal gate counts",
+                           "Native library timestamps and second-close named custody paths; no library-grid expansion",
+                           "Separate ITF_M/ITF_W pools and event-name same-day exclusion",
+                           "Exact stored player-token count/weight-share reporting; no membership exclusion",
+                           "Category output assembly and receipt/reporting plumbing only; inherited numeric scoring rules unchanged"] if args.tick_counts else []),
         input_library=dict(path=str(args.library), bytes=args.library.stat().st_size, sha256=sha256_file(args.library)),
         source_receipt=dict(path=str(args.library_receipt), sha256=sha256_file(args.library_receipt)),
         script_sha256=sha256_file(Path(__file__)),
@@ -1415,8 +1600,9 @@ def build_outputs(args):
         gates_minutes_to_bell=GATES, series=SERIES, categories=args.categories,
         selected_query_limit=args.limit_queries, volume_mode=args.volume_mode,
         census=census, family_census=family_census, exact_print_counts=count_receipt,
+        same_player_reporting="Exact stored leg_id token shared with query (normally three characters). Non-three-character IDs are counted in census, never truncated, padded, or suffix-stripped. This is a token match, not independently verified player identity. Count positive-weight members and weight share, before and after each side's role filter. Reporting only; no weight/membership change. TAXONOMY-NULL has no query-member pool.",
         walk_forward="member.bell_epoch < query.formation_end_epoch; leave-self-out; exclude same event_date; category separate; no distance/count cutoff. Fixed retrospective taxonomy-scale/null calibration is disclosed separately, not claimed walk-forward.",
-        clock="Reconstruct each leg's epoch from its own formation/bell fraction, align both by their common bell; reject discordant bells. Sample largest member epoch <= bell - minutes_to_bell*60.",
+        clock=("Exact library path.ts (native last state per second, true-print min/max within second); own pair union of native change points, no minute resampling. Event-name date on both sides. Sample largest member epoch <= bell - minutes_to_bell*60." if args.tick_counts else "Reconstruct each leg's epoch from its own formation/bell fraction, align both by their common bell; reject discordant bells. Sample largest member epoch <= bell - minutes_to_bell*60."),
         units=dict(price="cents; seven-series price likelihood only", volume="log1p(pair contracts accumulated over gate)",
             engine_transform=dict(field="volume_log1p", declaration="SIMILARITY_DECLARATION",
                 path="arb-executor/analysis/window1_v54_functionable_os.js", sha256=sha256_file(root/"arb-executor/analysis/window1_v54_functionable_os.js")),
@@ -1453,6 +1639,7 @@ def build_outputs(args):
 
 
 def self_test():
+    import tempfile
     values = np.array([[[0, 12.5]], [[2, 80000]], [[1, 4.0]]])
     w = np.array([1., 2., 1.])
     for q, vals in quantile_cube(values, w).items():
@@ -1634,7 +1821,95 @@ def self_test():
     assert utility_rows["HARD"]["eligible_query_utility"]["q50"]["discount_cents_per_eligible_query"] == 0
     assert utility_rows["HARD"]["eligible_query_utility"]["q50"]["discount_cents_per_called_pair"] is None
     assert utility_rows["TAXONOMY-NULL"]["eligible_query_utility"]["q50"] is None
-    print("SELF-TEST PASS: quantiles; exact counts; ESS/no-call family boundary; cached forecasts; separate price/volume factors; future-mutation causality; walk-forward exclusions; direct/1-worker/2-worker byte equality; eligible-query utility denominators", flush=True)
+    # Same-player reporting cannot author the pool or change its weights.
+    shared = same_player_pool(query, members[:2], np.array([1.0, 3.0]))
+    assert shared == dict(member_count=2, weight_share=1.0)
+    zero = same_player_pool(query, members[:2], np.zeros(2))
+    assert zero == dict(member_count=0, weight_share=None)
+    assert date_key("KXATPMATCH-26JUL01ABCDEF") == "2026-07-01"
+    # The library adapter uses exact ts, preserves second extrema, and joins
+    # counts rather than treating traded volume as the number of prints.
+    with tempfile.TemporaryDirectory(prefix="tick-bench-contract-") as directory:
+        folder = Path(directory)
+        library, sidecar = folder/"library.jsonl.gz", folder/"counts.jsonl.gz"
+        event = "KXATPMATCH-26JUN01ABCDEF"
+        source_rows, count_rows = [], []
+        for code, price in (("ABC", 60), ("DEF", 40)):
+            ticker = event+"-"+code
+            points = [dict(ts=100.9, window_fraction=.009, last_cents=price,
+                           bid_cents=price-1, ask_cents=price+1, volume_cum=8,
+                           seen_true_trade_low_cents=price-2, seen_true_trade_high_cents=price+2),
+                      dict(ts=150.7, window_fraction=.507, last_cents=price+1,
+                           bid_cents=price, ask_cents=price+2, volume_cum=20,
+                           seen_true_trade_low_cents=price-3, seen_true_trade_high_cents=price+3)]
+            source_rows.append(dict(event_id=event,event_date="2026-06-01",category="ATP_MAIN",
+                ticker=ticker,leg_id=code,grain="TICK",formation_end_epoch=100,bell_epoch=200,
+                anchor_cents=price,true_print_count_in_span=5,path=points))
+            for second, count in ((100,2),(125,3),(150,4),(175,5)):
+                count_rows.append(dict(ticker=ticker,second=second,true_print_count_cum=count))
+        for path, rows in ((library,source_rows),(sidecar,count_rows)):
+            with gzip.open(path,"wt",encoding="utf-8") as stream:
+                for row in rows:
+                    stream.write(json.dumps(row)+"\n")
+        receipt = dict(library=dict(sha256=sha256_file(library)),output=dict(sha256=sha256_file(sidecar)),
+                       counts=dict(legs_checked=2,rows_checked=8,final_count_matches=2))
+        stable_json(sidecar.with_name("RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS_RECEIPT.json"),receipt)
+        adapted, census, p10, bound = load_tick_library(library,{},sidecar)
+        assert len(adapted) == 1 and p10 == {"ATP_MAIN":5.0}
+        leg = adapted[0].legs[0]
+        assert taxonomy_print_count(leg,124.99) == 2
+        assert taxonomy_print_count(leg,125) == 3 and taxonomy_print_count(leg) == 5
+        assert taxonomy_print_count(leg,174.99) == 4
+        assert taxonomy_print_count(leg,175) == 5
+        assert list(leg.epoch) == [100.9,150.7]
+        assert list(print_close_epochs(leg)) == [100.9,125,150.7,175]
+        assert adapted[0].first_epoch == 100.9
+        assert list(leg.low) == [58,57]
+        assert adapted[0].date == "2026-06-01"
+        assert bound["volume_is_not_print_count"]
+    print("SELF-TEST PASS: quantiles; exact counts; ESS/no-call family boundary; cached forecasts; separate price/volume factors; future-mutation causality; walk-forward exclusions; direct/1-worker/2-worker byte equality; eligible-query utility denominators; native-tick sidecar contract; same-player reporting", flush=True)
+
+
+def merge_category_runs(args):
+    """Reporting only: collect completed category runs without rescoring."""
+    outputs, receipts, named = [], [], None
+    proof = {}
+    for category in CATEGORIES:
+        directory = args.out/category
+        paths = {kind: directory/f"TUNE_BENCH_{kind}.json" for kind in ("SCOREBOARD", "RECEIPT", "NAMED_CHECKS")}
+        output = json.loads(paths["SCOREBOARD"].read_text(encoding="utf-8"))
+        receipt = json.loads(paths["RECEIPT"].read_text(encoding="utf-8"))
+        if set(output["categories"]) != {category} or receipt["selected_query_limit"] is not None:
+            raise ValueError("INCOMPLETE_CATEGORY_RUN:" + category)
+        if receipts:
+            for field in ("input_library", "source_receipt", "script_sha256", "exact_print_counts"):
+                if receipt[field] != receipts[0][field]:
+                    raise ValueError("CATEGORY_PROVENANCE_MISMATCH:" + field)
+        outputs.append(output)
+        receipts.append(receipt)
+        proof[category] = {kind: sha256_file(path) for kind, path in paths.items()}
+        if category == "ATP_MAIN":
+            named = json.loads(paths["NAMED_CHECKS"].read_text(encoding="utf-8"))
+            if len(named["events"]) != 5:
+                raise ValueError("MISSING_NAMED_CHECKS")
+    merged = {**outputs[0], "categories": {}, "query_set_audit": {}}
+    for output in outputs:
+        merged["categories"].update(output["categories"])
+        merged["query_set_audit"].update(output["query_set_audit"])
+    receipt = {**receipts[0], "categories": list(CATEGORIES), "category_artifact_sha256s": proof,
+               "assembly": "Exact category table/query-audit union in ordered category runs; no rescoring or changed weights"}
+    paths = {}
+    for kind, data in (("SCOREBOARD", merged), ("RECEIPT", receipt), ("NAMED_CHECKS", named)):
+        path = args.out/f"TUNE_BENCH_{kind}.json"
+        if kind == "SCOREBOARD":
+            path.write_text(json.dumps(clean(data), sort_keys=True, separators=(",", ":"), allow_nan=False)+"\n", encoding="utf-8", newline="\n")
+        else:
+            stable_json(path, clean(data))
+        paths[kind] = path
+    path = args.out/"TUNE_BENCH_SUMMARY.md"
+    path.write_text(summarize(merged), encoding="utf-8", newline="\n")
+    paths["SUMMARY"] = path
+    return paths
 
 
 def main():
@@ -1647,6 +1922,7 @@ def main():
     parser.add_argument("--proof", action="store_true")
     parser.add_argument("--volume-mode", choices=("separate-log1p",), default="separate-log1p")
     parser.add_argument("--print-count-cache", type=Path, default=Path(r"C:\tmp\tune_bench_v2_print_counts.json.gz"))
+    parser.add_argument("--tick-counts", type=Path, help="Exact per-second sidecar for tick library; never combine with parquet/minute counts")
     parser.add_argument("--minute-parquet", type=Path, help="local parquet to regenerate exact-count cache; requires pyarrow")
     parser.add_argument("--workers", type=int, default=1, help="execution parallelism only; aggregation remains event-id ordered")
     parser.add_argument("--tape-dir", type=Path, default=Path(r"C:\Users\omigr\OMI-Window1-private\fit-local\ticks"))
@@ -1656,22 +1932,28 @@ def main():
     parser.add_argument("--limit-queries", type=int, help="explicit smoke-test only, always disclosed; not the formal proof")
     parser.add_argument("--self-test", action="store_true")
     parser.add_argument("--verify-repeat", action="store_true")
+    parser.add_argument("--merge-category-runs", action="store_true", help="Assemble six completed category subdirectories under --out; no rescoring")
     args = parser.parse_args()
     if args.workers < 1:
         parser.error("--workers must be positive")
     if args.self_test:
         self_test()
         return
+    if args.tick_counts and (args.proof or args.minute_parquet):
+        parser.error("tick ruling run cannot mix minute proof/parquet counts")
+    if "LIBRARY_TICKS" in args.library.name and not args.tick_counts:
+        parser.error("tick library requires --tick-counts")
     if args.proof and sha256_file(args.library) != "019d84b0500a79c5d762d95ae7f481c3ae9a5bd5f0818f81aea9207a27fdd76e":
         raise SystemExit("PROOF_LIBRARY_HASH_MISMATCH")
     if args.minute_parquet:
         build_print_count_cache(args.library, args.minute_parquet, args.print_count_cache)
-    paths = build_outputs(args)
+    build = merge_category_runs if args.merge_category_runs else build_outputs
+    paths = build(args)
     first = {name: path.read_bytes() for name, path in paths.items()}
     for name, data in first.items():
         print(f"RUN1 {name} sha256 {hashlib.sha256(data).hexdigest()}", flush=True)
     if args.verify_repeat:
-        repeated = build_outputs(args)
+        repeated = build(args)
         for name, path in repeated.items():
             data = path.read_bytes()
             if data != first[name]:

@@ -49,85 +49,10 @@ const EXPECTED_RESOURCE_IDS = Object.freeze([
   "SPIKE_ATLAS",
 ]);
 
-const SIMILARITY_DECLARATION = Object.freeze({
-  name: "V54_V6_HAND_AUTHORED_CONTINUOUS_NEIGHBORHOOD",
-  only_adjustment_lever: true,
-  formula: "score = covered_weight / total_weight * exp(-sum(weight*abs(query-neighbor)/scale)/covered_weight); missing fields contribute zero coverage and are never imputed",
-  orientation: "pair legs align by formation-anchor rank, then ticker identity only breaks an exact anchor tie",
-  weights: Object.freeze({
-    category: 1.5,
-    anchor_split_cents: 1.4,
-    leg0_anchor_cents: 1.0,
-    leg1_anchor_cents: 1.0,
-    leg0_drift_cents: 1.2,
-    leg1_drift_cents: 1.2,
-    leg0_travel_cents: 1.0,
-    leg1_travel_cents: 1.0,
-    joint_mid_sum_cents: 1.3,
-    joint_spread_cents: 0.8,
-    inverse_coherence: 1.1,
-    volume_log1p: 0.7,
-    hours_from_discovery: 0.6,
-    divot_depth_cents: 0.8,
-  }),
-  scales: Object.freeze({
-    anchor_split_cents: 20,
-    leg0_anchor_cents: 30,
-    leg1_anchor_cents: 30,
-    leg0_drift_cents: 20,
-    leg1_drift_cents: 20,
-    leg0_travel_cents: 30,
-    leg1_travel_cents: 30,
-    joint_mid_sum_cents: 10,
-    joint_spread_cents: 12,
-    inverse_coherence: 1,
-    volume_log1p: 10,
-    hours_from_discovery: 24,
-    divot_depth_cents: 20,
-  }),
-  neighbor_count: 7,
-  grades: "Every neighbor retains its continuous score and coverage; grade is rank N1..N7, not a threshold or gate.",
-  declared: true,
-  undisclosed_weights: false,
-});
-const CONDITIONAL_DIP_DECLARATION = Object.freeze({
-  question: "Which side/window is live, and what floor does the V3 row keyed by each neighbor's own bounded library close license?",
-  distribution: "weighted q25/q50/q75 of integer-cent remaining dip; each member contributes its remaining dip only while its bell-bounded floor lies ahead of this leg's current window fraction, and contributes zero once that corresponding floor time has passed",
-  signing_statistic: "Each leave-self-out neighbor votes DERIVED_TIMING_DEPTH before its own bounded floor fraction and OWN_TAPE_PRESENCE_AT_TOUCH at-or-after it. Its continuous similarity, coverage, and this-leg evidence-match grade determine vote weight. The two vote masses normalize directly; no fitted cell or global coefficient exists.",
-  member_law: "Nearest usable members are never rejected by a binary dip/no-dip gate; similarity, coverage, and continuous evidence-distance jointly grade every member.",
-  depth_inputs: ["PRECOMPUTED_BOUNDED_NEIGHBOR_SPECIALIST_RECORD", "THIS_LEG_OWN_BOUNDED_EVIDENCE", "OWN_BELL_BOUNDED_WINDOW_POSITION", "OPEN_OR_HALF_PAIR_STATE"],
-  basis_names: ["DERIVED_TIMING_DEPTH", "OWN_TAPE_PRESENCE_AT_TOUCH"],
-  authority_order: ["OBSERVED_TRADED_FLOOR_AUTHORITY", "TRUE_BELL_CELL_DEPTH_MAP_V3_LICENSED", "INSUFFICIENT_EVIDENCE_NO_LICENSED_AUTHORITY_TARGET"],
-  fitness_law: "The mind's graded shape-floor timing votes select the leg's own window. Each vote carries its library close and the V3 floor depth for that same close cell; runtime touch never re-keys the map. A causal observed trade floor is senior once present.",
-  provenance: "COMPOSITION_REBUILD_20260823: F-VS-094 touch law; TRUE_BELL_CELL_DEPTH_MAP_V3 @ac68e3bc; F-VS-065 own clocks; F-VS-066 conditioning",
-  blanket_anchor_ratio: "DELETED",
-  absolute_floor_target_path: "DELETED",
-  lineage_depth_fallback: "DELETED_FROM_COMPOSITION_PRICING; UNMAPPED_OR_UNLICENSED_DEPTH_EMITS_NO_NEW_TARGET",
-});
-const neighborhoodCorpusCache = new WeakMap();
-const rangeOverlapCorpusCache = new WeakMap();
-
-let neighborSpecialistBinding = null;
-let trueBellCellDepthMapBinding = null;
-
-function configureNeighborSpecialistBinding(binding) {
-  if (!binding || binding.kind !== "LEAVE_SELF_OUT_BOUNDED_NEIGHBOR_SPECIALIST_RECORDS" || !binding.binding_sha256) throw new Error("INVALID_NEIGHBOR_SPECIALIST_BINDING");
-  neighborSpecialistBinding = binding;
-}
-
-function configureTrueBellCellDepthMap(binding) {
-  if (!binding || binding.kind !== "TRUE_BELL_CELL_CONDITIONAL_DEPTH_MAP_V3" || !binding.sha256 || !Array.isArray(binding.cells)) {
-    throw new Error("INVALID_TRUE_BELL_CELL_DEPTH_MAP_BINDING");
-  }
-  const cells = new Map();
-  for (const row of binding.cells) {
-    if (typeof row.category !== "string" || !Number.isInteger(row.price_cell) || !Number.isInteger(row.edge_p50_cents) || !Number.isInteger(row.n_legs)) {
-      throw new Error("INVALID_TRUE_BELL_CELL_DEPTH_MAP_ROW");
-    }
-    cells.set(`${row.category}|${row.price_cell}`, Object.freeze({ ...row }));
-  }
-  trueBellCellDepthMapBinding = Object.freeze({ ...binding, cells_by_key: cells });
-}
+const SIMILARITY_DECLARATION = Object.freeze({ name: "POOL_CASCADE", neighbor_count: 0, formula: "FIRST-TICK-ONLY then BASE; STEP-FORECAST telemetry; likelihood and gates bound by bench receipt" });
+const CONDITIONAL_DIP_DECLARATION = Object.freeze({ authority_order: ["POOL_CASCADE:FIRST-TICK-ONLY", "POOL_CASCADE:BASE", "INSUFFICIENT_EVIDENCE"] });
+function configureNeighborSpecialistBinding(binding) { if (!binding) throw new Error("MISSING_LEGACY_DIAGNOSTIC_BINDING"); }
+function configureTrueBellCellDepthMap(binding) { if (!binding) throw new Error("MISSING_LEGACY_DIAGNOSTIC_BINDING"); }
 
 function sha256(value) {
   return crypto.createHash("sha256").update(Buffer.isBuffer(value) ? value : Buffer.from(String(value))).digest("hex");
@@ -383,46 +308,6 @@ function vectorFromReads(state, reads) {
   };
 }
 
-function similarity(query, candidate, declaration = SIMILARITY_DECLARATION) {
-  let totalWeight = 0, coveredWeight = 0, distanceWeight = 0;
-  const contributions = {};
-  for (const [field, weight] of Object.entries(declaration.weights)) {
-    totalWeight += weight;
-    if (field === "category") {
-      const covered = Boolean(query.category && candidate.category);
-      const distance = covered ? (query.category === candidate.category ? 0 : 1) : null;
-      if (covered) { coveredWeight += weight; distanceWeight += weight * distance; }
-      contributions[field] = { weight, covered, distance };
-      continue;
-    }
-    const q = query[field], c = candidate[field], scale = declaration.scales[field];
-    const covered = Number.isFinite(q) && Number.isFinite(c) && Number.isFinite(scale) && scale > 0;
-    const distance = covered ? Math.abs(q - c) / scale : null;
-    if (covered) { coveredWeight += weight; distanceWeight += weight * distance; }
-    contributions[field] = { weight, scale, covered, distance };
-  }
-  const coverage = totalWeight > 0 ? coveredWeight / totalWeight : 0;
-  const normalizedDistance = coveredWeight > 0 ? distanceWeight / coveredWeight : null;
-  const score = normalizedDistance === null ? 0 : coverage * Math.exp(-normalizedDistance);
-  return { score, coverage, normalized_distance: normalizedDistance, contributions };
-}
-
-function leanSimilarity(query, candidate, declaration = SIMILARITY_DECLARATION) {
-  let totalWeight = 0, coveredWeight = 0, distanceWeight = 0;
-  for (const [field, weight] of Object.entries(declaration.weights)) {
-    totalWeight += weight;
-    if (field === "category") {
-      if (query.category && candidate.category) { coveredWeight += weight; distanceWeight += weight * (query.category === candidate.category ? 0 : 1); }
-      continue;
-    }
-    const q = query[field], c = candidate[field], scale = declaration.scales[field];
-    if (Number.isFinite(q) && Number.isFinite(c) && Number.isFinite(scale) && scale > 0) { coveredWeight += weight; distanceWeight += weight * Math.abs(q - c) / scale; }
-  }
-  const coverage = totalWeight > 0 ? coveredWeight / totalWeight : 0;
-  const normalizedDistance = coveredWeight > 0 ? distanceWeight / coveredWeight : null;
-  return { score: normalizedDistance === null ? 0 : coverage * Math.exp(-normalizedDistance), coverage, normalized_distance: normalizedDistance };
-}
-
 function receiptId(receipt) {
   return `CR-${sha256(JSON.stringify(receipt))}`;
 }
@@ -456,513 +341,319 @@ function assertCaptureReceipt(receipt, capturedAtReceipt, citation) {
   return receipt;
 }
 
-function retrieveNeighborhood(corpus, query, excludedEventId, count = SIMILARITY_DECLARATION.neighbor_count, capturedAtReceipt = null) {
-  if (!capturedAtReceipt) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBORHOOD_QUERY|MISSING_CAPTURE_CLOCK`);
-  const queryFingerprint = sha256(JSON.stringify(query));
-  let eligible = neighborhoodCorpusCache.get(corpus);
-  if (!eligible) {
-    eligible = corpus.filter((row) => Array.isArray(row.legs) && row.legs.length === 2 && row.legs.every((leg) => [leg.anchor_cents, leg.observed_low_cents, leg.low_cents].every(Number.isFinite)));
-    neighborhoodCorpusCache.set(corpus, eligible);
-  }
-  const compare = (a, b) => b.match.score - a.match.score || b.match.coverage - a.match.coverage || a.row.event_id.localeCompare(b.row.event_id);
-  const rows = [];
-  for (const row of eligible) {
-    if (row.event_id === excludedEventId) continue;
-    const entry = { row, match: leanSimilarity(query, row.vector) };
-    let index = 0;
-    while (index < rows.length && compare(rows[index], entry) <= 0) index += 1;
-    rows.splice(index, 0, entry);
-    if (rows.length > count) rows.pop();
-  }
-  const neighborhood = rows.map((entry, index) => {
-    const rowRefs = (entry.row.source_receipts ?? []).map((sourceReceipt) => sourceReceipt?.row_ref).filter(Boolean);
-    if (!rowRefs.length) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_ROW_RECEIPT_MISSING:${entry.row.event_id}|${capturedAtReceipt}`);
-    const citationReceipt = captureReceipt({
-      citationType: "NAMED_NEIGHBOR",
-      sourceId: entry.row.event_id,
-      capturedAtReceipt,
-      rowRefs,
-      status: "RECEIPT",
-      context: {
-        query_fingerprint_sha256: queryFingerprint,
-        half_pair_credited_count: query.half_pair_credited_count ?? 0,
-        half_pair_entry_sum_cents: query.half_pair_entry_sum_cents ?? 0,
-        leg0_credited_entry_cents: query.leg0_credited_entry_cents ?? null,
-        leg1_credited_entry_cents: query.leg1_credited_entry_cents ?? null,
-      },
-    });
-    assertCaptureReceipt(citationReceipt, capturedAtReceipt, `NEIGHBOR:${entry.row.event_id}`);
-    return {
-      grade: `N${index + 1}`,
-      event_id: entry.row.event_id,
-      event_date: entry.row.event_date,
-      category: entry.row.category,
-      score: entry.match.score,
-      coverage: entry.match.coverage,
-      normalized_distance: entry.match.normalized_distance,
-      quality: entry.row.quality,
-      grain: entry.row.grain ?? null,
-      licensed_layers: entry.row.licensed_layers ?? null,
-      micro_micro_licensed: entry.row.micro_micro_licensed ?? null,
-      legs: entry.row.legs,
-      source_receipts: entry.row.source_receipts,
-      citation_receipt: citationReceipt,
-      citation_receipt_id: citationReceipt.receipt_id,
-      query_fingerprint_sha256: queryFingerprint,
-    };
-  });
-  Object.defineProperty(neighborhood, "range_overlap", {
-    value: Array.isArray(corpus.range_overlap) ? corpus.range_overlap : [],
-    enumerable: false,
-  });
-  return neighborhood;
-}
-
-function overlapPointAtFraction(path, fraction) {
-  if (!Array.isArray(path) || !path.length || !Number.isFinite(fraction)) return null;
-  let selected = null;
-  for (const point of path) {
-    if (!Number.isFinite(point.window_fraction) || point.window_fraction > fraction) break;
-    selected = point;
-  }
-  return selected;
-}
-
-function retrieveOverlapMembership(rangeOverlap, query, excludedEventId, capturedAtReceipt) {
-  if (!capturedAtReceipt) throw new Error("CITATION_RECEIPT_BUILD_VIOLATION RANGE_OVERLAP_QUERY|MISSING_CAPTURE_CLOCK");
-  if (!Array.isArray(rangeOverlap)) throw new Error("RANGE_OVERLAP_LIBRARY_NOT_BOUND");
-  const fraction = finite(query?.window_fraction);
-  const ownLow = cent(query?.seen_low_cents);
-  const ownHigh = cent(query?.seen_high_cents);
-  const ownWidth = Number.isInteger(ownLow) && Number.isInteger(ownHigh) && ownHigh >= ownLow
-    ? ownHigh - ownLow + 1
-    : null;
-  let byCategorySide = rangeOverlapCorpusCache.get(rangeOverlap);
-  if (!byCategorySide) {
-    byCategorySide = new Map();
-    for (const row of rangeOverlap) {
-      if (!Array.isArray(row.path) || !row.path.length || !row.vector) continue;
-      const key = `${row.category}|${row.side}`;
-      if (!byCategorySide.has(key)) byCategorySide.set(key, []);
-      byCategorySide.get(key).push(row);
-    }
-    rangeOverlapCorpusCache.set(rangeOverlap, byCategorySide);
-  }
-  const members = [];
-  if (Number.isFinite(fraction) && Number.isInteger(ownWidth) && ownWidth > 0) {
-    const candidates = byCategorySide.get(`${query.category}|${query.side}`) ?? [];
-    for (const row of candidates) {
-      if (row.event_id === excludedEventId || row.event_date === query.event_date) continue;
-      const point = overlapPointAtFraction(row.path, fraction);
-      const memberLow = cent(point?.seen_true_trade_low_cents);
-      const memberHigh = cent(point?.seen_true_trade_high_cents);
-      const memberFinalLow = cent(row.path.at(-1)?.seen_true_trade_low_cents);
-      if (!(Number.isInteger(memberLow) && Number.isInteger(memberHigh) && memberHigh >= memberLow && Number.isInteger(memberFinalLow))) continue;
-      const overlapWidth = Math.min(ownHigh, memberHigh) - Math.max(ownLow, memberLow) + 1;
-      const share = overlapWidth / ownWidth;
-      if (!(share > 0)) continue;
-      const match = similarity(query, row.vector);
-      const weight = share * match.score * match.coverage;
-      members.push({
-        event_id: row.event_id,
-        leg_id: row.leg_id,
-        share,
-        weight,
-        member_state: {
-          m_low: memberLow,
-          m_high: memberHigh,
-          m_last: cent(point.last_cents),
-          fraction_used: point.window_fraction,
-        },
-        member_final_low: memberFinalLow,
-        member_remaining_dip: memberLow - memberFinalLow,
-        floor_fraction: finite(row.floor_fraction),
-        similarity: match.score,
-        coverage: match.coverage,
-        source_receipt: row.source_receipt ?? null,
-      });
-    }
-  }
-  members.sort((a, b) => b.weight - a.weight || b.share - a.share || a.event_id.localeCompare(b.event_id) || a.leg_id.localeCompare(b.leg_id));
-  const binding = rangeOverlap.binding ?? null;
-  const sourceRef = binding?.index
-    ? `${binding.index.path}@sha256:${binding.index.sha256}`
-    : members.find((row) => row.source_receipt)?.source_receipt ?? null;
-  const citationReceipt = captureReceipt({
-    citationType: "RANGE_OVERLAP_MEMBERSHIP",
-    sourceId: binding?.index?.path ?? "RANGE_OVERLAP_LIBRARY",
-    capturedAtReceipt,
-    rowRefs: sourceRef ? [sourceRef] : [],
-    status: sourceRef ? "RECEIPT" : "RESOURCE-GAP",
-    context: {
-      query_fingerprint_sha256: sha256(JSON.stringify(query)),
-      category: query?.category ?? null,
-      side: query?.side ?? null,
-      window_fraction: fraction,
-      seen_low_cents: ownLow,
-      seen_high_cents: ownHigh,
-      member_count: members.length,
-      weight_sum: sum(members.map((row) => row.weight)),
-      leave_self_out: true,
-      same_date_excluded: true,
-      cap_applied: false,
-    },
-  });
-  assertCaptureReceipt(citationReceipt, capturedAtReceipt, `RANGE_OVERLAP_MEMBERSHIP:${excludedEventId}`);
-  Object.defineProperty(members, "citation_receipt", { value: citationReceipt, enumerable: false });
-  return members;
-}
-
 function assertResources(resources) {
   const byId = new Map(resources.map((row) => [row.id, row]));
   const missing = EXPECTED_RESOURCE_IDS.filter((id) => !byId.has(id) || byId.get(id).status !== "CONNECTED");
   if (missing.length) throw new Error(`FUNCTIONAL_RESOURCES_NOT_CONNECTED ${missing.join(",")}`);
   return EXPECTED_RESOURCE_IDS.map((id) => byId.get(id));
 }
+// Pool mathematics are the causal bench contract, loaded with the library.
+// Price coordinates and contract volume never share a distance sum.
+let tickLibrary = null;
+const PRICE_FIELDS = Object.freeze(["last", "bid", "ask"]);
 
-function weightedQuantile(rows, quantile) {
-  const ordered = rows.filter((row) => Number.isFinite(row.value) && row.weight > 0).sort((a, b) => a.value - b.value || a.event_id.localeCompare(b.event_id));
-  const total = sum(ordered.map((row) => row.weight));
+function upperBound(values, value) {
+  let low = 0, high = values.length;
+  while (low < high) {
+    const middle = low + Math.floor((high - low) / 2);
+    if (values[middle] <= value) low = middle + 1; else high = middle;
+  }
+  return low;
+}
+function poolQuantile(values, weights, fraction) {
+  const rows = values.map((value, index) => ({ value, weight: weights[index] }))
+    .filter(row => Number.isFinite(row.value) && row.weight > 0)
+    .sort((a, b) => a.value - b.value);
+  const total = sum(rows.map(row => row.weight));
   if (!(total > 0)) return null;
-  const threshold = total * quantile;
-  let accumulated = 0;
-  for (const row of ordered) {
-    accumulated += row.weight;
-    if (accumulated >= threshold) return row.value;
+  let running = 0;
+  for (const row of rows) {
+    running += row.weight;
+    if (running >= total * fraction) return row.value;
   }
-  return ordered.at(-1).value;
+  return rows.at(-1).value;
 }
-
-function conditionalNeighborLeg(neighborhood, orientedIndex, ownEvidence) {
-  const ownAnchor = ownEvidence.anchor_cents;
-  const ownLow = ownEvidence.true_trade_low_cents ?? ownEvidence.book_path_low_cents;
-  const ownBasis = Number.isFinite(ownEvidence.true_trade_low_cents) ? "TRUE_TRADE" : Number.isFinite(ownEvidence.book_path_low_cents) ? "BOOK_PATH" : "NO_OWN_LOW";
-  const ownObservedDip = Number.isFinite(ownAnchor) && Number.isFinite(ownLow) ? Math.max(0, ownAnchor - ownLow) : null;
-  const ownDipState = Number.isFinite(ownObservedDip) ? (ownObservedDip > 0 ? "DIP_OBSERVED" : "NO_DIP_OBSERVED") : "INSUFFICIENT_OWN_EVIDENCE";
-  const rows = [], excluded = [];
-  for (const neighbor of neighborhood) {
-    const leg = neighbor.legs?.[orientedIndex];
-    if (!leg || !Number.isFinite(leg.anchor_cents) || !Number.isFinite(leg.observed_low_cents) || !Number.isFinite(leg.low_cents)) {
-      excluded.push({ event_id: neighbor.event_id, reason: "NO_INTERIM_BOUNDED_LOW" });
-      continue;
+function poolEss(weights) {
+  const total = sum(weights), squares = sum(weights.map(weight => weight * weight));
+  return squares > 0 ? total * total / squares : 0;
+}
+function poolSample(leg, epoch) {
+  const index = upperBound(leg.epoch, epoch) - 1;
+  return index < 0 ? { last: null, bid: null, ask: null, volume: null } : {
+    last: leg.last[index], bid: leg.bid[index], ask: leg.ask[index], volume: leg.volume[index],
+  };
+}
+function poolPair(legs, identity, contract) {
+  if (legs.length !== 2 || legs.some(leg => !Number.isFinite(leg.first_epoch)) || legs[0].bell !== legs[1].bell) return null;
+  const firstEpoch = Math.max(...legs.map(leg => leg.first_epoch));
+  const prices = legs.map(leg => poolSample(leg, firstEpoch).last);
+  if (!prices.every(Number.isFinite) || prices[0] === prices[1]) return null;
+  legs.sort((a, b) => poolSample(b, firstEpoch).last - poolSample(a, firstEpoch).last);
+  const pair = { ...identity, legs, first_epoch: firstEpoch, bell: legs[0].bell,
+    formation: Math.max(...legs.map(leg => leg.formation)),
+    first_mtb: (legs[0].bell - firstEpoch) / contract.minute_seconds,
+    first_volume: sum(legs.map(leg => poolSample(leg, firstEpoch).volume)) };
+  pair.first = poolLevels(pair, pair.first_mtb, contract);
+  return pair;
+}
+function poolLevels(pair, mtb, contract) {
+  const epoch = pair.bell - mtb * contract.minute_seconds;
+  const sides = pair.legs.map(leg => poolSample(leg, epoch));
+  return { sides, prices: [...sides.flatMap(side => PRICE_FIELDS.map(key => side[key])),
+    sides.every(side => Number.isFinite(side.last)) ? sum(sides.map(side => side.last)) : null],
+    volume: sides.every(side => Number.isFinite(side.volume)) ? sum(sides.map(side => side.volume)) - pair.first_volume : null };
+}
+function poolRole(value, open, contract) {
+  if (!Number.isFinite(value) || !Number.isFinite(open)) return "NOT_CALLABLE";
+  const drift = value - open;
+  return drift >= contract.role_drift_cents ? "CLIMBER" : drift <= -contract.role_drift_cents ? "FALLER" : "NOT_CALLABLE";
+}
+function poolFamily(leg, threshold, contract) {
+  const count = contract.taxonomy_samples, samples = [];
+  for (let index = 0; index < count; index += 1) {
+    const epoch = leg.formation + (leg.bell - leg.formation) * index / (count - 1);
+    const value = epoch >= leg.first_epoch ? poolSample(leg, epoch).last : null;
+    samples.push(index && Number.isFinite(value) ? value : leg.open);
+  }
+  if (!samples.every(Number.isFinite) || !Number.isFinite(threshold)) return null;
+  if (leg.print_total < threshold) return "SLEEPER";
+  const rules = contract.taxonomy_rules;
+  const steps = samples.slice(1).map((value, index) => value - samples[index]);
+  const moving = steps.filter(value => value !== 0).map(Math.sign);
+  const net = samples.at(-1) - samples[0], magnitude = Math.abs(net);
+  const travel = sum(steps.map(Math.abs));
+  if (magnitude < rules.quiet_net_cents) return travel >= rules.round_trip_travel_cents ? "ROUND_TRIP" : "QUIET_WOBBLE";
+  const quarter = (count - 1) * rules.quarter_fraction;
+  const direction = net > 0 ? "UP" : "DOWN";
+  if ((samples.at(-1) - samples[count - 1 - quarter]) / net >= rules.quarter_net_share) return `LATE_BREAK_${direction}`;
+  if ((samples[quarter] - samples[0]) / net >= rules.quarter_net_share && Math.abs(samples.at(-1) - samples[quarter]) <= contract.flat_after_cents) return `EARLY_SET_${direction}`;
+  if (Math.max(...steps.map(Math.abs)) >= rules.one_step_share * magnitude) return `ONE_STEP_${direction}`;
+  const reversals = moving.slice(1).filter((value, index) => value !== moving[index]).length;
+  if (reversals >= rules.grind_reversals && travel >= rules.grind_travel_multiple * magnitude) return `GRIND_WOBBLE_${direction}`;
+  return `DRIFT_${direction}`;
+}
+function compactTickLeg(row, counts) {
+  if (!counts?.seconds.length || counts.counts.at(-1) !== row.true_print_count_in_span) throw new Error(`POOL_SIDECAR_FINAL_COUNT_MISMATCH ${row.ticker}`);
+  const leg = { id: row.leg_id, ticker: row.ticker, formation: row.formation_end_epoch, bell: row.bell_epoch,
+    open: row.postformation_open_cents ?? row.anchor_cents, print_total: row.true_print_count_in_span,
+    count_seconds: Float64Array.from(counts.seconds), count_cum: Float64Array.from(counts.counts) };
+  for (const [key, source] of Object.entries({ epoch: "ts", last: "last_cents", bid: "bid_cents", ask: "ask_cents", volume: "volume_cum" })) {
+    leg[key] = Float64Array.from(row.path, point => Number.isFinite(point[source]) ? point[source] : NaN);
+  }
+  if (leg.epoch.some((epoch, index) => index && epoch <= leg.epoch[index - 1])) throw new Error(`POOL_PATH_ORDER ${row.ticker}`);
+  const index = leg.epoch.findIndex(epoch => Math.floor(epoch) >= counts.seconds[0]);
+  leg.first_epoch = index < 0 ? null : leg.epoch[index];
+  leg.suffix = new Int32Array(leg.epoch.length);
+  let best = leg.epoch.length - 1;
+  for (let cursor = best; cursor >= 0; cursor -= 1) {
+    if (leg.last[cursor] <= leg.last[best]) best = cursor;
+    leg.suffix[cursor] = best;
+  }
+  return leg;
+}
+function configureTickLibrary(binding) {
+  if (!binding?.contract || !binding?.pairs || !binding?.receipt?.index?.sha256) throw new Error("POOL_TICK_LIBRARY_UNBOUND");
+  const { contract } = binding;
+  const totals = new Map();
+  for (const pair of binding.pairs) {
+    if (!totals.has(pair.category)) totals.set(pair.category, []);
+    totals.get(pair.category).push(...pair.legs.map(leg => leg.print_total));
+  }
+  const thresholds = Object.fromEntries([...totals].map(([category, values]) => [category,
+    poolQuantile(values, values.map(() => contract.likelihood_unit), contract.sleeper_category_quantile)]));
+  for (const pair of binding.pairs) for (const leg of pair.legs) leg.family = poolFamily(leg, thresholds[pair.category], contract);
+  binding.families = [...new Set(binding.pairs.flatMap(pair => pair.legs.map(leg => leg.family)).filter(Boolean))].sort();
+  binding.thresholds = thresholds;
+  tickLibrary = binding;
+  return binding;
+}
+function atlasGateEpochs(meta) {
+  if (!tickLibrary) throw new Error("POOL_TICK_LIBRARY_UNBOUND");
+  return tickLibrary.contract.gates_minutes_to_bell.map(gate => meta.bell_epoch - gate * tickLibrary.contract.minute_seconds)
+    .filter(epoch => epoch >= meta.discovery_epoch && epoch < meta.bell_epoch);
+}
+function retrieveNeighborhood(corpus) {
+  if (!corpus.tick_library || corpus.tick_library !== tickLibrary) throw new Error("POOL_CORPUS_BINDING_MISMATCH");
+  // No seven-neighbor or overlap retrieval remains in the author path.
+  return [];
+}
+function ownPoolPair(state) {
+  const contract = tickLibrary.contract;
+  const legs = state.leg_ids.map(id => {
+    const source = state.legs[id], formation = source.formation_end_epoch, bell = state.bell_epoch;
+    const buckets = new Map(), seen = new Set();
+    let lastPrice = null, bid = null, ask = null;
+    const ordered = source.rows.filter(row => row.timestamp_epoch <= state.current_epoch && row.timestamp_epoch < bell);
+    for (const row of ordered) {
+      const epoch = row.source_timestamp_epoch ?? row.timestamp_epoch;
+      if (row.kind === "PRINT") {
+        if (seen.has(row.receipt)) continue;
+        seen.add(row.receipt);
+      }
+      if (epoch < formation) {
+        if (row.kind === "PRINT") lastPrice = row.price_cents;
+        else if (row.kind === "BOOK") { bid = row.bid_cents; ask = row.ask_cents; }
+        continue;
+      }
+      const second = Math.floor(epoch);
+      if (!buckets.has(second)) buckets.set(second, []);
+      buckets.get(second).push(row);
     }
-    const observedDip = Math.max(0, leg.anchor_cents - leg.observed_low_cents);
-    const evidenceDistance = Math.abs(observedDip - ownObservedDip);
-    const evidenceMatchGrade = 1 / (1 + evidenceDistance);
-    const weight = neighbor.score * neighbor.coverage * evidenceMatchGrade;
-    const remainingDip = Math.max(0, leg.observed_low_cents - leg.low_cents);
-    const memberFloorFraction = Number.isFinite(leg.floor_fraction) ? clipped(leg.floor_fraction) : null;
-    const ownWindowFraction = Number.isFinite(ownEvidence.window_fraction) ? clipped(ownEvidence.window_fraction) : null;
-    const timeConditionedRemainingDip = Number.isFinite(memberFloorFraction) && Number.isFinite(ownWindowFraction)
-      ? memberFloorFraction > ownWindowFraction ? remainingDip : 0
-      : null;
-    const specialist = leg.specialist_record;
-    const specialistValid = specialist?.kind === "BOUNDED_TWO_BEHAVIOR_FLOOR_CAPTURE" && Number.isFinite(specialist.floor_fraction) && specialist.source_receipt;
-    const specialistBehavior = specialistValid && Number.isFinite(ownWindowFraction)
-      ? ownWindowFraction < specialist.floor_fraction ? "DERIVED_TIMING_DEPTH" : "OWN_TAPE_PRESENCE_AT_TOUCH"
-      : null;
-    rows.push({ event_id: neighbor.event_id, category: neighbor.category, leg_id: leg.leg_id, quality: neighbor.quality, similarity_grade: neighbor.score, coverage_grade: neighbor.coverage, evidence_match_grade: evidenceMatchGrade, evidence_distance_cents: evidenceDistance, weight, observed_dip_cents: observedDip, dip_state: observedDip > 0 ? "DIP_OBSERVED" : "NO_DIP_OBSERVED", remaining_dip_cents: remainingDip, member_floor_fraction: memberFloorFraction, own_window_fraction: ownWindowFraction, time_conditioned_remaining_dip_cents: timeConditionedRemainingDip, future_low_return_path: leg.future_low_return_path ?? null, future_low_return_source: leg.future_low_return_source ?? null, specialist_behavior: specialistBehavior, specialist_source_receipt: specialistValid ? specialist.source_receipt : null, specialist_capture_depth_cents: specialistBehavior === "DERIVED_TIMING_DEPTH" ? remainingDip : specialistBehavior === "OWN_TAPE_PRESENCE_AT_TOUCH" ? 0 : null, specialist_library_close_cents: specialistValid ? cent(specialist.library_close_cents) : null, specialist_library_floor_cents: specialistValid ? cent(specialist.library_floor_cents) : null, specialist_v3_price_cell: specialistValid ? cent(specialist.v3_price_cell) : null, observed_low_cents: leg.observed_low_cents, low_cents: leg.low_cents, low_basis: leg.low_basis ?? null, source_grain: neighbor.grain ?? leg.source_grain ?? null, licensed_layers: neighbor.licensed_layers ?? leg.licensed_layers ?? null });
+    const leg = { id, formation, bell, open: source.anchor_cents, epoch: [], last: [], bid: [], ask: [], volume: [],
+      first_epoch: null, print_total: 0, count_seconds: [], count_cum: [] };
+    let volume = 0, low = null, high = null, previous = null;
+    for (const [second, rows] of [...buckets].sort((a, b) => a[0] - b[0])) {
+      const books = rows.filter(row => row.kind === "BOOK").sort((a, b) => a.source_row_index - b.source_row_index);
+      if (books.length) { bid = books.at(-1).bid_cents; ask = books.at(-1).ask_cents; }
+      const prints = rows.filter(row => row.kind === "PRINT").sort((a, b) => a.pool_source_row_index - b.pool_source_row_index);
+      if (prints.some(row => !Number.isInteger(row.pool_source_row_index))) throw new Error("POOL_TRUE_PRINT_SOURCE_ORDER_MISSING");
+      for (const print of prints) {
+        lastPrice = print.price_cents;
+        volume += print.size;
+        leg.print_total += 1;
+        low = low === null ? lastPrice : Math.min(low, lastPrice);
+        high = high === null ? lastPrice : Math.max(high, lastPrice);
+      }
+      if (prints.length) { leg.count_seconds.push(second); leg.count_cum.push(leg.print_total); }
+      const signature = JSON.stringify([lastPrice, bid, ask, volume, low, high]);
+      if (signature === previous) continue;
+      previous = signature;
+      const epoch = Math.max(second, ...prints.map(row => row.source_timestamp_epoch ?? row.timestamp_epoch));
+      leg.epoch.push(epoch); leg.last.push(lastPrice); leg.bid.push(bid); leg.ask.push(ask); leg.volume.push(volume);
+      if (leg.first_epoch === null && leg.print_total && Math.floor(state.current_epoch) > second) leg.first_epoch = epoch;
+    }
+    return leg;
+  });
+  return poolPair(legs, { identity: state.event_id, category: state.category, date: state.event_id.split("-").at(-1).slice(0, 7) }, contract);
+}
+function poolRemaining(leg, gate, contract) {
+  const epoch = leg.bell - gate * contract.minute_seconds;
+  const current = poolSample(leg, epoch).last;
+  const after = upperBound(leg.epoch, epoch);
+  if (after === leg.epoch.length) return { level: current, mtb: gate };
+  const index = leg.suffix[after];
+  return current <= leg.last[index] ? { level: current, mtb: gate } :
+    { level: leg.last[index], mtb: (leg.bell - leg.epoch[index]) / contract.minute_seconds };
+}
+function poolForecast(query, members, weights, gate, contract, families) {
+  const current = poolLevels(query, gate, contract);
+  const memberCurrent = members.map(member => poolLevels(member, gate, contract));
+  const sides = query.legs.map((leg, side) => {
+    const role = poolRole(current.sides[side].last, leg.open, contract);
+    const sw = weights.map((weight, index) => {
+      const member = members[index], observation = memberCurrent[index].sides[side];
+      return member.first_mtb >= gate && PRICE_FIELDS.every(key => Number.isFinite(observation[key])) &&
+        (role === "NOT_CALLABLE" || poolRole(observation.last, member.legs[side].open, contract) === role) ? weight : 0;
+    });
+    const effective = poolEss(sw), total = sum(sw);
+    const remaining = members.map(member => poolRemaining(member.legs[side], gate, contract));
+    const candidates = remaining.map((floor, index) => current.sides[side].last + floor.level - memberCurrent[index].sides[side].last);
+    const familyMass = Object.fromEntries(families.map(name => [name, 0]));
+    members.forEach((member, index) => { if (member.legs[side].family) familyMass[member.legs[side].family] += sw[index]; });
+    const family = { probabilities: Object.fromEntries(Object.entries(familyMass).map(([name, mass]) => [name, total ? mass / total : null])),
+      top: total ? Object.keys(familyMass).sort((a, b) => familyMass[b] - familyMass[a] || a.localeCompare(b))[0] : null };
+    const floors = Object.fromEntries(contract.quantiles.map(fraction => [`q${fraction * (PAR_BUDGET_CENTS + contract.likelihood_unit)}`, {
+      level_cents: poolQuantile(candidates, sw, fraction),
+      minutes_to_bell: poolQuantile(remaining.map(floor => floor.mtb), sw, fraction),
+    }]));
+    for (const floor of Object.values(floors)) floor.epoch = Number.isFinite(floor.minutes_to_bell) ? query.bell - floor.minutes_to_bell * contract.minute_seconds : null;
+    return { role, role_filter_bypassed: role === "NOT_CALLABLE", ess: effective, member_count: sw.filter(weight => weight > 0).length,
+      weight_sum: total, status: effective >= contract.no_call_ess_floor ? "OK" : "NO-CALL: ESS < 10", family, floors,
+      member_remaining_dip_zero_weighted_share: total ? sum(sw.filter((weight, index) => remaining[index].level === memberCurrent[index].sides[side].last)) / total : null };
+  });
+  return { member_count: weights.filter(weight => weight > 0).length, weight_sum: sum(weights), ess: poolEss(weights), sides };
+}
+function poolSnapshot(state) {
+  if (!tickLibrary) throw new Error("POOL_TICK_LIBRARY_UNBOUND");
+  const { contract, pairs, families } = tickLibrary;
+  const query = ownPoolPair(state);
+  if (!query) return { status: "INSUFFICIENT_EVIDENCE", reason: "FIRST_TRUE_TRADED_PAIR_NOT_BOUND", binding: tickLibrary.receipt };
+  let memory = state.pool_cascade;
+  if (!memory) {
+    const members = pairs.filter(member => member.category === query.category && member.identity !== query.identity && member.date !== query.date && member.bell < query.formation);
+    const unit = contract.likelihood_unit;
+    const weights = members.map(member => unit / (unit + sum(member.first.sides.map((side, index) => Math.abs(side.last - query.first.sides[index].last)))) /
+      (unit + Math.abs(member.first_mtb - query.first_mtb) / query.first_mtb));
+    memory = { first_epoch: query.first_epoch, first: query.first, first_mtb: query.first_mtb, members, first_weights: weights,
+      step_logs: weights.map(Math.log), last_gate: null, previous: null, validity: { status: "NO_PREVIOUS_GATE", weighted_share: null },
+      roles: {}, volume_origin: query.first_mtb, volume_query: query.first.volume,
+      volume_members: members.map(member => poolLevels(member, query.first_mtb, contract).volume), factors: null };
+    state.pool_cascade = memory;
   }
-  const distributionRows = rows.map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.remaining_dip_cents }));
-  const timeConditionedRows = rows.filter((row) => Number.isFinite(row.time_conditioned_remaining_dip_cents)).map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.time_conditioned_remaining_dip_cents }));
-  const absoluteFloorRows = rows.map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.low_cents }));
-  const denominator = sum(rows.map((row) => row.weight));
-  const availableSimilarityCoverageMass = sum(rows.map((row) => row.similarity_grade * row.coverage_grade));
-  const timedWeightMass = sum(timeConditionedRows.map((row) => row.weight));
-  const timingSignalStrength = denominator > 0 ? clipped(timedWeightMass / denominator) : 0;
-  const evidenceMatchFitness = availableSimilarityCoverageMass > 0 ? clipped(denominator / availableSimilarityCoverageMass) : 0;
-  const specialistVotes = rows.filter((row) => row.specialist_behavior && row.weight > 0).map((row) => ({ event_id: row.event_id, category: row.category, leg_id: row.leg_id, behavior: row.specialist_behavior, weight: row.weight, similarity_grade: row.similarity_grade, coverage_grade: row.coverage_grade, evidence_match_grade: row.evidence_match_grade, evidence_distance_cents: row.evidence_distance_cents, member_floor_fraction: row.member_floor_fraction, own_window_fraction: row.own_window_fraction, capture_depth_cents: row.specialist_capture_depth_cents, library_close_cents: row.specialist_library_close_cents, library_floor_cents: row.specialist_library_floor_cents, v3_price_cell: row.specialist_v3_price_cell, source_receipt: row.specialist_source_receipt }));
-  const specialistVoteMass = {
-    DERIVED_TIMING_DEPTH: sum(specialistVotes.filter((row) => row.behavior === "DERIVED_TIMING_DEPTH").map((row) => row.weight)),
-    OWN_TAPE_PRESENCE_AT_TOUCH: sum(specialistVotes.filter((row) => row.behavior === "OWN_TAPE_PRESENCE_AT_TOUCH").map((row) => row.weight)),
-  };
-  const specialistVoteTotal = specialistVoteMass.DERIVED_TIMING_DEPTH + specialistVoteMass.OWN_TAPE_PRESENCE_AT_TOUCH;
-  const specialistTimingDepthRows = specialistVotes.filter((row) => row.behavior === "DERIVED_TIMING_DEPTH").map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.capture_depth_cents }));
-  const specialistTimingDepthDistribution = { q25: weightedQuantile(specialistTimingDepthRows, 0.25), q50: weightedQuantile(specialistTimingDepthRows, 0.50), q75: weightedQuantile(specialistTimingDepthRows, 0.75) };
-  const q25 = weightedQuantile(distributionRows, 0.25), q50 = weightedQuantile(distributionRows, 0.50), q75 = weightedQuantile(distributionRows, 0.75);
-  const timedQ25 = weightedQuantile(timeConditionedRows, 0.25), timedQ50 = weightedQuantile(timeConditionedRows, 0.50), timedQ75 = weightedQuantile(timeConditionedRows, 0.75);
-  const floorQ25 = weightedQuantile(absoluteFloorRows, 0.25), floorQ50 = weightedQuantile(absoluteFloorRows, 0.50), floorQ75 = weightedQuantile(absoluteFloorRows, 0.75);
-  return {
-    rows, excluded, denominator,
-    fitness_components: {
-      available_similarity_coverage_mass: availableSimilarityCoverageMass,
-      continuously_graded_neighbor_mass: denominator,
-      time_bearing_neighbor_mass: timedWeightMass,
-      timing_signal_strength: timingSignalStrength,
-      evidence_match_fitness: evidenceMatchFitness,
-    },
-    specialist_votes: specialistVotes,
-    specialist_vote_mass: specialistVoteMass,
-    specialist_vote_total: specialistVoteTotal,
-    specialist_timing_depth_distribution_cents: specialistTimingDepthDistribution,
-    own_evidence: {
-      basis: ownBasis,
-      anchor_cents: ownAnchor,
-      conditioning_low_cents: ownLow,
-      observed_traded_low_cents: ownEvidence.true_trade_low_cents ?? null,
-      observed_book_path_low_cents: ownEvidence.book_path_low_cents ?? null,
-      book_path_low_source: ownEvidence.book_path_low_source ?? null,
-      non_traded_low_consumed: ownBasis === "BOOK_PATH",
-      non_traded_low_disclosure: ownBasis === "BOOK_PATH" ? `BOOK_PATH_REFERENCE_NOT_A_TRADE:${ownEvidence.book_path_low_source?.source ?? "UNKNOWN"}` : null,
-      observed_dip_cents: ownObservedDip,
-      dip_state: ownDipState,
-      true_trade_count: ownEvidence.true_trade_count,
-      formation_end_epoch: ownEvidence.formation_end_epoch,
-      window_end_epoch: ownEvidence.window_end_epoch,
-      elapsed_window_seconds: ownEvidence.elapsed_window_seconds,
-      remaining_window_seconds: ownEvidence.remaining_window_seconds,
-      window_fraction: ownEvidence.window_fraction,
-      window_source: ownEvidence.window_source,
-    },
-    conditional_remaining_dip_distribution_cents: { q25, q50, q75 },
-    time_conditioned_remaining_dip_distribution_cents: { q25: timedQ25, q50: timedQ50, q75: timedQ75 },
-    time_conditioned_members: timeConditionedRows.length,
-    conditional_absolute_floor_distribution_cents: { q25: floorQ25, q50: floorQ50, q75: floorQ75 },
-    conditioned_floor_cents: floorQ50,
-    derived_floor_cents: floorQ50,
-    binary_state_gate_used: false,
-    legacy_blanket_low_ratio_used: false,
-    subtractive_remaining_dip_used: false,
-    absolute_floor_target_used: false,
-    lineage_depth_fallback_used: false,
-  };
+  if (query.first_epoch !== memory.first_epoch || JSON.stringify(query.first) !== JSON.stringify(memory.first)) throw new Error("POOL_FIRST_BIND_CHANGED_AFTER_RECEIPT");
+  const gate = (state.bell_epoch - state.current_epoch) / contract.minute_seconds;
+  const due = contract.gates_minutes_to_bell.filter(value => value <= memory.first_mtb && value >= gate && (memory.last_gate === null || value < memory.last_gate));
+  for (const at of due) {
+    const current = poolLevels(query, at, contract), observed = memory.members.map(member => poolLevels(member, at, contract));
+    const kVolume = observed.map((member, index) => Number.isFinite(member.volume) && Number.isFinite(memory.volume_members[index]) && memory.members[index].first_mtb >= memory.volume_origin ?
+      contract.likelihood_unit / (contract.likelihood_unit + Math.abs(Math.log1p(member.volume - memory.volume_members[index]) - Math.log1p(current.volume - memory.volume_query))) : contract.likelihood_unit);
+    const kPrice = observed.map(() => contract.likelihood_unit);
+    if (memory.previous) {
+      const prior = memory.previous;
+      const errors = observed.map((member, index) => member.prices.map((value, coordinate) => Number.isFinite(value) && Number.isFinite(prior.members[index].prices[coordinate]) && Number.isFinite(current.prices[coordinate]) && Number.isFinite(prior.query.prices[coordinate]) ?
+        Math.abs((value - prior.members[index].prices[coordinate]) - (current.prices[coordinate] - prior.query.prices[coordinate])) : null));
+      const valid = errors.map((error, index) => error.every(Number.isFinite) && Number.isFinite(observed[index].volume) && prior.available[index]);
+      const priorWeights = prior.weights.map((weight, index) => valid[index] ? weight : 0);
+      const good = observed.map((member, index) => member.sides.every((side, sideIndex) =>
+        Math.abs((side.last - prior.members[index].sides[sideIndex].last) - (current.sides[sideIndex].last - prior.query.sides[sideIndex].last)) <= contract.likelihood_unit));
+      const total = sum(priorWeights), effective = poolEss(priorWeights);
+      memory.validity = { status: effective >= contract.no_call_ess_floor ? "OK" : "INVALID: ESS < 10", previous_gate: prior.gate,
+        weighted_share: total ? sum(priorWeights.filter((weight, index) => good[index])) / total : null, weight_sum: total, ess: effective };
+      valid.forEach((usable, index) => { if (usable) kPrice[index] = contract.likelihood_unit / (contract.likelihood_unit + sum(errors[index])); });
+    }
+    memory.step_logs = memory.step_logs.map((value, index) => value + Math.log(kPrice[index]) + Math.log(kVolume[index]));
+    const maxLog = Math.max(...memory.step_logs);
+    const relative = memory.step_logs.map(value => Math.exp(value - maxLog));
+    const pairAvailable = observed.map((member, index) => memory.members[index].first_mtb >= at && query.legs.every((leg, side) => {
+      const role = poolRole(current.sides[side].last, leg.open, contract);
+      return role === "NOT_CALLABLE" || poolRole(member.sides[side].last, memory.members[index].legs[side].open, contract) === role;
+    }));
+    memory.previous = { gate: at, query: current, members: observed, weights: relative.map((weight, index) => pairAvailable[index] ? weight : 0),
+      available: pairAvailable.map((available, index) => available && observed[index].prices.every(Number.isFinite) && Number.isFinite(observed[index].volume)) };
+    memory.factors = { gate_minutes_to_bell: at, volume_interval_from_mtb: memory.volume_origin,
+      member_count: memory.members.length,
+      k_price: Object.fromEntries(contract.quantiles.map(fraction => [fraction, poolQuantile(kPrice, kPrice.map(() => contract.likelihood_unit), fraction)])),
+      k_volume: Object.fromEntries(contract.quantiles.map(fraction => [fraction, poolQuantile(kVolume, kVolume.map(() => contract.likelihood_unit), fraction)])) };
+    memory.volume_origin = at; memory.volume_query = current.volume; memory.volume_members = observed.map(member => member.volume); memory.last_gate = at;
+  }
+  const stepMax = Math.max(...memory.step_logs);
+  const stepWeights = memory.step_logs.map(value => Math.exp(value - stepMax));
+  const baseWeights = memory.members.map(member => member.first.sides.every((side, index) =>
+    (side.last >= contract.discovery_side_boundary_cents) === (memory.first.sides[index].last >= contract.discovery_side_boundary_cents)) ? contract.likelihood_unit : 0);
+  const layers = { "FIRST-TICK-ONLY": poolForecast(query, memory.members, memory.first_weights, gate, contract, families),
+    BASE: poolForecast(query, memory.members, baseWeights, gate, contract, families),
+    "STEP-FORECAST": poolForecast(query, memory.members, stepWeights, gate, contract, families) };
+  const roles = Object.fromEntries(query.legs.map(leg => {
+    const prior = memory.roles[leg.id] ?? { first_bind: null, flip_count: 0, last_directional: null, as_of_epoch: null };
+    const from = prior.as_of_epoch ?? query.first_epoch;
+    // Only newly observed prefix points are processed. No full-path retrospective
+    // classification can rewrite an earlier bind or erase an observed flip.
+    const epochs = [...new Set([...leg.epoch.filter(epoch => epoch >= from && epoch <= state.current_epoch), state.current_epoch])].sort((a, b) => a - b);
+    for (const epoch of epochs) {
+      const call = poolRole(poolSample(leg, epoch).last, leg.open, contract);
+      prior.current_role = call;
+      if (call === "NOT_CALLABLE") continue;
+      if (prior.first_bind === null) { prior.first_bind = call; prior.first_bind_receipt = state.receipt; prior.first_bind_epoch = epoch; }
+      if (prior.last_directional !== null && prior.last_directional !== call) prior.flip_count += 1;
+      prior.last_directional = call;
+    }
+    prior.as_of_epoch = state.current_epoch;
+    memory.roles[leg.id] = prior;
+    return [leg.id, { ...prior }];
+  }));
+  const sides = Object.fromEntries(query.legs.map((leg, index) => {
+    const selected = ["FIRST-TICK-ONLY", "BASE"].find(layer => layers[layer].sides[index].status === "OK") ?? null;
+    return [leg.id, { selected_layer: selected, status: selected ? "RESOLVED" : "INSUFFICIENT_EVIDENCE",
+      current_last_cents: poolLevels(query, gate, contract).sides[index].last,
+      roles: roles[leg.id], layers: Object.fromEntries(Object.entries(layers).map(([name, layer]) => [name, layer.sides[index]])) }];
+  }));
+  return { status: "BOUND", receipt: state.receipt, minutes_to_bell: gate, first_tick: { epoch: query.first_epoch, mtb: query.first_mtb,
+    legs: query.legs.map(leg => leg.id), prices: memory.first.sides.map(side => side.last) },
+    pool_member_count: memory.members.length, initial_ess: poolEss(memory.first_weights), layers: Object.fromEntries(Object.entries(layers).map(([name, layer]) => [name,
+      { ess: layer.ess, member_count: layer.member_count, weight_sum: layer.weight_sum }])), sides,
+    validity: memory.validity, likelihood_factors: memory.factors, binding: tickLibrary.receipt,
+    author_order: ["FIRST-TICK-ONLY", "BASE"], step_author_role: "TELEMETRY_ONLY" };
 }
 
-function deriveAction({ state, reads, neighborhood, legId, lineage, resources }) {
-  assertResources(resources);
-  const neighborReceipts = neighborhood.map((row) => assertCaptureReceipt(row.citation_receipt, state.receipt, `NEIGHBOR:${row.event_id}`));
-  const readerRowRefs = [...new Set(Object.values(reads).flatMap((read) => read.receipts ?? []).filter(Boolean))];
-  const readerReceipt = captureReceipt({ citationType: "SIXTEEN_READERS", sourceId: state.event_id, capturedAtReceipt: state.receipt, rowRefs: readerRowRefs, status: readerRowRefs.length ? "RECEIPT" : "RESOURCE-GAP" });
-  assertCaptureReceipt(readerReceipt, state.receipt, `READERS:${state.event_id}`);
-  const lineageRows = lineage?.receipt ? [String(lineage.receipt)] : [];
-  const lineageReceipt = captureReceipt({ citationType: "LINEAGE", sourceId: `${state.event_id}|${legId}`, capturedAtReceipt: state.receipt, rowRefs: lineageRows, status: lineageRows.length ? "RECEIPT" : "RESOURCE-GAP" });
-  assertCaptureReceipt(lineageReceipt, state.receipt, `LINEAGE:${state.event_id}|${legId}`);
-  const neighborhoodGapReceipt = neighborhood.length ? null : captureReceipt({ citationType: "NAMED_NEIGHBOR", sourceId: state.event_id, capturedAtReceipt: state.receipt, rowRefs: [], status: "RESOURCE-GAP" });
-  if (neighborhoodGapReceipt) assertCaptureReceipt(neighborhoodGapReceipt, state.receipt, `NEIGHBORHOOD_RESOURCE_GAP:${state.event_id}`);
-  const citationReceipts = Object.fromEntries([...neighborReceipts, readerReceipt, lineageReceipt, ...(neighborhoodGapReceipt ? [neighborhoodGapReceipt] : [])].map((receipt) => [receipt.receipt_id, receipt]));
-  const vector = vectorFromReads(state, reads);
-  const orientedIndex = vector.oriented_leg_ids.indexOf(legId);
-  if (orientedIndex < 0) throw new Error(`DERIVATION_LEG_NOT_ORIENTED ${legId}`);
-  const anchor = reads.anchor_settle.value.anchors_cents[legId];
-  const ownLowRead = reads.lows_travel.value[legId];
-  const book = reads.books.value[legId];
-  const position = reads.half_pair_state.value.legs[legId];
-  const siblingId = state.leg_ids.find((id) => id !== legId);
-  const sibling = reads.half_pair_state.value.legs[siblingId];
-  const fillHandoffReceipt = sibling.credited ? captureReceipt({
-    citationType: "FILL_HANDOFF",
-    sourceId: `${state.event_id}|${siblingId}->${legId}`,
-    capturedAtReceipt: state.receipt,
-    rowRefs: [sibling.fill_receipt].filter(Boolean),
-    status: sibling.fill_receipt && sibling.fill_event_receipt?.receipt_id ? "RECEIPT" : "RESOURCE-GAP",
-    context: {
-      credited_sibling_leg_id: siblingId,
-      credited_sibling_entry_cents: sibling.entry_cents,
-      original_fill_receipt: sibling.fill_receipt,
-      original_fill_event_receipt_id: sibling.fill_event_receipt?.receipt_id ?? null,
-      reposed_query_fingerprint_sha256: neighborhood[0]?.query_fingerprint_sha256 ?? sha256(JSON.stringify(vector)),
-      transition: "HALF_PAIR_CREDIT_REPOSES_LIBRARY_AND_REDERIVES_OPEN_SIDE",
-    },
-  }) : null;
-  if (fillHandoffReceipt) assertCaptureReceipt(fillHandoffReceipt, state.receipt, `FILL_HANDOFF:${state.event_id}|${legId}`);
-  if (fillHandoffReceipt) citationReceipts[fillHandoffReceipt.receipt_id] = fillHandoffReceipt;
-  const formationProgress = reads.anchor_settle.value.formation_progress[legId];
-  const lineageTarget = cent(lineage?.target_cents);
-  const neighborhoodMass = mean(neighborhood.map((row) => row.score * row.coverage)) ?? 0;
-  const liveBid = cent(book?.bid_cents), liveAsk = cent(book?.ask_cents);
-  const formationEnd = finite(state.legs[legId].formation_end_epoch);
-  const windowEnd = finite(state.bell_epoch);
-  const windowDuration = Number.isFinite(formationEnd) && Number.isFinite(windowEnd) && windowEnd > formationEnd ? windowEnd - formationEnd : null;
-  const elapsedWindowSeconds = Number.isFinite(windowDuration) ? Math.max(0, Math.min(windowDuration, state.current_epoch - formationEnd)) : null;
-  const remainingWindowSeconds = Number.isFinite(windowDuration) ? Math.max(0, windowEnd - state.current_epoch) : null;
-  const windowFraction = Number.isFinite(windowDuration) ? clipped(elapsedWindowSeconds / windowDuration) : null;
-  const windowSource = Number.isFinite(windowDuration) ? `L11_VERIFIED_REPLAY_WINDOW:${state.bell_source ?? "UNKNOWN"}` : "WINDOW_RESOURCE_GAP";
-  const timedNeighborLeg = conditionalNeighborLeg(neighborhood, orientedIndex, {
-    anchor_cents: anchor,
-    true_trade_low_cents: ownLowRead.true_trade_low_cents,
-    book_path_low_cents: ownLowRead.book_path_low_cents,
-    book_path_low_source: ownLowRead.book_path_low_source,
-    true_trade_count: ownLowRead.true_trade_count,
-    formation_end_epoch: formationEnd,
-    window_end_epoch: windowEnd,
-    elapsed_window_seconds: elapsedWindowSeconds,
-    remaining_window_seconds: remainingWindowSeconds,
-    window_fraction: windowFraction,
-    window_source: windowSource,
-  });
-  const depthDistribution = timedNeighborLeg.time_conditioned_remaining_dip_distribution_cents;
-  const rawDepthDistribution = timedNeighborLeg.conditional_remaining_dip_distribution_cents;
-  const siblingCommitment = sibling.credited ? cent(sibling.entry_cents) : null;
-  const pairState = siblingCommitment ? "HALF_PAIR" : "OPEN";
-  const legState = timedNeighborLeg.own_evidence.dip_state;
-  const fitPhase = Number.isFinite(windowFraction) ? windowFraction : clipped(formationProgress ?? 0);
-  const timingVoteMass = timedNeighborLeg.specialist_vote_mass.DERIVED_TIMING_DEPTH;
-  const presenceVoteMass = timedNeighborLeg.specialist_vote_mass.OWN_TAPE_PRESENCE_AT_TOUCH;
-  const formedTwoSidedBook = Boolean(liveBid && liveAsk && liveBid < liveAsk && book?.receipt);
-  const crossedBook = Boolean(liveBid && liveAsk && liveBid >= liveAsk);
-  const touchCents = formedTwoSidedBook ? liveBid : null;
-  // F-VS-204/F-VS-205: V3 is keyed by the bounded library member's own
-  // close/price cell.  The live bid is evidence for postability, never a
-  // substitute key into an endpoint-defined library surface.
-  const specialistMapVotes = timedNeighborLeg.specialist_votes.flatMap((vote) => {
-    const priceCell = cent(vote.v3_price_cell);
-    if (!priceCell || !trueBellCellDepthMapBinding) return [];
-    const cell = trueBellCellDepthMapBinding.cells_by_key.get(`${vote.category}|${priceCell}`) ?? null;
-    if (!cell || !Number.isInteger(cell.edge_p50_cents)) return [];
-    return [{
-      event_id: vote.event_id,
-      leg_id: vote.leg_id,
-      category: vote.category,
-      weight: vote.weight,
-      library_close_cents: vote.library_close_cents,
-      library_floor_cents: vote.library_floor_cents,
-      v3_price_cell: priceCell,
-      map_cell: cell,
-      licensed_floor_cents: Math.max(1, priceCell - cell.edge_p50_cents),
-      source_receipt: vote.source_receipt,
-    }];
-  });
-  const mappedFloorTarget = cent(weightedQuantile(specialistMapVotes.map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.licensed_floor_cents })), 0.50));
-  const mappedCellPrice = cent(weightedQuantile(specialistMapVotes.map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.v3_price_cell })), 0.50));
-  const mappedDepth = Number.isInteger(mappedCellPrice) && Number.isInteger(mappedFloorTarget) ? Math.max(0, mappedCellPrice - mappedFloorTarget) : null;
-  const boundedTradeLow = cent(ownLowRead.true_trade_low_cents);
-  const mindWindow = timingVoteMass > presenceVoteMass
-    ? "SHAPE_FLOOR_TIMING_WINDOW"
-    : presenceVoteMass > timingVoteMass
-      ? "OWN_EVIDENCE_TOUCH_WINDOW"
-      : "PAIR_CLOCK_TOUCH_WINDOW";
-  const mapDepthLicensed = Boolean(mappedFloorTarget && specialistMapVotes.length > 0);
-  const ownFloorLicensed = Boolean(boundedTradeLow && book?.receipt);
-  // F-VS-207..214: price has one author.  Specialist votes and the licensed
-  // depth surface derive the level; the observed traded low conditions that
-  // derivation but is never copied into the order target.  Post-only and pair
-  // conservation are predicates applied by the joint engine after this
-  // derivation.  They are not price transforms.
-  const evidenceRung = mapDepthLicensed
-    ? "ENGINE_VOTES_LICENSED_DEPTH_CONDITIONED_BY_OWN_EVIDENCE"
-    : ownFloorLicensed
-      ? "INSUFFICIENT_ENGINE_DEPTH_OWN_EVIDENCE_AVAILABLE_FOR_VACUUM_FALLBACK"
-      : "INSUFFICIENT_EVIDENCE_NO_LICENSED_AUTHORITY_TARGET";
-  const authorityTargetBeforeVeto = mapDepthLicensed ? mappedFloorTarget : null;
-  const basisRows = [
-    {
-      basis: "MIND_WINDOW_SELECTION",
-      available: timingVoteMass > 0 || presenceVoteMass > 0,
-      depth_cents: null,
-      vote_mass: timingVoteMass + presenceVoteMass,
-      raw_fitness: timingVoteMass + presenceVoteMass,
-      normalized_weight: 1,
-      fitness_reason: `window=${mindWindow}; timing_vote_mass=${timingVoteMass}; touch_vote_mass=${presenceVoteMass}; own_clock_fraction=${Number.isFinite(windowFraction) ? windowFraction : "NA"}`,
-      license_receipts: timedNeighborLeg.specialist_votes.map((row) => row.source_receipt).filter(Boolean),
-      voters: timedNeighborLeg.specialist_votes,
-    },
-    {
-      basis: ownFloorLicensed ? "OBSERVED_TRADED_FLOOR" : mapDepthLicensed ? "TRUE_BELL_CELL_DEPTH_MAP_V3" : "NO_LICENSED_PRICE_AUTHORITY",
-      available: ownFloorLicensed || mapDepthLicensed,
-      depth_cents: mappedDepth,
-      vote_mass: specialistMapVotes.length,
-      raw_fitness: timedNeighborLeg.specialist_vote_total,
-      normalized_weight: 1,
-      fitness_reason: ownFloorLicensed
-        ? `observed_traded_floor=${boundedTradeLow}; receipt=${ownLowRead.true_trade_low_receipt ?? "IN_READER_RECEIPTS"}; specialist_map_votes=${specialistMapVotes.length}`
-        : mapDepthLicensed
-          ? `library_cell_q50=${mappedCellPrice}; licensed_floor_q50=${mappedFloorTarget}; mapped_depth=${mappedDepth}; specialist_map_votes=${specialistMapVotes.length}; own_dip_state=${legState}`
-          : `specialist_map_votes=0; no_zero_depth_default=true; own_dip_state=${legState}`,
-      license_receipts: [book?.receipt, ...(mapDepthLicensed ? [`${trueBellCellDepthMapBinding.commit}:${trueBellCellDepthMapBinding.path}@sha256:${trueBellCellDepthMapBinding.sha256}`] : []), ...specialistMapVotes.map((row) => row.source_receipt)].filter(Boolean),
-      voters: specialistMapVotes,
-    },
-  ];
-  const blendFitnessMass = timingVoteMass + presenceVoteMass;
-  const weightedDepthCents = mappedDepth;
-  const blendDistributionDepth = mappedDepth;
-  const pairCap = siblingCommitment ? PAR_BUDGET_CENTS - siblingCommitment : PAR_BUDGET_CENTS - 1;
-  const pairRequiredDepth = Number.isInteger(authorityTargetBeforeVeto) && siblingCommitment ? Math.max(0, authorityTargetBeforeVeto - pairCap) : 0;
-  const proposedTarget = Number.isInteger(authorityTargetBeforeVeto) ? authorityTargetBeforeVeto : null;
-  const targetBasis = evidenceRung;
-  const targetAuthority = targetBasis;
-  const authorityTarget = cent(proposedTarget);
-  const belowBoundedTradeLow = Boolean(boundedTradeLow && authorityTarget && authorityTarget < boundedTradeLow);
-  const finalDepthBelowTouch = touchCents && authorityTarget ? touchCents - authorityTarget : null;
-  const blendLicensesDepth = Boolean(mapDepthLicensed);
-  const blendLicenseReceipts = [...new Set(basisRows.flatMap((row) => row.license_receipts))];
-  const jointDepthLicense = blendLicensesDepth
-    ? { required: true, lawful: true, basis: evidenceRung, receipts: blendLicenseReceipts, below_bounded_trade_low: belowBoundedTradeLow }
-    : { required: true, lawful: false, basis: "NO_OBSERVED_FLOOR_OR_REAL_V3_MAP_LICENSE", receipts: [] };
-  const evidenceLawfulTarget = jointDepthLicense.lawful ? authorityTarget : null;
-  const derivedTarget = cent(evidenceLawfulTarget);
-  const touchRelation = crossedBook
-    ? "CROSSED_BOOK_NOT_A_TOUCH"
-    : touchCents && cent(evidenceLawfulTarget)
-      ? evidenceLawfulTarget === touchCents ? "AT_EVIDENCED_TOUCH" : `MAP_LICENSED_${touchCents - evidenceLawfulTarget}C_BELOW_TOUCH`
-      : "NO_FORMED_TWO_SIDED_BOOK";
-  const touchDistance = touchCents && cent(evidenceLawfulTarget) ? Math.abs(evidenceLawfulTarget - touchCents) : 99;
-  const blendEvidenceGrade = blendFitnessMass;
-  const allocationPriorityGrade = blendEvidenceGrade / (1 + touchDistance);
-  const active = cent(position.standing_target_cents);
-  let action;
-  if (!Number.isFinite(formationProgress) || formationProgress < 1) action = { action: "HOLD_REST", target_cents: active, reason: "FORMATION_NOT_COMPLETE_NO_NEW_PLACEMENT" };
-  else if (crossedBook) action = { action: "HOLD_REST", target_cents: active, reason: "CROSSED_BOOK_NOT_A_TOUCH_HOLD_EXISTING_REST" };
-  else if (!cent(derivedTarget)) action = { action: "HOLD_REST", target_cents: active, reason: "NO_OBSERVED_FLOOR_OR_REAL_V3_MAP_LICENSE_HOLD" };
-  else action = { action: active === null ? "PLACE_REST" : active === derivedTarget ? "HOLD_REST" : "REPRICE_REST", target_cents: derivedTarget, reason: evidenceRung };
-  const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${cent(action.target_cents) ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
-  const namedNeighborhood = neighborhood.length
-    ? neighborhood.map((row) => `${row.event_id}@${row.score.toFixed(6)}[${row.citation_receipt_id}]`).join(", ")
-    : `RESOURCE-GAP[${neighborhoodGapReceipt.receipt_id}]`;
-  const lineageStatement = lineageTarget === null ? `RESOURCE-GAP[${lineageReceipt.receipt_id}]` : `${lineageTarget}[${lineageReceipt.receipt_id}]`;
-  const fillHandoffStatement = fillHandoffReceipt
-    ? ` The sibling ${siblingId} is credited at ${sibling.entry_cents} from trade receipt ${sibling.fill_receipt ?? "RESOURCE-GAP"}; that half-pair transition re-posed query ${fillHandoffReceipt.context.reposed_query_fingerprint_sha256} and re-derived this open side [${fillHandoffReceipt.receipt_id}].`
-    : "";
-  const conditional = timedNeighborLeg.conditional_remaining_dip_distribution_cents;
-  const basisWeightStatement = basisRows.map((row) => `${row.basis}:${row.normalized_weight.toFixed(9)}@depth=${Number.isFinite(row.depth_cents) ? row.depth_cents : "NA"}[${row.fitness_reason}]`).join(";");
-  const voteStatement = timedNeighborLeg.specialist_votes.map((row) => `${row.event_id}:${row.behavior}@${row.weight.toFixed(9)}[phase=${row.own_window_fraction};neighbor_floor_phase=${row.member_floor_fraction};evidence_distance=${row.evidence_distance_cents};source=${row.source_receipt}]`).join(",") || "NO_LAWFUL_SPECIALIST_VOTES";
-  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; CONDITIONING_LOW=${timedNeighborLeg.own_evidence.conditioning_low_cents ?? "UNKNOWN"}; CONDITIONING_LOW_SOURCE=${timedNeighborLeg.own_evidence.basis}; OBSERVED_TRADED_LOW=${timedNeighborLeg.own_evidence.observed_traded_low_cents ?? "NONE"}; BOOK_PATH_LOW=${timedNeighborLeg.own_evidence.observed_book_path_low_cents ?? "NONE"}; NON_TRADED_LOW_DISCLOSURE=${timedNeighborLeg.own_evidence.non_traded_low_disclosure ?? "NOT_CONSUMED"}; its observed state is ${timedNeighborLeg.own_evidence.dip_state} with ${timedNeighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents. SPECIALIST_VOTES=${voteStatement}; SPECIALIST_MAP_VOTES=${specialistMapVotes.length}; WINDOW_SIDE_READ=${mindWindow}; WINDOW_VOTE_MASS_TIMING_TOUCH=${timingVoteMass}/${presenceVoteMass}; PRICE_AT_EVIDENCED_TOUCH=${touchCents ?? "UNKNOWN"}[REFERENCE_ONLY]; LIVE_TOUCH_REFERENCE=${touchCents ?? "UNKNOWN"}; V3_LOOKUP_BASIS=LIBRARY_MEMBER_BOUNDED_CLOSE_CENTS; MAP_CELL=${mappedCellPrice === null ? "UNMAPPED" : `${state.category}|${mappedCellPrice}`}; MAP_CELL_Q50=${mappedCellPrice ?? "UNMAPPED"}; MAP_P50_CENTS=${mappedDepth ?? "UNMAPPED"}; MAP_MEMBERS=${specialistMapVotes.length}; MAP_LICENSED_FLOOR_Q50=${mappedFloorTarget ?? "UNMAPPED"}; MAP_DEPTH_CENTS=${mappedDepth ?? "UNMAPPED"}; CHOSEN_DEPTH_CENTS=${mappedDepth ?? "UNKNOWN"}; EVIDENCE_RUNG=${evidenceRung}; TARGET_BASIS=${targetBasis}; PRE_ALLOCATION_DEPTH_TARGET_CENTS=${evidenceLawfulTarget ?? "UNKNOWN"}; no zero-depth default exists and V3 stamps only a real library-member-keyed license.`;
-  const windowStatement = ` OWN_WINDOW=formation ${formationEnd ?? "UNKNOWN"} to ${windowEnd ?? "UNKNOWN"} [${windowSource}], elapsed ${elapsedWindowSeconds ?? "UNKNOWN"}s, remaining ${remainingWindowSeconds ?? "UNKNOWN"}s, continuous fraction ${Number.isFinite(windowFraction) ? windowFraction.toFixed(9) : "UNKNOWN"}; the mind selects ${mindWindow} for this side on its own clock.`;
-  const pairStateStatement = ` PAIR_STATE=${pairState}; LEG_STATE=${legState}; SPECIALIST_PHASE=${fitPhase.toFixed(9)}; CREDITED_SIBLING=${siblingCommitment ? `${siblingId}@${siblingCommitment}` : "NONE"}; PAIR_REQUIRED_DEPTH_CENTS=${pairRequiredDepth}; PAIR_CAP_CENTS=${pairCap}.`;
-  const presenceStatement = ` TOUCH_RELATION=${touchRelation}; LIVE_BID_ASK=${liveBid ?? "UNKNOWN"}/${liveAsk ?? "UNKNOWN"}; JOINT_DEPTH_LICENSE=${jointDepthLicense.basis}; DEPTH_LICENSE_RECEIPTS=${jointDepthLicense.receipts.join(",") || "NONE"}.`;
-  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement}${windowStatement}${pairStateStatement}${presenceStatement} Frozen lineage receipt ${lineageStatement} remains provenance only; the connected pricing authority derives one level from specialist votes, licensed V3 depth, and the observed traded low as conditioning evidence. Post-only is a later veto and never a price input.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
-  if (!sentence.includes(actionStatement)) throw new Error(`SENTENCE_ACTION_MISMATCH ${state.event_id}|${legId}|${state.receipt}`);
-  for (const row of neighborhood) if (!sentence.includes(`[${row.citation_receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_NOT_WELDED:${row.event_id}|${state.receipt}`);
-  if (!sentence.includes(`[${readerReceipt.receipt_id}]`) || !sentence.includes(`[${lineageReceipt.receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION SENTENCE_RECEIPT_NOT_WELDED|${state.receipt}`);
-  if (fillHandoffReceipt && (!sentence.includes(`[${fillHandoffReceipt.receipt_id}]`) || !sentence.includes(String(sibling.fill_receipt)))) throw new Error(`FILL_HANDOFF_NOT_WELDED ${state.event_id}|${legId}|${state.receipt}`);
-  return {
-    event_id: state.event_id,
-    leg_id: legId,
-    timestamp_epoch: state.current_epoch,
-    hours_from_discovery: reads.time_in_window.value.hours_from_discovery,
-    receipt: state.receipt,
-    vector,
-    neighborhood,
-    resources_consulted: [...new Set(neighborhood.filter((row) => row.quality === "FOUNDATION_MINUTE_BELL_BOUNDED").flatMap((row) => ["FOUNDATION_PER_MINUTE_UNIVERSE", ...(row.legs?.some((leg) => leg.spike_atlas) ? ["SPIKE_ATLAS"] : [])]))],
-    citation_receipts: citationReceipts,
-    derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, mind_window: mindWindow, true_bell_cell_depth_map: { bound: Boolean(trueBellCellDepthMapBinding), commit: trueBellCellDepthMapBinding?.commit ?? null, path: trueBellCellDepthMapBinding?.path ?? null, sha256: trueBellCellDepthMapBinding?.sha256 ?? null, lookup_basis: "LIBRARY_MEMBER_BOUNDED_CLOSE_CENTS", map_votes: specialistMapVotes, mapped_cell_q50_cents: mappedCellPrice, mapped_floor_q50_cents: mappedFloorTarget, mapped_depth_cents: mappedDepth, licensed: mapDepthLicensed }, neighbor_specialist_composition: { kind: neighborSpecialistBinding?.kind ?? "UNBOUND_SPECIALIST_RECORDS", binding_sha256: neighborSpecialistBinding?.binding_sha256 ?? null, event_leave_self_out: true, leg_state: legState, pair_state: pairState, phase: fitPhase, vote_mass: timedNeighborLeg.specialist_vote_mass, vote_total: timedNeighborLeg.specialist_vote_total, vote_count: timedNeighborLeg.specialist_votes.length }, basis_availability: { observed_traded_floor: ownFloorLicensed, map_depth_license: mapDepthLicensed }, basis_weights: basisRows, blend_fitness_mass: blendFitnessMass, blend_evidence_grade: blendEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, weighted_depth_cents: weightedDepthCents, distribution_depth_cents: blendDistributionDepth, chosen_depth_cents: mappedDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: false, sibling_commitment_cents: siblingCommitment, pair_state: pairState, pair_cap_cents: pairCap, pair_cap_role: "VETO_ONLY_NOT_PRICE_AUTHOR", post_only_cap_cents: null, post_only_role: "VETO_ONLY_NOT_PRICE_AUTHOR", authority_recompute_inputs: { specialist_map_votes: specialistMapVotes.map((vote) => ({ event_id: vote.event_id, weight: vote.weight, value: vote.licensed_floor_cents, source_receipt: vote.source_receipt })), observed_traded_low_cents: boundedTradeLow, observed_traded_low_receipt: ownLowRead.true_trade_low_receipt ?? null, authority_method: "WEIGHTED_Q50_LICENSED_FLOOR_FROM_SPECIALIST_VOTES_CONDITIONED_BY_OWN_EVIDENCE" }, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, formation_complete: Number.isFinite(formationProgress) && formationProgress >= 1, formed_two_sided_book: formedTwoSidedBook, crossed_book: crossedBook, stale_prior_path_used: false, zero_depth_default_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
-    action,
-    sentence,
-    sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },
-    citation_receipt_assertion: { hard_assert: true, receipt_count: Object.keys(citationReceipts).length, equal: true },
-    pair_conservation: { sibling_leg_id: siblingId, sibling_commitment_cents: siblingCommitment, evaluated_target_cents: cent(action.target_cents), sum_cents: cent(action.target_cents) && siblingCommitment ? action.target_cents + siblingCommitment : null, at_or_below_99: !(cent(action.target_cents) && siblingCommitment) || action.target_cents + siblingCommitment <= PAR_BUDGET_CENTS },
-  };
-}
 
-module.exports = {
-  PAR_BUDGET_CENTS,
-  READER_NAMES,
-  EXPECTED_RESOURCE_IDS,
-  SIMILARITY_DECLARATION,
-  CONDITIONAL_DIP_DECLARATION,
-  sha256,
-  createTapeState,
-  observe,
-  creditPosition,
-  readAll,
-  vectorFromReads,
-  similarity,
-  retrieveNeighborhood,
-  retrieveOverlapMembership,
-  assertResources,
-  conditionalNeighborLeg,
-  configureNeighborSpecialistBinding,
-  configureTrueBellCellDepthMap,
-  captureReceipt,
-  assertCaptureReceipt,
-  deriveAction,
-};
+module.exports = { PAR_BUDGET_CENTS, READER_NAMES, EXPECTED_RESOURCE_IDS, SIMILARITY_DECLARATION, CONDITIONAL_DIP_DECLARATION, sha256, createTapeState, observe, creditPosition, readAll, vectorFromReads, retrieveNeighborhood, assertResources, captureReceipt, assertCaptureReceipt, configureNeighborSpecialistBinding, configureTrueBellCellDepthMap, compactTickLeg, configureTickLibrary, poolPair, poolSnapshot, atlasGateEpochs };

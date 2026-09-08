@@ -262,6 +262,319 @@
     "Roles, first-bind and flips use only receipts observed from first pair bind through this receipt. Final-truth accuracy lives in a separately labelled retrospective evaluation block. Gate SCORABLE is an evaluation denominator only, never a prediction gate.",
     "VALIDITY retains the raw share for audit and is labelled INVALID: ESS < 10 below the atlas evidence floor; never an accepted call below ten."
   ],
+  "matched_step_first": {
+    "categories": {
+      "ATP_MAIN": {
+        "1080": {
+          "favorite": {
+            "first_floor_mae": 1.7473684210526317,
+            "n": 380,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.7868421052631578,
+            "step_strictly_closer_share": 0.12631578947368421,
+            "tied_queries": 271
+          },
+          "underdog": {
+            "first_floor_mae": 1.8512820512820514,
+            "n": 390,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.9230769230769231,
+            "step_strictly_closer_share": 0.18461538461538463,
+            "tied_queries": 225
+          }
+        },
+        "120": {
+          "favorite": {
+            "first_floor_mae": 1.2307692307692308,
+            "n": 65,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.4,
+            "step_strictly_closer_share": 0.16923076923076924,
+            "tied_queries": 35
+          },
+          "underdog": {
+            "first_floor_mae": 1.353846153846154,
+            "n": 65,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.4923076923076923,
+            "step_strictly_closer_share": 0.15384615384615385,
+            "tied_queries": 41
+          }
+        },
+        "1440": {
+          "favorite": {
+            "first_floor_mae": 1.6775362318840579,
+            "n": 276,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.6630434782608696,
+            "step_strictly_closer_share": 0.14855072463768115,
+            "tied_queries": 197
+          },
+          "underdog": {
+            "first_floor_mae": 1.808,
+            "n": 250,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.856,
+            "step_strictly_closer_share": 0.06,
+            "tied_queries": 207
+          }
+        },
+        "15": {
+          "favorite": {
+            "first_floor_mae": 0.9629629629629629,
+            "n": 27,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.4074074074074074,
+            "step_strictly_closer_share": 0.25925925925925924,
+            "tied_queries": 12
+          },
+          "underdog": {
+            "first_floor_mae": 0.8461538461538461,
+            "n": 26,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 0.6153846153846154,
+            "step_strictly_closer_share": 0.3076923076923077,
+            "tied_queries": 16
+          }
+        },
+        "180": {
+          "favorite": {
+            "first_floor_mae": 1.0437158469945356,
+            "n": 183,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.1530054644808743,
+            "step_strictly_closer_share": 0.21311475409836064,
+            "tied_queries": 89
+          },
+          "underdog": {
+            "first_floor_mae": 1.1945945945945946,
+            "n": 185,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.4648648648648648,
+            "step_strictly_closer_share": 0.12432432432432433,
+            "tied_queries": 102
+          }
+        },
+        "2160": {
+          "favorite": {
+            "first_floor_mae": 2.022222222222222,
+            "n": 180,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 2.05,
+            "step_strictly_closer_share": 0.08333333333333333,
+            "tied_queries": 148
+          },
+          "underdog": {
+            "first_floor_mae": 2.210843373493976,
+            "n": 166,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 2.2349397590361444,
+            "step_strictly_closer_share": 0.0783132530120482,
+            "tied_queries": 135
+          }
+        },
+        "240": {
+          "favorite": {
+            "first_floor_mae": 1.343108504398827,
+            "n": 341,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.3782991202346042,
+            "step_strictly_closer_share": 0.20234604105571846,
+            "tied_queries": 194
+          },
+          "underdog": {
+            "first_floor_mae": 1.52,
+            "n": 300,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.7066666666666668,
+            "step_strictly_closer_share": 0.21,
+            "tied_queries": 135
+          }
+        },
+        "2880": {
+          "favorite": {
+            "first_floor_mae": 1.90625,
+            "n": 32,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.84375,
+            "step_strictly_closer_share": 0.09375,
+            "tied_queries": 27
+          },
+          "underdog": {
+            "first_floor_mae": 1.9767441860465116,
+            "n": 43,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 2.0232558139534884,
+            "step_strictly_closer_share": 0.09302325581395349,
+            "tied_queries": 33
+          }
+        },
+        "30": {
+          "favorite": {
+            "first_floor_mae": 0.896551724137931,
+            "n": 29,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.1379310344827587,
+            "step_strictly_closer_share": 0.10344827586206896,
+            "tied_queries": 15
+          },
+          "underdog": {
+            "first_floor_mae": 1.2083333333333333,
+            "n": 24,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.75,
+            "step_strictly_closer_share": 0.0,
+            "tied_queries": 14
+          }
+        },
+        "360": {
+          "favorite": {
+            "first_floor_mae": 1.654462242562929,
+            "n": 437,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.7482837528604118,
+            "step_strictly_closer_share": 0.11899313501144165,
+            "tied_queries": 304
+          },
+          "underdog": {
+            "first_floor_mae": 1.5152173913043478,
+            "n": 460,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.817391304347826,
+            "step_strictly_closer_share": 0.1673913043478261,
+            "tied_queries": 218
+          }
+        },
+        "480": {
+          "favorite": {
+            "first_floor_mae": 1.6016129032258064,
+            "n": 620,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.732258064516129,
+            "step_strictly_closer_share": 0.15,
+            "tied_queries": 374
+          },
+          "underdog": {
+            "first_floor_mae": 1.566006600660066,
+            "n": 606,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.618811881188119,
+            "step_strictly_closer_share": 0.10726072607260725,
+            "tied_queries": 443
+          }
+        },
+        "5": {
+          "favorite": {
+            "first_floor_mae": 1.1176470588235294,
+            "n": 17,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.1764705882352942,
+            "step_strictly_closer_share": 0.17647058823529413,
+            "tied_queries": 10
+          },
+          "underdog": {
+            "first_floor_mae": 1.7272727272727273,
+            "n": 22,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.7272727272727273,
+            "step_strictly_closer_share": 0.045454545454545456,
+            "tied_queries": 20
+          }
+        },
+        "60": {
+          "favorite": {
+            "first_floor_mae": 1.9318181818181819,
+            "n": 44,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 2.090909090909091,
+            "step_strictly_closer_share": 0.11363636363636363,
+            "tied_queries": 27
+          },
+          "underdog": {
+            "first_floor_mae": 1.2222222222222223,
+            "n": 72,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.4722222222222223,
+            "step_strictly_closer_share": 0.1111111111111111,
+            "tied_queries": 40
+          }
+        },
+        "720": {
+          "favorite": {
+            "first_floor_mae": 1.5856515373352855,
+            "n": 683,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.6120058565153734,
+            "step_strictly_closer_share": 0.16105417276720352,
+            "tied_queries": 453
+          },
+          "underdog": {
+            "first_floor_mae": 1.6567164179104477,
+            "n": 670,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.8044776119402985,
+            "step_strictly_closer_share": 0.1761194029850746,
+            "tied_queries": 358
+          }
+        },
+        "90": {
+          "favorite": {
+            "first_floor_mae": 1.3818181818181818,
+            "n": 55,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.4181818181818182,
+            "step_strictly_closer_share": 0.21818181818181817,
+            "tied_queries": 31
+          },
+          "underdog": {
+            "first_floor_mae": 1.1923076923076923,
+            "n": 52,
+            "qualifies": false,
+            "step_authorship_enabled": false,
+            "step_floor_mae": 1.2884615384615385,
+            "step_strictly_closer_share": 0.15384615384615385,
+            "tied_queries": 32
+          }
+        }
+      }
+    },
+    "cohort": "same query, side and gate; SCORABLE and both rules status OK",
+    "criterion": {
+      "minimum_matched_queries": 100,
+      "minimum_step_strictly_closer_share": 0.5,
+      "ties": "included in denominator, not STEP wins"
+    },
+    "scope": "REPORT_ONLY; FIRST-TICK-ONLY then BASE authors; STEP telemetry"
+  },
   "no_call": "ESS < 10 after role/availability filter, counted explicitly with separate denominators; never replace with a different pool",
   "organ_contract": {
     "discovery_side_boundary_cents": 50,
@@ -299,6 +612,15 @@
     "remaining_path": "gate carried state plus native historical member changes through bell; earliest tied minimum",
     "role_drift_cents": 2,
     "sleeper_category_quantile": 0.1,
+    "taxonomy_rules": {
+      "grind_reversals": 4,
+      "grind_travel_multiple": 2,
+      "one_step_share": 0.6,
+      "quarter_fraction": 0.25,
+      "quarter_net_share": 0.7,
+      "quiet_net_cents": 5,
+      "round_trip_travel_cents": 10
+    },
     "taxonomy_samples": 17,
     "version": "CAUSAL_MEMBER_FLOORS_FIXED_ATLAS_RECEIPT_ROLES",
     "x": "independent weighted median(member remaining floor minutes-to-bell); query bell - X*60"
@@ -383,7 +705,7 @@
     "errors": "Path/floor errors and family accuracy use their own called-side or called-pair denominators; NO-CALL is not a zero prediction error.",
     "point_null": "TAXONOMY-NULL has no evaluated bid/reach model, so its utility stays undefined rather than zero."
   },
-  "script_sha256": "b4d1f33f33f91c6ba99e40a510c760dd2c6c13f9452cffeef14616a2f8f1cced",
+  "script_sha256": "b9d96cddfe43cc014342e9745fb099f5126f6adae06bbcbec6b5b6a8557d58f8",
   "selected_query_limit": null,
   "series": [
     "fav_last",

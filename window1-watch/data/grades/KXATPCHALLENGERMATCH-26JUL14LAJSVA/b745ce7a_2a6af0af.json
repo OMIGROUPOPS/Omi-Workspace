@@ -1,0 +1,1455 @@
+{
+  "version": 1,
+  "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+  "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+  "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+  "grades": [
+    {
+      "version": 1,
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "provenance": {
+        "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+        "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+        "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "truth_row_sha256": "1fc23f67385259fef95622a3020477439675566cdbb0332c18e6b7335852aec1",
+        "face_sha256": "4722b1cb2fd7a9ddf667ef570f8d2e8a9ca68bad8c6074caee54b3994bf831c0",
+        "stage_inputs_sha256": "724257bba9c21f1e6404991a93ccd289e17600462867cecace4a0bfab8f901c9",
+        "stage_files_count": 135,
+        "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+        "receipt_sha256": "26308b440b79dcbd607d1b629a4f6cfb149fec6b6a7cf15b429260dead041e9a",
+        "grade_builder_sha256": "76b764bef92260d71b1118e10351f81f5d15c2ec15036031f11bf3fadeca9e8a",
+        "grade_contract_sha256": "840311c8019c498fef30e348aaca61cf4f4a8b82f105d2f4fb6ddfbf87b9bb61",
+        "fields_sha256": "25cb8e1e074af8d83664fcb645ea41fd5a1abe0cbf4626f85015233754aa3b40",
+        "os_commit": "STORE SILENT",
+        "os_commit_order": null,
+        "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796"
+      },
+      "SENTENCE": {
+        "receipts_total": 135,
+        "receipts_with_sentence": 80,
+        "leg_receipts_total": 248,
+        "leg_receipts_with_sentence": 172,
+        "q_organ_leg_receipts": 172,
+        "x_organ_leg_receipts": 172,
+        "share_q_authored_by_organ": 0.6935483870967742,
+        "share_x_authored_by_organ": 0.6935483870967742,
+        "non_organ_q_authors": [
+          "PRIOR_ONLY",
+          "LIBRARY_FRACTION_PRIOR",
+          "INSUFFICIENT_EVIDENCE",
+          "STORE SILENT",
+          "PRIOR_REWEIGHTED_BY_OWN_WALK"
+        ],
+        "named_tokens_found": [],
+        "named_token_evidence": [],
+        "author_counts": {
+          "q": {
+            "INSUFFICIENT_EVIDENCE": 76,
+            "POOL_FIRST-TICK-ONLY": 164,
+            "POOL_BASE": 8
+          },
+          "x": {
+            "INSUFFICIENT_EVIDENCE": 76,
+            "POOL_FIRST-TICK-ONLY_FLOOR_MTB": 164,
+            "POOL_BASE_FLOOR_MTB": 8
+          }
+        },
+        "authorship_scope": "Author-token metric excluding prior-only badges, including PRIOR_REWEIGHTED_BY_OWN_WALK; not certification of the Gate-1 own-receipt/weight chain.",
+        "gate_1_authorship_certification": "STORE SILENT",
+        "gate_1_reason": "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1."
+      },
+      "MACRO": {
+        "last_gate": 5,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784078100",
+        "legs": {
+          "LAJ": {
+            "realized_family": "ONE_STEP_DOWN",
+            "family_called_at_last_gate": "QUIET_WOBBLE",
+            "family_match": false,
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {
+              "BASE": {
+                "called_family": "QUIET_WOBBLE",
+                "realized_family": "ONE_STEP_DOWN",
+                "ess": 424,
+                "status": "OK"
+              },
+              "FIRST-TICK-ONLY": {
+                "called_family": "QUIET_WOBBLE",
+                "realized_family": "ONE_STEP_DOWN",
+                "ess": 195.77167199759742,
+                "status": "OK"
+              },
+              "HARD": {
+                "called_family": "STORE SILENT",
+                "realized_family": "ONE_STEP_DOWN",
+                "ess": 1.0346828547797045,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "SOFT": {
+                "called_family": "STORE SILENT",
+                "realized_family": "ONE_STEP_DOWN",
+                "ess": 1.0016686585481132,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "STEP-FORECAST": {
+                "called_family": "STORE SILENT",
+                "realized_family": "ONE_STEP_DOWN",
+                "ess": 3.7304586781259803,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "TAXONOMY-NULL": {
+                "called_family": "ONE_STEP_DOWN",
+                "realized_family": "ONE_STEP_DOWN",
+                "ess": 31,
+                "status": "OK"
+              }
+            },
+            "reason": null
+          },
+          "SVA": {
+            "realized_family": "DRIFT_UP",
+            "family_called_at_last_gate": "QUIET_WOBBLE",
+            "family_match": false,
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {
+              "BASE": {
+                "called_family": "QUIET_WOBBLE",
+                "realized_family": "DRIFT_UP",
+                "ess": 423,
+                "status": "OK"
+              },
+              "FIRST-TICK-ONLY": {
+                "called_family": "QUIET_WOBBLE",
+                "realized_family": "DRIFT_UP",
+                "ess": 186.40044173004938,
+                "status": "OK"
+              },
+              "HARD": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "SOFT": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 1.0000000000000022,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "STEP-FORECAST": {
+                "called_family": "STORE SILENT",
+                "realized_family": "DRIFT_UP",
+                "ess": 3.1309699813253427,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "TAXONOMY-NULL": {
+                "called_family": "DRIFT_UP",
+                "realized_family": "DRIFT_UP",
+                "ess": 43,
+                "status": "OK"
+              }
+            },
+            "reason": null
+          }
+        },
+        "pile_ess_at_last_gate": 4.628982111790837,
+        "pool_accuracy_by_gate": [
+          {
+            "gate": 1080,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "STORE SILENT",
+            "reason": "NO_STORED_VALIDITY"
+          },
+          {
+            "gate": 720,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "NO_PREVIOUS_GATE",
+            "reason": null
+          },
+          {
+            "gate": 480,
+            "share": 0,
+            "ess": 1.3060057920222292,
+            "status": "INVALID: ESS < 10",
+            "reason": null
+          },
+          {
+            "gate": 360,
+            "share": 0.032814777003122596,
+            "ess": 27.01263795286309,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 240,
+            "share": 0.5824266624478094,
+            "ess": 9.724113738742123,
+            "status": "INVALID: ESS < 10",
+            "reason": null
+          },
+          {
+            "gate": 180,
+            "share": 0.6365274033972235,
+            "ess": 21.224046541690456,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 120,
+            "share": 0.4825850274520151,
+            "ess": 10.078969464223864,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 90,
+            "share": 0.5472117487882465,
+            "ess": 16.233944522970077,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 60,
+            "share": 0.13220085630023304,
+            "ess": 3.462814492556305,
+            "status": "INVALID: ESS < 10",
+            "reason": null
+          },
+          {
+            "gate": 30,
+            "share": 0.7910301918687427,
+            "ess": 2.3154399848272957,
+            "status": "INVALID: ESS < 10",
+            "reason": null
+          },
+          {
+            "gate": 15,
+            "share": 0.00003886911255486101,
+            "ess": 5.480404818444713,
+            "status": "INVALID: ESS < 10",
+            "reason": null
+          },
+          {
+            "gate": 5,
+            "share": 0.6558981269837818,
+            "ess": 4.628982111790837,
+            "status": "INVALID: ESS < 10",
+            "reason": null
+          }
+        ],
+        "bench_label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD",
+        "bench_reason": null,
+        "ess_source": "Bench validity pool, not OS membership ESS"
+      },
+      "MICRO": {
+        "last_gate": 5,
+        "legs": {
+          "LAJ": {
+            "gate": 5,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784078100",
+            "called_q50_floor_cents": 53,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 299.6133333325386,
+            "recorded_floor_cents": 51,
+            "recorded_floor_minutes_to_bell": 304.6133333325386,
+            "first_gate_within_2c_and_held": 5,
+            "reason": null
+          },
+          "SVA": {
+            "gate": 5,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784078100",
+            "called_q50_floor_cents": 48,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 7,
+            "timing_error_minutes": 964.9700000007947,
+            "recorded_floor_cents": 41,
+            "recorded_floor_minutes_to_bell": 969.9700000007947,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          }
+        },
+        "gate_calls": [
+          {
+            "gate": 1080,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784013600",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 720,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784035200",
+            "called_q50_floor_cents": 59,
+            "called_floor_minutes_to_bell": 512.8666666666667,
+            "floor_error_cents": 8,
+            "timing_error_minutes": 208.25333333412806
+          },
+          {
+            "gate": 480,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4307",
+            "called_q50_floor_cents": 54,
+            "called_floor_minutes_to_bell": 327.41592631737393,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 22.802592984835314
+          },
+          {
+            "gate": 360,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784056800",
+            "called_q50_floor_cents": 53,
+            "called_floor_minutes_to_bell": 258.6170205156008,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 45.9963128169378
+          },
+          {
+            "gate": 240,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784064000",
+            "called_q50_floor_cents": 54,
+            "called_floor_minutes_to_bell": 193.96666666666667,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 110.64666666587195
+          },
+          {
+            "gate": 180,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784067600",
+            "called_q50_floor_cents": 53,
+            "called_floor_minutes_to_bell": 171.93333333333334,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 132.67999999920528
+          },
+          {
+            "gate": 120,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784071200",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 114.93333333333334,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 189.67999999920528
+          },
+          {
+            "gate": 90,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784073000",
+            "called_q50_floor_cents": 54,
+            "called_floor_minutes_to_bell": 90,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 214.61333333253862
+          },
+          {
+            "gate": 60,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784074800",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 60,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 244.61333333253862
+          },
+          {
+            "gate": 30,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784076600",
+            "called_q50_floor_cents": 52,
+            "called_floor_minutes_to_bell": 30,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 274.6133333325386
+          },
+          {
+            "gate": 15,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784077500",
+            "called_q50_floor_cents": 54,
+            "called_floor_minutes_to_bell": 15,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 289.6133333325386
+          },
+          {
+            "gate": 5,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784078100",
+            "called_q50_floor_cents": 53,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 299.6133333325386
+          },
+          {
+            "gate": 1080,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784013600",
+            "called_q50_floor_cents": "STORE SILENT",
+            "called_floor_minutes_to_bell": "STORE SILENT",
+            "floor_error_cents": "STORE SILENT",
+            "timing_error_minutes": "STORE SILENT"
+          },
+          {
+            "gate": 720,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784035200",
+            "called_q50_floor_cents": 38,
+            "called_floor_minutes_to_bell": 366.6635236819585,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 603.3064763188362
+          },
+          {
+            "gate": 480,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4307",
+            "called_q50_floor_cents": 44,
+            "called_floor_minutes_to_bell": 366.6635236819585,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 603.3064763188362
+          },
+          {
+            "gate": 360,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784056800",
+            "called_q50_floor_cents": 48,
+            "called_floor_minutes_to_bell": 257.4301671504974,
+            "floor_error_cents": 7,
+            "timing_error_minutes": 712.5398328502972
+          },
+          {
+            "gate": 240,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784064000",
+            "called_q50_floor_cents": 47,
+            "called_floor_minutes_to_bell": 183.66626561482747,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 786.3037343859672
+          },
+          {
+            "gate": 180,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784067600",
+            "called_q50_floor_cents": 47,
+            "called_floor_minutes_to_bell": 110.0713600675265,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 859.8986399332682
+          },
+          {
+            "gate": 120,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784071200",
+            "called_q50_floor_cents": 48,
+            "called_floor_minutes_to_bell": 98.69091544946035,
+            "floor_error_cents": 7,
+            "timing_error_minutes": 871.2790845513343
+          },
+          {
+            "gate": 90,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784073000",
+            "called_q50_floor_cents": 47,
+            "called_floor_minutes_to_bell": 84.15,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 885.8200000007947
+          },
+          {
+            "gate": 60,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784074800",
+            "called_q50_floor_cents": 47,
+            "called_floor_minutes_to_bell": 60,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 909.9700000007947
+          },
+          {
+            "gate": 30,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784076600",
+            "called_q50_floor_cents": 46,
+            "called_floor_minutes_to_bell": 30,
+            "floor_error_cents": 5,
+            "timing_error_minutes": 939.9700000007947
+          },
+          {
+            "gate": 15,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784077500",
+            "called_q50_floor_cents": 49,
+            "called_floor_minutes_to_bell": 15,
+            "floor_error_cents": 8,
+            "timing_error_minutes": 954.9700000007947
+          },
+          {
+            "gate": 5,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784078100",
+            "called_q50_floor_cents": 48,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 7,
+            "timing_error_minutes": 964.9700000007947
+          }
+        ]
+      },
+      "HANDS": {
+        "actions": [
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322",
+            "leg": "LAJ",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 969.9333331982295,
+            "old_cents": null,
+            "new_cents": 58,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "PLACE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/4612ec8eade9b3781cdf3076eb9757eaf5ab9f61ca8161acb91a52cc6cba44c7.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322",
+            "leg": "SVA",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 969.9333331982295,
+            "old_cents": null,
+            "new_cents": 39,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "PLACE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/4612ec8eade9b3781cdf3076eb9757eaf5ab9f61ca8161acb91a52cc6cba44c7.json"
+          },
+          {
+            "receipt": "4f1edd6e-4e43-6394-4176-9cafeb1e897a",
+            "leg": "LAJ",
+            "action": "CANCEL_REST",
+            "kind": "REMOVE",
+            "minutes_to_bell": 969.7520333329837,
+            "old_cents": 58,
+            "new_cents": null,
+            "writer_class": "HAND",
+            "tokens": [
+              "CANCEL_REST",
+              "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+              "NO_ACTION",
+              "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/d33cea63e0fcfa4064305c2b582af70645a254f3e946fb0b9622ea7cbcab22c5.json"
+          },
+          {
+            "receipt": "4f1edd6e-4e43-6394-4176-9cafeb1e897a",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 969.7520333329837,
+            "old_cents": 39,
+            "new_cents": 40,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/d33cea63e0fcfa4064305c2b582af70645a254f3e946fb0b9622ea7cbcab22c5.json"
+          },
+          {
+            "receipt": "6a125304-0f14-4aa4-5dfd-3d57fd746a9d",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 969.7195000012716,
+            "old_cents": 40,
+            "new_cents": 41,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/d94b2e9be813d8c86c72422b3ca16ae7590e61e052ef8810d92109a10a83cba7.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-799",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 968.033333317439,
+            "old_cents": 41,
+            "new_cents": 40,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/a42514c047fdcb1304edc2dd68293bebc085c211123df8ad97ba519058e7cf8d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-817",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 966.9833333174388,
+            "old_cents": 40,
+            "new_cents": 41,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/337503fb754d8885787a8d0cdfa6b648bf2096d243d2f60f5655f4edb0517fa5.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1364",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 944.6499999841055,
+            "old_cents": 41,
+            "new_cents": 42,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/2c1e5be168f32a7dceed61caab6d0628a714cf2f1dc7c4a19cee5a939271f8db.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1412",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 939.7666666507721,
+            "old_cents": 42,
+            "new_cents": 41,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/9d55a28e426f778e40d8093c8de35248c740b5c378f51ad1b282f65baeae1c01.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1472",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 927.6999999841055,
+            "old_cents": 41,
+            "new_cents": 42,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/9c04b6d90597336972df936c4a330ee08be675e58fa6249de8c7a53fd05926c1.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1626",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 902.0166666507721,
+            "old_cents": 42,
+            "new_cents": 41,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/e1a0fd1021b29cc1c4bdcb275c3497aca92d84f34d18d267b5f8d2560c6a07c1.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1650",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 899.5999999841055,
+            "old_cents": 41,
+            "new_cents": 42,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/d01275301d7140afc2203dc58bfd6dc77b08837eb8d80bbebea9efb687cac151.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-1651",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 899.5166666507722,
+            "old_cents": 42,
+            "new_cents": 41,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/3d20a62816d7bae19b0428e5159fdd51b53373a55d5d77134cdae9b7979ea2ec.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2232",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 865.8833333174389,
+            "old_cents": 41,
+            "new_cents": 42,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/2e10ad4dfa6939fa7b1238e9b4fd17c5da6aa9db320b27a85ebec83408562b87.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2316",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 858.8999999841055,
+            "old_cents": 42,
+            "new_cents": 41,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/5d8de4166205ff0fb8bae6aa671aa4c517e746702657cd0de59c82e599e9ab9e.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2359",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 855.5666666507722,
+            "old_cents": 41,
+            "new_cents": 42,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/1f11856ca1283f987fb66de7b104dafa8b1217a83aa183e4aa5e2b2e8938cf9c.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2567",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 814.4333333174388,
+            "old_cents": 42,
+            "new_cents": 41,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/f38c6f0218c3d3a4be287af389676ee5087ab692503172bfe9f74107bdbc001a.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2624",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 802.4999999841056,
+            "old_cents": 41,
+            "new_cents": 42,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/36bac00d4213c3af51506c7227e7fe37a238db6c77f79d2be655f6cfb480740f.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2626",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 801.8999999841055,
+            "old_cents": 42,
+            "new_cents": 41,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/d1bdeeefcc2f303932eacf68f229c1fd8d764774e14e6aca4b9f09d5e5e5b6de.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2653",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 795.2499999841054,
+            "old_cents": 41,
+            "new_cents": 42,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/f7e34ad3062bd178fcdd14b37838245afb6acf7ed88a2a01c42128fbea3bfdf6.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2678",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 790.5166666507722,
+            "old_cents": 42,
+            "new_cents": 41,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/9394464573d776beb5bd23a0a9d740de418a8d00128f421bf0a281bcbc77160f.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2690",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 786.7499999841056,
+            "old_cents": 41,
+            "new_cents": 42,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/bfc64b8188cd1714f448f385cf22118bf9b93b1d78ee12b3f3e424eb197579be.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2694",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 785.7499999841056,
+            "old_cents": 42,
+            "new_cents": 40,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/e0d1dcb691d25aecc8eb094f7ddc602f809bb6f5b226661d1f0e299f1216f8fa.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2824",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 737.8166666507723,
+            "old_cents": 40,
+            "new_cents": 39,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/0718c55e2e9f954b1a674440b0745c48a084276b74cc7789f2e9f8d04871a543.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2882",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 730.1499999841054,
+            "old_cents": 39,
+            "new_cents": 38,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/cb3ea13d94b224a6d9fab7dcf69358797ce9c6a4ce7b1b517161ef4483841e1d.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2884",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 728.5999999841056,
+            "old_cents": 38,
+            "new_cents": 39,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/79ccb25c69a2ae0ca28b11cd918bfbb5b62ab79a4028aa7e801ee7be7697e13b.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2901",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 723.5666666507722,
+            "old_cents": 39,
+            "new_cents": 38,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/8e17c63c6da414a0a8f44e7c331f38e6e5f8ad8ea7019ae7d879a88edd97dc5c.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-2997",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 713.8999999841055,
+            "old_cents": 38,
+            "new_cents": 39,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/1f21f21d12c72cf8f144a41de243a167452ffe0928c7c547bb0fd46cea41d72a.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3013",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 712.3333333174388,
+            "old_cents": 39,
+            "new_cents": 38,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/de62bde941425c8bb57c05438a22aacdd4a6b9bc7cfb06b957da2f0cd1f91634.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3032",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 707.7666666507722,
+            "old_cents": 38,
+            "new_cents": 40,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/9a10ff0f76d6c4b97a06ef0b2d400b8973e091f0068b471c17585706e0c1791a.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3281",
+            "leg": "LAJ",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 695.9666666150094,
+            "old_cents": null,
+            "new_cents": 54,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "PLACE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/f5fb0635b158efe6d1b0fbe6703a902d9425391f5e52b0ef0f94d4b2c6d162e5.json"
+          },
+          {
+            "receipt": "7a17e4a0-5a27-71e4-458b-28a11d7f08f9",
+            "leg": "LAJ",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 652.6079666654269,
+            "old_cents": 54,
+            "new_cents": 55,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/1bf576a2984f1ab11484a1026f714b4cee1f0b908ac60ac9452dc39ca2484fd3.json"
+          },
+          {
+            "receipt": "7a17e4a0-5a27-71e4-458b-28a11d7f08f9",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 652.6079666654269,
+            "old_cents": 40,
+            "new_cents": 43,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/1bf576a2984f1ab11484a1026f714b4cee1f0b908ac60ac9452dc39ca2484fd3.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3784",
+            "leg": "LAJ",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 644.7666666348775,
+            "old_cents": 55,
+            "new_cents": 54,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/ddaa731e4ee9b4b58e96e0b451394823146085a50e4a0aac2109d9e7007205c7.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784049600",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 480.0000000000001,
+            "old_cents": 43,
+            "new_cents": 44,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/8b9d3babbf02375c5c75067517efb1bd259ab5dd88fc01ae0d5cb79a9ed343ae.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4458",
+            "leg": "SVA",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 464.7333333174388,
+            "old_cents": 44,
+            "new_cents": 45,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/c7b0f7dc485d64e64718b11a8ca36e6096fd6e0c2307fc407bcd33052277c5b6.json"
+          },
+          {
+            "receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+            "leg": "LAJ",
+            "action": "FILL_EVENT",
+            "kind": "FILL",
+            "minutes_to_bell": 457.11563333272943,
+            "old_cents": 54,
+            "new_cents": null,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "FILL_EVENT",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE:FIRST-TICK-ONLY",
+              "POOL_FIRST-TICK-ONLY",
+              "POOL_FIRST-TICK-ONLY_FLOOR_MTB"
+            ],
+            "rest_age_at_fill_minutes": 238.85103328227996,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/320f45e3038a169f49c230abaf8cedd02d4cf9a1bbb545cad7ad789b42b57118.json"
+          },
+          {
+            "receipt": "2ce0ce6a-df98-6075-9abc-e0e7cf733a6e",
+            "leg": "SVA",
+            "action": "FILL_EVENT",
+            "kind": "FILL",
+            "minutes_to_bell": 76.4848833322526,
+            "old_cents": 45,
+            "new_cents": null,
+            "writer_class": "STORE SILENT",
+            "tokens": [
+              "FILL_EVENT",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE:FIRST-TICK-ONLY",
+              "POOL_FIRST-TICK-ONLY",
+              "POOL_FIRST-TICK-ONLY_FLOOR_MTB"
+            ],
+            "rest_age_at_fill_minutes": 893.448449865977,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.stages/27aa126b451d55400a3fe2a6dafd2e3ab7e7a9e054d1ecdf61d70030511fbacf.json"
+          }
+        ],
+        "placement_rows": 35,
+        "rest_age_at_fill_minutes": [
+          {
+            "leg": "LAJ",
+            "receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+            "minutes": 238.85103328227996
+          },
+          {
+            "leg": "SVA",
+            "receipt": "2ce0ce6a-df98-6075-9abc-e0e7cf733a6e",
+            "minutes": 893.448449865977
+          }
+        ],
+        "post_only_violations": 0,
+        "observed_post_only_violations": 0,
+        "post_only_uncheckable": 0,
+        "pre_formation_placements": 0,
+        "observed_pre_formation_placements": 0,
+        "formation_uncheckable": 0,
+        "same_second_fills": 0,
+        "fill_age_uncheckable": 0,
+        "writer_class_unmapped": 37,
+        "violation_receipts": []
+      },
+      "OUTCOME": {
+        "legs": {
+          "LAJ": {
+            "filled": true,
+            "cents": 54,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1784050973.062,
+            "valid_span_fill": true,
+            "reason": null
+          },
+          "SVA": {
+            "filled": true,
+            "cents": 45,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1784073810.907,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "pair_completed": true,
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "best_capturable_cents": 8,
+        "best_capturable_pair_sum_cents": 92,
+        "capture_ratio": 0.125,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": true
+      },
+      "LETTER": {
+        "letter": "F",
+        "governing_section": "MACRO · MICRO · OUTCOME",
+        "hard_failures": [],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "C",
+            "metrics": {
+              "minimum_q_x_organ_share": 0.6935483870967742
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "F",
+            "metrics": {
+              "family_match_share": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "F",
+            "metrics": {
+              "max_floor_error_cents": 7,
+              "max_timing_error_minutes": 964.9700000007947
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "post_only_violations": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "F",
+            "metrics": {
+              "capture_ratio": 0.125
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "display": {
+        "letter": "F",
+        "label": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+        "governing": "MACRO · MICRO · OUTCOME",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "!",
+            "line": "Q 69.35% · X 69.35% organ share",
+            "hover_lines": [
+              "SENTENCE: C · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0.6935483870967742}",
+              "172/248 leg sentences · 0 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "LAJ: QUIET_WOBBLE / ONE_STEP_DOWN · SVA: QUIET_WOBBLE / DRIFT_UP",
+            "hover_lines": [
+              "MACRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":0}",
+              "Bench: RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "LAJ: 2¢ / 299.61m error · SVA: 7¢ / 964.97m error",
+            "hover_lines": [
+              "MICRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":7,\"max_timing_error_minutes\":964.9700000007947}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "!",
+            "line": "0 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":\"STORE SILENT\"}",
+              "35 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "1 of 8¢ captured",
+            "hover_lines": [
+              "OUTCOME: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":0.125}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "receipt": {
+        "version": 1,
+        "role": "REPORT ONLY — no OS inputs changed",
+        "citations": {
+          "PER_GAME_L1_L8": {
+            "path": "C:/tmp/omi-v53-understanding-organ-20260819/.claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/PER_GAME_L1_L8.json",
+            "sha256": "3f5ccde3d50d104910d2a23d9d15c7fc9e9a523895cfffa3aef4a2c14fd24ff1",
+            "bytes": 149794,
+            "commit": "STORE SILENT",
+            "role": "Replaced per-game L1–L8 report. Builder baseline reads rows[].L7_CREDIT.why.",
+            "rows": 5
+          },
+          "HONEST_SCOREBOARD": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/HONEST_SCOREBOARD.md",
+            "sha256": "bad5314cf12877755e922175d053084ba67d9849515a72bdd3e4861c11f49dc0",
+            "bytes": 6585,
+            "commit": "2aa454af4205468de598bc507527e7c608b35d42",
+            "role": "Truth-table offered cents and span-valid captured cents; complete under par, not apparent fills."
+          },
+          "OFFER_DENOMINATOR": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/OFFER_DENOMINATOR.md",
+            "sha256": "2842aacd0821138edee3bcf0d18464ba2f1a9d8dbb2d1016b65f780a69b45c7b",
+            "bytes": 3050,
+            "commit": "ce2e8b7cc84191083c522af3692d467576afca4f",
+            "role": "Definition B: verified-span floors under par; both credited fills inside the span for capture."
+          },
+          "GATE_1_OBJECT": {
+            "path": "artifacts/review_mirror/GATE_1_OBJECT.md",
+            "sha256": "bbeee3207af290c75ca6fb2cf3dfbc36d58afdfb588ed969fd425b40ad365398",
+            "bytes": 2136,
+            "commit": "67378c344419a70ec2b6f05d714c79358da0ea70",
+            "role": "P/Q/X require an author reading this leg; test 1 own receipt weights, test 2 own clock, test 3 no named pricing rule."
+          }
+        },
+        "bench_taxonomy_receipt": {
+          "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
+          "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
+          "bytes": 28853,
+          "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
+          "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
+          "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
+          "bench_choices": {
+            "causal_family_adaptation": "At a receipt only, normalize formation through the current gate into 17 samples; do not use or forward-fill into the unknown remainder. Realized labels use formation through bell.",
+            "direction": "early/late shares are signed relative to net; reversals omit zero steps",
+            "flat_after": "abs(net after first quarter) <= 2 cents; operator-authorized bench choice, not taxonomy law",
+            "quiet_wobble_prose_caveat": "The inherited travel split does not mathematically guarantee the prose 5-cent band. quiet_wobble_prose_band_exception is exposed; no new cutoff is introduced.",
+            "rule_order": [
+              "SLEEPER",
+              "ROUND_TRIP_OR_QUIET_WOBBLE",
+              "LATE_BREAK",
+              "EARLY_SET",
+              "ONE_STEP",
+              "GRIND_WOBBLE",
+              "DRIFT"
+            ],
+            "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
+            "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
+          },
+          "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+        },
+        "rules": {
+          "authorship": "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
+          "missing": "STORE SILENT; no number or author is invented.",
+          "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
+          "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
+          "taxonomy": "Read realized labels from the hash-bound bench, do not reclassify or select a favored benchmark rule.",
+          "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
+        }
+      },
+      "timestamp": "2026-09-08T03:44:55.673Z"
+    }
+  ]
+}

@@ -119,6 +119,17 @@ function weightedQuantile(rows, fraction) {
 }
 
 function memberBand(derivation) {
+  // Cascade band is the stored STEP pile telemetry, never the author's Q.
+  const step = derivation?.derivation?.pool_cascade?.layers?.["STEP-FORECAST"];
+  if (step) return {
+    member_count: step.member_count, weight_sum: step.weight_sum,
+    member_remaining_dip_zero_weighted_share: step.member_remaining_dip_zero_weighted_share,
+    candidate_level_q10_cents: step.floors?.q10?.level_cents ?? null,
+    candidate_level_q25_cents: step.floors?.q25?.level_cents ?? null,
+    candidate_level_q50_cents: step.floors?.q50?.level_cents ?? null,
+    candidate_level_q75_cents: step.floors?.q75?.level_cents ?? null,
+    candidate_level_q90_cents: step.floors?.q90?.level_cents ?? null,
+  };
   const membership = derivation?.overlap_membership ?? {};
   const posteriorRows = derivation?.derivation?.pricing_authority?.true_conditioning?.posterior_rows;
   const weightedRows = Array.isArray(posteriorRows) ? posteriorRows.map((row) => ({
@@ -154,6 +165,7 @@ function slimDerivation(derivation) {
     },
     face_member_band: memberBand(derivation),
     face_authority_source: derivation?.derivation?.pricing_authority?.authority_source ?? null,
+    face_pool_cascade: derivation?.derivation?.pool_cascade ?? null,
   };
 }
 
@@ -195,7 +207,8 @@ async function loadRawFromTrace(file, event, custodyTapeDir) {
         lows_travel: row?.reads?.lows_travel?.value ?? null,
         half_pair_state: row?.reads?.half_pair_state?.value ?? null,
         statuses: Object.fromEntries(Object.entries(row.layers ?? {}).map(([key, value]) => [key, value?.context?.status ?? null])),
-        macro: { survivor_shapes: row?.layers?.macro?.context?.survivor_shapes ?? null },
+        macro: { survivor_shapes: row?.layers?.macro?.context?.survivor_shapes ?? null,
+          pool_cascade: row?.layers?.macro?.context?.pool_cascade ?? null },
         micro: { beliefs: Object.fromEntries(Object.entries(row?.layers?.micro?.context?.beliefs ?? {}).map(([leg, b]) => [leg, Object.fromEntries(["status", "belief_price_cents", "predicted_cents", "phase_projection_telemetry_cents", "q_author", "x_author", "plain_sentence", "family", "deadline", "predicted_minutes_to_bell"].map(k => [k, b[k] ?? null]))])) },
         derivations: Array.isArray(row.derivations) ? row.derivations.map(slimDerivation) : [],
       });
@@ -282,6 +295,7 @@ function stageLeg(stage, leg) {
   const survivorList = stage?.macro?.survivor_shapes?.legs?.[leg]?.survivor_shapes;
   const derivation = (stage?.derivations ?? []).find((row) => row?.leg_id === leg) ?? null;
   const band = derivation?.face_member_band ?? memberBand(derivation);
+  const cascade = derivation?.face_pool_cascade ?? stage?.macro?.pool_cascade?.sides?.[leg] ?? null;
   const actionName = derivation?.action?.action ?? null;
   const isRest = actionName === "PLACE_REST" || actionName === "REPRICE_REST";
   return {
@@ -290,7 +304,10 @@ function stageLeg(stage, leg) {
     last: stage?.books?.[leg]?.last_trade_cents ?? null,
     running_low: stage?.lows_travel?.[leg]?.observed_traded_low_cents ?? null,
     true_trade_count: stage?.lows_travel?.[leg]?.true_trade_count ?? null,
-    survivors: Array.isArray(survivorList) ? survivorList.length : null,
+    survivors: stage?.macro?.pool_cascade?.pool_member_count ?? (Array.isArray(survivorList) ? survivorList.length : null),
+    pool_cascade: cascade,
+    pool_validity: stage?.macro?.pool_cascade?.validity ?? null,
+    pool_layers: stage?.macro?.pool_cascade?.layers ?? null,
     member_count: band.member_count,
     weight_sum: band.weight_sum,
     member_remaining_dip_zero_weighted_share: band.member_remaining_dip_zero_weighted_share,
@@ -303,7 +320,7 @@ function stageLeg(stage, leg) {
       status: belief.status ?? null,
       P: belief.belief_price_cents ?? null,
       Q: belief.predicted_cents ?? null,
-      X: belief.phase_projection_telemetry_cents ?? null,
+      X: cascade ? belief.predicted_minutes_to_bell ?? null : belief.phase_projection_telemetry_cents ?? null,
       q_author: belief.q_author ?? null,
       x_author: belief.x_author ?? null,
       plain_sentence: belief.plain_sentence ?? null,
@@ -398,6 +415,14 @@ const face = {
 // Keep the original no-argument exporter contract for rerun_altgas.ps1 and its
 // legacy page. Tune-test is the explicit trace-backed path, with full inspectors.
 if (tracePath) await extendFace(face, { here, eventId, benchPath: args.bench });
+// Cascade X is a stored floor clock, not the retired cents-axis projection.
+for (const row of face.os) for (const [leg, state] of Object.entries(row.legs ?? {})) {
+  if (!state.pool_cascade || !row.display?.legs?.[leg]) continue;
+  const sentence = state.sentence;
+  const cents = value => Number.isFinite(value) ? `${value}¢` : "STORE SILENT";
+  const clock = Number.isFinite(sentence?.X) ? `${sentence.X}m to bell` : "STORE SILENT";
+  row.display.legs[leg].belief = `status ${sentence?.status ?? "STORE SILENT"} · P ${cents(sentence?.P)} · Q ${cents(sentence?.Q)} · X ${clock}`;
+}
 attachRecordedTruth(face, readPinnedTruth(path.resolve(here, "..")));
 if (tracePath) attachChartActions(face, raw.chartSources);
 

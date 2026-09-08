@@ -192,6 +192,126 @@
         "2026-09-06T18:05:23.974Z · run 8",
         "OS commit ed3b813ba9c3e383b223dba0f4f75751b2fb24e7"
       ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-08T03:43:49.723Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+      "letter": "F",
+      "capture_ratio": 0.5,
+      "governing_section": "MACRO · MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/b745ce7a_2a6af0af.json",
+      "revision": 0,
+      "grade_sha256": "95525f2520fabef599672fce0370eacb6455c9a95cd2056af5b0a279acbd709e",
+      "append_order": 8,
+      "x": 166,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO",
+        "2026-09-08T03:43:49.723Z · run 9",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-08T03:44:05.246Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 0,
+      "grade_sha256": "04b0185997ef839d2680529a517f01cfec8689a55c48a4bd2e5e2f038a7febf2",
+      "append_order": 9,
+      "x": 30,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T03:44:05.246Z · run 10",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-08T03:44:28.223Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 0,
+      "grade_sha256": "720ed5ed0153a036abc8a6f01fdc0797973be5ca281f2ae53196490e3b7866fb",
+      "append_order": 10,
+      "x": 166,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T03:44:28.223Z · run 11",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-08T03:44:55.673Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MACRO · MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 0,
+      "grade_sha256": "97b86b03ce4191fd3e84f84c8d23bf956c9adabe9b7cdc62cb683312e28b17c5",
+      "append_order": 11,
+      "x": 30,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO · OUTCOME",
+        "2026-09-08T03:44:55.673Z · run 12",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-08T03:45:15.243Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+      "letter": "F",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 0,
+      "grade_sha256": "9f036aa261e6ac64f2bf662d55b51d10ad4d5aae5f53a534dbae4bc67c9e7f3a",
+      "append_order": 12,
+      "x": 30,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO",
+        "2026-09-08T03:45:15.243Z · run 13",
+        "OS commit order STORE SILENT"
+      ]
     }
   ],
   "axis": {
@@ -206,7 +326,7 @@
   },
   "views": {
     "KXATPMATCH-26JUL12ALTGAS": {
-      "width": 196,
+      "width": 230,
       "height": 126,
       "labels": [
         {
@@ -236,7 +356,97 @@
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14URSPAL": {
-      "width": 196,
+      "width": 230,
+      "height": 126,
+      "labels": [
+        {
+          "letter": "A",
+          "y": 16
+        },
+        {
+          "letter": "B",
+          "y": 34
+        },
+        {
+          "letter": "C",
+          "y": 52
+        },
+        {
+          "letter": "D",
+          "y": 70
+        },
+        {
+          "letter": "F",
+          "y": 88
+        },
+        {
+          "letter": "—",
+          "y": 106
+        }
+      ]
+    },
+    "KXATPCHALLENGERMATCH-26JUL12GIUBAR": {
+      "width": 180,
+      "height": 126,
+      "labels": [
+        {
+          "letter": "A",
+          "y": 16
+        },
+        {
+          "letter": "B",
+          "y": 34
+        },
+        {
+          "letter": "C",
+          "y": 52
+        },
+        {
+          "letter": "D",
+          "y": 70
+        },
+        {
+          "letter": "F",
+          "y": 88
+        },
+        {
+          "letter": "—",
+          "y": 106
+        }
+      ]
+    },
+    "KXATPCHALLENGERMATCH-26JUL14LAJSVA": {
+      "width": 180,
+      "height": 126,
+      "labels": [
+        {
+          "letter": "A",
+          "y": 16
+        },
+        {
+          "letter": "B",
+          "y": 34
+        },
+        {
+          "letter": "C",
+          "y": 52
+        },
+        {
+          "letter": "D",
+          "y": 70
+        },
+        {
+          "letter": "F",
+          "y": 88
+        },
+        {
+          "letter": "—",
+          "y": 106
+        }
+      ]
+    },
+    "KXATPMATCH-26JUL18DANPRA": {
+      "width": 180,
       "height": 126,
       "labels": [
         {

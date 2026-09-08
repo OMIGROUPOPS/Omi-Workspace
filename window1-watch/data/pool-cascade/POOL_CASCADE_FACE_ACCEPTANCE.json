@@ -1,0 +1,1269 @@
+{
+  "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+  "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+  "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+  "method": "Reads packed face and stored inspectors after rerun_game.ps1; independent corrected bench is the comparison oracle. No engine values synthesized by this verifier.",
+  "comparisons": [
+    {
+      "gate": 2880,
+      "sides": {
+        "ALT": {
+          "q": 57,
+          "x": 2113.266666666667,
+          "ess": 40.12344058731352,
+          "step_ess": 31.185234108627807,
+          "step_q25": 54,
+          "step_q75": 57,
+          "step_x": 2113.266666666667,
+          "validity": {
+            "status": "NO_PREVIOUS_GATE",
+            "weighted_share": null
+          }
+        },
+        "GAS": {
+          "q": 39,
+          "x": 616.6666666666666,
+          "ess": 40.12344058731352,
+          "step_ess": 31.185234108627807,
+          "step_q25": 38,
+          "step_q75": 41,
+          "step_x": 683.8836626648903,
+          "validity": {
+            "status": "NO_PREVIOUS_GATE",
+            "weighted_share": null
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 2160,
+      "sides": {
+        "ALT": {
+          "q": 57,
+          "x": 890.85,
+          "ess": 31.61619879327502,
+          "step_ess": 18.980408651245625,
+          "step_q25": 55,
+          "step_q75": 57,
+          "step_x": 415.04032179911934,
+          "validity": {
+            "status": "OK",
+            "previous_gate": 2880,
+            "weighted_share": 0.42394550918610147,
+            "weight_sum": 5.18726143547576,
+            "ess": 31.185234108627807
+          }
+        },
+        "GAS": {
+          "q": 40,
+          "x": 815.1833333333333,
+          "ess": 71.64212888708222,
+          "step_ess": 38.465046500832294,
+          "step_q25": 37,
+          "step_q75": 42,
+          "step_x": 889.3833333333333,
+          "validity": {
+            "status": "OK",
+            "previous_gate": 2880,
+            "weighted_share": 0.42394550918610147,
+            "weight_sum": 5.18726143547576,
+            "ess": 31.185234108627807
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 1440,
+      "sides": {
+        "ALT": {
+          "q": 57,
+          "x": 757.3333333333334,
+          "ess": 51.74411436953983,
+          "step_ess": 18.648300461498458,
+          "step_q25": 56,
+          "step_q75": 58,
+          "step_x": 988.6616731683413,
+          "validity": {
+            "status": "OK",
+            "previous_gate": 2160,
+            "weighted_share": 0.3952366415352479,
+            "weight_sum": 3.6727303088607517,
+            "ess": 18.980408651245625
+          }
+        },
+        "GAS": {
+          "q": 41,
+          "x": 621.9527029514313,
+          "ess": 119.09288510125481,
+          "step_ess": 52.791205773058515,
+          "step_q25": 39,
+          "step_q75": 42,
+          "step_x": 806.3333333333334,
+          "validity": {
+            "status": "OK",
+            "previous_gate": 2160,
+            "weighted_share": 0.3952366415352479,
+            "weight_sum": 3.6727303088607517,
+            "ess": 18.980408651245625
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 1080,
+      "sides": {
+        "ALT": {
+          "q": 57,
+          "x": 746.4388867179553,
+          "ess": 73.51817084481101,
+          "step_ess": 18.776609652920992,
+          "step_q25": 56,
+          "step_q75": 58,
+          "step_x": 901.75,
+          "validity": {
+            "status": "OK",
+            "previous_gate": 1440,
+            "weighted_share": 0.659940175010149,
+            "weight_sum": 3.014122867170817,
+            "ess": 18.648300461498458
+          }
+        },
+        "GAS": {
+          "q": 41,
+          "x": 507.80113998254143,
+          "ess": 161.06572231711795,
+          "step_ess": 75.90950796694958,
+          "step_q25": 37,
+          "step_q75": 42,
+          "step_x": 490.53393119970957,
+          "validity": {
+            "status": "OK",
+            "previous_gate": 1440,
+            "weighted_share": 0.659940175010149,
+            "weight_sum": 3.014122867170817,
+            "ess": 18.648300461498458
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 720,
+      "sides": {
+        "ALT": {
+          "q": 59,
+          "x": 579.7,
+          "ess": 106.00961703040429,
+          "step_ess": 36.426921259985356,
+          "step_q25": 58,
+          "step_q75": 60,
+          "step_x": 692.45,
+          "validity": {
+            "status": "OK",
+            "previous_gate": 1080,
+            "weighted_share": 0.42930602000741175,
+            "weight_sum": 8.217102401400634,
+            "ess": 18.776609652920992
+          }
+        },
+        "GAS": {
+          "q": 40,
+          "x": 352.2250743985176,
+          "ess": 231.03542964020394,
+          "step_ess": 114.15785595947665,
+          "step_q25": 37,
+          "step_q75": 41,
+          "step_x": 365.8833333333333,
+          "validity": {
+            "status": "OK",
+            "previous_gate": 1080,
+            "weighted_share": 0.42930602000741175,
+            "weight_sum": 8.217102401400634,
+            "ess": 18.776609652920992
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 480,
+      "sides": {
+        "ALT": {
+          "q": 61,
+          "x": 369.6333333333333,
+          "ess": 128.40225205252344,
+          "step_ess": 14.808184589077397,
+          "step_q25": 58,
+          "step_q75": 62,
+          "step_x": 381.13894316752754,
+          "validity": {
+            "status": "OK",
+            "previous_gate": 720,
+            "weighted_share": 0.100745887782935,
+            "weight_sum": 12.343852760689902,
+            "ess": 36.426921259985356
+          }
+        },
+        "GAS": {
+          "q": 38,
+          "x": 242.05,
+          "ess": 132.8598760898002,
+          "step_ess": 27.49385192061226,
+          "step_q25": 37,
+          "step_q75": 39,
+          "step_x": 215.13333333333333,
+          "validity": {
+            "status": "OK",
+            "previous_gate": 720,
+            "weighted_share": 0.100745887782935,
+            "weight_sum": 12.343852760689902,
+            "ess": 36.426921259985356
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 360,
+      "sides": {
+        "ALT": {
+          "q": 61,
+          "x": 284.89885404904686,
+          "ess": 141.04489854302486,
+          "step_ess": 9.092263834657587,
+          "step_q25": 58,
+          "step_q75": 62,
+          "step_x": 343.41112813154854,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 480,
+            "weighted_share": 0.3203552535743777,
+            "weight_sum": 4.2979438554806135,
+            "ess": 9.528294697761378
+          }
+        },
+        "GAS": {
+          "q": 37,
+          "x": 209.23333333333332,
+          "ess": 120.67248325489359,
+          "step_ess": 20.268390437396793,
+          "step_q25": 33,
+          "step_q75": 38,
+          "step_x": 94.33333333333333,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 480,
+            "weighted_share": 0.3203552535743777,
+            "weight_sum": 4.2979438554806135,
+            "ess": 9.528294697761378
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 240,
+      "sides": {
+        "ALT": {
+          "q": 61,
+          "x": 176.43333333333334,
+          "ess": 148.4254942221296,
+          "step_ess": 15.386378098931823,
+          "step_q25": 60,
+          "step_q75": 62,
+          "step_x": 237.24594988425574,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 360,
+            "weighted_share": 0.5359719930919346,
+            "weight_sum": 1.9512803465279729,
+            "ess": 5.691845906173014
+          }
+        },
+        "GAS": {
+          "q": 37,
+          "x": 135.71232744852702,
+          "ess": 157.94336804833497,
+          "step_ess": 16.191098301889916,
+          "step_q25": 36,
+          "step_q75": 39,
+          "step_x": 170.03907558520635,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 360,
+            "weighted_share": 0.5359719930919346,
+            "weight_sum": 1.9512803465279729,
+            "ess": 5.691845906173014
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 180,
+      "sides": {
+        "ALT": {
+          "q": 61,
+          "x": 112.97804933389028,
+          "ess": 132.50596019890602,
+          "step_ess": 7.008551230657657,
+          "step_q25": 61,
+          "step_q75": 62,
+          "step_x": 111.53333333333333,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 240,
+            "weighted_share": 0.8546334335527969,
+            "weight_sum": 1.1915720836504367,
+            "ess": 8.744470438545626
+          }
+        },
+        "GAS": {
+          "q": 38,
+          "x": 116.61666666666666,
+          "ess": 146.9494812858929,
+          "step_ess": 9.162375147542392,
+          "step_q25": 36,
+          "step_q75": 38,
+          "step_x": 135.71232744852702,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 240,
+            "weighted_share": 0.8546334335527969,
+            "weight_sum": 1.1915720836504367,
+            "ess": 8.744470438545626
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 120,
+      "sides": {
+        "ALT": {
+          "q": 62,
+          "x": 90.5,
+          "ess": 132.71427747593614,
+          "step_ess": 3.7951014626680637,
+          "step_q25": 61,
+          "step_q75": 62,
+          "step_x": 53.4,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 180,
+            "weighted_share": 0.5826728652524675,
+            "weight_sum": 1.7960405591963293,
+            "ess": 4.894115008958987
+          }
+        },
+        "GAS": {
+          "q": 37,
+          "x": 83.53333333333333,
+          "ess": 150.8348344102469,
+          "step_ess": 5.3385552070415185,
+          "step_q25": 34,
+          "step_q75": 37,
+          "step_x": 74.48333333333333,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 180,
+            "weighted_share": 0.5826728652524675,
+            "weight_sum": 1.7960405591963293,
+            "ess": 4.894115008958987
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 90,
+      "sides": {
+        "ALT": {
+          "q": 62,
+          "x": 70.65,
+          "ess": 133.45992148855404,
+          "step_ess": 4.560761856168417,
+          "step_q25": 61,
+          "step_q75": 63,
+          "step_x": 88.1,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 120,
+            "weighted_share": 0.8278689104158063,
+            "weight_sum": 1.3240091188303131,
+            "ess": 3.0185988754916666
+          }
+        },
+        "GAS": {
+          "q": 37,
+          "x": 64.71666666666667,
+          "ess": 138.1864738835873,
+          "step_ess": 7.038534732981584,
+          "step_q25": 34,
+          "step_q75": 38,
+          "step_x": 78.21155426502227,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 120,
+            "weighted_share": 0.8278689104158063,
+            "weight_sum": 1.3240091188303131,
+            "ess": 3.0185988754916666
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 60,
+      "sides": {
+        "ALT": {
+          "q": 62,
+          "x": 53.4,
+          "ess": 147.72118252006837,
+          "step_ess": 3.266648803663699,
+          "step_q25": 61,
+          "step_q75": 63,
+          "step_x": 53.4,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 90,
+            "weighted_share": 0.9802285528564999,
+            "weight_sum": 0.3442799616790918,
+            "ess": 2.6341034035310935
+          }
+        },
+        "GAS": {
+          "q": 37,
+          "x": 48.083333333333336,
+          "ess": 137.73776554606965,
+          "step_ess": 7.492740301423232,
+          "step_q25": 34,
+          "step_q75": 38,
+          "step_x": 58.88333333333333,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 90,
+            "weighted_share": 0.9802285528564999,
+            "weight_sum": 0.3442799616790918,
+            "ess": 2.6341034035310935
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 30,
+      "sides": {
+        "ALT": {
+          "q": 62,
+          "x": 28.05,
+          "ess": 156.28939426119808,
+          "step_ess": 2.313333912643442,
+          "step_q25": 62,
+          "step_q75": 63,
+          "step_x": 30,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 60,
+            "weighted_share": 0.9980786208316124,
+            "weight_sum": 0.16042482131619384,
+            "ess": 1.6980441897363632
+          }
+        },
+        "GAS": {
+          "q": 37,
+          "x": 27.656139731407166,
+          "ess": 154.67198460488203,
+          "step_ess": 3.862183200113163,
+          "step_q25": 38,
+          "step_q75": 38,
+          "step_x": 30,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 60,
+            "weighted_share": 0.9980786208316124,
+            "weight_sum": 0.16042482131619384,
+            "ess": 1.6980441897363632
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 15,
+      "sides": {
+        "ALT": {
+          "q": 63,
+          "x": 14.239907968044282,
+          "ess": 158.66665530824076,
+          "step_ess": 7.819352529636941,
+          "step_q25": 44,
+          "step_q75": 64,
+          "step_x": 15,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 30,
+            "weighted_share": 0.9140738381423305,
+            "weight_sum": 0.38773824049096833,
+            "ess": 2.1849770986347328
+          }
+        },
+        "GAS": {
+          "q": 37,
+          "x": 14.516666666666667,
+          "ess": 157.5453830325938,
+          "step_ess": 6.695577600504602,
+          "step_q25": 15,
+          "step_q75": 38,
+          "step_x": 12.283333333333333,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 30,
+            "weighted_share": 0.9140738381423305,
+            "weight_sum": 0.38773824049096833,
+            "ess": 2.1849770986347328
+          }
+        }
+      },
+      "passed": true
+    },
+    {
+      "gate": 5,
+      "sides": {
+        "ALT": {
+          "q": 64,
+          "x": 5,
+          "ess": 158.6667779068723,
+          "step_ess": 1.07241911520219,
+          "step_q25": 60,
+          "step_q75": 60,
+          "step_x": 0.8841665506362915,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 15,
+            "weighted_share": 0.9735591810853872,
+            "weight_sum": 0.02563317584294997,
+            "ess": 4.3892452548720335
+          }
+        },
+        "GAS": {
+          "q": 38,
+          "x": 5,
+          "ess": 158.43574234407004,
+          "step_ess": 7.772369753162864,
+          "step_q25": 35,
+          "step_q75": 38,
+          "step_x": 5,
+          "validity": {
+            "status": "INVALID: ESS < 10",
+            "previous_gate": 15,
+            "weighted_share": 0.9735591810853872,
+            "weight_sum": 0.02563317584294997,
+            "ess": 4.3892452548720335
+          }
+        }
+      },
+      "passed": true
+    }
+  ],
+  "grades": [
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "path": "C:/Users/omigr/omi-w1-face/window1-watch/data/KXATPMATCH-26JUL12ALTGAS.grade.json",
+      "sha256": "95525f2520fabef599672fce0370eacb6455c9a95cd2056af5b0a279acbd709e",
+      "letter": {
+        "letter": "F",
+        "governing_section": "MACRO · MICRO",
+        "hard_failures": [],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "C",
+            "metrics": {
+              "minimum_q_x_organ_share": 0.7738095238095238
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "F",
+            "metrics": {
+              "family_match_share": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "F",
+            "metrics": {
+              "max_floor_error_cents": 6,
+              "max_timing_error_minutes": 3357.5583333333334
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "post_only_violations": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "C",
+            "metrics": {
+              "capture_ratio": 0.5
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "q_count": 130,
+      "leg_receipts": 168,
+      "named_tokens": [],
+      "sections": {
+        "letter": "F",
+        "label": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+        "governing": "MACRO · MICRO",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "!",
+            "line": "Q 77.38% · X 77.38% organ share",
+            "hover_lines": [
+              "SENTENCE: C · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0.7738095238095238}",
+              "130/168 leg sentences · 0 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "ALT: ROUND_TRIP / DRIFT_UP · GAS: ROUND_TRIP / LATE_BREAK_DOWN",
+            "hover_lines": [
+              "MACRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":0}",
+              "Bench: RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "ALT: 6¢ / 3357.56m error · GAS: 0¢ / 420.54m error",
+            "hover_lines": [
+              "MICRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":6,\"max_timing_error_minutes\":3357.5583333333334}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "!",
+            "line": "0 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":\"STORE SILENT\"}",
+              "28 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "2 of 4¢ captured",
+            "hover_lines": [
+              "OUTCOME: C · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":0.5}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "hands_unmapped": 30,
+      "outcome": {
+        "legs": {
+          "ALT": {
+            "filled": true,
+            "cents": 60,
+            "vs_floor_cents": 2,
+            "fill_epoch": 1784000663.801,
+            "valid_span_fill": true,
+            "reason": null
+          },
+          "GAS": {
+            "filled": true,
+            "cents": 38,
+            "vs_floor_cents": 0,
+            "fill_epoch": 1784025043.114,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "pair_completed": true,
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "best_capturable_cents": 4,
+        "best_capturable_pair_sum_cents": 96,
+        "capture_ratio": 0.5,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": true
+      },
+      "face_gzip_bytes": 186636
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "path": "C:/Users/omigr/omi-w1-face/window1-watch/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.grade.json",
+      "sha256": "04b0185997ef839d2680529a517f01cfec8689a55c48a4bd2e5e2f038a7febf2",
+      "letter": {
+        "letter": "F",
+        "governing_section": "MICRO · OUTCOME",
+        "hard_failures": [],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "C",
+            "metrics": {
+              "minimum_q_x_organ_share": 0.6353276353276354
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "family_match_share": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "F",
+            "metrics": {
+              "max_floor_error_cents": 17,
+              "max_timing_error_minutes": 38.916666666666664
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "post_only_violations": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "F",
+            "metrics": {
+              "capture_ratio": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "q_count": 223,
+      "leg_receipts": 351,
+      "named_tokens": [],
+      "sections": {
+        "letter": "F",
+        "label": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+        "governing": "MICRO · OUTCOME",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "!",
+            "line": "Q 63.53% · X 63.53% organ share",
+            "hover_lines": [
+              "SENTENCE: C · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0.6353276353276354}",
+              "223/351 leg sentences · 0 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "BAR: QUIET_WOBBLE / STORE SILENT · GIU: QUIET_WOBBLE / STORE SILENT",
+            "hover_lines": [
+              "MACRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":\"STORE SILENT\"}",
+              "Bench: CLOCK_MISMATCH_STORE_SILENT"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "BAR: 16¢ / 21.25m error · GIU: 17¢ / 38.92m error",
+            "hover_lines": [
+              "MICRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":17,\"max_timing_error_minutes\":38.916666666666664}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "!",
+            "line": "0 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":\"STORE SILENT\"}",
+              "6 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "0 of 35¢ captured",
+            "hover_lines": [
+              "OUTCOME: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":0}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "hands_unmapped": 7,
+      "outcome": {
+        "legs": {
+          "BAR": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          },
+          "GIU": {
+            "filled": true,
+            "cents": 69,
+            "vs_floor_cents": 20,
+            "fill_epoch": 1783865397.812,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 35,
+        "best_capturable_pair_sum_cents": 65,
+        "capture_ratio": 0,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": false
+      },
+      "face_gzip_bytes": 121314
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "path": "C:/Users/omigr/omi-w1-face/window1-watch/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.grade.json",
+      "sha256": "97b86b03ce4191fd3e84f84c8d23bf956c9adabe9b7cdc62cb683312e28b17c5",
+      "letter": {
+        "letter": "F",
+        "governing_section": "MACRO · MICRO · OUTCOME",
+        "hard_failures": [],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "C",
+            "metrics": {
+              "minimum_q_x_organ_share": 0.6935483870967742
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "F",
+            "metrics": {
+              "family_match_share": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "F",
+            "metrics": {
+              "max_floor_error_cents": 7,
+              "max_timing_error_minutes": 964.9700000007947
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "post_only_violations": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "F",
+            "metrics": {
+              "capture_ratio": 0.125
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "q_count": 172,
+      "leg_receipts": 248,
+      "named_tokens": [],
+      "sections": {
+        "letter": "F",
+        "label": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+        "governing": "MACRO · MICRO · OUTCOME",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "!",
+            "line": "Q 69.35% · X 69.35% organ share",
+            "hover_lines": [
+              "SENTENCE: C · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0.6935483870967742}",
+              "172/248 leg sentences · 0 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "LAJ: QUIET_WOBBLE / ONE_STEP_DOWN · SVA: QUIET_WOBBLE / DRIFT_UP",
+            "hover_lines": [
+              "MACRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":0}",
+              "Bench: RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "LAJ: 2¢ / 299.61m error · SVA: 7¢ / 964.97m error",
+            "hover_lines": [
+              "MICRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":7,\"max_timing_error_minutes\":964.9700000007947}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "!",
+            "line": "0 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":\"STORE SILENT\"}",
+              "35 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "1 of 8¢ captured",
+            "hover_lines": [
+              "OUTCOME: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":0.125}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "hands_unmapped": 37,
+      "outcome": {
+        "legs": {
+          "LAJ": {
+            "filled": true,
+            "cents": 54,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1784050973.062,
+            "valid_span_fill": true,
+            "reason": null
+          },
+          "SVA": {
+            "filled": true,
+            "cents": 45,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1784073810.907,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "pair_completed": true,
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "best_capturable_cents": 8,
+        "best_capturable_pair_sum_cents": 92,
+        "capture_ratio": 0.125,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": true
+      },
+      "face_gzip_bytes": 181864
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "path": "C:/Users/omigr/omi-w1-face/window1-watch/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.grade.json",
+      "sha256": "720ed5ed0153a036abc8a6f01fdc0797973be5ca281f2ae53196490e3b7866fb",
+      "letter": {
+        "letter": "F",
+        "governing_section": "MICRO · OUTCOME",
+        "hard_failures": [],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "A",
+            "metrics": {
+              "minimum_q_x_organ_share": 0.9586947542337877
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "family_match_share": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "F",
+            "metrics": {
+              "max_floor_error_cents": 4,
+              "max_timing_error_minutes": 346.4233333349228
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "post_only_violations": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "F",
+            "metrics": {
+              "capture_ratio": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "q_count": 2321,
+      "leg_receipts": 2421,
+      "named_tokens": [],
+      "sections": {
+        "letter": "F",
+        "label": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+        "governing": "MICRO · OUTCOME",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "✓",
+            "line": "Q 95.87% · X 95.87% organ share",
+            "hover_lines": [
+              "SENTENCE: A · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0.9586947542337877}",
+              "2321/2421 leg sentences · 0 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "PAL: QUIET_WOBBLE / STORE SILENT · URS: QUIET_WOBBLE / STORE SILENT",
+            "hover_lines": [
+              "MACRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":\"STORE SILENT\"}",
+              "Bench: CLOCK_MISMATCH_STORE_SILENT"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "PAL: 3¢ / 346.42m error · URS: 4¢ / 154.16m error",
+            "hover_lines": [
+              "MICRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":4,\"max_timing_error_minutes\":346.4233333349228}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "!",
+            "line": "0 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":\"STORE SILENT\"}",
+              "2 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "0 of 3¢ captured",
+            "hover_lines": [
+              "OUTCOME: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":0}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "hands_unmapped": 3,
+      "outcome": {
+        "legs": {
+          "PAL": {
+            "filled": true,
+            "cents": 43,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1784035631.709,
+            "valid_span_fill": true,
+            "reason": null
+          },
+          "URS": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          }
+        },
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 3,
+        "best_capturable_pair_sum_cents": 97,
+        "capture_ratio": 0,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": false
+      },
+      "face_gzip_bytes": 573227
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "path": "C:/Users/omigr/omi-w1-face/window1-watch/data/KXATPMATCH-26JUL18DANPRA.grade.json",
+      "sha256": "9f036aa261e6ac64f2bf662d55b51d10ad4d5aae5f53a534dbae4bc67c9e7f3a",
+      "letter": {
+        "letter": "F",
+        "governing_section": "MICRO",
+        "hard_failures": [],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "D",
+            "metrics": {
+              "minimum_q_x_organ_share": 0.4152542372881356
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "family_match_share": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "F",
+            "metrics": {
+              "max_floor_error_cents": 2,
+              "max_timing_error_minutes": 542.5533333341281
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "post_only_violations": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "STORE SILENT",
+            "metrics": {
+              "capture_ratio": "STORE SILENT"
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "q_count": 98,
+      "leg_receipts": 236,
+      "named_tokens": [],
+      "sections": {
+        "letter": "F",
+        "label": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+        "governing": "MICRO",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "!",
+            "line": "Q 41.53% · X 41.53% organ share",
+            "hover_lines": [
+              "SENTENCE: D · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0.4152542372881356}",
+              "98/236 leg sentences · 0 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "DAN: ROUND_TRIP / STORE SILENT · PRA: ROUND_TRIP / STORE SILENT",
+            "hover_lines": [
+              "MACRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":\"STORE SILENT\"}",
+              "Bench: CLOCK_MISMATCH_STORE_SILENT"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "DAN: 2¢ / 542.55m error · PRA: 0¢ / 488.43m error",
+            "hover_lines": [
+              "MICRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":2,\"max_timing_error_minutes\":542.5533333341281}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "!",
+            "line": "0 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":\"STORE SILENT\"}",
+              "6 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "0 of 0¢ captured",
+            "hover_lines": [
+              "OUTCOME: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":\"STORE SILENT\"}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "hands_unmapped": 6,
+      "outcome": {
+        "legs": {
+          "DAN": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          },
+          "PRA": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          }
+        },
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 0,
+        "best_capturable_pair_sum_cents": 100,
+        "capture_ratio": "STORE SILENT",
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": false
+      },
+      "face_gzip_bytes": 93850
+    }
+  ]
+}

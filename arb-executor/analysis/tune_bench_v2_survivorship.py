@@ -1559,12 +1559,15 @@ def build_outputs(args):
     output = dict(label=LABEL if args.proof else "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD" if args.tick_counts else "BELL-CLOCK SURVIVORSHIP BENCH — NOT A TRADING RULING",
                   categories={}, limitations=limitations, prior_art=prior_art)
     query_audit = {}
+    matched_cohorts = {}
     for category in args.categories:
         queries = [p for p in pairs if p.category == category]
         cells = {str(g): {r: new_cell() for r in RULES} for g in GATES}
         status = {str(g): Counter() for g in GATES}
         recognition = {str(g): new_cell() for g in GATES}
         initials = []
+        matched = {str(g): {s: dict(n=0, step_error_sum=0.0, first_error_sum=0.0,
+                                  step_closer=0, tied=0) for s in SIDES} for g in GATES}
         if args.limit_queries:
             queries = queries[:args.limit_queries]
         executor = None
@@ -1586,6 +1589,17 @@ def build_outputs(args):
                     side_ess={s: p.get("ess") for s, p in pred.get("sides", {}).items()}) for rule, pred in row.get("rules", {}).items()}
                 audit["gates"][gate]["likelihood_factors"] = row.get("likelihood_factors")
                 if row["status"] == "SCORABLE":
+                    for side in SIDES:
+                        step = row["rules"]["STEP-FORECAST"].get("sides", {}).get(side, {})
+                        first = row["rules"]["FIRST-TICK-ONLY"].get("sides", {}).get(side, {})
+                        if step.get("status") == first.get("status") == "OK":
+                            a, b = step["floor_absolute_error_cents"], first["floor_absolute_error_cents"]
+                            cell = matched[gate][side]
+                            cell["n"] += 1
+                            cell["step_error_sum"] += a
+                            cell["first_error_sum"] += b
+                            cell["step_closer"] += a < b
+                            cell["tied"] += a == b
                     for rule, pred in row["rules"].items():
                         add_cell(cells[gate][rule], pred)
                     rec = dict(status="OK", sides=row["recognition"])
@@ -1607,6 +1621,15 @@ def build_outputs(args):
                 recognition=finish_cell(recognition[key]),
                 rules={r: finish_cell(cell) for r, cell in cells[key].items()} if not wta_silent else {})
         output["categories"][category] = category_output
+        matched_cohorts[category] = {gate: {side: dict(
+            n=cell["n"],
+            step_floor_mae=cell["step_error_sum"]/cell["n"] if cell["n"] else None,
+            first_floor_mae=cell["first_error_sum"]/cell["n"] if cell["n"] else None,
+            step_strictly_closer_share=cell["step_closer"]/cell["n"] if cell["n"] else None,
+            tied_queries=cell["tied"],
+            qualifies=cell["n"] >= 100 and cell["step_closer"] >= .50*cell["n"],
+            step_authorship_enabled=False)
+            for side, cell in sides.items()} for gate, sides in matched.items()}
     named = dict(label=output["label"], prior_art=prior_art, events={}, input_receipt={})
     if not args.skip_named:
         named_pairs, provenance = load_named_inputs(root, labels, args.tape_dir, args.prints, second_close=bool(args.tick_counts))
@@ -1632,6 +1655,9 @@ def build_outputs(args):
             role_drift_cents=2, discovery_side_boundary_cents=50,
             likelihood_unit=1, minute_seconds=60,
             taxonomy_samples=17, sleeper_category_quantile=.10, flat_after_cents=2,
+            taxonomy_rules=dict(quiet_net_cents=5, round_trip_travel_cents=10,
+                quarter_fraction=.25, quarter_net_share=.70, one_step_share=.60,
+                grind_reversals=4, grind_travel_multiple=2),
             q="query current last + weighted quantile(member remaining minimum - member current last)",
             x="independent weighted median(member remaining floor minutes-to-bell); query bell - X*60",
             remaining_path="gate carried state plus native historical member changes through bell; earliest tied minimum",
@@ -1662,6 +1688,11 @@ def build_outputs(args):
                    FIRST_TICK_ONLY="w0 unchanged", BASE="all category+discovery-oriented eligible members weight 1; same role gate",
                    role="last - postformation_open >=2 CLIMBER, <=-2 FALLER; otherwise NOT_CALLABLE and bypass role filter"),
         no_call="ESS < 10 after role/availability filter, counted explicitly with separate denominators; never replace with a different pool",
+        matched_step_first=dict(scope="REPORT_ONLY; FIRST-TICK-ONLY then BASE authors; STEP telemetry",
+            cohort="same query, side and gate; SCORABLE and both rules status OK",
+            criterion=dict(minimum_matched_queries=100, minimum_step_strictly_closer_share=.50,
+                           ties="included in denominator, not STEP wins"),
+            categories=matched_cohorts),
         score_denominators=score_denominators(),
         determinism="fixed event_id/timestamp order; exact inverse weighted CDF; no randomness or runtime stamps in artifacts; --verify-repeat byte-compares both builds",
         limitations=limitations)

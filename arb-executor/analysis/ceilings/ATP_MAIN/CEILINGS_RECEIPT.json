@@ -1,0 +1,225 @@
+{
+  "archives": {
+    "CONDUCT_QUERIES.jsonl.gz": {
+      "bytes": 12000035,
+      "git_blob": "07b8b7e354ae795404c37d432305ebc6d47291a2",
+      "sha256": "f02873e3315ba4287d1fcd64b9d1c2838179397c238433560100549ade159ee6"
+    },
+    "CONDUCT_RECEIPT.json": {
+      "bytes": 22108,
+      "git_blob": "f544c9e527976d48070508e1133c755ea74f513a",
+      "sha256": "fbc13250c524efaa335ae41b528b84ae19f67dfce4ce00cf670bf12ec7c84f9e"
+    },
+    "FIRST_FORECASTS.jsonl.gz": {
+      "bytes": 68431928,
+      "git_blob": "01a4176e961290a717ab97a3e41a5f2dce6e5149",
+      "sha256": "2b0d5d66948b56d5e5749ffb3b76c14ebb43cdcdd069af105fc56bb1c4327629"
+    }
+  },
+  "baseline": {
+    "named": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_NAMED_CHECKS.json",
+      "sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325"
+    },
+    "receipt": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+      "sha256": "51213167ea2fd082f20bd59bc9a75dc5bde534cc3be9a53ef3341692f20f3631"
+    },
+    "scoreboard": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_SCOREBOARD.json",
+      "sha256": "d609c564bcab36491d26742957d6414b288d604820e019711041582def8b4d4c"
+    }
+  },
+  "cadence": "RECEIPT-SIM",
+  "category": "ATP_MAIN",
+  "conduct_archive_commit": "d2d8f16b",
+  "count_sidecar": {
+    "calibration_scope": "All oriented library legs in category, no named games. Retrospective data-set scale, not per-query walk-forward calibration.",
+    "category_print_count_distributions": {
+      "ATP_CHALL": {
+        "count": 4574,
+        "max": 2976.0,
+        "mean": 62.666593790992565,
+        "min": 1.0,
+        "q10": 5.0,
+        "q25": 11.0,
+        "q50": 27.0,
+        "q75": 70.0,
+        "q90": 158.0
+      },
+      "ATP_MAIN": {
+        "count": 1856,
+        "max": 16545.0,
+        "mean": 415.7429956896552,
+        "min": 2.0,
+        "q10": 34.0,
+        "q25": 88.0,
+        "q50": 224.0,
+        "q75": 459.0,
+        "q90": 893.0
+      },
+      "ITF_M": {
+        "count": 3104,
+        "max": 1214.0,
+        "mean": 149.2326030927835,
+        "min": 3.0,
+        "q10": 39.0,
+        "q25": 71.0,
+        "q50": 122.0,
+        "q75": 193.0,
+        "q90": 281.0
+      },
+      "ITF_W": {
+        "count": 2978,
+        "max": 1093.0,
+        "mean": 139.8821356615178,
+        "min": 3.0,
+        "q10": 34.0,
+        "q25": 66.0,
+        "q50": 113.0,
+        "q75": 180.0,
+        "q90": 264.0
+      },
+      "WTA_CHALL": {
+        "count": 992,
+        "max": 1682.0,
+        "mean": 47.621975806451616,
+        "min": 1.0,
+        "q10": 4.0,
+        "q25": 8.0,
+        "q50": 20.0,
+        "q75": 52.0,
+        "q90": 123.0
+      },
+      "WTA_MAIN": {
+        "count": 1834,
+        "max": 6350.0,
+        "mean": 228.71374045801528,
+        "min": 1.0,
+        "q10": 17.0,
+        "q25": 43.0,
+        "q50": 109.0,
+        "q75": 246.0,
+        "q90": 486.0
+      }
+    },
+    "checks": {
+      "final_count_matches": 15502,
+      "final_count_mismatches": 0,
+      "grid_identity": "Every library leg, in library order; own floor(native ts) seconds with accepted in-span prints; independent of library change points",
+      "legs_checked": 15502,
+      "rows_checked": 1405183,
+      "total_true_prints_in_spans": 2430670
+    },
+    "gate_join": "Latest sidecar second <= gate epoch; zero before the first print second. Independent accepted-print-second count grid; library price/change-point grid unchanged. Second bucket labels are floor(native ts), not subsecond arrival times.",
+    "sidecar_path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+    "sidecar_receipt_sha256": "89a1be15f323f96ef90556b08130722159cae69c26d33fe461c122894b67918b",
+    "sidecar_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+    "sleeper_p10_by_category": {
+      "ATP_CHALL": 5.0,
+      "ATP_MAIN": 34.0,
+      "ITF_M": 39.0,
+      "ITF_W": 34.0,
+      "WTA_CHALL": 4.0,
+      "WTA_MAIN": 17.0
+    },
+    "source": "true_print_count_in_span from tick-library rows; exact gate-prefix counts from cutter-bound sidecar",
+    "volume_is_not_print_count": true
+  },
+  "definitions": {
+    "C0": "Exact full-result equality to all archived R0 RECEIPT-SIM queries, not merely summary equality.",
+    "C1": "Replace only each side's floors.q50.level_cents with min price among accepted prints with size>0, receipt.epoch < native ts < bell, within verified span. Native order is timestamp then rowid. No later print => Q absent. Preserve original ESS/status/authority fence, roles, X, other bands, books, asks, receipt grid, fill law and conduct guards. Existing invalid-Q behavior holds an earlier rest. Only Q is oracle; unchanged writer strings in simulator evidence name the frozen R0 execution path, not causal pool authorship of oracle Q.",
+    "C1_limit": "Oracle-level policy diagnostic, not a mathematical global upper bound: exact-floor targeting, missing future prints, postability, fences and rearm can limit it; a different knowingly worse level could still improve completion.",
+    "C2": "Current sentence and unchanged R0 simulator with only pair_budget=unbounded in memory. UNSAFE DIAGNOSTIC ONLY, NEVER A CONDUCT. Individual legal-price bounds remain. No engine value or file changed. All other guards and size-positive fill law unchanged. Disabled cap is audited independently at the original nominal budget and par; simulator safety counters cannot certify this unsafe variant.",
+    "C3": "Baseline R0 only, completed plus one-sided. First is earliest actual native fill timestamp; equal timestamps are SAME_TIMESTAMP without claiming ordering. Premium=filled bid minus current Q from latest receipt strictly before that fill; placement-Q premium separate. Missing current Q is missing, not zero. Negative premium is possible when a held rest sits below a later sentence.",
+    "C3_headroom": "At the first-fill timestamp after any tied fills, favourite commitment=favourite filled cents if filled by then, else its active rest from actions strictly before the timestamp, else zero with NONE source. Effective underdog cap=original pair_budget-favourite commitment. Headroom=effective cap-current Q_dog at latest strictly-earlier receipt. Also store raw pair_budget-Q_dog separately. Dog-first headroom is target slack, not permission to repurchase the already filled side.",
+    "above_par": "Completed pair fill sum > par shown per eligible and per completed. Separately show ever filled-plus-resting exposure > par and > original nominal budget; pair actions at one receipt are atomic, not intermediate iteration states.",
+    "capture": "Both sides must fill strictly before bell. Credit at resting bid prices, not triggering print prices. Capture=par-pair_sum, including negative capture above par. One-sided/neither receive zero. All-eligible denominator identical for every variant.",
+    "distribution": "Unweighted inverse-CDF q10/q25/q50/q75/q90 inherited from bench contract; pair count and missing denominators explicit. Tied first fills contribute both first-side premiums but one pair headroom. Placement-Q premium and fill minutes-to-bell distributions retained.",
+    "queue": "Reachable only, not certain. Queue position unknown; zero-size prints, same-instant placement fills and post-bell fills never credited.",
+    "scope": "No pool reconstruction, engine edit, face edit, conduct deployment, tuning, or named-game selection. All frozen R0 forecasts from same walk-forward/category/self/same-day-filtered 928 queries."
+  },
+  "determinism": {
+    "all_query_digests_sha256": "0a661b33c828d1e3a1810622b3513f4640c3c0e9cc6e48c9c31d9a5acd305eb0",
+    "oracle_projection_passes": 2,
+    "passes": 2
+  },
+  "eligible_pairs": 928,
+  "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+  "oracle_side_receipt_counts": {
+    "no_later_positive_print": 7312,
+    "oracle_available": 1212608,
+    "original_status_INSUFFICIENT_EVIDENCE": 130014,
+    "original_status_OK": 1089906,
+    "side_receipts": 1219920
+  },
+  "outputs": {
+    "C3_FILL_ORDER.json": {
+      "bytes": 948940,
+      "sha256": "95032de1fdee4a3014c212623e0c68f651a59c960e8218c82d38e966d15e1ae5"
+    },
+    "CEILINGS_QUERIES.jsonl.gz": {
+      "bytes": 787864,
+      "sha256": "1765a30ef31df65b1fdd1da6e94ce1ebf2705d42dc56e26cc5cf791c510ba605"
+    },
+    "CEILINGS_SCOREBOARD.json": {
+      "bytes": 5501,
+      "sha256": "3a8f7a6e1983f663ff0c3e27c2bd43bcba09f181f2f9bd015a78e369d30b54e1"
+    },
+    "CEILINGS_SUMMARY.md": {
+      "bytes": 3184,
+      "sha256": "cc9e37778e00303079df7f3d529770065c6baf27b5666209375329773ad738b2"
+    },
+    "DETERMINISM.json": {
+      "bytes": 393504,
+      "sha256": "f6cac3db09a52923229afae56cec35d4cb981ce4f83563ae4208f9c813fdf689"
+    }
+  },
+  "print_extract": {
+    "accepted_prints": 777937,
+    "bytes": 7639804,
+    "outer_leg_rows": 1878,
+    "path": "C:\\tmp\\conduct_atp_main_v1\\ATP_MAIN_PRINTS.jsonl.gz",
+    "positive_size_prints": 771159,
+    "raw_prints_committed": false,
+    "receipt_sha256": "85914d77895b46d08b135b4f4e14eb6f3c6046420a76f6e3f2284f6f0e6e0ff5",
+    "sha256": "bf982a5e99683384ee261e5cf6cf2bd6fdd139dc426bda4b86ad877e34f5120f"
+  },
+  "prior_art": [
+    "c7825925:arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+    "d2d8f16b:arb-executor/analysis/conduct_scoreboard_v2/ATP_MAIN/CONDUCT_RECEIPT.json",
+    "f938d53f:arb-executor/analysis/sentence_experiments/ATP_MAIN/SENTENCE_RECEIPT.json"
+  ],
+  "query_ids_sha256": "b32860fd56a04932aa8f154704f8d4cef52644ab2f0bd8eda01cdc8a8e404f51",
+  "receipt_counts": {
+    "ATLAS_GATE": 11518,
+    "LEG_CHANGE_POINT": 598442
+  },
+  "scripts": {
+    "ceilings.py": "5863b119e48b47173b72c0322d51f56ae887535b71d612fd2216696f356a3405",
+    "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+    "conduct_scoreboard_v2.py": "a53fba520a2ddf6925c33be9fed86f3bb2e751a1000ee969bccccd0781ffc450",
+    "test_ceilings.py": "e434073ca72aa3f5dcc83447661a2875a8529ed28a824d78f801b09ace3e6ce9",
+    "tune_bench_v2_survivorship.py": "b9d96cddfe43cc014342e9745fb099f5126f6adae06bbcbec6b5b6a8557d58f8"
+  },
+  "status": "BENCH_ONLY_COMPLETE",
+  "total_receipts": 609960,
+  "unchanged_engine_and_conduct": {
+    "engine_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+    "functionable_sha256": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "maximum_cent": 99,
+    "minimum_cent": 1,
+    "pair_budget": 99,
+    "par": 100
+  },
+  "verification": {
+    "archived_R0_full_result_matches": 928,
+    "engines_unchanged": true,
+    "independent_fill_and_miss_audits": 2784,
+    "original_safety_guards_pass": true,
+    "same_query_ids_all_variants": true
+  }
+}

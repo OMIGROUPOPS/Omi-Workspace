@@ -1,0 +1,432 @@
+{
+  "baseline": {
+    "named": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_NAMED_CHECKS.json",
+      "sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325"
+    },
+    "receipt": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+      "sha256": "51213167ea2fd082f20bd59bc9a75dc5bde534cc3be9a53ef3341692f20f3631"
+    },
+    "scoreboard": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_SCOREBOARD.json",
+      "sha256": "d609c564bcab36491d26742957d6414b288d604820e019711041582def8b4d4c"
+    }
+  },
+  "count_sidecar": {
+    "calibration_scope": "All oriented library legs in category, no named games. Retrospective data-set scale, not per-query walk-forward calibration.",
+    "category_print_count_distributions": {
+      "ATP_CHALL": {
+        "count": 4574,
+        "max": 2976.0,
+        "mean": 62.666593790992565,
+        "min": 1.0,
+        "q10": 5.0,
+        "q25": 11.0,
+        "q50": 27.0,
+        "q75": 70.0,
+        "q90": 158.0
+      },
+      "ATP_MAIN": {
+        "count": 1856,
+        "max": 16545.0,
+        "mean": 415.7429956896552,
+        "min": 2.0,
+        "q10": 34.0,
+        "q25": 88.0,
+        "q50": 224.0,
+        "q75": 459.0,
+        "q90": 893.0
+      },
+      "ITF_M": {
+        "count": 3104,
+        "max": 1214.0,
+        "mean": 149.2326030927835,
+        "min": 3.0,
+        "q10": 39.0,
+        "q25": 71.0,
+        "q50": 122.0,
+        "q75": 193.0,
+        "q90": 281.0
+      },
+      "ITF_W": {
+        "count": 2978,
+        "max": 1093.0,
+        "mean": 139.8821356615178,
+        "min": 3.0,
+        "q10": 34.0,
+        "q25": 66.0,
+        "q50": 113.0,
+        "q75": 180.0,
+        "q90": 264.0
+      },
+      "WTA_CHALL": {
+        "count": 992,
+        "max": 1682.0,
+        "mean": 47.621975806451616,
+        "min": 1.0,
+        "q10": 4.0,
+        "q25": 8.0,
+        "q50": 20.0,
+        "q75": 52.0,
+        "q90": 123.0
+      },
+      "WTA_MAIN": {
+        "count": 1834,
+        "max": 6350.0,
+        "mean": 228.71374045801528,
+        "min": 1.0,
+        "q10": 17.0,
+        "q25": 43.0,
+        "q50": 109.0,
+        "q75": 246.0,
+        "q90": 486.0
+      }
+    },
+    "checks": {
+      "final_count_matches": 15502,
+      "final_count_mismatches": 0,
+      "grid_identity": "Every library leg, in library order; own floor(native ts) seconds with accepted in-span prints; independent of library change points",
+      "legs_checked": 15502,
+      "rows_checked": 1405183,
+      "total_true_prints_in_spans": 2430670
+    },
+    "gate_join": "Latest sidecar second <= gate epoch; zero before the first print second. Independent accepted-print-second count grid; library price/change-point grid unchanged. Second bucket labels are floor(native ts), not subsecond arrival times.",
+    "sidecar_path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+    "sidecar_receipt_sha256": "89a1be15f323f96ef90556b08130722159cae69c26d33fe461c122894b67918b",
+    "sidecar_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+    "sleeper_p10_by_category": {
+      "ATP_CHALL": 5.0,
+      "ATP_MAIN": 34.0,
+      "ITF_M": 39.0,
+      "ITF_W": 34.0,
+      "WTA_CHALL": 4.0,
+      "WTA_MAIN": 17.0
+    },
+    "source": "true_print_count_in_span from tick-library rows; exact gate-prefix counts from cutter-bound sidecar",
+    "volume_is_not_print_count": true
+  },
+  "definitions": {
+    "R1": "CLIMBER-ANCHOR: first receipt calling CLIMBER binds stored own seen_true_trade_low forever; faller otherwise R0. No future low lookup.",
+    "R2": "NAMED-LEVEL: faller never steps below its highest actually posted level; may move up. Memory survives safety cancellation; climber otherwise R0.",
+    "R3": "R1 + R2; a bound climber anchor takes priority even through later role flips.",
+    "R4": "R3, except unanchored faller takes FIRST q25 instead of q50 before the same no-downward protection.",
+    "R5": "JOINT: FIRST side-mask intersection, original w0 counted once per pair, existing ESS floor required. Historical remaining minima translated by own current last minus member current last. Candidates are observed paired levels only, not a Cartesian product. Probability is sum w0 of pairs whose BOTH minima <= proposed levels / total joint w0. Maximize probability * (par - pair sum) among valid-cent/postable/pair-cap/R2-feasible candidates. Exact objective ties: lower sum, then lower favourite level. After one fill its price is fixed and only the other level varies; same joint outcomes/denominator. No feasible candidate means hold; safety may still pull. These definitions explicitly approved by operator.",
+    "R5_limitation": "Probability is an empirical remaining-path-minimum model, includes carried state and size-zero observed prices as inherited from FIRST; actual conduct credit separately requires a strictly future size-positive print. Reachable is not certain.",
+    "R6": "R0 plus no-downward protection on BOTH sides regardless of role, unlike faller-only R2. Highest posted-level memory persists through cancellations; post-only and pair cap always override.",
+    "cadence": "RECEIPT-SIM = union of both original library-leg change-point timestamps plus the OS atlas-gate receipts, after the first both-leg observation and before bell. No synthetic pre-first-tick order. GATE-SIM retains only the 15 filed gates that lie inside the span. Own data sampled as-of receipt; historical members aligned by minutes to bell.",
+    "constants": "No tuned prices or thresholds. Existing budget/par/cent bounds read from unchanged engine text; ESS/role/gates/quantiles from filed c7825925 organ contract. Batch size controls memory only.",
+    "current": "R0: FIRST q50 at each receipt where postable, otherwise existing safety hold/pull. Q/X inherit c7825925, including carried-state remaining minima; no future query timestamps used to predict.",
+    "fill": "First later accepted true print with finite size > 0 and price <= standing bid; native ts strictly exceeds latest placement/reprice; formation <= ts < corrected bell and inside verified span. Fill at bid, queue unknown. Zero-size prints remain library observations but never fill or stepped-off witnesses.",
+    "guards": "Unchanged integer-cent validation, locked-book hold, insufficient-authority hold, ask-only veto/rearm, post-only hold/pull, joint budget veto including credited side. A modified rule cannot override any guard. No execution code imported or changed.",
+    "joint_insufficient": "Joint ESS uses the filed no_call_ess_floor, not counts after collapsing equal candidate pairs; below that floor R5 cannot originate/reprice an order.",
+    "named_clock": "Named Q/X use the baseline query bell/formation at their original absolute times. Conduct bounds use corrected truth spans/bell; no forecast shifted into the past by a bell correction. This retains the v1 baseline rather than silently reforecasting named checks on another clock.",
+    "outcomes": "Completion needs both prebell fills; incomplete/one-sided pairs get zero captured credit. Failed side is favourite/underdog orientation plus the stored leg id. All 928 eligible pairs remain denominators regardless of calls/fills.",
+    "receipt_limitation": "Second-close library cadence is not a byte-for-byte engine replay: individual BOOK/PRINT receipt ids and intra-second book ordering are absent. The ask-only veto is reconstructed when only ask changes with unchanged last/bid and no count increment; coincident atlas gates are unconditional gate receipts. FIRST only as the scoreboard order, not the installed BASE fallback. No claim of exact installed-fill equality.",
+    "stepped_off": "Faller down-reprice followed by any strictly later prebell positive-size print with new < print <= old, counted once per pair. Strict while-lower-order-active subset also reported; neither awards fill credit."
+  },
+  "determinism": "Every query/mode forecast computed twice; every query and named rule simulated twice; canonical bytes identical.",
+  "eligible_query_pairs": 928,
+  "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+  "named_sources": {
+    "census": {
+      "named_oriented_pairs": 5,
+      "prints_file_lines": 4836462,
+      "selected_print_rows": 43277,
+      "selected_trades_at_or_after_bell_excluded": 42159,
+      "source_order_timestamp_regressions_sorted": 24869
+    },
+    "per_leg": {
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR": {
+        "bell_epoch": 1783876740.0,
+        "filed_postformation_open_cents": 31.5,
+        "first_postformation_trade_cents": 27.0,
+        "first_postformation_trade_epoch": 1783841801.304766,
+        "formation_end_epoch": 1783831858.0,
+        "native_change_points": 465,
+        "onset_epoch": 1783879280,
+        "postformation_prebell_true_trade_count": 34,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1783876740.0,
+        "volume_cum": 6103.8899999999985
+      },
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU": {
+        "bell_epoch": 1783876740.0,
+        "filed_postformation_open_cents": 67.0,
+        "first_postformation_trade_cents": 70.0,
+        "first_postformation_trade_epoch": 1783833752.027399,
+        "formation_end_epoch": 1783831858.0,
+        "native_change_points": 465,
+        "onset_epoch": 1783880180,
+        "postformation_prebell_true_trade_count": 31,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1783876740.0,
+        "volume_cum": 2164.28
+      },
+      "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ": {
+        "bell_epoch": 1784078400.0,
+        "filed_postformation_open_cents": 59.0,
+        "first_postformation_trade_cents": 62.0,
+        "first_postformation_trade_epoch": 1784016081.367479,
+        "formation_end_epoch": 1784007603.0,
+        "native_change_points": 578,
+        "onset_epoch": 1784007623,
+        "postformation_prebell_true_trade_count": 285,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784078400,
+        "volume_cum": 35261.69000000001
+      },
+      "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA": {
+        "bell_epoch": 1784078400.0,
+        "filed_postformation_open_cents": 41.0,
+        "first_postformation_trade_cents": 41.0,
+        "first_postformation_trade_epoch": 1784020201.83001,
+        "formation_end_epoch": 1784007603.0,
+        "native_change_points": 359,
+        "onset_epoch": 1784007623,
+        "postformation_prebell_true_trade_count": 258,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784078400,
+        "volume_cum": 16530.560000000005
+      },
+      "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL": {
+        "bell_epoch": 1784045100.0,
+        "filed_postformation_open_cents": 38.0,
+        "first_postformation_trade_cents": 41.0,
+        "first_postformation_trade_epoch": 1784021161.637746,
+        "formation_end_epoch": 1784001495.0,
+        "native_change_points": 1981,
+        "onset_epoch": 1784001599,
+        "postformation_prebell_true_trade_count": 49,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784042040,
+        "volume_cum": 1164.49
+      },
+      "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS": {
+        "bell_epoch": 1784045100.0,
+        "filed_postformation_open_cents": 62.0,
+        "first_postformation_trade_cents": 66.0,
+        "first_postformation_trade_epoch": 1784005897.194254,
+        "formation_end_epoch": 1784001495.0,
+        "native_change_points": 417,
+        "onset_epoch": 1784001599,
+        "postformation_prebell_true_trade_count": 62,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784042040,
+        "volume_cum": 2787.1099999999997
+      },
+      "KXATPMATCH-26JUL12ALTGAS-ALT": {
+        "bell_epoch": 1784035200.0,
+        "filed_postformation_open_cents": 57.0,
+        "first_postformation_trade_cents": 59.0,
+        "first_postformation_trade_epoch": 1783797131.966878,
+        "formation_end_epoch": 1783790234.0,
+        "native_change_points": 275,
+        "onset_epoch": 1783832573,
+        "postformation_prebell_true_trade_count": 238,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784035200,
+        "volume_cum": 26863.90999999999
+      },
+      "KXATPMATCH-26JUL12ALTGAS-GAS": {
+        "bell_epoch": 1784035200.0,
+        "filed_postformation_open_cents": 43.0,
+        "first_postformation_trade_cents": 43.0,
+        "first_postformation_trade_epoch": 1783797385.046757,
+        "formation_end_epoch": 1783790234.0,
+        "native_change_points": 144,
+        "onset_epoch": 1783832573,
+        "postformation_prebell_true_trade_count": 102,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784035200,
+        "volume_cum": 9760.39
+      },
+      "KXATPMATCH-26JUL18DANPRA-DAN": {
+        "bell_epoch": 1784373060.0,
+        "filed_postformation_open_cents": 58.0,
+        "first_postformation_trade_cents": 59.0,
+        "first_postformation_trade_epoch": 1784339306.77471,
+        "formation_end_epoch": 1784332553.0,
+        "native_change_points": 62,
+        "onset_epoch": 1784332594,
+        "postformation_prebell_true_trade_count": 37,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784372160,
+        "volume_cum": 3322.08
+      },
+      "KXATPMATCH-26JUL18DANPRA-PRA": {
+        "bell_epoch": 1784373060.0,
+        "filed_postformation_open_cents": 41.0,
+        "first_postformation_trade_cents": 43.0,
+        "first_postformation_trade_epoch": 1784336963.017588,
+        "formation_end_epoch": 1784332553.0,
+        "native_change_points": 43,
+        "onset_epoch": 1784332594,
+        "postformation_prebell_true_trade_count": 20,
+        "preformation_true_trade_count": 2,
+        "verified_span_end_epoch": 1784372160,
+        "volume_cum": 602.1999999999999
+      }
+    },
+    "rules": {
+      "book": "Native recorder ts_et in America/New_York; bid_1/ask_1 only. Snapshot last_trade is never used.",
+      "clock": "Filed W1_GROUND_TRUTH_TABLE formation_end_game and bell_epoch, not trace first-stage recorder-open time. Explicit verified span_end also recorded; no synthetic data to bell.",
+      "first_tick": "Exact instant both sides have a true trade since formation; first=minimal causal state with both traded, not simultaneous-minute trades.",
+      "missing": "No snapshot/anchor substitution for missing true prints; no first postformation trade excludes the pair.",
+      "role_open": "Filed leg*_open_postformation_c, kept separately from first pool-observation prices.",
+      "second_close": "Group by floor(exchange_ts)/floor(book ts); within each stream use original source row order (custody files have no SQLite rowid), closing last/book; true-print min/max and size sum use all accepted prints in the second; stamp at greatest contributing native ts; no synthetic formation row",
+      "true_trade": "true_print=true; exchange_ts, price_cents, size; identical trade_id rows deduplicated, conflicting identities fail; ties keep source order.",
+      "volume": "Sum of true-print size since formation; exact trade count counts unique trade_id, not changed prices or minutes."
+    },
+    "sources": {
+      "book_tapes": {
+        "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR": {
+          "bytes": 541656,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz",
+          "sha256": "ccb153d06d07797687e6aeffeb8d2e12b87f12889947a1b660c85988e0fc7f25"
+        },
+        "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU": {
+          "bytes": 572375,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz",
+          "sha256": "8cf05f73d43280be1b394c4241f2935bc872bfb2ab8c333a5e08b47d9783ce94"
+        },
+        "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ": {
+          "bytes": 1735409,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz",
+          "sha256": "f8445932163996dd1f2fdccc7dfcb5e14f412dc84ae4dc18b7da8dfb304c59ff"
+        },
+        "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA": {
+          "bytes": 1695341,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz",
+          "sha256": "48b087d31d1e701f8a84e45d34db59b4f17d15cb2a6237c4ebf80956a897e196"
+        },
+        "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL": {
+          "bytes": 754076,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz",
+          "sha256": "216e26887d7e83ffc9860d9cfb7e8ecd7f13c36b7545231aabf820c6f1517f47"
+        },
+        "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS": {
+          "bytes": 563975,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz",
+          "sha256": "6535f985d69bf285fbc0db3984aa78be6b27120b025590957053e9c2aa695af9"
+        },
+        "KXATPMATCH-26JUL12ALTGAS-ALT": {
+          "bytes": 449328,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz",
+          "sha256": "3e13c18b5f7c6787543f0c68069d9e1611b215873d8e670579c90891ffc0a7b9"
+        },
+        "KXATPMATCH-26JUL12ALTGAS-GAS": {
+          "bytes": 478198,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz",
+          "sha256": "fa704092578cd84fc93474b3c1326e18feae7efb53747707a8e6b7fdff0dbf7e"
+        },
+        "KXATPMATCH-26JUL18DANPRA-DAN": {
+          "bytes": 321874,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPMATCH-26JUL18DANPRA-DAN.csv.gz",
+          "sha256": "4880e507c83adef39f990b979f6b3f26514e9da506f1e9f156813b555e9b7537"
+        },
+        "KXATPMATCH-26JUL18DANPRA-PRA": {
+          "bytes": 314263,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPMATCH-26JUL18DANPRA-PRA.csv.gz",
+          "sha256": "0e4b5032d4fb8430453a18e91377a2d177835254863dbb7baa8733bc74d8428f"
+        }
+      },
+      "canonical_onsets": {
+        "bytes": 49606,
+        "commit": "4716657a",
+        "path": ".claude/window1_live_v4_replay/v52e_disposition_804_four_state_20260813/POST_ONSET_OFFER_CAPTURE_LEDGER_804.jsonl.gz",
+        "sha256": "1b4875f2ce8f23c45692d0c357e62c6a1ea140ed2ff59fd4c9408110424ff6a0"
+      },
+      "true_prints": {
+        "bytes": 1766090446,
+        "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\prints.jsonl",
+        "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+      },
+      "truth_table": {
+        "bytes": 1426420,
+        "path": "C:\\Users\\omigr\\omi-w1-face\\.claude\\window1_second_seat\\v11_non_action_mechanism_audit_20260803\\W1_GROUND_TRUTH_TABLE.json",
+        "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729"
+      }
+    }
+  },
+  "no_engine_edit": {
+    "engine_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+    "functionable_sha256": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "maximum_cent": 99,
+    "minimum_cent": 1,
+    "pair_budget": 99,
+    "par": 100
+  },
+  "outputs": {
+    "CONDUCT_NAMED_CHECKS.json": {
+      "bytes": 1735711,
+      "sha256": "2a08bc4396e259aad03440e6016a49d9583b4a2a7eb196fe7e42b20f157e8bf9"
+    },
+    "CONDUCT_QUERIES.jsonl.gz": {
+      "bytes": 12000035,
+      "sha256": "f02873e3315ba4287d1fcd64b9d1c2838179397c238433560100549ade159ee6"
+    },
+    "CONDUCT_SCOREBOARD.json": {
+      "bytes": 20781950,
+      "sha256": "f81730519936c3b46229c8635e45aa70a01a557f0c0d8c278c43199c5f345b9c"
+    },
+    "CONDUCT_SUMMARY.md": {
+      "bytes": 9867,
+      "sha256": "a25c95a66934b15da117678b25d384624dba2a01497ac4d8869fd811fdb442a5"
+    },
+    "FIRST_FORECASTS.jsonl.gz": {
+      "bytes": 68431928,
+      "sha256": "2b0d5d66948b56d5e5749ffb3b76c14ebb43cdcdd069af105fc56bb1c4327629"
+    }
+  },
+  "performance": {
+    "batch_size": 256,
+    "batch_size_is_memory_only": true,
+    "elapsed_seconds": 2151.359999999986
+  },
+  "positive_named_adapter": {
+    "census": {
+      "positive_size_unique_prints": 43277
+    },
+    "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\prints.jsonl",
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+  },
+  "print_extract": {
+    "accepted_print_rows": 777937,
+    "bytes": 7639804,
+    "jsonl_leg_rows": 1878,
+    "nonpositive_size_prints": 6778,
+    "path": "C:\\tmp\\conduct_atp_main_v1\\ATP_MAIN_PRINTS.jsonl.gz",
+    "positive_size_prints": 771159,
+    "raw_prints_committed": false,
+    "receipt_sha256": "85914d77895b46d08b135b4f4e14eb6f3c6046420a76f6e3f2284f6f0e6e0ff5",
+    "sha256": "bf982a5e99683384ee261e5cf6cf2bd6fdd139dc426bda4b86ad877e34f5120f"
+  },
+  "receipt_counts": {
+    "GATE-SIM": 11518,
+    "RECEIPT-SIM": 609960
+  },
+  "reference_check": {
+    "commit": "c7825925",
+    "structural_equivalence": [
+      "load_tick_library",
+      "load_named_inputs",
+      "initial_pool",
+      "remaining_floor",
+      "Pair",
+      "Leg",
+      "role",
+      "date_key"
+    ]
+  },
+  "scripts": {
+    "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+    "conduct_scoreboard_v2.py": "a53fba520a2ddf6925c33be9fed86f3bb2e751a1000ee969bccccd0781ffc450",
+    "tune_bench_v2_survivorship.py": "b9d96cddfe43cc014342e9745fb099f5126f6adae06bbcbec6b5b6a8557d58f8"
+  },
+  "status": "BENCH ONLY \u2014 REACHABLE, NEVER CERTAIN",
+  "validation": "Every query gate projection equals the c7825925-equivalent v1 projector; independent positive-size interval audit verifies every fill and miss for both cadences/all seven rules/five named checks."
+}

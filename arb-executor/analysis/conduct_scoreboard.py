@@ -133,6 +133,7 @@ def extract(args):
 
 
 RULES = ("R0 CURRENT", "R1 CLIMBER-ANCHOR", "R2 NAMED-LEVEL", "R3 ANCHOR+NAMED", "R4 ANCHOR+Q25-NAMED")
+RULES_V2 = RULES + ("R5 JOINT", "R6 ALL-SIDE-SAFETY")
 BASELINE = "c7825925"
 
 
@@ -263,8 +264,11 @@ def simulate_conduct(event, leg_ids, forecasts, tapes, formation, bell, spec, ru
     active = {leg: None for leg in leg_ids}
     fills, anchors, named_levels, actions, exposures = {}, {}, {}, [], []
     safety = Counter()
+    postability = {}
+    joint_decisions = []
+    positive_only = spec.get("positive_size_fills", False)
     all_prints = sorted((p[0], leg, p[3], p[1], p[2]) for leg in leg_ids for p in tapes[leg]
-                        if formation <= p[0] < bell)
+                        if formation <= p[0] < bell and (not positive_only or finite(p[2]) and p[2] > 0))
     cursor = 0
 
     def consume(end):
@@ -294,6 +298,10 @@ def simulate_conduct(event, leg_ids, forecasts, tapes, formation, bell, spec, ru
         if ts < formation or ts >= bell: continue
         consume(ts)
         proposals, reasons = {}, {}
+        if rule == 5:
+            from conduct_scoreboard_v2 import choose_joint
+            joint = choose_joint(receipt, leg_ids, fills, named_levels, active, spec)
+            joint_decisions.append(dict(epoch=ts, **joint))
         for leg in leg_ids:
             state, order = receipt["sides"][leg], active[leg]
             old = order["cents"] if order else None
@@ -301,22 +309,32 @@ def simulate_conduct(event, leg_ids, forecasts, tapes, formation, bell, spec, ru
                 proposals[leg], reasons[leg] = None, "ALREADY_FILLED"
                 continue
             role = state["role"]
-            if rule in (2, 3, 4) and role == "FALLER" and old is not None:
+            protected = rule == 6 or rule in (2, 3, 4, 5) and role == "FALLER"
+            if protected and old is not None:
                 named_levels[leg] = max(old, named_levels.get(leg, old))
             if rule in (1, 3, 4) and role == "CLIMBER" and leg not in anchors:
                 low = state["seen_true_trade_low"]
                 if valid_cent(low): anchors[leg] = dict(cents=low, epoch=ts)
             q = state.get("floors", {}).get("q25" if rule == 4 and role == "FALLER" else "q50", {}).get("level_cents")
+            if rule == 5:
+                q = joint.get("levels", {}).get(leg)
             bid, ask = state["bid"], state["ask"]
+            prior = postability.get(leg, {})
+            postable = valid_cent(q) and valid_cent(ask) and q < ask
+            became_postable = postable and prior.get("target") == q and prior.get("postable") is False
+            postability[leg] = dict(target=q, postable=postable)
             if finite(bid) and finite(ask) and bid >= ask:
                 proposals[leg], reasons[leg] = old, "LOCKED_BOOK_HOLD"
                 continue
             if state["status"] != "OK" or not valid_cent(q):
                 proposals[leg], reasons[leg] = old, "INSUFFICIENT_AUTHORITY_HOLD"
                 continue
+            if receipt.get("ask_only_book_tick", False) and not became_postable:
+                proposals[leg], reasons[leg] = old, "ASK_ONLY_BOOK_HOLD"
+                continue
             if rule in (1, 3, 4) and leg in anchors:
                 q = anchors[leg]["cents"]
-            elif rule in (2, 3, 4) and role == "FALLER" and leg in named_levels:
+            elif protected and leg in named_levels:
                 q = max(named_levels[leg], q)
             if not valid_cent(ask) or q >= ask:
                 proposals[leg] = old if old is not None and valid_cent(ask) and old <= ask else None
@@ -341,9 +359,9 @@ def simulate_conduct(event, leg_ids, forecasts, tapes, formation, bell, spec, ru
                 if ts < formation: safety["pre_formation"] += 1
                 if not finite(state["ask"]) or new >= state["ask"]: safety["post_only"] += 1
                 if state["status"] != "OK": safety["insufficient_evidence_placement"] += 1
-            writer = "CLIMBER_ANCHOR" if rule in (1, 3, 4) and leg in anchors else "FIRST_Q25" if rule == 4 and state["role"] == "FALLER" else "FIRST_Q50"
+            writer = "JOINT_EXPECTED_DISCOUNT" if rule == 5 else "CLIMBER_ANCHOR" if rule in (1, 3, 4) and leg in anchors else "FIRST_Q25" if rule == 4 and state["role"] == "FALLER" else "FIRST_Q50"
             active[leg] = None if new is None else dict(cents=new, placed_epoch=ts, writer=writer)
-            if rule in (2, 3, 4) and state["role"] == "FALLER" and new is not None:
+            if (rule == 6 or rule in (2, 3, 4, 5) and state["role"] == "FALLER") and new is not None:
                 named_levels[leg] = max(new, named_levels.get(leg, new))
             actions.append(dict(leg=leg, epoch=ts, minutes_to_bell=(bell-ts)/60,
                 source_gate_minutes=receipt["source_gate_minutes"], old_cents=old, new_cents=new,
@@ -358,18 +376,23 @@ def simulate_conduct(event, leg_ids, forecasts, tapes, formation, bell, spec, ru
         if fill["epoch"] >= bell: safety["after_bell"] += 1
         if fill["epoch"] <= fill["placed_epoch"]: safety["not_strictly_later"] += 1
         if fill["print_cents"] > fill["cents"]: safety["print_above_bid"] += 1
+        if positive_only and not (finite(fill["size"]) and fill["size"] > 0): safety["nonpositive_size_witness"] += 1
     # Also report the broad literal "any later print" count separately, not as proof
     # the abandoned level remained available after another order change.
     for ex in exposures:
-        ex["any_later_print"] = any(ex["epoch"] < p[0] < bell and ex["new_cents"] < p[1] <= ex["old_cents"] for p in tapes[ex["leg"]])
-    return dict(event_id=event, rule=RULES[rule], eligible=True, formation_epoch=formation, bell_epoch=bell,
+        ex["any_later_print"] = any(ex["epoch"] < p[0] < bell and ex["new_cents"] < p[1] <= ex["old_cents"]
+            and (not positive_only or finite(p[2]) and p[2] > 0) for p in tapes[ex["leg"]])
+    return dict(event_id=event, rule=RULES_V2[rule], eligible=True, formation_epoch=formation, bell_epoch=bell,
         completed=completed, one_sided=len(fills)==1, fills=fills, pair_sum=pair_sum,
         captured_cents=spec["par"]-pair_sum if completed else 0, captured_credit="BOTH SIDES ONLY",
         rests_at_bell=active, climber_bindings=anchors, named_level_memory=named_levels, actions=actions,
         stepped_off=any(e["any_later_print"] for e in exposures),
         stepped_off_while_lower_rest_active=any("witness" in e for e in exposures),
         stepped_off_any_later=any(e["any_later_print"] for e in exposures), stepped_off_exposures=exposures,
-        safety_violations=dict(safety), queue_position="UNKNOWN — reachable is not certain")
+        safety_violations=dict(safety), queue_position="UNKNOWN — reachable is not certain",
+        failed_sides=[leg for leg in leg_ids if leg not in fills],
+        one_sided_failed_orientation=("favourite" if leg_ids[0] not in fills else "underdog") if len(fills)==1 else None,
+        joint_decisions=joint_decisions)
 
 
 def summarize(results):

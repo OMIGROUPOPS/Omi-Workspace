@@ -89,6 +89,19 @@ class FillLaw(unittest.TestCase):
         r = self.run_rule([receipt(100, state(40)), receipt(200, state(50))], [(200, 49)])
         self.assertNotIn("A", r["fills"])
 
+    def test_v2_zero_unknown_and_negative_sizes_are_not_witnesses(self):
+        tapes = {"A": [[101, 45, 0, 1], [102, 45, None, 2], [103, 45, -1, 3],
+                       [104, 45, 1, 4]], "B": []}
+        r = simulate_conduct("FIXTURE", ["A", "B"], [receipt(100, state(50))], tapes,
+                             0, 1000, dict(SPEC, positive_size_fills=True), 0)
+        self.assertEqual(r["fills"]["A"]["epoch"], 104)
+
+    def test_v2_zero_size_cannot_witness_stepping_off(self):
+        tapes = {"A": [[201, 49, 0, 1]], "B": []}
+        r = simulate_conduct("FIXTURE", ["A", "B"], [receipt(100, state(50)), receipt(200, state(40))],
+                             tapes, 0, 1000, dict(SPEC, positive_size_fills=True), 0)
+        self.assertFalse(r["stepped_off"])
+
 
 @unittest.skipUnless(os.environ.get("CONDUCT_PRINTS"), "Set CONDUCT_PRINTS for the private-data integration audit")
 class RecordedFillAudit(unittest.TestCase):

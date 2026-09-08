@@ -7,17 +7,18 @@
     "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
     "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
     "truth_row_sha256": "08f58fa460e1d63ae4651a085b099dbbfd38db48291271b9414bad33258ddd52",
-    "face_sha256": "7bf26379a3bfd1e02398d09d0b5e57789387db8cacdb197fb6e2effc706c7513",
+    "face_sha256": "12523dfaab949f7b265161d9f59700ac84c1747c80e51220fb5b2ff5e785c33f",
     "stage_inputs_sha256": "04bee3554dbdbdbbfff2ec2d64be02bc5c675c758363eac42ab6c0209e0d8f73",
     "stage_files_count": 118,
     "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
-    "receipt_sha256": "26308b440b79dcbd607d1b629a4f6cfb149fec6b6a7cf15b429260dead041e9a",
-    "grade_builder_sha256": "76b764bef92260d71b1118e10351f81f5d15c2ec15036031f11bf3fadeca9e8a",
-    "grade_contract_sha256": "840311c8019c498fef30e348aaca61cf4f4a8b82f105d2f4fb6ddfbf87b9bb61",
-    "fields_sha256": "25cb8e1e074af8d83664fcb645ea41fd5a1abe0cbf4626f85015233754aa3b40",
-    "os_commit": "STORE SILENT",
-    "os_commit_order": null,
-    "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796"
+    "receipt_sha256": "dad3e3e2f44a8806ac7b2c28c1d747a0b5a90321d0637444323e9b392e014d0d",
+    "grade_builder_sha256": "6e4efa0322f662aa0f67a9b6b9d898d344432407fc0173c1d8ed7d0f4fbef059",
+    "grade_contract_sha256": "49ef29ab1cc7af0c5913d188b47f556bb75573484b01b9c4efc28643f7773ebd",
+    "grade_rulers_sha256": "d4f91a6dde09fbd980057208a5ddd3622e874ae70ce391ed30f8f96c0429f8b7",
+    "fields_sha256": "4b0286526a7d22afe6df78227cd067fbdb512d0593fecb3202db2a3cff5d607d",
+    "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+    "os_commit_order": 3022,
+    "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c"
   },
   "SENTENCE": {
     "receipts_total": 118,
@@ -53,107 +54,202 @@
   },
   "MACRO": {
     "last_gate": 5,
-    "receipt": "KXATPMATCH-26JUL18DANPRA|ATLAS_GATE|1784371860",
+    "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11194",
+    "comparison_clock": {
+      "source": "BENCH_FIRST_TICK_EPOCH_PLUS_MTB",
+      "bell_epoch": 1784373060,
+      "trace_bell_epoch": 1784372160,
+      "delta_seconds": 900,
+      "last_gate_epoch": 1784372760,
+      "rule": "At bench bell minus gate*60, use each leg's latest stored OS family at or before that epoch; realized family and pool accuracy use the same bench gate. No OS call is recomputed."
+    },
     "legs": {
       "DAN": {
-        "realized_family": "STORE SILENT",
-        "family_called_at_last_gate": "ROUND_TRIP",
-        "family_match": "STORE SILENT",
+        "realized_family": "QUIET_WOBBLE",
+        "family_called_at_last_gate": "QUIET_WOBBLE",
+        "family_call_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11194",
+        "family_call_epoch": 1784372160.000005,
+        "family_call_minutes_to_bench_bell": 14.999999916553497,
+        "family_call_age_at_gate_minutes": 9.999999916553497,
+        "gate_after_trace_bell": true,
+        "family_match": true,
         "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
-        "bench_families_by_rule": {},
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "bench_families_by_rule": {
+          "BASE": {
+            "called_family": "ROUND_TRIP",
+            "realized_family": "QUIET_WOBBLE",
+            "ess": 329,
+            "status": "OK"
+          },
+          "FIRST-TICK-ONLY": {
+            "called_family": "ROUND_TRIP",
+            "realized_family": "QUIET_WOBBLE",
+            "ess": 115.8321224021629,
+            "status": "OK"
+          },
+          "HARD": {
+            "called_family": "STORE SILENT",
+            "realized_family": "QUIET_WOBBLE",
+            "ess": 1,
+            "status": "NO-CALL: ESS < 10"
+          },
+          "SOFT": {
+            "called_family": "STORE SILENT",
+            "realized_family": "QUIET_WOBBLE",
+            "ess": 1.0000000000000677,
+            "status": "NO-CALL: ESS < 10"
+          },
+          "STEP-FORECAST": {
+            "called_family": "STORE SILENT",
+            "realized_family": "QUIET_WOBBLE",
+            "ess": 1.0015160694591074,
+            "status": "NO-CALL: ESS < 10"
+          },
+          "TAXONOMY-NULL": {
+            "called_family": "QUIET_WOBBLE",
+            "realized_family": "QUIET_WOBBLE",
+            "ess": 72,
+            "status": "OK"
+          }
+        },
+        "reason": null
       },
       "PRA": {
-        "realized_family": "STORE SILENT",
+        "realized_family": "SLEEPER",
         "family_called_at_last_gate": "ROUND_TRIP",
-        "family_match": "STORE SILENT",
+        "family_call_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11194",
+        "family_call_epoch": 1784372160.000005,
+        "family_call_minutes_to_bench_bell": 14.999999916553497,
+        "family_call_age_at_gate_minutes": 9.999999916553497,
+        "gate_after_trace_bell": true,
+        "family_match": false,
         "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
-        "bench_families_by_rule": {},
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "bench_families_by_rule": {
+          "BASE": {
+            "called_family": "ROUND_TRIP",
+            "realized_family": "SLEEPER",
+            "ess": 700,
+            "status": "OK"
+          },
+          "FIRST-TICK-ONLY": {
+            "called_family": "ROUND_TRIP",
+            "realized_family": "SLEEPER",
+            "ess": 257.69208511177453,
+            "status": "OK"
+          },
+          "HARD": {
+            "called_family": "STORE SILENT",
+            "realized_family": "SLEEPER",
+            "ess": 1.029561949685926,
+            "status": "NO-CALL: ESS < 10"
+          },
+          "SOFT": {
+            "called_family": "STORE SILENT",
+            "realized_family": "SLEEPER",
+            "ess": 1.5884659865902584,
+            "status": "NO-CALL: ESS < 10"
+          },
+          "STEP-FORECAST": {
+            "called_family": "STORE SILENT",
+            "realized_family": "SLEEPER",
+            "ess": 1.8710360820286205,
+            "status": "NO-CALL: ESS < 10"
+          },
+          "TAXONOMY-NULL": {
+            "called_family": "STORE SILENT",
+            "realized_family": "SLEEPER",
+            "ess": 5,
+            "status": "NO-CALL: prior row effective count < 10"
+          }
+        },
+        "reason": null
       }
     },
-    "pile_ess_at_last_gate": "STORE SILENT",
+    "pile_ess_at_last_gate": 1.3348633990187944,
     "pool_accuracy_by_gate": [
       {
-        "gate": 720,
-        "share": "STORE SILENT",
-        "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
-      },
-      {
         "gate": 480,
+        "epoch": 1784344260,
         "share": "STORE SILENT",
         "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "status": "NO_PREVIOUS_GATE",
+        "reason": null
       },
       {
         "gate": 360,
-        "share": "STORE SILENT",
-        "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "epoch": 1784351460,
+        "share": 0.6582664776260438,
+        "ess": 173.66584636793695,
+        "status": "OK",
+        "reason": null
       },
       {
         "gate": 240,
-        "share": "STORE SILENT",
-        "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "epoch": 1784358660,
+        "share": 0.5480599778943365,
+        "ess": 6.971041060783488,
+        "status": "INVALID: ESS < 10",
+        "reason": null
       },
       {
         "gate": 180,
-        "share": "STORE SILENT",
-        "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "epoch": 1784362260,
+        "share": 0.4110766292923794,
+        "ess": 8.610391434475684,
+        "status": "INVALID: ESS < 10",
+        "reason": null
       },
       {
         "gate": 120,
-        "share": "STORE SILENT",
-        "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "epoch": 1784365860,
+        "share": 0.32910097153764006,
+        "ess": 2.0341923952910332,
+        "status": "INVALID: ESS < 10",
+        "reason": null
       },
       {
         "gate": 90,
-        "share": "STORE SILENT",
-        "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "epoch": 1784367660,
+        "share": 0.958517503930323,
+        "ess": 1.985130626296441,
+        "status": "INVALID: ESS < 10",
+        "reason": null
       },
       {
         "gate": 60,
-        "share": "STORE SILENT",
-        "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "epoch": 1784369460,
+        "share": 0.9716304507847346,
+        "ess": 2.3907736084128555,
+        "status": "INVALID: ESS < 10",
+        "reason": null
       },
       {
         "gate": 30,
-        "share": "STORE SILENT",
-        "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "epoch": 1784371260,
+        "share": 0.9959887108768883,
+        "ess": 2.2304533682201164,
+        "status": "INVALID: ESS < 10",
+        "reason": null
       },
       {
         "gate": 15,
-        "share": "STORE SILENT",
-        "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "epoch": 1784372160,
+        "share": 0.9985851066749445,
+        "ess": 1.079436984957045,
+        "status": "INVALID: ESS < 10",
+        "reason": null
       },
       {
         "gate": 5,
-        "share": "STORE SILENT",
-        "ess": "STORE SILENT",
-        "status": "STORE SILENT",
-        "reason": "CLOCK_MISMATCH_STORE_SILENT"
+        "epoch": 1784372760,
+        "share": 0.9944887365227999,
+        "ess": 1.3348633990187944,
+        "status": "INVALID: ESS < 10",
+        "reason": null
       }
     ],
     "bench_label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD",
-    "bench_reason": "CLOCK_MISMATCH_STORE_SILENT",
+    "bench_reason": null,
     "ess_source": "Bench validity pool, not OS membership ESS"
   },
   "MICRO": {
@@ -397,7 +493,7 @@
         "minutes_to_bell": 545.2833333015442,
         "old_cents": null,
         "new_cents": 57,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "PLACE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -416,7 +512,7 @@
         "minutes_to_bell": 545.2833333015442,
         "old_cents": null,
         "new_cents": 41,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "PLACE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -435,7 +531,7 @@
         "minutes_to_bell": 513.8934500018756,
         "old_cents": 41,
         "new_cents": 40,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -454,7 +550,7 @@
         "minutes_to_bell": 493.4338166673978,
         "old_cents": 40,
         "new_cents": 39,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -473,7 +569,7 @@
         "minutes_to_bell": 415.08333331743876,
         "old_cents": 57,
         "new_cents": 59,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -492,7 +588,7 @@
         "minutes_to_bell": 240,
         "old_cents": 39,
         "new_cents": 40,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -514,7 +610,7 @@
     "formation_uncheckable": 0,
     "same_second_fills": 0,
     "fill_age_uncheckable": 0,
-    "writer_class_unmapped": 6,
+    "writer_class_unmapped": 0,
     "violation_receipts": []
   },
   "OUTCOME": {
@@ -558,9 +654,9 @@
         "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
       },
       "MACRO": {
-        "letter": "STORE SILENT",
+        "letter": "C",
         "metrics": {
-          "family_match_share": "STORE SILENT"
+          "family_match_share": 0.5
         },
         "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
       },
@@ -573,9 +669,9 @@
         "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
       },
       "HANDS": {
-        "letter": "STORE SILENT",
+        "letter": "A",
         "metrics": {
-          "post_only_violations": "STORE SILENT"
+          "post_only_violations": 0
         },
         "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
       },
@@ -607,11 +703,11 @@
       {
         "name": "MACRO",
         "mark": "!",
-        "line": "DAN: ROUND_TRIP / STORE SILENT · PRA: ROUND_TRIP / STORE SILENT",
+        "line": "DAN: QUIET_WOBBLE / QUIET_WOBBLE · PRA: ROUND_TRIP / SLEEPER",
         "hover_lines": [
-          "MACRO: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
-          "{\"family_match_share\":\"STORE SILENT\"}",
-          "Bench: CLOCK_MISMATCH_STORE_SILENT"
+          "MACRO: C · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+          "{\"family_match_share\":0.5}",
+          "Bench: RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
         ]
       },
       {
@@ -626,11 +722,11 @@
       },
       {
         "name": "HANDS",
-        "mark": "!",
+        "mark": "✓",
         "line": "0 same-second · 0 post-only · 0 pre-formation",
         "hover_lines": [
-          "HANDS: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
-          "{\"post_only_violations\":\"STORE SILENT\"}",
+          "HANDS: A · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+          "{\"post_only_violations\":0}",
           "6 placement/reprice rows checked"
         ]
       },
@@ -645,6 +741,55 @@
         ]
       }
     ]
+  },
+  "RULER_COLUMNS": {
+    "role": "RULER COMPARISON ONLY — NOT AN OS INPUT",
+    "event_id": "KXATPMATCH-26JUL18DANPRA",
+    "selection": "NONE — existing truth/OUTCOME inputs unchanged; both filed sets retained",
+    "original_table": {
+      "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "08f58fa460e1d63ae4651a085b099dbbfd38db48291271b9414bad33258ddd52",
+      "row_number": 541,
+      "status": "OK",
+      "bell_epoch": 1784373060,
+      "bell_source": "TAPE_INFERENCE",
+      "span_start_epoch": 1784332553,
+      "span_end_epoch": 1784372160,
+      "legs": {
+        "DAN": {
+          "floor_cents": 59,
+          "floor_epoch": 1784339306.8,
+          "close_cents": 61,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "close_cents": "legA_close_c"
+          }
+        },
+        "PRA": {
+          "floor_cents": 41,
+          "floor_epoch": 1784342554,
+          "close_cents": 41,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "close_cents": "legB_close_c"
+          }
+        }
+      },
+      "floor_sum_cents": 100,
+      "under_par_cents": 0,
+      "campaign_ruler_columns": {},
+      "column_note": "Pinned CSV uses legA_floor_c / legB_floor_c, not a literal floor_cents column; absent campaign/ruler columns are not invented."
+    },
+    "correction_source": {
+      "commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+      "sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+    },
+    "restated_rows": []
   },
   "receipt": {
     "version": 1,
@@ -681,10 +826,10 @@
       }
     },
     "bench_taxonomy_receipt": {
-      "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
-      "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
-      "bytes": 28853,
-      "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+      "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b",
+      "bytes": 33824,
+      "commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
       "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
       "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
       "bench_choices": {
@@ -704,16 +849,18 @@
         "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
         "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
       },
-      "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+      "label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
     },
     "rules": {
       "authorship": "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
       "missing": "STORE SILENT; no number or author is invented.",
       "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
       "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
-      "taxonomy": "Read realized labels from the hash-bound bench, do not reclassify or select a favored benchmark rule.",
+      "taxonomy": "Read realized labels from the hash-bound bench. Compare each side's latest stored family as of bench bell minus gate*60 against that same bench gate; no OS timestamp or family is recomputed. MICRO and chart clocks stay unchanged.",
+      "cascade_writers": "FIELDS.md maps POOL_FIRST_TICK (alias), POOL_FIRST-TICK-ONLY, POOL_BASE, POOL_CASCADE:* and POOL_CASCADE_WRITER to ORGAN. Hold/veto precedence and raw tokens remain unchanged.",
+      "ruler_comparison": "RULER_COLUMNS preserves pinned table floors alongside filed correction floors and campaign ruler fields. No selection is made and OUTCOME keeps its existing face.truth inputs.",
       "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
     }
   },
-  "timestamp": "2026-09-08T03:45:15.243Z"
+  "timestamp": "2026-09-08T04:29:05.441Z"
 }

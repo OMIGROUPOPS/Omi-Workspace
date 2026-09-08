@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import {
   gradeFace,
   writerClass,
@@ -134,7 +136,7 @@ test("held gate requires every remaining call and cannot use future decisions", 
   });
   assert.equal(run(f).MICRO.legs.ABC.floor_error_cents, SILENT);
 });
-test("only bound aligned bench labels and pool data are used", () => {
+test("family comparison uses the bench bell even when the trace clock differs", () => {
   const f = fixture();
   const gate = {
     validity: { ess: 9, weighted_share: 0.5, status: "OK" },
@@ -155,7 +157,7 @@ test("only bound aligned bench labels and pool data are used", () => {
     events: {
       TEST: {
         event_id: "TEST",
-        first_tick: { favorite: "ABC", underdog: "XYZ" },
+        first_tick: { favorite: "ABC", underdog: "XYZ", epoch: 100, mtb_first: 15 },
         gates: { 5: gate },
       },
     },
@@ -164,6 +166,17 @@ test("only bound aligned bench labels and pool data are used", () => {
   assert.equal(g.MACRO.legs.ABC.realized_family, "DRIFT_UP");
   assert.equal(g.MACRO.pile_ess_at_last_gate, 9);
   f.face.bench.clock_status = "MISMATCH";
+  bench.events.TEST.first_tick.epoch = 300;
+  f.decisions.push({ epoch: 800, receipt: "bench-clock-call", legs: {}, families: { ABC: "SLEEPER" } });
+  f.decisions.push({ epoch: 950, receipt: "future-call", legs: {}, families: { ABC: "FUTURE" } });
+  g = run(f, new Map(), bench);
+  assert.equal(g.MACRO.comparison_clock.bell_epoch, 1200);
+  assert.equal(g.MACRO.legs.ABC.realized_family, "DRIFT_UP");
+  assert.equal(g.MACRO.legs.ABC.family_called_at_last_gate, "SLEEPER");
+  assert.equal(g.MACRO.legs.ABC.family_call_receipt, "bench-clock-call");
+  assert.equal(g.MACRO.pile_ess_at_last_gate, 9);
+  assert.equal(g.MICRO.legs.ABC.receipt, "b");
+  delete bench.events.TEST.first_tick.epoch;
   g = run(f, new Map(), bench);
   assert.equal(g.MACRO.legs.ABC.realized_family, SILENT);
   assert.equal(g.MACRO.pile_ess_at_last_gate, SILENT);
@@ -241,10 +254,11 @@ test("history retains repeated hashes and earlier snapshots", async () => {
   assert.equal(index.grades.length, 2);
   assert.ok(index.grades[0].x < index.grades[1].x);
 });
-test("real proofs preserve facts, source citations and missing fields", async () => {
+test("historical badge-era proofs preserve facts, source citations and missing fields", async () => {
   const read = async (e) =>
     JSON.parse(
-      await fs.readFile(new URL(`./data/${e}.grade.json`, import.meta.url)),
+      execFileSync("git", ["show", `6b5d31f5:window1-watch/data/${e}.grade.json`],
+        { cwd: fileURLToPath(new URL("..", import.meta.url)), maxBuffer: 8 * 1024 * 1024 }),
     );
   const alt = await read("KXATPMATCH-26JUL12ALTGAS"),
     ur = await read("KXATPCHALLENGERMATCH-26JUL14URSPAL");

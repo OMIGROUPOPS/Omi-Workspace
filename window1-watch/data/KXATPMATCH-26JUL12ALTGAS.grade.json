@@ -7,17 +7,18 @@
     "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
     "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
     "truth_row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
-    "face_sha256": "1c7dddc304cdd4e73ffda61b04ebbaf20f5fbf59ce78f074790782de4ebf8da7",
+    "face_sha256": "b64174de7ba4ee94956b6da1bc734a284a28dd3bde4036c6e5dbe281021fd435",
     "stage_inputs_sha256": "84fa7bf69e8b04349a44ce8335d85a793133cc31e94438c97ef5903204ceba94",
     "stage_files_count": 169,
     "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
-    "receipt_sha256": "26308b440b79dcbd607d1b629a4f6cfb149fec6b6a7cf15b429260dead041e9a",
-    "grade_builder_sha256": "76b764bef92260d71b1118e10351f81f5d15c2ec15036031f11bf3fadeca9e8a",
-    "grade_contract_sha256": "840311c8019c498fef30e348aaca61cf4f4a8b82f105d2f4fb6ddfbf87b9bb61",
-    "fields_sha256": "25cb8e1e074af8d83664fcb645ea41fd5a1abe0cbf4626f85015233754aa3b40",
-    "os_commit": "STORE SILENT",
-    "os_commit_order": null,
-    "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796"
+    "receipt_sha256": "dad3e3e2f44a8806ac7b2c28c1d747a0b5a90321d0637444323e9b392e014d0d",
+    "grade_builder_sha256": "6e4efa0322f662aa0f67a9b6b9d898d344432407fc0173c1d8ed7d0f4fbef059",
+    "grade_contract_sha256": "49ef29ab1cc7af0c5913d188b47f556bb75573484b01b9c4efc28643f7773ebd",
+    "grade_rulers_sha256": "d4f91a6dde09fbd980057208a5ddd3622e874ae70ce391ed30f8f96c0429f8b7",
+    "fields_sha256": "4b0286526a7d22afe6df78227cd067fbdb512d0593fecb3202db2a3cff5d607d",
+    "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+    "os_commit_order": 3022,
+    "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c"
   },
   "SENTENCE": {
     "receipts_total": 169,
@@ -56,10 +57,23 @@
   "MACRO": {
     "last_gate": 5,
     "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784034900",
+    "comparison_clock": {
+      "source": "BENCH_FIRST_TICK_EPOCH_PLUS_MTB",
+      "bell_epoch": 1784035200,
+      "trace_bell_epoch": 1784035200,
+      "delta_seconds": 0,
+      "last_gate_epoch": 1784034900,
+      "rule": "At bench bell minus gate*60, use each leg's latest stored OS family at or before that epoch; realized family and pool accuracy use the same bench gate. No OS call is recomputed."
+    },
     "legs": {
       "ALT": {
         "realized_family": "DRIFT_UP",
         "family_called_at_last_gate": "ROUND_TRIP",
+        "family_call_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784034900",
+        "family_call_epoch": 1784034900,
+        "family_call_minutes_to_bench_bell": 5,
+        "family_call_age_at_gate_minutes": 0,
+        "gate_after_trace_bell": false,
         "family_match": false,
         "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
         "bench_families_by_rule": {
@@ -105,6 +119,11 @@
       "GAS": {
         "realized_family": "LATE_BREAK_DOWN",
         "family_called_at_last_gate": "ROUND_TRIP",
+        "family_call_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784034900",
+        "family_call_epoch": 1784034900,
+        "family_call_minutes_to_bench_bell": 5,
+        "family_call_age_at_gate_minutes": 0,
+        "gate_after_trace_bell": false,
         "family_match": false,
         "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
         "bench_families_by_rule": {
@@ -152,6 +171,7 @@
     "pool_accuracy_by_gate": [
       {
         "gate": 2880,
+        "epoch": 1783862400,
         "share": "STORE SILENT",
         "ess": "STORE SILENT",
         "status": "NO_PREVIOUS_GATE",
@@ -159,6 +179,7 @@
       },
       {
         "gate": 2160,
+        "epoch": 1783905600,
         "share": 0.42394550884541077,
         "ess": 31.185234040793272,
         "status": "OK",
@@ -166,6 +187,7 @@
       },
       {
         "gate": 1440,
+        "epoch": 1783948800,
         "share": 0.3952366415319961,
         "ess": 18.980408646893167,
         "status": "OK",
@@ -173,6 +195,7 @@
       },
       {
         "gate": 1080,
+        "epoch": 1783970400,
         "share": 0.6599401750134575,
         "ess": 18.648300462917724,
         "status": "OK",
@@ -180,6 +203,7 @@
       },
       {
         "gate": 720,
+        "epoch": 1783992000,
         "share": 0.42930602002756224,
         "ess": 18.776609654723284,
         "status": "OK",
@@ -187,6 +211,7 @@
       },
       {
         "gate": 480,
+        "epoch": 1784006400,
         "share": 0.10074588778438778,
         "ess": 36.42692126163375,
         "status": "OK",
@@ -194,6 +219,7 @@
       },
       {
         "gate": 360,
+        "epoch": 1784013600,
         "share": 0.32035525358533745,
         "ess": 9.528294698307093,
         "status": "INVALID: ESS < 10",
@@ -201,6 +227,7 @@
       },
       {
         "gate": 240,
+        "epoch": 1784020800,
         "share": 0.5359719931050664,
         "ess": 5.691845906872986,
         "status": "INVALID: ESS < 10",
@@ -208,6 +235,7 @@
       },
       {
         "gate": 180,
+        "epoch": 1784024400,
         "share": 0.8546334335842126,
         "ess": 8.744470438467252,
         "status": "INVALID: ESS < 10",
@@ -215,6 +243,7 @@
       },
       {
         "gate": 120,
+        "epoch": 1784028000,
         "share": 0.5826728652968105,
         "ess": 4.894115009609933,
         "status": "INVALID: ESS < 10",
@@ -222,6 +251,7 @@
       },
       {
         "gate": 90,
+        "epoch": 1784029800,
         "share": 0.8278689103769334,
         "ess": 3.018598875845165,
         "status": "INVALID: ESS < 10",
@@ -229,6 +259,7 @@
       },
       {
         "gate": 60,
+        "epoch": 1784031600,
         "share": 0.980228552852358,
         "ess": 2.634103403833711,
         "status": "INVALID: ESS < 10",
@@ -236,6 +267,7 @@
       },
       {
         "gate": 30,
+        "epoch": 1784033400,
         "share": 0.9980786208309599,
         "ess": 1.6980441900131016,
         "status": "INVALID: ESS < 10",
@@ -243,6 +275,7 @@
       },
       {
         "gate": 15,
+        "epoch": 1784034300,
         "share": 0.9140738381526048,
         "ess": 2.1849770993449034,
         "status": "INVALID: ESS < 10",
@@ -250,6 +283,7 @@
       },
       {
         "gate": 5,
+        "epoch": 1784034900,
         "share": 0.9735591810897632,
         "ess": 4.389245255420913,
         "status": "INVALID: ESS < 10",
@@ -573,7 +607,7 @@
         "minutes_to_bell": 3751.1666666507726,
         "old_cents": null,
         "new_cents": 41,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "PLACE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -592,7 +626,7 @@
         "minutes_to_bell": 3574.5333333015446,
         "old_cents": null,
         "new_cents": 57,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "PLACE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -611,7 +645,7 @@
         "minutes_to_bell": 3574.5333333015446,
         "old_cents": 41,
         "new_cents": 40,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -630,7 +664,7 @@
         "minutes_to_bell": 3374.535466667017,
         "old_cents": 40,
         "new_cents": 39,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -649,7 +683,7 @@
         "minutes_to_bell": 3213.0333332816767,
         "old_cents": 39,
         "new_cents": 40,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -668,7 +702,7 @@
         "minutes_to_bell": 2880.729499999683,
         "old_cents": 40,
         "new_cents": 39,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -687,7 +721,7 @@
         "minutes_to_bell": 2852.699999984106,
         "old_cents": 39,
         "new_cents": 38,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -706,7 +740,7 @@
         "minutes_to_bell": 2672.4333332816764,
         "old_cents": 57,
         "new_cents": 56,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -725,7 +759,7 @@
         "minutes_to_bell": 2672.4333332816764,
         "old_cents": 38,
         "new_cents": 39,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -744,7 +778,7 @@
         "minutes_to_bell": 2622.3247333327936,
         "old_cents": 39,
         "new_cents": 37,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -763,7 +797,7 @@
         "minutes_to_bell": 2492.399999968211,
         "old_cents": 56,
         "new_cents": 58,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -782,7 +816,7 @@
         "minutes_to_bell": 2376.0672833323483,
         "old_cents": 58,
         "new_cents": 57,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -801,7 +835,7 @@
         "minutes_to_bell": 2376.0672833323483,
         "old_cents": 37,
         "new_cents": 40,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -820,7 +854,7 @@
         "minutes_to_bell": 1771.6166666507725,
         "old_cents": 57,
         "new_cents": 56,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -839,7 +873,7 @@
         "minutes_to_bell": 1615.0499999841059,
         "old_cents": 40,
         "new_cents": 41,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -858,7 +892,7 @@
         "minutes_to_bell": 1440.0000000000005,
         "old_cents": 56,
         "new_cents": 57,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -877,7 +911,7 @@
         "minutes_to_bell": 1231.4166666507726,
         "old_cents": 57,
         "new_cents": 58,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -896,7 +930,7 @@
         "minutes_to_bell": 1080.0000000000005,
         "old_cents": 58,
         "new_cents": 57,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -915,7 +949,7 @@
         "minutes_to_bell": 871.349999968211,
         "old_cents": 57,
         "new_cents": 58,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -934,7 +968,7 @@
         "minutes_to_bell": 871.349999968211,
         "old_cents": 41,
         "new_cents": 40,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -953,7 +987,7 @@
         "minutes_to_bell": 720.0000000000005,
         "old_cents": 58,
         "new_cents": 59,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -972,7 +1006,7 @@
         "minutes_to_bell": 678.5890666683521,
         "old_cents": 40,
         "new_cents": 39,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -991,7 +1025,7 @@
         "minutes_to_bell": 581.694383335114,
         "old_cents": 59,
         "new_cents": 60,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -1010,7 +1044,7 @@
         "minutes_to_bell": 575.6033166646961,
         "old_cents": 60,
         "new_cents": null,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "FILL_EVENT",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -1033,7 +1067,7 @@
         "minutes_to_bell": 549.3079499999685,
         "old_cents": 39,
         "new_cents": 38,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -1052,7 +1086,7 @@
         "minutes_to_bell": 435.90183333158535,
         "old_cents": 38,
         "new_cents": 37,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -1071,7 +1105,7 @@
         "minutes_to_bell": 340.02999999920576,
         "old_cents": 37,
         "new_cents": 36,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -1090,7 +1124,7 @@
         "minutes_to_bell": 331.14999998410553,
         "old_cents": 36,
         "new_cents": 37,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -1109,7 +1143,7 @@
         "minutes_to_bell": 180,
         "old_cents": 37,
         "new_cents": 38,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "REPRICE_REST",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -1128,7 +1162,7 @@
         "minutes_to_bell": 169.28143333196715,
         "old_cents": 38,
         "new_cents": null,
-        "writer_class": "STORE SILENT",
+        "writer_class": "ORGAN",
         "tokens": [
           "FILL_EVENT",
           "PRICING_AUTHORITY_TARGET_EXECUTED",
@@ -1165,7 +1199,7 @@
     "formation_uncheckable": 0,
     "same_second_fills": 0,
     "fill_age_uncheckable": 0,
-    "writer_class_unmapped": 30,
+    "writer_class_unmapped": 0,
     "violation_receipts": []
   },
   "OUTCOME": {
@@ -1224,9 +1258,9 @@
         "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
       },
       "HANDS": {
-        "letter": "STORE SILENT",
+        "letter": "A",
         "metrics": {
-          "post_only_violations": "STORE SILENT"
+          "post_only_violations": 0
         },
         "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
       },
@@ -1277,11 +1311,11 @@
       },
       {
         "name": "HANDS",
-        "mark": "!",
+        "mark": "✓",
         "line": "0 same-second · 0 post-only · 0 pre-formation",
         "hover_lines": [
-          "HANDS: STORE SILENT · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
-          "{\"post_only_violations\":\"STORE SILENT\"}",
+          "HANDS: A · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+          "{\"post_only_violations\":0}",
           "28 placement/reprice rows checked"
         ]
       },
@@ -1296,6 +1330,55 @@
         ]
       }
     ]
+  },
+  "RULER_COLUMNS": {
+    "role": "RULER COMPARISON ONLY — NOT AN OS INPUT",
+    "event_id": "KXATPMATCH-26JUL12ALTGAS",
+    "selection": "NONE — existing truth/OUTCOME inputs unchanged; both filed sets retained",
+    "original_table": {
+      "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+      "row_number": 2,
+      "status": "OK",
+      "bell_epoch": 1784035200,
+      "bell_source": "MACHINE_RECEIPT",
+      "span_start_epoch": 1783790234,
+      "span_end_epoch": 1784035200,
+      "legs": {
+        "ALT": {
+          "floor_cents": 58,
+          "floor_epoch": 1783833446.5,
+          "close_cents": 65,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "close_cents": "legA_close_c"
+          }
+        },
+        "GAS": {
+          "floor_cents": 38,
+          "floor_epoch": 1784009667.7,
+          "close_cents": 38,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "close_cents": "legB_close_c"
+          }
+        }
+      },
+      "floor_sum_cents": 96,
+      "under_par_cents": 4,
+      "campaign_ruler_columns": {},
+      "column_note": "Pinned CSV uses legA_floor_c / legB_floor_c, not a literal floor_cents column; absent campaign/ruler columns are not invented."
+    },
+    "correction_source": {
+      "commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+      "sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+    },
+    "restated_rows": []
   },
   "receipt": {
     "version": 1,
@@ -1332,10 +1415,10 @@
       }
     },
     "bench_taxonomy_receipt": {
-      "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
-      "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
-      "bytes": 28853,
-      "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+      "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b",
+      "bytes": 33824,
+      "commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
       "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
       "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
       "bench_choices": {
@@ -1355,16 +1438,18 @@
         "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
         "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
       },
-      "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+      "label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
     },
     "rules": {
       "authorship": "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
       "missing": "STORE SILENT; no number or author is invented.",
       "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
       "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
-      "taxonomy": "Read realized labels from the hash-bound bench, do not reclassify or select a favored benchmark rule.",
+      "taxonomy": "Read realized labels from the hash-bound bench. Compare each side's latest stored family as of bench bell minus gate*60 against that same bench gate; no OS timestamp or family is recomputed. MICRO and chart clocks stay unchanged.",
+      "cascade_writers": "FIELDS.md maps POOL_FIRST_TICK (alias), POOL_FIRST-TICK-ONLY, POOL_BASE, POOL_CASCADE:* and POOL_CASCADE_WRITER to ORGAN. Hold/veto precedence and raw tokens remain unchanged.",
+      "ruler_comparison": "RULER_COLUMNS preserves pinned table floors alongside filed correction floors and campaign ruler fields. No selection is made and OUTCOME keeps its existing face.truth inputs.",
       "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
     }
   },
-  "timestamp": "2026-09-08T03:43:49.723Z"
+  "timestamp": "2026-09-08T04:28:56.793Z"
 }

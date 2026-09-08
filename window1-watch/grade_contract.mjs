@@ -120,7 +120,14 @@ export function projectDecision(row, face) {
       evidence_rows: a?.own_evidence_rows ?? [],
     };
   }
-  return { epoch: row.timestamp_epoch, receipt: row.receipt, legs };
+  return {
+    epoch: row.timestamp_epoch, receipt: row.receipt, legs,
+    // Credited sides can still have a telemetry belief, without an order derivation.
+    families: Object.fromEntries(face.legs.map((leg) => [leg,
+      row.layers?.micro?.context?.beliefs?.[leg]?.family ??
+      row.layers?.macro?.context?.families?.[leg] ?? legs[leg]?.family ?? null,
+    ])),
+  };
 }
 function metricGrade(v, rule, rubric) {
   if (!finite(v)) return SILENT;
@@ -208,30 +215,52 @@ export function gradeFace(
       .at(-1);
     return { gate: c.minutesToBell, receipt: stage?.receipt ?? null, stage };
   });
-  const last = gates.at(-1),
-    benchAligned = face.bench?.clock_status === "ALIGNED";
+  const last = gates.at(-1);
   const benchEvent =
     bench &&
     Object.values(bench.events ?? {}).find((e) => e.event_id === event);
-  const benchLast = benchAligned
-    ? benchEvent?.gates?.[String(last?.gate)]
-    : null;
+  const first = benchEvent?.first_tick;
+  const familyAt = (r, leg) => r?.families?.[leg] ?? r?.legs?.[leg]?.family;
+  const benchBell = finite(first?.epoch) && finite(first?.mtb_first)
+    ? first.epoch + first.mtb_first * 60 : null;
+  // Compare on the bench clock without shifting an OS decision or recomputing a family.
+  // A later receipt lacking a side does not erase that side's last recorded call.
+  const macroGates = finite(benchBell) ? Object.keys(benchEvent.gates ?? {})
+    .map(Number).filter((g) => finite(g) && g <= first.mtb_first)
+    .sort((a, b) => b - a).map((gate) => {
+      const epoch = benchBell - gate * 60;
+      const available = decisions.filter((r) => r.epoch <= epoch);
+      return { gate, epoch, stage: available.at(-1), legs: Object.fromEntries(
+        sides.map((leg) => [leg, available.findLast((r) => familyAt(r, leg))])
+      ) };
+    }) : [];
+  const macroLast = macroGates.at(-1);
+  const benchLast = benchEvent?.gates?.[String(macroLast?.gate)];
   const benchReason = !benchEvent
     ? "NO_BOUND_BENCH_EVENT"
-    : !benchAligned
-      ? face.bench.clock_status
+    : !finite(benchBell)
+      ? "NO_BENCH_BELL"
+      : !macroLast
+        ? "NO_BENCH_GATE_AFTER_FIRST_TICK"
       : null;
   const macro = {
-    last_gate: last?.gate ?? SILENT,
-    receipt: last?.receipt,
+    last_gate: macroLast?.gate ?? SILENT,
+    receipt: macroLast?.stage?.receipt ?? null,
+    comparison_clock: {
+      source: "BENCH_FIRST_TICK_EPOCH_PLUS_MTB",
+      bell_epoch: benchBell,
+      trace_bell_epoch: face.bell.timestamp_epoch,
+      delta_seconds: finite(benchBell) ? benchBell - face.bell.timestamp_epoch : null,
+      last_gate_epoch: macroLast?.epoch ?? null,
+      rule: "At bench bell minus gate*60, use each leg's latest stored OS family at or before that epoch; realized family and pool accuracy use the same bench gate. No OS call is recomputed.",
+    },
     legs: {},
     pile_ess_at_last_gate: value(benchLast?.validity?.ess),
-    pool_accuracy_by_gate: gates.map((g) => {
-      const v = benchAligned
-        ? benchEvent?.gates?.[String(g.gate)]?.validity
-        : null;
+    pool_accuracy_by_gate: macroGates.map((g) => {
+      const v = benchEvent?.gates?.[String(g.gate)]?.validity;
       return {
         gate: g.gate,
+        epoch: g.epoch,
         share: value(v?.weighted_share),
         ess: value(v?.ess),
         status: v?.status ?? SILENT,
@@ -274,11 +303,20 @@ export function gradeFace(
     ];
     if (realized.length > 1)
       throw new Error(`Contradictory realized bench families: ${leg}`);
+    const call = macroLast?.legs?.[leg];
     const actual = realized[0] ?? SILENT,
-      called = last?.stage?.legs?.[leg]?.family ?? SILENT;
+      called = familyAt(call, leg) ?? SILENT;
     macro.legs[leg] = {
       realized_family: actual,
       family_called_at_last_gate: called,
+      family_call_receipt: call?.receipt ?? null,
+      family_call_epoch: call?.epoch ?? null,
+      family_call_minutes_to_bench_bell: call && finite(benchBell)
+        ? (benchBell - call.epoch) / 60 : null,
+      family_call_age_at_gate_minutes: call && macroLast
+        ? (macroLast.epoch - call.epoch) / 60 : null,
+      gate_after_trace_bell: macroLast
+        ? macroLast.epoch > face.bell.timestamp_epoch : null,
       family_match:
         actual === SILENT || called === SILENT ? SILENT : called === actual,
       family_call_source:

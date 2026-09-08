@@ -430,6 +430,16 @@ matches. The custody SHA256s, event row counts and tokens are in
 | PRICING_AUTHORITY_SILENT_EXISTING_REST_HELD | no new price forecast; kept the existing bid |
 | PRICING_AUTHORITY_SILENT_HOLD_EXISTING_REST | no new price forecast; kept the existing bid |
 | PRICING_AUTHORITY_TARGET_EXECUTED | posted the price the forecast supplied |
+| POOL_CASCADE_WRITER | the selected pool supplied the bid |
+| POOL_FIRST_TICK | games matched at the first tick supplied the price forecast |
+| POOL_FIRST-TICK-ONLY | games matched at the first tick supplied the price forecast |
+| POOL_BASE | the category base pool supplied the price forecast |
+| POOL_FIRST_TICK_FLOOR_MTB | the first-tick pool supplied the floor deadline |
+| POOL_FIRST-TICK-ONLY_FLOOR_MTB | the first-tick pool supplied the floor deadline |
+| POOL_BASE_FLOOR_MTB | the category base pool supplied the floor deadline |
+| POOL_CASCADE:FIRST-TICK-ONLY | games matched at the first tick supplied the forecast |
+| POOL_CASCADE:BASE | the category base pool supplied the forecast |
+| POOL_CASCADE:* | the stored cascade layer supplied the forecast |
 | PRIOR_ONLY | the library supplied the price forecast |
 | PRIOR_REWEIGHTED_BY_OWN_WALK | the library forecast was adjusted by this game's own trading |
 | Q_MOVE_LICENSED_BY_CANDIDATE_FINAL_FLOOR_LADDER_SHRINK | a cheap ending died; bid stepped to the ladder |
@@ -530,6 +540,11 @@ named hand. RUNG and SEAT are explicitly not new Q/X authors.
 | PREDICTION_SEATED_* | SEAT | protected forecast bid |
 | IMMUNITY_* | SEAT | frozen by seat |
 | ACTIVE_REST_HOLD | SEAT | carried standing bid |
+| POOL_FIRST_TICK | ORGAN | first-tick pool price author (alias) |
+| POOL_FIRST-TICK-ONLY | ORGAN | first-tick pool price author (stored token) |
+| POOL_BASE | ORGAN | category base pool price author |
+| POOL_CASCADE:* | ORGAN | stored cascade authority source |
+| POOL_CASCADE_WRITER | ORGAN | selected cascade price executed |
 | OVERLAP_MEMBERS* | ORGAN | own-range membership forecast |
 | COHERENT_ENVELOPE_WRITER | ORGAN | coherent forecast |
 | OWN_TOUCH_WRITER | ORGAN | own-evidence writer |
@@ -544,7 +559,54 @@ named hand. RUNG and SEAT are explicitly not new Q/X authors.
 | NO_ACTION | HAND | no writer selected |
 <!-- grade-writers:end -->
 
+Cascade glosses include the actual hyphenated `POOL_FIRST-TICK-ONLY` token and
+the requested `POOL_FIRST_TICK` alias; neither changes the OS token. Exact gloss
+matches precede declared trailing-`*` prefix matches. A cascade execution card's
+Why line names its stored authority source; raw fields remain in details.
+HOLD/veto/named-hand precedence stays unchanged. STEP telemetry is not promoted
+to a writer by this change.
+
 ### Grade fields and denominators
+
+The family comparison is now independently clocked by the bound bench, not by
+the chart's trace clock. `MACRO.comparison_clock` stores `source`, `bell_epoch`
+(bench `first_tick.epoch + mtb_first*60`), `trace_bell_epoch`, `delta_seconds`,
+`last_gate_epoch` (bench bell minus last gate times 60), and the exact `rule`.
+Only filed bench gates at/after its first tick are used. `pool_accuracy_by_gate`
+adds that bench-clock `epoch`. Neither this lookup nor a clock disagreement
+changes MICRO, the chart, an OS timestamp, Q/X, or execution.
+
+Each `MACRO.legs[leg]` adds `family_call_receipt`, `family_call_epoch`,
+`family_call_minutes_to_bench_bell`, `family_call_age_at_gate_minutes`, and
+`gate_after_trace_bell`. Called family is the latest stored belief-family at or
+before the bench gate, including read-only beliefs for already-credited sides.
+A later receipt missing that side does not erase its previous call. If the
+bench gate is after replay ends, retain the last recorded call and expose its
+age and the after-trace-bell flag; do not invent a new receipt or family.
+Realized family remains the bench's filed label at the same gate. Missing bell,
+label or call remains STORE SILENT; exact-token family mismatches remain failures.
+
+`RULER_COLUMNS` in each grade is a comparison, **RULER — NOT AN OS INPUT**, not
+a new denominator. `grade_rulers.mjs` reads the table @ `c0056976` and the same
+correction ledger pin the builder reads @ `15955e44`; it does not apply/select
+either set. `original_table` contains commit/path/file SHA, exact CSV-row SHA
+and row number, verified-span status/bounds/bell/source, per-leg floor/epoch/
+close values and `source_columns`. `restated_rows[]` contains correction ID,
+exact JSONL-row SHA, authority/evidence, restated span/bell/source and per-leg
+floor/epoch/close columns. Each set's `floor_sum_cents` is its two filed floors
+summed and `under_par_cents` is 100 minus that sum; absent inputs stay null.
+`correction_source` records the correction file commit/path/SHA.
+
+`original_table.campaign_ruler_columns` copies actual CSV columns matching
+campaign/ruler (empty if absent). `restated_rows[].campaign_ruler_fields` copies
+`after.game_ruler` / `after.leg_ruler` verbatim, named by
+`campaign_source_columns`; `offered_under_par` copies the filed object, if any.
+`selection` and `column_note` explicitly say no selection and no invented column.
+The pinned CSV calls its columns `legA_floor_c` / `legB_floor_c`, not literally
+`floor_cents`; GIUBAR's campaign ruler is in the correction ledger, not the CSV.
+Existing `face.truth`, OUTCOME and chart floor markers are unchanged. Grade
+provenance includes `grade_rulers_sha256`; its taxonomy receipt is adjacent to
+the actually bound named-check file, not the obsolete minute-bench receipt.
 
 - `version`, `event`, `provenance`: schema, exact face event, historical OS/trace/
   bench hashes, truth commit/row hash, face hash, rubric hash, receipt hash,
@@ -583,7 +645,9 @@ named hand. RUNG and SEAT are explicitly not new Q/X authors.
   rule is selected retrospectively. `family_match` is exact-token equality.
   `pile_ess_at_last_gate` is explicitly the bench validity pool ESS, NOT OS
   membership ESS. `pool_accuracy_by_gate` stores share, ESS, status and reason.
-  No bound bench or clock mismatch => STORE SILENT. Stale-library label retained.
+  No bound bench or missing bench bell => STORE SILENT. Family grading uses the
+  bench bell for both the called-family as-of lookup and realized-family gate.
+  The trace clock and chart checkpoint joins remain unchanged. Bench label retained.
 - `MICRO`: per leg, last-gate `called_q50_floor_cents` comes only from raw
   `derivation.pricing_authority.true_conditioning.posterior_q50_cents`, not the
   modal bid Q, a bench forecast, or a candidate band. Timing is raw belief

@@ -726,6 +726,938 @@
         }
       },
       "timestamp": "2026-09-08T03:44:05.246Z"
+    },
+    {
+      "version": 1,
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "provenance": {
+        "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+        "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+        "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "truth_row_sha256": "1c02b3084496dfdd37a4425533bb6f43dc3f334c3a0f89dc1955c564bc7000a0",
+        "face_sha256": "1cc228611f4412e05ab6045468b916110c0c6c3819959afc8d6b03e105109be7",
+        "stage_inputs_sha256": "f755d30236cc7564f88d8b09f3c7e7f0f6cf28f0b56dad3db5730b3eb72b89fc",
+        "stage_files_count": 246,
+        "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+        "receipt_sha256": "dad3e3e2f44a8806ac7b2c28c1d747a0b5a90321d0637444323e9b392e014d0d",
+        "grade_builder_sha256": "6e4efa0322f662aa0f67a9b6b9d898d344432407fc0173c1d8ed7d0f4fbef059",
+        "grade_contract_sha256": "49ef29ab1cc7af0c5913d188b47f556bb75573484b01b9c4efc28643f7773ebd",
+        "grade_rulers_sha256": "d4f91a6dde09fbd980057208a5ddd3622e874ae70ce391ed30f8f96c0429f8b7",
+        "fields_sha256": "4b0286526a7d22afe6df78227cd067fbdb512d0593fecb3202db2a3cff5d607d",
+        "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+        "os_commit_order": 3022,
+        "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c"
+      },
+      "SENTENCE": {
+        "receipts_total": 246,
+        "receipts_with_sentence": 41,
+        "leg_receipts_total": 351,
+        "leg_receipts_with_sentence": 223,
+        "q_organ_leg_receipts": 223,
+        "x_organ_leg_receipts": 223,
+        "share_q_authored_by_organ": 0.6353276353276354,
+        "share_x_authored_by_organ": 0.6353276353276354,
+        "non_organ_q_authors": [
+          "PRIOR_ONLY",
+          "LIBRARY_FRACTION_PRIOR",
+          "INSUFFICIENT_EVIDENCE",
+          "STORE SILENT",
+          "PRIOR_REWEIGHTED_BY_OWN_WALK"
+        ],
+        "named_tokens_found": [],
+        "named_token_evidence": [],
+        "author_counts": {
+          "q": {
+            "INSUFFICIENT_EVIDENCE": 128,
+            "POOL_FIRST-TICK-ONLY": 223
+          },
+          "x": {
+            "INSUFFICIENT_EVIDENCE": 128,
+            "POOL_FIRST-TICK-ONLY_FLOOR_MTB": 223
+          }
+        },
+        "authorship_scope": "Author-token metric excluding prior-only badges, including PRIOR_REWEIGHTED_BY_OWN_WALK; not certification of the Gate-1 own-receipt/weight chain.",
+        "gate_1_authorship_certification": "STORE SILENT",
+        "gate_1_reason": "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1."
+      },
+      "MACRO": {
+        "last_gate": 5,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+        "comparison_clock": {
+          "source": "BENCH_FIRST_TICK_EPOCH_PLUS_MTB",
+          "bell_epoch": 1783876740,
+          "trace_bell_epoch": 1783874300,
+          "delta_seconds": 2440,
+          "last_gate_epoch": 1783876440,
+          "rule": "At bench bell minus gate*60, use each leg's latest stored OS family at or before that epoch; realized family and pool accuracy use the same bench gate. No OS call is recomputed."
+        },
+        "legs": {
+          "BAR": {
+            "realized_family": "QUIET_WOBBLE",
+            "family_called_at_last_gate": "QUIET_WOBBLE",
+            "family_call_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+            "family_call_epoch": 1783874300.000001,
+            "family_call_minutes_to_bench_bell": 40.66666665077209,
+            "family_call_age_at_gate_minutes": 35.66666665077209,
+            "gate_after_trace_bell": true,
+            "family_match": true,
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {
+              "BASE": {
+                "called_family": "QUIET_WOBBLE",
+                "realized_family": "QUIET_WOBBLE",
+                "ess": 423,
+                "status": "OK"
+              },
+              "FIRST-TICK-ONLY": {
+                "called_family": "QUIET_WOBBLE",
+                "realized_family": "QUIET_WOBBLE",
+                "ess": 258.66593090377125,
+                "status": "OK"
+              },
+              "HARD": {
+                "called_family": "STORE SILENT",
+                "realized_family": "QUIET_WOBBLE",
+                "ess": 0,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "SOFT": {
+                "called_family": "STORE SILENT",
+                "realized_family": "QUIET_WOBBLE",
+                "ess": 0,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "STEP-FORECAST": {
+                "called_family": "STORE SILENT",
+                "realized_family": "QUIET_WOBBLE",
+                "ess": 6.508792567294753,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "TAXONOMY-NULL": {
+                "called_family": "ROUND_TRIP",
+                "realized_family": "QUIET_WOBBLE",
+                "ess": 103,
+                "status": "OK"
+              }
+            },
+            "reason": null
+          },
+          "GIU": {
+            "realized_family": "ONE_STEP_UP",
+            "family_called_at_last_gate": "QUIET_WOBBLE",
+            "family_call_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813",
+            "family_call_epoch": 1783874300.000001,
+            "family_call_minutes_to_bench_bell": 40.66666665077209,
+            "family_call_age_at_gate_minutes": 35.66666665077209,
+            "gate_after_trace_bell": true,
+            "family_match": false,
+            "family_call_source": "OS belief.family (raw vocabulary; not a bench-pool family)",
+            "bench_families_by_rule": {
+              "BASE": {
+                "called_family": "QUIET_WOBBLE",
+                "realized_family": "ONE_STEP_UP",
+                "ess": 649,
+                "status": "OK"
+              },
+              "FIRST-TICK-ONLY": {
+                "called_family": "QUIET_WOBBLE",
+                "realized_family": "ONE_STEP_UP",
+                "ess": 340.80066793532177,
+                "status": "OK"
+              },
+              "HARD": {
+                "called_family": "STORE SILENT",
+                "realized_family": "ONE_STEP_UP",
+                "ess": 1,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "SOFT": {
+                "called_family": "STORE SILENT",
+                "realized_family": "ONE_STEP_UP",
+                "ess": 1.000000326174376,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "STEP-FORECAST": {
+                "called_family": "STORE SILENT",
+                "realized_family": "ONE_STEP_UP",
+                "ess": 6.194737634088421,
+                "status": "NO-CALL: ESS < 10"
+              },
+              "TAXONOMY-NULL": {
+                "called_family": "ONE_STEP_UP",
+                "realized_family": "ONE_STEP_UP",
+                "ess": 57,
+                "status": "OK"
+              }
+            },
+            "reason": null
+          }
+        },
+        "pile_ess_at_last_gate": 4.087851643986955,
+        "pool_accuracy_by_gate": [
+          {
+            "gate": 480,
+            "epoch": 1783847940,
+            "share": "STORE SILENT",
+            "ess": "STORE SILENT",
+            "status": "NO_PREVIOUS_GATE",
+            "reason": null
+          },
+          {
+            "gate": 360,
+            "epoch": 1783855140,
+            "share": 0.6034649704015949,
+            "ess": 45.29292643271185,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 240,
+            "epoch": 1783862340,
+            "share": 0.10631674440423418,
+            "ess": 53.95272911963795,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 180,
+            "epoch": 1783865940,
+            "share": 0.09063376330143434,
+            "ess": 62.856847615200955,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 120,
+            "epoch": 1783869540,
+            "share": 0.0489818231306797,
+            "ess": 35.53335321522455,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 90,
+            "epoch": 1783871340,
+            "share": 0.7953736923550054,
+            "ess": 202.21529145814898,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 60,
+            "epoch": 1783873140,
+            "share": 0.8076988125854769,
+            "ess": 97.1399177127523,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 30,
+            "epoch": 1783874940,
+            "share": 0.000022189978568192777,
+            "ess": 60.939919114474876,
+            "status": "OK",
+            "reason": null
+          },
+          {
+            "gate": 15,
+            "epoch": 1783875840,
+            "share": 0,
+            "ess": 1.00537515197088,
+            "status": "INVALID: ESS < 10",
+            "reason": null
+          },
+          {
+            "gate": 5,
+            "epoch": 1783876440,
+            "share": 0,
+            "ess": 4.087851643986955,
+            "status": "INVALID: ESS < 10",
+            "reason": null
+          }
+        ],
+        "bench_label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD",
+        "bench_reason": null,
+        "ess_source": "Bench validity pool, not OS membership ESS"
+      },
+      "MICRO": {
+        "last_gate": 5,
+        "legs": {
+          "BAR": {
+            "gate": 5,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783874000",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 16,
+            "timing_error_minutes": 21.25499999920527,
+            "recorded_floor_cents": 16,
+            "recorded_floor_minutes_to_bell": -16.25499999920527,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          },
+          "GIU": {
+            "gate": 5,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783874000",
+            "called_q50_floor_cents": 66,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 17,
+            "timing_error_minutes": 38.916666666666664,
+            "recorded_floor_cents": 49,
+            "recorded_floor_minutes_to_bell": -33.916666666666664,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          }
+        },
+        "gate_calls": [
+          {
+            "gate": 480,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783845500",
+            "called_q50_floor_cents": 27,
+            "called_floor_minutes_to_bell": 299.65,
+            "floor_error_cents": 11,
+            "timing_error_minutes": 315.90499999920524
+          },
+          {
+            "gate": 360,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783852700",
+            "called_q50_floor_cents": 27,
+            "called_floor_minutes_to_bell": 272.3333333333333,
+            "floor_error_cents": 11,
+            "timing_error_minutes": 288.5883333325386
+          },
+          {
+            "gate": 240,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783859900",
+            "called_q50_floor_cents": 29,
+            "called_floor_minutes_to_bell": 176.4,
+            "floor_error_cents": 13,
+            "timing_error_minutes": 192.65499999920527
+          },
+          {
+            "gate": 180,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783863500",
+            "called_q50_floor_cents": 29,
+            "called_floor_minutes_to_bell": 145.01666666666668,
+            "floor_error_cents": 13,
+            "timing_error_minutes": 161.27166666587195
+          },
+          {
+            "gate": 120,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783867100",
+            "called_q50_floor_cents": 31,
+            "called_floor_minutes_to_bell": 114.26666666666667,
+            "floor_error_cents": 15,
+            "timing_error_minutes": 130.52166666587195
+          },
+          {
+            "gate": 90,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783868900",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 90,
+            "floor_error_cents": 16,
+            "timing_error_minutes": 106.25499999920527
+          },
+          {
+            "gate": 60,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783870700",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 60,
+            "floor_error_cents": 16,
+            "timing_error_minutes": 76.25499999920527
+          },
+          {
+            "gate": 30,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783872500",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 30,
+            "floor_error_cents": 16,
+            "timing_error_minutes": 46.25499999920527
+          },
+          {
+            "gate": 15,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783873400",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 15,
+            "floor_error_cents": 16,
+            "timing_error_minutes": 31.25499999920527
+          },
+          {
+            "gate": 5,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783874000",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 16,
+            "timing_error_minutes": 21.25499999920527
+          },
+          {
+            "gate": 480,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783845500",
+            "called_q50_floor_cents": 67,
+            "called_floor_minutes_to_bell": 325.85179361502327,
+            "floor_error_cents": 18,
+            "timing_error_minutes": 359.76846028168995
+          },
+          {
+            "gate": 360,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783852700",
+            "called_q50_floor_cents": 69,
+            "called_floor_minutes_to_bell": 274.48700473308566,
+            "floor_error_cents": 20,
+            "timing_error_minutes": 308.40367139975234
+          },
+          {
+            "gate": 240,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783859900",
+            "called_q50_floor_cents": 69,
+            "called_floor_minutes_to_bell": 191.16246105035145,
+            "floor_error_cents": 20,
+            "timing_error_minutes": 225.0791277170181
+          },
+          {
+            "gate": 180,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783863500",
+            "called_q50_floor_cents": 69,
+            "called_floor_minutes_to_bell": 144.58333333333334,
+            "floor_error_cents": 20,
+            "timing_error_minutes": 178.5
+          },
+          {
+            "gate": 120,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783867100",
+            "called_q50_floor_cents": 68,
+            "called_floor_minutes_to_bell": 113.71666666666667,
+            "floor_error_cents": 19,
+            "timing_error_minutes": 147.63333333333333
+          },
+          {
+            "gate": 90,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783868900",
+            "called_q50_floor_cents": 66,
+            "called_floor_minutes_to_bell": 88.18333333333334,
+            "floor_error_cents": 17,
+            "timing_error_minutes": 122.1
+          },
+          {
+            "gate": 60,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783870700",
+            "called_q50_floor_cents": 66,
+            "called_floor_minutes_to_bell": 60,
+            "floor_error_cents": 17,
+            "timing_error_minutes": 93.91666666666666
+          },
+          {
+            "gate": 30,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783872500",
+            "called_q50_floor_cents": 66,
+            "called_floor_minutes_to_bell": 30,
+            "floor_error_cents": 17,
+            "timing_error_minutes": 63.916666666666664
+          },
+          {
+            "gate": 15,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783873400",
+            "called_q50_floor_cents": 66,
+            "called_floor_minutes_to_bell": 15,
+            "floor_error_cents": 17,
+            "timing_error_minutes": 48.916666666666664
+          },
+          {
+            "gate": 5,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783874000",
+            "called_q50_floor_cents": 66,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 17,
+            "timing_error_minutes": 38.916666666666664
+          }
+        ]
+      },
+      "HANDS": {
+        "actions": [
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+            "leg": "BAR",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 539.2499999324481,
+            "old_cents": null,
+            "new_cents": 25,
+            "writer_class": "ORGAN",
+            "tokens": [
+              "PLACE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.stages/34e3378580a193e2043106613e728ce58beed4753f97b493bdd0c6a1d5495072.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+            "leg": "GIU",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 539.2499999324481,
+            "old_cents": null,
+            "new_cents": 67,
+            "writer_class": "ORGAN",
+            "tokens": [
+              "PLACE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.stages/34e3378580a193e2043106613e728ce58beed4753f97b493bdd0c6a1d5495072.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-362",
+            "leg": "BAR",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 537.7999999841054,
+            "old_cents": 25,
+            "new_cents": 26,
+            "writer_class": "ORGAN",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.stages/839ac4ae40910843b7267f4ca7306e00b15d0d159e2030d96caf81ac257222de.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783845500",
+            "leg": "BAR",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 480,
+            "old_cents": 26,
+            "new_cents": 27,
+            "writer_class": "ORGAN",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.stages/dac054e326e09d15e6d0836c84ac9a435e99f1699c357010829ce5e48426462b.json"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-615",
+            "leg": "GIU",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 388.49999998410544,
+            "old_cents": 67,
+            "new_cents": 69,
+            "writer_class": "ORGAN",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.stages/95462eadd8858c0b7a565f1d797277f5e3ce6112a3734ff15f6a7836b2c9d3e9.json"
+          },
+          {
+            "receipt": "f6988de7-aeba-53c2-ff8e-dd70aa8fe0a3",
+            "leg": "BAR",
+            "action": "REPRICE_REST",
+            "kind": "REPRICE",
+            "minutes_to_bell": 308.92005000114443,
+            "old_cents": 27,
+            "new_cents": 29,
+            "writer_class": "ORGAN",
+            "tokens": [
+              "REPRICE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "rest_age_at_fill_minutes": null,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.stages/49477f9b9a2bae19dfe9a44962a3cb68be377e2bac1cd85da82c0bf505205da0.json"
+          },
+          {
+            "receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+            "leg": "GIU",
+            "action": "FILL_EVENT",
+            "kind": "FILL",
+            "minutes_to_bell": 148.369799999396,
+            "old_cents": 69,
+            "new_cents": null,
+            "writer_class": "ORGAN",
+            "tokens": [
+              "FILL_EVENT",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE:FIRST-TICK-ONLY",
+              "POOL_FIRST-TICK-ONLY",
+              "POOL_FIRST-TICK-ONLY_FLOOR_MTB"
+            ],
+            "rest_age_at_fill_minutes": 390.88019993305204,
+            "same_second_fill": false,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.stages/9e4669a30fc3adda65b6a69746987d519c6357d6c951ed0e849d65881d2a884a.json"
+          }
+        ],
+        "placement_rows": 6,
+        "rest_age_at_fill_minutes": [
+          {
+            "leg": "GIU",
+            "receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+            "minutes": 390.88019993305204
+          }
+        ],
+        "post_only_violations": 0,
+        "observed_post_only_violations": 0,
+        "post_only_uncheckable": 0,
+        "pre_formation_placements": 0,
+        "observed_pre_formation_placements": 0,
+        "formation_uncheckable": 0,
+        "same_second_fills": 0,
+        "fill_age_uncheckable": 0,
+        "writer_class_unmapped": 0,
+        "violation_receipts": []
+      },
+      "OUTCOME": {
+        "legs": {
+          "BAR": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          },
+          "GIU": {
+            "filled": true,
+            "cents": 69,
+            "vs_floor_cents": 20,
+            "fill_epoch": 1783865397.812,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 35,
+        "best_capturable_pair_sum_cents": 65,
+        "capture_ratio": 0,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": false
+      },
+      "LETTER": {
+        "letter": "F",
+        "governing_section": "MICRO · OUTCOME",
+        "hard_failures": [],
+        "section_grades": {
+          "SENTENCE": {
+            "letter": "C",
+            "metrics": {
+              "minimum_q_x_organ_share": 0.6353276353276354
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MACRO": {
+            "letter": "C",
+            "metrics": {
+              "family_match_share": 0.5
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "MICRO": {
+            "letter": "F",
+            "metrics": {
+              "max_floor_error_cents": 17,
+              "max_timing_error_minutes": 38.916666666666664
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "HANDS": {
+            "letter": "A",
+            "metrics": {
+              "post_only_violations": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          },
+          "OUTCOME": {
+            "letter": "F",
+            "metrics": {
+              "capture_ratio": 0
+            },
+            "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+          }
+        },
+        "rubric_status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling"
+      },
+      "display": {
+        "letter": "F",
+        "label": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+        "governing": "MICRO · OUTCOME",
+        "sections": [
+          {
+            "name": "SENTENCE",
+            "mark": "!",
+            "line": "Q 63.53% · X 63.53% organ share",
+            "hover_lines": [
+              "SENTENCE: C · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"minimum_q_x_organ_share\":0.6353276353276354}",
+              "223/351 leg sentences · 0 named tokens"
+            ]
+          },
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "BAR: QUIET_WOBBLE / QUIET_WOBBLE · GIU: QUIET_WOBBLE / ONE_STEP_UP",
+            "hover_lines": [
+              "MACRO: C · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"family_match_share\":0.5}",
+              "Bench: RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "BAR: 16¢ / 21.25m error · GIU: 17¢ / 38.92m error",
+            "hover_lines": [
+              "MICRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"max_floor_error_cents\":17,\"max_timing_error_minutes\":38.916666666666664}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          },
+          {
+            "name": "HANDS",
+            "mark": "✓",
+            "line": "0 same-second · 0 post-only · 0 pre-formation",
+            "hover_lines": [
+              "HANDS: A · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"post_only_violations\":0}",
+              "6 placement/reprice rows checked"
+            ]
+          },
+          {
+            "name": "OUTCOME",
+            "mark": "!",
+            "line": "0 of 35¢ captured",
+            "hover_lines": [
+              "OUTCOME: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+              "{\"capture_ratio\":0}",
+              "See full grade JSON for all receipts and gates"
+            ]
+          }
+        ]
+      },
+      "RULER_COLUMNS": {
+        "role": "RULER COMPARISON ONLY — NOT AN OS INPUT",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "selection": "NONE — existing truth/OUTCOME inputs unchanged; both filed sets retained",
+        "original_table": {
+          "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "1c02b3084496dfdd37a4425533bb6f43dc3f334c3a0f89dc1955c564bc7000a0",
+          "row_number": 63,
+          "status": "OK",
+          "bell_epoch": 1783876740,
+          "bell_source": "TAPE_INFERENCE",
+          "span_start_epoch": 1783831858,
+          "span_end_epoch": 1783876740,
+          "legs": {
+            "BAR": {
+              "floor_cents": 16,
+              "floor_epoch": 1783875275.3,
+              "close_cents": 31,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "close_cents": "legA_close_c"
+              }
+            },
+            "GIU": {
+              "floor_cents": 49,
+              "floor_epoch": 1783876335,
+              "close_cents": 73,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "close_cents": "legB_close_c"
+              }
+            }
+          },
+          "floor_sum_cents": 65,
+          "under_par_cents": 35,
+          "campaign_ruler_columns": {},
+          "column_note": "Pinned CSV uses legA_floor_c / legB_floor_c, not a literal floor_cents column; absent campaign/ruler columns are not invented."
+        },
+        "correction_source": {
+          "commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+          "sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+        },
+        "restated_rows": [
+          {
+            "correction_id": "W1TT-C-001",
+            "row_sha256": "7d70b175082dd8142aaabdc66f51514b781c849d714d989bf2e72cd8e5b44ad2",
+            "authority": "operator ruling relayed 2026-08-21 (GIUBAR bell adopted 1783874300 +-60 s per F-VS-037)",
+            "evidence": {
+              "finding": "F-VS-037",
+              "receipt": "GIUBAR_BELL_BAND.json @ a2c8d842 (sha256 4468fe3f...)",
+              "method": "book-signature bell: both legs' book row rate >10x quiet baseline with mirrored repricing; prints fit-local/prints.jsonl"
+            },
+            "bell_epoch": 1783874300,
+            "bell_source": "BOOK_SIGNATURE_OPERATOR_RULED",
+            "span_start_epoch": 1783831858,
+            "span_end_epoch": 1783874300,
+            "legs": {
+              "BAR": {
+                "floor_cents": 27,
+                "floor_epoch": 1783841801.305,
+                "close_cents": 32,
+                "source_columns": {
+                  "floor_cents": "after.legA_BAR.floor_c",
+                  "floor_epoch": "after.legA_BAR.floor_epoch",
+                  "close_cents": "after.legA_BAR.close_c"
+                }
+              },
+              "GIU": {
+                "floor_cents": 66,
+                "floor_epoch": 1783869375.227,
+                "close_cents": 66,
+                "source_columns": {
+                  "floor_cents": "after.legB_GIU.floor_c",
+                  "floor_epoch": "after.legB_GIU.floor_epoch",
+                  "close_cents": "after.legB_GIU.close_c"
+                }
+              }
+            },
+            "floor_sum_cents": 93,
+            "under_par_cents": 7,
+            "offered_under_par": {
+              "floor_sum_c": 93,
+              "margin_c": 7,
+              "offered": true
+            },
+            "campaign_ruler_fields": {
+              "game_ruler": "not complete",
+              "leg_ruler": {
+                "GIU": "close 66 - entry 69 = -3 (bought above own W1 close)",
+                "BAR": "no valid fill"
+              }
+            },
+            "campaign_source_columns": [
+              "after.game_ruler",
+              "after.leg_ruler"
+            ]
+          }
+        ]
+      },
+      "receipt": {
+        "version": 1,
+        "role": "REPORT ONLY — no OS inputs changed",
+        "citations": {
+          "PER_GAME_L1_L8": {
+            "path": "C:/tmp/omi-v53-understanding-organ-20260819/.claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/PER_GAME_L1_L8.json",
+            "sha256": "3f5ccde3d50d104910d2a23d9d15c7fc9e9a523895cfffa3aef4a2c14fd24ff1",
+            "bytes": 149794,
+            "commit": "STORE SILENT",
+            "role": "Replaced per-game L1–L8 report. Builder baseline reads rows[].L7_CREDIT.why.",
+            "rows": 5
+          },
+          "HONEST_SCOREBOARD": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/HONEST_SCOREBOARD.md",
+            "sha256": "bad5314cf12877755e922175d053084ba67d9849515a72bdd3e4861c11f49dc0",
+            "bytes": 6585,
+            "commit": "2aa454af4205468de598bc507527e7c608b35d42",
+            "role": "Truth-table offered cents and span-valid captured cents; complete under par, not apparent fills."
+          },
+          "OFFER_DENOMINATOR": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/OFFER_DENOMINATOR.md",
+            "sha256": "2842aacd0821138edee3bcf0d18464ba2f1a9d8dbb2d1016b65f780a69b45c7b",
+            "bytes": 3050,
+            "commit": "ce2e8b7cc84191083c522af3692d467576afca4f",
+            "role": "Definition B: verified-span floors under par; both credited fills inside the span for capture."
+          },
+          "GATE_1_OBJECT": {
+            "path": "artifacts/review_mirror/GATE_1_OBJECT.md",
+            "sha256": "bbeee3207af290c75ca6fb2cf3dfbc36d58afdfb588ed969fd425b40ad365398",
+            "bytes": 2136,
+            "commit": "67378c344419a70ec2b6f05d714c79358da0ea70",
+            "role": "P/Q/X require an author reading this leg; test 1 own receipt weights, test 2 own clock, test 3 no named pricing rule."
+          }
+        },
+        "bench_taxonomy_receipt": {
+          "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+          "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b",
+          "bytes": 33824,
+          "commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
+          "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
+          "bench_choices": {
+            "causal_family_adaptation": "At a receipt only, normalize formation through the current gate into 17 samples; do not use or forward-fill into the unknown remainder. Realized labels use formation through bell.",
+            "direction": "early/late shares are signed relative to net; reversals omit zero steps",
+            "flat_after": "abs(net after first quarter) <= 2 cents; operator-authorized bench choice, not taxonomy law",
+            "quiet_wobble_prose_caveat": "The inherited travel split does not mathematically guarantee the prose 5-cent band. quiet_wobble_prose_band_exception is exposed; no new cutoff is introduced.",
+            "rule_order": [
+              "SLEEPER",
+              "ROUND_TRIP_OR_QUIET_WOBBLE",
+              "LATE_BREAK",
+              "EARLY_SET",
+              "ONE_STEP",
+              "GRIND_WOBBLE",
+              "DRIFT"
+            ],
+            "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
+            "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
+          },
+          "label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
+        },
+        "rules": {
+          "authorship": "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
+          "missing": "STORE SILENT; no number or author is invented.",
+          "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
+          "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
+          "taxonomy": "Read realized labels from the hash-bound bench. Compare each side's latest stored family as of bench bell minus gate*60 against that same bench gate; no OS timestamp or family is recomputed. MICRO and chart clocks stay unchanged.",
+          "cascade_writers": "FIELDS.md maps POOL_FIRST_TICK (alias), POOL_FIRST-TICK-ONLY, POOL_BASE, POOL_CASCADE:* and POOL_CASCADE_WRITER to ORGAN. Hold/veto precedence and raw tokens remain unchanged.",
+          "ruler_comparison": "RULER_COLUMNS preserves pinned table floors alongside filed correction floors and campaign ruler fields. No selection is made and OUTCOME keeps its existing face.truth inputs.",
+          "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
+        }
+      },
+      "timestamp": "2026-09-08T04:28:58.414Z"
     }
   ]
 }

@@ -33,10 +33,10 @@
     }
   },
   "bench_taxonomy_receipt": {
-    "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
-    "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
-    "bytes": 28853,
-    "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
+    "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+    "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b",
+    "bytes": 33824,
+    "commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
     "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
     "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
     "bench_choices": {
@@ -56,14 +56,16 @@
       "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
       "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
     },
-    "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+    "label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
   },
   "rules": {
     "authorship": "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
     "missing": "STORE SILENT; no number or author is invented.",
     "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
     "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
-    "taxonomy": "Read realized labels from the hash-bound bench, do not reclassify or select a favored benchmark rule.",
+    "taxonomy": "Read realized labels from the hash-bound bench. Compare each side's latest stored family as of bench bell minus gate*60 against that same bench gate; no OS timestamp or family is recomputed. MICRO and chart clocks stay unchanged.",
+    "cascade_writers": "FIELDS.md maps POOL_FIRST_TICK (alias), POOL_FIRST-TICK-ONLY, POOL_BASE, POOL_CASCADE:* and POOL_CASCADE_WRITER to ORGAN. Hold/veto precedence and raw tokens remain unchanged.",
+    "ruler_comparison": "RULER_COLUMNS preserves pinned table floors alongside filed correction floors and campaign ruler fields. No selection is made and OUTCOME keeps its existing face.truth inputs.",
     "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
   }
 }

@@ -25,8 +25,9 @@ const number = (n) =>
 const cents = (n) => (finite(n) ? `${n}¢` : "STORE SILENT");
 export function cardGloss(token) {
   if (Object.hasOwn(CARD_GLOSSES, token)) return CARD_GLOSSES[token];
-  for (const prefix of ["PAL_ATOMIC_", "GIU_", "LAJSVA_"])
-    if (token?.startsWith(prefix)) return CARD_GLOSSES[prefix + "*"];
+  for (const [pattern, gloss] of Object.entries(CARD_GLOSSES))
+    if (pattern.endsWith("*") && token?.startsWith(pattern.slice(0, -1)))
+      return gloss;
   return null;
 }
 export function deadlineClock(deadline) {
@@ -55,6 +56,10 @@ function why(a) {
   ].filter(Boolean);
   const unknown = tokens.find((t) => !cardGloss(t));
   if (unknown) return `not translated yet (${unknown})`;
+  if (a.raw.reason === "PRICING_AUTHORITY_TARGET_EXECUTED" &&
+      a.raw.winner_lane === "POOL_CASCADE_WRITER")
+    return cardGloss(s?.authority_source) ?? cardGloss(s?.q_author) ??
+      cardGloss(a.raw.reason);
   if (a.raw.reason === "BASE_PRICING_AUTHORITY_EXECUTED_BY_LANE") {
     if (
       s?.q_author === "PRIOR_ONLY" &&

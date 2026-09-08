@@ -5,6 +5,7 @@ import zlib from "node:zlib";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { unpackFace } from "./face_encoding.mjs";
+import { readGradeRulers } from "./grade_rulers.mjs";
 import {
   gradeFace,
   projectDecision,
@@ -50,7 +51,7 @@ async function citation(file, role, external = false) {
     role,
   };
 }
-async function sourceReceipt() {
+async function sourceReceipt(benchSource) {
   const audit =
     ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803";
   const prior =
@@ -78,11 +79,10 @@ async function sourceReceipt() {
     path.join(repo, "artifacts/review_mirror/GATE_1_OBJECT.md"),
     "P/Q/X require an author reading this leg; test 1 own receipt weights, test 2 own clock, test 3 no named pricing rule.",
   );
-  const benchPath = path.join(
-    repo,
-    "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
-  );
-  const receipt = await readJson(benchPath, null);
+  const benchPath = benchSource
+    ? path.resolve(repo, path.dirname(benchSource), "TUNE_BENCH_RECEIPT.json")
+    : null;
+  const receipt = benchPath ? await readJson(benchPath, null) : null;
   return {
     version: 1,
     role: "REPORT ONLY — no OS inputs changed",
@@ -108,7 +108,11 @@ async function sourceReceipt() {
       history:
         "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
       taxonomy:
-        "Read realized labels from the hash-bound bench, do not reclassify or select a favored benchmark rule.",
+        "Read realized labels from the hash-bound bench. Compare each side's latest stored family as of bench bell minus gate*60 against that same bench gate; no OS timestamp or family is recomputed. MICRO and chart clocks stay unchanged.",
+      cascade_writers:
+        "FIELDS.md maps POOL_FIRST_TICK (alias), POOL_FIRST-TICK-ONLY, POOL_BASE, POOL_CASCADE:* and POOL_CASCADE_WRITER to ORGAN. Hold/veto precedence and raw tokens remain unchanged.",
+      ruler_comparison:
+        "RULER_COLUMNS preserves pinned table floors alongside filed correction floors and campaign ruler fields. No selection is made and OUTCOME keeps its existing face.truth inputs.",
       named_scope:
         "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent.",
     },
@@ -282,7 +286,7 @@ export async function build(event) {
       );
     bench = json(bytes);
   }
-  const receipt = await sourceReceipt(),
+  const receipt = await sourceReceipt(face.bench?.source),
     receiptSha = sha(encode(receipt));
   const os = osCommit(face.provenance.os_sha256);
   const provenance = {
@@ -302,12 +306,14 @@ export async function build(event) {
     grade_contract_sha256: sha(
       await fs.readFile(path.join(here, "grade_contract.mjs")),
     ),
+    grade_rulers_sha256: sha(await fs.readFile(path.join(here, "grade_rulers.mjs"))),
     fields_sha256: sha(await fs.readFile(path.join(here, "FIELDS.md"))),
     os_commit: os.commit,
     os_commit_order: os.order,
     grading_commit: git("rev-parse", "HEAD").toString().trim(),
   };
   const grade = gradeFace(face, decisions, named, bench, rubric, provenance);
+  grade.RULER_COLUMNS = readGradeRulers(repo, event);
   grade.receipt = receipt;
   await writeJson(path.join(dataRoot, "GRADE_RECEIPT.json"), receipt);
   const { snapshot } = await appendHistory(dataRoot, grade);

@@ -1,0 +1,285 @@
+{
+  "archives": {
+    "CONDUCT_QUERIES.jsonl.gz": "f02873e3315ba4287d1fcd64b9d1c2838179397c238433560100549ade159ee6",
+    "CONDUCT_RECEIPT.json": "fbc13250c524efaa335ae41b528b84ae19f67dfce4ce00cf670bf12ec7c84f9e",
+    "FIRST_FORECASTS.jsonl.gz": "2b0d5d66948b56d5e5749ffb3b76c14ebb43cdcdd069af105fc56bb1c4327629"
+  },
+  "atlas_contract": {
+    "discovery_side_boundary_cents": 50,
+    "first_bind": "observed pair receipt prefix; flips increment only on an observed directional reversal",
+    "flat_after_cents": 2,
+    "gates_minutes_to_bell": [
+      2880,
+      2160,
+      1440,
+      1080,
+      720,
+      480,
+      360,
+      240,
+      180,
+      120,
+      90,
+      60,
+      30,
+      15,
+      5
+    ],
+    "likelihood_unit": 1,
+    "minute_seconds": 60,
+    "no_call_ess_floor": 10,
+    "prediction_grid": "subsequent fixed atlas gates only; independent of query future ticks",
+    "q": "query current last + weighted quantile(member remaining minimum - member current last)",
+    "quantiles": [
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.9
+    ],
+    "remaining_path": "gate carried state plus native historical member changes through bell; earliest tied minimum",
+    "role_drift_cents": 2,
+    "sleeper_category_quantile": 0.1,
+    "taxonomy_samples": 17,
+    "version": "CAUSAL_MEMBER_FLOORS_FIXED_ATLAS_RECEIPT_ROLES",
+    "x": "independent weighted median(member remaining floor minutes-to-bell); query bell - X*60"
+  },
+  "baseline": {
+    "named": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_NAMED_CHECKS.json",
+      "sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325"
+    },
+    "receipt": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+      "sha256": "51213167ea2fd082f20bd59bc9a75dc5bde534cc3be9a53ef3341692f20f3631"
+    },
+    "scoreboard": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_SCOREBOARD.json",
+      "sha256": "d609c564bcab36491d26742957d6414b288d604820e019711041582def8b4d4c"
+    }
+  },
+  "conduct_commit": "d2d8f16b",
+  "count_sidecar": {
+    "calibration_scope": "All oriented library legs in category, no named games. Retrospective data-set scale, not per-query walk-forward calibration.",
+    "category_print_count_distributions": {
+      "ATP_CHALL": {
+        "count": 4574,
+        "max": 2976.0,
+        "mean": 62.666593790992565,
+        "min": 1.0,
+        "q10": 5.0,
+        "q25": 11.0,
+        "q50": 27.0,
+        "q75": 70.0,
+        "q90": 158.0
+      },
+      "ATP_MAIN": {
+        "count": 1856,
+        "max": 16545.0,
+        "mean": 415.7429956896552,
+        "min": 2.0,
+        "q10": 34.0,
+        "q25": 88.0,
+        "q50": 224.0,
+        "q75": 459.0,
+        "q90": 893.0
+      },
+      "ITF_M": {
+        "count": 3104,
+        "max": 1214.0,
+        "mean": 149.2326030927835,
+        "min": 3.0,
+        "q10": 39.0,
+        "q25": 71.0,
+        "q50": 122.0,
+        "q75": 193.0,
+        "q90": 281.0
+      },
+      "ITF_W": {
+        "count": 2978,
+        "max": 1093.0,
+        "mean": 139.8821356615178,
+        "min": 3.0,
+        "q10": 34.0,
+        "q25": 66.0,
+        "q50": 113.0,
+        "q75": 180.0,
+        "q90": 264.0
+      },
+      "WTA_CHALL": {
+        "count": 992,
+        "max": 1682.0,
+        "mean": 47.621975806451616,
+        "min": 1.0,
+        "q10": 4.0,
+        "q25": 8.0,
+        "q50": 20.0,
+        "q75": 52.0,
+        "q90": 123.0
+      },
+      "WTA_MAIN": {
+        "count": 1834,
+        "max": 6350.0,
+        "mean": 228.71374045801528,
+        "min": 1.0,
+        "q10": 17.0,
+        "q25": 43.0,
+        "q50": 109.0,
+        "q75": 246.0,
+        "q90": 486.0
+      }
+    },
+    "checks": {
+      "final_count_matches": 15502,
+      "final_count_mismatches": 0,
+      "grid_identity": "Every library leg, in library order; own floor(native ts) seconds with accepted in-span prints; independent of library change points",
+      "legs_checked": 15502,
+      "rows_checked": 1405183,
+      "total_true_prints_in_spans": 2430670
+    },
+    "gate_join": "Latest sidecar second <= gate epoch; zero before the first print second. Independent accepted-print-second count grid; library price/change-point grid unchanged. Second bucket labels are floor(native ts), not subsecond arrival times.",
+    "sidecar_path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+    "sidecar_receipt_sha256": "89a1be15f323f96ef90556b08130722159cae69c26d33fe461c122894b67918b",
+    "sidecar_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+    "sleeper_p10_by_category": {
+      "ATP_CHALL": 5.0,
+      "ATP_MAIN": 34.0,
+      "ITF_M": 39.0,
+      "ITF_W": 34.0,
+      "WTA_CHALL": 4.0,
+      "WTA_MAIN": 17.0
+    },
+    "source": "true_print_count_in_span from tick-library rows; exact gate-prefix counts from cutter-bound sidecar",
+    "volume_is_not_print_count": true
+  },
+  "deferred": {
+    "E2c": "No filed causal family learner/weighting or callability criterion supplied. Not implemented or scored.",
+    "E4_equal_opposite": "Not run: joint minima need not be simultaneous; amplitude and constraint-selection estimator unspecified."
+  },
+  "definitions": {
+    "E1": "Original CURRENT_ROLE Q, weights, member mask fixed. For each member target=its gate last+(query Q-query gate last). First later accepted positive-size print <=target before member bell. Non-hits retained at infinite elapsed time. Median elapsed uses all weights; if infinite, deadline censored. Same bell-relative minute clock. Actual query first passage is scoring-only. Current and new X errors target the same first passage; MAE conditional on query hit and finite new median. Censor and all-eligible denominators explicit.",
+    "E1_calibration": "For each deadline use empirical weighted share of member first passages before that deadline, versus query binary reach; report Brier and mean predicted/observed reach on matched finite-X cohort. Different horizons: not a pure fixed-horizon calibration superiority test. No calibration promotion threshold invented.",
+    "E1_common_horizon": "Report builder adds pool-implied reach probability and Brier by bell using all baseline calls, including censored medians. Same Q/pool implies identical probabilities for both X rules at the same horizon; this diagnostic is not an emitted OS probability or a claim of improved calibration.",
+    "E2": "Availability/finite books, w0, walk-forward, self/same-day/category exclusions and ESS floor unchanged; only receipt-time role mask removed in NO_ROLE.",
+    "E3": "Last scheduled atlas gate, no last-call selection. Q minus carried remaining floor AND strictly-later positive-size future-print floor. No-call/no-print retained. Causes overlap. Moved-off reported all roles and original FALLER-only subset, plus active-order interval subset. R0 guards reconstructed from archived actions and every proposal asserted identical.",
+    "E3_never_postable": "No unfilled receipt with status OK, cent-valid Q below cent-valid ask and unlocked book. Individual postability before ask-only and pair-cap guards; guard exposures counted separately. Not a claim that no possible maker price existed.",
+    "E4a": "Both original side masks intersect; original w0 used once per shared member for both marginal Q/X. No equal/opposite restriction, no synthetic pair-sum target or conduct rule. Gate-only R0 replay reported against identical GATE-SIM baseline, not the superior receipt-cadence baseline.",
+    "coverage": "Each gate-side has all 928 queries, span-eligible, calls, abstention, before-first-tick and target-available denominators. Pooled gate counts are repeated games, never independent matched-win trials.",
+    "family": "Weighted mode of filed realized family labels, alphabetic tie break as reference. Diagnostic only: same full-library retrospective SLEEPER p10 as baseline. No family-conditioning claim.",
+    "floor_timing": "Carried-state+future-last minima and their earliest time match filed baseline. Positive future-print minima/time supplied separately. No future-print target means missing, not zero error.",
+    "matched_win": "File's >=100 matched, >=half strictly closer, ties included not wins; applied separately per side/gate. Report-only, no organ promotion.",
+    "queue": "Positive native prints show reachable, not certain; same-second and post-bell prints cannot fill. Existing conduct guards unchanged."
+  },
+  "determinism": {
+    "gate_projection_passes": 2,
+    "query_digests_sha256": "1616cee38072a000801b33eedfee1fb8b23db344d66e9dde464330a6a1784954"
+  },
+  "eligible_pairs": 928,
+  "engine_hashes_unchanged": {
+    "engine_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+    "functionable_sha256": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "maximum_cent": 99,
+    "minimum_cent": 1,
+    "pair_budget": 99,
+    "par": 100
+  },
+  "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+  "matched_win_criterion": {
+    "minimum_matched_queries": 100,
+    "minimum_step_strictly_closer_share": 0.5,
+    "ties": "included in denominator, not STEP wins"
+  },
+  "matched_win_source": {
+    "commit": "87049680",
+    "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\tune_bench_v2_ticks\\ATP_MAIN\\TUNE_BENCH_RECEIPT.json",
+    "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b"
+  },
+  "native_shared_companion": {
+    "cadence": "RECEIPT-SIM: same archived native second-close leg changes and atlas gates as R0",
+    "definition": "Shared-set-only experiment. Not equal/opposite moves, not pair-sum constraint, not a joint sentence estimator.",
+    "determinism": "Two projections per query, different computational batch sizes; canonical bytes identical. Independent positive-size order-interval fill audit.",
+    "report": "E4_NATIVE_SUMMARY.json",
+    "script": "sentence_shared_pool_native.py",
+    "sha256": "76674a16c321de13971a4aedc9c555f8400ff008bae6f44f7b2bebaad820fd26"
+  },
+  "order": [
+    "E3",
+    "E1",
+    "E2a_NO_ROLE_vs_E2b_CURRENT_ROLE",
+    "E4a_SHARED_INTERSECTION"
+  ],
+  "outputs": {
+    "AGGREGATES.json": {
+      "bytes": 2994,
+      "sha256": "067e8e318ac57d3807a6c56fd4124fb0f7c02e2c38408fd9917bb01c2d9fd0fc"
+    },
+    "E1_FIRST_PASSAGE.json": {
+      "bytes": 16043913,
+      "sha256": "8bf1702b1ca01bbc121e5bf16ad0dc43746d44df26bb0ffaff725ad87a5b8292"
+    },
+    "E3_AUTOPSY.json": {
+      "bytes": 2527403,
+      "sha256": "a7776004d21d4f07f5fa7f8f2d050bf3cf22a2db3e2657fa037b33f472519c9a"
+    },
+    "E4_NATIVE_RESULTS.jsonl.gz": {
+      "bytes": 568218,
+      "sha256": "110ccf7f83c8a445083ef132fd6a2c30fd1f370d5ff5b80084c86f60caf96d35"
+    },
+    "E4_NATIVE_SUMMARY.json": {
+      "bytes": 4825,
+      "sha256": "c18a02b54311baeb60d28b6ebdadb5e48b4b9b925b43993585fbd7059acd930a"
+    },
+    "GATE_CONDUCT.json": {
+      "bytes": 3712211,
+      "sha256": "8fb055552d8464d40db89487589283ca0b5ecaa03babe6ef14b5fef28e883285"
+    },
+    "GATE_RECORDS.jsonl.gz": {
+      "bytes": 2214183,
+      "sha256": "6a6e1aeb9f92a826df43aec1b58103b05b38cdc78fb2a9fb77d51027b1ae0fa1"
+    },
+    "GATE_TABLES.json": {
+      "bytes": 147444,
+      "sha256": "7c750f69a33ce412d395acdb2ca654eae2f811796bc1c94e7ff63f02ee2bb857"
+    },
+    "SENTENCE_SUMMARY.md": {
+      "bytes": 11817,
+      "sha256": "60ea554f5856811beec424f339c6433487a6b4c1971c42e0758dce095dfbd9d7"
+    }
+  },
+  "print_extract": {
+    "accepted_print_rows": 777937,
+    "outer_rows": 1878,
+    "positive_size_prints": 771159,
+    "raw_prints_committed": false,
+    "receipt_sha256": "85914d77895b46d08b135b4f4e14eb6f3c6046420a76f6e3f2284f6f0e6e0ff5",
+    "sha256": "bf982a5e99683384ee261e5cf6cf2bd6fdd139dc426bda4b86ad877e34f5120f"
+  },
+  "prior_art": [
+    "c7825925:arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+    "d2d8f16b:arb-executor/analysis/conduct_scoreboard_v2/ATP_MAIN/CONDUCT_RECEIPT.json",
+    "artifacts/review_mirror/GATE_1_OBJECT.md",
+    "e269779b:SHAPE_TAXONOMY_BUILD1",
+    "41c1f724:RECOGNITION_OPERATING_POINT"
+  ],
+  "report_builder": {
+    "file": "sentence_experiments_report.py",
+    "sha256": "d0e26e91adcc697b5fb29f2d65aed5d8feb186094ceae57d85254c97126da89e"
+  },
+  "scripts": {
+    "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+    "conduct_scoreboard_v2.py": "a53fba520a2ddf6925c33be9fed86f3bb2e751a1000ee969bccccd0781ffc450",
+    "sentence_experiments.py": "e29ae8c4b2140fa4569471c8c374b40901749e1755bcaba22f505d66d750cb5c",
+    "tune_bench_v2_survivorship.py": "b9d96cddfe43cc014342e9745fb099f5126f6adae06bbcbec6b5b6a8557d58f8"
+  },
+  "status": "BENCH_ONLY_SIGNED_AMENDMENTS",
+  "tests": {
+    "count": 15,
+    "file": "test_sentence_experiments.py",
+    "scope": "censoring, positive-size/span/time boundaries, causal query future perturbation, walk-forward exclusions, gate/native agreement, exact guard reconstruction",
+    "sha256": "a08ae7a1334060bf6ec0c4453507f66e4d4008b99a8b7ac83d302e9cf81cebe2",
+    "status": "PASS"
+  }
+}

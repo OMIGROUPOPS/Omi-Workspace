@@ -1,0 +1,91 @@
+{
+  "eligible_pairs": 928,
+  "first_passage": {
+    "favourite": {
+      "baseline_brier": 0.16228365479975215,
+      "baseline_calls": 10395,
+      "baseline_mae": 83.54320077425805,
+      "bell_brier": 0.23222520383892897,
+      "bell_mean_probability": 0.650624516686741,
+      "bell_observed_reach": 0.6058682058682059,
+      "censored": 24,
+      "delta": 31.119849015421345,
+      "finite_deadlines": 10371,
+      "matched_hits": 6286,
+      "mean_member_nonhit_weight_share": 0.34937548331325896,
+      "new_brier": 0.2504923147024085,
+      "new_mae": 114.66304978967939,
+      "observed_new_reach": 0.44605148973098063,
+      "predicted_new_reach": 0.5060356802874895,
+      "winning_gates": [
+        5
+      ]
+    },
+    "underdog": {
+      "baseline_brier": 0.16482916438679038,
+      "baseline_calls": 10233,
+      "baseline_mae": 96.45277753454427,
+      "bell_brier": 0.23931221100195083,
+      "bell_mean_probability": 0.6387901320917893,
+      "bell_observed_reach": 0.5713866901201994,
+      "censored": 15,
+      "delta": 24.79777092156895,
+      "finite_deadlines": 10218,
+      "matched_hits": 5838,
+      "mean_member_nonhit_weight_share": 0.36120986790821075,
+      "new_brier": 0.2512658420725637,
+      "new_mae": 121.25054845611324,
+      "observed_new_reach": 0.42924251321197887,
+      "predicted_new_reach": 0.5057435146778001,
+      "winning_gates": [
+        5
+      ]
+    }
+  },
+  "note": "Aggregates pool repeated gate-side observations, not independent games. Filed wins tested per side/gate only.",
+  "pool": {
+    "CURRENT_ROLE": {
+      "abstentions": 2408,
+      "before_first_tick": 4804,
+      "calls": 20628,
+      "coverage_all_possible": 0.740948275862069,
+      "family_accuracy": 0.2994473531122746,
+      "family_accuracy_delta": 0.0,
+      "floor_delta": 0.0,
+      "floor_mae": 1.3374539460926895,
+      "matched_n": 20628,
+      "span_gate_sides": 23036,
+      "timing_delta": 0.0,
+      "timing_mae": 114.12591770303234
+    },
+    "NO_ROLE": {
+      "abstentions": 1002,
+      "before_first_tick": 4804,
+      "calls": 22034,
+      "coverage_all_possible": 0.7914511494252874,
+      "family_accuracy": 0.28787328673867657,
+      "family_accuracy_delta": -0.009647549328549958,
+      "floor_delta": -0.023949192805546127,
+      "floor_mae": 1.3605791050195153,
+      "matched_n": 20627,
+      "span_gate_sides": 23036,
+      "timing_delta": -2.847730912493337,
+      "timing_mae": 123.47194706189056
+    },
+    "SHARED_INTERSECTION": {
+      "abstentions": 4434,
+      "before_first_tick": 4804,
+      "calls": 18602,
+      "coverage_all_possible": 0.6681752873563218,
+      "family_accuracy": 0.29383937211052574,
+      "family_accuracy_delta": -0.011436586286885687,
+      "floor_delta": 0.042671413928898956,
+      "floor_mae": 1.3650682722287926,
+      "matched_n": 18537,
+      "span_gate_sides": 23036,
+      "timing_delta": 2.370813895222121,
+      "timing_mae": 108.3764342104477
+    }
+  },
+  "possible_gate_side_opportunities": 27840
+}

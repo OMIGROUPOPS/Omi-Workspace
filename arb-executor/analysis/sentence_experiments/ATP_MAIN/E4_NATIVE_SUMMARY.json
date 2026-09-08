@@ -1,0 +1,105 @@
+{
+  "baseline": {
+    "completed": 375,
+    "completion_rate": 0.4040948275862069,
+    "eligible": 928,
+    "fill_denominator": 1018,
+    "mean_captured_completed": 1.8053333333333332,
+    "mean_captured_eligible": 0.7295258620689655,
+    "mean_fill_minutes_to_bell": 806.0264903876777,
+    "median_captured_completed": 2.0,
+    "median_captured_eligible": 0.0,
+    "neither_filled": 285,
+    "one_sided": 268,
+    "one_sided_failed_favourite": 113,
+    "one_sided_failed_underdog": 155,
+    "one_sided_rate": 0.28879310344827586,
+    "safety_violations": {},
+    "stepped_off_any_later_pairs": 297,
+    "stepped_off_pairs": 297,
+    "stepped_off_share": 0.32004310344827586,
+    "stepped_off_while_lower_rest_active_pairs": 165,
+    "zero_size_accepted_print_fills": 0
+  },
+  "baseline_bound": {
+    "named": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_NAMED_CHECKS.json",
+      "sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325"
+    },
+    "receipt": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+      "sha256": "51213167ea2fd082f20bd59bc9a75dc5bde534cc3be9a53ef3341692f20f3631"
+    },
+    "scoreboard": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_SCOREBOARD.json",
+      "sha256": "d609c564bcab36491d26742957d6414b288d604820e019711041582def8b4d4c"
+    }
+  },
+  "cadence": "RECEIPT-SIM: same archived native second-close leg changes and atlas gates as R0",
+  "determinism": "Two projections per query, different computational batch sizes; canonical bytes identical. Independent positive-size order-interval fill audit.",
+  "engine_hashes": {
+    "engine_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+    "functionable_sha256": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "maximum_cent": 99,
+    "minimum_cent": 1,
+    "pair_budget": 99,
+    "par": 100
+  },
+  "first_layer_call_safety": "Both original side masks intersect, ESS>=filed floor. Insufficient rows hold existing rests under unchanged R0 conduct.",
+  "forecast_digest_sha256": "a6a5fdfdfc31296b3cb960353e32f53ce2963272fbed79fe657972f4c8707eac",
+  "input_archive_sha256": {
+    "CONDUCT_QUERIES.jsonl.gz": "f02873e3315ba4287d1fcd64b9d1c2838179397c238433560100549ade159ee6",
+    "CONDUCT_RECEIPT.json": "fbc13250c524efaa335ae41b528b84ae19f67dfce4ce00cf670bf12ec7c84f9e",
+    "FIRST_FORECASTS.jsonl.gz": "2b0d5d66948b56d5e5749ffb3b76c14ebb43cdcdd069af105fc56bb1c4327629"
+  },
+  "interpretation": "Shared-set-only experiment. Not equal/opposite moves, not pair-sum constraint, not a joint sentence estimator.",
+  "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+  "matched": {
+    "captured_per_eligible_delta": -0.029094827586206896,
+    "completion_rate_delta": -0.022629310344827586,
+    "eligible": 928,
+    "jointly_completed_pairs": 330,
+    "jointly_filled_sides": 948,
+    "mean_captured_joint_delta": 0.006060606060606061,
+    "mean_fill_minutes_to_bell_delta_joint": -23.87647527788678,
+    "median_captured_joint_delta": 0.0,
+    "median_captured_per_eligible_delta": 0.0,
+    "one_sided_rate_delta": 0.007543103448275862,
+    "safety_violation_delta": 0,
+    "stepped_off_share_delta": 0.0010775862068965517
+  },
+  "prints_sha256": "bf982a5e99683384ee261e5cf6cf2bd6fdd139dc426bda4b86ad877e34f5120f",
+  "raw_prints_committed": false,
+  "result_sha256": "110ccf7f83c8a445083ef132fd6a2c30fd1f370d5ff5b80084c86f60caf96d35",
+  "scripts": {
+    "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+    "sentence_experiments.py": "e29ae8c4b2140fa4569471c8c374b40901749e1755bcaba22f505d66d750cb5c",
+    "sentence_shared_pool_native.py": "76674a16c321de13971a4aedc9c555f8400ff008bae6f44f7b2bebaad820fd26",
+    "tune_bench_v2_survivorship.py": "b9d96cddfe43cc014342e9745fb099f5126f6adae06bbcbec6b5b6a8557d58f8"
+  },
+  "shared_intersection": {
+    "completed": 354,
+    "completion_rate": 0.38146551724137934,
+    "eligible": 928,
+    "fill_denominator": 983,
+    "mean_captured_completed": 1.8361581920903955,
+    "mean_captured_eligible": 0.7004310344827587,
+    "mean_fill_minutes_to_bell": 775.6861439345448,
+    "median_captured_completed": 1.0,
+    "median_captured_eligible": 0.0,
+    "neither_filled": 299,
+    "one_sided": 275,
+    "one_sided_failed_favourite": 109,
+    "one_sided_failed_underdog": 166,
+    "one_sided_rate": 0.2963362068965517,
+    "safety_violations": {},
+    "stepped_off_any_later_pairs": 298,
+    "stepped_off_pairs": 298,
+    "stepped_off_share": 0.32112068965517243,
+    "stepped_off_while_lower_rest_active_pairs": 156,
+    "zero_size_accepted_print_fills": 0
+  }
+}

@@ -43,8 +43,9 @@ test("all five loaded games have four-line cards, mapped hands and measured MACR
   }
 });
 
-test("GIUBAR keeps original, correction and campaign fields without selecting", () => {
-  const rulers = readGradeRulers(fileURLToPath(new URL("..", import.meta.url)), "KXATPCHALLENGERMATCH-26JUL12GIUBAR");
+test("GIUBAR applies the filed grading ruler and preserves original and campaign fields", () => {
+  const event = "KXATPCHALLENGERMATCH-26JUL12GIUBAR";
+  const rulers = readGradeRulers(fileURLToPath(new URL("..", import.meta.url)), event, unpackFace(json(event + ".face.json")));
   assert.equal(rulers.original_table.legs.BAR.floor_cents, 16);
   assert.equal(rulers.original_table.legs.GIU.floor_cents, 49);
   assert.equal(rulers.original_table.floor_sum_cents, 65);
@@ -57,7 +58,8 @@ test("GIUBAR keeps original, correction and campaign fields without selecting", 
   assert.match(correction.campaign_ruler_fields.leg_ruler.GIU, /close 66 - entry 69 = -3/);
   const grade = json("KXATPCHALLENGERMATCH-26JUL12GIUBAR.grade.json");
   assert.deepEqual(grade.RULER_COLUMNS, rulers);
-  assert.equal(grade.OUTCOME.best_capturable_cents, 35); // unchanged, explicitly not a selection
+  assert.equal(grade.OUTCOME.best_capturable_cents, 7);
+  assert.equal(grade.OUTCOME.legs.GIU.vs_floor_cents, 3);
 });
 
 test("ALT and GAS actual fills and the earlier missed GAS floor are unchanged", () => {

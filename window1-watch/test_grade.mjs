@@ -24,11 +24,12 @@ function fixture() {
     bell: { timestamp_epoch: 1000 },
     truth: {
       status: "OK",
+      bell_epoch: 1000,
       span_start_epoch: 100,
       span_end_epoch: 1000,
       legs: {
-        ABC: { status: "OK", floor_cents: 58, minutes_to_bell: 8 },
-        XYZ: { status: "OK", floor_cents: 38, minutes_to_bell: 2 },
+        ABC: { status: "OK", floor_cents: 58, floor_epoch: 520, minutes_to_bell: 8 },
+        XYZ: { status: "OK", floor_cents: 38, floor_epoch: 880, minutes_to_bell: 2 },
       },
       pair: { sum_cents: 96, discount_cents: 4 },
     },
@@ -39,6 +40,7 @@ function fixture() {
     },
   };
   const d = (q, mtb) => ({
+    status: "RESOLVED",
     has_sentence: true,
     q_present: true,
     x_present: true,
@@ -119,22 +121,18 @@ test("writer table precedence and unknowns", () => {
   assert.equal(writerClass(["UNMAPPED"]), SILENT);
   assert.equal(writerClass([], true), "SAME_SECOND");
 });
-test("held gate requires every remaining call and cannot use future decisions", () => {
+test("first eligible means receipt order, not earliest accurate or last gate", () => {
   const f = fixture();
   let g = run(f);
-  assert.equal(g.MICRO.legs.ABC.first_gate_within_2c_and_held, 10);
+  assert.equal(g.MICRO.legs.ABC.first_eligible_full_span.receipt, "a");
   f.decisions[1].legs.ABC.q50 = 50;
   g = run(f);
-  assert.equal(g.MICRO.legs.ABC.first_gate_within_2c_and_held, null);
-  f.decisions[1].legs.ABC.q50 = null;
+  assert.equal(g.MICRO.legs.ABC.first_eligible_full_span.floor_error_cents, 0);
+  f.decisions[0].legs.ABC.q50 = 50;
   g = run(f);
-  assert.equal(g.MICRO.legs.ABC.floor_error_cents, SILENT);
-  f.decisions.push({
-    epoch: 950,
-    receipt: "future",
-    legs: { ABC: { q50: 58 } },
-  });
-  assert.equal(run(f).MICRO.legs.ABC.floor_error_cents, SILENT);
+  assert.equal(g.MICRO.legs.ABC.first_eligible_full_span.floor_error_cents, 8);
+  f.decisions[0].legs.ABC.status = "INSUFFICIENT_EVIDENCE";
+  assert.equal(run(f).MICRO.legs.ABC.first_eligible_full_span.receipt, "b");
 });
 test("family comparison uses the bench bell even when the trace clock differs", () => {
   const f = fixture();
@@ -175,7 +173,7 @@ test("family comparison uses the bench bell even when the trace clock differs", 
   assert.equal(g.MACRO.legs.ABC.family_called_at_last_gate, "SLEEPER");
   assert.equal(g.MACRO.legs.ABC.family_call_receipt, "bench-clock-call");
   assert.equal(g.MACRO.pile_ess_at_last_gate, 9);
-  assert.equal(g.MICRO.legs.ABC.receipt, "b");
+  assert.equal(g.MICRO.legs.ABC.first_eligible_full_span.receipt, "a");
   delete bench.events.TEST.first_tick.epoch;
   g = run(f, new Map(), bench);
   assert.equal(g.MACRO.legs.ABC.realized_family, SILENT);
@@ -207,15 +205,16 @@ test("span-bound capture excludes bell and partials; same timestamp forces F", (
       floor_difference_cents: 0,
     },
   });
-  f.face.render.bid_actions = [fill("ABC", 58, 500, 0)];
+  const place = (leg, cents, epoch) => ({ leg, kind: "PLACE", timestamp_epoch: epoch, receipt: "a", new_cents: cents, raw: { action: "PLACE_REST" } });
+  f.face.render.bid_actions = [place("ABC", 58, 500), fill("ABC", 58, 500, 0)];
   let g = run(f);
   assert.equal(g.OUTCOME.captured_cents, 0);
   assert.equal(g.LETTER.letter, "F");
-  f.face.render.bid_actions.push(fill("XYZ", 38, 1000, 10));
+  f.face.render.bid_actions.push(place("XYZ", 38, 600), fill("XYZ", 38, 1000, 10));
   g = run(f);
   assert.equal(g.OUTCOME.pair_sum, 96);
   assert.equal(g.OUTCOME.captured_cents, 0);
-  f.face.render.bid_actions[1].timestamp_epoch = 999;
+  f.face.render.bid_actions[3].timestamp_epoch = 999;
   g = run(f);
   assert.equal(g.OUTCOME.captured_cents, 4);
   assert.equal(g.OUTCOME.capture_ratio, 1);

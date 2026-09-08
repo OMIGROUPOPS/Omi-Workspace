@@ -40,6 +40,11 @@ export function GradePanel({ game }: { game: LoadedGame }) {
               </a>
             </p>
           ) : null}
+          {grade?.display.ruler_line ? (
+            <p className="mt-1 text-[10px] text-muted" title={grade.display.ruler_hover_lines?.join("\n")}>
+              {grade.display.ruler_line}
+            </p>
+          ) : null}
         </div>
         <div className="hidden w-44 shrink-0 sm:block">
           <History game={game} />

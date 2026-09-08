@@ -1,5 +1,6 @@
 // Report-card measurements only. No engine imports, orders or price production.
 import fs from "node:fs";
+import { microMeasurements, measureRestAges } from "./grade_measurements.mjs";
 export const SILENT = "STORE SILENT";
 const finite = (n) => typeof n === "number" && Number.isFinite(n);
 const value = (n) => (finite(n) ? n : SILENT);
@@ -114,14 +115,28 @@ export function projectDecision(row, face) {
       action: d.action ?? null,
       ask: row.reads?.books?.value?.[l]?.ask_cents ?? null,
       formation_end:
-        d.derivation?.formation_end_epoch ?? face.formation_end_epoch ?? null,
+        d.derivation?.formation_end_epoch ?? b?.own_evidence?.formation_end_epoch ?? face.formation_end_epoch ?? null,
       // Explicit weights and unique own prints; an author token alone is not Gate-1 proof.
       own_print_receipts: b?.own_print_receipts ?? [],
       evidence_rows: a?.own_evidence_rows ?? [],
     };
   }
+  const forecasts = Object.fromEntries(Object.entries(row.layers?.micro?.context?.beliefs ?? {}).map(([leg, b]) => {
+    const d = legs[leg];
+    const q50 = d?.q50 ?? b.predicted_cents ?? null;
+    return [leg, {
+      ...d, status: b.status ?? null, q50,
+      q_source: finite(d?.q50) ? "pricing_authority.true_conditioning.posterior_q50_cents" : "belief.predicted_cents",
+      has_sentence: !!b.plain_sentence && finite(b.current_cents) && finite(q50) &&
+        finite(b.deadline?.deadline_epoch ?? b.predicted_minutes_to_bell),
+      q_author: b.q_author ?? null, x_author: b.x_author ?? null,
+      floor_mtb: b.deadline?.deadline_minutes_to_bell ?? b.predicted_minutes_to_bell ?? null,
+      deadline_epoch: b.deadline?.deadline_epoch ?? null,
+      formation_end: d?.formation_end ?? b.own_evidence?.formation_end_epoch ?? face.formation_end_epoch ?? null,
+    }];
+  }));
   return {
-    epoch: row.timestamp_epoch, receipt: row.receipt, legs,
+    epoch: row.timestamp_epoch, receipt: row.receipt, legs, forecasts,
     // Credited sides can still have a telemetry belief, without an order derivation.
     families: Object.fromEntries(face.legs.map((leg) => [leg,
       row.layers?.micro?.context?.beliefs?.[leg]?.family ??
@@ -156,6 +171,7 @@ export function gradeFace(
   bench,
   rubric,
   provenance,
+  printInput = null,
 ) {
   const event = face.provenance.event_id,
     sides = face.legs;
@@ -207,15 +223,6 @@ export function gradeFace(
     gate_1_reason:
       "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1.",
   };
-  const gates = face.render.checkpoints.map((c) => {
-    const stage = decisions
-      .filter(
-        (r) => r.epoch <= face.bell.timestamp_epoch - c.minutesToBell * 60,
-      )
-      .at(-1);
-    return { gate: c.minutesToBell, receipt: stage?.receipt ?? null, stage };
-  });
-  const last = gates.at(-1);
   const benchEvent =
     bench &&
     Object.values(bench.events ?? {}).find((e) => e.event_id === event);
@@ -271,7 +278,7 @@ export function gradeFace(
     bench_reason: benchReason,
     ess_source: "Bench validity pool, not OS membership ESS",
   };
-  const micro = { last_gate: last?.gate ?? SILENT, legs: {}, gate_calls: [] };
+  const micro = microMeasurements(face, decisions, printInput);
   for (const leg of sides) {
     const bside =
       benchEvent?.first_tick?.favorite === leg
@@ -320,7 +327,7 @@ export function gradeFace(
       family_match:
         actual === SILENT || called === SILENT ? SILENT : called === actual,
       family_call_source:
-        "OS belief.family (raw vocabulary; not a bench-pool family)",
+        "Stored OS belief.family; cascade beliefs carry the selected pool's modal family",
       bench_families_by_rule: rules,
       reason:
         benchReason ??
@@ -330,67 +337,18 @@ export function gradeFace(
             ? "NO_OS_FAMILY_AT_LAST_GATE"
             : null),
     };
-    const truth = face.truth?.legs?.[leg],
-      verified = truth?.status === "OK";
-    const calls = gates.map((g) => {
-      const d = g.stage?.legs?.[leg];
-      const err =
-        verified && finite(d?.q50)
-          ? Math.abs(d.q50 - truth.floor_cents)
-          : SILENT;
-      return {
-        gate: g.gate,
-        leg,
-        receipt: g.receipt,
-        called_q50_floor_cents: value(d?.q50),
-        called_floor_minutes_to_bell: value(d?.floor_mtb),
-        floor_error_cents: err,
-        timing_error_minutes:
-          verified && finite(d?.floor_mtb)
-            ? Math.abs(d.floor_mtb - truth.minutes_to_bell)
-            : SILENT,
-      };
-    });
-    const ending = calls.at(-1);
-    const firstHeld = calls.find(
-      (c, i) =>
-        finite(c.floor_error_cents) &&
-        c.floor_error_cents <= 2 &&
-        calls
-          .slice(i)
-          .every(
-            (v) => finite(v.floor_error_cents) && v.floor_error_cents <= 2,
-          ),
-    );
-    micro.legs[leg] = {
-      ...ending,
-      recorded_floor_cents: verified ? truth.floor_cents : SILENT,
-      recorded_floor_minutes_to_bell: verified ? truth.minutes_to_bell : SILENT,
-      first_gate_within_2c_and_held:
-        firstHeld?.gate ??
-        (calls.some((c) => finite(c.floor_error_cents)) ? null : SILENT),
-      reason: !verified
-        ? (truth?.reason ?? "NO_VERIFIED_TRUTH")
-        : ending?.floor_error_cents === SILENT
-          ? "NO_POSTERIOR_Q50_AT_LAST_GATE"
-          : ending?.timing_error_minutes === SILENT
-            ? "NO_DEADLINE_AT_LAST_GATE"
-            : null,
-    };
-    micro.gate_calls.push(...calls);
   }
   const byReceipt = new Map(decisions.map((d) => [d.receipt, d]));
+  const ages = measureRestAges(face.render.bid_actions);
   const actions = face.render.bid_actions.map((a) => {
     const raw = Object.values(a.raw ?? {}).filter((v) => typeof v === "string");
-    const sameSecond =
-      a.kind === "FILL" &&
-      finite(a.fill?.rest_age_minutes) &&
-      a.fill.rest_age_minutes === 0;
+    const age = ages.get(a.id ?? a);
+    const sameSecond = age.same_second_fill;
     let tokens = raw;
     if (a.kind === "FILL")
       tokens = [
         ...raw,
-        ...(byReceipt.get(a.fill?.place_receipt)?.legs?.[a.leg]?.tokens ?? []),
+        ...(byReceipt.get(age.current_price_receipt ?? a.fill?.place_receipt)?.legs?.[a.leg]?.tokens ?? []),
       ];
     return {
       receipt: a.receipt,
@@ -400,10 +358,13 @@ export function gradeFace(
       minutes_to_bell: value(a.minutes_to_bell),
       old_cents: a.old_cents,
       new_cents: a.new_cents,
-      writer_class: writerClass(tokens, sameSecond),
+      writer_class: writerClass(tokens, sameSecond === true),
       tokens,
+      ...age,
+      timestamp_epoch: a.timestamp_epoch,
       rest_age_at_fill_minutes:
-        a.kind === "FILL" ? value(a.fill?.rest_age_minutes) : null,
+        a.kind === "FILL" ? age.current_price_age_minutes : null,
+      legacy_display_rest_age_minutes: a.kind === "FILL" ? value(a.fill?.rest_age_minutes) : null,
       same_second_fill: sameSecond,
       source_url: a.detail_url,
     };
@@ -434,6 +395,7 @@ export function gradeFace(
   );
   const hands = {
     actions,
+    age_rule: "Lineage begins at PLACE, survives reprices, ends on remove/fill. Current-price age resets only on a level change. Same-second tests current-price start and fill timestamps, not rounded minute ages. Missing starts remain STORE SILENT.",
     placement_rows: placed.length,
     rest_age_at_fill_minutes: actions
       .filter((a) => a.kind === "FILL")
@@ -441,6 +403,10 @@ export function gradeFace(
         leg: a.leg,
         receipt: a.receipt,
         minutes: a.rest_age_at_fill_minutes,
+        order_lineage_age_minutes: a.order_lineage_age_minutes,
+        current_price_age_minutes: a.current_price_age_minutes,
+        order_lineage_receipt: a.order_lineage_receipt,
+        current_price_receipt: a.current_price_receipt,
       })),
     post_only_violations: postOnlyUnknown.length ? SILENT : badPost.length,
     observed_post_only_violations: badPost.length,
@@ -448,9 +414,9 @@ export function gradeFace(
     pre_formation_placements: formationUnknown.length ? SILENT : pre.length,
     observed_pre_formation_placements: pre.length,
     formation_uncheckable: formationUnknown.length,
-    same_second_fills: actions.filter((a) => a.same_second_fill).length,
+    same_second_fills: actions.filter((a) => a.same_second_fill === true).length,
     fill_age_uncheckable: actions.filter(
-      (a) => a.kind === "FILL" && !finite(a.rest_age_at_fill_minutes),
+      (a) => a.kind === "FILL" && (!finite(a.rest_age_at_fill_minutes) || !finite(a.order_lineage_age_minutes)),
     ).length,
     writer_class_unmapped: actions.filter((a) => a.writer_class === SILENT)
       .length,
@@ -482,11 +448,11 @@ export function gradeFace(
     const spanKnown =
       face.truth?.status === "OK" &&
       finite(face.truth.span_start_epoch) &&
-      finite(face.truth.span_end_epoch);
+      finite(face.truth.span_end_epoch) && finite(face.truth.bell_epoch);
     const valid = f
       ? spanKnown && finite(f.timestamp_epoch)
         ? f.timestamp_epoch >= face.truth.span_start_epoch &&
-          f.timestamp_epoch < face.truth.span_end_epoch
+          f.timestamp_epoch < face.truth.span_end_epoch && f.timestamp_epoch < face.truth.bell_epoch
         : SILENT
       : false;
     outcome.legs[leg] = {
@@ -494,12 +460,21 @@ export function gradeFace(
       cents: f ? value(f.fill?.cents) : null,
       vs_floor_cents:
         f && ruler?.status === "OK"
-          ? value(f.fill?.floor_difference_cents)
+          ? value(f.fill?.cents - ruler.floor_cents)
           : f
             ? SILENT
             : null,
       fill_epoch: f?.timestamp_epoch ?? null,
       valid_span_fill: valid,
+      revalidation: f ? {
+        ruler_bell_epoch: face.truth?.bell_epoch ?? null,
+        span_start_epoch: face.truth?.span_start_epoch ?? null,
+        span_end_epoch: face.truth?.span_end_epoch ?? null,
+        at_or_after_span_start: spanKnown ? f.timestamp_epoch >= face.truth.span_start_epoch : SILENT,
+        before_span_end: spanKnown ? f.timestamp_epoch < face.truth.span_end_epoch : SILENT,
+        before_bell: spanKnown ? f.timestamp_epoch < face.truth.bell_epoch : SILENT,
+        correction_ids: (face.truth?.applied_corrections ?? []).map((c) => c.correction_id),
+      } : null,
       reason:
         f && valid === SILENT
           ? "NO_VERIFIED_FILL_SPAN"
@@ -551,10 +526,10 @@ export function gradeFace(
     },
     MICRO: {
       max_floor_error_cents: maxComplete(
-        Object.values(micro.legs).map((l) => l.floor_error_cents),
+        Object.values(micro.mode_metrics).map((l) => l.max_floor_error_cents),
       ),
       max_timing_error_minutes: maxComplete(
-        Object.values(micro.legs).map((l) => l.timing_error_minutes),
+        Object.values(micro.mode_metrics).map((l) => l.max_timing_error_minutes),
       ),
     },
     HANDS: {
@@ -585,6 +560,11 @@ export function gradeFace(
       ];
     }),
   );
+  micro.mode_grades = Object.fromEntries(Object.entries(micro.mode_metrics).map(([mode, measurements]) => [mode,
+    worstLetter(Object.entries(rubric.sections.MICRO.metrics).map(([key, rule]) => metricGrade(measurements[key], rule, rubric)), rubric),
+  ]));
+  sectionGrades.MICRO.letter = worstLetter(Object.values(micro.mode_grades), rubric);
+  sectionGrades.MICRO.mode_grades = micro.mode_grades;
   const hard = [
     sentence.named_tokens_found.length ? "SENTENCE: named tokens" : null,
     pre.length ? "HANDS: pre-formation placements" : null,
@@ -610,7 +590,7 @@ export function gradeFace(
     OUTCOME: outcome,
   };
   const summaries = {
-    SENTENCE: `Q ${percent(sentence.share_q_authored_by_organ)} · X ${percent(sentence.share_x_authored_by_organ)} organ share`,
+    SENTENCE: `Q ${percent(sentence.share_q_authored_by_organ)} · X ${percent(sentence.share_x_authored_by_organ)} authored (token metric)`,
     MACRO: sides
       .map(
         (l) =>
@@ -620,14 +600,14 @@ export function gradeFace(
     MICRO: sides
       .map(
         (l) =>
-          `${l}: ${unit(micro.legs[l].floor_error_cents, "¢")} / ${unit(micro.legs[l].timing_error_minutes, "m")} error`,
+          `${l}: first/full ${unit(micro.legs[l].first_eligible_full_span.floor_error_cents, "¢")} / ${unit(micro.legs[l].first_eligible_full_span.timing_error_minutes, "m")} · remaining MAE ${unit(micro.legs[l].remaining_path.mean_floor_error_cents, "¢")} / ${unit(micro.legs[l].remaining_path.mean_timing_error_minutes, "m")}`,
       )
       .join(" · "),
     HANDS: `${hands.same_second_fills} same-second · ${shown(hands.post_only_violations)} post-only · ${shown(hands.pre_formation_placements)} pre-formation`,
     OUTCOME: `${shown(outcome.captured_cents)} of ${shown(outcome.best_capturable_cents)}¢ captured`,
   };
   return {
-    version: 1,
+    version: 2,
     event,
     provenance,
     ...sections,
@@ -644,6 +624,12 @@ export function gradeFace(
         ? "Conduct failure · cutoff-independent F"
         : rubric.status,
       governing,
+      ruler_line: `Grading ruler: ${sides.map((l) => `${l} ${unit(face.truth?.legs?.[l]?.floor_cents, "¢")}`).join(" + ")} · ${unit(outcome.best_capturable_cents, "¢")} offered · ${(face.truth?.applied_corrections ?? []).length} filed corrections`,
+      ruler_hover_lines: [
+        `RULER — NOT AN OS INPUT · table ${face.truth?.table_commit ?? SILENT} · corrections ${face.truth?.corrections_commit ?? SILENT}`,
+        `Bell ${face.truth?.bell_epoch ?? SILENT} · span [${face.truth?.span_start_epoch ?? SILENT}, ${face.truth?.span_end_epoch ?? SILENT})`,
+        "Original rows, full corrections and per-fill eligibility are retained in the grade JSON. Trace/chart input is unchanged.",
+      ],
       sections: Object.entries(sections).map(([name, section]) => ({
         name,
         mark:
@@ -656,11 +642,13 @@ export function gradeFace(
           `${name}: ${sectionGrades[name].letter} · ${rubric.status}`,
           JSON.stringify(metrics[name]),
           name === "SENTENCE"
-            ? `${sentence.leg_receipts_with_sentence}/${entries.length} leg sentences · ${sentence.named_tokens_found.length} named tokens`
+            ? `${sentence.leg_receipts_with_sentence}/${entries.length} leg sentences · ${sentence.named_tokens_found.length} named tokens · Gate-1 certification: ${sentence.gate_1_authorship_certification}`
             : name === "MACRO"
               ? `Bench: ${macro.bench_reason ?? macro.bench_label}`
               : name === "HANDS"
-                ? `${placed.length} placement/reprice rows checked`
+                ? `${placed.length} placement/reprice rows checked · ${hands.rest_age_at_fill_minutes.map((a) => `${a.leg}: lineage ${unit(a.order_lineage_age_minutes, "m")}, current price ${unit(a.current_price_age_minutes, "m")}`).join(" · ")}`
+                : name === "MICRO"
+                  ? `Mode grades ${JSON.stringify(micro.mode_grades)} · remaining means are descriptive; letters use maximum errors. Future-print-only errors and carried-state labels are separate in the JSON.`
                 : "See full grade JSON for all receipts and gates",
         ],
       })),

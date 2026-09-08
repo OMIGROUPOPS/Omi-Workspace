@@ -6,6 +6,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { unpackFace } from "./face_encoding.mjs";
 import { readGradeRulers } from "./grade_rulers.mjs";
+import { readGradePrints } from "./grade_prints.mjs";
 import {
   gradeFace,
   projectDecision,
@@ -84,7 +85,7 @@ async function sourceReceipt(benchSource) {
     : null;
   const receipt = benchPath ? await readJson(benchPath, null) : null;
   return {
-    version: 1,
+    version: 2,
     role: "REPORT ONLY — no OS inputs changed",
     citations,
     bench_taxonomy_receipt: receipt
@@ -112,7 +113,9 @@ async function sourceReceipt(benchSource) {
       cascade_writers:
         "FIELDS.md maps POOL_FIRST_TICK (alias), POOL_FIRST-TICK-ONLY, POOL_BASE, POOL_CASCADE:* and POOL_CASCADE_WRITER to ORGAN. Hold/veto precedence and raw tokens remain unchanged.",
       ruler_comparison:
-        "RULER_COLUMNS preserves pinned table floors alongside filed correction floors and campaign ruler fields. No selection is made and OUTCOME keeps its existing face.truth inputs.",
+        "Apply every event-matching correction from W1_GROUND_TRUTH_CORRECTIONS.jsonl @15955e44 in ledger order to the original pinned row. Effective floors, bell, span and denominator grade this run; original CSV and full correction JSONL rows remain alongside. Every observed fill is revalidated against both corrected span and bell. No trace, face input, or OS call is changed.",
+      micro: "First eligible stored resolved P/Q/X forecast in receipt order versus full recorded span; every eligible receipt versus its remaining path, with separate carried state and strictly future-print targets. Match timing to each target using the original absolute deadline. Existing rubric cutoffs unchanged; worst of the two grading modes. Receipt-level errors, means and denominators retained.",
+      hands_ages: "Separate original PLACE lineage age from current-price age, resetting only the latter on price change; remove/fill ends the lineage. Fill same-second check uses the current-price start timestamp. The legacy chart age is preserved, not used as current-price duration.",
       named_scope:
         "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent.",
     },
@@ -232,7 +235,7 @@ export async function appendHistory(
   await writeJson(path.join(dataRoot, event + ".grade.json"), snapshot);
   return { snapshot, entry };
 }
-export async function build(event) {
+export async function build(event, printInput) {
   if (!/^[A-Z0-9-]+$/.test(event ?? ""))
     throw new Error(
       "Usage: node window1-watch/build_grade.mjs --event <event_id>",
@@ -243,6 +246,10 @@ export async function build(event) {
     face = unpackFace(json(faceBytes));
   if (face.provenance?.event_id !== event)
     throw new Error("Face event mismatch");
+  if (!printInput) {
+    const all = await readGradePrints(option("prints") ?? "C:/Users/omigr/OMI-Window1-private/fit-local/prints.jsonl", [{ event, legs: face.legs }]);
+    printInput = all[event];
+  }
   const rubricBytes = await fs.readFile(path.join(here, "grade_rubric.json")),
     rubric = json(rubricBytes);
   const decisions = [],
@@ -265,7 +272,7 @@ export async function build(event) {
       stored.source.trace_row !== stage.trace_row
     )
       throw new Error("Stage binding mismatch");
-    decisions.push(projectDecision(row, face));
+    decisions.push({ ...projectDecision(row, face), trace_row: stored.source.trace_row });
     scanNamed(row, face.legs, event, (token, field) => {
       if (!named.has(token))
         named.set(token, {
@@ -289,12 +296,18 @@ export async function build(event) {
   const receipt = await sourceReceipt(face.bench?.source),
     receiptSha = sha(encode(receipt));
   const os = osCommit(face.provenance.os_sha256);
+  const rulers = readGradeRulers(repo, event, face);
+  const effectiveFace = { ...face, truth: rulers.effective_truth };
   const provenance = {
     os_sha256: face.provenance.os_sha256,
     trace_sha256: face.provenance.trace_sha256,
     bench_sha256: face.provenance.bench_sha256 ?? null,
     truth_commit: face.truth?.table_commit ?? null,
     truth_row_sha256: face.truth?.row_sha256 ?? null,
+    truth_corrections_commit: rulers.correction_source.commit,
+    truth_corrections_sha256: rulers.correction_source.sha256,
+    effective_truth_sha256: sha(encode(rulers.effective_truth)),
+    true_print_source_sha256: printInput.provenance.sha256,
     face_sha256: sha(faceBytes),
     stage_inputs_sha256: stageDigest.digest("hex"),
     stage_files_count: decisions.length,
@@ -307,13 +320,15 @@ export async function build(event) {
       await fs.readFile(path.join(here, "grade_contract.mjs")),
     ),
     grade_rulers_sha256: sha(await fs.readFile(path.join(here, "grade_rulers.mjs"))),
+    grade_measurements_sha256: sha(await fs.readFile(path.join(here, "grade_measurements.mjs"))),
+    grade_prints_sha256: sha(await fs.readFile(path.join(here, "grade_prints.mjs"))),
     fields_sha256: sha(await fs.readFile(path.join(here, "FIELDS.md"))),
     os_commit: os.commit,
     os_commit_order: os.order,
     grading_commit: git("rev-parse", "HEAD").toString().trim(),
   };
-  const grade = gradeFace(face, decisions, named, bench, rubric, provenance);
-  grade.RULER_COLUMNS = readGradeRulers(repo, event);
+  const grade = gradeFace(effectiveFace, decisions, named, bench, rubric, provenance, printInput);
+  grade.RULER_COLUMNS = rulers;
   grade.receipt = receipt;
   await writeJson(path.join(dataRoot, "GRADE_RECEIPT.json"), receipt);
   const { snapshot } = await appendHistory(dataRoot, grade);
@@ -330,7 +345,13 @@ if (
   path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
 ) {
   try {
-    await build(option("event"));
+    if (args.includes("--all")) {
+      const index = await readJson(path.join(here, "data/index.json"));
+      const games = await Promise.all(index.games.map(async (g) => ({ event: g.event,
+        legs: json(await fs.readFile(path.join(here, "data", g.event + ".face.json"))).legs })));
+      const prints = await readGradePrints(option("prints") ?? "C:/Users/omigr/OMI-Window1-private/fit-local/prints.jsonl", games);
+      for (const g of games) await build(g.event, prints[g.event]);
+    } else await build(option("event"));
   } catch (error) {
     console.error(error);
     process.exitCode = 1;

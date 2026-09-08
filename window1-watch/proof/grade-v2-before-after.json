@@ -1,0 +1,2037 @@
+{
+  "before_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+  "scope": "Face grading only; existing trace/face/OS/rubric unchanged",
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "before": {
+        "letter": "F",
+        "governing": "MICRO · OUTCOME",
+        "section_letters": {
+          "SENTENCE": "C",
+          "MACRO": "C",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "F"
+        },
+        "card": [
+          "SENTENCE: Q 63.53% · X 63.53% organ share",
+          "MACRO: BAR: QUIET_WOBBLE / QUIET_WOBBLE · GIU: QUIET_WOBBLE / ONE_STEP_UP",
+          "MICRO: BAR: 16¢ / 21.25m error · GIU: 17¢ / 38.92m error",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 0 of 35¢ captured"
+        ],
+        "micro": {
+          "BAR": {
+            "gate": 5,
+            "leg": "BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783874000",
+            "called_q50_floor_cents": 32,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 16,
+            "timing_error_minutes": 21.25499999920527,
+            "recorded_floor_cents": 16,
+            "recorded_floor_minutes_to_bell": -16.25499999920527,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          },
+          "GIU": {
+            "gate": 5,
+            "leg": "GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|ATLAS_GATE|1783874000",
+            "called_q50_floor_cents": 66,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 17,
+            "timing_error_minutes": 38.916666666666664,
+            "recorded_floor_cents": 49,
+            "recorded_floor_minutes_to_bell": -33.916666666666664,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          }
+        },
+        "micro_mode_grades": null,
+        "fills": {
+          "BAR": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          },
+          "GIU": {
+            "filled": true,
+            "cents": 69,
+            "vs_floor_cents": 20,
+            "fill_epoch": 1783865397.812,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "captured_cents": 0,
+        "offered_cents": 35,
+        "capture_ratio": 0,
+        "ages": [
+          {
+            "leg": "GIU",
+            "receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+            "minutes": 390.88019993305204
+          }
+        ],
+        "ruler": null,
+        "grade_provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "1c02b3084496dfdd37a4425533bb6f43dc3f334c3a0f89dc1955c564bc7000a0",
+          "face_sha256": "1cc228611f4412e05ab6045468b916110c0c6c3819959afc8d6b03e105109be7",
+          "stage_inputs_sha256": "f755d30236cc7564f88d8b09f3c7e7f0f6cf28f0b56dad3db5730b3eb72b89fc",
+          "stage_files_count": 246,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "dad3e3e2f44a8806ac7b2c28c1d747a0b5a90321d0637444323e9b392e014d0d",
+          "grade_builder_sha256": "6e4efa0322f662aa0f67a9b6b9d898d344432407fc0173c1d8ed7d0f4fbef059",
+          "grade_contract_sha256": "49ef29ab1cc7af0c5913d188b47f556bb75573484b01b9c4efc28643f7773ebd",
+          "grade_rulers_sha256": "d4f91a6dde09fbd980057208a5ddd3622e874ae70ce391ed30f8f96c0429f8b7",
+          "fields_sha256": "4b0286526a7d22afe6df78227cd067fbdb512d0593fecb3202db2a3cff5d607d",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c"
+        }
+      },
+      "after": {
+        "letter": "F",
+        "governing": "MICRO · OUTCOME",
+        "section_letters": {
+          "SENTENCE": "C",
+          "MACRO": "C",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "F"
+        },
+        "card": [
+          "SENTENCE: Q 63.53% · X 63.53% authored (token metric)",
+          "MACRO: BAR: QUIET_WOBBLE / QUIET_WOBBLE · GIU: QUIET_WOBBLE / ONE_STEP_UP",
+          "MICRO: BAR: first/full 2¢ / 262.08m · remaining MAE 0.83¢ / 70.21m · GIU: first/full 1¢ / 199.04m · remaining MAE 2¢ / 120.88m",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 0 of 7¢ captured"
+        ],
+        "micro": {
+          "BAR": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+              "receipt_order": 64,
+              "epoch": 1783841945.000004,
+              "minutes_to_bell": 539.2499999324481,
+              "q50": 25,
+              "q_author": "POOL_FIRST-TICK-ONLY",
+              "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+              "deadline_epoch": 1783857526,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 27,
+                "floor_epoch": 1783841801.305
+              },
+              "floor_already_observed_at_call": true,
+              "floor_error_cents": 2,
+              "timing_error_minutes": 262.0782499988874,
+              "target_floor_cents": 27,
+              "target_floor_epoch": 1783841801.305,
+              "target_minutes_to_bell": 541.6449166655541
+            },
+            "remaining_path": {
+              "receipts_eligible": 54,
+              "receipts_scored": 54,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 0.8333333333333334,
+              "mean_timing_error_minutes": 70.20864613210713,
+              "max_floor_error_cents": 2,
+              "max_timing_error_minutes": 259.6833332657814
+            },
+            "executable_future_print": {
+              "receipts_eligible": 54,
+              "receipts_scored": 35,
+              "receipts_unscored": 19,
+              "mean_floor_error_cents": 1.6,
+              "mean_timing_error_minutes": 87.3025321052188,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          },
+          "GIU": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+              "receipt_order": 64,
+              "epoch": 1783841945.000004,
+              "minutes_to_bell": 539.2499999324481,
+              "q50": 67,
+              "q_author": "POOL_FIRST-TICK-ONLY",
+              "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+              "deadline_epoch": 1783857432.683123,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 66,
+                "floor_epoch": 1783869375.227
+              },
+              "floor_already_observed_at_call": false,
+              "floor_error_cents": 1,
+              "timing_error_minutes": 199.04239794810613,
+              "target_floor_cents": 66,
+              "target_floor_epoch": 1783869375.227,
+              "target_minutes_to_bell": 82.07955000003179
+            },
+            "remaining_path": {
+              "receipts_eligible": 54,
+              "receipts_scored": 54,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 2,
+              "mean_timing_error_minutes": 120.87954351931441,
+              "max_floor_error_cents": 3,
+              "max_timing_error_minutes": 243.7722436149915
+            },
+            "executable_future_print": {
+              "receipts_eligible": 54,
+              "receipts_scored": 47,
+              "receipts_unscored": 7,
+              "mean_floor_error_cents": 2.297872340425532,
+              "mean_timing_error_minutes": 140.16168227043556,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          }
+        },
+        "micro_mode_grades": {
+          "first_eligible_full_span": "F",
+          "remaining_path": "F"
+        },
+        "fills": {
+          "BAR": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          },
+          "GIU": {
+            "filled": true,
+            "cents": 69,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1783865397.812,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1783874300,
+              "span_start_epoch": 1783831858,
+              "span_end_epoch": 1783874300,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": [
+                "W1TT-C-001"
+              ]
+            },
+            "reason": null
+          }
+        },
+        "captured_cents": 0,
+        "offered_cents": 7,
+        "capture_ratio": 0,
+        "ages": [
+          {
+            "leg": "GIU",
+            "receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+            "minutes": 240.13019998470944,
+            "order_lineage_age_minutes": 390.88019993305204,
+            "current_price_age_minutes": 240.13019998470944,
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-615"
+          }
+        ],
+        "ruler": {
+          "role": "RULER — NOT AN OS INPUT",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "1c02b3084496dfdd37a4425533bb6f43dc3f334c3a0f89dc1955c564bc7000a0",
+          "row_number": 63,
+          "row_csv": "26JUL12GIUBAR,KXATPCHALLENGERMATCH-26JUL12GIUBAR,ATP_CHALL,1783831340,1783831340,1783881720,1783884600.0,BAR,GIU,1783831858,31.5,16,1783875275.3,31,1783876666.0,6103.89,1950.25,STILL,-0.5,1783880198,68,1783880243.7,POST_BELL_INVALID,1783831858,67.0,49,1783876335.0,73,1783876419.5,2164.28,1557.74,MOVER,6.0,1783880198,,,,1783831858,,,1783876740.0,1783882818.0,1783876740.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783831858,1783876740.0,OK,PARTIAL_FOR_REASON,",
+          "verified_span": "OK",
+          "status": "OK",
+          "reason": null,
+          "span_start_epoch": 1783831858,
+          "span_end_epoch": 1783874300,
+          "bell_epoch": 1783874300,
+          "bell_source": "BOOK_SIGNATURE_OPERATOR_RULED",
+          "table_bell_epoch": 1783874300,
+          "table_bell_source": "BOOK_SIGNATURE_OPERATOR_RULED",
+          "table_bell_delta_seconds": 0,
+          "legs": {
+            "BAR": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "anchor_cents": "legA_open_postformation_c"
+              },
+              "anchor_cents": 31.5,
+              "floor_cents": 27,
+              "floor_epoch": 1783841801.305,
+              "minutes_to_bell": 541.6449166655541,
+              "line": "BAR 27¢ @ 541.64m to bell",
+              "marker_label": "BAR FLOOR · RECORDED 27¢ @ 541.64m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 27¢ · 541m to bell",
+              "hover_note": "Recorded floor 27¢ printed here · 541m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            },
+            "GIU": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "anchor_cents": "legB_open_postformation_c"
+              },
+              "anchor_cents": 67,
+              "floor_cents": 66,
+              "floor_epoch": 1783869375.227,
+              "minutes_to_bell": 82.07955000003179,
+              "line": "GIU 66¢ @ 82.08m to bell",
+              "marker_label": "GIU FLOOR · RECORDED 66¢ @ 82.08m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 66¢ · 82m to bell",
+              "hover_note": "Recorded floor 66¢ printed here · 82m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            }
+          },
+          "favorite_leg": "GIU",
+          "underdog_leg": "BAR",
+          "pair": {
+            "sum_cents": 93,
+            "discount_cents": 7,
+            "reason": null,
+            "line": "best capturable = 66 + 27 = 93¢",
+            "discount_line": "7¢ under par",
+            "compact_line": "best capturable 93¢ · 7¢ under par"
+          },
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [
+            {
+              "correction_id": "W1TT-C-001",
+              "row_sha256": "7d70b175082dd8142aaabdc66f51514b781c849d714d989bf2e72cd8e5b44ad2"
+            }
+          ],
+          "effective_row": {
+            "code": "26JUL12GIUBAR",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+            "category": "ATP_CHALL",
+            "recorder_open_epoch": "1783831340",
+            "w1_left_epoch": "1783831340",
+            "w1_right_epoch": "1783881720",
+            "scheduled_start_epoch": "1783884600.0",
+            "legA": "BAR",
+            "legB": "GIU",
+            "legA_formation_end_epoch": "1783831858",
+            "legA_open_postformation_c": 31.5,
+            "legA_floor_c": 27,
+            "legA_floor_epoch": 1783841801.305,
+            "legA_close_c": 32,
+            "legA_close_epoch": 1783864581.746,
+            "legA_contracts": 889.08,
+            "legA_premium_usd": "1950.25",
+            "legA_journey": "STILL",
+            "legA_net_travel_c": "-0.5",
+            "legA_us_first_post_epoch": "1783880198",
+            "legA_us_fill_c": 21,
+            "legA_us_fill_epoch": 1783875779.114,
+            "legA_us_fill_stamp": "POST_BELL_INVALID (24.6 min after bell)",
+            "legB_formation_end_epoch": "1783831858",
+            "legB_open_postformation_c": 67,
+            "legB_floor_c": 66,
+            "legB_floor_epoch": 1783869375.227,
+            "legB_close_c": 66,
+            "legB_close_epoch": 1783872611.499,
+            "legB_contracts": 1400,
+            "legB_premium_usd": "1557.74",
+            "legB_journey": "MOVER",
+            "legB_net_travel_c": "6.0",
+            "legB_us_first_post_epoch": "1783880198",
+            "legB_us_fill_c": 69,
+            "legB_us_fill_epoch": 1783841972.759,
+            "legB_us_fill_stamp": "PRE_BELL_VALID",
+            "formation_end_game": "1783831858",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "1783876740.0",
+            "kalshi_close_time_epoch": "1783882818.0",
+            "bell_epoch": 1783874300,
+            "bell_source": "BOOK_SIGNATURE_OPERATOR_RULED",
+            "bell_precision": "+-60 s",
+            "span_start_epoch": 1783831858,
+            "span_end_epoch": 1783874300,
+            "verified_span": "OK",
+            "pair_state": "PARTIAL_FOR_REASON (GIU only); locked_delta_valid_fills_c null",
+            "locked_delta_valid_fills_c": "",
+            "legA_prints_in_span": 8,
+            "legB_prints_in_span": 14,
+            "game_ruler": "not complete"
+          },
+          "row_csv_role": "Original pinned row, before correction overlays"
+        },
+        "grade_provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "1c02b3084496dfdd37a4425533bb6f43dc3f334c3a0f89dc1955c564bc7000a0",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "b9ec30551297e8d87acc5ee5a8021345a50db1b3e2f4a736b74e8b33c4afeb71",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "1cc228611f4412e05ab6045468b916110c0c6c3819959afc8d6b03e105109be7",
+          "stage_inputs_sha256": "f755d30236cc7564f88d8b09f3c7e7f0f6cf28f0b56dad3db5730b3eb72b89fc",
+          "stage_files_count": 246,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+          "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
+          "grade_contract_sha256": "003597cede2f48178898b1b80ad90f79530020d5a8188e5383e314d9dd442fc8",
+          "grade_rulers_sha256": "218224dd8148a1bb5208e680d4b013393996e4465e7211a78c8956eafe9eb3ce",
+          "grade_measurements_sha256": "3877abaa1a2872f0fb62c024646a8a776f8a900341bf51c90f6a3de990284822",
+          "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
+          "fields_sha256": "9d5231ff86cd7962844a58e6c8e5b12b98a7653eefd4500dfc8dede1d093bf98",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c"
+        }
+      },
+      "preserved_history_snapshots": 2,
+      "checks": "PASS — source bindings, immutable history prefix, first eligible, future target boundaries, all-fill revalidation"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "before": {
+        "letter": "F",
+        "governing": "MACRO · MICRO · OUTCOME",
+        "section_letters": {
+          "SENTENCE": "C",
+          "MACRO": "F",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "F"
+        },
+        "card": [
+          "SENTENCE: Q 69.35% · X 69.35% organ share",
+          "MACRO: LAJ: QUIET_WOBBLE / ONE_STEP_DOWN · SVA: QUIET_WOBBLE / DRIFT_UP",
+          "MICRO: LAJ: 2¢ / 299.61m error · SVA: 7¢ / 964.97m error",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 1 of 8¢ captured"
+        ],
+        "micro": {
+          "LAJ": {
+            "gate": 5,
+            "leg": "LAJ",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784078100",
+            "called_q50_floor_cents": 53,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 299.6133333325386,
+            "recorded_floor_cents": 51,
+            "recorded_floor_minutes_to_bell": 304.6133333325386,
+            "first_gate_within_2c_and_held": 5,
+            "reason": null
+          },
+          "SVA": {
+            "gate": 5,
+            "leg": "SVA",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|ATLAS_GATE|1784078100",
+            "called_q50_floor_cents": 48,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 7,
+            "timing_error_minutes": 964.9700000007947,
+            "recorded_floor_cents": 41,
+            "recorded_floor_minutes_to_bell": 969.9700000007947,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          }
+        },
+        "micro_mode_grades": null,
+        "fills": {
+          "LAJ": {
+            "filled": true,
+            "cents": 54,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1784050973.062,
+            "valid_span_fill": true,
+            "reason": null
+          },
+          "SVA": {
+            "filled": true,
+            "cents": 45,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1784073810.907,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "captured_cents": 1,
+        "offered_cents": 8,
+        "capture_ratio": 0.125,
+        "ages": [
+          {
+            "leg": "LAJ",
+            "receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+            "minutes": 238.85103328227996
+          },
+          {
+            "leg": "SVA",
+            "receipt": "2ce0ce6a-df98-6075-9abc-e0e7cf733a6e",
+            "minutes": 893.448449865977
+          }
+        ],
+        "ruler": null,
+        "grade_provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "1fc23f67385259fef95622a3020477439675566cdbb0332c18e6b7335852aec1",
+          "face_sha256": "e373e3494c70c78461713f14330541403d86921b6c4a5fdf3b90466fc6f9d7ea",
+          "stage_inputs_sha256": "724257bba9c21f1e6404991a93ccd289e17600462867cecace4a0bfab8f901c9",
+          "stage_files_count": 135,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "dad3e3e2f44a8806ac7b2c28c1d747a0b5a90321d0637444323e9b392e014d0d",
+          "grade_builder_sha256": "6e4efa0322f662aa0f67a9b6b9d898d344432407fc0173c1d8ed7d0f4fbef059",
+          "grade_contract_sha256": "49ef29ab1cc7af0c5913d188b47f556bb75573484b01b9c4efc28643f7773ebd",
+          "grade_rulers_sha256": "d4f91a6dde09fbd980057208a5ddd3622e874ae70ce391ed30f8f96c0429f8b7",
+          "fields_sha256": "4b0286526a7d22afe6df78227cd067fbdb512d0593fecb3202db2a3cff5d607d",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c"
+        }
+      },
+      "after": {
+        "letter": "F",
+        "governing": "MACRO · MICRO · OUTCOME",
+        "section_letters": {
+          "SENTENCE": "C",
+          "MACRO": "F",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "F"
+        },
+        "card": [
+          "SENTENCE: Q 69.35% · X 69.35% authored (token metric)",
+          "MACRO: LAJ: QUIET_WOBBLE / ONE_STEP_DOWN · SVA: QUIET_WOBBLE / DRIFT_UP",
+          "MICRO: LAJ: first/full 7¢ / 584.54m · remaining MAE 4.91¢ / 242.02m · SVA: first/full 2¢ / 68.58m · remaining MAE 1.88¢ / 177.73m",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 1 of 8¢ captured"
+        ],
+        "micro": {
+          "LAJ": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322",
+              "receipt_order": 38,
+              "epoch": 1784020204.000008,
+              "minutes_to_bell": 969.9333331982294,
+              "q50": 58,
+              "q_author": "POOL_FIRST-TICK-ONLY",
+              "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+              "deadline_epoch": 1784025051,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 51,
+                "floor_epoch": 1784060123.2
+              },
+              "floor_already_observed_at_call": false,
+              "floor_error_cents": 7,
+              "timing_error_minutes": 584.5366666674614,
+              "target_floor_cents": 51,
+              "target_floor_epoch": 1784060123.2,
+              "target_minutes_to_bell": 304.6133333325386
+            },
+            "remaining_path": {
+              "receipts_eligible": 97,
+              "receipts_scored": 97,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 4.907216494845361,
+              "mean_timing_error_minutes": 242.01844552632454,
+              "max_floor_error_cents": 9,
+              "max_timing_error_minutes": 616.2036500016849
+            },
+            "executable_future_print": {
+              "receipts_eligible": 97,
+              "receipts_scored": 95,
+              "receipts_unscored": 2,
+              "mean_floor_error_cents": 5.052631578947368,
+              "mean_timing_error_minutes": 248.90647894164968,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          },
+          "SVA": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322",
+              "receipt_order": 38,
+              "epoch": 1784020204.000008,
+              "minutes_to_bell": 969.9333331982294,
+              "q50": 39,
+              "q_author": "POOL_FIRST-TICK-ONLY",
+              "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+              "deadline_epoch": 1784024316.414281,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 41,
+                "floor_epoch": 1784020201.8
+              },
+              "floor_already_observed_at_call": true,
+              "floor_error_cents": 2,
+              "timing_error_minutes": 68.57690468231837,
+              "target_floor_cents": 41,
+              "target_floor_epoch": 1784020201.8,
+              "target_minutes_to_bell": 969.9700000007947
+            },
+            "remaining_path": {
+              "receipts_eligible": 97,
+              "receipts_scored": 97,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 1.8762886597938144,
+              "mean_timing_error_minutes": 177.73451718747407,
+              "max_floor_error_cents": 5,
+              "max_timing_error_minutes": 371.1531429688136
+            },
+            "executable_future_print": {
+              "receipts_eligible": 97,
+              "receipts_scored": 94,
+              "receipts_unscored": 3,
+              "mean_floor_error_cents": 2.978723404255319,
+              "mean_timing_error_minutes": 165.77031679956625,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          }
+        },
+        "micro_mode_grades": {
+          "first_eligible_full_span": "F",
+          "remaining_path": "F"
+        },
+        "fills": {
+          "LAJ": {
+            "filled": true,
+            "cents": 54,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1784050973.062,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784078400,
+              "span_start_epoch": 1784007603,
+              "span_end_epoch": 1784078400,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          },
+          "SVA": {
+            "filled": true,
+            "cents": 45,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1784073810.907,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784078400,
+              "span_start_epoch": 1784007603,
+              "span_end_epoch": 1784078400,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          }
+        },
+        "captured_cents": 1,
+        "offered_cents": 8,
+        "capture_ratio": 0.125,
+        "ages": [
+          {
+            "leg": "LAJ",
+            "receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+            "minutes": 187.6510333021482,
+            "order_lineage_age_minutes": 238.85103328227996,
+            "current_price_age_minutes": 187.6510333021482,
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3281",
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3784"
+          },
+          {
+            "leg": "SVA",
+            "receipt": "2ce0ce6a-df98-6075-9abc-e0e7cf733a6e",
+            "minutes": 388.24844998518626,
+            "order_lineage_age_minutes": 893.448449865977,
+            "current_price_age_minutes": 388.24844998518626,
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322",
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4458"
+          }
+        ],
+        "ruler": {
+          "role": "RULER — NOT AN OS INPUT",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "1fc23f67385259fef95622a3020477439675566cdbb0332c18e6b7335852aec1",
+          "row_number": 325,
+          "row_csv": "26JUL14LAJSVA,KXATPCHALLENGERMATCH-26JUL14LAJSVA,ATP_CHALL,1784007323,1784007323,1784078400,1784060400.0,LAJ,SVA,1784007603,59.0,51,1784060123.2,53,1784078361.3,35261.69,18953.47,MOVER,-6.0,1784036629,53,1784052830.4,PRE_BELL_VALID,1784007603,41.0,41,1784020201.8,48,1784078219.7,16530.56,7902.21,MOVER,7.0,1784036629,45,1784042394.3,PRE_BELL_VALID,1784007603,1784078400,,,1784088897.0,1784078400,MACHINE_RECEIPT,\"EXACT (18 receipts, zero spread)\",1784007603,1784078400,OK,COMPLETE_AT_DELTA,2",
+          "verified_span": "OK",
+          "status": "OK",
+          "reason": null,
+          "span_start_epoch": 1784007603,
+          "span_end_epoch": 1784078400,
+          "bell_epoch": 1784078400,
+          "bell_source": "MACHINE_RECEIPT",
+          "table_bell_epoch": 1784078400,
+          "table_bell_source": "MACHINE_RECEIPT",
+          "table_bell_delta_seconds": 0,
+          "legs": {
+            "LAJ": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "anchor_cents": "legA_open_postformation_c"
+              },
+              "anchor_cents": 59,
+              "floor_cents": 51,
+              "floor_epoch": 1784060123.2,
+              "minutes_to_bell": 304.6133333325386,
+              "line": "LAJ 51¢ @ 304.61m to bell",
+              "marker_label": "LAJ FLOOR · RECORDED 51¢ @ 304.61m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 51¢ · 304m to bell",
+              "hover_note": "Recorded floor 51¢ printed here · 304m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            },
+            "SVA": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "anchor_cents": "legB_open_postformation_c"
+              },
+              "anchor_cents": 41,
+              "floor_cents": 41,
+              "floor_epoch": 1784020201.8,
+              "minutes_to_bell": 969.9700000007947,
+              "line": "SVA 41¢ @ 969.97m to bell",
+              "marker_label": "SVA FLOOR · RECORDED 41¢ @ 969.97m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 41¢ · 969m to bell",
+              "hover_note": "Recorded floor 41¢ printed here · 969m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            }
+          },
+          "favorite_leg": "LAJ",
+          "underdog_leg": "SVA",
+          "pair": {
+            "sum_cents": 92,
+            "discount_cents": 8,
+            "reason": null,
+            "line": "best capturable = 51 + 41 = 92¢",
+            "discount_line": "8¢ under par",
+            "compact_line": "best capturable 92¢ · 8¢ under par"
+          },
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "effective_row": {
+            "code": "26JUL14LAJSVA",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+            "category": "ATP_CHALL",
+            "recorder_open_epoch": "1784007323",
+            "w1_left_epoch": "1784007323",
+            "w1_right_epoch": "1784078400",
+            "scheduled_start_epoch": "1784060400.0",
+            "legA": "LAJ",
+            "legB": "SVA",
+            "legA_formation_end_epoch": "1784007603",
+            "legA_open_postformation_c": "59.0",
+            "legA_floor_c": "51",
+            "legA_floor_epoch": "1784060123.2",
+            "legA_close_c": "53",
+            "legA_close_epoch": "1784078361.3",
+            "legA_contracts": "35261.69",
+            "legA_premium_usd": "18953.47",
+            "legA_journey": "MOVER",
+            "legA_net_travel_c": "-6.0",
+            "legA_us_first_post_epoch": "1784036629",
+            "legA_us_fill_c": "53",
+            "legA_us_fill_epoch": "1784052830.4",
+            "legA_us_fill_stamp": "PRE_BELL_VALID",
+            "legB_formation_end_epoch": "1784007603",
+            "legB_open_postformation_c": "41.0",
+            "legB_floor_c": "41",
+            "legB_floor_epoch": "1784020201.8",
+            "legB_close_c": "48",
+            "legB_close_epoch": "1784078219.7",
+            "legB_contracts": "16530.56",
+            "legB_premium_usd": "7902.21",
+            "legB_journey": "MOVER",
+            "legB_net_travel_c": "7.0",
+            "legB_us_first_post_epoch": "1784036629",
+            "legB_us_fill_c": "45",
+            "legB_us_fill_epoch": "1784042394.3",
+            "legB_us_fill_stamp": "PRE_BELL_VALID",
+            "formation_end_game": "1784007603",
+            "bell_machine_epoch": "1784078400",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "",
+            "kalshi_close_time_epoch": "1784088897.0",
+            "bell_epoch": "1784078400",
+            "bell_source": "MACHINE_RECEIPT",
+            "bell_precision": "EXACT (18 receipts, zero spread)",
+            "span_start_epoch": "1784007603",
+            "span_end_epoch": "1784078400",
+            "verified_span": "OK",
+            "pair_state": "COMPLETE_AT_DELTA",
+            "locked_delta_valid_fills_c": "2"
+          },
+          "row_csv_role": "Original pinned row, before correction overlays"
+        },
+        "grade_provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "1fc23f67385259fef95622a3020477439675566cdbb0332c18e6b7335852aec1",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "6aebf3ade8d309d10a6e920b3e86e2efa45fc185667c3eb531c4906a0181eb9f",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "e373e3494c70c78461713f14330541403d86921b6c4a5fdf3b90466fc6f9d7ea",
+          "stage_inputs_sha256": "724257bba9c21f1e6404991a93ccd289e17600462867cecace4a0bfab8f901c9",
+          "stage_files_count": 135,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+          "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
+          "grade_contract_sha256": "003597cede2f48178898b1b80ad90f79530020d5a8188e5383e314d9dd442fc8",
+          "grade_rulers_sha256": "218224dd8148a1bb5208e680d4b013393996e4465e7211a78c8956eafe9eb3ce",
+          "grade_measurements_sha256": "3877abaa1a2872f0fb62c024646a8a776f8a900341bf51c90f6a3de990284822",
+          "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
+          "fields_sha256": "9d5231ff86cd7962844a58e6c8e5b12b98a7653eefd4500dfc8dede1d093bf98",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c"
+        }
+      },
+      "preserved_history_snapshots": 2,
+      "checks": "PASS — source bindings, immutable history prefix, first eligible, future target boundaries, all-fill revalidation"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "before": {
+        "letter": "F",
+        "governing": "MACRO · MICRO · OUTCOME",
+        "section_letters": {
+          "SENTENCE": "A",
+          "MACRO": "F",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "F"
+        },
+        "card": [
+          "SENTENCE: Q 95.87% · X 95.87% organ share",
+          "MACRO: PAL: QUIET_WOBBLE / LATE_BREAK_UP · URS: QUIET_WOBBLE / LATE_BREAK_DOWN",
+          "MICRO: PAL: 3¢ / 346.42m error · URS: 4¢ / 154.16m error",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 0 of 3¢ captured"
+        ],
+        "micro": {
+          "PAL": {
+            "gate": 5,
+            "leg": "PAL",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL|ATLAS_GATE|1784041947",
+            "called_q50_floor_cents": 43,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 346.4233333349228,
+            "recorded_floor_cents": 40,
+            "recorded_floor_minutes_to_bell": 351.4233333349228,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          },
+          "URS": {
+            "gate": 5,
+            "leg": "URS",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL|ATLAS_GATE|1784041947",
+            "called_q50_floor_cents": 61,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 4,
+            "timing_error_minutes": 154.15666666825612,
+            "recorded_floor_cents": 57,
+            "recorded_floor_minutes_to_bell": 159.15666666825612,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          }
+        },
+        "micro_mode_grades": null,
+        "fills": {
+          "PAL": {
+            "filled": true,
+            "cents": 43,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1784035631.709,
+            "valid_span_fill": true,
+            "reason": null
+          },
+          "URS": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          }
+        },
+        "captured_cents": 0,
+        "offered_cents": 3,
+        "capture_ratio": 0,
+        "ages": [
+          {
+            "leg": "PAL",
+            "receipt": "c0a9b9a6-2191-5e33-f09e-2e92e56d313c",
+            "minutes": 205.8451498866081
+          }
+        ],
+        "ruler": null,
+        "grade_provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "b68855b99823a597a79bce4f667d6a1540b24799154da2593fe72ebe8f651313",
+          "face_sha256": "2def58b3c4c7eea6ca98d9048e17e7e85bc2bcaac3241efac3936e0e4a71c904",
+          "stage_inputs_sha256": "78aa5472874469c16147820b7502936b16738264e1a2242daa1601930e753c7e",
+          "stage_files_count": 1216,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "dad3e3e2f44a8806ac7b2c28c1d747a0b5a90321d0637444323e9b392e014d0d",
+          "grade_builder_sha256": "6e4efa0322f662aa0f67a9b6b9d898d344432407fc0173c1d8ed7d0f4fbef059",
+          "grade_contract_sha256": "49ef29ab1cc7af0c5913d188b47f556bb75573484b01b9c4efc28643f7773ebd",
+          "grade_rulers_sha256": "d4f91a6dde09fbd980057208a5ddd3622e874ae70ce391ed30f8f96c0429f8b7",
+          "fields_sha256": "4b0286526a7d22afe6df78227cd067fbdb512d0593fecb3202db2a3cff5d607d",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c"
+        }
+      },
+      "after": {
+        "letter": "F",
+        "governing": "MACRO · OUTCOME",
+        "section_letters": {
+          "SENTENCE": "A",
+          "MACRO": "F",
+          "MICRO": "D",
+          "HANDS": "A",
+          "OUTCOME": "F"
+        },
+        "card": [
+          "SENTENCE: Q 95.87% · X 95.87% authored (token metric)",
+          "MACRO: PAL: QUIET_WOBBLE / LATE_BREAK_UP · URS: QUIET_WOBBLE / LATE_BREAK_DOWN",
+          "MICRO: PAL: first/full 0¢ / 220.11m · remaining MAE 3.8¢ / 178.68m · URS: first/full 6¢ / 50.56m · remaining MAE 5.59¢ / 21.27m",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 0 of 4¢ captured"
+        ],
+        "micro": {
+          "PAL": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+              "receipt_order": 50,
+              "epoch": 1784021162.00001,
+              "minutes_to_bell": 351.41666649977367,
+              "q50": 39,
+              "q_author": "POOL_FIRST-TICK-ONLY",
+              "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+              "deadline_epoch": 1784028860,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 39,
+                "floor_epoch": 1784042066.596
+              },
+              "floor_already_observed_at_call": false,
+              "floor_error_cents": 0,
+              "timing_error_minutes": 220.1099333326022,
+              "target_floor_cents": 39,
+              "target_floor_epoch": 1784042066.596,
+              "target_minutes_to_bell": 3.0067333340644837
+            },
+            "remaining_path": {
+              "receipts_eligible": 1166,
+              "receipts_scored": 1166,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 3.797598627787307,
+              "mean_timing_error_minutes": 178.68216903567156,
+              "max_floor_error_cents": 4,
+              "max_timing_error_minutes": 220.1099333326022
+            },
+            "executable_future_print": {
+              "receipts_eligible": 1166,
+              "receipts_scored": 1163,
+              "receipts_unscored": 3,
+              "mean_floor_error_cents": 3.809114359415305,
+              "mean_timing_error_minutes": 179.14368712719593,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          },
+          "URS": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+              "receipt_order": 50,
+              "epoch": 1784021162.00001,
+              "minutes_to_bell": 351.41666649977367,
+              "q50": 63,
+              "q_author": "POOL_FIRST-TICK-ONLY",
+              "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+              "deadline_epoch": 1784029664,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 57,
+                "floor_epoch": 1784032697.601
+              },
+              "floor_already_observed_at_call": false,
+              "floor_error_cents": 6,
+              "timing_error_minutes": 50.560016667842866,
+              "target_floor_cents": 57,
+              "target_floor_epoch": 1784032697.601,
+              "target_minutes_to_bell": 159.1566499988238
+            },
+            "remaining_path": {
+              "receipts_eligible": 1166,
+              "receipts_scored": 1166,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 5.590909090909091,
+              "mean_timing_error_minutes": 21.270094768731095,
+              "max_floor_error_cents": 6,
+              "max_timing_error_minutes": 55.183256264527635
+            },
+            "executable_future_print": {
+              "receipts_eligible": 1166,
+              "receipts_scored": 1156,
+              "receipts_unscored": 10,
+              "mean_floor_error_cents": 5.641003460207613,
+              "mean_timing_error_minutes": 21.478276235363605,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          }
+        },
+        "micro_mode_grades": {
+          "first_eligible_full_span": "D",
+          "remaining_path": "D"
+        },
+        "fills": {
+          "PAL": {
+            "filled": true,
+            "cents": 43,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1784035631.709,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784042247,
+              "span_start_epoch": 1784001495,
+              "span_end_epoch": 1784042247,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": [
+                "W1TT-C-002"
+              ]
+            },
+            "reason": null
+          },
+          "URS": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          }
+        },
+        "captured_cents": 0,
+        "offered_cents": 4,
+        "capture_ratio": 0,
+        "ages": [
+          {
+            "leg": "PAL",
+            "receipt": "c0a9b9a6-2191-5e33-f09e-2e92e56d313c",
+            "minutes": 189.3951499859492,
+            "order_lineage_age_minutes": 205.8451498866081,
+            "current_price_age_minutes": 189.3951499859492,
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3471",
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-3608"
+          }
+        ],
+        "ruler": {
+          "role": "RULER — NOT AN OS INPUT",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "b68855b99823a597a79bce4f667d6a1540b24799154da2593fe72ebe8f651313",
+          "row_number": 362,
+          "row_csv": "26JUL14URSPAL,KXATPCHALLENGERMATCH-26JUL14URSPAL,ATP_CHALL,1783998959,1783998959,1784042040,1784052000.0,PAL,URS,1784001495,38.0,40,1784021161.6,41,1784042037.6,715.49,296.68,STILL,3.0,,,,,1784001495,62.0,57,1784032697.6,61,1784041639.6,572.42,340.87,STILL,-1.0,,,,,1784001495,,,1784045100.0,1784049603.0,1784045100.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784001495,1784042040,OK,NEITHER_FOR_REASON,",
+          "verified_span": "OK",
+          "status": "OK",
+          "reason": null,
+          "span_start_epoch": 1784001495,
+          "span_end_epoch": 1784042247,
+          "bell_epoch": 1784042247,
+          "bell_source": "TAPE_SIGNATURE_OPERATOR_RULED",
+          "table_bell_epoch": 1784042247,
+          "table_bell_source": "TAPE_SIGNATURE_OPERATOR_RULED",
+          "table_bell_delta_seconds": 0,
+          "legs": {
+            "PAL": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "anchor_cents": "legA_open_postformation_c"
+              },
+              "anchor_cents": 38,
+              "floor_cents": 39,
+              "floor_epoch": 1784042066.596,
+              "minutes_to_bell": 3.0067333340644837,
+              "line": "PAL 39¢ @ 3.01m to bell",
+              "marker_label": "PAL FLOOR · RECORDED 39¢ @ 3.01m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 39¢ · 3m to bell",
+              "hover_note": "Recorded floor 39¢ printed here · 3m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            },
+            "URS": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "anchor_cents": "legB_open_postformation_c"
+              },
+              "anchor_cents": 62,
+              "floor_cents": 57,
+              "floor_epoch": 1784032697.601,
+              "minutes_to_bell": 159.1566499988238,
+              "line": "URS 57¢ @ 159.16m to bell",
+              "marker_label": "URS FLOOR · RECORDED 57¢ @ 159.16m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 57¢ · 159m to bell",
+              "hover_note": "Recorded floor 57¢ printed here · 159m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            }
+          },
+          "favorite_leg": "URS",
+          "underdog_leg": "PAL",
+          "pair": {
+            "sum_cents": 96,
+            "discount_cents": 4,
+            "reason": null,
+            "line": "best capturable = 57 + 39 = 96¢",
+            "discount_line": "4¢ under par",
+            "compact_line": "best capturable 96¢ · 4¢ under par"
+          },
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [
+            {
+              "correction_id": "W1TT-C-002",
+              "row_sha256": "f887be715446e48aaf1aa04daa37c1b0808ae559b1e47d713acf3c94b373a062"
+            }
+          ],
+          "effective_row": {
+            "code": "26JUL14URSPAL",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+            "category": "ATP_CHALL",
+            "recorder_open_epoch": "1783998959",
+            "w1_left_epoch": "1783998959",
+            "w1_right_epoch": "1784042040",
+            "scheduled_start_epoch": "1784052000.0",
+            "legA": "PAL",
+            "legB": "URS",
+            "legA_formation_end_epoch": "1784001495",
+            "legA_open_postformation_c": 38,
+            "legA_floor_c": 39,
+            "legA_floor_epoch": 1784042066.596,
+            "legA_close_c": 41,
+            "legA_close_epoch": 1784042108.538,
+            "legA_contracts": 731.49,
+            "legA_premium_usd": "296.68",
+            "legA_journey": "STILL",
+            "legA_net_travel_c": "3.0",
+            "legA_us_first_post_epoch": "",
+            "legA_us_fill_c": 40,
+            "legA_us_fill_epoch": 1784041997.986,
+            "legA_us_fill_stamp": "PRE_BELL_VALID (249 s before bell)",
+            "legB_formation_end_epoch": "1784001495",
+            "legB_open_postformation_c": 62,
+            "legB_floor_c": 57,
+            "legB_floor_epoch": 1784032697.601,
+            "legB_close_c": 61,
+            "legB_close_epoch": 1784041639.585,
+            "legB_contracts": 572.42,
+            "legB_premium_usd": "340.87",
+            "legB_journey": "STILL",
+            "legB_net_travel_c": "-1.0",
+            "legB_us_first_post_epoch": "",
+            "legB_us_fill_c": 57,
+            "legB_us_fill_epoch": 1784032697.6,
+            "legB_us_fill_stamp": "PRE_BELL_VALID",
+            "formation_end_game": "1784001495",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "1784045100.0",
+            "kalshi_close_time_epoch": "1784049603.0",
+            "bell_epoch": 1784042247,
+            "bell_source": "TAPE_SIGNATURE_OPERATOR_RULED",
+            "bell_precision": "+-60 s",
+            "span_start_epoch": 1784001495,
+            "span_end_epoch": 1784042247,
+            "verified_span": "OK",
+            "pair_state": "COMPLETE_UNDER_PAR_VALID 97c delta 3 (unchanged)",
+            "locked_delta_valid_fills_c": "",
+            "legA_prints_in_span": 20,
+            "legB_prints_in_span": 21,
+            "note": "PAL's truth-table floor 40 @1784021161.6 was a print below the corrected floor 39? no: corrected floor 39 @1784042066 (181 s before bell) is lower than 40 and lawful; floor moves 40->39, closes unchanged"
+          },
+          "row_csv_role": "Original pinned row, before correction overlays"
+        },
+        "grade_provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "b68855b99823a597a79bce4f667d6a1540b24799154da2593fe72ebe8f651313",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "31e91de70d8a0c727a51bc410b9b105392e14c52a92799d7d3f21258d17ea178",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "2def58b3c4c7eea6ca98d9048e17e7e85bc2bcaac3241efac3936e0e4a71c904",
+          "stage_inputs_sha256": "78aa5472874469c16147820b7502936b16738264e1a2242daa1601930e753c7e",
+          "stage_files_count": 1216,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+          "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
+          "grade_contract_sha256": "003597cede2f48178898b1b80ad90f79530020d5a8188e5383e314d9dd442fc8",
+          "grade_rulers_sha256": "218224dd8148a1bb5208e680d4b013393996e4465e7211a78c8956eafe9eb3ce",
+          "grade_measurements_sha256": "3877abaa1a2872f0fb62c024646a8a776f8a900341bf51c90f6a3de990284822",
+          "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
+          "fields_sha256": "9d5231ff86cd7962844a58e6c8e5b12b98a7653eefd4500dfc8dede1d093bf98",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c"
+        }
+      },
+      "preserved_history_snapshots": 6,
+      "checks": "PASS — source bindings, immutable history prefix, first eligible, future target boundaries, all-fill revalidation"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "before": {
+        "letter": "F",
+        "governing": "MACRO · MICRO",
+        "section_letters": {
+          "SENTENCE": "C",
+          "MACRO": "F",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "C"
+        },
+        "card": [
+          "SENTENCE: Q 77.38% · X 77.38% organ share",
+          "MACRO: ALT: ROUND_TRIP / DRIFT_UP · GAS: ROUND_TRIP / LATE_BREAK_DOWN",
+          "MICRO: ALT: 6¢ / 3357.56m error · GAS: 0¢ / 420.54m error",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 2 of 4¢ captured"
+        ],
+        "micro": {
+          "ALT": {
+            "gate": 5,
+            "leg": "ALT",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784034900",
+            "called_q50_floor_cents": 64,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 3357.5583333333334,
+            "recorded_floor_cents": 58,
+            "recorded_floor_minutes_to_bell": 3362.5583333333334,
+            "first_gate_within_2c_and_held": null,
+            "reason": null
+          },
+          "GAS": {
+            "gate": 5,
+            "leg": "GAS",
+            "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784034900",
+            "called_q50_floor_cents": 38,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 0,
+            "timing_error_minutes": 420.5383333325386,
+            "recorded_floor_cents": 38,
+            "recorded_floor_minutes_to_bell": 425.5383333325386,
+            "first_gate_within_2c_and_held": 720,
+            "reason": null
+          }
+        },
+        "micro_mode_grades": null,
+        "fills": {
+          "ALT": {
+            "filled": true,
+            "cents": 60,
+            "vs_floor_cents": 2,
+            "fill_epoch": 1784000663.801,
+            "valid_span_fill": true,
+            "reason": null
+          },
+          "GAS": {
+            "filled": true,
+            "cents": 38,
+            "vs_floor_cents": 0,
+            "fill_epoch": 1784025043.114,
+            "valid_span_fill": true,
+            "reason": null
+          }
+        },
+        "captured_cents": 2,
+        "offered_cents": 4,
+        "capture_ratio": 0.5,
+        "ages": [
+          {
+            "leg": "ALT",
+            "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+            "minutes": 2998.9300166368484
+          },
+          {
+            "leg": "GAS",
+            "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+            "minutes": 3581.8852333188056
+          }
+        ],
+        "ruler": null,
+        "grade_provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+          "face_sha256": "b64174de7ba4ee94956b6da1bc734a284a28dd3bde4036c6e5dbe281021fd435",
+          "stage_inputs_sha256": "84fa7bf69e8b04349a44ce8335d85a793133cc31e94438c97ef5903204ceba94",
+          "stage_files_count": 169,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "dad3e3e2f44a8806ac7b2c28c1d747a0b5a90321d0637444323e9b392e014d0d",
+          "grade_builder_sha256": "6e4efa0322f662aa0f67a9b6b9d898d344432407fc0173c1d8ed7d0f4fbef059",
+          "grade_contract_sha256": "49ef29ab1cc7af0c5913d188b47f556bb75573484b01b9c4efc28643f7773ebd",
+          "grade_rulers_sha256": "d4f91a6dde09fbd980057208a5ddd3622e874ae70ce391ed30f8f96c0429f8b7",
+          "fields_sha256": "4b0286526a7d22afe6df78227cd067fbdb512d0593fecb3202db2a3cff5d607d",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c"
+        }
+      },
+      "after": {
+        "letter": "F",
+        "governing": "MACRO · MICRO",
+        "section_letters": {
+          "SENTENCE": "C",
+          "MACRO": "F",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "C"
+        },
+        "card": [
+          "SENTENCE: Q 77.38% · X 77.38% authored (token metric)",
+          "MACRO: ALT: ROUND_TRIP / DRIFT_UP · GAS: ROUND_TRIP / LATE_BREAK_DOWN",
+          "MICRO: ALT: first/full 1¢ / 1522.36m · remaining MAE 0.74¢ / 215.09m · GAS: first/full 3¢ / 196.41m · remaining MAE 0.98¢ / 83.26m",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 2 of 4¢ captured"
+        ],
+        "micro": {
+          "ALT": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+              "receipt_order": 20,
+              "epoch": 1783820728.000002,
+              "minutes_to_bell": 3574.533333301544,
+              "q50": 57,
+              "q_author": "POOL_BASE",
+              "x_author": "POOL_BASE_FLOOR_MTB",
+              "deadline_epoch": 1783924788,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 58,
+                "floor_epoch": 1783833446.5
+              },
+              "floor_already_observed_at_call": false,
+              "floor_error_cents": 1,
+              "timing_error_minutes": 1522.3583333333333,
+              "target_floor_cents": 58,
+              "target_floor_epoch": 1783833446.5,
+              "target_minutes_to_bell": 3362.5583333333334
+            },
+            "remaining_path": {
+              "receipts_eligible": 149,
+              "receipts_scored": 149,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 0.738255033557047,
+              "mean_timing_error_minutes": 215.0870268457955,
+              "max_floor_error_cents": 3,
+              "max_timing_error_minutes": 1522.3575166662533
+            },
+            "executable_future_print": {
+              "receipts_eligible": 149,
+              "receipts_scored": 146,
+              "receipts_unscored": 3,
+              "mean_floor_error_cents": 0.9315068493150684,
+              "mean_timing_error_minutes": 170.17955354846777,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          },
+          "GAS": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148",
+              "receipt_order": 18,
+              "epoch": 1783810130.000001,
+              "minutes_to_bell": 3751.166666650772,
+              "q50": 41,
+              "q_author": "POOL_BASE",
+              "x_author": "POOL_BASE_FLOOR_MTB",
+              "deadline_epoch": 1783997882.837823,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 38,
+                "floor_epoch": 1784009667.7
+              },
+              "floor_already_observed_at_call": false,
+              "floor_error_cents": 3,
+              "timing_error_minutes": 196.41436961889266,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1784009667.7,
+              "target_minutes_to_bell": 425.5383333325386
+            },
+            "remaining_path": {
+              "receipts_eligible": 151,
+              "receipts_scored": 151,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 0.9801324503311258,
+              "mean_timing_error_minutes": 83.25917004025797,
+              "max_floor_error_cents": 3,
+              "max_timing_error_minutes": 609.3984899361928
+            },
+            "executable_future_print": {
+              "receipts_eligible": 151,
+              "receipts_scored": 146,
+              "receipts_unscored": 5,
+              "mean_floor_error_cents": 1.0136986301369864,
+              "mean_timing_error_minutes": 74.70249910433535,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          }
+        },
+        "micro_mode_grades": {
+          "first_eligible_full_span": "F",
+          "remaining_path": "F"
+        },
+        "fills": {
+          "ALT": {
+            "filled": true,
+            "cents": 60,
+            "vs_floor_cents": 2,
+            "fill_epoch": 1784000663.801,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784035200,
+              "span_start_epoch": 1783790234,
+              "span_end_epoch": 1784035200,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          },
+          "GAS": {
+            "filled": true,
+            "cents": 38,
+            "vs_floor_cents": 0,
+            "fill_epoch": 1784025043.114,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784035200,
+              "span_start_epoch": 1783790234,
+              "span_end_epoch": 1784035200,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          }
+        },
+        "captured_cents": 2,
+        "offered_cents": 4,
+        "capture_ratio": 0.5,
+        "ages": [
+          {
+            "leg": "ALT",
+            "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+            "minutes": 6.091066670417786,
+            "order_lineage_age_minutes": 2998.9300166368484,
+            "current_price_age_minutes": 6.091066670417786,
+            "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+            "current_price_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96"
+          },
+          {
+            "leg": "GAS",
+            "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+            "minutes": 10.7185666680336,
+            "order_lineage_age_minutes": 3581.8852333188056,
+            "current_price_age_minutes": 10.7185666680336,
+            "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148",
+            "current_price_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400"
+          }
+        ],
+        "ruler": {
+          "role": "RULER — NOT AN OS INPUT",
+          "event_id": "KXATPMATCH-26JUL12ALTGAS",
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+          "row_number": 2,
+          "row_csv": "26JUL12ALTGAS,KXATPMATCH-26JUL12ALTGAS,ATP_MAIN,1783777733,1783777733,1784035200,1783854000.0,ALT,GAS,1783790234,57.0,58,1783833446.5,65,1784035191.2,26863.91,16855.19,MOVER,8.0,1783862363,,,,1783790234,43.0,38,1784009667.7,38,1784035157.2,9760.39,3821.17,MOVER,-5.0,1783862363,41,1783877860.5,PRE_BELL_VALID,1783790234,1784035200,1784114025.0,,1784041324.0,1784035200,MACHINE_RECEIPT,\"EXACT (26 receipts, zero spread)\",1783790234,1784035200,OK,PARTIAL_FOR_REASON,",
+          "verified_span": "OK",
+          "status": "OK",
+          "reason": null,
+          "span_start_epoch": 1783790234,
+          "span_end_epoch": 1784035200,
+          "bell_epoch": 1784035200,
+          "bell_source": "MACHINE_RECEIPT",
+          "table_bell_epoch": 1784035200,
+          "table_bell_source": "MACHINE_RECEIPT",
+          "table_bell_delta_seconds": 0,
+          "legs": {
+            "ALT": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "anchor_cents": "legA_open_postformation_c"
+              },
+              "anchor_cents": 57,
+              "floor_cents": 58,
+              "floor_epoch": 1783833446.5,
+              "minutes_to_bell": 3362.5583333333334,
+              "line": "ALT 58¢ @ 3362.56m to bell",
+              "marker_label": "ALT FLOOR · RECORDED 58¢ @ 3362.56m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 58¢ · 3362m to bell",
+              "hover_note": "Recorded floor 58¢ printed here · 3362m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            },
+            "GAS": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "anchor_cents": "legB_open_postformation_c"
+              },
+              "anchor_cents": 43,
+              "floor_cents": 38,
+              "floor_epoch": 1784009667.7,
+              "minutes_to_bell": 425.5383333325386,
+              "line": "GAS 38¢ @ 425.54m to bell",
+              "marker_label": "GAS FLOOR · RECORDED 38¢ @ 425.54m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 38¢ · 425m to bell",
+              "hover_note": "Recorded floor 38¢ printed here · 425m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            }
+          },
+          "favorite_leg": "ALT",
+          "underdog_leg": "GAS",
+          "pair": {
+            "sum_cents": 96,
+            "discount_cents": 4,
+            "reason": null,
+            "line": "best capturable = 58 + 38 = 96¢",
+            "discount_line": "4¢ under par",
+            "compact_line": "best capturable 96¢ · 4¢ under par"
+          },
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "effective_row": {
+            "code": "26JUL12ALTGAS",
+            "event_id": "KXATPMATCH-26JUL12ALTGAS",
+            "category": "ATP_MAIN",
+            "recorder_open_epoch": "1783777733",
+            "w1_left_epoch": "1783777733",
+            "w1_right_epoch": "1784035200",
+            "scheduled_start_epoch": "1783854000.0",
+            "legA": "ALT",
+            "legB": "GAS",
+            "legA_formation_end_epoch": "1783790234",
+            "legA_open_postformation_c": "57.0",
+            "legA_floor_c": "58",
+            "legA_floor_epoch": "1783833446.5",
+            "legA_close_c": "65",
+            "legA_close_epoch": "1784035191.2",
+            "legA_contracts": "26863.91",
+            "legA_premium_usd": "16855.19",
+            "legA_journey": "MOVER",
+            "legA_net_travel_c": "8.0",
+            "legA_us_first_post_epoch": "1783862363",
+            "legA_us_fill_c": "",
+            "legA_us_fill_epoch": "",
+            "legA_us_fill_stamp": "",
+            "legB_formation_end_epoch": "1783790234",
+            "legB_open_postformation_c": "43.0",
+            "legB_floor_c": "38",
+            "legB_floor_epoch": "1784009667.7",
+            "legB_close_c": "38",
+            "legB_close_epoch": "1784035157.2",
+            "legB_contracts": "9760.39",
+            "legB_premium_usd": "3821.17",
+            "legB_journey": "MOVER",
+            "legB_net_travel_c": "-5.0",
+            "legB_us_first_post_epoch": "1783862363",
+            "legB_us_fill_c": "41",
+            "legB_us_fill_epoch": "1783877860.5",
+            "legB_us_fill_stamp": "PRE_BELL_VALID",
+            "formation_end_game": "1783790234",
+            "bell_machine_epoch": "1784035200",
+            "bell_observed_inplay_epoch": "1784114025.0",
+            "bell_tape_signature_epoch": "",
+            "kalshi_close_time_epoch": "1784041324.0",
+            "bell_epoch": "1784035200",
+            "bell_source": "MACHINE_RECEIPT",
+            "bell_precision": "EXACT (26 receipts, zero spread)",
+            "span_start_epoch": "1783790234",
+            "span_end_epoch": "1784035200",
+            "verified_span": "OK",
+            "pair_state": "PARTIAL_FOR_REASON",
+            "locked_delta_valid_fills_c": ""
+          },
+          "row_csv_role": "Original pinned row, before correction overlays"
+        },
+        "grade_provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "cabdf2661ac68b54e6feefe7d8b29e6f3751eeb2a1d94083bd470d4c732d211e",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "b64174de7ba4ee94956b6da1bc734a284a28dd3bde4036c6e5dbe281021fd435",
+          "stage_inputs_sha256": "84fa7bf69e8b04349a44ce8335d85a793133cc31e94438c97ef5903204ceba94",
+          "stage_files_count": 169,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+          "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
+          "grade_contract_sha256": "003597cede2f48178898b1b80ad90f79530020d5a8188e5383e314d9dd442fc8",
+          "grade_rulers_sha256": "218224dd8148a1bb5208e680d4b013393996e4465e7211a78c8956eafe9eb3ce",
+          "grade_measurements_sha256": "3877abaa1a2872f0fb62c024646a8a776f8a900341bf51c90f6a3de990284822",
+          "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
+          "fields_sha256": "9d5231ff86cd7962844a58e6c8e5b12b98a7653eefd4500dfc8dede1d093bf98",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c"
+        }
+      },
+      "preserved_history_snapshots": 6,
+      "checks": "PASS — source bindings, immutable history prefix, first eligible, future target boundaries, all-fill revalidation"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "before": {
+        "letter": "F",
+        "governing": "MICRO",
+        "section_letters": {
+          "SENTENCE": "D",
+          "MACRO": "C",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "STORE SILENT"
+        },
+        "card": [
+          "SENTENCE: Q 41.53% · X 41.53% organ share",
+          "MACRO: DAN: QUIET_WOBBLE / QUIET_WOBBLE · PRA: ROUND_TRIP / SLEEPER",
+          "MICRO: DAN: 2¢ / 542.55m error · PRA: 0¢ / 488.43m error",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 0 of 0¢ captured"
+        ],
+        "micro": {
+          "DAN": {
+            "gate": 5,
+            "leg": "DAN",
+            "receipt": "KXATPMATCH-26JUL18DANPRA|ATLAS_GATE|1784371860",
+            "called_q50_floor_cents": 61,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 542.5533333341281,
+            "recorded_floor_cents": 59,
+            "recorded_floor_minutes_to_bell": 547.5533333341281,
+            "first_gate_within_2c_and_held": 480,
+            "reason": null
+          },
+          "PRA": {
+            "gate": 5,
+            "leg": "PRA",
+            "receipt": "KXATPMATCH-26JUL18DANPRA|ATLAS_GATE|1784371860",
+            "called_q50_floor_cents": 41,
+            "called_floor_minutes_to_bell": 5,
+            "floor_error_cents": 0,
+            "timing_error_minutes": 488.43333333333334,
+            "recorded_floor_cents": 41,
+            "recorded_floor_minutes_to_bell": 493.43333333333334,
+            "first_gate_within_2c_and_held": 480,
+            "reason": null
+          }
+        },
+        "micro_mode_grades": null,
+        "fills": {
+          "DAN": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          },
+          "PRA": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "reason": null
+          }
+        },
+        "captured_cents": 0,
+        "offered_cents": 0,
+        "capture_ratio": "STORE SILENT",
+        "ages": [],
+        "ruler": null,
+        "grade_provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "08f58fa460e1d63ae4651a085b099dbbfd38db48291271b9414bad33258ddd52",
+          "face_sha256": "12523dfaab949f7b265161d9f59700ac84c1747c80e51220fb5b2ff5e785c33f",
+          "stage_inputs_sha256": "04bee3554dbdbdbbfff2ec2d64be02bc5c675c758363eac42ab6c0209e0d8f73",
+          "stage_files_count": 118,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "dad3e3e2f44a8806ac7b2c28c1d747a0b5a90321d0637444323e9b392e014d0d",
+          "grade_builder_sha256": "6e4efa0322f662aa0f67a9b6b9d898d344432407fc0173c1d8ed7d0f4fbef059",
+          "grade_contract_sha256": "49ef29ab1cc7af0c5913d188b47f556bb75573484b01b9c4efc28643f7773ebd",
+          "grade_rulers_sha256": "d4f91a6dde09fbd980057208a5ddd3622e874ae70ce391ed30f8f96c0429f8b7",
+          "fields_sha256": "4b0286526a7d22afe6df78227cd067fbdb512d0593fecb3202db2a3cff5d607d",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c"
+        }
+      },
+      "after": {
+        "letter": "STORE SILENT",
+        "governing": "OUTCOME",
+        "section_letters": {
+          "SENTENCE": "D",
+          "MACRO": "C",
+          "MICRO": "D",
+          "HANDS": "A",
+          "OUTCOME": "STORE SILENT"
+        },
+        "card": [
+          "SENTENCE: Q 41.53% · X 41.53% authored (token metric)",
+          "MACRO: DAN: QUIET_WOBBLE / QUIET_WOBBLE · PRA: ROUND_TRIP / SLEEPER",
+          "MICRO: DAN: first/full 2¢ / 148.14m · remaining MAE 1.11¢ / 60.71m · PRA: first/full 0¢ / 147.83m · remaining MAE 0.87¢ / 101.89m",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 0 of 0¢ captured"
+        ],
+        "micro": {
+          "DAN": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258",
+              "receipt_order": 69,
+              "epoch": 1784339443.000002,
+              "minutes_to_bell": 560.2833333015442,
+              "q50": 57,
+              "q_author": "POOL_FIRST-TICK-ONLY",
+              "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+              "deadline_epoch": 1784348195.109282,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 59,
+                "floor_epoch": 1784339306.8
+              },
+              "floor_already_observed_at_call": true,
+              "floor_error_cents": 2,
+              "timing_error_minutes": 148.1384880344073,
+              "target_floor_cents": 59,
+              "target_floor_epoch": 1784339306.8,
+              "target_minutes_to_bell": 562.5533333341281
+            },
+            "remaining_path": {
+              "receipts_eligible": 47,
+              "receipts_scored": 47,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 1.1063829787234043,
+              "mean_timing_error_minutes": 60.71336645437471,
+              "max_floor_error_cents": 2,
+              "max_timing_error_minutes": 145.86848800182344
+            },
+            "executable_future_print": {
+              "receipts_eligible": 47,
+              "receipts_scored": 43,
+              "receipts_unscored": 4,
+              "mean_floor_error_cents": 1.302325581395349,
+              "mean_timing_error_minutes": 44.254567586821196,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          },
+          "PRA": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258",
+              "receipt_order": 69,
+              "epoch": 1784339443.000002,
+              "minutes_to_bell": 560.2833333015442,
+              "q50": 41,
+              "q_author": "POOL_FIRST-TICK-ONLY",
+              "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+              "deadline_epoch": 1784351424,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 41,
+                "floor_epoch": 1784342554
+              },
+              "floor_already_observed_at_call": false,
+              "floor_error_cents": 0,
+              "timing_error_minutes": 147.83333333333334,
+              "target_floor_cents": 41,
+              "target_floor_epoch": 1784342554,
+              "target_minutes_to_bell": 508.43333333333334
+            },
+            "remaining_path": {
+              "receipts_eligible": 47,
+              "receipts_scored": 47,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 0.8723404255319149,
+              "mean_timing_error_minutes": 101.89256775438366,
+              "max_floor_error_cents": 2,
+              "max_timing_error_minutes": 218.90980050166448
+            },
+            "executable_future_print": {
+              "receipts_eligible": 47,
+              "receipts_scored": 45,
+              "receipts_unscored": 2,
+              "mean_floor_error_cents": 0.9111111111111111,
+              "mean_timing_error_minutes": 100.04961738215555,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          }
+        },
+        "micro_mode_grades": {
+          "first_eligible_full_span": "D",
+          "remaining_path": "D"
+        },
+        "fills": {
+          "DAN": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          },
+          "PRA": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          }
+        },
+        "captured_cents": 0,
+        "offered_cents": 0,
+        "capture_ratio": "STORE SILENT",
+        "ages": [],
+        "ruler": {
+          "role": "RULER — NOT AN OS INPUT",
+          "event_id": "KXATPMATCH-26JUL18DANPRA",
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "08f58fa460e1d63ae4651a085b099dbbfd38db48291271b9414bad33258ddd52",
+          "row_number": 541,
+          "row_csv": "26JUL18DANPRA,KXATPMATCH-26JUL18DANPRA,ATP_MAIN,1784316994,1784316994,1784372160,1784383200.0,DAN,PRA,1784332553,58.0,59,1784339306.8,61,1784371654.1,3189.94,1924.47,STILL,3.0,,,,,1784332553,41.0,41,1784342554.0,41,1784372115.6,497.58,206.39,STILL,0.0,,,,,1784332553,,,1784373060.0,1784378405.0,1784373060.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784332553,1784372160,OK,NEITHER_FOR_REASON,",
+          "verified_span": "OK",
+          "status": "OK",
+          "reason": null,
+          "span_start_epoch": 1784332553,
+          "span_end_epoch": 1784372160,
+          "bell_epoch": 1784373060,
+          "bell_source": "TAPE_INFERENCE",
+          "table_bell_epoch": 1784373060,
+          "table_bell_source": "TAPE_INFERENCE",
+          "table_bell_delta_seconds": 0,
+          "legs": {
+            "DAN": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "anchor_cents": "legA_open_postformation_c"
+              },
+              "anchor_cents": 58,
+              "floor_cents": 59,
+              "floor_epoch": 1784339306.8,
+              "minutes_to_bell": 562.5533333341281,
+              "line": "DAN 59¢ @ 562.55m to bell",
+              "marker_label": "DAN FLOOR · RECORDED 59¢ @ 562.55m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 59¢ · 562m to bell",
+              "hover_note": "Recorded floor 59¢ printed here · 562m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            },
+            "PRA": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "anchor_cents": "legB_open_postformation_c"
+              },
+              "anchor_cents": 41,
+              "floor_cents": 41,
+              "floor_epoch": 1784342554,
+              "minutes_to_bell": 508.43333333333334,
+              "line": "PRA 41¢ @ 508.43m to bell",
+              "marker_label": "PRA FLOOR · RECORDED 41¢ @ 508.43m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 41¢ · 508m to bell",
+              "hover_note": "Recorded floor 41¢ printed here · 508m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            }
+          },
+          "favorite_leg": "DAN",
+          "underdog_leg": "PRA",
+          "pair": {
+            "sum_cents": 100,
+            "discount_cents": 0,
+            "reason": null,
+            "line": "best capturable = 59 + 41 = 100¢",
+            "discount_line": "0¢ under par",
+            "compact_line": "best capturable 100¢ · 0¢ under par"
+          },
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "effective_row": {
+            "code": "26JUL18DANPRA",
+            "event_id": "KXATPMATCH-26JUL18DANPRA",
+            "category": "ATP_MAIN",
+            "recorder_open_epoch": "1784316994",
+            "w1_left_epoch": "1784316994",
+            "w1_right_epoch": "1784372160",
+            "scheduled_start_epoch": "1784383200.0",
+            "legA": "DAN",
+            "legB": "PRA",
+            "legA_formation_end_epoch": "1784332553",
+            "legA_open_postformation_c": "58.0",
+            "legA_floor_c": "59",
+            "legA_floor_epoch": "1784339306.8",
+            "legA_close_c": "61",
+            "legA_close_epoch": "1784371654.1",
+            "legA_contracts": "3189.94",
+            "legA_premium_usd": "1924.47",
+            "legA_journey": "STILL",
+            "legA_net_travel_c": "3.0",
+            "legA_us_first_post_epoch": "",
+            "legA_us_fill_c": "",
+            "legA_us_fill_epoch": "",
+            "legA_us_fill_stamp": "",
+            "legB_formation_end_epoch": "1784332553",
+            "legB_open_postformation_c": "41.0",
+            "legB_floor_c": "41",
+            "legB_floor_epoch": "1784342554.0",
+            "legB_close_c": "41",
+            "legB_close_epoch": "1784372115.6",
+            "legB_contracts": "497.58",
+            "legB_premium_usd": "206.39",
+            "legB_journey": "STILL",
+            "legB_net_travel_c": "0.0",
+            "legB_us_first_post_epoch": "",
+            "legB_us_fill_c": "",
+            "legB_us_fill_epoch": "",
+            "legB_us_fill_stamp": "",
+            "formation_end_game": "1784332553",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "1784373060.0",
+            "kalshi_close_time_epoch": "1784378405.0",
+            "bell_epoch": "1784373060.0",
+            "bell_source": "TAPE_INFERENCE",
+            "bell_precision": "inferred, last resort: +-30min (89% validation)",
+            "span_start_epoch": "1784332553",
+            "span_end_epoch": "1784372160",
+            "verified_span": "OK",
+            "pair_state": "NEITHER_FOR_REASON",
+            "locked_delta_valid_fills_c": ""
+          },
+          "row_csv_role": "Original pinned row, before correction overlays"
+        },
+        "grade_provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "08f58fa460e1d63ae4651a085b099dbbfd38db48291271b9414bad33258ddd52",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "3dc0c5268d130172298b780f7a58f36cb2ce452bfee563ba7e68b42a0cd4a373",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "12523dfaab949f7b265161d9f59700ac84c1747c80e51220fb5b2ff5e785c33f",
+          "stage_inputs_sha256": "04bee3554dbdbdbbfff2ec2d64be02bc5c675c758363eac42ab6c0209e0d8f73",
+          "stage_files_count": 118,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+          "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
+          "grade_contract_sha256": "003597cede2f48178898b1b80ad90f79530020d5a8188e5383e314d9dd442fc8",
+          "grade_rulers_sha256": "218224dd8148a1bb5208e680d4b013393996e4465e7211a78c8956eafe9eb3ce",
+          "grade_measurements_sha256": "3877abaa1a2872f0fb62c024646a8a776f8a900341bf51c90f6a3de990284822",
+          "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
+          "fields_sha256": "9d5231ff86cd7962844a58e6c8e5b12b98a7653eefd4500dfc8dede1d093bf98",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c"
+        }
+      },
+      "preserved_history_snapshots": 2,
+      "checks": "PASS — source bindings, immutable history prefix, first eligible, future target boundaries, all-fill revalidation"
+    }
+  ],
+  "status": "PASS"
+}

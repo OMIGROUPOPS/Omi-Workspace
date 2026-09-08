@@ -586,10 +586,11 @@ age and the after-trace-bell flag; do not invent a new receipt or family.
 Realized family remains the bench's filed label at the same gate. Missing bell,
 label or call remains STORE SILENT; exact-token family mismatches remain failures.
 
-`RULER_COLUMNS` in each grade is a comparison, **RULER — NOT AN OS INPUT**, not
-a new denominator. `grade_rulers.mjs` reads the table @ `c0056976` and the same
-correction ledger pin the builder reads @ `15955e44`; it does not apply/select
-either set. `original_table` contains commit/path/file SHA, exact CSV-row SHA
+`RULER_COLUMNS` in each grade is **RULER — NOT AN OS INPUT**.
+`grade_rulers.mjs` reads the table @ `c0056976` and the correction ledger @
+`15955e44`, applying EVERY matching correction in ledger order to the grading
+ruler, not to OS inputs. `original_table` contains the complete original
+`row_csv` and parsed `values`, commit/path/file SHA, exact CSV-row SHA
 and row number, verified-span status/bounds/bell/source, per-leg floor/epoch/
 close values and `source_columns`. `restated_rows[]` contains correction ID,
 exact JSONL-row SHA, authority/evidence, restated span/bell/source and per-leg
@@ -601,10 +602,19 @@ summed and `under_par_cents` is 100 minus that sum; absent inputs stay null.
 campaign/ruler (empty if absent). `restated_rows[].campaign_ruler_fields` copies
 `after.game_ruler` / `after.leg_ruler` verbatim, named by
 `campaign_source_columns`; `offered_under_par` copies the filed object, if any.
-`selection` and `column_note` explicitly say no selection and no invented column.
+`selection` says all filed corrections; no floor is selected by performance.
+Each `restated_rows[]` additionally preserves the exact `row_jsonl` and complete
+`original_correction`, including before/after, authority, evidence and downstream notes.
+`effective_truth` is the overlaid grading ruler: effective row, floor/epoch,
+bell/source, spans, pair sum/discount, and applied correction IDs/row SHAs.
+All scalar after-fields and every leg field are overlaid generically; nested
+campaign/offered fields remain verbatim in `original_correction`. Filed offered
+sum/discount must agree with the corrected floors or grading fails loudly.
 The pinned CSV calls its columns `legA_floor_c` / `legB_floor_c`, not literally
 `floor_cents`; GIUBAR's campaign ruler is in the correction ledger, not the CSV.
-Existing `face.truth`, OUTCOME and chart floor markers are unchanged. Grade
+Existing trace/face inputs and chart floor markers are unchanged. The grade's
+OUTCOME and MICRO use `effective_truth`; its own ruler line is explicit on the
+GRADE panel so its corrected values cannot be mistaken for the old chart ruler. Grade
 provenance includes `grade_rulers_sha256`; its taxonomy receipt is adjacent to
 the actually bound named-check file, not the obsolete minute-bench receipt.
 
@@ -648,26 +658,63 @@ the actually bound named-check file, not the obsolete minute-bench receipt.
   No bound bench or missing bench bell => STORE SILENT. Family grading uses the
   bench bell for both the called-family as-of lookup and realized-family gate.
   The trace clock and chart checkpoint joins remain unchanged. Bench label retained.
-- `MICRO`: per leg, last-gate `called_q50_floor_cents` comes only from raw
-  `derivation.pricing_authority.true_conditioning.posterior_q50_cents`, not the
-  modal bid Q, a bench forecast, or a candidate band. Timing is raw belief
-  `deadline.deadline_minutes_to_bell`, then explicit predicted_minutes_to_bell.
-  Errors are absolute distances to truth's floor and clock. `gate_calls` records
-  the same measurement at every checkpoint. `first_gate_within_2c_and_held` is
-  first chronological gate whose error and EVERY remaining gate's error are
-  <=2; no missing gate is skipped. Null = measured but never held; STORE SILENT
-  = no measurable call. Held means through the final stored gate, not to bell.
+- `MICRO` version 2 replaces the old last-gate/full-span and retrospective
+  held-gate selector. `legs[leg].first_eligible_full_span` is selected in stored
+  receipt order BEFORE inspecting future targets: resolved P/Q/X sentence,
+  finite Q/deadline, own formation complete, inside corrected span and bell.
+  Includes receipt/order/epoch, Q/authors/deadline, full recorded floor target,
+  absolute floor/timing errors and `floor_already_observed_at_call` (a past floor
+  remains a retrospective comparison, never a claimed prediction).
+  `receipt_calls[]` records both sides at every decision, including unavailable
+  forecasts with explicit eligibility reasons. Stored belief forecasts after a
+  side fills are included; they are not new actions or extra authorship votes.
+  Q is posterior_q50_cents when present, else the stored belief.predicted_cents;
+  `q_source` records which. Never substitute a rest, bench forecast or new price.
+  `deadline_epoch` uses stored absolute deadline, else ORIGINAL trace bell minus
+  stored X. `stored_x_minutes_to_trace_bell` and
+  `x_minutes_to_corrected_bell` label the two clocks for the SAME instant.
+  Every eligible call has `targets.carried_gate_state` (last accepted print at
+  or before receipt, with original observation time/receipt), `remaining_path`
+  (minimum of carry and strictly later in-span prints), and
+  `executable_future_print` (strictly later accepted print minimum only).
+  Carried minima use the receipt epoch and kind
+  CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT. A future-print target is an observed
+  trade, NOT proof a hypothetical maker rest could fill. First equal future
+  minimum wins; a carry tied with a future minimum remains timed at receipt.
+  No future prints => future-print target STORE SILENT, not zero error.
+  `remaining_path_score` and `executable_future_print_score` each match Q/X to
+  that target's floor and epoch. `legs.*.remaining_path` and
+  `legs.*.executable_future_print` report eligible/scored/unscored counts, mean
+  and maximum floor/timing errors. `mode_metrics` and `mode_grades` separately
+  apply the unchanged MICRO rubric to first/full and all-receipt/remaining
+  maximum errors; MICRO is their worst grade. Descriptive means are not cutoffs.
+  `grade_prints.mjs` streams existing custody prints once for `--all`, filters
+  true_print=true/positive size/finite price-time/identity, dedupes exact receipt
+  identity per ticker (conflicts fail), and preserves equal-time source order.
+  `print_source` binds path/SHA/bytes/source and selected row counts, invalid and
+  duplicate counts and per-leg totals. Date.parse uses the replay millisecond
+  clock. No book last or chart interpolation becomes a print; raw private tape
+  is not copied into public data. Per-target receipt/source row remains auditable.
 - `HANDS.actions`: all chart bid actions (including changed HOLD/disappearance),
   raw tokens, writer class, receipt/source URL, old/new cents, minute-to-bell.
-  Original PLACE-to-fill elapsed minutes; exact equal epochs = same-second fill
-  (no rounding tolerance). Placement checks include PLACE_REST and REPRICE_REST:
+  `order_lineage_*` starts at PLACE, survives reprice and ends on removal/fill.
+  `current_price_*` starts at PLACE and resets on an actual price change; a
+  same-price reprice/unchanged HOLD does not reset it. Both have start epoch,
+  source receipt and age minutes at each action. `rest_age_at_fill_minutes` now
+  explicitly aliases current-price age; `legacy_display_rest_age_minutes`
+  preserves the former chart lineage number. Same-second fill compares the
+  integer seconds of current-price start and fill, not rounded minute ages.
+  Missing starts stay STORE SILENT. Placement checks include PLACE_REST and REPRICE_REST:
   target >= contemporaneous ask violates post-only; epoch < stored formation end
   is pre-formation. Unknown inputs make total STORE SILENT; observed violations
   and uncheckable counts remain separate. No unchanged HOLD is a new placement.
   `fill_age_uncheckable` and `writer_class_unmapped` expose gaps; any such gap or
   missing formation prevents a passing HANDS section instead of inventing safety.
 - `OUTCOME.legs`: recorded filled/cents/epoch and signed entry minus ruler floor.
-  `valid_span_fill` requires truth OK and formation <= fill epoch < verified bell.
+  `valid_span_fill` requires corrected truth OK, span_start <= fill < span_end
+  AND fill < corrected bell. `revalidation` records all bounds, each predicate
+  and correction IDs for EVERY observed fill. `vs_floor_cents` is recomputed
+  against the corrected floor, never copied from an old chart annotation.
   `pair_completed/pair_sum` are recorded fills; `valid_pair_completed` adds span
   checks. Captured = max(0,100-sum) for a valid complete, otherwise zero; unknown
   fill span remains STORE SILENT. Partial pairs capture zero, never unrealized
@@ -693,7 +740,8 @@ the actually bound named-check file, not the obsolete minute-bench receipt.
 | post-only violations, maximum | 0 | 1 | 2 | 3 | above D |
 | capture ratio, minimum | .90 | .75 | .50 | .25 | below D |
 
-MICRO uses the worse of floor and timing. These are **PLACEHOLDER bench choices**,
+MICRO uses the worse of floor and timing in each of its two modes, then their
+worst grade; missing evidence never passes. These are **PLACEHOLDER bench choices**,
 not inherited law or calibrated performance thresholds. The hard F conditions
 come directly from the operator and do not depend on these cutoffs.
 
@@ -715,3 +763,10 @@ SILENT; stale binding shows a mismatch notice, never a different OS's letter.
 `GRADE_RECEIPT.json` binds all four prior-art files by SHA and location/commit,
 plus the bench taxonomy receipt. Each grade retains that complete receipt and its
 hash, so later source changes cannot rewrite historical citations.
+
+Grade provenance additionally binds the corrections commit/file SHA, effective
+truth SHA, custody true-print SHA, and `grade_measurements.mjs`/`grade_prints.mjs`
+SHAs. SENTENCE card wording is `authored (token metric)`; its Gate-1 certification
+remains independently STORE SILENT. `display.ruler_line/ruler_hover_lines` are
+builder-written corrected grading facts, separate from the unchanged trace/chart
+clock. HANDS hover lists lineage and current-price durations separately.

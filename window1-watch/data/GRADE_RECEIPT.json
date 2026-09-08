@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "role": "REPORT ONLY — no OS inputs changed",
   "citations": {
     "PER_GAME_L1_L8": {
@@ -65,7 +65,9 @@
     "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
     "taxonomy": "Read realized labels from the hash-bound bench. Compare each side's latest stored family as of bench bell minus gate*60 against that same bench gate; no OS timestamp or family is recomputed. MICRO and chart clocks stay unchanged.",
     "cascade_writers": "FIELDS.md maps POOL_FIRST_TICK (alias), POOL_FIRST-TICK-ONLY, POOL_BASE, POOL_CASCADE:* and POOL_CASCADE_WRITER to ORGAN. Hold/veto precedence and raw tokens remain unchanged.",
-    "ruler_comparison": "RULER_COLUMNS preserves pinned table floors alongside filed correction floors and campaign ruler fields. No selection is made and OUTCOME keeps its existing face.truth inputs.",
+    "ruler_comparison": "Apply every event-matching correction from W1_GROUND_TRUTH_CORRECTIONS.jsonl @15955e44 in ledger order to the original pinned row. Effective floors, bell, span and denominator grade this run; original CSV and full correction JSONL rows remain alongside. Every observed fill is revalidated against both corrected span and bell. No trace, face input, or OS call is changed.",
+    "micro": "First eligible stored resolved P/Q/X forecast in receipt order versus full recorded span; every eligible receipt versus its remaining path, with separate carried state and strictly future-print targets. Match timing to each target using the original absolute deadline. Existing rubric cutoffs unchanged; worst of the two grading modes. Receipt-level errors, means and denominators retained.",
+    "hands_ages": "Separate original PLACE lineage age from current-price age, resetting only the latter on price change; remove/fill ends the lineage. Fill same-second check uses the current-price start timestamp. The legacy chart age is preserved, not used as current-price duration.",
     "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
   }
 }

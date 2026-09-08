@@ -208,7 +208,7 @@
       "revision": 0,
       "grade_sha256": "95525f2520fabef599672fce0370eacb6455c9a95cd2056af5b0a279acbd709e",
       "append_order": 8,
-      "x": 200,
+      "x": 234,
       "y": 88,
       "hover_lines": [
         "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
@@ -232,7 +232,7 @@
       "revision": 0,
       "grade_sha256": "04b0185997ef839d2680529a517f01cfec8689a55c48a4bd2e5e2f038a7febf2",
       "append_order": 9,
-      "x": 64,
+      "x": 98,
       "y": 88,
       "hover_lines": [
         "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
@@ -256,7 +256,7 @@
       "revision": 0,
       "grade_sha256": "720ed5ed0153a036abc8a6f01fdc0797973be5ca281f2ae53196490e3b7866fb",
       "append_order": 10,
-      "x": 200,
+      "x": 234,
       "y": 88,
       "hover_lines": [
         "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
@@ -280,7 +280,7 @@
       "revision": 0,
       "grade_sha256": "97b86b03ce4191fd3e84f84c8d23bf956c9adabe9b7cdc62cb683312e28b17c5",
       "append_order": 11,
-      "x": 64,
+      "x": 98,
       "y": 88,
       "hover_lines": [
         "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
@@ -304,7 +304,7 @@
       "revision": 0,
       "grade_sha256": "9f036aa261e6ac64f2bf662d55b51d10ad4d5aae5f53a534dbae4bc67c9e7f3a",
       "append_order": 12,
-      "x": 64,
+      "x": 98,
       "y": 88,
       "hover_lines": [
         "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
@@ -432,6 +432,126 @@
         "2026-09-08T04:29:05.441Z · run 18",
         "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
       ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-08T16:06:43.859Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 2,
+      "grade_sha256": "530e44111001ca1290602eccb8bc09872b1504f48ee9ac30eb08f867b916879b",
+      "append_order": 18,
+      "x": 64,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T16:06:43.859Z · run 19",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-08T16:06:45.182Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MACRO · MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 2,
+      "grade_sha256": "2b3fb1a27c93714c4c4243142017d7f07bdf3e483034b4e1c1c4a56650f0ebfa",
+      "append_order": 19,
+      "x": 64,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO · OUTCOME",
+        "2026-09-08T16:06:45.182Z · run 20",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-08T16:06:49.520Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 2,
+      "grade_sha256": "de00863b9a8120276c3c4c9ee36d0bb3f7d9c42873ecaf1ef809cc0fa02fa4dd",
+      "append_order": 20,
+      "x": 200,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · OUTCOME",
+        "2026-09-08T16:06:49.520Z · run 21",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-08T16:06:50.945Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+      "letter": "F",
+      "capture_ratio": 0.5,
+      "governing_section": "MACRO · MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/b745ce7a_2a6af0af.json",
+      "revision": 2,
+      "grade_sha256": "87fe5d46bae0fd05920753ff6d52a3c8ff6dd2f166e1de55e4d7a7537c56611b",
+      "append_order": 21,
+      "x": 200,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO",
+        "2026-09-08T16:06:50.945Z · run 22",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-08T16:06:52.072Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+      "letter": "STORE SILENT",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "OUTCOME",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 2,
+      "grade_sha256": "31117cda18fcd9981874971bfcd7aff318bee329beb823c68b3666077a55f576",
+      "append_order": 22,
+      "x": 64,
+      "y": 106,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · STORE SILENT",
+        "OUTCOME",
+        "2026-09-08T16:06:52.072Z · run 23",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
     }
   ],
   "axis": {
@@ -446,7 +566,7 @@
   },
   "views": {
     "KXATPMATCH-26JUL12ALTGAS": {
-      "width": 264,
+      "width": 298,
       "height": 126,
       "labels": [
         {
@@ -476,7 +596,7 @@
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14URSPAL": {
-      "width": 264,
+      "width": 298,
       "height": 126,
       "labels": [
         {

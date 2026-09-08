@@ -117,7 +117,7 @@ export async function bindCustody(tracePath, traceSha, suppliedDir) {
   };
 }
 
-function benchProjection(row, legMap) {
+export function benchProjection(row, legMap) {
   if (!row) return null;
   const validity = row.validity ?? {};
   const valid = validity.status === "OK" && finite(validity.weighted_share);
@@ -164,6 +164,47 @@ function benchProjection(row, legMap) {
       ]),
     ),
   };
+}
+
+// Keep old forecasts at their original absolute receipt times when a ruler bell
+// is corrected. Never move a forecast backwards in time to a new gate label.
+export function correctedBenchProjection(named, correctedBell, gate, legMap) {
+  if (!named?.first_tick || !finite(correctedBell)) return null;
+  const sourceBell = named.first_tick.epoch + named.first_tick.mtb_first * 60;
+  const receiptEpoch = correctedBell - gate * 60;
+  const candidates = Object.entries(named.gates ?? {}).map(([g, row]) => ({
+    row, gate: Number(g), epoch: sourceBell - Number(g) * 60,
+  })).filter(r => r.epoch <= receiptEpoch).sort((a, b) => b.epoch - a.epoch);
+  const selected = candidates[0];
+  if (!selected) return null;
+  return { ...benchProjection(selected.row, legMap),
+    minutes_to_bell: (correctedBell - selected.epoch) / 60,
+    clock_note: `Stored bench receipt at ${((correctedBell - selected.epoch) / 60).toFixed(2)}m on the corrected bell clock; carried ${((receiptEpoch - selected.epoch) / 60).toFixed(2)}m. Original gate ${selected.gate}m; not a new forecast.`,
+    clock: { source_bell_epoch: sourceBell, corrected_bell_epoch: correctedBell,
+      source_gate_minutes: selected.gate, source_receipt_epoch: selected.epoch,
+      display_gate_minutes: gate, carried_age_minutes: (receiptEpoch - selected.epoch) / 60,
+      status: sourceBell === correctedBell ? "ALIGNED" : "REBASED_STORED_RECEIPT_NOT_REFORECAST" },
+  };
+}
+
+export async function alignBenchToCorrectedRuler(face) {
+  if (!face.bench?.source || !finite(face.truth?.bell_epoch)) return;
+  const bytes = await fs.readFile(face.bench.source);
+  if (sha(bytes) !== face.provenance.bench_sha256) throw new Error("Bench source changed during ruler refresh");
+  const named = Object.values(JSON.parse(bytes).events ?? {}).find(e => e.event_id === face.provenance.event_id);
+  if (!named?.first_tick) return;
+  const bell = face.truth.bell_epoch;
+  if (bell !== face.bell.timestamp_epoch) throw new Error("Corrected ruler and face replay clock disagree; rebuild projection first");
+  const legMap = { [named.first_tick.favorite]: "favorite", [named.first_tick.underdog]: "underdog" };
+  const originalBell = named.first_tick.epoch + named.first_tick.mtb_first * 60;
+  face.bench = { ...face.bench, source_bell_epoch: originalBell, bell_epoch: bell,
+    original_label: face.bench.original_label ?? face.bench.label,
+    label: `${face.bench.original_label ?? face.bench.label ?? "Bench"}${originalBell === bell ? "" : " · corrected bell; stored receipts rebased, not reforecast"}`,
+    clock_delta_seconds: originalBell - bell,
+    corrections_commit: face.truth.corrections_commit,
+    clock_status: originalBell === bell ? "ALIGNED" : "REBASED_STORED_RECEIPT_NOT_REFORECAST" };
+  for (const checkpoint of face.render?.checkpoints ?? [])
+    checkpoint.bench = correctedBenchProjection(named, bell, checkpoint.minutesToBell, legMap);
 }
 
 export async function extendFace(face, { here, eventId, benchPath }) {

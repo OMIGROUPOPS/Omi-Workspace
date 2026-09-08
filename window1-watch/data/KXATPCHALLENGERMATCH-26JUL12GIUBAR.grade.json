@@ -11,20 +11,20 @@
     "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
     "effective_truth_sha256": "b9ec30551297e8d87acc5ee5a8021345a50db1b3e2f4a736b74e8b33c4afeb71",
     "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
-    "face_sha256": "1cc228611f4412e05ab6045468b916110c0c6c3819959afc8d6b03e105109be7",
+    "face_sha256": "27d9a94468fde9afc2557a427ea4aa84311eda8bf40c4bdc089ca4cfda4cc91e",
     "stage_inputs_sha256": "f755d30236cc7564f88d8b09f3c7e7f0f6cf28f0b56dad3db5730b3eb72b89fc",
     "stage_files_count": 246,
     "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
     "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
     "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
-    "grade_contract_sha256": "003597cede2f48178898b1b80ad90f79530020d5a8188e5383e314d9dd442fc8",
-    "grade_rulers_sha256": "218224dd8148a1bb5208e680d4b013393996e4465e7211a78c8956eafe9eb3ce",
-    "grade_measurements_sha256": "3877abaa1a2872f0fb62c024646a8a776f8a900341bf51c90f6a3de990284822",
+    "grade_contract_sha256": "12f964099209ad1f0864cc5115e1434695acdd635d256cbde35eff2726a6b8ee",
+    "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+    "grade_measurements_sha256": "d2baf793eebf3dacfbd84fceec8bff8e886e8ca6d2f1ce3616bcd33e9e03d347",
     "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
-    "fields_sha256": "9d5231ff86cd7962844a58e6c8e5b12b98a7653eefd4500dfc8dede1d093bf98",
+    "fields_sha256": "9552187b32ce8c3f3a317e3d78bd2646f1f576ef457314ed7097dc5e39ba98eb",
     "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
     "os_commit_order": 3022,
-    "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c"
+    "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9"
   },
   "SENTENCE": {
     "receipts_total": 246,
@@ -254,7 +254,7 @@
         "reason": null
       }
     ],
-    "bench_label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD",
+    "bench_label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD · corrected bell; stored receipts rebased, not reforecast",
     "bench_reason": null,
     "ess_source": "Bench validity pool, not OS membership ESS"
   },
@@ -13866,7 +13866,7 @@
         "hover_lines": [
           "MACRO: C · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
           "{\"family_match_share\":0.5}",
-          "Bench: RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
+          "Bench: RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD · corrected bell; stored receipts rebased, not reforecast"
         ]
       },
       {
@@ -14348,5 +14348,5 @@
       "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
     }
   },
-  "timestamp": "2026-09-08T16:06:43.859Z"
+  "timestamp": "2026-09-08T17:25:14.272Z"
 }

@@ -256,8 +256,8 @@ export function gradeFace(
     comparison_clock: {
       source: "BENCH_FIRST_TICK_EPOCH_PLUS_MTB",
       bell_epoch: benchBell,
-      trace_bell_epoch: face.bell.timestamp_epoch,
-      delta_seconds: finite(benchBell) ? benchBell - face.bell.timestamp_epoch : null,
+      trace_bell_epoch: (face.trace_bell ?? face.bell).timestamp_epoch,
+      delta_seconds: finite(benchBell) ? benchBell - (face.trace_bell ?? face.bell).timestamp_epoch : null,
       last_gate_epoch: macroLast?.epoch ?? null,
       rule: "At bench bell minus gate*60, use each leg's latest stored OS family at or before that epoch; realized family and pool accuracy use the same bench gate. No OS call is recomputed.",
     },
@@ -323,7 +323,7 @@ export function gradeFace(
       family_call_age_at_gate_minutes: call && macroLast
         ? (macroLast.epoch - call.epoch) / 60 : null,
       gate_after_trace_bell: macroLast
-        ? macroLast.epoch > face.bell.timestamp_epoch : null,
+        ? macroLast.epoch > (face.trace_bell ?? face.bell).timestamp_epoch : null,
       family_match:
         actual === SILENT || called === SILENT ? SILENT : called === actual,
       family_call_source:

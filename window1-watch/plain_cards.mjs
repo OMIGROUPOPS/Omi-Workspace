@@ -133,5 +133,8 @@ export function attachPoolAccuracy(face) {
     absent_label: "STORE SILENT",
   };
   for (const c of face.render.checkpoints)
-    if (c.bench) c.bench.pool_accuracy = poolAccuracy(c.bench.validity);
+    if (c.bench) {
+      c.bench.pool_accuracy = poolAccuracy(c.bench.validity);
+      if (c.bench.clock_note) c.bench.pool_accuracy.hover_note += ` ${c.bench.clock_note}`;
+    }
 }

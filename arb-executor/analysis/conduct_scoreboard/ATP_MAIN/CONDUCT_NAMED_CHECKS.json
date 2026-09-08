@@ -1,0 +1,6057 @@
+{
+  "KXATPCHALLENGERMATCH-26JUL12GIUBAR": {
+    "baseline_bell_epoch": 1783876740.0,
+    "corrected_bell_epoch": 1783874300,
+    "corrected_span_end_epoch": 1783874300,
+    "corrected_span_start_epoch": 1783831858,
+    "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+    "face_sha256": "27d9a94468fde9afc2557a427ea4aa84311eda8bf40c4bdc089ca4cfda4cc91e",
+    "forecasts": [
+      {
+        "epoch": 1783847940.0,
+        "sides": {
+          "BAR": {
+            "ask": 28.0,
+            "bid": 26.0,
+            "ess": 121.92512617682385,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 25.0,
+                "minutes_to_bell": 71.61666666666666
+              },
+              "q50": {
+                "level_cents": 27.0,
+                "minutes_to_bell": 297.8333333333333
+              },
+              "q75": {
+                "level_cents": 28.0,
+                "minutes_to_bell": 480.0
+              }
+            },
+            "last": 28.0,
+            "member_count": 206,
+            "role": "FALLER",
+            "seen_true_trade_low": 27.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GIU": {
+            "ask": 73.0,
+            "bid": 71.0,
+            "ess": 107.22826959471732,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 67.0,
+                "minutes_to_bell": 115.21666666666667
+              },
+              "q50": {
+                "level_cents": 68.0,
+                "minutes_to_bell": 323.8746161500613
+              },
+              "q75": {
+                "level_cents": 70.0,
+                "minutes_to_bell": 480.0
+              }
+            },
+            "last": 70.0,
+            "member_count": 174,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 69.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 480
+      },
+      {
+        "epoch": 1783855140.0,
+        "sides": {
+          "BAR": {
+            "ask": 30.0,
+            "bid": 28.0,
+            "ess": 213.55605152819334,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 25.0,
+                "minutes_to_bell": 52.68333333333333
+              },
+              "q50": {
+                "level_cents": 27.0,
+                "minutes_to_bell": 250.81666666666666
+              },
+              "q75": {
+                "level_cents": 28.0,
+                "minutes_to_bell": 360.0
+              }
+            },
+            "last": 28.0,
+            "member_count": 355,
+            "role": "FALLER",
+            "seen_true_trade_low": 27.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GIU": {
+            "ask": 72.0,
+            "bid": 69.0,
+            "ess": 128.48756729480192,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 67.0,
+                "minutes_to_bell": 120.14536703427633
+              },
+              "q50": {
+                "level_cents": 69.0,
+                "minutes_to_bell": 271.65
+              },
+              "q75": {
+                "level_cents": 70.0,
+                "minutes_to_bell": 360.0
+              }
+            },
+            "last": 70.0,
+            "member_count": 291,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 69.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 360
+      },
+      {
+        "epoch": 1783862340.0,
+        "sides": {
+          "BAR": {
+            "ask": 30.0,
+            "bid": 29.0,
+            "ess": 778.741536265831,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 28.0,
+                "minutes_to_bell": 48.916666666666664
+              },
+              "q50": {
+                "level_cents": 29.0,
+                "minutes_to_bell": 176.26666666666668
+              },
+              "q75": {
+                "level_cents": 30.0,
+                "minutes_to_bell": 240.0
+              }
+            },
+            "last": 30.0,
+            "member_count": 1383,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 27.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GIU": {
+            "ask": 70.0,
+            "bid": 69.0,
+            "ess": 176.87776486581893,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 68.0,
+                "minutes_to_bell": 71.73333333333333
+              },
+              "q50": {
+                "level_cents": 69.0,
+                "minutes_to_bell": 189.34705543518066
+              },
+              "q75": {
+                "level_cents": 70.0,
+                "minutes_to_bell": 240.0
+              }
+            },
+            "last": 70.0,
+            "member_count": 391,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 69.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 240
+      },
+      {
+        "epoch": 1783865940.0,
+        "sides": {
+          "BAR": {
+            "ask": 33.0,
+            "bid": 31.0,
+            "ess": 882.575774839759,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 30.0,
+                "minutes_to_bell": 45.65
+              },
+              "q50": {
+                "level_cents": 31.0,
+                "minutes_to_bell": 144.6514695485433
+              },
+              "q75": {
+                "level_cents": 32.0,
+                "minutes_to_bell": 180.0
+              }
+            },
+            "last": 32.0,
+            "member_count": 1555,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 27.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GIU": {
+            "ask": 69.0,
+            "bid": 67.0,
+            "ess": 215.66519368237854,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 67.0,
+                "minutes_to_bell": 53.583333333333336
+              },
+              "q50": {
+                "level_cents": 68.0,
+                "minutes_to_bell": 144.58333333333334
+              },
+              "q75": {
+                "level_cents": 69.0,
+                "minutes_to_bell": 180.0
+              }
+            },
+            "last": 69.0,
+            "member_count": 453,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 69.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 180
+      },
+      {
+        "epoch": 1783869540.0,
+        "sides": {
+          "BAR": {
+            "ask": 34.0,
+            "bid": 33.0,
+            "ess": 953.1059558219528,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 30.0,
+                "minutes_to_bell": 39.483333333333334
+              },
+              "q50": {
+                "level_cents": 31.0,
+                "minutes_to_bell": 113.91666666666667
+              },
+              "q75": {
+                "level_cents": 32.0,
+                "minutes_to_bell": 120.0
+              }
+            },
+            "last": 32.0,
+            "member_count": 1677,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 27.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GIU": {
+            "ask": 66.0,
+            "bid": 65.0,
+            "ess": 953.1059558219528,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 64.0,
+                "minutes_to_bell": 42.326952648162845
+              },
+              "q50": {
+                "level_cents": 65.0,
+                "minutes_to_bell": 114.06666666666666
+              },
+              "q75": {
+                "level_cents": 66.0,
+                "minutes_to_bell": 120.0
+              }
+            },
+            "last": 66.0,
+            "member_count": 1677,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 66.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 120
+      },
+      {
+        "epoch": 1783871340.0,
+        "sides": {
+          "BAR": {
+            "ask": 34.0,
+            "bid": 33.0,
+            "ess": 990.0517935870977,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 30.0,
+                "minutes_to_bell": 34.46666666666667
+              },
+              "q50": {
+                "level_cents": 32.0,
+                "minutes_to_bell": 90.0
+              },
+              "q75": {
+                "level_cents": 32.0,
+                "minutes_to_bell": 90.0
+              }
+            },
+            "last": 32.0,
+            "member_count": 1741,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 27.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GIU": {
+            "ask": 66.0,
+            "bid": 65.0,
+            "ess": 990.0517935870977,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 64.0,
+                "minutes_to_bell": 34.55
+              },
+              "q50": {
+                "level_cents": 65.0,
+                "minutes_to_bell": 87.98333333333333
+              },
+              "q75": {
+                "level_cents": 66.0,
+                "minutes_to_bell": 90.0
+              }
+            },
+            "last": 66.0,
+            "member_count": 1741,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 66.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 90
+      },
+      {
+        "epoch": 1783873140.0,
+        "sides": {
+          "BAR": {
+            "ask": 34.0,
+            "bid": 33.0,
+            "ess": 1019.5435368206408,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 31.0,
+                "minutes_to_bell": 29.466666666666665
+              },
+              "q50": {
+                "level_cents": 32.0,
+                "minutes_to_bell": 60.0
+              },
+              "q75": {
+                "level_cents": 32.0,
+                "minutes_to_bell": 60.0
+              }
+            },
+            "last": 32.0,
+            "member_count": 1793,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 27.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GIU": {
+            "ask": 66.0,
+            "bid": 65.0,
+            "ess": 1019.5435368206408,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 64.0,
+                "minutes_to_bell": 26.666666666666668
+              },
+              "q50": {
+                "level_cents": 66.0,
+                "minutes_to_bell": 60.0
+              },
+              "q75": {
+                "level_cents": 66.0,
+                "minutes_to_bell": 60.0
+              }
+            },
+            "last": 66.0,
+            "member_count": 1793,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 66.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 60
+      },
+      {
+        "epoch": 1783874940.0,
+        "sides": {
+          "BAR": {
+            "ask": 30.0,
+            "bid": 29.0,
+            "ess": 231.920839410171,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "FALLER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 32.0,
+                "minutes_to_bell": 14.633333333333333
+              },
+              "q50": {
+                "level_cents": 34.0,
+                "minutes_to_bell": 30.0
+              },
+              "q75": {
+                "level_cents": 34.0,
+                "minutes_to_bell": 30.0
+              }
+            },
+            "last": 34.0,
+            "member_count": 404,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 27.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GIU": {
+            "ask": 72.0,
+            "bid": 70.0,
+            "ess": 313.97210658792005,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 68.0,
+                "minutes_to_bell": 16.25
+              },
+              "q50": {
+                "level_cents": 69.0,
+                "minutes_to_bell": 30.0
+              },
+              "q75": {
+                "level_cents": 69.0,
+                "minutes_to_bell": 30.0
+              }
+            },
+            "last": 69.0,
+            "member_count": 625,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 66.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 30
+      },
+      {
+        "epoch": 1783875840.0,
+        "sides": {
+          "BAR": {
+            "ask": 18.0,
+            "bid": 14.0,
+            "ess": 331.92912660367,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "FALLER"
+            },
+            "flip_count": 2,
+            "floors": {
+              "q25": {
+                "level_cents": 17.0,
+                "minutes_to_bell": 14.983333333333333
+              },
+              "q50": {
+                "level_cents": 18.0,
+                "minutes_to_bell": 15.0
+              },
+              "q75": {
+                "level_cents": 18.0,
+                "minutes_to_bell": 15.0
+              }
+            },
+            "last": 18.0,
+            "member_count": 664,
+            "role": "FALLER",
+            "seen_true_trade_low": 16.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GIU": {
+            "ask": 71.0,
+            "bid": 81.0,
+            "ess": 325.8073899192761,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 71.0,
+                "minutes_to_bell": 11.533333333333333
+              },
+              "q50": {
+                "level_cents": 72.0,
+                "minutes_to_bell": 15.0
+              },
+              "q75": {
+                "level_cents": 72.0,
+                "minutes_to_bell": 15.0
+              }
+            },
+            "last": 72.0,
+            "member_count": 647,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 66.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 15
+      },
+      {
+        "epoch": 1783876440.0,
+        "sides": {
+          "BAR": {
+            "ask": 30.0,
+            "bid": 23.0,
+            "ess": 258.66593090377125,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "FALLER"
+            },
+            "flip_count": 3,
+            "floors": {
+              "q25": {
+                "level_cents": 36.0,
+                "minutes_to_bell": 5.0
+              },
+              "q50": {
+                "level_cents": 36.0,
+                "minutes_to_bell": 5.0
+              },
+              "q75": {
+                "level_cents": 36.0,
+                "minutes_to_bell": 5.0
+              }
+            },
+            "last": 36.0,
+            "member_count": 445,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 16.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GIU": {
+            "ask": 65.0,
+            "bid": 70.0,
+            "ess": 340.80066793532177,
+            "first_bind": {
+              "minutes_to_bell": 582.3097141345341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 2,
+            "floors": {
+              "q25": {
+                "level_cents": 72.0,
+                "minutes_to_bell": 5.0
+              },
+              "q50": {
+                "level_cents": 72.0,
+                "minutes_to_bell": 5.0
+              },
+              "q75": {
+                "level_cents": 72.0,
+                "minutes_to_bell": 5.0
+              }
+            },
+            "last": 72.0,
+            "member_count": 676,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 49.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 5
+      }
+    ],
+    "rules": {
+      "R0 CURRENT": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1783847940.0,
+            "leg": "GIU",
+            "minutes_to_bell": 439.3333333333333,
+            "new_cents": 68.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 68.0,
+              "minutes_to_bell": 323.8746161500613
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1783847940.0,
+            "leg": "BAR",
+            "minutes_to_bell": 439.3333333333333,
+            "new_cents": 27.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 27.0,
+              "minutes_to_bell": 297.8333333333333
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "FALLER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783855140.0,
+            "leg": "GIU",
+            "minutes_to_bell": 319.3333333333333,
+            "new_cents": 69.0,
+            "old_cents": 68.0,
+            "q50": {
+              "level_cents": 69.0,
+              "minutes_to_bell": 271.65
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783862340.0,
+            "leg": "BAR",
+            "minutes_to_bell": 199.33333333333334,
+            "new_cents": 29.0,
+            "old_cents": 27.0,
+            "q50": {
+              "level_cents": 29.0,
+              "minutes_to_bell": 176.26666666666668
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 240,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1783874300,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {},
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "fills": {
+          "GIU": {
+            "cents": 69.0,
+            "epoch": 1783865397.812597,
+            "minutes_to_bell": 148.36979004939397,
+            "placed_epoch": 1783855140.0,
+            "print_cents": 69.0,
+            "print_rowid": 9,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 170.96354328393937,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1783831858.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "BAR": {
+            "cents": 29.0,
+            "placed_epoch": 1783862340.0,
+            "writer": "FIRST_Q50"
+          },
+          "GIU": null
+        },
+        "rule": "R0 CURRENT",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R1 CLIMBER-ANCHOR": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1783847940.0,
+            "leg": "GIU",
+            "minutes_to_bell": 439.3333333333333,
+            "new_cents": 69.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 68.0,
+              "minutes_to_bell": 323.8746161500613
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 480,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1783847940.0,
+            "leg": "BAR",
+            "minutes_to_bell": 439.3333333333333,
+            "new_cents": 27.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 27.0,
+              "minutes_to_bell": 297.8333333333333
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "FALLER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783862340.0,
+            "leg": "BAR",
+            "minutes_to_bell": 199.33333333333334,
+            "new_cents": 29.0,
+            "old_cents": 27.0,
+            "q50": {
+              "level_cents": 29.0,
+              "minutes_to_bell": 176.26666666666668
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 240,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1783874300,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "GIU": {
+            "cents": 69.0,
+            "epoch": 1783847940.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "fills": {
+          "GIU": {
+            "cents": 69.0,
+            "epoch": 1783865397.812597,
+            "minutes_to_bell": 148.36979004939397,
+            "placed_epoch": 1783847940.0,
+            "print_cents": 69.0,
+            "print_rowid": 9,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 290.9635432839394,
+            "size": null,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        },
+        "formation_epoch": 1783831858.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "BAR": {
+            "cents": 29.0,
+            "placed_epoch": 1783862340.0,
+            "writer": "FIRST_Q50"
+          },
+          "GIU": null
+        },
+        "rule": "R1 CLIMBER-ANCHOR",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R2 NAMED-LEVEL": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1783847940.0,
+            "leg": "GIU",
+            "minutes_to_bell": 439.3333333333333,
+            "new_cents": 68.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 68.0,
+              "minutes_to_bell": 323.8746161500613
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1783847940.0,
+            "leg": "BAR",
+            "minutes_to_bell": 439.3333333333333,
+            "new_cents": 27.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 27.0,
+              "minutes_to_bell": 297.8333333333333
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "FALLER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783855140.0,
+            "leg": "GIU",
+            "minutes_to_bell": 319.3333333333333,
+            "new_cents": 69.0,
+            "old_cents": 68.0,
+            "q50": {
+              "level_cents": 69.0,
+              "minutes_to_bell": 271.65
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783862340.0,
+            "leg": "BAR",
+            "minutes_to_bell": 199.33333333333334,
+            "new_cents": 29.0,
+            "old_cents": 27.0,
+            "q50": {
+              "level_cents": 29.0,
+              "minutes_to_bell": 176.26666666666668
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 240,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1783874300,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {},
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "fills": {
+          "GIU": {
+            "cents": 69.0,
+            "epoch": 1783865397.812597,
+            "minutes_to_bell": 148.36979004939397,
+            "placed_epoch": 1783855140.0,
+            "print_cents": 69.0,
+            "print_rowid": 9,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 170.96354328393937,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1783831858.0,
+        "named_level_memory": {
+          "BAR": 27.0
+        },
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "BAR": {
+            "cents": 29.0,
+            "placed_epoch": 1783862340.0,
+            "writer": "FIRST_Q50"
+          },
+          "GIU": null
+        },
+        "rule": "R2 NAMED-LEVEL",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R3 ANCHOR+NAMED": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1783847940.0,
+            "leg": "GIU",
+            "minutes_to_bell": 439.3333333333333,
+            "new_cents": 69.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 68.0,
+              "minutes_to_bell": 323.8746161500613
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 480,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1783847940.0,
+            "leg": "BAR",
+            "minutes_to_bell": 439.3333333333333,
+            "new_cents": 27.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 27.0,
+              "minutes_to_bell": 297.8333333333333
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "FALLER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783862340.0,
+            "leg": "BAR",
+            "minutes_to_bell": 199.33333333333334,
+            "new_cents": 29.0,
+            "old_cents": 27.0,
+            "q50": {
+              "level_cents": 29.0,
+              "minutes_to_bell": 176.26666666666668
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 240,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1783874300,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "GIU": {
+            "cents": 69.0,
+            "epoch": 1783847940.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "fills": {
+          "GIU": {
+            "cents": 69.0,
+            "epoch": 1783865397.812597,
+            "minutes_to_bell": 148.36979004939397,
+            "placed_epoch": 1783847940.0,
+            "print_cents": 69.0,
+            "print_rowid": 9,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 290.9635432839394,
+            "size": null,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        },
+        "formation_epoch": 1783831858.0,
+        "named_level_memory": {
+          "BAR": 27.0
+        },
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "BAR": {
+            "cents": 29.0,
+            "placed_epoch": 1783862340.0,
+            "writer": "FIRST_Q50"
+          },
+          "GIU": null
+        },
+        "rule": "R3 ANCHOR+NAMED",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R4 ANCHOR+Q25-NAMED": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1783847940.0,
+            "leg": "GIU",
+            "minutes_to_bell": 439.3333333333333,
+            "new_cents": 69.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 68.0,
+              "minutes_to_bell": 323.8746161500613
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 480,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1783847940.0,
+            "leg": "BAR",
+            "minutes_to_bell": 439.3333333333333,
+            "new_cents": 25.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 27.0,
+              "minutes_to_bell": 297.8333333333333
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "FALLER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q25"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783862340.0,
+            "leg": "BAR",
+            "minutes_to_bell": 199.33333333333334,
+            "new_cents": 29.0,
+            "old_cents": 25.0,
+            "q50": {
+              "level_cents": 29.0,
+              "minutes_to_bell": 176.26666666666668
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 240,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1783874300,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "GIU": {
+            "cents": 69.0,
+            "epoch": 1783847940.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "fills": {
+          "GIU": {
+            "cents": 69.0,
+            "epoch": 1783865397.812597,
+            "minutes_to_bell": 148.36979004939397,
+            "placed_epoch": 1783847940.0,
+            "print_cents": 69.0,
+            "print_rowid": 9,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 290.9635432839394,
+            "size": null,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        },
+        "formation_epoch": 1783831858.0,
+        "named_level_memory": {
+          "BAR": 25.0
+        },
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "BAR": {
+            "cents": 29.0,
+            "placed_epoch": 1783862340.0,
+            "writer": "FIRST_Q50"
+          },
+          "GIU": null
+        },
+        "rule": "R4 ANCHOR+Q25-NAMED",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      }
+    },
+    "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "truth_row_sha256": "1c02b3084496dfdd37a4425533bb6f43dc3f334c3a0f89dc1955c564bc7000a0"
+  },
+  "KXATPCHALLENGERMATCH-26JUL14LAJSVA": {
+    "baseline_bell_epoch": 1784078400.0,
+    "corrected_bell_epoch": 1784078400,
+    "corrected_span_end_epoch": 1784078400,
+    "corrected_span_start_epoch": 1784007603,
+    "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+    "face_sha256": "012044f53408839c424484704c146cc6feac819d8d67ff8940c118e96d0df359",
+    "forecasts": [
+      {
+        "epoch": 1784035200.0,
+        "sides": {
+          "LAJ": {
+            "ask": 54.0,
+            "bid": 53.0,
+            "ess": 21.500634116686435,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 87.11666666666666
+              },
+              "q50": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 512.8666666666667
+              },
+              "q75": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 689.7436651666959
+              }
+            },
+            "last": 62.0,
+            "member_count": 43,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 62.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 46.0,
+            "bid": 45.0,
+            "ess": 20.782248729170004,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 35.0,
+                "minutes_to_bell": 49.416666666666664
+              },
+              "q50": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 366.6635236819585
+              },
+              "q75": {
+                "level_cents": 43.0,
+                "minutes_to_bell": 720.0
+              }
+            },
+            "last": 43.0,
+            "member_count": 41,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 720
+      },
+      {
+        "epoch": 1784049600.0,
+        "sides": {
+          "LAJ": {
+            "ask": 55.0,
+            "bid": 54.0,
+            "ess": 79.44903191956787,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 52.0,
+                "minutes_to_bell": 98.25789264837901
+              },
+              "q50": {
+                "level_cents": 54.0,
+                "minutes_to_bell": 327.41592631737393
+              },
+              "q75": {
+                "level_cents": 55.0,
+                "minutes_to_bell": 480.0
+              }
+            },
+            "last": 55.0,
+            "member_count": 145,
+            "role": "FALLER",
+            "seen_true_trade_low": 54.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 46.0,
+            "bid": 45.0,
+            "ess": 69.01914781299945,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 42.0,
+                "minutes_to_bell": 119.93979159990947
+              },
+              "q50": {
+                "level_cents": 44.0,
+                "minutes_to_bell": 366.6635236819585
+              },
+              "q75": {
+                "level_cents": 46.0,
+                "minutes_to_bell": 480.0
+              }
+            },
+            "last": 46.0,
+            "member_count": 128,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 480
+      },
+      {
+        "epoch": 1784056800.0,
+        "sides": {
+          "LAJ": {
+            "ask": 54.0,
+            "bid": 53.0,
+            "ess": 83.92733083076337,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 51.0,
+                "minutes_to_bell": 95.8291045665741
+              },
+              "q50": {
+                "level_cents": 53.0,
+                "minutes_to_bell": 258.6170205156008
+              },
+              "q75": {
+                "level_cents": 54.0,
+                "minutes_to_bell": 360.0
+              }
+            },
+            "last": 54.0,
+            "member_count": 207,
+            "role": "FALLER",
+            "seen_true_trade_low": 53.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 49.0,
+            "bid": 48.0,
+            "ess": 82.65874510004903,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 46.0,
+                "minutes_to_bell": 81.46666666666667
+              },
+              "q50": {
+                "level_cents": 48.0,
+                "minutes_to_bell": 257.4301671504974
+              },
+              "q75": {
+                "level_cents": 49.0,
+                "minutes_to_bell": 360.0
+              }
+            },
+            "last": 49.0,
+            "member_count": 177,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 360
+      },
+      {
+        "epoch": 1784064000.0,
+        "sides": {
+          "LAJ": {
+            "ask": 53.0,
+            "bid": 53.0,
+            "ess": 119.80225292333209,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 53.0,
+                "minutes_to_bell": 60.47455773353577
+              },
+              "q50": {
+                "level_cents": 54.0,
+                "minutes_to_bell": 193.96666666666667
+              },
+              "q75": {
+                "level_cents": 55.0,
+                "minutes_to_bell": 240.0
+              }
+            },
+            "last": 55.0,
+            "member_count": 266,
+            "role": "FALLER",
+            "seen_true_trade_low": 51.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 48.0,
+            "bid": 47.0,
+            "ess": 107.78394883696355,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 45.0,
+                "minutes_to_bell": 58.36666666666667
+              },
+              "q50": {
+                "level_cents": 47.0,
+                "minutes_to_bell": 183.66626561482747
+              },
+              "q75": {
+                "level_cents": 48.0,
+                "minutes_to_bell": 240.0
+              }
+            },
+            "last": 48.0,
+            "member_count": 226,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 240
+      },
+      {
+        "epoch": 1784067600.0,
+        "sides": {
+          "LAJ": {
+            "ask": 53.0,
+            "bid": 53.0,
+            "ess": 141.47191295504294,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 52.0,
+                "minutes_to_bell": 61.99784891605377
+              },
+              "q50": {
+                "level_cents": 53.0,
+                "minutes_to_bell": 171.93333333333334
+              },
+              "q75": {
+                "level_cents": 54.0,
+                "minutes_to_bell": 180.0
+              }
+            },
+            "last": 54.0,
+            "member_count": 317,
+            "role": "FALLER",
+            "seen_true_trade_low": 51.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 48.0,
+            "bid": 47.0,
+            "ess": 131.1050211734047,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 45.0,
+                "minutes_to_bell": 26.6
+              },
+              "q50": {
+                "level_cents": 47.0,
+                "minutes_to_bell": 110.0713600675265
+              },
+              "q75": {
+                "level_cents": 48.0,
+                "minutes_to_bell": 180.0
+              }
+            },
+            "last": 48.0,
+            "member_count": 268,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 180
+      },
+      {
+        "epoch": 1784071200.0,
+        "sides": {
+          "LAJ": {
+            "ask": 53.0,
+            "bid": 51.0,
+            "ess": 156.813568029446,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 51.0,
+                "minutes_to_bell": 49.61624275048574
+              },
+              "q50": {
+                "level_cents": 52.0,
+                "minutes_to_bell": 114.93333333333334
+              },
+              "q75": {
+                "level_cents": 53.0,
+                "minutes_to_bell": 120.0
+              }
+            },
+            "last": 53.0,
+            "member_count": 365,
+            "role": "FALLER",
+            "seen_true_trade_low": 51.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 49.0,
+            "bid": 47.0,
+            "ess": 136.9526914812702,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 47.0,
+                "minutes_to_bell": 28.68527676661809
+              },
+              "q50": {
+                "level_cents": 48.0,
+                "minutes_to_bell": 98.69091544946035
+              },
+              "q75": {
+                "level_cents": 49.0,
+                "minutes_to_bell": 120.0
+              }
+            },
+            "last": 49.0,
+            "member_count": 311,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 120
+      },
+      {
+        "epoch": 1784073000.0,
+        "sides": {
+          "LAJ": {
+            "ask": 54.0,
+            "bid": 52.0,
+            "ess": 168.1549206335501,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 52.0,
+                "minutes_to_bell": 40.68333333333333
+              },
+              "q50": {
+                "level_cents": 54.0,
+                "minutes_to_bell": 90.0
+              },
+              "q75": {
+                "level_cents": 54.0,
+                "minutes_to_bell": 90.0
+              }
+            },
+            "last": 54.0,
+            "member_count": 364,
+            "role": "FALLER",
+            "seen_true_trade_low": 51.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 47.0,
+            "bid": 46.0,
+            "ess": 155.51878916580546,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 45.0,
+                "minutes_to_bell": 27.475886583328247
+              },
+              "q50": {
+                "level_cents": 47.0,
+                "minutes_to_bell": 84.15
+              },
+              "q75": {
+                "level_cents": 48.0,
+                "minutes_to_bell": 90.0
+              }
+            },
+            "last": 48.0,
+            "member_count": 350,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 90
+      },
+      {
+        "epoch": 1784074800.0,
+        "sides": {
+          "LAJ": {
+            "ask": 55.0,
+            "bid": 52.0,
+            "ess": 168.25662920179627,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 50.0,
+                "minutes_to_bell": 33.97740971644719
+              },
+              "q50": {
+                "level_cents": 52.0,
+                "minutes_to_bell": 60.0
+              },
+              "q75": {
+                "level_cents": 52.0,
+                "minutes_to_bell": 60.0
+              }
+            },
+            "last": 52.0,
+            "member_count": 379,
+            "role": "FALLER",
+            "seen_true_trade_low": 51.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 48.0,
+            "bid": 46.0,
+            "ess": 164.50481949367537,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 45.0,
+                "minutes_to_bell": 25.063933849334717
+              },
+              "q50": {
+                "level_cents": 47.0,
+                "minutes_to_bell": 60.0
+              },
+              "q75": {
+                "level_cents": 47.0,
+                "minutes_to_bell": 60.0
+              }
+            },
+            "last": 47.0,
+            "member_count": 366,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 60
+      },
+      {
+        "epoch": 1784076600.0,
+        "sides": {
+          "LAJ": {
+            "ask": 54.0,
+            "bid": 52.0,
+            "ess": 195.7128987034596,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 51.0,
+                "minutes_to_bell": 17.683333333333334
+              },
+              "q50": {
+                "level_cents": 52.0,
+                "minutes_to_bell": 30.0
+              },
+              "q75": {
+                "level_cents": 52.0,
+                "minutes_to_bell": 30.0
+              }
+            },
+            "last": 52.0,
+            "member_count": 401,
+            "role": "FALLER",
+            "seen_true_trade_low": 51.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 48.0,
+            "bid": 46.0,
+            "ess": 178.68774658247486,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 44.0,
+                "minutes_to_bell": 14.216666666666667
+              },
+              "q50": {
+                "level_cents": 46.0,
+                "minutes_to_bell": 30.0
+              },
+              "q75": {
+                "level_cents": 46.0,
+                "minutes_to_bell": 30.0
+              }
+            },
+            "last": 46.0,
+            "member_count": 404,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 30
+      },
+      {
+        "epoch": 1784077500.0,
+        "sides": {
+          "LAJ": {
+            "ask": 54.0,
+            "bid": 51.0,
+            "ess": 189.75832211851593,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 53.0,
+                "minutes_to_bell": 11.089033583799997
+              },
+              "q50": {
+                "level_cents": 54.0,
+                "minutes_to_bell": 15.0
+              },
+              "q75": {
+                "level_cents": 54.0,
+                "minutes_to_bell": 15.0
+              }
+            },
+            "last": 54.0,
+            "member_count": 422,
+            "role": "FALLER",
+            "seen_true_trade_low": 51.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 49.0,
+            "bid": 46.0,
+            "ess": 185.86541736056517,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 48.0,
+                "minutes_to_bell": 9.533333333333333
+              },
+              "q50": {
+                "level_cents": 49.0,
+                "minutes_to_bell": 15.0
+              },
+              "q75": {
+                "level_cents": 49.0,
+                "minutes_to_bell": 15.0
+              }
+            },
+            "last": 49.0,
+            "member_count": 436,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 15
+      },
+      {
+        "epoch": 1784078100.0,
+        "sides": {
+          "LAJ": {
+            "ask": 53.0,
+            "bid": 52.0,
+            "ess": 195.77167199759742,
+            "first_bind": {
+              "minutes_to_bell": 969.9694998343786,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 53.0,
+                "minutes_to_bell": 5.0
+              },
+              "q50": {
+                "level_cents": 53.0,
+                "minutes_to_bell": 5.0
+              },
+              "q75": {
+                "level_cents": 53.0,
+                "minutes_to_bell": 5.0
+              }
+            },
+            "last": 53.0,
+            "member_count": 444,
+            "role": "FALLER",
+            "seen_true_trade_low": 51.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "SVA": {
+            "ask": 48.0,
+            "bid": 46.0,
+            "ess": 186.40044173004938,
+            "first_bind": {
+              "minutes_to_bell": 969.7194922010104,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 48.0,
+                "minutes_to_bell": 5.0
+              },
+              "q50": {
+                "level_cents": 48.0,
+                "minutes_to_bell": 5.0
+              },
+              "q75": {
+                "level_cents": 48.0,
+                "minutes_to_bell": 5.0
+              }
+            },
+            "last": 48.0,
+            "member_count": 445,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 5
+      }
+    ],
+    "rules": {
+      "R0 CURRENT": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784035200.0,
+            "leg": "SVA",
+            "minutes_to_bell": 720.0,
+            "new_cents": 38.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 38.0,
+              "minutes_to_bell": 366.6635236819585
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 720,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1784049600.0,
+            "leg": "LAJ",
+            "minutes_to_bell": 480.0,
+            "new_cents": 54.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 54.0,
+              "minutes_to_bell": 327.41592631737393
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "FALLER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1784049600.0,
+            "leg": "SVA",
+            "minutes_to_bell": 480.0,
+            "new_cents": 44.0,
+            "old_cents": 38.0,
+            "q50": {
+              "level_cents": 44.0,
+              "minutes_to_bell": 366.6635236819585
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784078400,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {},
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "fills": {
+          "LAJ": {
+            "cents": 54.0,
+            "epoch": 1784050973.062825,
+            "minutes_to_bell": 457.1156195839246,
+            "placed_epoch": 1784049600.0,
+            "print_cents": 54.0,
+            "print_rowid": 21,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 22.884380416075388,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1784007603.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "LAJ": null,
+          "SVA": {
+            "cents": 44.0,
+            "placed_epoch": 1784049600.0,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "rule": "R0 CURRENT",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R1 CLIMBER-ANCHOR": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784035200.0,
+            "leg": "SVA",
+            "minutes_to_bell": 720.0,
+            "new_cents": 41.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 38.0,
+              "minutes_to_bell": 366.6635236819585
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 720,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        ],
+        "bell_epoch": 1784078400,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "LAJ": {
+            "cents": 62.0,
+            "epoch": 1784035200.0
+          },
+          "SVA": {
+            "cents": 41.0,
+            "epoch": 1784035200.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "fills": {},
+        "formation_epoch": 1784007603.0,
+        "named_level_memory": {},
+        "one_sided": false,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "LAJ": null,
+          "SVA": {
+            "cents": 41.0,
+            "placed_epoch": 1784035200.0,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        },
+        "rule": "R1 CLIMBER-ANCHOR",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R2 NAMED-LEVEL": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784035200.0,
+            "leg": "SVA",
+            "minutes_to_bell": 720.0,
+            "new_cents": 38.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 38.0,
+              "minutes_to_bell": 366.6635236819585
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 720,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1784049600.0,
+            "leg": "LAJ",
+            "minutes_to_bell": 480.0,
+            "new_cents": 54.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 54.0,
+              "minutes_to_bell": 327.41592631737393
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "FALLER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1784049600.0,
+            "leg": "SVA",
+            "minutes_to_bell": 480.0,
+            "new_cents": 44.0,
+            "old_cents": 38.0,
+            "q50": {
+              "level_cents": 44.0,
+              "minutes_to_bell": 366.6635236819585
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784078400,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {},
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "fills": {
+          "LAJ": {
+            "cents": 54.0,
+            "epoch": 1784050973.062825,
+            "minutes_to_bell": 457.1156195839246,
+            "placed_epoch": 1784049600.0,
+            "print_cents": 54.0,
+            "print_rowid": 21,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 22.884380416075388,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1784007603.0,
+        "named_level_memory": {
+          "LAJ": 54.0
+        },
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "LAJ": null,
+          "SVA": {
+            "cents": 44.0,
+            "placed_epoch": 1784049600.0,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "rule": "R2 NAMED-LEVEL",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R3 ANCHOR+NAMED": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784035200.0,
+            "leg": "SVA",
+            "minutes_to_bell": 720.0,
+            "new_cents": 41.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 38.0,
+              "minutes_to_bell": 366.6635236819585
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 720,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        ],
+        "bell_epoch": 1784078400,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "LAJ": {
+            "cents": 62.0,
+            "epoch": 1784035200.0
+          },
+          "SVA": {
+            "cents": 41.0,
+            "epoch": 1784035200.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "fills": {},
+        "formation_epoch": 1784007603.0,
+        "named_level_memory": {},
+        "one_sided": false,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "LAJ": null,
+          "SVA": {
+            "cents": 41.0,
+            "placed_epoch": 1784035200.0,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        },
+        "rule": "R3 ANCHOR+NAMED",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R4 ANCHOR+Q25-NAMED": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784035200.0,
+            "leg": "SVA",
+            "minutes_to_bell": 720.0,
+            "new_cents": 41.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 38.0,
+              "minutes_to_bell": 366.6635236819585
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 720,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        ],
+        "bell_epoch": 1784078400,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "LAJ": {
+            "cents": 62.0,
+            "epoch": 1784035200.0
+          },
+          "SVA": {
+            "cents": 41.0,
+            "epoch": 1784035200.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "fills": {},
+        "formation_epoch": 1784007603.0,
+        "named_level_memory": {},
+        "one_sided": false,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "LAJ": null,
+          "SVA": {
+            "cents": 41.0,
+            "placed_epoch": 1784035200.0,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        },
+        "rule": "R4 ANCHOR+Q25-NAMED",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      }
+    },
+    "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "truth_row_sha256": "1fc23f67385259fef95622a3020477439675566cdbb0332c18e6b7335852aec1"
+  },
+  "KXATPCHALLENGERMATCH-26JUL14URSPAL": {
+    "baseline_bell_epoch": 1784045100.0,
+    "corrected_bell_epoch": 1784042247,
+    "corrected_span_end_epoch": 1784042247,
+    "corrected_span_start_epoch": 1784001495,
+    "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+    "face_sha256": "71df7b111243923554e680e4fec6b2634968af0f9a849da0ce17f65ea19d2123",
+    "forecasts": [
+      {
+        "epoch": 1784023500.0,
+        "sides": {
+          "PAL": {
+            "ask": 44.0,
+            "bid": 38.0,
+            "ess": 66.34490362964931,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 85.97714114983877
+              },
+              "q50": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 223.11666666666667
+              },
+              "q75": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 360.0
+              }
+            },
+            "last": 40.0,
+            "member_count": 177,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 40.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "URS": {
+            "ask": 62.0,
+            "bid": 56.0,
+            "ess": 130.79187448199914,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 72.71856423219045
+              },
+              "q50": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 221.56666666666666
+              },
+              "q75": {
+                "level_cents": 63.0,
+                "minutes_to_bell": 331.31666666666666
+              }
+            },
+            "last": 64.0,
+            "member_count": 291,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 64.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 360
+      },
+      {
+        "epoch": 1784030700.0,
+        "sides": {
+          "PAL": {
+            "ask": 44.0,
+            "bid": 40.0,
+            "ess": 95.3741875052546,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 32.612082250912984
+              },
+              "q50": {
+                "level_cents": 43.0,
+                "minutes_to_bell": 137.83333333333334
+              },
+              "q75": {
+                "level_cents": 44.0,
+                "minutes_to_bell": 240.0
+              }
+            },
+            "last": 44.0,
+            "member_count": 226,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 40.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "URS": {
+            "ask": 58.0,
+            "bid": 56.0,
+            "ess": 132.0423591208299,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 56.0,
+                "minutes_to_bell": 61.99784891605377
+              },
+              "q50": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 197.91666666666666
+              },
+              "q75": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 240.0
+              }
+            },
+            "last": 58.0,
+            "member_count": 266,
+            "role": "FALLER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 240
+      },
+      {
+        "epoch": 1784034300.0,
+        "sides": {
+          "PAL": {
+            "ask": 44.0,
+            "bid": 40.0,
+            "ess": 116.36871397820691,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 28.68527676661809
+              },
+              "q50": {
+                "level_cents": 43.0,
+                "minutes_to_bell": 103.10172378222147
+              },
+              "q75": {
+                "level_cents": 44.0,
+                "minutes_to_bell": 180.0
+              }
+            },
+            "last": 44.0,
+            "member_count": 268,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 40.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "URS": {
+            "ask": 59.0,
+            "bid": 57.0,
+            "ess": 157.12469653104026,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 61.99784891605377
+              },
+              "q50": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 178.87168271541594
+              },
+              "q75": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 180.0
+              }
+            },
+            "last": 59.0,
+            "member_count": 317,
+            "role": "FALLER",
+            "seen_true_trade_low": 57.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 180
+      },
+      {
+        "epoch": 1784037900.0,
+        "sides": {
+          "PAL": {
+            "ask": 42.0,
+            "bid": 40.0,
+            "ess": 138.87351117583745,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 25.38741364876429
+              },
+              "q50": {
+                "level_cents": 42.0,
+                "minutes_to_bell": 91.66666666666667
+              },
+              "q75": {
+                "level_cents": 43.0,
+                "minutes_to_bell": 120.0
+              }
+            },
+            "last": 43.0,
+            "member_count": 311,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 40.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "URS": {
+            "ask": 59.0,
+            "bid": 58.0,
+            "ess": 178.64743964377996,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 45.38333333333333
+              },
+              "q50": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 114.93333333333334
+              },
+              "q75": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 120.0
+              }
+            },
+            "last": 59.0,
+            "member_count": 365,
+            "role": "FALLER",
+            "seen_true_trade_low": 57.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 120
+      },
+      {
+        "epoch": 1784039700.0,
+        "sides": {
+          "PAL": {
+            "ask": 42.0,
+            "bid": 40.0,
+            "ess": 151.44279575980053,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 26.15
+              },
+              "q50": {
+                "level_cents": 42.0,
+                "minutes_to_bell": 74.13333333333334
+              },
+              "q75": {
+                "level_cents": 43.0,
+                "minutes_to_bell": 90.0
+              }
+            },
+            "last": 43.0,
+            "member_count": 350,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 40.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "URS": {
+            "ask": 62.0,
+            "bid": 59.0,
+            "ess": 832.198545898187,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 33.661523433526355
+              },
+              "q50": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 81.8
+              },
+              "q75": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 90.0
+              }
+            },
+            "last": 62.0,
+            "member_count": 1741,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 57.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 90
+      },
+      {
+        "epoch": 1784041500.0,
+        "sides": {
+          "PAL": {
+            "ask": 42.0,
+            "bid": 40.0,
+            "ess": 159.27499716141736,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 25.38741364876429
+              },
+              "q50": {
+                "level_cents": 42.0,
+                "minutes_to_bell": 58.36666666666667
+              },
+              "q75": {
+                "level_cents": 43.0,
+                "minutes_to_bell": 60.0
+              }
+            },
+            "last": 43.0,
+            "member_count": 366,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 40.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "URS": {
+            "ask": 62.0,
+            "bid": 59.0,
+            "ess": 855.2935279951915,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 26.666666666666668
+              },
+              "q50": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 60.0
+              },
+              "q75": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 60.0
+              }
+            },
+            "last": 62.0,
+            "member_count": 1793,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 57.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 60
+      },
+      {
+        "epoch": 1784043300.0,
+        "sides": {
+          "PAL": {
+            "ask": 40.0,
+            "bid": 39.0,
+            "ess": 893.516219619607,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 22.95
+              },
+              "q50": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 30.0
+              },
+              "q75": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 30.0
+              }
+            },
+            "last": 39.0,
+            "member_count": 1877,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 30.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "URS": {
+            "ask": 61.0,
+            "bid": 60.0,
+            "ess": 190.3868790680625,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 3,
+            "floors": {
+              "q25": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 14.866666666666667
+              },
+              "q50": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 30.0
+              },
+              "q75": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 30.0
+              }
+            },
+            "last": 59.0,
+            "member_count": 401,
+            "role": "FALLER",
+            "seen_true_trade_low": 57.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 30
+      },
+      {
+        "epoch": 1784044200.0,
+        "sides": {
+          "PAL": {
+            "ask": 38.0,
+            "bid": 31.0,
+            "ess": 321.123693259379,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 1,
+            "floors": {
+              "q25": {
+                "level_cents": 33.0,
+                "minutes_to_bell": 14.2
+              },
+              "q50": {
+                "level_cents": 34.0,
+                "minutes_to_bell": 15.0
+              },
+              "q75": {
+                "level_cents": 34.0,
+                "minutes_to_bell": 15.0
+              }
+            },
+            "last": 34.0,
+            "member_count": 664,
+            "role": "FALLER",
+            "seen_true_trade_low": 30.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "URS": {
+            "ask": 70.0,
+            "bid": 63.0,
+            "ess": 323.6980489665997,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 4,
+            "floors": {
+              "q25": {
+                "level_cents": 65.0,
+                "minutes_to_bell": 10.816666666666666
+              },
+              "q50": {
+                "level_cents": 66.0,
+                "minutes_to_bell": 15.0
+              },
+              "q75": {
+                "level_cents": 66.0,
+                "minutes_to_bell": 15.0
+              }
+            },
+            "last": 66.0,
+            "member_count": 647,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 57.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 15
+      },
+      {
+        "epoch": 1784044800.0,
+        "sides": {
+          "PAL": {
+            "ask": 70.0,
+            "bid": 69.0,
+            "ess": 196.4422379952549,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 2,
+            "floors": {
+              "q25": {
+                "level_cents": 68.0,
+                "minutes_to_bell": 5.0
+              },
+              "q50": {
+                "level_cents": 68.0,
+                "minutes_to_bell": 5.0
+              },
+              "q75": {
+                "level_cents": 68.0,
+                "minutes_to_bell": 5.0
+              }
+            },
+            "last": 68.0,
+            "member_count": 445,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 30.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "URS": {
+            "ask": 32.0,
+            "bid": 31.0,
+            "ess": 210.05654961161085,
+            "first_bind": {
+              "minutes_to_bell": 398.97270423173904,
+              "role": "CLIMBER"
+            },
+            "flip_count": 5,
+            "floors": {
+              "q25": {
+                "level_cents": 31.0,
+                "minutes_to_bell": 5.0
+              },
+              "q50": {
+                "level_cents": 31.0,
+                "minutes_to_bell": 5.0
+              },
+              "q75": {
+                "level_cents": 31.0,
+                "minutes_to_bell": 5.0
+              }
+            },
+            "last": 31.0,
+            "member_count": 444,
+            "role": "FALLER",
+            "seen_true_trade_low": 31.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 5
+      }
+    ],
+    "rules": {
+      "R0 CURRENT": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784023500.0,
+            "leg": "PAL",
+            "minutes_to_bell": 312.45,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 223.11666666666667
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1784037900.0,
+            "leg": "URS",
+            "minutes_to_bell": 72.45,
+            "new_cents": 58.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 58.0,
+              "minutes_to_bell": 114.93333333333334
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "FALLER",
+            "source_gate_minutes": 120,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784042247,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {},
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "fills": {
+          "PAL": {
+            "cents": 39.0,
+            "epoch": 1784042066.596112,
+            "minutes_to_bell": 3.0067314664522806,
+            "placed_epoch": 1784023500.0,
+            "print_cents": 39.0,
+            "print_rowid": 18,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 309.4432685335477,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1784001495.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "PAL": null,
+          "URS": {
+            "cents": 58.0,
+            "placed_epoch": 1784037900.0,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "rule": "R0 CURRENT",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R1 CLIMBER-ANCHOR": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784023500.0,
+            "leg": "PAL",
+            "minutes_to_bell": 312.45,
+            "new_cents": 40.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 223.11666666666667
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        ],
+        "bell_epoch": 1784042247,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "PAL": {
+            "cents": 40.0,
+            "epoch": 1784023500.0
+          },
+          "URS": {
+            "cents": 64.0,
+            "epoch": 1784023500.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "fills": {
+          "PAL": {
+            "cents": 40.0,
+            "epoch": 1784041997.986271,
+            "minutes_to_bell": 4.150228818257649,
+            "placed_epoch": 1784023500.0,
+            "print_cents": 40.0,
+            "print_rowid": 12,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 308.29977118174236,
+            "size": null,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        },
+        "formation_epoch": 1784001495.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "PAL": null,
+          "URS": null
+        },
+        "rule": "R1 CLIMBER-ANCHOR",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R2 NAMED-LEVEL": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784023500.0,
+            "leg": "PAL",
+            "minutes_to_bell": 312.45,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 223.11666666666667
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1784037900.0,
+            "leg": "URS",
+            "minutes_to_bell": 72.45,
+            "new_cents": 58.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 58.0,
+              "minutes_to_bell": 114.93333333333334
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "FALLER",
+            "source_gate_minutes": 120,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784042247,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {},
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "fills": {
+          "PAL": {
+            "cents": 39.0,
+            "epoch": 1784042066.596112,
+            "minutes_to_bell": 3.0067314664522806,
+            "placed_epoch": 1784023500.0,
+            "print_cents": 39.0,
+            "print_rowid": 18,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 309.4432685335477,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1784001495.0,
+        "named_level_memory": {
+          "URS": 58.0
+        },
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "PAL": null,
+          "URS": {
+            "cents": 58.0,
+            "placed_epoch": 1784037900.0,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "rule": "R2 NAMED-LEVEL",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R3 ANCHOR+NAMED": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784023500.0,
+            "leg": "PAL",
+            "minutes_to_bell": 312.45,
+            "new_cents": 40.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 223.11666666666667
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        ],
+        "bell_epoch": 1784042247,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "PAL": {
+            "cents": 40.0,
+            "epoch": 1784023500.0
+          },
+          "URS": {
+            "cents": 64.0,
+            "epoch": 1784023500.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "fills": {
+          "PAL": {
+            "cents": 40.0,
+            "epoch": 1784041997.986271,
+            "minutes_to_bell": 4.150228818257649,
+            "placed_epoch": 1784023500.0,
+            "print_cents": 40.0,
+            "print_rowid": 12,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 308.29977118174236,
+            "size": null,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        },
+        "formation_epoch": 1784001495.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "PAL": null,
+          "URS": null
+        },
+        "rule": "R3 ANCHOR+NAMED",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R4 ANCHOR+Q25-NAMED": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784023500.0,
+            "leg": "PAL",
+            "minutes_to_bell": 312.45,
+            "new_cents": 40.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 223.11666666666667
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        ],
+        "bell_epoch": 1784042247,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "PAL": {
+            "cents": 40.0,
+            "epoch": 1784023500.0
+          },
+          "URS": {
+            "cents": 64.0,
+            "epoch": 1784023500.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "fills": {
+          "PAL": {
+            "cents": 40.0,
+            "epoch": 1784041997.986271,
+            "minutes_to_bell": 4.150228818257649,
+            "placed_epoch": 1784023500.0,
+            "print_cents": 40.0,
+            "print_rowid": 12,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 308.29977118174236,
+            "size": null,
+            "writer": "CLIMBER_ANCHOR"
+          }
+        },
+        "formation_epoch": 1784001495.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "PAL": null,
+          "URS": null
+        },
+        "rule": "R4 ANCHOR+Q25-NAMED",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      }
+    },
+    "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "truth_row_sha256": "b68855b99823a597a79bce4f667d6a1540b24799154da2593fe72ebe8f651313"
+  },
+  "KXATPMATCH-26JUL12ALTGAS": {
+    "baseline_bell_epoch": 1784035200.0,
+    "corrected_bell_epoch": 1784035200,
+    "corrected_span_end_epoch": 1784035200,
+    "corrected_span_start_epoch": 1783790234,
+    "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+    "face_sha256": "7a11c0c420c5514308d271ecd6170cf20a20e12949a04cc4d9bb38657a6013c7",
+    "forecasts": [
+      {
+        "epoch": 1783862400.0,
+        "sides": {
+          "ALT": {
+            "ask": 59.0,
+            "bid": 57.0,
+            "ess": 40.12344055124649,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 54.0,
+                "minutes_to_bell": 923.2994998852412
+              },
+              "q50": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 2113.266666666667
+              },
+              "q75": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 2864.7166666666667
+              }
+            },
+            "last": 58.0,
+            "member_count": 86,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 43.0,
+            "bid": 41.0,
+            "ess": 40.12344055124649,
+            "first_bind": null,
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 153.4044539173444
+              },
+              "q50": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 616.6666666666666
+              },
+              "q75": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 1427.9833333333333
+              }
+            },
+            "last": 42.0,
+            "member_count": 86,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 2880
+      },
+      {
+        "epoch": 1783905600.0,
+        "sides": {
+          "ALT": {
+            "ask": 59.0,
+            "bid": 58.0,
+            "ess": 31.61619877511688,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 55.0,
+                "minutes_to_bell": 339.58008248408635
+              },
+              "q50": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 890.85
+              },
+              "q75": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 1686.3666666666666
+              }
+            },
+            "last": 59.0,
+            "member_count": 65,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 43.0,
+            "bid": 41.0,
+            "ess": 71.64212880715736,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 122.5
+              },
+              "q50": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 815.1833333333333
+              },
+              "q75": {
+                "level_cents": 42.0,
+                "minutes_to_bell": 1671.15
+              }
+            },
+            "last": 43.0,
+            "member_count": 207,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 2160
+      },
+      {
+        "epoch": 1783948800.0,
+        "sides": {
+          "ALT": {
+            "ask": 59.0,
+            "bid": 57.0,
+            "ess": 51.74411435069596,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 55.0,
+                "minutes_to_bell": 339.58008248408635
+              },
+              "q50": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 757.3333333333334
+              },
+              "q75": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 1388.5581439654031
+              }
+            },
+            "last": 59.0,
+            "member_count": 119,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 43.0,
+            "bid": 41.0,
+            "ess": 119.09288500848656,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 128.93662906487782
+              },
+              "q50": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 621.9527029514313
+              },
+              "q75": {
+                "level_cents": 42.0,
+                "minutes_to_bell": 1228.4333333333334
+              }
+            },
+            "last": 43.0,
+            "member_count": 352,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 1440
+      },
+      {
+        "epoch": 1783970400.0,
+        "sides": {
+          "ALT": {
+            "ask": 59.0,
+            "bid": 57.0,
+            "ess": 73.51817084618716,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 55.0,
+                "minutes_to_bell": 339.58008248408635
+              },
+              "q50": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 746.4388867179553
+              },
+              "q75": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 1039.4571629166603
+              }
+            },
+            "last": 59.0,
+            "member_count": 165,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 43.0,
+            "bid": 41.0,
+            "ess": 161.065722205382,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 122.5
+              },
+              "q50": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 507.80113998254143
+              },
+              "q75": {
+                "level_cents": 42.0,
+                "minutes_to_bell": 956.8166666666667
+              }
+            },
+            "last": 43.0,
+            "member_count": 458,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 1080
+      },
+      {
+        "epoch": 1783992000.0,
+        "sides": {
+          "ALT": {
+            "ask": 60.0,
+            "bid": 59.0,
+            "ess": 106.00961702718375,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 259.0179277181625
+              },
+              "q50": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 579.7
+              },
+              "q75": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 708.5666666666667
+              }
+            },
+            "last": 60.0,
+            "member_count": 235,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 42.0,
+            "bid": 41.0,
+            "ess": 231.03542949873582,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 78.52249468167624
+              },
+              "q50": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 352.2250743985176
+              },
+              "q75": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 621.9527029514313
+              }
+            },
+            "last": 42.0,
+            "member_count": 619,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 720
+      },
+      {
+        "epoch": 1784006400.0,
+        "sides": {
+          "ALT": {
+            "ask": 62.0,
+            "bid": 61.0,
+            "ess": 128.4022520266253,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 112.97804933389028
+              },
+              "q50": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 369.6333333333333
+              },
+              "q75": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 470.71666666666664
+              }
+            },
+            "last": 62.0,
+            "member_count": 284,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 40.0,
+            "bid": 39.0,
+            "ess": 132.8598760360696,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 37.0,
+                "minutes_to_bell": 53.208174816767375
+              },
+              "q50": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 242.05
+              },
+              "q75": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 457.4575098156929
+              }
+            },
+            "last": 40.0,
+            "member_count": 321,
+            "role": "FALLER",
+            "seen_true_trade_low": 39.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 480
+      },
+      {
+        "epoch": 1784013600.0,
+        "sides": {
+          "ALT": {
+            "ask": 62.0,
+            "bid": 61.0,
+            "ess": 141.04489851238299,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 64.79765731493632
+              },
+              "q50": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 284.89885404904686
+              },
+              "q75": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 357.7616786519686
+              }
+            },
+            "last": 62.0,
+            "member_count": 308,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 39.0,
+            "bid": 38.0,
+            "ess": 120.67248314623276,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 36.0,
+                "minutes_to_bell": 31.542544865608214
+              },
+              "q50": {
+                "level_cents": 37.0,
+                "minutes_to_bell": 209.23333333333332
+              },
+              "q75": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 360.0
+              }
+            },
+            "last": 39.0,
+            "member_count": 349,
+            "role": "FALLER",
+            "seen_true_trade_low": 38.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 360
+      },
+      {
+        "epoch": 1784020800.0,
+        "sides": {
+          "ALT": {
+            "ask": 62.0,
+            "bid": 61.0,
+            "ess": 148.42549419812028,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 53.320674284299216
+              },
+              "q50": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 176.43333333333334
+              },
+              "q75": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 240.0
+              }
+            },
+            "last": 62.0,
+            "member_count": 325,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 39.0,
+            "bid": 38.0,
+            "ess": 157.94336802941098,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 36.0,
+                "minutes_to_bell": 23.466666666666665
+              },
+              "q50": {
+                "level_cents": 37.0,
+                "minutes_to_bell": 135.71232744852702
+              },
+              "q75": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 222.95
+              }
+            },
+            "last": 39.0,
+            "member_count": 353,
+            "role": "FALLER",
+            "seen_true_trade_low": 38.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 240
+      },
+      {
+        "epoch": 1784024400.0,
+        "sides": {
+          "ALT": {
+            "ask": 62.0,
+            "bid": 61.0,
+            "ess": 132.50596014727665,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 42.68333333333333
+              },
+              "q50": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 112.97804933389028
+              },
+              "q75": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 180.0
+              }
+            },
+            "last": 62.0,
+            "member_count": 327,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 39.0,
+            "bid": 38.0,
+            "ess": 146.94948123008916,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 36.0,
+                "minutes_to_bell": 23.512342067559562
+              },
+              "q50": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 116.61666666666666
+              },
+              "q75": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 180.0
+              }
+            },
+            "last": 39.0,
+            "member_count": 364,
+            "role": "FALLER",
+            "seen_true_trade_low": 38.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 180
+      },
+      {
+        "epoch": 1784028000.0,
+        "sides": {
+          "ALT": {
+            "ask": 63.0,
+            "bid": 62.0,
+            "ess": 132.7142774180725,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 33.483171566327414
+              },
+              "q50": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 90.5
+              },
+              "q75": {
+                "level_cents": 63.0,
+                "minutes_to_bell": 120.0
+              }
+            },
+            "last": 63.0,
+            "member_count": 329,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 38.0,
+            "bid": 37.0,
+            "ess": 150.8348343507497,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 36.0,
+                "minutes_to_bell": 21.62772125005722
+              },
+              "q50": {
+                "level_cents": 37.0,
+                "minutes_to_bell": 83.53333333333333
+              },
+              "q75": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 120.0
+              }
+            },
+            "last": 38.0,
+            "member_count": 369,
+            "role": "FALLER",
+            "seen_true_trade_low": 38.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 120
+      },
+      {
+        "epoch": 1784029800.0,
+        "sides": {
+          "ALT": {
+            "ask": 63.0,
+            "bid": 62.0,
+            "ess": 133.4599214320659,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 31.316666666666666
+              },
+              "q50": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 70.65
+              },
+              "q75": {
+                "level_cents": 63.0,
+                "minutes_to_bell": 90.0
+              }
+            },
+            "last": 63.0,
+            "member_count": 330,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 38.0,
+            "bid": 37.0,
+            "ess": 138.18647381996294,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 36.0,
+                "minutes_to_bell": 17.862666249275208
+              },
+              "q50": {
+                "level_cents": 37.0,
+                "minutes_to_bell": 64.71666666666667
+              },
+              "q75": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 90.0
+              }
+            },
+            "last": 38.0,
+            "member_count": 374,
+            "role": "FALLER",
+            "seen_true_trade_low": 38.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 90
+      },
+      {
+        "epoch": 1784031600.0,
+        "sides": {
+          "ALT": {
+            "ask": 63.0,
+            "bid": 62.0,
+            "ess": 147.72118249807755,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 20.15
+              },
+              "q50": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 53.4
+              },
+              "q75": {
+                "level_cents": 63.0,
+                "minutes_to_bell": 60.0
+              }
+            },
+            "last": 63.0,
+            "member_count": 327,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 38.0,
+            "bid": 37.0,
+            "ess": 137.7377654735593,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 36.0,
+                "minutes_to_bell": 17.862666249275208
+              },
+              "q50": {
+                "level_cents": 37.0,
+                "minutes_to_bell": 48.083333333333336
+              },
+              "q75": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 60.0
+              }
+            },
+            "last": 38.0,
+            "member_count": 372,
+            "role": "FALLER",
+            "seen_true_trade_low": 38.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 60
+      },
+      {
+        "epoch": 1784033400.0,
+        "sides": {
+          "ALT": {
+            "ask": 63.0,
+            "bid": 62.0,
+            "ess": 156.2893942358038,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 12.99682236512502
+              },
+              "q50": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 28.05
+              },
+              "q75": {
+                "level_cents": 63.0,
+                "minutes_to_bell": 30.0
+              }
+            },
+            "last": 63.0,
+            "member_count": 338,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 38.0,
+            "bid": 37.0,
+            "ess": 154.6719845507628,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 36.0,
+                "minutes_to_bell": 13.616666666666667
+              },
+              "q50": {
+                "level_cents": 37.0,
+                "minutes_to_bell": 27.656139731407166
+              },
+              "q75": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 30.0
+              }
+            },
+            "last": 38.0,
+            "member_count": 377,
+            "role": "FALLER",
+            "seen_true_trade_low": 38.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 30
+      },
+      {
+        "epoch": 1784034300.0,
+        "sides": {
+          "ALT": {
+            "ask": 64.0,
+            "bid": 63.0,
+            "ess": 158.6666552807708,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 5.834565651416779
+              },
+              "q50": {
+                "level_cents": 63.0,
+                "minutes_to_bell": 14.239907968044282
+              },
+              "q75": {
+                "level_cents": 64.0,
+                "minutes_to_bell": 15.0
+              }
+            },
+            "last": 64.0,
+            "member_count": 344,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 37.0,
+            "bid": 36.0,
+            "ess": 157.54538296665996,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 37.0,
+                "minutes_to_bell": 6.190151834487915
+              },
+              "q50": {
+                "level_cents": 37.0,
+                "minutes_to_bell": 14.516666666666667
+              },
+              "q75": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 15.0
+              }
+            },
+            "last": 38.0,
+            "member_count": 380,
+            "role": "FALLER",
+            "seen_true_trade_low": 38.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 15
+      },
+      {
+        "epoch": 1784034900.0,
+        "sides": {
+          "ALT": {
+            "ask": 64.0,
+            "bid": 62.0,
+            "ess": 158.66677787995374,
+            "first_bind": {
+              "minutes_to_bell": 3963.5825540502865,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 63.0,
+                "minutes_to_bell": 3.45
+              },
+              "q50": {
+                "level_cents": 64.0,
+                "minutes_to_bell": 5.0
+              },
+              "q75": {
+                "level_cents": 64.0,
+                "minutes_to_bell": 5.0
+              }
+            },
+            "last": 64.0,
+            "member_count": 346,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 58.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "GAS": {
+            "ask": 38.0,
+            "bid": 36.0,
+            "ess": 158.4357422805924,
+            "first_bind": {
+              "minutes_to_bell": 2622.324732685089,
+              "role": "FALLER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 37.0,
+                "minutes_to_bell": 3.95
+              },
+              "q50": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 5.0
+              },
+              "q75": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 5.0
+              }
+            },
+            "last": 38.0,
+            "member_count": 383,
+            "role": "FALLER",
+            "seen_true_trade_low": 38.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 5
+      }
+    ],
+    "rules": {
+      "R0 CURRENT": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1783862400.0,
+            "leg": "ALT",
+            "minutes_to_bell": 2880.0,
+            "new_cents": 57.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 57.0,
+              "minutes_to_bell": 2113.266666666667
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2880,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1783862400.0,
+            "leg": "GAS",
+            "minutes_to_bell": 2880.0,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 616.6666666666666
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2880,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783905600.0,
+            "leg": "GAS",
+            "minutes_to_bell": 2160.0,
+            "new_cents": 40.0,
+            "old_cents": 39.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 815.1833333333333
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2160,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783948800.0,
+            "leg": "GAS",
+            "minutes_to_bell": 1440.0,
+            "new_cents": 41.0,
+            "old_cents": 40.0,
+            "q50": {
+              "level_cents": 41.0,
+              "minutes_to_bell": 621.9527029514313
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 1440,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783992000.0,
+            "leg": "ALT",
+            "minutes_to_bell": 720.0,
+            "new_cents": 59.0,
+            "old_cents": 57.0,
+            "q50": {
+              "level_cents": 59.0,
+              "minutes_to_bell": 579.7
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 720,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783992000.0,
+            "leg": "GAS",
+            "minutes_to_bell": 720.0,
+            "new_cents": 40.0,
+            "old_cents": 41.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 352.2250743985176
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 720,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784035200,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {},
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPMATCH-26JUL12ALTGAS",
+        "fills": {
+          "GAS": {
+            "cents": 40.0,
+            "epoch": 1784002241.52324,
+            "minutes_to_bell": 549.3079459985097,
+            "placed_epoch": 1783992000.0,
+            "print_cents": 39.0,
+            "print_rowid": 27,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 170.69205400149028,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1783790234.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "ALT": {
+            "cents": 59.0,
+            "placed_epoch": 1783992000.0,
+            "writer": "FIRST_Q50"
+          },
+          "GAS": null
+        },
+        "rule": "R0 CURRENT",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R1 CLIMBER-ANCHOR": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1783862400.0,
+            "leg": "ALT",
+            "minutes_to_bell": 2880.0,
+            "new_cents": 57.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 57.0,
+              "minutes_to_bell": 2113.266666666667
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2880,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1783862400.0,
+            "leg": "GAS",
+            "minutes_to_bell": 2880.0,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 616.6666666666666
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2880,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783905600.0,
+            "leg": "ALT",
+            "minutes_to_bell": 2160.0,
+            "new_cents": 58.0,
+            "old_cents": 57.0,
+            "q50": {
+              "level_cents": 57.0,
+              "minutes_to_bell": 890.85
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 2160,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783905600.0,
+            "leg": "GAS",
+            "minutes_to_bell": 2160.0,
+            "new_cents": 40.0,
+            "old_cents": 39.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 815.1833333333333
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2160,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783948800.0,
+            "leg": "GAS",
+            "minutes_to_bell": 1440.0,
+            "new_cents": 41.0,
+            "old_cents": 40.0,
+            "q50": {
+              "level_cents": 41.0,
+              "minutes_to_bell": 621.9527029514313
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 1440,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783992000.0,
+            "leg": "GAS",
+            "minutes_to_bell": 720.0,
+            "new_cents": 40.0,
+            "old_cents": 41.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 352.2250743985176
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 720,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784035200,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "ALT": {
+            "cents": 58.0,
+            "epoch": 1783905600.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPMATCH-26JUL12ALTGAS",
+        "fills": {
+          "GAS": {
+            "cents": 40.0,
+            "epoch": 1784002241.52324,
+            "minutes_to_bell": 549.3079459985097,
+            "placed_epoch": 1783992000.0,
+            "print_cents": 39.0,
+            "print_rowid": 27,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 170.69205400149028,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1783790234.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "ALT": {
+            "cents": 58.0,
+            "placed_epoch": 1783905600.0,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          "GAS": null
+        },
+        "rule": "R1 CLIMBER-ANCHOR",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R2 NAMED-LEVEL": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1783862400.0,
+            "leg": "ALT",
+            "minutes_to_bell": 2880.0,
+            "new_cents": 57.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 57.0,
+              "minutes_to_bell": 2113.266666666667
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2880,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1783862400.0,
+            "leg": "GAS",
+            "minutes_to_bell": 2880.0,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 616.6666666666666
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2880,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783905600.0,
+            "leg": "GAS",
+            "minutes_to_bell": 2160.0,
+            "new_cents": 40.0,
+            "old_cents": 39.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 815.1833333333333
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2160,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783948800.0,
+            "leg": "GAS",
+            "minutes_to_bell": 1440.0,
+            "new_cents": 41.0,
+            "old_cents": 40.0,
+            "q50": {
+              "level_cents": 41.0,
+              "minutes_to_bell": 621.9527029514313
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 1440,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783992000.0,
+            "leg": "ALT",
+            "minutes_to_bell": 720.0,
+            "new_cents": 59.0,
+            "old_cents": 57.0,
+            "q50": {
+              "level_cents": 59.0,
+              "minutes_to_bell": 579.7
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 720,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783992000.0,
+            "leg": "GAS",
+            "minutes_to_bell": 720.0,
+            "new_cents": 40.0,
+            "old_cents": 41.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 352.2250743985176
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 720,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784035200,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {},
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPMATCH-26JUL12ALTGAS",
+        "fills": {
+          "GAS": {
+            "cents": 40.0,
+            "epoch": 1784002241.52324,
+            "minutes_to_bell": 549.3079459985097,
+            "placed_epoch": 1783992000.0,
+            "print_cents": 39.0,
+            "print_rowid": 27,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 170.69205400149028,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1783790234.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "ALT": {
+            "cents": 59.0,
+            "placed_epoch": 1783992000.0,
+            "writer": "FIRST_Q50"
+          },
+          "GAS": null
+        },
+        "rule": "R2 NAMED-LEVEL",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R3 ANCHOR+NAMED": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1783862400.0,
+            "leg": "ALT",
+            "minutes_to_bell": 2880.0,
+            "new_cents": 57.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 57.0,
+              "minutes_to_bell": 2113.266666666667
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2880,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1783862400.0,
+            "leg": "GAS",
+            "minutes_to_bell": 2880.0,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 616.6666666666666
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2880,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783905600.0,
+            "leg": "ALT",
+            "minutes_to_bell": 2160.0,
+            "new_cents": 58.0,
+            "old_cents": 57.0,
+            "q50": {
+              "level_cents": 57.0,
+              "minutes_to_bell": 890.85
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 2160,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783905600.0,
+            "leg": "GAS",
+            "minutes_to_bell": 2160.0,
+            "new_cents": 40.0,
+            "old_cents": 39.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 815.1833333333333
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2160,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783948800.0,
+            "leg": "GAS",
+            "minutes_to_bell": 1440.0,
+            "new_cents": 41.0,
+            "old_cents": 40.0,
+            "q50": {
+              "level_cents": 41.0,
+              "minutes_to_bell": 621.9527029514313
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 1440,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783992000.0,
+            "leg": "GAS",
+            "minutes_to_bell": 720.0,
+            "new_cents": 40.0,
+            "old_cents": 41.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 352.2250743985176
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 720,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784035200,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "ALT": {
+            "cents": 58.0,
+            "epoch": 1783905600.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPMATCH-26JUL12ALTGAS",
+        "fills": {
+          "GAS": {
+            "cents": 40.0,
+            "epoch": 1784002241.52324,
+            "minutes_to_bell": 549.3079459985097,
+            "placed_epoch": 1783992000.0,
+            "print_cents": 39.0,
+            "print_rowid": 27,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 170.69205400149028,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1783790234.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "ALT": {
+            "cents": 58.0,
+            "placed_epoch": 1783905600.0,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          "GAS": null
+        },
+        "rule": "R3 ANCHOR+NAMED",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R4 ANCHOR+Q25-NAMED": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1783862400.0,
+            "leg": "ALT",
+            "minutes_to_bell": 2880.0,
+            "new_cents": 57.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 57.0,
+              "minutes_to_bell": 2113.266666666667
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2880,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1783862400.0,
+            "leg": "GAS",
+            "minutes_to_bell": 2880.0,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 616.6666666666666
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2880,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783905600.0,
+            "leg": "ALT",
+            "minutes_to_bell": 2160.0,
+            "new_cents": 58.0,
+            "old_cents": 57.0,
+            "q50": {
+              "level_cents": 57.0,
+              "minutes_to_bell": 890.85
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 2160,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783905600.0,
+            "leg": "GAS",
+            "minutes_to_bell": 2160.0,
+            "new_cents": 40.0,
+            "old_cents": 39.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 815.1833333333333
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 2160,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783948800.0,
+            "leg": "GAS",
+            "minutes_to_bell": 1440.0,
+            "new_cents": 41.0,
+            "old_cents": 40.0,
+            "q50": {
+              "level_cents": 41.0,
+              "minutes_to_bell": 621.9527029514313
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 1440,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1783992000.0,
+            "leg": "GAS",
+            "minutes_to_bell": 720.0,
+            "new_cents": 40.0,
+            "old_cents": 41.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 352.2250743985176
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 720,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784035200,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "ALT": {
+            "cents": 58.0,
+            "epoch": 1783905600.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPMATCH-26JUL12ALTGAS",
+        "fills": {
+          "GAS": {
+            "cents": 40.0,
+            "epoch": 1784002241.52324,
+            "minutes_to_bell": 549.3079459985097,
+            "placed_epoch": 1783992000.0,
+            "print_cents": 39.0,
+            "print_rowid": 27,
+            "reachability": "REACHABLE \u2014 queue position unknown",
+            "rest_age_minutes": 170.69205400149028,
+            "size": null,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "formation_epoch": 1783790234.0,
+        "named_level_memory": {},
+        "one_sided": true,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "ALT": {
+            "cents": 58.0,
+            "placed_epoch": 1783905600.0,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          "GAS": null
+        },
+        "rule": "R4 ANCHOR+Q25-NAMED",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      }
+    },
+    "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "truth_row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a"
+  },
+  "KXATPMATCH-26JUL18DANPRA": {
+    "baseline_bell_epoch": 1784373060.0,
+    "corrected_bell_epoch": 1784373060,
+    "corrected_span_end_epoch": 1784372160,
+    "corrected_span_start_epoch": 1784332553,
+    "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+    "face_sha256": "9893274446d828a48785c0077bd95f3277abd740446a617299c138c07ca16570",
+    "forecasts": [
+      {
+        "epoch": 1784344260.0,
+        "sides": {
+          "DAN": {
+            "ask": 59.0,
+            "bid": 60.0,
+            "ess": 238.75411366207237,
+            "first_bind": null,
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 56.0,
+                "minutes_to_bell": 65.39630023241043
+              },
+              "q50": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 353.4137888987859
+              },
+              "q75": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 470.78333333333336
+              }
+            },
+            "last": 59.0,
+            "member_count": 680,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 59.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "PRA": {
+            "ask": 41.0,
+            "bid": 40.0,
+            "ess": 238.75411366207237,
+            "first_bind": {
+              "minutes_to_bell": 562.5537548343341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 64.89443768262863
+              },
+              "q50": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 268.73333333333335
+              },
+              "q75": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 452.26666666666665
+              }
+            },
+            "last": 41.0,
+            "member_count": 680,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 480
+      },
+      {
+        "epoch": 1784351460.0,
+        "sides": {
+          "DAN": {
+            "ask": 60.0,
+            "bid": 58.0,
+            "ess": 113.7029510509909,
+            "first_bind": {
+              "minutes_to_bell": 441.5309199174245,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 57.0,
+                "minutes_to_bell": 56.68333333333333
+              },
+              "q50": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 285.3807958841324
+              },
+              "q75": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 360.0
+              }
+            },
+            "last": 60.0,
+            "member_count": 308,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 59.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "PRA": {
+            "ask": 41.0,
+            "bid": 40.0,
+            "ess": 242.488378140021,
+            "first_bind": {
+              "minutes_to_bell": 562.5537548343341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 53.208174816767375
+              },
+              "q50": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 210.05150463183722
+              },
+              "q75": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 360.0
+              }
+            },
+            "last": 41.0,
+            "member_count": 701,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 360
+      },
+      {
+        "epoch": 1784358660.0,
+        "sides": {
+          "DAN": {
+            "ask": 60.0,
+            "bid": 58.0,
+            "ess": 113.14510076172081,
+            "first_bind": {
+              "minutes_to_bell": 441.5309199174245,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 46.61666666666667
+              },
+              "q50": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 176.43333333333334
+              },
+              "q75": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 240.0
+              }
+            },
+            "last": 60.0,
+            "member_count": 325,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 59.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "PRA": {
+            "ask": 41.0,
+            "bid": 40.0,
+            "ess": 248.76974354880005,
+            "first_bind": {
+              "minutes_to_bell": 562.5537548343341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 38.0,
+                "minutes_to_bell": 38.321183534463245
+              },
+              "q50": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 145.8093111673991
+              },
+              "q75": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 240.0
+              }
+            },
+            "last": 41.0,
+            "member_count": 716,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 240
+      },
+      {
+        "epoch": 1784362260.0,
+        "sides": {
+          "DAN": {
+            "ask": 60.0,
+            "bid": 58.0,
+            "ess": 111.35631033886051,
+            "first_bind": {
+              "minutes_to_bell": 441.5309199174245,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 42.68333333333333
+              },
+              "q50": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 131.3373702843984
+              },
+              "q75": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 180.0
+              }
+            },
+            "last": 60.0,
+            "member_count": 327,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 59.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "PRA": {
+            "ask": 42.0,
+            "bid": 41.0,
+            "ess": 251.05374086913542,
+            "first_bind": {
+              "minutes_to_bell": 562.5537548343341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 35.6888431986173
+              },
+              "q50": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 116.61666666666666
+              },
+              "q75": {
+                "level_cents": 42.0,
+                "minutes_to_bell": 180.0
+              }
+            },
+            "last": 42.0,
+            "member_count": 719,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 180
+      },
+      {
+        "epoch": 1784365860.0,
+        "sides": {
+          "DAN": {
+            "ask": 60.0,
+            "bid": 59.0,
+            "ess": 112.42539869825522,
+            "first_bind": {
+              "minutes_to_bell": 441.5309199174245,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 31.316666666666666
+              },
+              "q50": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 93.06666666666666
+              },
+              "q75": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 120.0
+              }
+            },
+            "last": 60.0,
+            "member_count": 329,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 59.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "PRA": {
+            "ask": 42.0,
+            "bid": 41.0,
+            "ess": 255.26194803268353,
+            "first_bind": {
+              "minutes_to_bell": 562.5537548343341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 27.983333333333334
+              },
+              "q50": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 80.10375233491261
+              },
+              "q75": {
+                "level_cents": 42.0,
+                "minutes_to_bell": 120.0
+              }
+            },
+            "last": 42.0,
+            "member_count": 728,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 120
+      },
+      {
+        "epoch": 1784367660.0,
+        "sides": {
+          "DAN": {
+            "ask": 60.0,
+            "bid": 59.0,
+            "ess": 114.05510423434943,
+            "first_bind": {
+              "minutes_to_bell": 441.5309199174245,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 20.15
+              },
+              "q50": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 69.63333333333334
+              },
+              "q75": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 90.0
+              }
+            },
+            "last": 60.0,
+            "member_count": 330,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 59.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "PRA": {
+            "ask": 42.0,
+            "bid": 41.0,
+            "ess": 256.49167349296016,
+            "first_bind": {
+              "minutes_to_bell": 562.5537548343341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 23.466666666666665
+              },
+              "q50": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 67.76666666666667
+              },
+              "q75": {
+                "level_cents": 42.0,
+                "minutes_to_bell": 90.0
+              }
+            },
+            "last": 42.0,
+            "member_count": 730,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 90
+      },
+      {
+        "epoch": 1784369460.0,
+        "sides": {
+          "DAN": {
+            "ask": 60.0,
+            "bid": 59.0,
+            "ess": 108.86421977609564,
+            "first_bind": {
+              "minutes_to_bell": 441.5309199174245,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 18.25
+              },
+              "q50": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 47.47017866770427
+              },
+              "q75": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 60.0
+              }
+            },
+            "last": 60.0,
+            "member_count": 327,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 59.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "PRA": {
+            "ask": 41.0,
+            "bid": 40.0,
+            "ess": 256.8407355118176,
+            "first_bind": {
+              "minutes_to_bell": 562.5537548343341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 17.862666249275208
+              },
+              "q50": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 49.18333333333333
+              },
+              "q75": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 60.0
+              }
+            },
+            "last": 41.0,
+            "member_count": 731,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 60
+      },
+      {
+        "epoch": 1784371260.0,
+        "sides": {
+          "DAN": {
+            "ask": 60.0,
+            "bid": 59.0,
+            "ess": 113.95664422833183,
+            "first_bind": {
+              "minutes_to_bell": 441.5309199174245,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 58.0,
+                "minutes_to_bell": 11.516585532824198
+              },
+              "q50": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 28.902364734808604
+              },
+              "q75": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 30.0
+              }
+            },
+            "last": 60.0,
+            "member_count": 338,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 59.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "PRA": {
+            "ask": 41.0,
+            "bid": 40.0,
+            "ess": 256.9804027860092,
+            "first_bind": {
+              "minutes_to_bell": 562.5537548343341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 39.0,
+                "minutes_to_bell": 13.216666666666667
+              },
+              "q50": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 28.91247858206431
+              },
+              "q75": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 30.0
+              }
+            },
+            "last": 41.0,
+            "member_count": 732,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 30
+      },
+      {
+        "epoch": 1784372160.0,
+        "sides": {
+          "DAN": {
+            "ask": 60.0,
+            "bid": 59.0,
+            "ess": 115.33124970091212,
+            "first_bind": {
+              "minutes_to_bell": 441.5309199174245,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 59.0,
+                "minutes_to_bell": 5.016666666666667
+              },
+              "q50": {
+                "level_cents": 60.0,
+                "minutes_to_bell": 14.373883914947509
+              },
+              "q75": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 15.0
+              }
+            },
+            "last": 61.0,
+            "member_count": 344,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 59.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "PRA": {
+            "ask": 41.0,
+            "bid": 40.0,
+            "ess": 256.9804027860092,
+            "first_bind": {
+              "minutes_to_bell": 562.5537548343341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 8.183333333333334
+              },
+              "q50": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 15.0
+              },
+              "q75": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 15.0
+              }
+            },
+            "last": 41.0,
+            "member_count": 732,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 15
+      },
+      {
+        "epoch": 1784372760.0,
+        "sides": {
+          "DAN": {
+            "ask": 61.0,
+            "bid": 59.0,
+            "ess": 115.8321224021629,
+            "first_bind": {
+              "minutes_to_bell": 441.5309199174245,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 61.0,
+                "minutes_to_bell": 2.6333333333333333
+              },
+              "q50": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 5.0
+              },
+              "q75": {
+                "level_cents": 62.0,
+                "minutes_to_bell": 5.0
+              }
+            },
+            "last": 62.0,
+            "member_count": 346,
+            "role": "CLIMBER",
+            "seen_true_trade_low": 59.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          },
+          "PRA": {
+            "ask": 41.0,
+            "bid": 38.0,
+            "ess": 257.69208511177453,
+            "first_bind": {
+              "minutes_to_bell": 562.5537548343341,
+              "role": "CLIMBER"
+            },
+            "flip_count": 0,
+            "floors": {
+              "q25": {
+                "level_cents": 40.0,
+                "minutes_to_bell": 4.519148031870524
+              },
+              "q50": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 5.0
+              },
+              "q75": {
+                "level_cents": 41.0,
+                "minutes_to_bell": 5.0
+              }
+            },
+            "last": 41.0,
+            "member_count": 734,
+            "role": "NOT_CALLABLE",
+            "seen_true_trade_low": 41.0,
+            "status": "OK",
+            "writer": "POOL_FIRST_TICK"
+          }
+        },
+        "source_gate_minutes": 5
+      }
+    ],
+    "rules": {
+      "R0 CURRENT": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784344260.0,
+            "leg": "PRA",
+            "minutes_to_bell": 480.0,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 268.73333333333335
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1784351460.0,
+            "leg": "DAN",
+            "minutes_to_bell": 360.0,
+            "new_cents": 59.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 59.0,
+              "minutes_to_bell": 285.3807958841324
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1784358660.0,
+            "leg": "PRA",
+            "minutes_to_bell": 240.0,
+            "new_cents": 40.0,
+            "old_cents": 39.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 145.8093111673991
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 240,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784373060,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {},
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "fills": {},
+        "formation_epoch": 1784332553.0,
+        "named_level_memory": {},
+        "one_sided": false,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "DAN": {
+            "cents": 59.0,
+            "placed_epoch": 1784351460.0,
+            "writer": "FIRST_Q50"
+          },
+          "PRA": {
+            "cents": 40.0,
+            "placed_epoch": 1784358660.0,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "rule": "R0 CURRENT",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R1 CLIMBER-ANCHOR": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784344260.0,
+            "leg": "PRA",
+            "minutes_to_bell": 480.0,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 268.73333333333335
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1784351460.0,
+            "leg": "DAN",
+            "minutes_to_bell": 360.0,
+            "new_cents": 59.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 59.0,
+              "minutes_to_bell": 285.3807958841324
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1784358660.0,
+            "leg": "PRA",
+            "minutes_to_bell": 240.0,
+            "new_cents": 40.0,
+            "old_cents": 39.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 145.8093111673991
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 240,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784373060,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "DAN": {
+            "cents": 59.0,
+            "epoch": 1784351460.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "fills": {},
+        "formation_epoch": 1784332553.0,
+        "named_level_memory": {},
+        "one_sided": false,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "DAN": {
+            "cents": 59.0,
+            "placed_epoch": 1784351460.0,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          "PRA": {
+            "cents": 40.0,
+            "placed_epoch": 1784358660.0,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "rule": "R1 CLIMBER-ANCHOR",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R2 NAMED-LEVEL": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784344260.0,
+            "leg": "PRA",
+            "minutes_to_bell": 480.0,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 268.73333333333335
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1784351460.0,
+            "leg": "DAN",
+            "minutes_to_bell": 360.0,
+            "new_cents": 59.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 59.0,
+              "minutes_to_bell": 285.3807958841324
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1784358660.0,
+            "leg": "PRA",
+            "minutes_to_bell": 240.0,
+            "new_cents": 40.0,
+            "old_cents": 39.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 145.8093111673991
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 240,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784373060,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {},
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "fills": {},
+        "formation_epoch": 1784332553.0,
+        "named_level_memory": {},
+        "one_sided": false,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "DAN": {
+            "cents": 59.0,
+            "placed_epoch": 1784351460.0,
+            "writer": "FIRST_Q50"
+          },
+          "PRA": {
+            "cents": 40.0,
+            "placed_epoch": 1784358660.0,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "rule": "R2 NAMED-LEVEL",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R3 ANCHOR+NAMED": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784344260.0,
+            "leg": "PRA",
+            "minutes_to_bell": 480.0,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 268.73333333333335
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1784351460.0,
+            "leg": "DAN",
+            "minutes_to_bell": 360.0,
+            "new_cents": 59.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 59.0,
+              "minutes_to_bell": 285.3807958841324
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1784358660.0,
+            "leg": "PRA",
+            "minutes_to_bell": 240.0,
+            "new_cents": 40.0,
+            "old_cents": 39.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 145.8093111673991
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 240,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784373060,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "DAN": {
+            "cents": 59.0,
+            "epoch": 1784351460.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "fills": {},
+        "formation_epoch": 1784332553.0,
+        "named_level_memory": {},
+        "one_sided": false,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "DAN": {
+            "cents": 59.0,
+            "placed_epoch": 1784351460.0,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          "PRA": {
+            "cents": 40.0,
+            "placed_epoch": 1784358660.0,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "rule": "R3 ANCHOR+NAMED",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      },
+      "R4 ANCHOR+Q25-NAMED": {
+        "actions": [
+          {
+            "action": "PLACE",
+            "epoch": 1784344260.0,
+            "leg": "PRA",
+            "minutes_to_bell": 480.0,
+            "new_cents": 39.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 39.0,
+              "minutes_to_bell": 268.73333333333335
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 480,
+            "writer": "FIRST_Q50"
+          },
+          {
+            "action": "PLACE",
+            "epoch": 1784351460.0,
+            "leg": "DAN",
+            "minutes_to_bell": 360.0,
+            "new_cents": 59.0,
+            "old_cents": null,
+            "q50": {
+              "level_cents": 59.0,
+              "minutes_to_bell": 285.3807958841324
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "CLIMBER",
+            "source_gate_minutes": 360,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          {
+            "action": "REPRICE",
+            "epoch": 1784358660.0,
+            "leg": "PRA",
+            "minutes_to_bell": 240.0,
+            "new_cents": 40.0,
+            "old_cents": 39.0,
+            "q50": {
+              "level_cents": 40.0,
+              "minutes_to_bell": 145.8093111673991
+            },
+            "reason": "RULE_TARGET_POSTABLE",
+            "role": "NOT_CALLABLE",
+            "source_gate_minutes": 240,
+            "writer": "FIRST_Q50"
+          }
+        ],
+        "bell_epoch": 1784373060,
+        "captured_cents": 0,
+        "captured_credit": "BOTH SIDES ONLY",
+        "climber_bindings": {
+          "DAN": {
+            "cents": 59.0,
+            "epoch": 1784351460.0
+          }
+        },
+        "completed": false,
+        "eligible": true,
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "fills": {},
+        "formation_epoch": 1784332553.0,
+        "named_level_memory": {},
+        "one_sided": false,
+        "pair_sum": null,
+        "queue_position": "UNKNOWN \u2014 reachable is not certain",
+        "rests_at_bell": {
+          "DAN": {
+            "cents": 59.0,
+            "placed_epoch": 1784351460.0,
+            "writer": "CLIMBER_ANCHOR"
+          },
+          "PRA": {
+            "cents": 40.0,
+            "placed_epoch": 1784358660.0,
+            "writer": "FIRST_Q50"
+          }
+        },
+        "rule": "R4 ANCHOR+Q25-NAMED",
+        "safety_violations": {},
+        "stepped_off": false,
+        "stepped_off_any_later": false,
+        "stepped_off_exposures": [],
+        "stepped_off_while_lower_rest_active": false
+      }
+    },
+    "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "truth_row_sha256": "08f58fa460e1d63ae4651a085b099dbbfd38db48291271b9414bad33258ddd52"
+  }
+}

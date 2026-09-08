@@ -9,6 +9,18 @@ const hash = (b) => crypto.createHash("sha256").update(b).digest("hex");
 const numeric = (v) => v != null && String(v).trim() !== "" && Number.isFinite(Number(v))
   ? Number(v) : null;
 
+export function applyRulerDisplayClock(face, truth) {
+  if (!Number.isFinite(truth?.bell_epoch)) return false;
+  const delta = truth.bell_epoch - face.bell.timestamp_epoch;
+  if (!delta) return false;
+  face.trace_bell ??= { ...face.bell };
+  face.bell = { ...face.bell, timestamp_epoch: truth.bell_epoch,
+    t: face.bell.t + delta / 3600, source: truth.bell_source,
+    role: "Corrected ruler display clock — trace_bell preserves the OS clock",
+    corrections_commit: truth.corrections_commit };
+  return true;
+}
+
 export function applyFiledCorrections(face, table, corrections) {
   const original = table.rows.find((r) => r.values.event_id === face.provenance.event_id);
   if (!original) return recordedTruth(face, table);

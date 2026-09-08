@@ -47,13 +47,14 @@ export function remainingTargets(prints, epoch, truth) {
 
 export function microMeasurements(face, decisions, printInput) {
   const truth = face.truth, bell = truth?.bell_epoch;
+  const traceBell = (face.trace_bell ?? face.bell).timestamp_epoch;
   const micro = {
     version: 2,
     eligibility_rule: "First in trace receipt order with a stored resolved P/Q/X sentence, finite Q and deadline, after own formation and inside the corrected span and bell. No future target participates in selection.",
     deadline_rule: "Stored absolute deadline_epoch, else original trace bell minus stored X; express that same instant on the corrected ruler clock. Never move a prediction when the ruler bell changes.",
     remaining_rule: "At every eligible receipt: minimum of carried accepted true print and strictly later accepted prints before corrected span end/bell. A carried minimum is timed at the receipt, not credited as a new print. Also score the future-print-only target separately.",
     aggregation: "First-call/full-span and all-receipt/remaining-path metrics are scored separately with unchanged MICRO rubric cutoffs. MICRO takes the worst mode; each mode uses the maximum error across its scored receipts/sides. Mean errors and denominators are reported, not alternative cutoffs.",
-    clock: { ruler_bell_epoch: bell, trace_bell_epoch: face.bell.timestamp_epoch },
+    clock: { ruler_bell_epoch: bell, trace_bell_epoch: traceBell },
     print_source: printInput?.provenance ?? SILENT,
     legs: {}, receipt_calls: [],
   };
@@ -62,7 +63,7 @@ export function microMeasurements(face, decisions, printInput) {
     const rows = [];
     for (const [order, row] of decisions.entries()) {
       const d = (row.forecasts ?? row.legs)?.[leg];
-      const deadline = d?.deadline_epoch ?? (finite(d?.floor_mtb) ? face.bell.timestamp_epoch - d.floor_mtb * 60 : null);
+      const deadline = d?.deadline_epoch ?? (finite(d?.floor_mtb) ? traceBell - d.floor_mtb * 60 : null);
       const reason = !d ? "NO_STORED_FORECAST_ON_RECEIPT"
         : !d.has_sentence || d.status !== "RESOLVED" || !finite(d.q50) || !finite(deadline) ? "NO_RESOLVED_P_Q_X_FORECAST"
         : !finite(d.formation_end) ? "UNKNOWN_OWN_FORMATION"

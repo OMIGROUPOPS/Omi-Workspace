@@ -1,0 +1,1122 @@
+{
+  "baseline": {
+    "named": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_NAMED_CHECKS.json",
+      "sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325"
+    },
+    "receipt": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+      "sha256": "51213167ea2fd082f20bd59bc9a75dc5bde534cc3be9a53ef3341692f20f3631"
+    },
+    "scoreboard": {
+      "commit": "c7825925",
+      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_SCOREBOARD.json",
+      "sha256": "d609c564bcab36491d26742957d6414b288d604820e019711041582def8b4d4c"
+    }
+  },
+  "baseline_named_comparisons": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 480,
+      "leg": "GIU",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 480,
+      "leg": "BAR",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 360,
+      "leg": "GIU",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 360,
+      "leg": "BAR",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 240,
+      "leg": "GIU",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 240,
+      "leg": "BAR",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 180,
+      "leg": "GIU",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 180,
+      "leg": "BAR",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 120,
+      "leg": "GIU",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 120,
+      "leg": "BAR",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 90,
+      "leg": "GIU",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 90,
+      "leg": "BAR",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 60,
+      "leg": "GIU",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 60,
+      "leg": "BAR",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 30,
+      "leg": "GIU",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 30,
+      "leg": "BAR",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 15,
+      "leg": "GIU",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 15,
+      "leg": "BAR",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 5,
+      "leg": "GIU",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "gate": 5,
+      "leg": "BAR",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 720,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 720,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 480,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 480,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 360,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 360,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 240,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 240,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 180,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 180,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 120,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 120,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 90,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 90,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 60,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 60,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 30,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 30,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 15,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 15,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 5,
+      "leg": "LAJ",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "gate": 5,
+      "leg": "SVA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 360,
+      "leg": "URS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 360,
+      "leg": "PAL",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 240,
+      "leg": "URS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 240,
+      "leg": "PAL",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 180,
+      "leg": "URS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 180,
+      "leg": "PAL",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 120,
+      "leg": "URS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 120,
+      "leg": "PAL",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 90,
+      "leg": "URS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 90,
+      "leg": "PAL",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 60,
+      "leg": "URS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 60,
+      "leg": "PAL",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 30,
+      "leg": "URS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 30,
+      "leg": "PAL",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 15,
+      "leg": "URS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 15,
+      "leg": "PAL",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 5,
+      "leg": "URS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "gate": 5,
+      "leg": "PAL",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 2880,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 2880,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 2160,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 2160,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 1440,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 1440,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 1080,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 1080,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 720,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 720,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 480,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 480,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 360,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 360,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 240,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 240,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 180,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 180,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 120,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 120,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 90,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 90,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 60,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 60,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 30,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 30,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 15,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 15,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 5,
+      "leg": "ALT",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "gate": 5,
+      "leg": "GAS",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 480,
+      "leg": "DAN",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 480,
+      "leg": "PRA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 360,
+      "leg": "DAN",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 360,
+      "leg": "PRA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 240,
+      "leg": "DAN",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 240,
+      "leg": "PRA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 180,
+      "leg": "DAN",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 180,
+      "leg": "PRA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 120,
+      "leg": "DAN",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 120,
+      "leg": "PRA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 90,
+      "leg": "DAN",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 90,
+      "leg": "PRA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 60,
+      "leg": "DAN",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 60,
+      "leg": "PRA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 30,
+      "leg": "DAN",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 30,
+      "leg": "PRA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 15,
+      "leg": "DAN",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 15,
+      "leg": "PRA",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 5,
+      "leg": "DAN",
+      "status": "MATCH"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "gate": 5,
+      "leg": "PRA",
+      "status": "MATCH"
+    }
+  ],
+  "cohort": {
+    "category": "ATP_MAIN",
+    "eligible_query_legs": 1856,
+    "eligible_query_pairs": 928,
+    "filed_category_census": {
+      "ATP_MAIN:first_tick_tie_STORE_SILENT": 11,
+      "ATP_MAIN:non_three_character_leg_id": 23,
+      "ATP_MAIN:oriented_pairs": 928,
+      "ATP_MAIN:pair_events": 939
+    }
+  },
+  "conduct_guard_source": {
+    "engine_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+    "functionable_sha256": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "maximum_cent": 99,
+    "minimum_cent": 1,
+    "pair_budget": 99,
+    "par": 100
+  },
+  "count_sidecar": {
+    "calibration_scope": "All oriented library legs in category, no named games. Retrospective data-set scale, not per-query walk-forward calibration.",
+    "category_print_count_distributions": {
+      "ATP_CHALL": {
+        "count": 4574,
+        "max": 2976.0,
+        "mean": 62.666593790992565,
+        "min": 1.0,
+        "q10": 5.0,
+        "q25": 11.0,
+        "q50": 27.0,
+        "q75": 70.0,
+        "q90": 158.0
+      },
+      "ATP_MAIN": {
+        "count": 1856,
+        "max": 16545.0,
+        "mean": 415.7429956896552,
+        "min": 2.0,
+        "q10": 34.0,
+        "q25": 88.0,
+        "q50": 224.0,
+        "q75": 459.0,
+        "q90": 893.0
+      },
+      "ITF_M": {
+        "count": 3104,
+        "max": 1214.0,
+        "mean": 149.2326030927835,
+        "min": 3.0,
+        "q10": 39.0,
+        "q25": 71.0,
+        "q50": 122.0,
+        "q75": 193.0,
+        "q90": 281.0
+      },
+      "ITF_W": {
+        "count": 2978,
+        "max": 1093.0,
+        "mean": 139.8821356615178,
+        "min": 3.0,
+        "q10": 34.0,
+        "q25": 66.0,
+        "q50": 113.0,
+        "q75": 180.0,
+        "q90": 264.0
+      },
+      "WTA_CHALL": {
+        "count": 992,
+        "max": 1682.0,
+        "mean": 47.621975806451616,
+        "min": 1.0,
+        "q10": 4.0,
+        "q25": 8.0,
+        "q50": 20.0,
+        "q75": 52.0,
+        "q90": 123.0
+      },
+      "WTA_MAIN": {
+        "count": 1834,
+        "max": 6350.0,
+        "mean": 228.71374045801528,
+        "min": 1.0,
+        "q10": 17.0,
+        "q25": 43.0,
+        "q50": 109.0,
+        "q75": 246.0,
+        "q90": 486.0
+      }
+    },
+    "checks": {
+      "final_count_matches": 15502,
+      "final_count_mismatches": 0,
+      "grid_identity": "Every library leg, in library order; own floor(native ts) seconds with accepted in-span prints; independent of library change points",
+      "legs_checked": 15502,
+      "rows_checked": 1405183,
+      "total_true_prints_in_spans": 2430670
+    },
+    "gate_join": "Latest sidecar second <= gate epoch; zero before the first print second. Independent accepted-print-second count grid; library price/change-point grid unchanged. Second bucket labels are floor(native ts), not subsecond arrival times.",
+    "sidecar_path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+    "sidecar_receipt_sha256": "89a1be15f323f96ef90556b08130722159cae69c26d33fe461c122894b67918b",
+    "sidecar_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+    "sleeper_p10_by_category": {
+      "ATP_CHALL": 5.0,
+      "ATP_MAIN": 34.0,
+      "ITF_M": 39.0,
+      "ITF_W": 34.0,
+      "WTA_CHALL": 4.0,
+      "WTA_MAIN": 17.0
+    },
+    "source": "true_print_count_in_span from tick-library rows; exact gate-prefix counts from cutter-bound sidecar",
+    "volume_is_not_print_count": true
+  },
+  "definitions": {
+    "anchor": "First atlas receipt calling CLIMBER binds the stored own running low; freezes through later role flips. Author ESS/guards still required; no invented price after safety cancellation.",
+    "current": "R0 is FIRST-only at fixed atlas-gate receipts as ordered, not a replay of installed FIRST/BASE or its between-gate conduct. No pre-first-gate synthetic placement.",
+    "eligible": "Exact 928 oriented ATP_MAIN query ids filed at c7825925; no future-SCORABLE filter; all are denominators, including no-call/no-gate queries",
+    "fill": "First accepted native print strictly after placement/reprice, price <= bid, formation <= print < bell. Fill at resting bid, not print price. Queue unknown. Zero-size library prints retain cutter acceptance, separately reported.",
+    "future_access": "Query future prints used only in consume/fill/outcome/stepped-off evaluation; projector samples own prefix only. Member remaining floors are already historical (bell < query formation).",
+    "guards": "Existing integer-cent validation, locked-book hold, insufficient-authority hold, post-only hold/pull, joint pair-budget veto; existing credited entry included. Atlas receipts are not ask-only book ticks.",
+    "matching": "All rules score identical eligible ids. Conditional capture delta uses pairs completed under BOTH rules, denominator explicit.",
+    "named_clock": "Named Q/X/roles reproduce c7825925 FIRST at their original absolute receipt timestamps; accepted fills and order bounds use corrected ruler. Original gate and corrected minutes-to-bell both written. No old forecast moved backwards to a corrected gate.",
+    "named_level": "Protect actually posted faller levels from downward movement, not an unposted forecast. Remember the posted high-water level through a safety cancellation. May rise; current non-FALLER uses R0 unless a climber binding already froze it.",
+    "q25": "R4 replaces faller q50 with q25 then applies the same standing-level protection. Existing climber binding takes priority.",
+    "roles": "Reference receipt-time current role; first bind and flips update causally across observed prefix points, not via terminal-label scanning.",
+    "stepped_off": "As ordered: a downward faller reprice has any strictly later pre-bell accepted print with new < price <= old. Count a pair once. Also report the stricter subset whose witness arrives while that lower order is still active; neither counter awards fill credit."
+  },
+  "determinism": {
+    "conduct": "Each query/rule event loop evaluated twice; canonical bytes equal",
+    "first_forecasts": "Independent prepared pass equals scoring pass on all queries",
+    "prepared_sha256": "c01eab470bcd3294d2ac3c8854232cb8e91c58ca115f7aa35689ed0a0c667d36"
+  },
+  "inherited_helper_check": {
+    "commit": "c7825925",
+    "structural_equivalence": [
+      "load_tick_library",
+      "load_named_inputs",
+      "initial_pool",
+      "remaining_floor",
+      "Pair",
+      "Leg",
+      "role",
+      "date_key"
+    ]
+  },
+  "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+  "named_inputs": {
+    "census": {
+      "named_oriented_pairs": 5,
+      "prints_file_lines": 4836462,
+      "selected_print_rows": 43277,
+      "selected_trades_at_or_after_bell_excluded": 42159,
+      "source_order_timestamp_regressions_sorted": 24869
+    },
+    "per_leg": {
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR": {
+        "bell_epoch": 1783876740.0,
+        "filed_postformation_open_cents": 31.5,
+        "first_postformation_trade_cents": 27.0,
+        "first_postformation_trade_epoch": 1783841801.304766,
+        "formation_end_epoch": 1783831858.0,
+        "native_change_points": 465,
+        "onset_epoch": 1783879280,
+        "postformation_prebell_true_trade_count": 34,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1783876740.0,
+        "volume_cum": 6103.8899999999985
+      },
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU": {
+        "bell_epoch": 1783876740.0,
+        "filed_postformation_open_cents": 67.0,
+        "first_postformation_trade_cents": 70.0,
+        "first_postformation_trade_epoch": 1783833752.027399,
+        "formation_end_epoch": 1783831858.0,
+        "native_change_points": 465,
+        "onset_epoch": 1783880180,
+        "postformation_prebell_true_trade_count": 31,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1783876740.0,
+        "volume_cum": 2164.28
+      },
+      "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ": {
+        "bell_epoch": 1784078400.0,
+        "filed_postformation_open_cents": 59.0,
+        "first_postformation_trade_cents": 62.0,
+        "first_postformation_trade_epoch": 1784016081.367479,
+        "formation_end_epoch": 1784007603.0,
+        "native_change_points": 578,
+        "onset_epoch": 1784007623,
+        "postformation_prebell_true_trade_count": 285,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784078400,
+        "volume_cum": 35261.69000000001
+      },
+      "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA": {
+        "bell_epoch": 1784078400.0,
+        "filed_postformation_open_cents": 41.0,
+        "first_postformation_trade_cents": 41.0,
+        "first_postformation_trade_epoch": 1784020201.83001,
+        "formation_end_epoch": 1784007603.0,
+        "native_change_points": 359,
+        "onset_epoch": 1784007623,
+        "postformation_prebell_true_trade_count": 258,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784078400,
+        "volume_cum": 16530.560000000005
+      },
+      "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL": {
+        "bell_epoch": 1784045100.0,
+        "filed_postformation_open_cents": 38.0,
+        "first_postformation_trade_cents": 41.0,
+        "first_postformation_trade_epoch": 1784021161.637746,
+        "formation_end_epoch": 1784001495.0,
+        "native_change_points": 1981,
+        "onset_epoch": 1784001599,
+        "postformation_prebell_true_trade_count": 49,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784042040,
+        "volume_cum": 1164.49
+      },
+      "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS": {
+        "bell_epoch": 1784045100.0,
+        "filed_postformation_open_cents": 62.0,
+        "first_postformation_trade_cents": 66.0,
+        "first_postformation_trade_epoch": 1784005897.194254,
+        "formation_end_epoch": 1784001495.0,
+        "native_change_points": 417,
+        "onset_epoch": 1784001599,
+        "postformation_prebell_true_trade_count": 62,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784042040,
+        "volume_cum": 2787.1099999999997
+      },
+      "KXATPMATCH-26JUL12ALTGAS-ALT": {
+        "bell_epoch": 1784035200.0,
+        "filed_postformation_open_cents": 57.0,
+        "first_postformation_trade_cents": 59.0,
+        "first_postformation_trade_epoch": 1783797131.966878,
+        "formation_end_epoch": 1783790234.0,
+        "native_change_points": 275,
+        "onset_epoch": 1783832573,
+        "postformation_prebell_true_trade_count": 238,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784035200,
+        "volume_cum": 26863.90999999999
+      },
+      "KXATPMATCH-26JUL12ALTGAS-GAS": {
+        "bell_epoch": 1784035200.0,
+        "filed_postformation_open_cents": 43.0,
+        "first_postformation_trade_cents": 43.0,
+        "first_postformation_trade_epoch": 1783797385.046757,
+        "formation_end_epoch": 1783790234.0,
+        "native_change_points": 144,
+        "onset_epoch": 1783832573,
+        "postformation_prebell_true_trade_count": 102,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784035200,
+        "volume_cum": 9760.39
+      },
+      "KXATPMATCH-26JUL18DANPRA-DAN": {
+        "bell_epoch": 1784373060.0,
+        "filed_postformation_open_cents": 58.0,
+        "first_postformation_trade_cents": 59.0,
+        "first_postformation_trade_epoch": 1784339306.77471,
+        "formation_end_epoch": 1784332553.0,
+        "native_change_points": 62,
+        "onset_epoch": 1784332594,
+        "postformation_prebell_true_trade_count": 37,
+        "preformation_true_trade_count": 0,
+        "verified_span_end_epoch": 1784372160,
+        "volume_cum": 3322.08
+      },
+      "KXATPMATCH-26JUL18DANPRA-PRA": {
+        "bell_epoch": 1784373060.0,
+        "filed_postformation_open_cents": 41.0,
+        "first_postformation_trade_cents": 43.0,
+        "first_postformation_trade_epoch": 1784336963.017588,
+        "formation_end_epoch": 1784332553.0,
+        "native_change_points": 43,
+        "onset_epoch": 1784332594,
+        "postformation_prebell_true_trade_count": 20,
+        "preformation_true_trade_count": 2,
+        "verified_span_end_epoch": 1784372160,
+        "volume_cum": 602.1999999999999
+      }
+    },
+    "rules": {
+      "book": "Native recorder ts_et in America/New_York; bid_1/ask_1 only. Snapshot last_trade is never used.",
+      "clock": "Filed W1_GROUND_TRUTH_TABLE formation_end_game and bell_epoch, not trace first-stage recorder-open time. Explicit verified span_end also recorded; no synthetic data to bell.",
+      "first_tick": "Exact instant both sides have a true trade since formation; first=minimal causal state with both traded, not simultaneous-minute trades.",
+      "missing": "No snapshot/anchor substitution for missing true prints; no first postformation trade excludes the pair.",
+      "role_open": "Filed leg*_open_postformation_c, kept separately from first pool-observation prices.",
+      "second_close": "Group by floor(exchange_ts)/floor(book ts); within each stream use original source row order (custody files have no SQLite rowid), closing last/book; true-print min/max and size sum use all accepted prints in the second; stamp at greatest contributing native ts; no synthetic formation row",
+      "true_trade": "true_print=true; exchange_ts, price_cents, size; identical trade_id rows deduplicated, conflicting identities fail; ties keep source order.",
+      "volume": "Sum of true-print size since formation; exact trade count counts unique trade_id, not changed prices or minutes."
+    },
+    "sources": {
+      "book_tapes": {
+        "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR": {
+          "bytes": 541656,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz",
+          "sha256": "ccb153d06d07797687e6aeffeb8d2e12b87f12889947a1b660c85988e0fc7f25"
+        },
+        "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU": {
+          "bytes": 572375,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz",
+          "sha256": "8cf05f73d43280be1b394c4241f2935bc872bfb2ab8c333a5e08b47d9783ce94"
+        },
+        "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ": {
+          "bytes": 1735409,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz",
+          "sha256": "f8445932163996dd1f2fdccc7dfcb5e14f412dc84ae4dc18b7da8dfb304c59ff"
+        },
+        "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA": {
+          "bytes": 1695341,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz",
+          "sha256": "48b087d31d1e701f8a84e45d34db59b4f17d15cb2a6237c4ebf80956a897e196"
+        },
+        "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL": {
+          "bytes": 754076,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz",
+          "sha256": "216e26887d7e83ffc9860d9cfb7e8ecd7f13c36b7545231aabf820c6f1517f47"
+        },
+        "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS": {
+          "bytes": 563975,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz",
+          "sha256": "6535f985d69bf285fbc0db3984aa78be6b27120b025590957053e9c2aa695af9"
+        },
+        "KXATPMATCH-26JUL12ALTGAS-ALT": {
+          "bytes": 449328,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz",
+          "sha256": "3e13c18b5f7c6787543f0c68069d9e1611b215873d8e670579c90891ffc0a7b9"
+        },
+        "KXATPMATCH-26JUL12ALTGAS-GAS": {
+          "bytes": 478198,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz",
+          "sha256": "fa704092578cd84fc93474b3c1326e18feae7efb53747707a8e6b7fdff0dbf7e"
+        },
+        "KXATPMATCH-26JUL18DANPRA-DAN": {
+          "bytes": 321874,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPMATCH-26JUL18DANPRA-DAN.csv.gz",
+          "sha256": "4880e507c83adef39f990b979f6b3f26514e9da506f1e9f156813b555e9b7537"
+        },
+        "KXATPMATCH-26JUL18DANPRA-PRA": {
+          "bytes": 314263,
+          "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPMATCH-26JUL18DANPRA-PRA.csv.gz",
+          "sha256": "0e4b5032d4fb8430453a18e91377a2d177835254863dbb7baa8733bc74d8428f"
+        }
+      },
+      "canonical_onsets": {
+        "bytes": 49606,
+        "commit": "4716657a",
+        "path": ".claude/window1_live_v4_replay/v52e_disposition_804_four_state_20260813/POST_ONSET_OFFER_CAPTURE_LEDGER_804.jsonl.gz",
+        "sha256": "1b4875f2ce8f23c45692d0c357e62c6a1ea140ed2ff59fd4c9408110424ff6a0"
+      },
+      "true_prints": {
+        "bytes": 1766090446,
+        "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\prints.jsonl",
+        "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+      },
+      "truth_table": {
+        "bytes": 1426420,
+        "path": "C:\\Users\\omigr\\omi-w1-face\\.claude\\window1_second_seat\\v11_non_action_mechanism_audit_20260803\\W1_GROUND_TRUTH_TABLE.json",
+        "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729"
+      }
+    }
+  },
+  "outputs": {
+    "CONDUCT_NAMED_CHECKS.json": {
+      "bytes": 179227,
+      "sha256": "3e6a7ecfaf8f0ba0ccf5157ff3ecad9920b7dcc80b52e9ba97dcac9a85d19b3d"
+    },
+    "CONDUCT_SCOREBOARD.json": {
+      "bytes": 12146168,
+      "sha256": "b52a148cab808ad0e478d1b0e619227466f13ebb4bdfcc597dae63e37553f5cd"
+    },
+    "CONDUCT_SUMMARY.md": {
+      "bytes": 3463,
+      "sha256": "c0078e43257ecc2370453975e069cc14b3e135b427a2bf63a8c6d049f85571a7"
+    },
+    "FIRST_FORECASTS.jsonl.gz": {
+      "bytes": 916135,
+      "sha256": "e789bf7ad43b2756fabbf9957ec810cab38ae704c1fced30cdcd54ac8408ec2b"
+    }
+  },
+  "print_extract": {
+    "category": "ATP_MAIN",
+    "cutter_sha256": "8b513301f2c209a64567b0586818c4c86e38d4133750b56e5cdc4adfc56bfed3",
+    "dedupe": "Before density, anchors, volume and change points, group accepted non-TUNE_SAMPLE true prints by (ticker, floor(ts), price, size). When a key occurs across sources, retain one row: spaces_trades, then public_tape, then backfill; within the surviving source retain the last rowid. Same-source-only repeated prints are preserved. Counts are discarded rows by removed source -> surviving source. Retain the survivor's native timestamp and raw source/role; no store rows are changed.",
+    "extractor_sha256": "de05b9539e125df445c7b139b9ee3c9a1cf4b6a4f99e5cd5e4e09fb83a0dc240",
+    "final_count_matches": 1878,
+    "legs": 1878,
+    "library_receipt_sha256": "533c3271d8734caa6f1ccd7dc36563a6726a4c540060d3a1b33cfa011596a282",
+    "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+    "ordering": "Fill search uses native timestamp then rowid; library Q/book grid retains cutter second-close ordering",
+    "output_bytes": 7639804,
+    "output_sha256": "bf982a5e99683384ee261e5cf6cf2bd6fdd139dc426bda4b86ad877e34f5120f",
+    "removed_before_bell": {
+      "('backfill', 'spaces_trades')": 138346,
+      "('spaces_trades', 'spaces_trades')": 5579
+    },
+    "source_sha256_end": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "source_sha256_start": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "span": "Exact library formation <= accepted native timestamp < bell; no bounds rederived",
+    "status": "VERIFIED",
+    "store_lock": {
+      "audit_path": "/mnt/omi-trading-data-nyc3/library/conduct_atp_main_v1/CUTTER_RUN.lock",
+      "expected_store_sha256": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+      "lock_held": true,
+      "lock_holder": {
+        "host": "ubuntu-s-1vcpu-2gb-nyc3-01",
+        "pid": 676206
+      },
+      "shared_lock_device": 64769,
+      "shared_lock_inode": 1081976,
+      "shared_lock_path": "/root/Omi-Workspace/arb-executor/state/subsecond_store.db.lock",
+      "start_time_utc": "2026-09-08T17:09:23.498182+00:00",
+      "status": "HASHING_END",
+      "store_path": "/mnt/omi-trading-data-nyc3/subsecond/subsecond_store.db",
+      "store_sha256": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+      "store_sha256_end": null,
+      "store_sha256_start": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d"
+    },
+    "true_prints": 777937,
+    "volume_check": "Exact cumulative size at every original library change-point second",
+    "zero_size_accepted_prints": 6778
+  },
+  "print_extract_local_verification": {
+    "accepted_print_rows": 777937,
+    "bytes": 7639804,
+    "jsonl_leg_rows": 1878,
+    "matches_extractor_receipt": true,
+    "path": "C:\\tmp\\conduct_atp_main_v1\\ATP_MAIN_PRINTS.jsonl.gz",
+    "raw_prints_committed": false,
+    "row_definition": "One outer JSONL row per library leg; its prints array contains the accepted native print rows",
+    "sha256": "bf982a5e99683384ee261e5cf6cf2bd6fdd139dc426bda4b86ad877e34f5120f"
+  },
+  "print_extract_receipt_sha256": "85914d77895b46d08b135b4f4e14eb6f3c6046420a76f6e3f2284f6f0e6e0ff5",
+  "query_count": 928,
+  "reference_script_sha256": "b9d96cddfe43cc014342e9745fb099f5126f6adae06bbcbec6b5b6a8557d58f8",
+  "script_sha256": "2d2fc2c770b29a9e7be4792f3c79348e6728002fa88ff4cc618121d03814f696",
+  "status": "BENCH ONLY \u2014 REACHABLE FILLS, NOT CERTAIN"
+}

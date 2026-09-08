@@ -6,7 +6,8 @@ import readline from "node:readline";
 import { PassThrough } from "node:stream";
 import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
-import { extendFace, bindCustody, writeGameIndex, inspectorSummary } from "./face_contract.mjs";
+import { extendFace, bindCustody, writeGameIndex, inspectorSummary, alignBenchToCorrectedRuler } from "./face_contract.mjs";
+import { readGradeRulers, applyRulerDisplayClock } from "./grade_rulers.mjs";
 import { packFace } from "./face_encoding.mjs";
 import { readPinnedTruth, attachRecordedTruth } from "./recorded_truth.mjs";
 import { chartSource, attachChartActions } from "./chart_actions.mjs";
@@ -414,6 +415,8 @@ const face = {
 };
 // Keep the original no-argument exporter contract for rerun_altgas.ps1 and its
 // legacy page. Tune-test is the explicit trace-backed path, with full inspectors.
+const rulers = readGradeRulers(path.resolve(here, ".."), eventId, face);
+applyRulerDisplayClock(face, rulers.effective_truth);
 if (tracePath) await extendFace(face, { here, eventId, benchPath: args.bench });
 // Cascade X is a stored floor clock, not the retired cents-axis projection.
 for (const row of face.os) for (const [leg, state] of Object.entries(row.legs ?? {})) {
@@ -423,7 +426,9 @@ for (const row of face.os) for (const [leg, state] of Object.entries(row.legs ??
   const clock = Number.isFinite(sentence?.X) ? `${sentence.X}m to bell` : "STORE SILENT";
   row.display.legs[leg].belief = `status ${sentence?.status ?? "STORE SILENT"} · P ${cents(sentence?.P)} · Q ${cents(sentence?.Q)} · X ${clock}`;
 }
-attachRecordedTruth(face, readPinnedTruth(path.resolve(here, "..")));
+face.rulers = rulers;
+attachRecordedTruth(face, readPinnedTruth(path.resolve(here, "..")), rulers.effective_truth);
+await alignBenchToCorrectedRuler(face);
 if (tracePath) attachChartActions(face, raw.chartSources);
 
 const payload = `${JSON.stringify(tracePath ? packFace(face) : face)}\n`;

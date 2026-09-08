@@ -195,8 +195,8 @@ export function recordedTruth(face, table) {
   return truth;
 }
 
-export function attachRecordedTruth(face, table) {
-  face.truth = recordedTruth(face, table);
+export function attachRecordedTruth(face, table, correctedTruth = null) {
+  face.truth = correctedTruth ?? recordedTruth(face, table);
   if (!face.render) return face.truth;
   for (const [name, axis, priceField] of [
     ["play", face.render.axis, "plot_price"],

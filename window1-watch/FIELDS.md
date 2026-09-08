@@ -768,5 +768,37 @@ Grade provenance additionally binds the corrections commit/file SHA, effective
 truth SHA, custody true-print SHA, and `grade_measurements.mjs`/`grade_prints.mjs`
 SHAs. SENTENCE card wording is `authored (token metric)`; its Gate-1 certification
 remains independently STORE SILENT. `display.ruler_line/ruler_hover_lines` are
-builder-written corrected grading facts, separate from the unchanged trace/chart
-clock. HANDS hover lists lineage and current-price durations separately.
+builder-written corrected grading facts. HANDS hover lists lineage and
+current-price durations separately.
+
+### Corrected recorded-floor and bench display clock
+
+The recorded-floor HUD and flags now use the same `rulers.effective_truth` as
+the grade: original truth table at `c0056976`, with **every** matching correction
+at `15955e44` overlaid in ledger order. `truth` retains original row SHA/CSV,
+effective row, correction IDs and row SHAs; `rulers` retains the original and
+correction records beside it. This remains **RULER — NOT AN OS INPUT**.
+
+`bell` is the corrected ruler display clock. If it differs from the trace,
+`trace_bell` preserves the complete original clock. `bell.t` changes by the
+bell delta alone, preserving the epoch of every original tape/OS row. Original
+stored sentences, Q/X, actions and fills do not change; grade deadline fallback
+uses `trace_bell`, never the relabeled clock. No replay is performed.
+
+`bench.bell_epoch` is the corrected ruler bell; `source_bell_epoch` preserves
+the bench's original bell. `clock_delta_seconds`, `corrections_commit`,
+`original_label` and `clock_status` disclose the mapping. A mismatched source is
+`REBASED_STORED_RECEIPT_NOT_REFORECAST`, not a newly evaluated forecast.
+At a corrected checkpoint, select the latest stored bench receipt whose absolute
+epoch is no later than that checkpoint. Do not pick the same-numbered old gate
+if its receipt is in the future. Each checkpoint's `bench.clock` records
+`source_bell_epoch`, `corrected_bell_epoch`, `source_gate_minutes`,
+`source_receipt_epoch`, `display_gate_minutes`, `carried_age_minutes`, and status.
+`bench.minutes_to_bell` and `clock_note` describe that original receipt on the
+corrected clock; the pool-accuracy hover includes its carry age. No earlier
+receipt means STORE SILENT. Bench numbers themselves remain byte-for-byte values
+from the bound bench file. Historical grades remain append-only.
+
+The conduct scoreboard is a separate bench output under
+`arb-executor/analysis/conduct_scoreboard/ATP_MAIN/`; none of its hypothetical
+orders or reachable fills is imported into this face or an OS trace.

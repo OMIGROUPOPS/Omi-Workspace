@@ -4,6 +4,10 @@ import path from "node:path";
 import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { readPinnedTruth, attachRecordedTruth } from "./recorded_truth.mjs";
+import { readGradeRulers, applyRulerDisplayClock } from "./grade_rulers.mjs";
+import { alignBenchToCorrectedRuler, writeGameIndex, extendFace } from "./face_contract.mjs";
+import { unpackFace, packFace } from "./face_encoding.mjs";
+import { readChartSources, attachChartActions } from "./chart_actions.mjs";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const events = process.argv.slice(2);
 if (!events.length) throw new Error("Supply the event ids to refresh");
@@ -11,11 +15,20 @@ const table = readPinnedTruth(path.resolve(here, ".."));
 for (const event of events) {
   if (!/^[A-Za-z0-9_-]+$/.test(event)) throw new Error("Unsafe event id");
   const file = path.join(here, "data", `${event}.face.json`);
-  const face = JSON.parse(await fs.readFile(file, "utf8"));
+  const face = unpackFace(JSON.parse(await fs.readFile(file, "utf8")));
   if (face.provenance.event_id !== event)
     throw new Error("Face event mismatch");
-  const truth = attachRecordedTruth(face, table);
-  const bytes = `${JSON.stringify(face)}\n`;
+  face.rulers = readGradeRulers(path.resolve(here, ".."), event, face);
+  if (applyRulerDisplayClock(face, face.rulers.effective_truth)) {
+    const storedBeliefs = face.os.map(r => Object.fromEntries(Object.entries(r.display?.legs ?? {}).map(([l, s]) => [l, s.belief])));
+    await extendFace(face, { here, eventId: event, benchPath: face.bench?.source ?? "none" });
+    for (const [i, row] of face.os.entries()) for (const [leg, belief] of Object.entries(storedBeliefs[i] ?? {}))
+      if (row.display?.legs?.[leg]) row.display.legs[leg].belief = belief;
+  }
+  const truth = attachRecordedTruth(face, table, face.rulers.effective_truth);
+  await alignBenchToCorrectedRuler(face);
+  attachChartActions(face, await readChartSources(face, here));
+  const bytes = `${JSON.stringify(packFace(face))}\n`;
   await fs.writeFile(file + ".tmp", bytes);
   await fs.rename(file + ".tmp", file);
   await fs.writeFile(file + ".gz", zlib.gzipSync(bytes));
@@ -27,3 +40,4 @@ for (const event of events) {
       )}\n${truth.pair.line} · ${truth.pair.discount_line}\nTABLE_COMMIT ${truth.table_commit}\nROW_SHA256 ${truth.row_sha256}`,
   );
 }
+await writeGameIndex(path.join(here, "data"));

@@ -30,7 +30,8 @@ test("all five loaded games have four-line cards, mapped hands and measured MACR
     assert.equal(grade.HANDS.writer_class_unmapped, 0, file);
     assert.equal(grade.LETTER.section_grades.HANDS.letter, "A", file);
     assert.notEqual(grade.LETTER.section_grades.MACRO.letter, "STORE SILENT", file);
-    assert.equal(grade.MACRO.comparison_clock.bell_epoch, face.bench.bell_epoch);
+    assert.equal(grade.MACRO.comparison_clock.bell_epoch, face.bench.source_bell_epoch ?? face.bench.bell_epoch);
+    assert.equal(face.bench.bell_epoch, face.truth.bell_epoch);
     for (const leg of Object.values(grade.MACRO.legs)) {
       assert.equal(typeof leg.family_match, "boolean");
       assert.ok(leg.family_call_epoch <= grade.MACRO.comparison_clock.last_gate_epoch);

@@ -32,7 +32,7 @@
     "WTA_MAIN:oriented_pairs": 917,
     "WTA_MAIN:pair_events": 930
   },
-  "clock": "Exact library path.ts (native last state per second, true-print min/max within second); own pair union of native change points, no minute resampling. Event-name date on both sides. Sample largest member epoch <= bell - minutes_to_bell*60.",
+  "clock": "Exact library path.ts (native last state per second, true-print min/max within second). Observed query change points update likelihoods only through the receipt. Forecast grid is subsequent fixed atlas gates, never future query times. Historical member floors use native stored remainder. Event-name date on both sides. Sample largest member epoch <= bell - minutes_to_bell*60.",
   "determinism": "fixed event_id/timestamp order; exact inverse weighted CDF; no randomness or runtime stamps in artifacts; --verify-repeat byte-compares both builds",
   "exact_print_counts": {
     "calibration_scope": "All oriented library legs in category, no named games. Retrospective data-set scale, not per-query walk-forward calibration.",
@@ -255,9 +255,54 @@
     "Literal tau-to-minutes replacement retains ORDER4's 0.10 tolerance as 0.10 minutes; absolute timing errors in minutes are primary.",
     "ORDER4 reach still uses the running low after placement (possibly retaining a past dip). The separate future_print_reached diagnostic uses second-close last prices; same-second non-closing prints can be omitted. Neither metric certifies a maker fill; the tick-library receipt licenses MACRO/MICRO, not execution proof.",
     "No full-worktree OS, builder, shape-organ or face edits are made; this tool reads only explicit library and named-check inputs.",
-    "Named custody files have no SQLite rowid or consolidated cross-source join: deterministic within-second source row order substitutes only for ordering, with trade_id dedupe unchanged. Native exchange true prints and recorded books, no minute closes; second extrema retained."
+    "Named custody files have no SQLite rowid or consolidated cross-source join: deterministic within-second source row order substitutes only for ordering, with trade_id dedupe unchanged. Native exchange true prints and recorded books, no minute closes; second extrema retained.",
+    "SUPERSEDES ATP_MAIN @0c8850b7: its Q was the minimum of a pointwise-quantile path and its X used future query timestamps. Those tables are not the causal organ acceptance baseline. Other category runs with that definition are not comparable to this corrected run.",
+    "Q quantiles are current query last plus weighted quantiles of each historical member's remaining minimum minus its current last. Remaining paths include the carried gate state and native member changes after the gate; earliest minimum wins, and no further dip has floor time at the gate. X is the independent weighted median of member floor minutes-to-bell, mapped by query bell minus X*60; q25/q75 times are independent marginal quantiles, not paired trajectories.",
+    "Forecast curves and path scoring use only subsequent fixed atlas gates. Q/X use complete historical member remainders, never future query timestamps. At the final atlas gate Q/X remain available, but no subsequent atlas path error is claimed.",
+    "Roles, first-bind and flips use only receipts observed from first pair bind through this receipt. Final-truth accuracy lives in a separately labelled retrospective evaluation block. Gate SCORABLE is an evaluation denominator only, never a prediction gate.",
+    "VALIDITY retains the raw share for audit and is labelled INVALID: ESS < 10 below the atlas evidence floor; never an accepted call below ten."
   ],
   "no_call": "ESS < 10 after role/availability filter, counted explicitly with separate denominators; never replace with a different pool",
+  "organ_contract": {
+    "discovery_side_boundary_cents": 50,
+    "first_bind": "observed pair receipt prefix; flips increment only on an observed directional reversal",
+    "flat_after_cents": 2,
+    "gates_minutes_to_bell": [
+      2880,
+      2160,
+      1440,
+      1080,
+      720,
+      480,
+      360,
+      240,
+      180,
+      120,
+      90,
+      60,
+      30,
+      15,
+      5
+    ],
+    "likelihood_unit": 1,
+    "minute_seconds": 60,
+    "no_call_ess_floor": 10,
+    "prediction_grid": "subsequent fixed atlas gates only; independent of query future ticks",
+    "q": "query current last + weighted quantile(member remaining minimum - member current last)",
+    "quantiles": [
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.9
+    ],
+    "remaining_path": "gate carried state plus native historical member changes through bell; earliest tied minimum",
+    "role_drift_cents": 2,
+    "sleeper_category_quantile": 0.1,
+    "taxonomy_samples": 17,
+    "version": "CAUSAL_MEMBER_FLOORS_FIXED_ATLAS_RECEIPT_ROLES",
+    "x": "independent weighted median(member remaining floor minutes-to-bell); query bell - X*60"
+  },
   "prior_art": {
     "GATE_POLICY_EVAL_LIVE_COORDS": {
       "commit": "71de534a",
@@ -338,7 +383,7 @@
     "errors": "Path/floor errors and family accuracy use their own called-side or called-pair denominators; NO-CALL is not a zero prediction error.",
     "point_null": "TAXONOMY-NULL has no evaluated bid/reach model, so its utility stays undefined rather than zero."
   },
-  "script_sha256": "f88b86e105773af9f6729887b2e99408dd7a17b9031ff00f1b3b06886f3f5a32",
+  "script_sha256": "b4d1f33f33f91c6ba99e40a510c760dd2c6c13f9452cffeef14616a2f8f1cced",
   "selected_query_limit": null,
   "series": [
     "fav_last",
@@ -354,12 +399,19 @@
     "path": "arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_RECEIPT.json",
     "sha256": "533c3271d8734caa6f1ccd7dc36563a6726a4c540060d3a1b33cfa011596a282"
   },
+  "supersedes": {
+    "commit": "0c8850b7",
+    "reason": "pointwise-quantile minima and future-query forecast timestamps replaced; receipt-time first-bind",
+    "scope": "ATP_MAIN tables and five named checks"
+  },
   "tick_run_changes": [
     "Exact tick-library print totals and independent accepted-print-second sidecar for causal gate counts",
     "Native library timestamps and second-close named custody paths; no library-grid expansion",
     "Separate ITF_M/ITF_W pools and event-name same-day exclusion",
     "Exact stored player-token count/weight-share reporting; no membership exclusion",
-    "Category output assembly and receipt/reporting plumbing only; inherited numeric scoring rules unchanged"
+    "Causal member-minimum Q and independent median floor-time X; fixed atlas forecast grid",
+    "Receipt-time first-bind and flips; retrospective truth isolated from causal state",
+    "VALIDITY invalid below ESS ten; prior ATP_MAIN @0c8850b7 superseded"
   ],
   "units": {
     "application": "SOFT and STEP weights multiply distinct k_price and k_volume factors; HARD price gate is its inherited binary median-distance selector; no engine similarity weight/scale is copied into either formula",

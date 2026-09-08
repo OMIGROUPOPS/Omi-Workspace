@@ -295,6 +295,17 @@ class Leg:
     count_epoch: np.ndarray | None = None
     print_count_cum: np.ndarray | None = None
 
+    @cached_property
+    def remaining_floor_index(self):
+        # Historical member suffixes only. Ties choose the earliest occurrence.
+        indices = np.empty(len(self.epoch), dtype=int)
+        best = len(self.epoch)-1
+        for i in range(len(self.epoch)-1, -1, -1):
+            if self.values[i, 0] <= self.values[best, 0]:
+                best = i
+            indices[i] = best
+        return indices
+
     def sample(self, epoch):
         epoch = np.atleast_1d(epoch)
         index = np.searchsorted(self.epoch, epoch, side="right") - 1
@@ -935,26 +946,29 @@ def gate_coordinates(query, gate):
 
 
 def first_bind(query, gate):
-    """Gate activates at g; score first subsequent directional call, never final hold."""
+    """Receipt-time state from the observed prefix; future truth is scoring only."""
     out = {}
     for side, leg in zip(SIDES, query.legs):
         gate_epoch = query.bell - gate * 60
-        epochs = np.r_[gate_epoch, leg.epoch[leg.epoch > gate_epoch]]
+        epochs = np.unique(np.r_[query.first_epoch,
+            leg.epoch[(leg.epoch >= query.first_epoch) & (leg.epoch <= gate_epoch)], gate_epoch])
+        epochs = epochs[(epochs >= query.first_epoch) & (epochs <= gate_epoch)]
         calls = [role(v-leg.open) for v in leg.sample(epochs)[:, 0]]
         directional = [x for x in calls if x != "NOT_CALLABLE"]
         truth = role(leg.values[-1, 0]-leg.open)
         flips = sum(a != b for a, b in zip(directional, directional[1:]))
-        current = calls[0]
-        out[side] = dict(current_role=current, truth=truth,
+        current = calls[-1] if calls else "NOT_CALLABLE"
+        out[side] = dict(current_role=current,
                          first_bind=directional[0] if directional else None,
                          first_bind_called=bool(directional),
-                         first_bind_correct=directional[0] == truth if directional else None,
                          flipped=bool(flips), flip_count=flips,
                          flip_rate_of_bound=bool(flips) if directional else None,
                          called_now=current != "NOT_CALLABLE",
-                         correct_if_called_now=current == truth if current != "NOT_CALLABLE" else None,
-                         held_at_end_correct=directional[-1] == truth if directional else None,
-                         held_at_end_note="TAUTOLOGY when the final drift is directional; not first-bind accuracy")
+                         as_of_epoch=gate_epoch,
+                         evaluation=dict(scope="RETROSPECTIVE_SCORING_ONLY_NOT_ORGAN_INPUT",
+                             truth=truth,
+                             first_bind_correct=directional[0] == truth if directional else None,
+                             correct_if_called_now=current == truth if current != "NOT_CALLABLE" else None))
     return out
 
 
@@ -972,9 +986,26 @@ def family_distribution(members, weights, families):
                 top=min(counts, key=lambda x: (-counts[x], x)) if complete else None)
 
 
+def remaining_floor(leg, gate):
+    """Current carried state plus native historical remainder, inclusive of gate.
+
+    Used on library members for prediction; on the query ONLY for evaluation.
+    A no-further-dip floor is at the gate, not an unknown next query tick.
+    """
+    epoch = leg.bell-gate*60
+    current = leg.sample([epoch])[0, 0]
+    index = int(np.searchsorted(leg.epoch, epoch, side="right"))
+    if index == len(leg.epoch):
+        return float(current), float(gate)
+    floor_index = leg.remaining_floor_index[index]
+    floor = leg.values[floor_index, 0]
+    if current <= floor:
+        return float(current), float(gate)
+    return float(floor), float((leg.bell-leg.epoch[floor_index])/60)
+
+
 def forecast_context(query, members, gate):
-    grid = query.grid()
-    grid = grid[grid < gate]
+    grid = np.array([g for g in GATES if g < gate], dtype=float)
     current = query.levels([gate])[0]
     member_current = np.array([m.levels([gate])[0] for m in members])
     opens = np.array([[leg.open for leg in m.legs] for m in members])
@@ -988,7 +1019,8 @@ def forecast_context(query, members, gate):
         available &= np.array([m.first_mtb for m in members]) >= gate
         masks.append(matching & available)
     return dict(grid=grid, current=current, actual=query.levels(grid),
-                member_current=member_current, roles=roles, masks=masks)
+                member_current=member_current, roles=roles, masks=masks,
+                member_floors=np.array([[remaining_floor(leg, gate) for leg in m.legs] for m in members]))
 
 
 def same_player_pool(query, members, weights):
@@ -1024,9 +1056,6 @@ def forecast(query, members, weights, gate, families, include_paths=False, conte
     result["same_player"] = same_player_pool(query, members, weights)
     context = context or forecast_context(query, members, gate)
     grid = context["grid"]
-    if not len(grid):
-        result["status"] = "NO-CALL: no query remainder"
-        return result
     current, actual = context["current"], context["actual"]
     roles, masks = context["roles"], context["masks"]
     def remainder_values(active, columns):
@@ -1051,13 +1080,15 @@ def forecast(query, members, weights, gate, families, include_paths=False, conte
         quants = quantile_cube(remainder_values(active, slice(start, start+3)), sw[active])
         levels = {q: x + current[start:start+3] for q, x in quants.items()}
         last = actual[:, start]
-        floor = float(np.nanmin(last))
-        floor_mtb = float(grid[np.flatnonzero(last == floor)[0]])
+        floor, floor_mtb = remaining_floor(query.legs[i], gate)
+        member_floor_delta = context["member_floors"][:, i, 0]-context["member_current"][:, start]
+        member_floor_mtb = context["member_floors"][:, i, 1]
         pred = {}
         for q in (.25, .50, .75):
-            y = levels[q][:, 0]
-            low = float(np.nanmin(y))
-            pred[f"q{int(q*100)}"] = dict(level_cents=low, minutes_to_bell=float(grid[np.flatnonzero(y == low)[0]]))
+            low = float(current[start]+inverse_weighted_quantile(member_floor_delta[active], sw[active], q))
+            mtb = float(inverse_weighted_quantile(member_floor_mtb[active], sw[active], q))
+            pred[f"q{int(q*100)}"] = dict(level_cents=low, minutes_to_bell=mtb,
+                epoch=query.bell-mtb*60)
         p = pred["q50"]
         side_result.update(status="OK", floors=pred, actual_floor_cents=floor,
                            actual_floor_mtb=floor_mtb,
@@ -1066,7 +1097,7 @@ def forecast(query, members, weights, gate, families, include_paths=False, conte
                            floor_timing_absolute_error_minutes=abs(p["minutes_to_bell"]-floor_mtb),
                            floor_timing_within_0_10_minutes=abs(p["minutes_to_bell"]-floor_mtb) <= .10,
                            floor_band_coverage=pred["q25"]["level_cents"] <= floor <= pred["q75"]["level_cents"],
-                           path_last_mae_cents=float(np.nanmean(abs(levels[.50][:, 0]-last))),
+                           path_last_mae_cents=float(np.nanmean(abs(levels[.50][:, 0]-last))) if len(grid) else None,
                            coverage={}, reach={})
         for low, high, label in ((.25, .75, "q25_q75"), (.10, .90, "q10_q90")):
             inside = (actual[:, start:start+3] >= levels[low]) & (actual[:, start:start+3] <= levels[high])
@@ -1154,12 +1185,8 @@ def null_forecast(query, gate, model):
                    null_point=point, realized_family=leg.family)
         if n and n < 10:
             row["status"] = "NO-CALL: prior row effective count < 10"
-        grid = query.grid()
-        grid = grid[grid < gate]
-        if row["status"] == "OK" and len(grid):
-            actual = leg.sample(query.bell-grid*60)[:, 0]
-            floor = float(np.nanmin(actual))
-            mtb = float(grid[np.flatnonzero(actual == floor)[0]])
+        if row["status"] == "OK":
+            floor, mtb = remaining_floor(leg, gate)
             error = abs(point["level_cents"]-floor)
             time_error = abs(point["minutes_to_bell"]-mtb)
             row.update(floors={"q50": dict(level_cents=point["level_cents"], minutes_to_bell=point["minutes_to_bell"])},
@@ -1253,9 +1280,10 @@ def simulate(query, pairs, families, volume_mode="separate-log1p", include_paths
             prior_weights = previous["weights"] * valid
             good = (error[:, 0] <= 1) & (error[:, 3] <= 1)
             denominator = prior_weights.sum()
-            validity = dict(status="OK" if denominator > 0 else "STORE_SILENT: no comparable forecasts",
+            validity_ess = ess(prior_weights) or 0
+            validity = dict(status="INVALID: ESS < 10" if validity_ess < 10 else "OK",
                 previous_gate=previous["gate"], weighted_share=float(prior_weights[good].sum()/denominator) if denominator > 0 else None,
-                weight_sum=float(denominator), ess=ess(prior_weights) or 0,
+                weight_sum=float(denominator), ess=validity_ess,
                 rule="pre-update forecast weights; both last-price move errors <= 1 cent")
             step_price[valid] = 1/(1+error[valid, :7].sum(axis=1))
             logs["STEP-FORECAST"][valid] += np.log(step_price[valid])
@@ -1278,13 +1306,9 @@ def simulate(query, pairs, families, volume_mode="separate-log1p", include_paths
         context = forecast_context(query, members, gate)
         for rule in RULES:
             if rule == "TAXONOMY-NULL":
-                gate_result["rules"][rule] = null_forecast(query, gate, model) if model and gate_result["status"] == "SCORABLE" else dict(status=gate_result["status"])
+                gate_result["rules"][rule] = null_forecast(query, gate, model) if model else dict(status="STORE_SILENT: no numerical null")
                 continue
             w = weights[rule]
-            if gate_result["status"] != "SCORABLE":
-                gate_result["rules"][rule] = dict(status=gate_result["status"], ess=ess(w) or 0,
-                    same_player=same_player_pool(query, members, w))
-                continue
             pred = forecast(query, members, w, gate, families, include_paths, context)
             pred["weight_normalization"] = dict(
                 kind="relative to maximum log weight" if rule in logs else "absolute multiplicative weights",
@@ -1525,6 +1549,13 @@ def build_outputs(args):
         limitations[4] = "SLEEPER category p10 uses true_print_count_in_span from tick-library rows, checked against the exact per-second sidecar. Gate counts use that sidecar; never volume or change-point counts. Canonical onsets absent from the library stay STORE_SILENT."
         limitations[12] = "ORDER4 reach still uses the running low after placement (possibly retaining a past dip). The separate future_print_reached diagnostic uses second-close last prices; same-second non-closing prints can be omitted. Neither metric certifies a maker fill; the tick-library receipt licenses MACRO/MICRO, not execution proof."
         limitations.append("Named custody files have no SQLite rowid or consolidated cross-source join: deterministic within-second source row order substitutes only for ordering, with trade_id dedupe unchanged. Native exchange true prints and recorded books, no minute closes; second extrema retained.")
+    limitations.extend([
+        "SUPERSEDES ATP_MAIN @0c8850b7: its Q was the minimum of a pointwise-quantile path and its X used future query timestamps. Those tables are not the causal organ acceptance baseline. Other category runs with that definition are not comparable to this corrected run.",
+        "Q quantiles are current query last plus weighted quantiles of each historical member's remaining minimum minus its current last. Remaining paths include the carried gate state and native member changes after the gate; earliest minimum wins, and no further dip has floor time at the gate. X is the independent weighted median of member floor minutes-to-bell, mapped by query bell minus X*60; q25/q75 times are independent marginal quantiles, not paired trajectories.",
+        "Forecast curves and path scoring use only subsequent fixed atlas gates. Q/X use complete historical member remainders, never future query timestamps. At the final atlas gate Q/X remain available, but no subsequent atlas path error is claimed.",
+        "Roles, first-bind and flips use only receipts observed from first pair bind through this receipt. Final-truth accuracy lives in a separately labelled retrospective evaluation block. Gate SCORABLE is an evaluation denominator only, never a prediction gate.",
+        "VALIDITY retains the raw share for audit and is labelled INVALID: ESS < 10 below the atlas evidence floor; never an accepted call below ten."
+    ])
     output = dict(label=LABEL if args.proof else "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD" if args.tick_counts else "BELL-CLOCK SURVIVORSHIP BENCH — NOT A TRADING RULING",
                   categories={}, limitations=limitations, prior_art=prior_art)
     query_audit = {}
@@ -1591,7 +1622,21 @@ def build_outputs(args):
                            "Native library timestamps and second-close named custody paths; no library-grid expansion",
                            "Separate ITF_M/ITF_W pools and event-name same-day exclusion",
                            "Exact stored player-token count/weight-share reporting; no membership exclusion",
-                           "Category output assembly and receipt/reporting plumbing only; inherited numeric scoring rules unchanged"] if args.tick_counts else []),
+                           "Causal member-minimum Q and independent median floor-time X; fixed atlas forecast grid",
+                           "Receipt-time first-bind and flips; retrospective truth isolated from causal state",
+                           "VALIDITY invalid below ESS ten; prior ATP_MAIN @0c8850b7 superseded"] if args.tick_counts else []),
+        supersedes=dict(commit="0c8850b7", scope="ATP_MAIN tables and five named checks",
+            reason="pointwise-quantile minima and future-query forecast timestamps replaced; receipt-time first-bind"),
+        organ_contract=dict(version="CAUSAL_MEMBER_FLOORS_FIXED_ATLAS_RECEIPT_ROLES",
+            gates_minutes_to_bell=GATES, quantiles=QUANTILES, no_call_ess_floor=10,
+            role_drift_cents=2, discovery_side_boundary_cents=50,
+            likelihood_unit=1, minute_seconds=60,
+            taxonomy_samples=17, sleeper_category_quantile=.10, flat_after_cents=2,
+            q="query current last + weighted quantile(member remaining minimum - member current last)",
+            x="independent weighted median(member remaining floor minutes-to-bell); query bell - X*60",
+            remaining_path="gate carried state plus native historical member changes through bell; earliest tied minimum",
+            prediction_grid="subsequent fixed atlas gates only; independent of query future ticks",
+            first_bind="observed pair receipt prefix; flips increment only on an observed directional reversal"),
         input_library=dict(path=str(args.library), bytes=args.library.stat().st_size, sha256=sha256_file(args.library)),
         source_receipt=dict(path=str(args.library_receipt), sha256=sha256_file(args.library_receipt)),
         script_sha256=sha256_file(Path(__file__)),
@@ -1602,7 +1647,7 @@ def build_outputs(args):
         census=census, family_census=family_census, exact_print_counts=count_receipt,
         same_player_reporting="Exact stored leg_id token shared with query (normally three characters). Non-three-character IDs are counted in census, never truncated, padded, or suffix-stripped. This is a token match, not independently verified player identity. Count positive-weight members and weight share, before and after each side's role filter. Reporting only; no weight/membership change. TAXONOMY-NULL has no query-member pool.",
         walk_forward="member.bell_epoch < query.formation_end_epoch; leave-self-out; exclude same event_date; category separate; no distance/count cutoff. Fixed retrospective taxonomy-scale/null calibration is disclosed separately, not claimed walk-forward.",
-        clock=("Exact library path.ts (native last state per second, true-print min/max within second); own pair union of native change points, no minute resampling. Event-name date on both sides. Sample largest member epoch <= bell - minutes_to_bell*60." if args.tick_counts else "Reconstruct each leg's epoch from its own formation/bell fraction, align both by their common bell; reject discordant bells. Sample largest member epoch <= bell - minutes_to_bell*60."),
+        clock=("Exact library path.ts (native last state per second, true-print min/max within second). Observed query change points update likelihoods only through the receipt. Forecast grid is subsequent fixed atlas gates, never future query times. Historical member floors use native stored remainder. Event-name date on both sides. Sample largest member epoch <= bell - minutes_to_bell*60." if args.tick_counts else "Reconstruct each leg's epoch from its own formation/bell fraction, align both by their common bell; reject discordant bells. Forecast grid is fixed atlas gates. Sample largest member epoch <= bell - minutes_to_bell*60."),
         units=dict(price="cents; seven-series price likelihood only", volume="log1p(pair contracts accumulated over gate)",
             engine_transform=dict(field="volume_log1p", declaration="SIMILARITY_DECLARATION",
                 path="arb-executor/analysis/window1_v54_functionable_os.js", sha256=sha256_file(root/"arb-executor/analysis/window1_v54_functionable_os.js")),
@@ -1776,6 +1821,44 @@ def self_test():
                 assert before["family"] == after["family"]
     assert (original_gate["rules"]["BASE"]["sides"]["favorite"]["actual_floor_cents"]
             != mutated_gate["rules"]["BASE"]["sides"]["favorite"]["actual_floor_cents"])
+
+    # A quantile of minima is not a minimum of pointwise quantiles.
+    crossing = np.array([[0., 10.], [10., 0.], [5., 5.]])
+    assert inverse_weighted_quantile(crossing.min(axis=1), np.ones(3), .50) == 0
+    assert quantile_cube(crossing[:, :, None], np.ones(3))[.50].min() == 5
+    # At a no-further-dip gate, timing is the gate, not the next query timestamp.
+    assert remaining_floor(query.legs[1], 5) == (34.0, 5.0)
+    # Remove the query's entire future: prediction, role state, likelihood and
+    # validity must survive, even though retrospective scoring becomes unavailable.
+    truncated = fixture("SYNTHETIC-QUERY", "2026-08-01")
+    moved_ticks = fixture("SYNTHETIC-QUERY", "2026-08-01")
+    cutoff = query.bell-gate*60
+    for leg in truncated.legs:
+        mask = leg.epoch <= cutoff
+        for key in ("epoch", "values", "volume", "trade_epoch", "low", "trade_count",
+                    "trade_price", "count_epoch", "print_count_cum"):
+            setattr(leg, key, getattr(leg, key)[mask].copy())
+    for leg in moved_ticks.legs:
+        for key in ("epoch", "trade_epoch", "count_epoch"):
+            values = getattr(leg, key)
+            values[values > cutoff] = cutoff+(values[values > cutoff]-cutoff)/2
+    for candidate in (truncated, moved_ticks):
+        at = simulate(candidate, members, test_families, model=model)["gates"][str(gate)]
+        assert at["likelihood_factors"] == original_gate["likelihood_factors"]
+        assert at["validity"] == original_gate["validity"]
+        assert at["next_step_forecast"] == original_gate["next_step_forecast"]
+        for side in SIDES:
+            assert {k:v for k,v in at["recognition"][side].items() if k != "evaluation"} == {
+                k:v for k,v in original_gate["recognition"][side].items() if k != "evaluation"}
+            for rule in RULES:
+                before = original_gate["rules"][rule]["sides"][side]
+                after = at["rules"][rule]["sides"][side]
+                for key in ("ess", "member_count", "floors", "family", "role"):
+                    assert before.get(key) == after.get(key), (rule, side, key)
+    # First-bind is not the next directional role in an unseen future.
+    early = first_bind(query, 2000)
+    assert all(not early[s]["first_bind_called"] and early[s]["flip_count"] == 0 for s in SIDES)
+    assert first_bind(query, gate)["favorite"]["first_bind"] == "CLIMBER"
 
     extra_volume = fixture("SYNTHETIC-QUERY", "2026-08-01", volume_scale=2)
     volume_run = simulate(extra_volume, members, test_families, model=model)

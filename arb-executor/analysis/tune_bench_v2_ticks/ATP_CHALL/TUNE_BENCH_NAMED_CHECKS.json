@@ -1,0 +1,70 @@
+{
+  "events": {},
+  "input_receipt": {},
+  "label": "RULING RUN \u2014 TICK LIBRARY \u2014 CANDIDATE POOL SCOREBOARD",
+  "prior_art": {
+    "GATE_POLICY_EVAL_LIVE_COORDS": {
+      "commit": "71de534a",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+      "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e"
+    },
+    "PER_SHAPE_FLOOR_DEPTH_TABLES": {
+      "commit": "8ab4f2d9",
+      "csv_sha256": "718840b56da6a57ca82ec3fc3892443e392a11d7e96994625e48b3b0df4970f9",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+      "rows_including_ALL": 52,
+      "scope_warning": "Filed July taxonomy medians post-date the stale June proof and include named July games; this fixed null is a requested retrospective comparator, not out-of-sample evidence.",
+      "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70"
+    },
+    "RECOGNITION_OPERATING_POINT": {
+      "commit": "41c1f724",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RECOGNITION_OPERATING_POINT.json",
+      "sha256": "e2a216299804ba16b6dec4d1b0f09e60babbae2be6a6e59135629b1c5d3a3011"
+    },
+    "SHAPE_TAXONOMY_BUILD1": {
+      "commit": "e269779b",
+      "label_csv_sha256": "3e99b58929e05e71c1190f432671bbfc718e48019f1bc246ee7c426955d5c330",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+      "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+      "signature_method_verbatim": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)"
+    },
+    "V52p_ROLE_DOWN_DEPTH_AGGREGATE": {
+      "commit": "020b775c",
+      "path": ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817/ROLE_DOWN_DEPTH_AGGREGATE.json",
+      "sha256": "acc0f06361e7c0cfbcce733db2dd6c93215f2fe918788046c6dd873849de029b"
+    },
+    "numerical_null_rules": {
+      "called_family": "exact family/category depth_below_open_c.med and floor_pos.med, never ALL fallback",
+      "level": "post-formation open minus median depth (negative depths preserved, not clipped)",
+      "minutes_to_bell": "(1 - median floor position) * verified span minutes; no gate clipping",
+      "missing_category": "STORE_SILENT; no cross-category or ALL borrowing",
+      "negative_depth_row_count": 15,
+      "numerical_scope": "floor point/timing only; no fabricated full path or prediction band",
+      "role_only_climber": "zero depth as requested; no early-position scalar is stated in either cited file",
+      "role_only_faller": "the filed V52p category down-depth aggregate, full precision",
+      "role_only_timing": "STORE_SILENT: qualitative early/late is not a numeric role-only timing predictor"
+    },
+    "taxonomy_bench_choices": {
+      "causal_family_adaptation": "At a receipt only, normalize formation through the current gate into 17 samples; do not use or forward-fill into the unknown remainder. Realized labels use formation through bell.",
+      "direction": "early/late shares are signed relative to net; reversals omit zero steps",
+      "flat_after": "abs(net after first quarter) <= 2 cents; operator-authorized bench choice, not taxonomy law",
+      "quiet_wobble_prose_caveat": "The inherited travel split does not mathematically guarantee the prose 5-cent band. quiet_wobble_prose_band_exception is exposed; no new cutoff is introduced.",
+      "rule_order": [
+        "SLEEPER",
+        "ROUND_TRIP_OR_QUIET_WOBBLE",
+        "LATE_BREAK",
+        "EARLY_SET",
+        "ONE_STEP",
+        "GRIND_WOBBLE",
+        "DRIFT"
+      ],
+      "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
+      "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
+    },
+    "trendpath_build.py": {
+      "commit": "66b50db3",
+      "path": "arb-executor/analysis/trendpath_build.py",
+      "sha256": "626edf547e4aa7e327928e695e2f4ecfd40cd59fadf2e8e8384bb351d8f1dd17"
+    }
+  }
+}

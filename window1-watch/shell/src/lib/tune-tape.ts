@@ -172,6 +172,7 @@ export type FaceData = {
     marker_legend: string;
     pool_accuracy: { heading: string; hover_note: string; absent_label: string };
     bid_actions: BidAction[];
+    supersessions?: BidAction[];
     columns: string[];
     ticks: unknown[][];
     total_frames: number;

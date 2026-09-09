@@ -233,7 +233,7 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
         ) : null}
         <div className="tune-playhead pointer-events-none absolute bottom-[30px] top-4 border-l border-dashed border-muted" />
         <BidActionMarkers
-          actions={game.face.render.bid_actions ?? []}
+          actions={[...(game.face.render.bid_actions ?? []), ...(game.face.render.supersessions ?? [])]}
           now={now}
           side={side}
           color={stroke}

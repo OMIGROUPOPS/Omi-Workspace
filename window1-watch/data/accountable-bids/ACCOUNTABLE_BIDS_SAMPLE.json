@@ -1,0 +1,50 @@
+{
+  "source_trace_sha256": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+  "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+  "renewal": {
+    "kind": "BID_RENEWAL",
+    "event_id": "KXATPMATCH-26JUL12ALTGAS",
+    "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-272",
+    "timestamp_epoch": 1783820942.000001,
+    "leg_id": "ALT",
+    "assumption_id": "35637c749495232f21666a6fc3d79f6c70f7e2f819ce18f138c85b848351aa8e",
+    "phase": "TICK",
+    "tick_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-272",
+    "tick_kind": "BOOK", "tick_leg_id": "ALT",
+    "status": "PENDING",
+    "effect": "unresolved",
+    "evidence": "NO_NEW_ACCEPTED_OWN_PRINT",
+    "witness": null,
+    "tick": {"price_cents":null,"size":null,"bid_cents":57,"ask_cents":58,"last_trade_cents":59},
+    "book": {
+      "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-272",
+      "bid_cents": 57,
+      "ask_cents": 58,
+      "last_trade_cents": 59
+    },
+    "rest_cents": 57,
+    "remains_postable": true,
+    "existing_rest_at_or_below_ask": true,
+    "pair_within_cap": true,
+    "hold_reason": "PRICING_AUTHORITY_TARGET_EXECUTED",
+    "hold_reason_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+    "hold_action": "PLACE_REST",
+    "reason_scope": "CARRIED_EXECUTED_REASON_NO_NEW_PRICING_DECISION",
+    "disposition": "RESTING",
+    "conduct_changed": false
+  },
+  "supersession": {
+    "kind": "SUPERSESSION",
+    "event_id": "KXATPMATCH-26JUL12ALTGAS",
+    "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1288",
+    "timestamp_epoch": 1783874854.000003,
+    "leg_id": "ALT",
+    "old_assumption_id": "006302d9dd95e027d4764148b43f07475af7483733cabe5cc723ec105195828a",
+    "new_assumption_id": "ad37b4c09c08181ba5d3437ce7a3662fd2fa54acb7e436cfefdfab6e2ac4ff71",
+    "old_status": "PENDING",
+    "reasons": ["AUTHORITY_FORECAST_LEVEL_CHANGED","AUTHORITY_FORECAST_DEADLINE_CHANGED"],
+    "reason": "AUTHORITY_FORECAST_LEVEL_CHANGED + AUTHORITY_FORECAST_DEADLINE_CHANGED",
+    "action": "REPRICE_REST",
+    "hold_reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+  }
+}

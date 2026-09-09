@@ -2,29 +2,29 @@
   "version": 2,
   "event": "KXATPMATCH-26JUL12ALTGAS",
   "provenance": {
-    "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
-    "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
-    "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+    "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "trace_sha256": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+    "bench_sha256": "12df2861b5298fe45c141cc84c7924b326fa0ee347faad391d4a35fa0d79d2f1",
     "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
     "truth_row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
     "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
     "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
     "effective_truth_sha256": "cabdf2661ac68b54e6feefe7d8b29e6f3751eeb2a1d94083bd470d4c732d211e",
     "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
-    "face_sha256": "7a11c0c420c5514308d271ecd6170cf20a20e12949a04cc4d9bb38657a6013c7",
-    "stage_inputs_sha256": "84fa7bf69e8b04349a44ce8335d85a793133cc31e94438c97ef5903204ceba94",
+    "face_sha256": "7baa7853d1e22b7667a64aabdb8f353ee09a73db15e76de9ce60b8eec7c6493b",
+    "stage_inputs_sha256": "538d9ecf68ed5835212645f02b3e052f33e70a1820ae4004883ab2d58cc390e0",
     "stage_files_count": 169,
     "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
-    "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+    "receipt_sha256": "1cd08b3709114a3e8826ad9b994366842bd09ca3770422b6067e78aaa213bb8d",
     "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
     "grade_contract_sha256": "12f964099209ad1f0864cc5115e1434695acdd635d256cbde35eff2726a6b8ee",
     "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
     "grade_measurements_sha256": "d2baf793eebf3dacfbd84fceec8bff8e886e8ca6d2f1ce3616bcd33e9e03d347",
     "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
-    "fields_sha256": "9552187b32ce8c3f3a317e3d78bd2646f1f576ef457314ed7097dc5e39ba98eb",
-    "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
-    "os_commit_order": 3022,
-    "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9"
+    "fields_sha256": "4cfd8cc6a74e87cecd57d8cd7ccecdc40df34d5faf422b16c2558618570ba875",
+    "os_commit": "STORE SILENT",
+    "os_commit_order": null,
+    "grading_commit": "314fdbbd16989009954918b61a60187158b9e8ca"
   },
   "SENTENCE": {
     "receipts_total": 169,
@@ -84,15 +84,15 @@
         "family_call_source": "Stored OS belief.family; cascade beliefs carry the selected pool's modal family",
         "bench_families_by_rule": {
           "BASE": {
-            "called_family": "ROUND_TRIP",
+            "called_family": "ONE_STEP_UP",
             "realized_family": "DRIFT_UP",
-            "ess": 329,
+            "ess": 1423,
             "status": "OK"
           },
           "FIRST-TICK-ONLY": {
-            "called_family": "ROUND_TRIP",
+            "called_family": "LATE_BREAK_UP",
             "realized_family": "DRIFT_UP",
-            "ess": 158.66677787995374,
+            "ess": 506.5829036562177,
             "status": "OK"
           },
           "HARD": {
@@ -108,10 +108,10 @@
             "status": "NO-CALL: ESS < 10"
           },
           "STEP-FORECAST": {
-            "called_family": "STORE SILENT",
+            "called_family": "SLEEPER",
             "realized_family": "DRIFT_UP",
-            "ess": 1.0724191152354339,
-            "status": "NO-CALL: ESS < 10"
+            "ess": 12.698580460231325,
+            "status": "OK"
           },
           "TAXONOMY-NULL": {
             "called_family": "STORE SILENT",
@@ -134,21 +134,21 @@
         "family_call_source": "Stored OS belief.family; cascade beliefs carry the selected pool's modal family",
         "bench_families_by_rule": {
           "BASE": {
-            "called_family": "EARLY_SET_DOWN",
+            "called_family": "ONE_STEP_DOWN",
             "realized_family": "LATE_BREAK_DOWN",
-            "ess": 362,
+            "ess": 1207,
             "status": "OK"
           },
           "FIRST-TICK-ONLY": {
-            "called_family": "ROUND_TRIP",
+            "called_family": "LATE_BREAK_DOWN",
             "realized_family": "LATE_BREAK_DOWN",
-            "ess": 158.4357422805924,
+            "ess": 419.38635073868807,
             "status": "OK"
           },
           "HARD": {
             "called_family": "STORE SILENT",
             "realized_family": "LATE_BREAK_DOWN",
-            "ess": 0,
+            "ess": 1,
             "status": "NO-CALL: ESS < 10"
           },
           "SOFT": {
@@ -160,7 +160,7 @@
           "STEP-FORECAST": {
             "called_family": "STORE SILENT",
             "realized_family": "LATE_BREAK_DOWN",
-            "ess": 7.772369752874382,
+            "ess": 6.81734395023693,
             "status": "NO-CALL: ESS < 10"
           },
           "TAXONOMY-NULL": {
@@ -173,7 +173,7 @@
         "reason": null
       }
     },
-    "pile_ess_at_last_gate": 4.389245255420913,
+    "pile_ess_at_last_gate": 7.199945177289488,
     "pool_accuracy_by_gate": [
       {
         "gate": 2880,
@@ -186,117 +186,117 @@
       {
         "gate": 2160,
         "epoch": 1783905600,
-        "share": 0.42394550884541077,
-        "ess": 31.185234040793272,
+        "share": 0.35006293478547085,
+        "ess": 55.50794427205719,
         "status": "OK",
         "reason": null
       },
       {
         "gate": 1440,
         "epoch": 1783948800,
-        "share": 0.3952366415319961,
-        "ess": 18.980408646893167,
+        "share": 0.341342148050145,
+        "ess": 84.58915104839707,
         "status": "OK",
         "reason": null
       },
       {
         "gate": 1080,
         "epoch": 1783970400,
-        "share": 0.6599401750134575,
-        "ess": 18.648300462917724,
+        "share": 0.48153954509146024,
+        "ess": 52.523746672921035,
         "status": "OK",
         "reason": null
       },
       {
         "gate": 720,
         "epoch": 1783992000,
-        "share": 0.42930602002756224,
-        "ess": 18.776609654723284,
+        "share": 0.3172597563750742,
+        "ess": 90.7614421823488,
         "status": "OK",
         "reason": null
       },
       {
         "gate": 480,
         "epoch": 1784006400,
-        "share": 0.10074588778438778,
-        "ess": 36.42692126163375,
+        "share": 0.13855733085440752,
+        "ess": 111.09115467676095,
         "status": "OK",
         "reason": null
       },
       {
         "gate": 360,
         "epoch": 1784013600,
-        "share": 0.32035525358533745,
-        "ess": 9.528294698307093,
-        "status": "INVALID: ESS < 10",
+        "share": 0.44562309826552454,
+        "ess": 54.51901848619684,
+        "status": "OK",
         "reason": null
       },
       {
         "gate": 240,
         "epoch": 1784020800,
-        "share": 0.5359719931050664,
-        "ess": 5.691845906872986,
-        "status": "INVALID: ESS < 10",
+        "share": 0.6777867297004491,
+        "ess": 37.09169167580108,
+        "status": "OK",
         "reason": null
       },
       {
         "gate": 180,
         "epoch": 1784024400,
-        "share": 0.8546334335842126,
-        "ess": 8.744470438467252,
-        "status": "INVALID: ESS < 10",
+        "share": 0.8307950167382477,
+        "ess": 17.521624732279566,
+        "status": "OK",
         "reason": null
       },
       {
         "gate": 120,
         "epoch": 1784028000,
-        "share": 0.5826728652968105,
-        "ess": 4.894115009609933,
-        "status": "INVALID: ESS < 10",
+        "share": 0.48598407346628875,
+        "ess": 20.94291186106652,
+        "status": "OK",
         "reason": null
       },
       {
         "gate": 90,
         "epoch": 1784029800,
-        "share": 0.8278689103769334,
-        "ess": 3.018598875845165,
-        "status": "INVALID: ESS < 10",
+        "share": 0.4638606819174566,
+        "ess": 20.301056524458062,
+        "status": "OK",
         "reason": null
       },
       {
         "gate": 60,
         "epoch": 1784031600,
-        "share": 0.980228552852358,
-        "ess": 2.634103403833711,
-        "status": "INVALID: ESS < 10",
+        "share": 0.22502974712695634,
+        "ess": 5.205261766044498,
+        "status": "OK",
         "reason": null
       },
       {
         "gate": 30,
         "epoch": 1784033400,
-        "share": 0.9980786208309599,
-        "ess": 1.6980441900131016,
-        "status": "INVALID: ESS < 10",
+        "share": 0.10327829461214254,
+        "ess": 6.489069578772854,
+        "status": "OK",
         "reason": null
       },
       {
         "gate": 15,
         "epoch": 1784034300,
-        "share": 0.9140738381526048,
-        "ess": 2.1849770993449034,
-        "status": "INVALID: ESS < 10",
+        "share": 0.08564619878751747,
+        "ess": 12.911547533999823,
+        "status": "OK",
         "reason": null
       },
       {
         "gate": 5,
         "epoch": 1784034900,
-        "share": 0.9735591810897632,
-        "ess": 4.389245255420913,
-        "status": "INVALID: ESS < 10",
+        "share": 0.21085129731080082,
+        "ess": 7.199945177289488,
+        "status": "OK",
         "reason": null
       }
     ],
-    "bench_label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD",
+    "bench_label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING",
     "bench_reason": null,
     "ess_source": "Bench validity pool, not OS membership ESS"
   },
@@ -315,7 +315,7 @@
       "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
       "bytes": 1766090446,
       "source_rows": 4836462,
-      "selected_rows": 43277,
+      "selected_rows": 2552,
       "duplicate_receipt_rows": 0,
       "invalid_selected_rows": 0,
       "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
@@ -414,7 +414,7 @@
       {
         "leg": "ALT",
         "receipt_order": 0,
-        "trace_row": 8396,
+        "trace_row": 1,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-1",
         "epoch": 1783777733.000001,
         "eligible": false,
@@ -432,7 +432,7 @@
       {
         "leg": "GAS",
         "receipt_order": 0,
-        "trace_row": 8396,
+        "trace_row": 1,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-1",
         "epoch": 1783777733.000001,
         "eligible": false,
@@ -450,7 +450,7 @@
       {
         "leg": "ALT",
         "receipt_order": 1,
-        "trace_row": 8397,
+        "trace_row": 2,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-2",
         "epoch": 1783777897.000001,
         "eligible": false,
@@ -468,7 +468,7 @@
       {
         "leg": "GAS",
         "receipt_order": 1,
-        "trace_row": 8397,
+        "trace_row": 2,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-2",
         "epoch": 1783777897.000001,
         "eligible": false,
@@ -486,7 +486,7 @@
       {
         "leg": "ALT",
         "receipt_order": 2,
-        "trace_row": 8398,
+        "trace_row": 3,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-8",
         "epoch": 1783784093.000003,
         "eligible": false,
@@ -504,7 +504,7 @@
       {
         "leg": "GAS",
         "receipt_order": 2,
-        "trace_row": 8398,
+        "trace_row": 3,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-8",
         "epoch": 1783784093.000003,
         "eligible": false,
@@ -522,7 +522,7 @@
       {
         "leg": "ALT",
         "receipt_order": 3,
-        "trace_row": 8399,
+        "trace_row": 4,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-12",
         "epoch": 1783788389.000001,
         "eligible": false,
@@ -540,7 +540,7 @@
       {
         "leg": "GAS",
         "receipt_order": 3,
-        "trace_row": 8399,
+        "trace_row": 4,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-12",
         "epoch": 1783788389.000001,
         "eligible": false,
@@ -558,7 +558,7 @@
       {
         "leg": "ALT",
         "receipt_order": 4,
-        "trace_row": 8400,
+        "trace_row": 5,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-14",
         "epoch": 1783788747.000001,
         "eligible": false,
@@ -576,7 +576,7 @@
       {
         "leg": "GAS",
         "receipt_order": 4,
-        "trace_row": 8400,
+        "trace_row": 5,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-14",
         "epoch": 1783788747.000001,
         "eligible": false,
@@ -594,7 +594,7 @@
       {
         "leg": "ALT",
         "receipt_order": 5,
-        "trace_row": 8401,
+        "trace_row": 6,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15",
         "epoch": 1783790234.000001,
         "eligible": false,
@@ -612,7 +612,7 @@
       {
         "leg": "GAS",
         "receipt_order": 5,
-        "trace_row": 8401,
+        "trace_row": 6,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15",
         "epoch": 1783790234.000001,
         "eligible": false,
@@ -630,7 +630,7 @@
       {
         "leg": "ALT",
         "receipt_order": 6,
-        "trace_row": 8402,
+        "trace_row": 7,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-16",
         "epoch": 1783790234.000002,
         "eligible": false,
@@ -648,7 +648,7 @@
       {
         "leg": "GAS",
         "receipt_order": 6,
-        "trace_row": 8402,
+        "trace_row": 7,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-16",
         "epoch": 1783790234.000002,
         "eligible": false,
@@ -666,7 +666,7 @@
       {
         "leg": "ALT",
         "receipt_order": 7,
-        "trace_row": 8403,
+        "trace_row": 8,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-26",
         "epoch": 1783790254.000003,
         "eligible": false,
@@ -684,7 +684,7 @@
       {
         "leg": "GAS",
         "receipt_order": 7,
-        "trace_row": 8403,
+        "trace_row": 8,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-26",
         "epoch": 1783790254.000003,
         "eligible": false,
@@ -702,7 +702,7 @@
       {
         "leg": "ALT",
         "receipt_order": 8,
-        "trace_row": 8404,
+        "trace_row": 9,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-33",
         "epoch": 1783790271.000001,
         "eligible": false,
@@ -720,7 +720,7 @@
       {
         "leg": "GAS",
         "receipt_order": 8,
-        "trace_row": 8404,
+        "trace_row": 9,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-33",
         "epoch": 1783790271.000001,
         "eligible": false,
@@ -738,7 +738,7 @@
       {
         "leg": "ALT",
         "receipt_order": 9,
-        "trace_row": 8405,
+        "trace_row": 10,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-34",
         "epoch": 1783790271.000002,
         "eligible": false,
@@ -756,7 +756,7 @@
       {
         "leg": "GAS",
         "receipt_order": 9,
-        "trace_row": 8405,
+        "trace_row": 10,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-34",
         "epoch": 1783790271.000002,
         "eligible": false,
@@ -774,7 +774,7 @@
       {
         "leg": "ALT",
         "receipt_order": 10,
-        "trace_row": 8406,
+        "trace_row": 11,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-38",
         "epoch": 1783790288.000004,
         "eligible": false,
@@ -792,7 +792,7 @@
       {
         "leg": "GAS",
         "receipt_order": 10,
-        "trace_row": 8406,
+        "trace_row": 11,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-38",
         "epoch": 1783790288.000004,
         "eligible": false,
@@ -810,7 +810,7 @@
       {
         "leg": "ALT",
         "receipt_order": 11,
-        "trace_row": 8407,
+        "trace_row": 12,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-66",
         "epoch": 1783797084.000001,
         "eligible": false,
@@ -828,7 +828,7 @@
       {
         "leg": "GAS",
         "receipt_order": 11,
-        "trace_row": 8407,
+        "trace_row": 12,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-66",
         "epoch": 1783797084.000001,
         "eligible": false,
@@ -846,7 +846,7 @@
       {
         "leg": "ALT",
         "receipt_order": 12,
-        "trace_row": 8408,
+        "trace_row": 13,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-73",
         "epoch": 1783797084.000008,
         "eligible": false,
@@ -864,7 +864,7 @@
       {
         "leg": "GAS",
         "receipt_order": 12,
-        "trace_row": 8408,
+        "trace_row": 13,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-73",
         "epoch": 1783797084.000008,
         "eligible": false,
@@ -882,7 +882,7 @@
       {
         "leg": "ALT",
         "receipt_order": 13,
-        "trace_row": 8409,
+        "trace_row": 14,
         "receipt": "49fc71e7-75ce-5546-9c79-30b8a02aaeb2",
         "epoch": 1783797131.966,
         "eligible": false,
@@ -900,7 +900,7 @@
       {
         "leg": "GAS",
         "receipt_order": 13,
-        "trace_row": 8409,
+        "trace_row": 14,
         "receipt": "49fc71e7-75ce-5546-9c79-30b8a02aaeb2",
         "epoch": 1783797131.966,
         "eligible": false,
@@ -918,7 +918,7 @@
       {
         "leg": "ALT",
         "receipt_order": 14,
-        "trace_row": 8410,
+        "trace_row": 15,
         "receipt": "fce8edef-45b5-624d-4216-e92f27f21275",
         "epoch": 1783797385.046,
         "eligible": false,
@@ -936,7 +936,7 @@
       {
         "leg": "GAS",
         "receipt_order": 14,
-        "trace_row": 8410,
+        "trace_row": 15,
         "receipt": "fce8edef-45b5-624d-4216-e92f27f21275",
         "epoch": 1783797385.046,
         "eligible": false,
@@ -954,7 +954,7 @@
       {
         "leg": "ALT",
         "receipt_order": 15,
-        "trace_row": 8411,
+        "trace_row": 16,
         "receipt": "3e9ee739-aa2a-7e6a-586c-cc7000fe5f8a",
         "epoch": 1783799321.156,
         "eligible": false,
@@ -972,7 +972,7 @@
       {
         "leg": "GAS",
         "receipt_order": 15,
-        "trace_row": 8411,
+        "trace_row": 16,
         "receipt": "3e9ee739-aa2a-7e6a-586c-cc7000fe5f8a",
         "epoch": 1783799321.156,
         "eligible": false,
@@ -990,7 +990,7 @@
       {
         "leg": "ALT",
         "receipt_order": 16,
-        "trace_row": 8412,
+        "trace_row": 17,
         "receipt": "3e9ee739-aa2a-7e6a-586c-cc7000fe5f8a",
         "epoch": 1783799321.156,
         "eligible": false,
@@ -1008,7 +1008,7 @@
       {
         "leg": "GAS",
         "receipt_order": 16,
-        "trace_row": 8412,
+        "trace_row": 17,
         "receipt": "3e9ee739-aa2a-7e6a-586c-cc7000fe5f8a",
         "epoch": 1783799321.156,
         "eligible": false,
@@ -1026,7 +1026,7 @@
       {
         "leg": "ALT",
         "receipt_order": 17,
-        "trace_row": 8413,
+        "trace_row": 18,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-140",
         "epoch": 1783800383.000001,
         "eligible": false,
@@ -1044,7 +1044,7 @@
       {
         "leg": "GAS",
         "receipt_order": 17,
-        "trace_row": 8413,
+        "trace_row": 18,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-140",
         "epoch": 1783800383.000001,
         "eligible": false,
@@ -1062,7 +1062,7 @@
       {
         "leg": "ALT",
         "receipt_order": 18,
-        "trace_row": 8414,
+        "trace_row": 19,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148",
         "epoch": 1783810130.000001,
         "eligible": false,
@@ -1080,7 +1080,7 @@
       {
         "leg": "GAS",
         "receipt_order": 18,
-        "trace_row": 8414,
+        "trace_row": 19,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148",
         "epoch": 1783810130.000001,
         "eligible": true,
@@ -1140,7 +1140,7 @@
       {
         "leg": "ALT",
         "receipt_order": 19,
-        "trace_row": 8415,
+        "trace_row": 20,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-188",
         "epoch": 1783814013.000007,
         "eligible": false,
@@ -1158,7 +1158,7 @@
       {
         "leg": "GAS",
         "receipt_order": 19,
-        "trace_row": 8415,
+        "trace_row": 20,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-188",
         "epoch": 1783814013.000007,
         "eligible": true,
@@ -1218,7 +1218,7 @@
       {
         "leg": "ALT",
         "receipt_order": 20,
-        "trace_row": 8416,
+        "trace_row": 21,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
         "epoch": 1783820728.000002,
         "eligible": true,
@@ -1278,7 +1278,7 @@
       {
         "leg": "GAS",
         "receipt_order": 20,
-        "trace_row": 8416,
+        "trace_row": 21,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
         "epoch": 1783820728.000002,
         "eligible": true,
@@ -1338,7 +1338,7 @@
       {
         "leg": "ALT",
         "receipt_order": 21,
-        "trace_row": 8417,
+        "trace_row": 22,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-360",
         "epoch": 1783831459.000001,
         "eligible": true,
@@ -1398,7 +1398,7 @@
       {
         "leg": "GAS",
         "receipt_order": 21,
-        "trace_row": 8417,
+        "trace_row": 22,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-360",
         "epoch": 1783831459.000001,
         "eligible": true,
@@ -1458,7 +1458,7 @@
       {
         "leg": "ALT",
         "receipt_order": 22,
-        "trace_row": 8418,
+        "trace_row": 23,
         "receipt": "4c6fc47a-c28a-60be-f231-4b455be84cbf",
         "epoch": 1783832727.872,
         "eligible": true,
@@ -1518,7 +1518,7 @@
       {
         "leg": "GAS",
         "receipt_order": 22,
-        "trace_row": 8418,
+        "trace_row": 23,
         "receipt": "4c6fc47a-c28a-60be-f231-4b455be84cbf",
         "epoch": 1783832727.872,
         "eligible": true,
@@ -1578,7 +1578,7 @@
       {
         "leg": "ALT",
         "receipt_order": 23,
-        "trace_row": 8419,
+        "trace_row": 24,
         "receipt": "5b79349b-8403-46fd-d416-5142f89f5f27",
         "epoch": 1783833446.549,
         "eligible": true,
@@ -1637,7 +1637,7 @@
       {
         "leg": "GAS",
         "receipt_order": 23,
-        "trace_row": 8419,
+        "trace_row": 24,
         "receipt": "5b79349b-8403-46fd-d416-5142f89f5f27",
         "epoch": 1783833446.549,
         "eligible": true,
@@ -1697,7 +1697,7 @@
       {
         "leg": "ALT",
         "receipt_order": 24,
-        "trace_row": 8420,
+        "trace_row": 25,
         "receipt": "7db05155-abd3-6f01-4a2d-ba1f6a783113",
         "epoch": 1783836054.531,
         "eligible": true,
@@ -1756,7 +1756,7 @@
       {
         "leg": "GAS",
         "receipt_order": 24,
-        "trace_row": 8420,
+        "trace_row": 25,
         "receipt": "7db05155-abd3-6f01-4a2d-ba1f6a783113",
         "epoch": 1783836054.531,
         "eligible": true,
@@ -1816,7 +1816,7 @@
       {
         "leg": "ALT",
         "receipt_order": 25,
-        "trace_row": 8421,
+        "trace_row": 26,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-476",
         "epoch": 1783842418.000003,
         "eligible": true,
@@ -1875,7 +1875,7 @@
       {
         "leg": "GAS",
         "receipt_order": 25,
-        "trace_row": 8421,
+        "trace_row": 26,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-476",
         "epoch": 1783842418.000003,
         "eligible": true,
@@ -1935,7 +1935,7 @@
       {
         "leg": "ALT",
         "receipt_order": 26,
-        "trace_row": 8422,
+        "trace_row": 27,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-659",
         "epoch": 1783853155.000002,
         "eligible": true,
@@ -1994,7 +1994,7 @@
       {
         "leg": "GAS",
         "receipt_order": 26,
-        "trace_row": 8422,
+        "trace_row": 27,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-659",
         "epoch": 1783853155.000002,
         "eligible": true,
@@ -2054,7 +2054,7 @@
       {
         "leg": "ALT",
         "receipt_order": 27,
-        "trace_row": 8423,
+        "trace_row": 28,
         "receipt": "e8f1f93b-675e-6f69-3f9f-23babd026169",
         "epoch": 1783853856.316,
         "eligible": true,
@@ -2113,7 +2113,7 @@
       {
         "leg": "GAS",
         "receipt_order": 27,
-        "trace_row": 8423,
+        "trace_row": 28,
         "receipt": "e8f1f93b-675e-6f69-3f9f-23babd026169",
         "epoch": 1783853856.316,
         "eligible": true,
@@ -2173,7 +2173,7 @@
       {
         "leg": "ALT",
         "receipt_order": 28,
-        "trace_row": 8424,
+        "trace_row": 29,
         "receipt": "3e02460c-136a-710d-985b-a03c2ad8e201",
         "epoch": 1783855289.409,
         "eligible": true,
@@ -2232,7 +2232,7 @@
       {
         "leg": "GAS",
         "receipt_order": 28,
-        "trace_row": 8424,
+        "trace_row": 29,
         "receipt": "3e02460c-136a-710d-985b-a03c2ad8e201",
         "epoch": 1783855289.409,
         "eligible": true,
@@ -2292,7 +2292,7 @@
       {
         "leg": "ALT",
         "receipt_order": 29,
-        "trace_row": 8425,
+        "trace_row": 30,
         "receipt": "bbac5f35-f451-4729-12e9-b65d3aea84fa",
         "epoch": 1783860841.817,
         "eligible": true,
@@ -2351,7 +2351,7 @@
       {
         "leg": "GAS",
         "receipt_order": 29,
-        "trace_row": 8425,
+        "trace_row": 30,
         "receipt": "bbac5f35-f451-4729-12e9-b65d3aea84fa",
         "epoch": 1783860841.817,
         "eligible": true,
@@ -2411,7 +2411,7 @@
       {
         "leg": "ALT",
         "receipt_order": 30,
-        "trace_row": 8426,
+        "trace_row": 31,
         "receipt": "e6089ba0-642e-4051-01a1-971d04dabab9",
         "epoch": 1783860841.817,
         "eligible": true,
@@ -2470,7 +2470,7 @@
       {
         "leg": "GAS",
         "receipt_order": 30,
-        "trace_row": 8426,
+        "trace_row": 31,
         "receipt": "e6089ba0-642e-4051-01a1-971d04dabab9",
         "epoch": 1783860841.817,
         "eligible": true,
@@ -2530,7 +2530,7 @@
       {
         "leg": "ALT",
         "receipt_order": 31,
-        "trace_row": 8427,
+        "trace_row": 32,
         "receipt": "71ecd139-fd52-6d15-75d0-27767662d075",
         "epoch": 1783862356.23,
         "eligible": true,
@@ -2589,7 +2589,7 @@
       {
         "leg": "GAS",
         "receipt_order": 31,
-        "trace_row": 8427,
+        "trace_row": 32,
         "receipt": "71ecd139-fd52-6d15-75d0-27767662d075",
         "epoch": 1783862356.23,
         "eligible": true,
@@ -2649,7 +2649,7 @@
       {
         "leg": "ALT",
         "receipt_order": 32,
-        "trace_row": 8428,
+        "trace_row": 33,
         "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
         "epoch": 1783862356.23,
         "eligible": true,
@@ -2708,7 +2708,7 @@
       {
         "leg": "GAS",
         "receipt_order": 32,
-        "trace_row": 8428,
+        "trace_row": 33,
         "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87",
         "epoch": 1783862356.23,
         "eligible": true,
@@ -2768,7 +2768,7 @@
       {
         "leg": "ALT",
         "receipt_order": 33,
-        "trace_row": 8429,
+        "trace_row": 34,
         "receipt": "a1b86cce-a3c0-6e13-52b5-e70e34b217e2",
         "epoch": 1783862356.23,
         "eligible": true,
@@ -2827,7 +2827,7 @@
       {
         "leg": "GAS",
         "receipt_order": 33,
-        "trace_row": 8429,
+        "trace_row": 34,
         "receipt": "a1b86cce-a3c0-6e13-52b5-e70e34b217e2",
         "epoch": 1783862356.23,
         "eligible": true,
@@ -2887,7 +2887,7 @@
       {
         "leg": "ALT",
         "receipt_order": 34,
-        "trace_row": 8430,
+        "trace_row": 35,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1071",
         "epoch": 1783862363.000001,
         "eligible": true,
@@ -2946,7 +2946,7 @@
       {
         "leg": "GAS",
         "receipt_order": 34,
-        "trace_row": 8430,
+        "trace_row": 35,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1071",
         "epoch": 1783862363.000001,
         "eligible": true,
@@ -3006,7 +3006,7 @@
       {
         "leg": "ALT",
         "receipt_order": 35,
-        "trace_row": 8431,
+        "trace_row": 36,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1074",
         "epoch": 1783862363.000004,
         "eligible": true,
@@ -3065,7 +3065,7 @@
       {
         "leg": "GAS",
         "receipt_order": 35,
-        "trace_row": 8431,
+        "trace_row": 36,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1074",
         "epoch": 1783862363.000004,
         "eligible": true,
@@ -3125,7 +3125,7 @@
       {
         "leg": "ALT",
         "receipt_order": 36,
-        "trace_row": 8432,
+        "trace_row": 37,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783862400",
         "epoch": 1783862400,
         "eligible": true,
@@ -3184,7 +3184,7 @@
       {
         "leg": "GAS",
         "receipt_order": 36,
-        "trace_row": 8432,
+        "trace_row": 37,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783862400",
         "epoch": 1783862400,
         "eligible": true,
@@ -3244,7 +3244,7 @@
       {
         "leg": "ALT",
         "receipt_order": 37,
-        "trace_row": 8433,
+        "trace_row": 38,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-497",
         "epoch": 1783864038.000001,
         "eligible": true,
@@ -3303,7 +3303,7 @@
       {
         "leg": "GAS",
         "receipt_order": 37,
-        "trace_row": 8433,
+        "trace_row": 38,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-497",
         "epoch": 1783864038.000001,
         "eligible": true,
@@ -3363,7 +3363,7 @@
       {
         "leg": "ALT",
         "receipt_order": 38,
-        "trace_row": 8434,
+        "trace_row": 39,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1288",
         "epoch": 1783874854.000003,
         "eligible": true,
@@ -3422,7 +3422,7 @@
       {
         "leg": "GAS",
         "receipt_order": 38,
-        "trace_row": 8434,
+        "trace_row": 39,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1288",
         "epoch": 1783874854.000003,
         "eligible": true,
@@ -3482,7 +3482,7 @@
       {
         "leg": "ALT",
         "receipt_order": 39,
-        "trace_row": 8435,
+        "trace_row": 40,
         "receipt": "5c5ed8fb-e9e6-7711-00e3-14195939c0e7",
         "epoch": 1783877860.516,
         "eligible": true,
@@ -3541,7 +3541,7 @@
       {
         "leg": "GAS",
         "receipt_order": 39,
-        "trace_row": 8435,
+        "trace_row": 40,
         "receipt": "5c5ed8fb-e9e6-7711-00e3-14195939c0e7",
         "epoch": 1783877860.516,
         "eligible": true,
@@ -3601,7 +3601,7 @@
       {
         "leg": "ALT",
         "receipt_order": 40,
-        "trace_row": 8436,
+        "trace_row": 41,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-744",
         "epoch": 1783885656.000002,
         "eligible": true,
@@ -3660,7 +3660,7 @@
       {
         "leg": "GAS",
         "receipt_order": 40,
-        "trace_row": 8436,
+        "trace_row": 41,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-744",
         "epoch": 1783885656.000002,
         "eligible": true,
@@ -3720,7 +3720,7 @@
       {
         "leg": "ALT",
         "receipt_order": 41,
-        "trace_row": 8437,
+        "trace_row": 42,
         "receipt": "6867303a-8fcd-760d-7939-8e9372343612",
         "epoch": 1783892635.963,
         "eligible": true,
@@ -3779,7 +3779,7 @@
       {
         "leg": "GAS",
         "receipt_order": 41,
-        "trace_row": 8437,
+        "trace_row": 42,
         "receipt": "6867303a-8fcd-760d-7939-8e9372343612",
         "epoch": 1783892635.963,
         "eligible": true,
@@ -3839,7 +3839,7 @@
       {
         "leg": "ALT",
         "receipt_order": 42,
-        "trace_row": 8438,
+        "trace_row": 43,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1882",
         "epoch": 1783896106.000001,
         "eligible": true,
@@ -3898,7 +3898,7 @@
       {
         "leg": "GAS",
         "receipt_order": 42,
-        "trace_row": 8438,
+        "trace_row": 43,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1882",
         "epoch": 1783896106.000001,
         "eligible": true,
@@ -3958,7 +3958,7 @@
       {
         "leg": "ALT",
         "receipt_order": 43,
-        "trace_row": 8439,
+        "trace_row": 44,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783905600",
         "epoch": 1783905600,
         "eligible": true,
@@ -4017,7 +4017,7 @@
       {
         "leg": "GAS",
         "receipt_order": 43,
-        "trace_row": 8439,
+        "trace_row": 44,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783905600",
         "epoch": 1783905600,
         "eligible": true,
@@ -4077,7 +4077,7 @@
       {
         "leg": "ALT",
         "receipt_order": 44,
-        "trace_row": 8440,
+        "trace_row": 45,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2056",
         "epoch": 1783907324.000001,
         "eligible": true,
@@ -4136,7 +4136,7 @@
       {
         "leg": "GAS",
         "receipt_order": 44,
-        "trace_row": 8440,
+        "trace_row": 45,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2056",
         "epoch": 1783907324.000001,
         "eligible": true,
@@ -4196,7 +4196,7 @@
       {
         "leg": "ALT",
         "receipt_order": 45,
-        "trace_row": 8441,
+        "trace_row": 46,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2138",
         "epoch": 1783918119.000001,
         "eligible": true,
@@ -4255,7 +4255,7 @@
       {
         "leg": "GAS",
         "receipt_order": 45,
-        "trace_row": 8441,
+        "trace_row": 46,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2138",
         "epoch": 1783918119.000001,
         "eligible": true,
@@ -4315,7 +4315,7 @@
       {
         "leg": "ALT",
         "receipt_order": 46,
-        "trace_row": 8442,
+        "trace_row": 47,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2341",
         "epoch": 1783928903.000001,
         "eligible": true,
@@ -4374,7 +4374,7 @@
       {
         "leg": "GAS",
         "receipt_order": 46,
-        "trace_row": 8442,
+        "trace_row": 47,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2341",
         "epoch": 1783928903.000001,
         "eligible": true,
@@ -4434,7 +4434,7 @@
       {
         "leg": "ALT",
         "receipt_order": 47,
-        "trace_row": 8443,
+        "trace_row": 48,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2428",
         "epoch": 1783938297.000001,
         "eligible": true,
@@ -4493,7 +4493,7 @@
       {
         "leg": "GAS",
         "receipt_order": 47,
-        "trace_row": 8443,
+        "trace_row": 48,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2428",
         "epoch": 1783938297.000001,
         "eligible": true,
@@ -4553,7 +4553,7 @@
       {
         "leg": "ALT",
         "receipt_order": 48,
-        "trace_row": 8444,
+        "trace_row": 49,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783948800",
         "epoch": 1783948800,
         "eligible": true,
@@ -4612,7 +4612,7 @@
       {
         "leg": "GAS",
         "receipt_order": 48,
-        "trace_row": 8444,
+        "trace_row": 49,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783948800",
         "epoch": 1783948800,
         "eligible": true,
@@ -4672,7 +4672,7 @@
       {
         "leg": "ALT",
         "receipt_order": 49,
-        "trace_row": 8445,
+        "trace_row": 50,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-8806",
         "epoch": 1783950500.000005,
         "eligible": true,
@@ -4731,7 +4731,7 @@
       {
         "leg": "GAS",
         "receipt_order": 49,
-        "trace_row": 8445,
+        "trace_row": 50,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-8806",
         "epoch": 1783950500.000005,
         "eligible": true,
@@ -4791,7 +4791,7 @@
       {
         "leg": "ALT",
         "receipt_order": 50,
-        "trace_row": 8446,
+        "trace_row": 51,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16242",
         "epoch": 1783961315.000001,
         "eligible": true,
@@ -4850,7 +4850,7 @@
       {
         "leg": "GAS",
         "receipt_order": 50,
-        "trace_row": 8446,
+        "trace_row": 51,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16242",
         "epoch": 1783961315.000001,
         "eligible": true,
@@ -4910,7 +4910,7 @@
       {
         "leg": "ALT",
         "receipt_order": 51,
-        "trace_row": 8447,
+        "trace_row": 52,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783970400",
         "epoch": 1783970400,
         "eligible": true,
@@ -4969,7 +4969,7 @@
       {
         "leg": "GAS",
         "receipt_order": 51,
-        "trace_row": 8447,
+        "trace_row": 52,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783970400",
         "epoch": 1783970400,
         "eligible": true,
@@ -5029,7 +5029,7 @@
       {
         "leg": "ALT",
         "receipt_order": 52,
-        "trace_row": 8448,
+        "trace_row": 53,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16864",
         "epoch": 1783971992.000002,
         "eligible": true,
@@ -5088,7 +5088,7 @@
       {
         "leg": "GAS",
         "receipt_order": 52,
-        "trace_row": 8448,
+        "trace_row": 53,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16864",
         "epoch": 1783971992.000002,
         "eligible": true,
@@ -5148,7 +5148,7 @@
       {
         "leg": "ALT",
         "receipt_order": 53,
-        "trace_row": 8449,
+        "trace_row": 54,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-17838",
         "epoch": 1783982919.000002,
         "eligible": true,
@@ -5207,7 +5207,7 @@
       {
         "leg": "GAS",
         "receipt_order": 53,
-        "trace_row": 8449,
+        "trace_row": 54,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-17838",
         "epoch": 1783982919.000002,
         "eligible": true,
@@ -5267,7 +5267,7 @@
       {
         "leg": "ALT",
         "receipt_order": 54,
-        "trace_row": 8450,
+        "trace_row": 55,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783992000",
         "epoch": 1783992000,
         "eligible": true,
@@ -5326,7 +5326,7 @@
       {
         "leg": "GAS",
         "receipt_order": 54,
-        "trace_row": 8450,
+        "trace_row": 55,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783992000",
         "epoch": 1783992000,
         "eligible": true,
@@ -5386,7 +5386,7 @@
       {
         "leg": "ALT",
         "receipt_order": 55,
-        "trace_row": 8451,
+        "trace_row": 56,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18146",
         "epoch": 1783993712.000001,
         "eligible": true,
@@ -5445,7 +5445,7 @@
       {
         "leg": "GAS",
         "receipt_order": 55,
-        "trace_row": 8451,
+        "trace_row": 56,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18146",
         "epoch": 1783993712.000001,
         "eligible": true,
@@ -5505,7 +5505,7 @@
       {
         "leg": "ALT",
         "receipt_order": 56,
-        "trace_row": 8452,
+        "trace_row": 57,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18273",
         "epoch": 1783994484.000024,
         "eligible": true,
@@ -5564,7 +5564,7 @@
       {
         "leg": "GAS",
         "receipt_order": 56,
-        "trace_row": 8452,
+        "trace_row": 57,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18273",
         "epoch": 1783994484.000024,
         "eligible": true,
@@ -5624,7 +5624,7 @@
       {
         "leg": "ALT",
         "receipt_order": 57,
-        "trace_row": 8453,
+        "trace_row": 58,
         "receipt": "1833c3ba-70e9-522d-a93e-715d54f10f13",
         "epoch": 1783994484.656,
         "eligible": true,
@@ -5683,7 +5683,7 @@
       {
         "leg": "GAS",
         "receipt_order": 57,
-        "trace_row": 8453,
+        "trace_row": 58,
         "receipt": "1833c3ba-70e9-522d-a93e-715d54f10f13",
         "epoch": 1783994484.656,
         "eligible": true,
@@ -5743,7 +5743,7 @@
       {
         "leg": "ALT",
         "receipt_order": 58,
-        "trace_row": 8454,
+        "trace_row": 59,
         "receipt": "e076da2e-c220-5835-94fb-33bfe379367b",
         "epoch": 1783994484.656,
         "eligible": true,
@@ -5802,7 +5802,7 @@
       {
         "leg": "GAS",
         "receipt_order": 58,
-        "trace_row": 8454,
+        "trace_row": 59,
         "receipt": "e076da2e-c220-5835-94fb-33bfe379367b",
         "epoch": 1783994484.656,
         "eligible": true,
@@ -5862,7 +5862,7 @@
       {
         "leg": "ALT",
         "receipt_order": 59,
-        "trace_row": 8455,
+        "trace_row": 60,
         "receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
         "epoch": 1784000298.337,
         "eligible": true,
@@ -5922,7 +5922,7 @@
       {
         "leg": "GAS",
         "receipt_order": 59,
-        "trace_row": 8455,
+        "trace_row": 60,
         "receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
         "epoch": 1784000298.337,
         "eligible": true,
@@ -5982,7 +5982,7 @@
       {
         "leg": "ALT",
         "receipt_order": 60,
-        "trace_row": 8456,
+        "trace_row": 61,
         "receipt": "e139ce45-1898-58ce-a34d-81d0f0f2fc4e",
         "epoch": 1784000655.959,
         "eligible": true,
@@ -6042,7 +6042,7 @@
       {
         "leg": "GAS",
         "receipt_order": 60,
-        "trace_row": 8456,
+        "trace_row": 61,
         "receipt": "e139ce45-1898-58ce-a34d-81d0f0f2fc4e",
         "epoch": 1784000655.959,
         "eligible": true,
@@ -6102,7 +6102,7 @@
       {
         "leg": "ALT",
         "receipt_order": 61,
-        "trace_row": 8457,
+        "trace_row": 62,
         "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
         "epoch": 1784000659.786,
         "eligible": true,
@@ -6162,7 +6162,7 @@
       {
         "leg": "GAS",
         "receipt_order": 61,
-        "trace_row": 8457,
+        "trace_row": 62,
         "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
         "epoch": 1784000659.786,
         "eligible": true,
@@ -6222,7 +6222,7 @@
       {
         "leg": "ALT",
         "receipt_order": 62,
-        "trace_row": 8458,
+        "trace_row": 63,
         "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
         "epoch": 1784000663.801,
         "eligible": true,
@@ -6281,7 +6281,7 @@
       {
         "leg": "GAS",
         "receipt_order": 62,
-        "trace_row": 8458,
+        "trace_row": 63,
         "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
         "epoch": 1784000663.801,
         "eligible": true,
@@ -6341,7 +6341,7 @@
       {
         "leg": "ALT",
         "receipt_order": 63,
-        "trace_row": 8459,
+        "trace_row": 64,
         "receipt": "531c1346-3cfc-4b92-018f-d12d5158d99a",
         "epoch": 1784001233.796,
         "eligible": true,
@@ -6400,7 +6400,7 @@
       {
         "leg": "GAS",
         "receipt_order": 63,
-        "trace_row": 8459,
+        "trace_row": 64,
         "receipt": "531c1346-3cfc-4b92-018f-d12d5158d99a",
         "epoch": 1784001233.796,
         "eligible": true,
@@ -6460,7 +6460,7 @@
       {
         "leg": "ALT",
         "receipt_order": 64,
-        "trace_row": 8460,
+        "trace_row": 65,
         "receipt": "69e1d85d-3cbd-5919-bea8-4703b7c99e8d",
         "epoch": 1784002241.523,
         "eligible": true,
@@ -6519,7 +6519,7 @@
       {
         "leg": "GAS",
         "receipt_order": 64,
-        "trace_row": 8460,
+        "trace_row": 65,
         "receipt": "69e1d85d-3cbd-5919-bea8-4703b7c99e8d",
         "epoch": 1784002241.523,
         "eligible": true,
@@ -6579,7 +6579,7 @@
       {
         "leg": "ALT",
         "receipt_order": 65,
-        "trace_row": 8461,
+        "trace_row": 66,
         "receipt": "7d4dd682-40f0-581c-889e-272bbc5d6024",
         "epoch": 1784002241.523,
         "eligible": true,
@@ -6638,7 +6638,7 @@
       {
         "leg": "GAS",
         "receipt_order": 65,
-        "trace_row": 8461,
+        "trace_row": 66,
         "receipt": "7d4dd682-40f0-581c-889e-272bbc5d6024",
         "epoch": 1784002241.523,
         "eligible": true,
@@ -6698,7 +6698,7 @@
       {
         "leg": "ALT",
         "receipt_order": 66,
-        "trace_row": 8462,
+        "trace_row": 67,
         "receipt": "e40a12bb-c1bb-54da-9b10-9c58765b98a7",
         "epoch": 1784002241.523,
         "eligible": true,
@@ -6757,7 +6757,7 @@
       {
         "leg": "GAS",
         "receipt_order": 66,
-        "trace_row": 8462,
+        "trace_row": 67,
         "receipt": "e40a12bb-c1bb-54da-9b10-9c58765b98a7",
         "epoch": 1784002241.523,
         "eligible": true,
@@ -6817,7 +6817,7 @@
       {
         "leg": "ALT",
         "receipt_order": 67,
-        "trace_row": 8463,
+        "trace_row": 68,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18582",
         "epoch": 1784002241.523005,
         "eligible": true,
@@ -6876,7 +6876,7 @@
       {
         "leg": "GAS",
         "receipt_order": 67,
-        "trace_row": 8463,
+        "trace_row": 68,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18582",
         "epoch": 1784002241.523005,
         "eligible": true,
@@ -6936,7 +6936,7 @@
       {
         "leg": "ALT",
         "receipt_order": 68,
-        "trace_row": 8464,
+        "trace_row": 69,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18645",
         "epoch": 1784002739.000013,
         "eligible": true,
@@ -6995,7 +6995,7 @@
       {
         "leg": "GAS",
         "receipt_order": 68,
-        "trace_row": 8464,
+        "trace_row": 69,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18645",
         "epoch": 1784002739.000013,
         "eligible": true,
@@ -7055,7 +7055,7 @@
       {
         "leg": "ALT",
         "receipt_order": 69,
-        "trace_row": 8465,
+        "trace_row": 70,
         "receipt": "59f73927-a8e9-5489-ee43-13acebda2244",
         "epoch": 1784003463.679,
         "eligible": true,
@@ -7114,7 +7114,7 @@
       {
         "leg": "GAS",
         "receipt_order": 69,
-        "trace_row": 8465,
+        "trace_row": 70,
         "receipt": "59f73927-a8e9-5489-ee43-13acebda2244",
         "epoch": 1784003463.679,
         "eligible": true,
@@ -7174,7 +7174,7 @@
       {
         "leg": "ALT",
         "receipt_order": 70,
-        "trace_row": 8466,
+        "trace_row": 71,
         "receipt": "86994625-2e49-7a62-4bee-1351ad4a3f48",
         "epoch": 1784003576.153,
         "eligible": true,
@@ -7233,7 +7233,7 @@
       {
         "leg": "GAS",
         "receipt_order": 70,
-        "trace_row": 8466,
+        "trace_row": 71,
         "receipt": "86994625-2e49-7a62-4bee-1351ad4a3f48",
         "epoch": 1784003576.153,
         "eligible": true,
@@ -7293,7 +7293,7 @@
       {
         "leg": "ALT",
         "receipt_order": 71,
-        "trace_row": 8467,
+        "trace_row": 72,
         "receipt": "add1ca73-1c6d-6916-6f27-dd35290e7284",
         "epoch": 1784004162.606,
         "eligible": true,
@@ -7352,7 +7352,7 @@
       {
         "leg": "GAS",
         "receipt_order": 71,
-        "trace_row": 8467,
+        "trace_row": 72,
         "receipt": "add1ca73-1c6d-6916-6f27-dd35290e7284",
         "epoch": 1784004162.606,
         "eligible": true,
@@ -7412,7 +7412,7 @@
       {
         "leg": "ALT",
         "receipt_order": 72,
-        "trace_row": 8468,
+        "trace_row": 73,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18806",
         "epoch": 1784004529.000002,
         "eligible": true,
@@ -7471,7 +7471,7 @@
       {
         "leg": "GAS",
         "receipt_order": 72,
-        "trace_row": 8468,
+        "trace_row": 73,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18806",
         "epoch": 1784004529.000002,
         "eligible": true,
@@ -7531,7 +7531,7 @@
       {
         "leg": "ALT",
         "receipt_order": 73,
-        "trace_row": 8469,
+        "trace_row": 74,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784006400",
         "epoch": 1784006400,
         "eligible": true,
@@ -7590,7 +7590,7 @@
       {
         "leg": "GAS",
         "receipt_order": 73,
-        "trace_row": 8469,
+        "trace_row": 74,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784006400",
         "epoch": 1784006400,
         "eligible": true,
@@ -7650,7 +7650,7 @@
       {
         "leg": "ALT",
         "receipt_order": 74,
-        "trace_row": 8470,
+        "trace_row": 75,
         "receipt": "30fa7a2e-47e5-5910-a3d1-22f8ed52b3d5",
         "epoch": 1784009045.89,
         "eligible": true,
@@ -7709,7 +7709,7 @@
       {
         "leg": "GAS",
         "receipt_order": 74,
-        "trace_row": 8470,
+        "trace_row": 75,
         "receipt": "30fa7a2e-47e5-5910-a3d1-22f8ed52b3d5",
         "epoch": 1784009045.89,
         "eligible": true,
@@ -7769,7 +7769,7 @@
       {
         "leg": "ALT",
         "receipt_order": 75,
-        "trace_row": 8471,
+        "trace_row": 76,
         "receipt": "92502523-0e1e-760a-55c0-96c7ae8f6809",
         "epoch": 1784009647.31,
         "eligible": true,
@@ -7828,7 +7828,7 @@
       {
         "leg": "GAS",
         "receipt_order": 75,
-        "trace_row": 8471,
+        "trace_row": 76,
         "receipt": "92502523-0e1e-760a-55c0-96c7ae8f6809",
         "epoch": 1784009647.31,
         "eligible": true,
@@ -7888,7 +7888,7 @@
       {
         "leg": "ALT",
         "receipt_order": 76,
-        "trace_row": 8472,
+        "trace_row": 77,
         "receipt": "ccfd87ed-a316-75af-a54c-854f3bd0ea8d",
         "epoch": 1784009667.69,
         "eligible": true,
@@ -7947,7 +7947,7 @@
       {
         "leg": "GAS",
         "receipt_order": 76,
-        "trace_row": 8472,
+        "trace_row": 77,
         "receipt": "ccfd87ed-a316-75af-a54c-854f3bd0ea8d",
         "epoch": 1784009667.69,
         "eligible": true,
@@ -8006,7 +8006,7 @@
       {
         "leg": "ALT",
         "receipt_order": 77,
-        "trace_row": 8473,
+        "trace_row": 78,
         "receipt": "f3acf0fb-9fa2-7555-9cc4-571ade7008ca",
         "epoch": 1784009667.69,
         "eligible": true,
@@ -8065,7 +8065,7 @@
       {
         "leg": "GAS",
         "receipt_order": 77,
-        "trace_row": 8473,
+        "trace_row": 78,
         "receipt": "f3acf0fb-9fa2-7555-9cc4-571ade7008ca",
         "epoch": 1784009667.69,
         "eligible": true,
@@ -8124,7 +8124,7 @@
       {
         "leg": "ALT",
         "receipt_order": 78,
-        "trace_row": 8474,
+        "trace_row": 79,
         "receipt": "f473c638-e358-71db-ba0e-be0239dcc87f",
         "epoch": 1784009667.69,
         "eligible": true,
@@ -8183,7 +8183,7 @@
       {
         "leg": "GAS",
         "receipt_order": 78,
-        "trace_row": 8474,
+        "trace_row": 79,
         "receipt": "f473c638-e358-71db-ba0e-be0239dcc87f",
         "epoch": 1784009667.69,
         "eligible": true,
@@ -8242,7 +8242,7 @@
       {
         "leg": "ALT",
         "receipt_order": 79,
-        "trace_row": 8475,
+        "trace_row": 80,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784013600",
         "epoch": 1784013600,
         "eligible": true,
@@ -8301,7 +8301,7 @@
       {
         "leg": "GAS",
         "receipt_order": 79,
-        "trace_row": 8475,
+        "trace_row": 80,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784013600",
         "epoch": 1784013600,
         "eligible": true,
@@ -8361,7 +8361,7 @@
       {
         "leg": "ALT",
         "receipt_order": 80,
-        "trace_row": 8476,
+        "trace_row": 81,
         "receipt": "7333f237-b235-6529-6848-c0e170868231",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -8420,7 +8420,7 @@
       {
         "leg": "GAS",
         "receipt_order": 80,
-        "trace_row": 8476,
+        "trace_row": 81,
         "receipt": "7333f237-b235-6529-6848-c0e170868231",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -8479,7 +8479,7 @@
       {
         "leg": "ALT",
         "receipt_order": 81,
-        "trace_row": 8477,
+        "trace_row": 82,
         "receipt": "73e8e3c5-0a1c-6bfb-5f5c-8bd2b8f71b18",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -8538,7 +8538,7 @@
       {
         "leg": "GAS",
         "receipt_order": 81,
-        "trace_row": 8477,
+        "trace_row": 82,
         "receipt": "73e8e3c5-0a1c-6bfb-5f5c-8bd2b8f71b18",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -8597,7 +8597,7 @@
       {
         "leg": "ALT",
         "receipt_order": 82,
-        "trace_row": 8478,
+        "trace_row": 83,
         "receipt": "77144f1f-8b54-6cc7-67e6-c236d798c4fe",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -8656,7 +8656,7 @@
       {
         "leg": "GAS",
         "receipt_order": 82,
-        "trace_row": 8478,
+        "trace_row": 83,
         "receipt": "77144f1f-8b54-6cc7-67e6-c236d798c4fe",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -8715,7 +8715,7 @@
       {
         "leg": "ALT",
         "receipt_order": 83,
-        "trace_row": 8479,
+        "trace_row": 84,
         "receipt": "938f6018-7a60-61ab-61b4-d9e47fd2ca46",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -8774,7 +8774,7 @@
       {
         "leg": "GAS",
         "receipt_order": 83,
-        "trace_row": 8479,
+        "trace_row": 84,
         "receipt": "938f6018-7a60-61ab-61b4-d9e47fd2ca46",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -8833,7 +8833,7 @@
       {
         "leg": "ALT",
         "receipt_order": 84,
-        "trace_row": 8480,
+        "trace_row": 85,
         "receipt": "942a9ff4-1792-6779-46cf-ebe1baeddafe",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -8892,7 +8892,7 @@
       {
         "leg": "GAS",
         "receipt_order": 84,
-        "trace_row": 8480,
+        "trace_row": 85,
         "receipt": "942a9ff4-1792-6779-46cf-ebe1baeddafe",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -8951,7 +8951,7 @@
       {
         "leg": "ALT",
         "receipt_order": 85,
-        "trace_row": 8481,
+        "trace_row": 86,
         "receipt": "b1ea9abe-a757-6c9e-7e84-d05573095e43",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -9010,7 +9010,7 @@
       {
         "leg": "GAS",
         "receipt_order": 85,
-        "trace_row": 8481,
+        "trace_row": 86,
         "receipt": "b1ea9abe-a757-6c9e-7e84-d05573095e43",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -9069,7 +9069,7 @@
       {
         "leg": "ALT",
         "receipt_order": 86,
-        "trace_row": 8482,
+        "trace_row": 87,
         "receipt": "eccfe2d2-d3f3-6c71-674f-c9395fc4518d",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -9128,7 +9128,7 @@
       {
         "leg": "GAS",
         "receipt_order": 86,
-        "trace_row": 8482,
+        "trace_row": 87,
         "receipt": "eccfe2d2-d3f3-6c71-674f-c9395fc4518d",
         "epoch": 1784014798.2,
         "eligible": true,
@@ -9187,7 +9187,7 @@
       {
         "leg": "ALT",
         "receipt_order": 87,
-        "trace_row": 8483,
+        "trace_row": 88,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
         "epoch": 1784015331.000001,
         "eligible": true,
@@ -9246,7 +9246,7 @@
       {
         "leg": "GAS",
         "receipt_order": 87,
-        "trace_row": 8483,
+        "trace_row": 88,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
         "epoch": 1784015331.000001,
         "eligible": true,
@@ -9306,7 +9306,7 @@
       {
         "leg": "ALT",
         "receipt_order": 88,
-        "trace_row": 8484,
+        "trace_row": 89,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784020800",
         "epoch": 1784020800,
         "eligible": true,
@@ -9365,7 +9365,7 @@
       {
         "leg": "GAS",
         "receipt_order": 88,
-        "trace_row": 8484,
+        "trace_row": 89,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784020800",
         "epoch": 1784020800,
         "eligible": true,
@@ -9425,7 +9425,7 @@
       {
         "leg": "ALT",
         "receipt_order": 89,
-        "trace_row": 8485,
+        "trace_row": 90,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
         "epoch": 1784024400,
         "eligible": true,
@@ -9484,7 +9484,7 @@
       {
         "leg": "GAS",
         "receipt_order": 89,
-        "trace_row": 8485,
+        "trace_row": 90,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
         "epoch": 1784024400,
         "eligible": true,
@@ -9544,7 +9544,7 @@
       {
         "leg": "ALT",
         "receipt_order": 90,
-        "trace_row": 8486,
+        "trace_row": 91,
         "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
         "epoch": 1784025043.114,
         "eligible": true,
@@ -9603,7 +9603,7 @@
       {
         "leg": "GAS",
         "receipt_order": 90,
-        "trace_row": 8486,
+        "trace_row": 91,
         "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
         "epoch": 1784025043.114,
         "eligible": true,
@@ -9662,7 +9662,7 @@
       {
         "leg": "ALT",
         "receipt_order": 91,
-        "trace_row": 8487,
+        "trace_row": 92,
         "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
         "epoch": 1784025043.114,
         "eligible": true,
@@ -9721,7 +9721,7 @@
       {
         "leg": "GAS",
         "receipt_order": 91,
-        "trace_row": 8487,
+        "trace_row": 92,
         "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
         "epoch": 1784025043.114,
         "eligible": true,
@@ -9780,7 +9780,7 @@
       {
         "leg": "ALT",
         "receipt_order": 92,
-        "trace_row": 8488,
+        "trace_row": 93,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-20125",
         "epoch": 1784025477.000008,
         "eligible": true,
@@ -9839,7 +9839,7 @@
       {
         "leg": "GAS",
         "receipt_order": 92,
-        "trace_row": 8488,
+        "trace_row": 93,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-20125",
         "epoch": 1784025477.000008,
         "eligible": true,
@@ -9898,7 +9898,7 @@
       {
         "leg": "ALT",
         "receipt_order": 93,
-        "trace_row": 8489,
+        "trace_row": 94,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-20324",
         "epoch": 1784026117.000004,
         "eligible": true,
@@ -9957,7 +9957,7 @@
       {
         "leg": "GAS",
         "receipt_order": 93,
-        "trace_row": 8489,
+        "trace_row": 94,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-20324",
         "epoch": 1784026117.000004,
         "eligible": true,
@@ -10016,7 +10016,7 @@
       {
         "leg": "ALT",
         "receipt_order": 94,
-        "trace_row": 8490,
+        "trace_row": 95,
         "receipt": "033693bd-187f-42e1-af1e-7e37eb886d60",
         "epoch": 1784026914.312,
         "eligible": true,
@@ -10076,7 +10076,7 @@
       {
         "leg": "GAS",
         "receipt_order": 94,
-        "trace_row": 8490,
+        "trace_row": 95,
         "receipt": "033693bd-187f-42e1-af1e-7e37eb886d60",
         "epoch": 1784026914.312,
         "eligible": true,
@@ -10135,7 +10135,7 @@
       {
         "leg": "ALT",
         "receipt_order": 95,
-        "trace_row": 8491,
+        "trace_row": 96,
         "receipt": "5591b0fe-ed11-49ea-9239-0d62e3d9e9e9",
         "epoch": 1784026914.312,
         "eligible": true,
@@ -10195,7 +10195,7 @@
       {
         "leg": "GAS",
         "receipt_order": 95,
-        "trace_row": 8491,
+        "trace_row": 96,
         "receipt": "5591b0fe-ed11-49ea-9239-0d62e3d9e9e9",
         "epoch": 1784026914.312,
         "eligible": true,
@@ -10254,7 +10254,7 @@
       {
         "leg": "ALT",
         "receipt_order": 96,
-        "trace_row": 8492,
+        "trace_row": 97,
         "receipt": "5591b0fe-ed11-49ea-9239-0d62e3d9e9e9",
         "epoch": 1784026914.312,
         "eligible": true,
@@ -10314,7 +10314,7 @@
       {
         "leg": "GAS",
         "receipt_order": 96,
-        "trace_row": 8492,
+        "trace_row": 97,
         "receipt": "5591b0fe-ed11-49ea-9239-0d62e3d9e9e9",
         "epoch": 1784026914.312,
         "eligible": true,
@@ -10373,7 +10373,7 @@
       {
         "leg": "ALT",
         "receipt_order": 97,
-        "trace_row": 8493,
+        "trace_row": 98,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784028000",
         "epoch": 1784028000,
         "eligible": true,
@@ -10433,7 +10433,7 @@
       {
         "leg": "GAS",
         "receipt_order": 97,
-        "trace_row": 8493,
+        "trace_row": 98,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784028000",
         "epoch": 1784028000,
         "eligible": true,
@@ -10492,7 +10492,7 @@
       {
         "leg": "ALT",
         "receipt_order": 98,
-        "trace_row": 8494,
+        "trace_row": 99,
         "receipt": "01398724-fd9f-67c0-8760-63dacfd0bd01",
         "epoch": 1784028542.778,
         "eligible": true,
@@ -10552,7 +10552,7 @@
       {
         "leg": "GAS",
         "receipt_order": 98,
-        "trace_row": 8494,
+        "trace_row": 99,
         "receipt": "01398724-fd9f-67c0-8760-63dacfd0bd01",
         "epoch": 1784028542.778,
         "eligible": true,
@@ -10611,7 +10611,7 @@
       {
         "leg": "ALT",
         "receipt_order": 99,
-        "trace_row": 8495,
+        "trace_row": 100,
         "receipt": "01398724-fd9f-67c0-8760-63dacfd0bd01",
         "epoch": 1784028542.778,
         "eligible": true,
@@ -10671,7 +10671,7 @@
       {
         "leg": "GAS",
         "receipt_order": 99,
-        "trace_row": 8495,
+        "trace_row": 100,
         "receipt": "01398724-fd9f-67c0-8760-63dacfd0bd01",
         "epoch": 1784028542.778,
         "eligible": true,
@@ -10730,7 +10730,7 @@
       {
         "leg": "ALT",
         "receipt_order": 100,
-        "trace_row": 8496,
+        "trace_row": 101,
         "receipt": "5fd56acd-3b0d-7de3-e5eb-a46efdf0ff40",
         "epoch": 1784029174.894,
         "eligible": true,
@@ -10790,7 +10790,7 @@
       {
         "leg": "GAS",
         "receipt_order": 100,
-        "trace_row": 8496,
+        "trace_row": 101,
         "receipt": "5fd56acd-3b0d-7de3-e5eb-a46efdf0ff40",
         "epoch": 1784029174.894,
         "eligible": true,
@@ -10850,7 +10850,7 @@
       {
         "leg": "ALT",
         "receipt_order": 101,
-        "trace_row": 8497,
+        "trace_row": 102,
         "receipt": "5fd56acd-3b0d-7de3-e5eb-a46efdf0ff40",
         "epoch": 1784029174.894,
         "eligible": true,
@@ -10910,7 +10910,7 @@
       {
         "leg": "GAS",
         "receipt_order": 101,
-        "trace_row": 8497,
+        "trace_row": 102,
         "receipt": "5fd56acd-3b0d-7de3-e5eb-a46efdf0ff40",
         "epoch": 1784029174.894,
         "eligible": true,
@@ -10970,7 +10970,7 @@
       {
         "leg": "ALT",
         "receipt_order": 102,
-        "trace_row": 8498,
+        "trace_row": 103,
         "receipt": "9b07da7b-b060-6b7e-2191-f2844525a5a1",
         "epoch": 1784029505.679,
         "eligible": true,
@@ -11030,7 +11030,7 @@
       {
         "leg": "GAS",
         "receipt_order": 102,
-        "trace_row": 8498,
+        "trace_row": 103,
         "receipt": "9b07da7b-b060-6b7e-2191-f2844525a5a1",
         "epoch": 1784029505.679,
         "eligible": true,
@@ -11089,7 +11089,7 @@
       {
         "leg": "ALT",
         "receipt_order": 103,
-        "trace_row": 8499,
+        "trace_row": 104,
         "receipt": "ce9cd54e-6efe-6d5e-137f-9aeb1f71f09e",
         "epoch": 1784029505.679,
         "eligible": true,
@@ -11149,7 +11149,7 @@
       {
         "leg": "GAS",
         "receipt_order": 103,
-        "trace_row": 8499,
+        "trace_row": 104,
         "receipt": "ce9cd54e-6efe-6d5e-137f-9aeb1f71f09e",
         "epoch": 1784029505.679,
         "eligible": true,
@@ -11208,7 +11208,7 @@
       {
         "leg": "ALT",
         "receipt_order": 104,
-        "trace_row": 8500,
+        "trace_row": 105,
         "receipt": "ce9cd54e-6efe-6d5e-137f-9aeb1f71f09e",
         "epoch": 1784029505.679,
         "eligible": true,
@@ -11268,7 +11268,7 @@
       {
         "leg": "GAS",
         "receipt_order": 104,
-        "trace_row": 8500,
+        "trace_row": 105,
         "receipt": "ce9cd54e-6efe-6d5e-137f-9aeb1f71f09e",
         "epoch": 1784029505.679,
         "eligible": true,
@@ -11327,7 +11327,7 @@
       {
         "leg": "ALT",
         "receipt_order": 105,
-        "trace_row": 8501,
+        "trace_row": 106,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784029800",
         "epoch": 1784029800,
         "eligible": true,
@@ -11387,7 +11387,7 @@
       {
         "leg": "GAS",
         "receipt_order": 105,
-        "trace_row": 8501,
+        "trace_row": 106,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784029800",
         "epoch": 1784029800,
         "eligible": true,
@@ -11446,7 +11446,7 @@
       {
         "leg": "ALT",
         "receipt_order": 106,
-        "trace_row": 8502,
+        "trace_row": 107,
         "receipt": "893d0bd2-fe7f-5280-714e-78756e068e81",
         "epoch": 1784029860.086,
         "eligible": true,
@@ -11506,7 +11506,7 @@
       {
         "leg": "GAS",
         "receipt_order": 106,
-        "trace_row": 8502,
+        "trace_row": 107,
         "receipt": "893d0bd2-fe7f-5280-714e-78756e068e81",
         "epoch": 1784029860.086,
         "eligible": true,
@@ -11565,7 +11565,7 @@
       {
         "leg": "ALT",
         "receipt_order": 107,
-        "trace_row": 8503,
+        "trace_row": 108,
         "receipt": "893d0bd2-fe7f-5280-714e-78756e068e81",
         "epoch": 1784029860.086,
         "eligible": true,
@@ -11625,7 +11625,7 @@
       {
         "leg": "GAS",
         "receipt_order": 107,
-        "trace_row": 8503,
+        "trace_row": 108,
         "receipt": "893d0bd2-fe7f-5280-714e-78756e068e81",
         "epoch": 1784029860.086,
         "eligible": true,
@@ -11684,7 +11684,7 @@
       {
         "leg": "ALT",
         "receipt_order": 108,
-        "trace_row": 8504,
+        "trace_row": 109,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784031600",
         "epoch": 1784031600,
         "eligible": true,
@@ -11744,7 +11744,7 @@
       {
         "leg": "GAS",
         "receipt_order": 108,
-        "trace_row": 8504,
+        "trace_row": 109,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784031600",
         "epoch": 1784031600,
         "eligible": true,
@@ -11803,7 +11803,7 @@
       {
         "leg": "ALT",
         "receipt_order": 109,
-        "trace_row": 8505,
+        "trace_row": 110,
         "receipt": "f05b56d8-761f-6368-8d3c-91794a3b7581",
         "epoch": 1784031737.419,
         "eligible": true,
@@ -11863,7 +11863,7 @@
       {
         "leg": "GAS",
         "receipt_order": 109,
-        "trace_row": 8505,
+        "trace_row": 110,
         "receipt": "f05b56d8-761f-6368-8d3c-91794a3b7581",
         "epoch": 1784031737.419,
         "eligible": true,
@@ -11922,7 +11922,7 @@
       {
         "leg": "ALT",
         "receipt_order": 110,
-        "trace_row": 8506,
+        "trace_row": 111,
         "receipt": "f05b56d8-761f-6368-8d3c-91794a3b7581",
         "epoch": 1784031737.419,
         "eligible": true,
@@ -11982,7 +11982,7 @@
       {
         "leg": "GAS",
         "receipt_order": 110,
-        "trace_row": 8506,
+        "trace_row": 111,
         "receipt": "f05b56d8-761f-6368-8d3c-91794a3b7581",
         "epoch": 1784031737.419,
         "eligible": true,
@@ -12041,7 +12041,7 @@
       {
         "leg": "ALT",
         "receipt_order": 111,
-        "trace_row": 8507,
+        "trace_row": 112,
         "receipt": "63629d10-caa3-4f6c-8298-faa010fad125",
         "epoch": 1784032035.467,
         "eligible": true,
@@ -12101,7 +12101,7 @@
       {
         "leg": "GAS",
         "receipt_order": 111,
-        "trace_row": 8507,
+        "trace_row": 112,
         "receipt": "63629d10-caa3-4f6c-8298-faa010fad125",
         "epoch": 1784032035.467,
         "eligible": true,
@@ -12160,7 +12160,7 @@
       {
         "leg": "ALT",
         "receipt_order": 112,
-        "trace_row": 8508,
+        "trace_row": 113,
         "receipt": "63629d10-caa3-4f6c-8298-faa010fad125",
         "epoch": 1784032035.467,
         "eligible": true,
@@ -12220,7 +12220,7 @@
       {
         "leg": "GAS",
         "receipt_order": 112,
-        "trace_row": 8508,
+        "trace_row": 113,
         "receipt": "63629d10-caa3-4f6c-8298-faa010fad125",
         "epoch": 1784032035.467,
         "eligible": true,
@@ -12279,7 +12279,7 @@
       {
         "leg": "ALT",
         "receipt_order": 113,
-        "trace_row": 8509,
+        "trace_row": 114,
         "receipt": "9f301a4f-86cb-4a54-40cf-35f71ba94681",
         "epoch": 1784032211.892,
         "eligible": true,
@@ -12339,7 +12339,7 @@
       {
         "leg": "GAS",
         "receipt_order": 113,
-        "trace_row": 8509,
+        "trace_row": 114,
         "receipt": "9f301a4f-86cb-4a54-40cf-35f71ba94681",
         "epoch": 1784032211.892,
         "eligible": true,
@@ -12398,7 +12398,7 @@
       {
         "leg": "ALT",
         "receipt_order": 114,
-        "trace_row": 8510,
+        "trace_row": 115,
         "receipt": "9f301a4f-86cb-4a54-40cf-35f71ba94681",
         "epoch": 1784032211.892,
         "eligible": true,
@@ -12458,7 +12458,7 @@
       {
         "leg": "GAS",
         "receipt_order": 114,
-        "trace_row": 8510,
+        "trace_row": 115,
         "receipt": "9f301a4f-86cb-4a54-40cf-35f71ba94681",
         "epoch": 1784032211.892,
         "eligible": true,
@@ -12517,7 +12517,7 @@
       {
         "leg": "ALT",
         "receipt_order": 115,
-        "trace_row": 8511,
+        "trace_row": 116,
         "receipt": "2ff93560-c99f-6904-7936-95305d362ad1",
         "epoch": 1784032325.552,
         "eligible": true,
@@ -12577,7 +12577,7 @@
       {
         "leg": "GAS",
         "receipt_order": 115,
-        "trace_row": 8511,
+        "trace_row": 116,
         "receipt": "2ff93560-c99f-6904-7936-95305d362ad1",
         "epoch": 1784032325.552,
         "eligible": true,
@@ -12636,7 +12636,7 @@
       {
         "leg": "ALT",
         "receipt_order": 116,
-        "trace_row": 8512,
+        "trace_row": 117,
         "receipt": "2ff93560-c99f-6904-7936-95305d362ad1",
         "epoch": 1784032325.552,
         "eligible": true,
@@ -12696,7 +12696,7 @@
       {
         "leg": "GAS",
         "receipt_order": 116,
-        "trace_row": 8512,
+        "trace_row": 117,
         "receipt": "2ff93560-c99f-6904-7936-95305d362ad1",
         "epoch": 1784032325.552,
         "eligible": true,
@@ -12755,7 +12755,7 @@
       {
         "leg": "ALT",
         "receipt_order": 117,
-        "trace_row": 8513,
+        "trace_row": 118,
         "receipt": "67e5555d-f1ab-704c-6c72-c209b5840aa1",
         "epoch": 1784032752.55,
         "eligible": true,
@@ -12815,7 +12815,7 @@
       {
         "leg": "GAS",
         "receipt_order": 117,
-        "trace_row": 8513,
+        "trace_row": 118,
         "receipt": "67e5555d-f1ab-704c-6c72-c209b5840aa1",
         "epoch": 1784032752.55,
         "eligible": true,
@@ -12874,7 +12874,7 @@
       {
         "leg": "ALT",
         "receipt_order": 118,
-        "trace_row": 8514,
+        "trace_row": 119,
         "receipt": "67e5555d-f1ab-704c-6c72-c209b5840aa1",
         "epoch": 1784032752.55,
         "eligible": true,
@@ -12934,7 +12934,7 @@
       {
         "leg": "GAS",
         "receipt_order": 118,
-        "trace_row": 8514,
+        "trace_row": 119,
         "receipt": "67e5555d-f1ab-704c-6c72-c209b5840aa1",
         "epoch": 1784032752.55,
         "eligible": true,
@@ -12993,7 +12993,7 @@
       {
         "leg": "ALT",
         "receipt_order": 119,
-        "trace_row": 8515,
+        "trace_row": 120,
         "receipt": "be9e3d65-0a83-7a58-b334-42c2791260cd",
         "epoch": 1784032784.04,
         "eligible": true,
@@ -13053,7 +13053,7 @@
       {
         "leg": "GAS",
         "receipt_order": 119,
-        "trace_row": 8515,
+        "trace_row": 120,
         "receipt": "be9e3d65-0a83-7a58-b334-42c2791260cd",
         "epoch": 1784032784.04,
         "eligible": true,
@@ -13112,7 +13112,7 @@
       {
         "leg": "ALT",
         "receipt_order": 120,
-        "trace_row": 8516,
+        "trace_row": 121,
         "receipt": "be9e3d65-0a83-7a58-b334-42c2791260cd",
         "epoch": 1784032784.04,
         "eligible": true,
@@ -13172,7 +13172,7 @@
       {
         "leg": "GAS",
         "receipt_order": 120,
-        "trace_row": 8516,
+        "trace_row": 121,
         "receipt": "be9e3d65-0a83-7a58-b334-42c2791260cd",
         "epoch": 1784032784.04,
         "eligible": true,
@@ -13231,7 +13231,7 @@
       {
         "leg": "ALT",
         "receipt_order": 121,
-        "trace_row": 8517,
+        "trace_row": 122,
         "receipt": "d7aac351-cf67-74ae-e71b-26da91ff5a4c",
         "epoch": 1784033231.37,
         "eligible": true,
@@ -13291,7 +13291,7 @@
       {
         "leg": "GAS",
         "receipt_order": 121,
-        "trace_row": 8517,
+        "trace_row": 122,
         "receipt": "d7aac351-cf67-74ae-e71b-26da91ff5a4c",
         "epoch": 1784033231.37,
         "eligible": true,
@@ -13350,7 +13350,7 @@
       {
         "leg": "ALT",
         "receipt_order": 122,
-        "trace_row": 8518,
+        "trace_row": 123,
         "receipt": "d7aac351-cf67-74ae-e71b-26da91ff5a4c",
         "epoch": 1784033231.37,
         "eligible": true,
@@ -13410,7 +13410,7 @@
       {
         "leg": "GAS",
         "receipt_order": 122,
-        "trace_row": 8518,
+        "trace_row": 123,
         "receipt": "d7aac351-cf67-74ae-e71b-26da91ff5a4c",
         "epoch": 1784033231.37,
         "eligible": true,
@@ -13469,7 +13469,7 @@
       {
         "leg": "ALT",
         "receipt_order": 123,
-        "trace_row": 8519,
+        "trace_row": 124,
         "receipt": "6760d179-eaff-6b8a-7482-3f95b68892f8",
         "epoch": 1784033248.732,
         "eligible": true,
@@ -13529,7 +13529,7 @@
       {
         "leg": "GAS",
         "receipt_order": 123,
-        "trace_row": 8519,
+        "trace_row": 124,
         "receipt": "6760d179-eaff-6b8a-7482-3f95b68892f8",
         "epoch": 1784033248.732,
         "eligible": true,
@@ -13588,7 +13588,7 @@
       {
         "leg": "ALT",
         "receipt_order": 124,
-        "trace_row": 8520,
+        "trace_row": 125,
         "receipt": "6760d179-eaff-6b8a-7482-3f95b68892f8",
         "epoch": 1784033248.732,
         "eligible": true,
@@ -13648,7 +13648,7 @@
       {
         "leg": "GAS",
         "receipt_order": 124,
-        "trace_row": 8520,
+        "trace_row": 125,
         "receipt": "6760d179-eaff-6b8a-7482-3f95b68892f8",
         "epoch": 1784033248.732,
         "eligible": true,
@@ -13707,7 +13707,7 @@
       {
         "leg": "ALT",
         "receipt_order": 125,
-        "trace_row": 8521,
+        "trace_row": 126,
         "receipt": "29bf985f-4ff3-61ba-0f46-edfaf8294574",
         "epoch": 1784033324.136,
         "eligible": true,
@@ -13767,7 +13767,7 @@
       {
         "leg": "GAS",
         "receipt_order": 125,
-        "trace_row": 8521,
+        "trace_row": 126,
         "receipt": "29bf985f-4ff3-61ba-0f46-edfaf8294574",
         "epoch": 1784033324.136,
         "eligible": true,
@@ -13826,7 +13826,7 @@
       {
         "leg": "ALT",
         "receipt_order": 126,
-        "trace_row": 8522,
+        "trace_row": 127,
         "receipt": "29bf985f-4ff3-61ba-0f46-edfaf8294574",
         "epoch": 1784033324.136,
         "eligible": true,
@@ -13886,7 +13886,7 @@
       {
         "leg": "GAS",
         "receipt_order": 126,
-        "trace_row": 8522,
+        "trace_row": 127,
         "receipt": "29bf985f-4ff3-61ba-0f46-edfaf8294574",
         "epoch": 1784033324.136,
         "eligible": true,
@@ -13945,7 +13945,7 @@
       {
         "leg": "ALT",
         "receipt_order": 127,
-        "trace_row": 8523,
+        "trace_row": 128,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784033400",
         "epoch": 1784033400,
         "eligible": true,
@@ -14005,7 +14005,7 @@
       {
         "leg": "GAS",
         "receipt_order": 127,
-        "trace_row": 8523,
+        "trace_row": 128,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784033400",
         "epoch": 1784033400,
         "eligible": true,
@@ -14064,7 +14064,7 @@
       {
         "leg": "ALT",
         "receipt_order": 128,
-        "trace_row": 8524,
+        "trace_row": 129,
         "receipt": "debf8712-963b-640a-73a2-0a534a1f0628",
         "epoch": 1784033602.789,
         "eligible": true,
@@ -14124,7 +14124,7 @@
       {
         "leg": "GAS",
         "receipt_order": 128,
-        "trace_row": 8524,
+        "trace_row": 129,
         "receipt": "debf8712-963b-640a-73a2-0a534a1f0628",
         "epoch": 1784033602.789,
         "eligible": true,
@@ -14183,7 +14183,7 @@
       {
         "leg": "ALT",
         "receipt_order": 129,
-        "trace_row": 8525,
+        "trace_row": 130,
         "receipt": "debf8712-963b-640a-73a2-0a534a1f0628",
         "epoch": 1784033602.789,
         "eligible": true,
@@ -14243,7 +14243,7 @@
       {
         "leg": "GAS",
         "receipt_order": 129,
-        "trace_row": 8525,
+        "trace_row": 130,
         "receipt": "debf8712-963b-640a-73a2-0a534a1f0628",
         "epoch": 1784033602.789,
         "eligible": true,
@@ -14302,7 +14302,7 @@
       {
         "leg": "ALT",
         "receipt_order": 130,
-        "trace_row": 8526,
+        "trace_row": 131,
         "receipt": "281c0584-94eb-72de-70fa-dc05e3701920",
         "epoch": 1784034116.3,
         "eligible": true,
@@ -14362,7 +14362,7 @@
       {
         "leg": "GAS",
         "receipt_order": 130,
-        "trace_row": 8526,
+        "trace_row": 131,
         "receipt": "281c0584-94eb-72de-70fa-dc05e3701920",
         "epoch": 1784034116.3,
         "eligible": true,
@@ -14421,7 +14421,7 @@
       {
         "leg": "ALT",
         "receipt_order": 131,
-        "trace_row": 8527,
+        "trace_row": 132,
         "receipt": "281c0584-94eb-72de-70fa-dc05e3701920",
         "epoch": 1784034116.3,
         "eligible": true,
@@ -14481,7 +14481,7 @@
       {
         "leg": "GAS",
         "receipt_order": 131,
-        "trace_row": 8527,
+        "trace_row": 132,
         "receipt": "281c0584-94eb-72de-70fa-dc05e3701920",
         "epoch": 1784034116.3,
         "eligible": true,
@@ -14540,7 +14540,7 @@
       {
         "leg": "ALT",
         "receipt_order": 132,
-        "trace_row": 8528,
+        "trace_row": 133,
         "receipt": "0a8ac932-b54f-73e2-9028-19ee7e275b6c",
         "epoch": 1784034211.412,
         "eligible": true,
@@ -14600,7 +14600,7 @@
       {
         "leg": "GAS",
         "receipt_order": 132,
-        "trace_row": 8528,
+        "trace_row": 133,
         "receipt": "0a8ac932-b54f-73e2-9028-19ee7e275b6c",
         "epoch": 1784034211.412,
         "eligible": true,
@@ -14659,7 +14659,7 @@
       {
         "leg": "ALT",
         "receipt_order": 133,
-        "trace_row": 8529,
+        "trace_row": 134,
         "receipt": "0a8ac932-b54f-73e2-9028-19ee7e275b6c",
         "epoch": 1784034211.412,
         "eligible": true,
@@ -14719,7 +14719,7 @@
       {
         "leg": "GAS",
         "receipt_order": 133,
-        "trace_row": 8529,
+        "trace_row": 134,
         "receipt": "0a8ac932-b54f-73e2-9028-19ee7e275b6c",
         "epoch": 1784034211.412,
         "eligible": true,
@@ -14778,7 +14778,7 @@
       {
         "leg": "ALT",
         "receipt_order": 134,
-        "trace_row": 8530,
+        "trace_row": 135,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21656",
         "epoch": 1784034256.000007,
         "eligible": true,
@@ -14838,7 +14838,7 @@
       {
         "leg": "GAS",
         "receipt_order": 134,
-        "trace_row": 8530,
+        "trace_row": 135,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21656",
         "epoch": 1784034256.000007,
         "eligible": true,
@@ -14897,7 +14897,7 @@
       {
         "leg": "ALT",
         "receipt_order": 135,
-        "trace_row": 8531,
+        "trace_row": 136,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784034300",
         "epoch": 1784034300,
         "eligible": true,
@@ -14957,7 +14957,7 @@
       {
         "leg": "GAS",
         "receipt_order": 135,
-        "trace_row": 8531,
+        "trace_row": 136,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784034300",
         "epoch": 1784034300,
         "eligible": true,
@@ -15016,7 +15016,7 @@
       {
         "leg": "ALT",
         "receipt_order": 136,
-        "trace_row": 8532,
+        "trace_row": 137,
         "receipt": "f6eebdcc-9974-54fb-3be0-2708afe8d3af",
         "epoch": 1784034567.315,
         "eligible": true,
@@ -15076,7 +15076,7 @@
       {
         "leg": "GAS",
         "receipt_order": 136,
-        "trace_row": 8532,
+        "trace_row": 137,
         "receipt": "f6eebdcc-9974-54fb-3be0-2708afe8d3af",
         "epoch": 1784034567.315,
         "eligible": true,
@@ -15135,7 +15135,7 @@
       {
         "leg": "ALT",
         "receipt_order": 137,
-        "trace_row": 8533,
+        "trace_row": 138,
         "receipt": "f6eebdcc-9974-54fb-3be0-2708afe8d3af",
         "epoch": 1784034567.315,
         "eligible": true,
@@ -15195,7 +15195,7 @@
       {
         "leg": "GAS",
         "receipt_order": 137,
-        "trace_row": 8533,
+        "trace_row": 138,
         "receipt": "f6eebdcc-9974-54fb-3be0-2708afe8d3af",
         "epoch": 1784034567.315,
         "eligible": true,
@@ -15254,7 +15254,7 @@
       {
         "leg": "ALT",
         "receipt_order": 138,
-        "trace_row": 8534,
+        "trace_row": 139,
         "receipt": "cae54b8b-4a90-4adb-5f33-9d904e94388f",
         "epoch": 1784034630.553,
         "eligible": true,
@@ -15314,7 +15314,7 @@
       {
         "leg": "GAS",
         "receipt_order": 138,
-        "trace_row": 8534,
+        "trace_row": 139,
         "receipt": "cae54b8b-4a90-4adb-5f33-9d904e94388f",
         "epoch": 1784034630.553,
         "eligible": true,
@@ -15373,7 +15373,7 @@
       {
         "leg": "ALT",
         "receipt_order": 139,
-        "trace_row": 8535,
+        "trace_row": 140,
         "receipt": "cae54b8b-4a90-4adb-5f33-9d904e94388f",
         "epoch": 1784034630.553,
         "eligible": true,
@@ -15433,7 +15433,7 @@
       {
         "leg": "GAS",
         "receipt_order": 139,
-        "trace_row": 8535,
+        "trace_row": 140,
         "receipt": "cae54b8b-4a90-4adb-5f33-9d904e94388f",
         "epoch": 1784034630.553,
         "eligible": true,
@@ -15492,7 +15492,7 @@
       {
         "leg": "ALT",
         "receipt_order": 140,
-        "trace_row": 8536,
+        "trace_row": 141,
         "receipt": "df957710-e8d4-4687-371f-cbe0cb9694df",
         "epoch": 1784034746.901,
         "eligible": true,
@@ -15552,7 +15552,7 @@
       {
         "leg": "GAS",
         "receipt_order": 140,
-        "trace_row": 8536,
+        "trace_row": 141,
         "receipt": "df957710-e8d4-4687-371f-cbe0cb9694df",
         "epoch": 1784034746.901,
         "eligible": true,
@@ -15611,7 +15611,7 @@
       {
         "leg": "ALT",
         "receipt_order": 141,
-        "trace_row": 8537,
+        "trace_row": 142,
         "receipt": "df957710-e8d4-4687-371f-cbe0cb9694df",
         "epoch": 1784034746.901,
         "eligible": true,
@@ -15671,7 +15671,7 @@
       {
         "leg": "GAS",
         "receipt_order": 141,
-        "trace_row": 8537,
+        "trace_row": 142,
         "receipt": "df957710-e8d4-4687-371f-cbe0cb9694df",
         "epoch": 1784034746.901,
         "eligible": true,
@@ -15730,7 +15730,7 @@
       {
         "leg": "ALT",
         "receipt_order": 142,
-        "trace_row": 8538,
+        "trace_row": 143,
         "receipt": "67794598-8fe0-5f27-5187-08b637fe595f",
         "epoch": 1784034749.953,
         "eligible": true,
@@ -15790,7 +15790,7 @@
       {
         "leg": "GAS",
         "receipt_order": 142,
-        "trace_row": 8538,
+        "trace_row": 143,
         "receipt": "67794598-8fe0-5f27-5187-08b637fe595f",
         "epoch": 1784034749.953,
         "eligible": true,
@@ -15849,7 +15849,7 @@
       {
         "leg": "ALT",
         "receipt_order": 143,
-        "trace_row": 8539,
+        "trace_row": 144,
         "receipt": "67794598-8fe0-5f27-5187-08b637fe595f",
         "epoch": 1784034749.953,
         "eligible": true,
@@ -15909,7 +15909,7 @@
       {
         "leg": "GAS",
         "receipt_order": 143,
-        "trace_row": 8539,
+        "trace_row": 144,
         "receipt": "67794598-8fe0-5f27-5187-08b637fe595f",
         "epoch": 1784034749.953,
         "eligible": true,
@@ -15968,7 +15968,7 @@
       {
         "leg": "ALT",
         "receipt_order": 144,
-        "trace_row": 8540,
+        "trace_row": 145,
         "receipt": "0c1f9559-c6fe-6175-e5b9-0e9a93cc6292",
         "epoch": 1784034810.828,
         "eligible": true,
@@ -16027,7 +16027,7 @@
       {
         "leg": "GAS",
         "receipt_order": 144,
-        "trace_row": 8540,
+        "trace_row": 145,
         "receipt": "0c1f9559-c6fe-6175-e5b9-0e9a93cc6292",
         "epoch": 1784034810.828,
         "eligible": true,
@@ -16086,7 +16086,7 @@
       {
         "leg": "ALT",
         "receipt_order": 145,
-        "trace_row": 8541,
+        "trace_row": 146,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-18196",
         "epoch": 1784034812.000001,
         "eligible": true,
@@ -16145,7 +16145,7 @@
       {
         "leg": "GAS",
         "receipt_order": 145,
-        "trace_row": 8541,
+        "trace_row": 146,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-18196",
         "epoch": 1784034812.000001,
         "eligible": true,
@@ -16204,7 +16204,7 @@
       {
         "leg": "ALT",
         "receipt_order": 146,
-        "trace_row": 8542,
+        "trace_row": 147,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-18197",
         "epoch": 1784034815.000001,
         "eligible": true,
@@ -16263,7 +16263,7 @@
       {
         "leg": "GAS",
         "receipt_order": 146,
-        "trace_row": 8542,
+        "trace_row": 147,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-18197",
         "epoch": 1784034815.000001,
         "eligible": true,
@@ -16322,7 +16322,7 @@
       {
         "leg": "ALT",
         "receipt_order": 147,
-        "trace_row": 8543,
+        "trace_row": 148,
         "receipt": "6c4ccca4-3d60-500b-220c-d2d27496e54b",
         "epoch": 1784034873.301,
         "eligible": true,
@@ -16381,7 +16381,7 @@
       {
         "leg": "GAS",
         "receipt_order": 147,
-        "trace_row": 8543,
+        "trace_row": 148,
         "receipt": "6c4ccca4-3d60-500b-220c-d2d27496e54b",
         "epoch": 1784034873.301,
         "eligible": true,
@@ -16440,7 +16440,7 @@
       {
         "leg": "ALT",
         "receipt_order": 148,
-        "trace_row": 8544,
+        "trace_row": 149,
         "receipt": "6c4ccca4-3d60-500b-220c-d2d27496e54b",
         "epoch": 1784034873.301,
         "eligible": true,
@@ -16499,7 +16499,7 @@
       {
         "leg": "GAS",
         "receipt_order": 148,
-        "trace_row": 8544,
+        "trace_row": 149,
         "receipt": "6c4ccca4-3d60-500b-220c-d2d27496e54b",
         "epoch": 1784034873.301,
         "eligible": true,
@@ -16558,7 +16558,7 @@
       {
         "leg": "ALT",
         "receipt_order": 149,
-        "trace_row": 8545,
+        "trace_row": 150,
         "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
         "epoch": 1784034898.295,
         "eligible": true,
@@ -16617,7 +16617,7 @@
       {
         "leg": "GAS",
         "receipt_order": 149,
-        "trace_row": 8545,
+        "trace_row": 150,
         "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
         "epoch": 1784034898.295,
         "eligible": true,
@@ -16676,7 +16676,7 @@
       {
         "leg": "ALT",
         "receipt_order": 150,
-        "trace_row": 8546,
+        "trace_row": 151,
         "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
         "epoch": 1784034898.295,
         "eligible": true,
@@ -16735,7 +16735,7 @@
       {
         "leg": "GAS",
         "receipt_order": 150,
-        "trace_row": 8546,
+        "trace_row": 151,
         "receipt": "8cad9ba6-2980-5bff-9506-e22fb8a9a4a3",
         "epoch": 1784034898.295,
         "eligible": true,
@@ -16794,7 +16794,7 @@
       {
         "leg": "ALT",
         "receipt_order": 151,
-        "trace_row": 8547,
+        "trace_row": 152,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784034900",
         "epoch": 1784034900,
         "eligible": true,
@@ -16853,7 +16853,7 @@
       {
         "leg": "GAS",
         "receipt_order": 151,
-        "trace_row": 8547,
+        "trace_row": 152,
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784034900",
         "epoch": 1784034900,
         "eligible": true,
@@ -16912,7 +16912,7 @@
       {
         "leg": "ALT",
         "receipt_order": 152,
-        "trace_row": 8548,
+        "trace_row": 153,
         "receipt": "f773e198-17b2-7cdb-fec9-efda6d292a6e",
         "epoch": 1784035039.365,
         "eligible": true,
@@ -16971,7 +16971,7 @@
       {
         "leg": "GAS",
         "receipt_order": 152,
-        "trace_row": 8548,
+        "trace_row": 153,
         "receipt": "f773e198-17b2-7cdb-fec9-efda6d292a6e",
         "epoch": 1784035039.365,
         "eligible": true,
@@ -17030,7 +17030,7 @@
       {
         "leg": "ALT",
         "receipt_order": 153,
-        "trace_row": 8549,
+        "trace_row": 154,
         "receipt": "f773e198-17b2-7cdb-fec9-efda6d292a6e",
         "epoch": 1784035039.365,
         "eligible": true,
@@ -17089,7 +17089,7 @@
       {
         "leg": "GAS",
         "receipt_order": 153,
-        "trace_row": 8549,
+        "trace_row": 154,
         "receipt": "f773e198-17b2-7cdb-fec9-efda6d292a6e",
         "epoch": 1784035039.365,
         "eligible": true,
@@ -17148,7 +17148,7 @@
       {
         "leg": "ALT",
         "receipt_order": 154,
-        "trace_row": 8550,
+        "trace_row": 155,
         "receipt": "efe24abd-3006-42f0-3d0e-9728af4aa8f0",
         "epoch": 1784035053.253,
         "eligible": true,
@@ -17207,7 +17207,7 @@
       {
         "leg": "GAS",
         "receipt_order": 154,
-        "trace_row": 8550,
+        "trace_row": 155,
         "receipt": "efe24abd-3006-42f0-3d0e-9728af4aa8f0",
         "epoch": 1784035053.253,
         "eligible": true,
@@ -17266,7 +17266,7 @@
       {
         "leg": "ALT",
         "receipt_order": 155,
-        "trace_row": 8551,
+        "trace_row": 156,
         "receipt": "efe24abd-3006-42f0-3d0e-9728af4aa8f0",
         "epoch": 1784035053.253,
         "eligible": true,
@@ -17325,7 +17325,7 @@
       {
         "leg": "GAS",
         "receipt_order": 155,
-        "trace_row": 8551,
+        "trace_row": 156,
         "receipt": "efe24abd-3006-42f0-3d0e-9728af4aa8f0",
         "epoch": 1784035053.253,
         "eligible": true,
@@ -17384,7 +17384,7 @@
       {
         "leg": "ALT",
         "receipt_order": 156,
-        "trace_row": 8552,
+        "trace_row": 157,
         "receipt": "64c564c6-1bda-4f88-1ed6-181f1bc5a6f4",
         "epoch": 1784035086.028,
         "eligible": true,
@@ -17443,7 +17443,7 @@
       {
         "leg": "GAS",
         "receipt_order": 156,
-        "trace_row": 8552,
+        "trace_row": 157,
         "receipt": "64c564c6-1bda-4f88-1ed6-181f1bc5a6f4",
         "epoch": 1784035086.028,
         "eligible": true,
@@ -17502,7 +17502,7 @@
       {
         "leg": "ALT",
         "receipt_order": 157,
-        "trace_row": 8553,
+        "trace_row": 158,
         "receipt": "64c564c6-1bda-4f88-1ed6-181f1bc5a6f4",
         "epoch": 1784035086.028,
         "eligible": true,
@@ -17561,7 +17561,7 @@
       {
         "leg": "GAS",
         "receipt_order": 157,
-        "trace_row": 8553,
+        "trace_row": 158,
         "receipt": "64c564c6-1bda-4f88-1ed6-181f1bc5a6f4",
         "epoch": 1784035086.028,
         "eligible": true,
@@ -17620,7 +17620,7 @@
       {
         "leg": "ALT",
         "receipt_order": 158,
-        "trace_row": 8554,
+        "trace_row": 159,
         "receipt": "a4bcf68b-31da-7a54-83bb-cc4426e0ce24",
         "epoch": 1784035086.969,
         "eligible": true,
@@ -17679,7 +17679,7 @@
       {
         "leg": "GAS",
         "receipt_order": 158,
-        "trace_row": 8554,
+        "trace_row": 159,
         "receipt": "a4bcf68b-31da-7a54-83bb-cc4426e0ce24",
         "epoch": 1784035086.969,
         "eligible": true,
@@ -17738,7 +17738,7 @@
       {
         "leg": "ALT",
         "receipt_order": 159,
-        "trace_row": 8555,
+        "trace_row": 160,
         "receipt": "a4bcf68b-31da-7a54-83bb-cc4426e0ce24",
         "epoch": 1784035086.969,
         "eligible": true,
@@ -17797,7 +17797,7 @@
       {
         "leg": "GAS",
         "receipt_order": 159,
-        "trace_row": 8555,
+        "trace_row": 160,
         "receipt": "a4bcf68b-31da-7a54-83bb-cc4426e0ce24",
         "epoch": 1784035086.969,
         "eligible": true,
@@ -17856,7 +17856,7 @@
       {
         "leg": "ALT",
         "receipt_order": 160,
-        "trace_row": 8556,
+        "trace_row": 161,
         "receipt": "4508ae01-64c6-7d7c-795c-73f1d875faf4",
         "epoch": 1784035087.457,
         "eligible": true,
@@ -17915,7 +17915,7 @@
       {
         "leg": "GAS",
         "receipt_order": 160,
-        "trace_row": 8556,
+        "trace_row": 161,
         "receipt": "4508ae01-64c6-7d7c-795c-73f1d875faf4",
         "epoch": 1784035087.457,
         "eligible": true,
@@ -17974,7 +17974,7 @@
       {
         "leg": "ALT",
         "receipt_order": 161,
-        "trace_row": 8557,
+        "trace_row": 162,
         "receipt": "4508ae01-64c6-7d7c-795c-73f1d875faf4",
         "epoch": 1784035087.457,
         "eligible": true,
@@ -18033,7 +18033,7 @@
       {
         "leg": "GAS",
         "receipt_order": 161,
-        "trace_row": 8557,
+        "trace_row": 162,
         "receipt": "4508ae01-64c6-7d7c-795c-73f1d875faf4",
         "epoch": 1784035087.457,
         "eligible": true,
@@ -18092,7 +18092,7 @@
       {
         "leg": "ALT",
         "receipt_order": 162,
-        "trace_row": 8558,
+        "trace_row": 163,
         "receipt": "9036e0f4-99a6-4454-4fd5-b4a8bbc43068",
         "epoch": 1784035121.015,
         "eligible": true,
@@ -18151,7 +18151,7 @@
       {
         "leg": "GAS",
         "receipt_order": 162,
-        "trace_row": 8558,
+        "trace_row": 163,
         "receipt": "9036e0f4-99a6-4454-4fd5-b4a8bbc43068",
         "epoch": 1784035121.015,
         "eligible": true,
@@ -18210,7 +18210,7 @@
       {
         "leg": "ALT",
         "receipt_order": 163,
-        "trace_row": 8559,
+        "trace_row": 164,
         "receipt": "9036e0f4-99a6-4454-4fd5-b4a8bbc43068",
         "epoch": 1784035121.015,
         "eligible": true,
@@ -18269,7 +18269,7 @@
       {
         "leg": "GAS",
         "receipt_order": 163,
-        "trace_row": 8559,
+        "trace_row": 164,
         "receipt": "9036e0f4-99a6-4454-4fd5-b4a8bbc43068",
         "epoch": 1784035121.015,
         "eligible": true,
@@ -18328,7 +18328,7 @@
       {
         "leg": "ALT",
         "receipt_order": 164,
-        "trace_row": 8560,
+        "trace_row": 165,
         "receipt": "9d766109-92b2-5cbc-839b-618038013d10",
         "epoch": 1784035157.211,
         "eligible": true,
@@ -18387,7 +18387,7 @@
       {
         "leg": "GAS",
         "receipt_order": 164,
-        "trace_row": 8560,
+        "trace_row": 165,
         "receipt": "9d766109-92b2-5cbc-839b-618038013d10",
         "epoch": 1784035157.211,
         "eligible": true,
@@ -18439,7 +18439,7 @@
       {
         "leg": "ALT",
         "receipt_order": 165,
-        "trace_row": 8561,
+        "trace_row": 166,
         "receipt": "9d766109-92b2-5cbc-839b-618038013d10",
         "epoch": 1784035157.211,
         "eligible": true,
@@ -18498,7 +18498,7 @@
       {
         "leg": "GAS",
         "receipt_order": 165,
-        "trace_row": 8561,
+        "trace_row": 166,
         "receipt": "9d766109-92b2-5cbc-839b-618038013d10",
         "epoch": 1784035157.211,
         "eligible": true,
@@ -18550,7 +18550,7 @@
       {
         "leg": "ALT",
         "receipt_order": 166,
-        "trace_row": 8562,
+        "trace_row": 167,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21924",
         "epoch": 1784035193.000002,
         "eligible": true,
@@ -18602,7 +18602,7 @@
       {
         "leg": "GAS",
         "receipt_order": 166,
-        "trace_row": 8562,
+        "trace_row": 167,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21924",
         "epoch": 1784035193.000002,
         "eligible": true,
@@ -18654,7 +18654,7 @@
       {
         "leg": "ALT",
         "receipt_order": 167,
-        "trace_row": 8563,
+        "trace_row": 168,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21927",
         "epoch": 1784035193.000005,
         "eligible": true,
@@ -18706,7 +18706,7 @@
       {
         "leg": "GAS",
         "receipt_order": 167,
-        "trace_row": 8563,
+        "trace_row": 168,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21927",
         "epoch": 1784035193.000005,
         "eligible": true,
@@ -18758,7 +18758,7 @@
       {
         "leg": "ALT",
         "receipt_order": 168,
-        "trace_row": 8564,
+        "trace_row": 169,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21927",
         "epoch": 1784035193.000005,
         "eligible": true,
@@ -18810,7 +18810,7 @@
       {
         "leg": "GAS",
         "receipt_order": 168,
-        "trace_row": 8564,
+        "trace_row": 169,
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-21927",
         "epoch": 1784035193.000005,
         "eligible": true,
@@ -18902,7 +18902,7 @@
         "timestamp_epoch": 1783810130.000001,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/12f7527fb3781451bb43c7e86e9da388a9d04195148787aee00cdbc099a852a3.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/c9d340880608448783042b5888a738989584bd48ebeb957262f5c1b3d34a273e.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
@@ -18929,7 +18929,7 @@
         "timestamp_epoch": 1783820728.000002,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/8cc39552b022f99a472dafc14df109c5ff0ee8e5652f4f6ca9eaaec7bae4b556.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/7cba7d454dfa6efdc977a3945325a5833e3294796d90ecde601b91ba758431ec.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
@@ -18956,7 +18956,7 @@
         "timestamp_epoch": 1783820728.000002,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/8cc39552b022f99a472dafc14df109c5ff0ee8e5652f4f6ca9eaaec7bae4b556.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/7cba7d454dfa6efdc977a3945325a5833e3294796d90ecde601b91ba758431ec.json"
       },
       {
         "receipt": "4c6fc47a-c28a-60be-f231-4b455be84cbf",
@@ -18983,7 +18983,7 @@
         "timestamp_epoch": 1783832727.872,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/72ca400f2d5b5aba5048d34d0e40250d9f6e6da9f43738b2dc002b5f1fe5b7af.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/e26789f37b2a7bfcb831ff30b091a2e48f5368a550a73385af6f98431d719e58.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-476",
@@ -19010,7 +19010,7 @@
         "timestamp_epoch": 1783842418.000003,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/a73501dd7c0b0c8408d443c5b2d42f3696e1d0d91724fef1b282c1ecfa140ab6.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/1115fe937054e6848b4b5e006342846aa3e0b21b416e075e00e45ba2e66833ea.json"
       },
       {
         "receipt": "71ecd139-fd52-6d15-75d0-27767662d075",
@@ -19037,7 +19037,7 @@
         "timestamp_epoch": 1783862356.23,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/76ba172796e08b0ed459d5e30f41442664b78182b17974fd676ccf49fc5ae8f9.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/6dc508c4d59f03d6f23da537cfa560b59312919425693d8cae5f5fe2019e36ca.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-497",
@@ -19064,7 +19064,7 @@
         "timestamp_epoch": 1783864038.000001,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/d0d295113b8620889a1d6afdab25ae280504a86d565d5ad588a96428d49ca93b.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/528a38ec1fee974f2edcb540632e1e9156f686b3fd2b00ec96408ee44ca424f7.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1288",
@@ -19091,7 +19091,7 @@
         "timestamp_epoch": 1783874854.000003,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/4d1757fdc912f1be64ec07bcd36bd6d4a6e867fe5dcac74b07c61b1afe101252.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/acfeffe517f8e260a916090ef4655a962d1c04e4f4cebcfcbcb728dfd6976614.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-1288",
@@ -19118,7 +19118,7 @@
         "timestamp_epoch": 1783874854.000003,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/4d1757fdc912f1be64ec07bcd36bd6d4a6e867fe5dcac74b07c61b1afe101252.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/acfeffe517f8e260a916090ef4655a962d1c04e4f4cebcfcbcb728dfd6976614.json"
       },
       {
         "receipt": "5c5ed8fb-e9e6-7711-00e3-14195939c0e7",
@@ -19145,7 +19145,7 @@
         "timestamp_epoch": 1783877860.516,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/ace493589718f427d11eedd56d5a14c121989a0dfa908f6172177c29f62816e3.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/e6cfa9797765f8ad4b974e98992ac2bbe8f8533ea8cacdab99709e940bcb3b14.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-744",
@@ -19172,7 +19172,7 @@
         "timestamp_epoch": 1783885656.000002,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/c60546e76bb783873307f9f30da3c0aa9099cef1de22f3e5235ad4b350902f6b.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/ad44c1b84cf1cfff204f8b72988e4c7f2114c2ace2e227fae3d28572d96da299.json"
       },
       {
         "receipt": "6867303a-8fcd-760d-7939-8e9372343612",
@@ -19199,7 +19199,7 @@
         "timestamp_epoch": 1783892635.963,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/08932037b11c70d8c0883d5c43af52f2d5a87007d99d73b97ab63430ce825e6c.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/594e274f9ad4a09a776818a7613fa008623c2e4a6f6638c39ca4ac35f77ddec0.json"
       },
       {
         "receipt": "6867303a-8fcd-760d-7939-8e9372343612",
@@ -19226,7 +19226,7 @@
         "timestamp_epoch": 1783892635.963,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/08932037b11c70d8c0883d5c43af52f2d5a87007d99d73b97ab63430ce825e6c.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/594e274f9ad4a09a776818a7613fa008623c2e4a6f6638c39ca4ac35f77ddec0.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2341",
@@ -19253,7 +19253,7 @@
         "timestamp_epoch": 1783928903.000001,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/47b0665784f320c422999916fad7ce20befbc8fd310c522fe308fd685ec79be7.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/18d5e8870c74bacb471bbffb542f3a99f10c882577529bd6db6ff04b96670202.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-2428",
@@ -19280,7 +19280,7 @@
         "timestamp_epoch": 1783938297.000001,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/0e30075f525cf0b9dead23f42c3a0ff45907640b62d47edd434b9b22604df287.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/eef9e57f81254ff6383397be70f3da4e959b782d4a97e6131da1ee95d8b9de7a.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783948800",
@@ -19307,7 +19307,7 @@
         "timestamp_epoch": 1783948800,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/66fee7cf4b2f6e9e6386fa08455b7c43571ca9e66d559f4e66f2c956f73185ce.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/9c904af8791e141e4baa580e3948346c1d02020ebb4b9247101c6a3540b0d52f.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-16242",
@@ -19334,7 +19334,7 @@
         "timestamp_epoch": 1783961315.000001,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/8b6df93f56bf447e939503199637a9ea5751d43d650b8bb60e3d6ecad3c19543.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/bc4f1a60a2591960f775b6246c7a0d388ed2fd99ec429734eff01dc8ad5c511f.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783970400",
@@ -19361,7 +19361,7 @@
         "timestamp_epoch": 1783970400,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/d0438bf93d6757434010d27aa740034786be4c736ee90d6c1c0bfb4dc5d4896e.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/13a0928a19cd2b376a9eadfd727127b5de9cc51aa6d7113a4ca5e605d1c023d3.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-17838",
@@ -19388,7 +19388,7 @@
         "timestamp_epoch": 1783982919.000002,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/85b112de36ffcdecbcbf27ecc2265c63cc97b2d001fbb0e76df860897c1b9dfc.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/34a96f29e9ce59798592a6bdd690c5fb2ea14d216ec556fc5c5ad7bcf27caace.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-17838",
@@ -19415,7 +19415,7 @@
         "timestamp_epoch": 1783982919.000002,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/85b112de36ffcdecbcbf27ecc2265c63cc97b2d001fbb0e76df860897c1b9dfc.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/34a96f29e9ce59798592a6bdd690c5fb2ea14d216ec556fc5c5ad7bcf27caace.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1783992000",
@@ -19442,7 +19442,7 @@
         "timestamp_epoch": 1783992000,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/a1d1b966560c8fe744e549dc6478dabc137255b8ce8f79e09fec7da1b6ef111c.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/33942eea910034c41233ad8ba7689ffe3ceffc91d66e8433e167fdf6a5ab8cfc.json"
       },
       {
         "receipt": "1833c3ba-70e9-522d-a93e-715d54f10f13",
@@ -19469,7 +19469,7 @@
         "timestamp_epoch": 1783994484.656,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/97c9a60e39b1646c91895c53cbb5927eb08b5f903b301d17f03c1d2f2f6f9cc6.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/eeaa13ba90ef0b5fcae2dfba275bc3f678ab33f71d995c2186baad02075e4474.json"
       },
       {
         "receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
@@ -19496,7 +19496,7 @@
         "timestamp_epoch": 1784000298.337,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/623105ef03ed12d369fed405ec4cf655f2b7cc04e872810b67b8190452992313.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/6bd6cc4617b0df8e7714ad6f6bc7ae2bc3ce41fe4f940d401eedf4ddcffecfdd.json"
       },
       {
         "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
@@ -19527,7 +19527,7 @@
         "timestamp_epoch": 1784000663.801,
         "rest_age_at_fill_minutes": 6.091066670417786,
         "legacy_display_rest_age_minutes": 2998.9300166368484,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/dce60b6a651723682a47d5585988749184c4bb567b8717afe0e2fdd8e0c9db0c.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/093b7b48b4e2e59d38e542f86c9cd8ad11cc1d3e2b2f0179efe9897708c45326.json"
       },
       {
         "receipt": "69e1d85d-3cbd-5919-bea8-4703b7c99e8d",
@@ -19554,7 +19554,7 @@
         "timestamp_epoch": 1784002241.523,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/a6979cef5a1eac84dddb79a118f1954135fb9ca20fd198fd6f690db9ccf111c0.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/241bebc6e3ff7ed0d828f6e3a4734c71ae5334b4236c6e6d90a37a30043dda9e.json"
       },
       {
         "receipt": "30fa7a2e-47e5-5910-a3d1-22f8ed52b3d5",
@@ -19581,7 +19581,7 @@
         "timestamp_epoch": 1784009045.89,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/0601b80163ed8fc5b1fa3162efadda14d0ca0e3218afb3f471d9c8531a6be6b2.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/cfaff13c1228f3d0913c78db6fd5c238b739509fe0eccadc7fbc9dcd607d9c31.json"
       },
       {
         "receipt": "7333f237-b235-6529-6848-c0e170868231",
@@ -19608,7 +19608,7 @@
         "timestamp_epoch": 1784014798.2,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/6518687385d4d6200606d04464cd22806184c5bcd331db42f853ab3cc9453b5b.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/81e9242d28121cba8d1c5c5bbdc9813e8e1a95f0947279b30e4f01eedec8dfa4.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-15474",
@@ -19635,7 +19635,7 @@
         "timestamp_epoch": 1784015331.000001,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/565a7a4e262055ae6467b842f5145feee78f56eb087c5889c96f7094fab1a9cd.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/a4ea1f2174e6613520038cc4420a615b5ce444526985e38eb143f287358b1fa6.json"
       },
       {
         "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
@@ -19662,7 +19662,7 @@
         "timestamp_epoch": 1784024400,
         "rest_age_at_fill_minutes": null,
         "legacy_display_rest_age_minutes": null,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/5099c78cf13f34344be2c42a79b94dc0259f794b103b01619e59be815c358881.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/5089066ebb0a75f73da1f1e11a05a9272fb1f88b84c6a08a6d1f9d5c3d298922.json"
       },
       {
         "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
@@ -19693,7 +19693,7 @@
         "timestamp_epoch": 1784025043.114,
         "rest_age_at_fill_minutes": 10.7185666680336,
         "legacy_display_rest_age_minutes": 3581.8852333188056,
-        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/5dd0cbdaa47479f81986aa7295cae274642bc438639d61862e8873ab08e8de5f.json"
+        "source_url": "/data/KXATPMATCH-26JUL12ALTGAS.stages/04b605f6f49d9a7b55ab35bb72520f54c8d5c676c73559990a3e6945dfbbc4e2.json"
       }
     ],
     "age_rule": "Lineage begins at PLACE, survives reprices, ends on remove/fill. Current-price age resets only on a level change. Same-second tests current-price start and fill timestamps, not rounded minute ages. Missing starts remain STORE SILENT.",
@@ -19851,7 +19851,7 @@
         "hover_lines": [
           "MACRO: F · PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
           "{\"family_match_share\":0}",
-          "Bench: RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
+          "Bench: PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
         ]
       },
       {
@@ -20146,10 +20146,10 @@
       }
     },
     "bench_taxonomy_receipt": {
-      "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
-      "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b",
-      "bytes": 33824,
-      "commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
+      "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
+      "bytes": 28853,
+      "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
       "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
       "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
       "bench_choices": {
@@ -20169,7 +20169,7 @@
         "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
         "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
       },
-      "label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
+      "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
     },
     "rules": {
       "authorship": "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
@@ -20184,5 +20184,5 @@
       "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
     }
   },
-  "timestamp": "2026-09-08T17:25:20.941Z"
+  "timestamp": "2026-09-09T00:23:31.387Z"
 }

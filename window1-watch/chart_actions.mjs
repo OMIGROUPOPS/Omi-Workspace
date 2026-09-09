@@ -62,6 +62,7 @@ export function chartSource(row) {
       envelope_mode: d.layered_dual_belief?.envelope_placement?.mode ?? null,
       active_target_before_cents:
         d.layered_dual_belief?.envelope_placement?.active_target_before_cents,
+      bid_accountability: d.bid_accountability ?? null,
     })),
     fill: row.fill_event_receipt?.context ?? null,
   };
@@ -107,7 +108,11 @@ function geometry(axis, mtb, level) {
   };
 }
 
-export function attachChartActions(face, sources) {
+export function attachChartActions(face, sources, accountability = []) {
+  const assumptions = new Map(accountability.filter(r => r.kind === "BID_ASSUMPTION").map(r => [r.assumption.assumption_id, r.assumption]));
+  const fillRenewals = new Map(accountability.filter(r => r.kind === "BID_RENEWAL" && r.disposition === "FILLED")
+    .map(r => [`${r.leg_id}|${r.receipt}`, r]));
+  const outcomes = new Map(accountability.filter(r => r.kind === "ASSUMPTION_OUTCOME").map(r => [r.assumption_id, r]));
   const events = [],
     active = {},
     places = {};
@@ -145,6 +150,7 @@ export function attachChartActions(face, sources) {
       sentence,
       deadline: src.deadlines?.[leg] ?? null,
       book,
+      bid_accountability: d?.bid_accountability ?? null,
       gloss: Object.fromEntries(
         Object.entries(raw).map(([k, v]) => [k, tokenGloss(v)]),
       ),
@@ -181,6 +187,8 @@ export function attachChartActions(face, sources) {
       if (!face.legs.includes(leg)) continue;
       const old = fill.prior_standing_target_cents ?? active[leg];
       const item = add(r, leg, src, null, old, null, "FILL");
+      const renewal = fillRenewals.get(`${leg}|${r.receipt}`) ?? null;
+      if (renewal) item.bid_accountability = { assumption: assumptions.get(renewal.assumption_id) ?? null, renewal, supersession: null };
       // A fill row has no decision or book: don't relabel the placing decision as its own.
       const place = places[leg] ?? null;
       const age =
@@ -268,13 +276,45 @@ export function attachChartActions(face, sources) {
         active[leg] = null;
         places[leg] = null;
       }
+      if (d.bid_accountability?.supersession) {
+        const item = add(r, leg, src, d, old, target, "SUPERSESSION");
+        item.glyph = "◦";
+        item.label = `${leg} · renewed assumption · ${d.bid_accountability.supersession.reason}`;
+        for (const marker of Object.values(item.markers)) marker.label = item.label;
+      }
     }
   }
   // Identical-time/price receipts retain individual hit targets around the exact anchor.
   const stacks = new Map();
   for (const event of events) {
     event.card_lines = plainCard(event);
+    const account = event.bid_accountability;
+    if (account?.assumption) {
+      const a = account.assumption, r = account.renewal, s = account.supersession;
+      const status = r?.status ?? "STORE SILENT";
+      const note = status === "PENDING" ? "promise pending (not validated)" : status === "FULFILLED"
+        ? "promise fulfilled" : status === "MISSED_AT_DEADLINE" ? "promise missed its deadline" : "promise: STORE SILENT";
+      // Raw receipts stay behind details. The four-line card shows its as-of status.
+      event.card_lines[1] += ` · ${note} at this receipt`;
+      if (event.kind === "SUPERSESSION") event.card_lines = [
+        `${event.leg} · Renewed assumption; bid ${cents(a.rest_cents)}`,
+        `Why: ${s.reasons.map(reason => ({ ROLE_CHANGE: "role changed", NEW_OWN_PRINT: "new own trade",
+          DEADLINE_PASSED: "old deadline passed", AUTHORITY_CHANGE: "author changed",
+          AUTHORITY_FORECAST_LEVEL_CHANGED: "author changed its forecast level",
+          AUTHORITY_FORECAST_DEADLINE_CHANGED: "author changed its deadline",
+          AUTHORITY_TARGET_NOW_EXECUTED: "the named target was executed" })[reason] ?? reason).join("; ")}`,
+        `Frozen promise: Q ${cents(a.Q)} · X ${minutes(a.X_minutes_to_bell)} to bell · ${note}`,
+        `Author ${value(a.layer)} · ESS ${value(a.ESS)} · ${minutes(event.minutes_to_bell)} to bell`,
+      ];
+      event.accountability_lines = [
+        `Immutable assumption: ${JSON.stringify(a)}`,
+        `Renewal at this marker receipt: ${JSON.stringify(r)}`,
+        `Supersession: ${JSON.stringify(s)}`,
+        `Recorded outcome (later observation, not knowledge at marker): ${JSON.stringify(outcomes.get(a.assumption_id) ?? null)}`,
+      ];
+    } else event.accountability_lines = ["Assumption / renewal: STORE SILENT (not present in this historical trace)"];
     event.details_lines = [
+      ...event.accountability_lines,
       ...event.hover_lines,
       `deadline: ${JSON.stringify(event.deadline)}`,
       ...(event.fill
@@ -297,8 +337,10 @@ export function attachChartActions(face, sources) {
     event.stack_offset_px = ordinal * 18;
     stacks.set(key, ordinal + 1);
   }
-  face.render.bid_actions = events;
-  face.render.marker_legend = "▪ bid action · ● fill · ⚑ recorded floor";
+  // A renewal is not a second order: keep grade/age inputs strictly unchanged.
+  face.render.bid_actions = events.filter(event => event.kind !== "SUPERSESSION");
+  face.render.supersessions = events.filter(event => event.kind === "SUPERSESSION");
+  face.render.marker_legend = "▪ bid action · ● fill · ◦ renewed assumption · ⚑ recorded floor";
   attachPoolAccuracy(face);
   // All chart hover strings are written here, never composed from prices in React.
   let hoverIndex = face.render.columns.indexOf("hover_lines");

@@ -802,3 +802,81 @@ from the bound bench file. Historical grades remain append-only.
 The conduct scoreboard is a separate bench output under
 `arb-executor/analysis/conduct_scoreboard/ATP_MAIN/`; none of its hypothetical
 orders or reachable fills is imported into this face or an OS trace.
+# Accountable bids — receipt-only observer
+
+`BID_ASSUMPTION` in the replay trace, and `derivation.bid_accountability.assumption`
+at a decision, hold an immutable snapshot. `assumption_id` is SHA256 of its exact
+JSON payload before the ID is added. Fields: `authoring_sentence_receipt`,
+`authoring_sentence`, `sentence_with_citations`, `created_at_epoch`, `P`, `Q`,
+`X_epoch`, `X_minutes_to_bell`, `layer`, `ESS`, `member_count`, `weight_sum`,
+`q_author`, `x_author`, `authority_source`, `role`, `rest_cents`, `action`,
+`action_reason`, `own_print_receipt`, `formation_end_epoch`, `bell_epoch`, `leg_id`.
+The forecast Q and resting price are distinct: an unchanged veto/fence can hold
+a rest that differs from the current forecast. Missing forecasts remain null.
+The first-bind role experiment is NOT installed.
+
+`BID_RENEWAL` is emitted after each actual book/print receipt, including the fill
+receipt, for each bid resting at that receipt. It observes existing state and
+does not call pricing, STEP, or conduct. `phase` distinguishes `TICK`, `DECISION`,
+and the terminal `BELL` observation. `assumption_id` joins the immutable record;
+`tick_receipt`, `tick_kind`, `tick_leg_id`, `tick`, `book` retain the evidence.
+`status`: `PENDING`, `FULFILLED`, or `MISSED_AT_DEADLINE`. Fulfilment requires a
+strictly later positive-size own true print at/below frozen Q, by frozen X, in
+the formation-to-bell span. The creation-time print is not a future witness.
+`witness` is the qualifying receipt/time/price/size; a later print never erases
+a missed deadline. This promise test does not change the inherited fill law.
+
+`effect` is `supports` when that print reaches Q or moves closer to Q, and
+`contradicts` when X expires without a witness. Otherwise it is `unresolved`.
+Directional support is NOT fulfilment or certification; a book change, opposite
+side print, or an own print away from Q does not by itself refute a future promise.
+`evidence` states that classification's rule. `remains_postable` tests strict
+fresh placement below ask with an unlocked known book; `existing_rest_at_or_below_ask`
+separately records the inherited standing-rest comparison; `pair_within_cap`
+uses the existing cap and sibling commitment. Unknown inputs produce null.
+`hold_reason`, `hold_reason_receipt`, `hold_action` copy the last executed reason.
+`reason_scope=CARRIED_EXECUTED_REASON_NO_NEW_PRICING_DECISION` explicitly says a
+non-decision tick did not supply fresh authority. `disposition` is RESTING/FILLED;
+`conduct_changed=false` documents this observer's non-authoring role.
+
+`SUPERSESSION` links `old_assumption_id` to `new_assumption_id`, preserving both.
+It records `old_status`, `action`, `hold_reason`, `reason`, and `reasons[]`.
+Every reprice and every changed Q, deadline or author creates this line, including
+same-price HOLD. Changed role/own-print receipt and elapsed old deadline are
+reported only when actually observed. A same-author phase forecast can change
+without a role or print change: that is named explicitly, not attributed to one.
+`ASSUMPTION_OUTCOME` retains terminal status/witness even after supersession;
+`superseded` says it is no longer the active promise. `ASSUMPTION_CLOSED` records
+pull/cancel with its exact executed reason. None changes order lineage or age.
+
+| Raw reason | Plain-English gloss |
+| --- | --- |
+| ROLE_CHANGE | role changed |
+| NEW_OWN_PRINT | new own trade |
+| DEADLINE_PASSED | old deadline passed |
+| AUTHORITY_CHANGE | author changed |
+| AUTHORITY_FORECAST_LEVEL_CHANGED | author changed its forecast level |
+| AUTHORITY_FORECAST_DEADLINE_CHANGED | author changed its deadline |
+| AUTHORITY_TARGET_NOW_EXECUTED | the named target was executed |
+| PENDING | promise pending (not validated) |
+| FULFILLED | promise fulfilled |
+| MISSED_AT_DEADLINE | promise missed its deadline |
+
+Face: `render.bid_actions[].bid_accountability` projects stored assumption,
+renewal, supersession without recomputation. `kind=SUPERSESSION`, glyph `◦`,
+uses the existing chart marker geometry and points to its decision receipt.
+These markers live in `render.supersessions`, separate from `render.bid_actions`,
+so the grade and order-age inputs never count a renewal as another order.
+Four-line cards label the status **at that marker receipt**; collapsed
+`accountability_lines`/`details_lines` contain full records and any later outcome,
+explicitly labeled later observation, not knowledge at the marker. Historical
+traces without records say STORE SILENT. No current OS hash is stamped on them.
+`face.accountability` contains `detail_url`, row count and `sha256_uncompressed`
+for `<event>.accountability.json.gz`, an independently fetchable full per-tick
+audit. These observations are not inserted as extra playback decision stages.
+
+Publication: generated `data/**/renewals*`, `data/**/*.accountability.json*`,
+and `data/**/*.stages/` are local-only and ignored by Git. Existing historical
+commits are not rewritten. The local face continues to read these files normally.
+`data/accountable-bids/ACCOUNTABLE_BIDS_SAMPLE.json` is the committed 50-line
+sample: the full row-272 renewal and 57→56 supersession, with source OS/trace hashes.

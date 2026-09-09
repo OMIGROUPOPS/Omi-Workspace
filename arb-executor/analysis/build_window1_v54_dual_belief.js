@@ -96,6 +96,7 @@ function digestReplay(result) {
   result.rearm_attempts.forEach((row, index) => consume(`rearm_attempts[${index}]`, row));
   result.fill_events.forEach((row, index) => consume(`fill_events[${index}]`, row));
   result.floor_print_decision_instants.forEach((row, index) => consume(`floor_print_decision_instants[${index}]`, row));
+  result.bid_accountability.forEach((row, index) => consume(`bid_accountability[${index}]`, row));
   return { sha256: hash.digest("hex"), bytes, counts: { stage_reads: result.stage_reads.length, rearm_attempts: result.rearm_attempts.length, fill_events: result.fill_events.length, floor_print_decision_instants: result.floor_print_decision_instants.length } };
 }
 function firstReplayDifference(left, right) {
@@ -1257,6 +1258,7 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
           };
         }
         if (derivation.action.action !== "HOLD_REST" || targetBefore !== position.standing_target_cents || derivation.layered_dual_belief?.atomic_rearm?.status === "REARM_RESOLVED_WITH_LAWFUL_REST") meaningfulRearmTransition = true;
+        derivation.bid_accountability = os.accountableDecision(state, derivation);
       }
     }
     if (compactUnchangedRearm && !meaningfulRearmTransition) {
@@ -1322,6 +1324,7 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
           creditedOnThisReceipt = true;
         }
         os.observe(state, row.leg_id, row);
+        if (!smokeOnly) os.accountableRenewals(state, row);
         if (!smokeOnly && floorPrintReceipt) {
           // Credited legs continue reading: their floor prints must wake the
           // joint derivation so the open sibling sees the current evidence.
@@ -1377,8 +1380,16 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
       lastEvaluatedInstant = epoch;
     }
   }
+  // Close deadline observations at the lawful bell even when the final tape row is earlier.
+  // Save/restore the replay cursor: this is a receipt observation, not another decision.
+  if (!smokeOnly && Number.isFinite(meta.bell_epoch)) {
+    const priorEpoch = state.current_epoch, priorReceipt = state.receipt;
+    state.current_epoch = meta.bell_epoch; state.receipt = `${state.event_id}|BELL`;
+    os.accountableRenewals(state, null, "BELL");
+    state.current_epoch = priorEpoch; state.receipt = priorReceipt;
+  }
   const credited = state.leg_ids.filter((id) => state.positions[id].credited), combined = credited.length === 2 ? credited.reduce((total, id) => total + state.positions[id].entry_cents, 0) : null;
-  return { state, epochs, stage_reads: stageReads, derivations, fill_events: fillEvents, rearm_attempts: rearmAttempts, floor_print_decision_instants: floorPrintDecisionInstants, clock_mode: clockMode, ordered_rows: orderedRows, execution: { run_source: RUN_SOURCE, gradeable: Number.isFinite(meta.bell_epoch), completed: credited.length === 2, combined_entry_cents: combined, delta_vs_100_cents: Number.isInteger(combined) ? 100 - combined : null, legs: state.positions } };
+  return { state, epochs, stage_reads: stageReads, derivations, fill_events: fillEvents, rearm_attempts: rearmAttempts, floor_print_decision_instants: floorPrintDecisionInstants, bid_accountability: state.bid_accountability?.lines ?? [], clock_mode: clockMode, ordered_rows: orderedRows, execution: { run_source: RUN_SOURCE, gradeable: Number.isFinite(meta.bell_epoch), completed: credited.length === 2, combined_entry_cents: combined, delta_vs_100_cents: Number.isInteger(combined) ? 100 - combined : null, legs: state.positions } };
 }
 
 function readerExecutionReceipt(result) {
@@ -2029,6 +2040,7 @@ async function main() {
       ...result.rearm_attempts.map((row) => ({ kind: "REARM_ATTEMPT", ...row })),
       ...result.floor_print_decision_instants.map((row) => ({ kind: "FLOOR_PRINT_DECISION_INSTANT", ...row })),
       ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })),
+      ...result.bid_accountability,
     ];
     for (const traceRow of fullTraceRows) await fullTraceWriter.write(traceRow);
     // The full stage—including readers and neighborhood—is already sealed in
@@ -2038,6 +2050,8 @@ async function main() {
       ...result.rearm_attempts.map((row) => ({ kind: "REARM_ATTEMPT", ...row })),
       ...result.floor_print_decision_instants.map((row) => ({ kind: "FLOOR_PRINT_DECISION_INSTANT", ...row })),
       ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })),
+      // Preserve receipt row counts in the final custody manifest as well as the full trace.
+      ...result.bid_accountability,
     ];
     for (const projectionRow of scoreProjectionRows) await scoreProjectionWriter.write(projectionRow);
     fullTraceRows.length = 0;
@@ -2287,6 +2301,9 @@ module.exports = {
   bindCorpusFloorTiming,
   loadTicks,
   loadTargetPrints,
+  loadLineage,
+  digestReplay,
+  literalClaimAudit,
   replayEvent,
   streamJsonl,
   receipt,

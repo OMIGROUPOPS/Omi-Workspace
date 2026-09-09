@@ -24,3 +24,8 @@ __pycache__/
 /.claude/window1_live_v4_replay/**/_input_index/
 /.claude/window1_live_v4_replay/**/_engine_logs/
 /.claude/window1_live_v4_replay/**/_state/
+
+# Generated bid-renewal streams and lazy stage data stay local.
+/window1-watch/data/**/renewals*
+/window1-watch/data/**/*.accountability.json*
+/window1-watch/data/**/*.stages/

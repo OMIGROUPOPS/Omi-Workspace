@@ -134,6 +134,135 @@ function freshDeadline(state, authority) {
     source: authority.true_conditioning.selected_layer ? `POOL_${authority.true_conditioning.selected_layer}_FLOOR_MTB` : "INSUFFICIENT_EVIDENCE",
     stale_modeled_deadline_clamped_to_emission: false };
 }
+// Receipt-only observer. Nothing below is read by pricing, conduct, or the pool.
+// Immutable assumptions and their outcomes live outside positions/standing licenses.
+function accountableBids(state) {
+  return state.bid_accountability ??= { active: {}, monitors: new Map(), records: [], lines: [], last_renewal: {} };
+}
+function accountableLine(state, kind, payload) {
+  const line = Object.freeze({ kind, event_id: state.event_id, receipt: state.receipt,
+    timestamp_epoch: state.current_epoch, ...payload });
+  accountableBids(state).lines.push(line);
+  return line;
+}
+function accountableAssumption(state, derivation) {
+  const id = derivation.leg_id, belief = derivation.layered_dual_belief.micro.beliefs[id];
+  const side = belief.pool_cascade, selected = side?.layers?.[side.selected_layer];
+  const snapshot = { leg_id: id, authoring_sentence_receipt: derivation.receipt,
+    authoring_sentence: belief.plain_sentence, sentence_with_citations: derivation.sentence,
+    created_at_epoch: state.current_epoch, Q: belief.predicted_cents, P: belief.belief_price_cents,
+    X_epoch: belief.deadline.deadline_epoch, X_minutes_to_bell: belief.predicted_minutes_to_bell,
+    layer: side?.selected_layer ?? null, ESS: selected?.ess ?? null,
+    member_count: selected?.member_count ?? null, weight_sum: selected?.weight_sum ?? null,
+    q_author: belief.q_author, x_author: belief.x_author,
+    authority_source: derivation.derivation.pricing_authority.authority_source,
+    role: side?.roles?.current_role ?? null, rest_cents: derivation.action.target_cents,
+    action: derivation.action.action, action_reason: derivation.action.reason,
+    own_print_receipt: state.legs[id].prints.findLast(Boolean)?.receipt ?? null,
+    formation_end_epoch: state.legs[id].formation_end_epoch, bell_epoch: state.bell_epoch };
+  return Object.freeze({ assumption_id: base.sha256(JSON.stringify(snapshot)), ...snapshot });
+}
+function accountableDecision(state, derivation) {
+  const ledger = accountableBids(state), id = derivation.leg_id, position = state.positions[id];
+  const old = ledger.active[id] ?? null, action = derivation.action;
+  if (position.credited || !Number.isInteger(position.standing_target_cents)) {
+    if (old) accountableLine(state, "ASSUMPTION_CLOSED", { leg_id: id, assumption_id: old.assumption_id,
+      reason: position.credited ? "FILL" : action.action, hold_reason: action.reason });
+    delete ledger.active[id];
+    return { assumption: old, renewal: ledger.last_renewal[id] ?? null, supersession: null };
+  }
+  const candidate = accountableAssumption(state, derivation);
+  const changed = old && (action.action === "REPRICE_REST" || old.Q !== candidate.Q
+    || old.X_epoch !== candidate.X_epoch || old.q_author !== candidate.q_author
+    || old.x_author !== candidate.x_author || old.authority_source !== candidate.authority_source);
+  let supersession = null;
+  if (!old || changed) {
+    ledger.records.push(candidate);
+    ledger.active[id] = candidate;
+    ledger.monitors.set(candidate.assumption_id, { record: candidate, status: "PENDING", witness: null,
+      last_print_cents: state.legs[id].prints.findLast(Boolean)?.price_cents ?? null });
+    accountableLine(state, "BID_ASSUMPTION", { leg_id: id, assumption: candidate });
+    if (old) {
+      const reasons = [];
+      if (old.role !== candidate.role) reasons.push("ROLE_CHANGE");
+      if (old.own_print_receipt !== candidate.own_print_receipt) reasons.push("NEW_OWN_PRINT");
+      if (Number.isFinite(old.X_epoch) && state.current_epoch >= old.X_epoch) reasons.push("DEADLINE_PASSED");
+      if (old.q_author !== candidate.q_author || old.x_author !== candidate.x_author
+          || old.authority_source !== candidate.authority_source) reasons.push("AUTHORITY_CHANGE");
+      // Same author can issue a different phase forecast without a role/print change.
+      // Name that observed change; never fabricate a role or print explanation.
+      if (old.Q !== candidate.Q) reasons.push("AUTHORITY_FORECAST_LEVEL_CHANGED");
+      if (old.X_epoch !== candidate.X_epoch) reasons.push("AUTHORITY_FORECAST_DEADLINE_CHANGED");
+      if (!reasons.length) reasons.push("AUTHORITY_TARGET_NOW_EXECUTED");
+      supersession = accountableLine(state, "SUPERSESSION", { leg_id: id,
+        old_assumption_id: old.assumption_id, new_assumption_id: candidate.assumption_id,
+        old_status: ledger.monitors.get(old.assumption_id).status, reasons,
+        reason: reasons.join(" + "), action: action.action, hold_reason: action.reason });
+    }
+  }
+  ledger.active[id] = ledger.active[id] ?? old;
+  // This reason is precisely the last executed decision, not newly inferred authority.
+  ledger.active_hold_reasons ??= {};
+  ledger.active_hold_reasons[id] = { reason: action.reason, receipt: derivation.receipt, action: action.action };
+  const renewal = accountableRenewals(state, null, "DECISION").find(row => row.leg_id === id);
+  return { assumption: ledger.active[id], renewal: renewal ?? ledger.last_renewal[id] ?? null, supersession };
+}
+function accountableRenewals(state, tick, phase = "TICK") {
+  const ledger = accountableBids(state), rows = [];
+  for (const monitor of ledger.monitors.values()) {
+    const a = monitor.record, id = a.leg_id, active = ledger.active[id]?.assumption_id === a.assumption_id;
+    let effect = "unresolved", evidence = "NO_NEW_ACCEPTED_OWN_PRINT";
+    const ownPrint = tick?.kind === "PRINT" && tick.leg_id === id && Number.isFinite(tick.price_cents)
+      && Number.isFinite(tick.size) && Math.sign(tick.size) === Math.sign(CONTRACT_SUM_CENTS);
+    const later = ownPrint && tick.timestamp_epoch > a.created_at_epoch;
+    const inSpan = later && tick.timestamp_epoch >= a.formation_end_epoch
+      && Number.isFinite(a.bell_epoch) && tick.timestamp_epoch < a.bell_epoch;
+    const onTime = inSpan && Number.isFinite(a.X_epoch) && tick.timestamp_epoch <= a.X_epoch;
+    const wasPending = monitor.status === "PENDING";
+    if (wasPending && onTime && Number.isFinite(a.Q) && tick.price_cents <= a.Q) {
+      monitor.status = "FULFILLED";
+      monitor.witness = { receipt: tick.receipt, timestamp_epoch: tick.timestamp_epoch, price_cents: tick.price_cents, size: tick.size };
+      effect = "supports"; evidence = "LATER_POSITIVE_TRUE_PRINT_REACHED_FROZEN_Q_BY_X";
+    } else if (wasPending && Number.isFinite(a.X_epoch) && state.current_epoch >= a.X_epoch) {
+      monitor.status = "MISSED_AT_DEADLINE";
+      effect = "contradicts"; evidence = "FROZEN_DEADLINE_ELAPSED_WITHOUT_LATER_POSITIVE_PRINT_AT_Q";
+    } else if (wasPending && onTime && Number.isFinite(a.Q) && Number.isFinite(monitor.last_print_cents)
+        && Math.abs(tick.price_cents - a.Q) < Math.abs(monitor.last_print_cents - a.Q)) {
+      effect = "supports"; evidence = "OWN_TRUE_PRINT_MOVED_TOWARD_Q_NOT_YET_FULFILLED";
+    } else if (later) evidence = "OWN_TRUE_PRINT_DOES_NOT_RESOLVE_FROZEN_PROMISE";
+    if (ownPrint) monitor.last_print_cents = tick.price_cents;
+    if (wasPending && monitor.status !== "PENDING") accountableLine(state, "ASSUMPTION_OUTCOME", {
+      leg_id: id, assumption_id: a.assumption_id, status: monitor.status, witness: monitor.witness,
+      effect, evidence, superseded: !active });
+    if (!active) continue;
+    const book = state.legs[id].current_book, position = state.positions[id];
+    const resting = Number.isInteger(position.standing_target_cents) && !position.credited;
+    // The filling tick is observed after the unchanged credit path; it still renews the bid it ended.
+    const filledHere = position.credited && position.fill_receipt === tick?.receipt;
+    if (!resting && !filledHere) continue;
+    const price = a.rest_cents, ask = cent(book?.ask_cents), bid = cent(book?.bid_cents);
+    const knownBook = Number.isInteger(ask) && Number.isInteger(bid);
+    const sibling = state.leg_ids.find(leg => leg !== id), other = state.positions[sibling];
+    const commitment = other.credited ? other.entry_cents : other.standing_target_cents;
+    const hold = ledger.active_hold_reasons?.[id] ?? { reason: a.action_reason, receipt: a.authoring_sentence_receipt, action: a.action };
+    const renewal = accountableLine(state, "BID_RENEWAL", { leg_id: id, assumption_id: a.assumption_id,
+      phase, tick_receipt: tick?.receipt ?? null, tick_kind: tick?.kind ?? null, tick_leg_id: tick?.leg_id ?? null,
+      status: monitor.status, effect, evidence, witness: monitor.witness,
+      tick: tick ? { price_cents: tick.price_cents ?? null, size: tick.size ?? null,
+        bid_cents: tick.bid_cents ?? null, ask_cents: tick.ask_cents ?? null,
+        last_trade_cents: tick.last_trade_cents ?? null } : null,
+      book: book ? { receipt: book.receipt, bid_cents: bid, ask_cents: ask, last_trade_cents: book.last_trade_cents ?? null } : null,
+      rest_cents: price, remains_postable: knownBook ? price < ask && bid < ask : null,
+      existing_rest_at_or_below_ask: Number.isInteger(ask) ? price <= ask : null,
+      pair_within_cap: Number.isInteger(commitment) ? price + commitment <= base.PAR_BUDGET_CENTS : null,
+      hold_reason: hold.reason, hold_reason_receipt: hold.receipt, hold_action: hold.action,
+      reason_scope: phase === "TICK" ? "CARRIED_EXECUTED_REASON_NO_NEW_PRICING_DECISION" : "EXECUTED_DECISION",
+      disposition: filledHere ? "FILLED" : "RESTING", conduct_changed: false });
+    ledger.last_renewal[id] = renewal; rows.push(renewal);
+    if (filledHere) delete ledger.active[id];
+  }
+  return rows;
+}
 function deriveJointActions({ state, reads, resources }) {
   base.assertResources(resources);
   state.dual_belief ??= { first_coherence: null, rearm_by_leg: {}, coherence_history: [] };
@@ -279,3 +408,4 @@ function deriveJointActions({ state, reads, resources }) {
 
 
 module.exports = { ...base, CONTRACT_SUM_CENTS, SPREAD_SETTLE_COHERENCE_MAX_CENTS, LAYER_PROVENANCE, TECHNIQUE_CONTRACTS, PHASE_CENTRAL_BANDS, configurePhaseCentralSurface, configureNeighborSpecialistBinding, configureSurvivorShapeLibraries: survivorShapes.configureSurvivorShapeLibraries, weightedModeFloorSideCents, predictionSeatImmunityDecision, bookVetoOnlyDecision, pricingAuthorityForLeg, conditionPriorDistribution, deriveJointActions };
+Object.assign(module.exports, { accountableDecision, accountableRenewals });

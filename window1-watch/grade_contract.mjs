@@ -1,6 +1,7 @@
 // Report-card measurements only. No engine imports, orders or price production.
 import fs from "node:fs";
 import { microMeasurements, measureRestAges } from "./grade_measurements.mjs";
+import { operatorGrade } from "./grade_operator_standard.mjs";
 export const SILENT = "STORE SILENT";
 const finite = (n) => typeof n === "number" && Number.isFinite(n);
 const value = (n) => (finite(n) ? n : SILENT);
@@ -108,6 +109,9 @@ export function projectDecision(row, face) {
       tokens,
       family: b?.family ?? row.layers?.macro?.context?.families?.[l] ?? null,
       q50: a?.true_conditioning?.posterior_q50_cents ?? null,
+      q25: a?.true_conditioning?.quantiles?.q25?.level_cents ?? null,
+      q75: a?.true_conditioning?.quantiles?.q75?.level_cents ?? null,
+      band_source: "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
       floor_mtb:
         deadline?.deadline_minutes_to_bell ??
         b?.predicted_minutes_to_bell ??
@@ -130,6 +134,9 @@ export function projectDecision(row, face) {
       has_sentence: !!b.plain_sentence && finite(b.current_cents) && finite(q50) &&
         finite(b.deadline?.deadline_epoch ?? b.predicted_minutes_to_bell),
       q_author: b.q_author ?? null, x_author: b.x_author ?? null,
+      q25: d?.q25 ?? b.pool_cascade?.quantiles?.q25?.level_cents ?? null,
+      q75: d?.q75 ?? b.pool_cascade?.quantiles?.q75?.level_cents ?? null,
+      band_source: finite(d?.q25) && finite(d?.q75) ? d.band_source : "belief.pool_cascade.quantiles.q25/q75.level_cents",
       floor_mtb: b.deadline?.deadline_minutes_to_bell ?? b.predicted_minutes_to_bell ?? null,
       deadline_epoch: b.deadline?.deadline_epoch ?? null,
       formation_end: d?.formation_end ?? b.own_evidence?.formation_end_epoch ?? face.formation_end_epoch ?? null,
@@ -137,6 +144,10 @@ export function projectDecision(row, face) {
   }));
   return {
     epoch: row.timestamp_epoch, receipt: row.receipt, legs, forecasts,
+    roles: Object.fromEntries(face.legs.map((leg) => [leg,
+      row.layers?.macro?.context?.pool_cascade?.sides?.[leg]?.roles ??
+      row.layers?.micro?.context?.beliefs?.[leg]?.pool_cascade?.roles ?? null,
+    ])),
     // Credited sides can still have a telemetry belief, without an order derivation.
     families: Object.fromEntries(face.legs.map((leg) => [leg,
       row.layers?.micro?.context?.beliefs?.[leg]?.family ??
@@ -504,152 +515,45 @@ export function gradeFace(
   )
     outcome.capture_ratio =
       outcome.captured_cents / outcome.best_capturable_cents;
-  const metrics = {
-    SENTENCE: {
-      minimum_q_x_organ_share: [
-        sentence.share_q_authored_by_organ,
-        sentence.share_x_authored_by_organ,
-      ].every(finite)
-        ? Math.min(
-            sentence.share_q_authored_by_organ,
-            sentence.share_x_authored_by_organ,
-          )
-        : SILENT,
-    },
-    MACRO: {
-      family_match_share: Object.values(macro.legs).every(
-        (l) => typeof l.family_match === "boolean",
-      )
-        ? Object.values(macro.legs).filter((l) => l.family_match).length /
-          sides.length
-        : SILENT,
-    },
-    MICRO: {
-      max_floor_error_cents: maxComplete(
-        Object.values(micro.mode_metrics).map((l) => l.max_floor_error_cents),
-      ),
-      max_timing_error_minutes: maxComplete(
-        Object.values(micro.mode_metrics).map((l) => l.max_timing_error_minutes),
-      ),
-    },
-    HANDS: {
-      post_only_violations:
-        hands.fill_age_uncheckable ||
-        hands.writer_class_unmapped ||
-        hands.formation_uncheckable
-          ? SILENT
-          : hands.post_only_violations,
-    },
-    OUTCOME: { capture_ratio: outcome.capture_ratio },
-  };
-  const sectionGrades = Object.fromEntries(
-    Object.entries(metrics).map(([name, m]) => {
-      const rule = rubric.sections[name];
-      const grades = rule.metrics
-        ? Object.entries(rule.metrics).map(([k, r]) =>
-            metricGrade(m[k], r, rubric),
-          )
-        : [metricGrade(m[rule.metric], rule, rubric)];
-      return [
-        name,
-        {
-          letter: worstLetter(grades, rubric),
-          metrics: m,
-          status: rubric.status,
-        },
-      ];
-    }),
-  );
-  micro.mode_grades = Object.fromEntries(Object.entries(micro.mode_metrics).map(([mode, measurements]) => [mode,
-    worstLetter(Object.entries(rubric.sections.MICRO.metrics).map(([key, rule]) => metricGrade(measurements[key], rule, rubric)), rubric),
-  ]));
-  sectionGrades.MICRO.letter = worstLetter(Object.values(micro.mode_grades), rubric);
-  sectionGrades.MICRO.mode_grades = micro.mode_grades;
-  const hard = [
-    sentence.named_tokens_found.length ? "SENTENCE: named tokens" : null,
-    pre.length ? "HANDS: pre-formation placements" : null,
-    hands.same_second_fills ? "HANDS: same-second fill" : null,
-  ].filter(Boolean);
-  const letter = hard.length
-    ? "F"
-    : worstLetter(
-        Object.values(sectionGrades).map((s) => s.letter),
-        rubric,
-      );
-  const governing = hard.length
-    ? hard.join(" · ")
-    : Object.entries(sectionGrades)
-        .filter(([, s]) => s.letter === letter)
-        .map(([k]) => k)
-        .join(" · ");
-  const sections = {
-    SENTENCE: sentence,
-    MACRO: macro,
-    MICRO: micro,
-    HANDS: hands,
-    OUTCOME: outcome,
-  };
-  const summaries = {
-    SENTENCE: `Q ${percent(sentence.share_q_authored_by_organ)} · X ${percent(sentence.share_x_authored_by_organ)} authored (token metric)`,
-    MACRO: sides
-      .map(
-        (l) =>
-          `${l}: ${macro.legs[l].family_called_at_last_gate} / ${macro.legs[l].realized_family}`,
-      )
-      .join(" · "),
-    MICRO: sides
-      .map(
-        (l) =>
-          `${l}: first/full ${unit(micro.legs[l].first_eligible_full_span.floor_error_cents, "¢")} / ${unit(micro.legs[l].first_eligible_full_span.timing_error_minutes, "m")} · remaining MAE ${unit(micro.legs[l].remaining_path.mean_floor_error_cents, "¢")} / ${unit(micro.legs[l].remaining_path.mean_timing_error_minutes, "m")}`,
-      )
-      .join(" · "),
-    HANDS: `${hands.same_second_fills} same-second · ${shown(hands.post_only_violations)} post-only · ${shown(hands.pre_formation_placements)} pre-formation`,
-    OUTCOME: `${shown(outcome.captured_cents)} of ${shown(outcome.best_capturable_cents)}¢ captured`,
+  const result = operatorGrade(face, decisions, { sentence, macro, micro, hands, outcome }, rubric);
+  const { grades, trade, pair, hard, letter, governing, lines } = result;
+  const diagnostics = {
+    sentence: `Q ${percent(sentence.share_q_authored_by_organ)} · X ${percent(sentence.share_x_authored_by_organ)} authored (token metric); Gate-1 certification ${sentence.gate_1_authorship_certification}`,
+    oracle: sides.map((l) => `${l}: ${unit(micro.oracle_diagnostic.legs[l].mean_absolute_gap_cents, "¢")}`).join(" · "),
+    timing: sides.map((l) => `${l}: first ${unit(micro.legs[l].first_eligible_full_span.timing_error_minutes, "m")}; remaining MAE ${unit(micro.legs[l].executable_future_print.mean_timing_error_minutes, "m")}`).join(" · "),
   };
   return {
-    version: 2,
-    event,
-    provenance,
-    ...sections,
-    LETTER: {
-      letter,
-      governing_section: governing,
-      hard_failures: hard,
-      section_grades: sectionGrades,
-      rubric_status: rubric.status,
-    },
+    version: 3, event, provenance,
+    SENTENCE: sentence, MACRO: macro, MICRO: micro, HANDS: hands, OUTCOME: outcome,
+    TRADE: trade, PAIR: pair,
+    LETTER: { letter, governing_section: governing, hard_failures: hard,
+      section_grades: grades, rubric_status: rubric.status, rubric_id: rubric.rubric_id,
+      capture_bonus_applied: false, safety_evidence_missing: result.safetyUnknown,
+      performance_not_certification: true },
     display: {
-      letter,
-      label: hard.length
-        ? "Conduct failure · cutoff-independent F"
-        : rubric.status,
+      letter: letter === rubric.letter.no_offer_label ? rubric.letter.no_offer_display : letter,
+      label: hard.length ? "Safety/named failure · cutoff-independent F" : rubric.status,
       governing,
       ruler_line: `Grading ruler: ${sides.map((l) => `${l} ${unit(face.truth?.legs?.[l]?.floor_cents, "¢")}`).join(" + ")} · ${unit(outcome.best_capturable_cents, "¢")} offered · ${(face.truth?.applied_corrections ?? []).length} filed corrections`,
       ruler_hover_lines: [
         `RULER — NOT AN OS INPUT · table ${face.truth?.table_commit ?? SILENT} · corrections ${face.truth?.corrections_commit ?? SILENT}`,
         `Bell ${face.truth?.bell_epoch ?? SILENT} · span [${face.truth?.span_start_epoch ?? SILENT}, ${face.truth?.span_end_epoch ?? SILENT})`,
-        "Original rows, full corrections and per-fill eligibility are retained in the grade JSON. Trace/chart input is unchanged.",
+        "Original rows, all corrections and per-fill eligibility remain in the grade JSON. No OS or trace changed.",
       ],
-      sections: Object.entries(sections).map(([name, section]) => ({
-        name,
-        mark:
-          sectionGrades[name].letter === "A" &&
-          !hard.some((h) => h.startsWith(name))
-            ? "✓"
-            : "!",
-        line: summaries[name],
+      diagnostic_line: diagnostics.sentence,
+      diagnostic_hover_lines: [diagnostics.sentence, `Oracle mean gap (diagnostic): ${diagnostics.oracle}`,
+        `Timing (diagnostic): ${diagnostics.timing}`,
+        "Exact family, flips, authorship and full receipt error series remain in the JSON; none is silently certified."],
+      sections: Object.entries(grades).map(([name, grade]) => ({
+        name, mark: rubric.letter.pass_marks.includes(grade.letter) && !hard.length ? "✓" : "!",
+        line: `${grade.letter} · ${lines[name]}`,
         hover_lines: [
-          `${name}: ${sectionGrades[name].letter} · ${rubric.status}`,
-          JSON.stringify(metrics[name]),
-          name === "SENTENCE"
-            ? `${sentence.leg_receipts_with_sentence}/${entries.length} leg sentences · ${sentence.named_tokens_found.length} named tokens · Gate-1 certification: ${sentence.gate_1_authorship_certification}`
-            : name === "MACRO"
-              ? `Bench: ${macro.bench_reason ?? macro.bench_label}`
-              : name === "HANDS"
-                ? `${placed.length} placement/reprice rows checked · ${hands.rest_age_at_fill_minutes.map((a) => `${a.leg}: lineage ${unit(a.order_lineage_age_minutes, "m")}, current price ${unit(a.current_price_age_minutes, "m")}`).join(" · ")}`
-                : name === "MICRO"
-                  ? `Mode grades ${JSON.stringify(micro.mode_grades)} · remaining means are descriptive; letters use maximum errors. Future-print-only errors and carried-state labels are separate in the JSON.`
-                : "See full grade JSON for all receipts and gates",
+          `${name}: ${grade.letter} · ${rubric.status}`,
+          JSON.stringify(grade),
+          name === "MICRO" ? `Oracle mean gap (diagnostic): ${diagnostics.oracle} · ${diagnostics.timing}`
+            : name === "MACRO" ? `Flips (diagnostic): ${sides.map((l) => `${l} ${macro.operator_roles[l].flip_count}`).join(" · ")}`
+              : name === "TRADE" ? `Ages: ${hands.rest_age_at_fill_minutes.map((a) => `${a.leg} lineage ${unit(a.order_lineage_age_minutes, "m")}, current price ${unit(a.current_price_age_minutes, "m")}`).join(" · ")}`
+                : rubric.letter.aggregation,
         ],
       })),
     },

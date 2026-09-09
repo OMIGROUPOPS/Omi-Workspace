@@ -27,6 +27,11 @@ export function GradePanel({ game }: { game: LoadedGame }) {
               <span className="text-muted">{s.name}</span> · {s.line}
             </p>
           ))}
+          {grade?.display.diagnostic_line ? (
+            <p className="mt-1 truncate text-[10px] text-muted" title={grade.display.diagnostic_hover_lines?.join("\n")}>
+              {grade.display.diagnostic_line}
+            </p>
+          ) : null}
           {grade ? (
             <p className="mt-1 truncate text-[10px] text-muted" title={grade.display.governing}>
               Governing: {grade.display.governing} ·{" "}

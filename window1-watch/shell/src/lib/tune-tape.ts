@@ -241,6 +241,8 @@ export type Grade = {
     governing: string;
     ruler_line?: string;
     ruler_hover_lines?: string[];
+    diagnostic_line?: string;
+    diagnostic_hover_lines?: string[];
     sections: { name: string; mark: string; line: string; hover_lines: string[] }[];
   };
 };

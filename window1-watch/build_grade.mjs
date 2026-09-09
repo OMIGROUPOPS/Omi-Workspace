@@ -52,7 +52,7 @@ async function citation(file, role, external = false) {
     role,
   };
 }
-async function sourceReceipt(benchSource) {
+async function sourceReceipt(benchSource, rubric) {
   const audit =
     ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803";
   const prior =
@@ -85,8 +85,23 @@ async function sourceReceipt(benchSource) {
     : null;
   const receipt = benchPath ? await readJson(benchPath, null) : null;
   return {
-    version: 2,
+    version: 3,
     role: "REPORT ONLY — no OS inputs changed",
+    operator_standard: rubric,
+    operator_review: {
+      decision: "AMEND",
+      basis: "Operator preliminary goal: macro idea, floor or useful range, nearby trade, complete under par; not last-cent perfection or Gate-1 certification.",
+      changes: [
+        "Initial directional call is frozen before fill; later corrections and flip counts are disclosed, not cherry-picked or automatically penalized.",
+        "Same first eligible Q and bounded q25-q75 range; no later accurate call selection. Timing and oracle mean remain diagnostics, not preliminary letter cutoffs.",
+        "Both trades must satisfy the same full-span floor tolerance. An earlier floor keeps its 2c premium at B, without an invented queue fill or duplicate penalty.",
+        "PAIR uses offered-relative capture, not 97/99 absolute sums. No capture uplift; hard safety/named failures cannot be bought off.",
+        "Verified no-under-par-offer games are NOT OFFERED, not failed for no trade and not awarded a passing overall letter.",
+      ],
+      new_cutoffs: "Explicit v1 grading judgments in grade_rubric.json, not fitted on the five games. Price tolerances inherit counsel's 1/2/3c; band widths 4/6 are twice the corresponding 2/3c tolerance; 75%/50% capture thresholds are labeled grading choices.",
+      macro_prior_art: "RECOGNITION_OPERATING_POINT @41c1f724; realized close minus post-formation open, +/-2c. Corrected columns, not cached net_travel.",
+      scope: "No engine, pool, pricing, conduct, replay or population bench change.",
+    },
     citations,
     bench_taxonomy_receipt: receipt
       ? {
@@ -114,7 +129,7 @@ async function sourceReceipt(benchSource) {
         "FIELDS.md maps POOL_FIRST_TICK (alias), POOL_FIRST-TICK-ONLY, POOL_BASE, POOL_CASCADE:* and POOL_CASCADE_WRITER to ORGAN. Hold/veto precedence and raw tokens remain unchanged.",
       ruler_comparison:
         "Apply every event-matching correction from W1_GROUND_TRUTH_CORRECTIONS.jsonl @15955e44 in ledger order to the original pinned row. Effective floors, bell, span and denominator grade this run; original CSV and full correction JSONL rows remain alongside. Every observed fill is revalidated against both corrected span and bell. No trace, face input, or OS call is changed.",
-      micro: "First eligible stored resolved P/Q/X forecast in receipt order versus full recorded span; every eligible receipt versus its remaining path, with separate carried state and strictly future-print targets. Match timing to each target using the original absolute deadline. Existing rubric cutoffs unchanged; worst of the two grading modes. Receipt-level errors, means and denominators retained.",
+      micro: "First eligible stored resolved P/Q/X forecast in receipt order versus full recorded span; use its stored q25/q75 only for bounded range credit. Every receipt/remaining-path and strictly future-print score remains diagnostic, as do timing and receipt-weighted oracle mean. Never move a stored absolute deadline.",
       hands_ages: "Separate original PLACE lineage age from current-price age, resetting only the latter on price change; remove/fill ends the lineage. Fill same-second check uses the current-price start timestamp. The legacy chart age is preserved, not used as current-price duration.",
       named_scope:
         "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent.",
@@ -193,6 +208,7 @@ export async function appendHistory(
     append_order: index.grades.length,
   };
   index.grades.push(entry);
+  if (!index.axis.letters.includes("NOT OFFERED")) index.axis.letters.push("NOT OFFERED");
   for (const id of new Set(index.grades.map((g) => g.event))) {
     const rows = index.grades
       .filter((g) => g.event === id)
@@ -222,9 +238,9 @@ export async function appendHistory(
           180,
           60 + index.grades.filter((g) => g.event === id).length * 34,
         ),
-        height: 126,
+        height: Math.max(126, 32 + index.axis.letters.length * 18),
         labels: index.axis.letters.map((letter, i) => ({
-          letter: letter === SILENT ? "—" : letter,
+          letter: letter === SILENT ? "—" : letter === "NOT OFFERED" ? "N/O" : letter,
           y: 16 + i * 18,
         })),
       },
@@ -293,7 +309,7 @@ export async function build(event, printInput) {
       );
     bench = json(bytes);
   }
-  const receipt = await sourceReceipt(face.bench?.source),
+  const receipt = await sourceReceipt(face.bench?.source, rubric),
     receiptSha = sha(encode(receipt));
   const os = osCommit(face.provenance.os_sha256);
   const rulers = readGradeRulers(repo, event, face);
@@ -321,6 +337,7 @@ export async function build(event, printInput) {
     ),
     grade_rulers_sha256: sha(await fs.readFile(path.join(here, "grade_rulers.mjs"))),
     grade_measurements_sha256: sha(await fs.readFile(path.join(here, "grade_measurements.mjs"))),
+    grade_operator_standard_sha256: sha(await fs.readFile(path.join(here, "grade_operator_standard.mjs"))),
     grade_prints_sha256: sha(await fs.readFile(path.join(here, "grade_prints.mjs"))),
     fields_sha256: sha(await fs.readFile(path.join(here, "FIELDS.md"))),
     os_commit: os.commit,

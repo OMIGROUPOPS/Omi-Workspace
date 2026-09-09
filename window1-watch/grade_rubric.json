@@ -1,45 +1,59 @@
 {
-  "version": 1,
-  "status": "PLACEHOLDER — operator-editable cutoffs, not a trading ruling",
+  "version": 3,
+  "rubric_id": "OPERATOR_STANDARD_V1",
+  "status": "OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
   "letters": ["A", "B", "C", "D", "F"],
-  "missing": "STORE SILENT; never impute a passing value",
-  "hard_failures": [
-    "named_tokens_found",
-    "pre_formation_placements",
-    "same_second_fill"
-  ],
+  "missing": "STORE SILENT; missing evidence is not success. A verified absence of a call is F, not missing evidence.",
+  "scope": "Face grading only. Cutoffs are visible grading judgments, not engine constants or fitted trading rules.",
+  "hard_failures": ["named_tokens_found", "pre_formation_placements", "same_second_fill", "post_only_violations", "fill_outside_corrected_span", "pair_over_par"],
   "sections": {
-    "SENTENCE": {
-      "metric": "minimum_q_x_organ_share",
-      "direction": "min",
-      "cutoffs": { "A": 0.95, "B": 0.8, "C": 0.6, "D": 0.4 }
-    },
     "MACRO": {
-      "metric": "family_match_share",
-      "direction": "min",
-      "cutoffs": { "A": 1, "B": 0.75, "C": 0.5, "D": 0.25 }
+      "label": "Initial macro idea, not the pool's exact family name",
+      "role_drift_cents": 2,
+      "role_source": "RECOGNITION_OPERATING_POINT @41c1f724: close minus post-formation open; >=+2 CLIMBER, <=-2 FALLER, else NOT_CALLABLE. Use corrected close/open, never stale net_travel.",
+      "selection": "First recorded directional first_bind inside the corrected span and no later than that side's first fill; never select a later correct call. If a complete stored role history never binds, NOT_CALLABLE. Missing role history is STORE SILENT.",
+      "minimum_correct_side_share": { "A": 1, "C": 0.5 },
+      "otherwise": "F",
+      "flip_penalty": false,
+      "rationale": "Both initial directions right is A; one is C; neither F. Later revisions are disclosed, not punished merely for adapting. Exact family and timing remain diagnostics. No separate B/D boundary is needed."
     },
     "MICRO": {
-      "metrics": {
-        "max_floor_error_cents": {
-          "direction": "max",
-          "cutoffs": { "A": 2, "B": 4, "C": 6, "D": 10 }
-        },
-        "max_timing_error_minutes": {
-          "direction": "max",
-          "cutoffs": { "A": 30, "B": 60, "C": 120, "D": 240 }
-        }
-      }
+      "label": "First eligible floor call or a useful stored range",
+      "maximum_point_error_cents": { "A": 1, "B": 2, "C": 3 },
+      "range_credit": { "B": { "maximum_width_cents": 4 }, "C": { "maximum_width_cents": 6 } },
+      "range_rule": "Same first eligible receipt's q25-q75 must contain the recorded floor and its q50, with ordered finite endpoints. Width = q75-q25. B width 4 is +/-2; C width 6 is +/-3. Range alone never earns A. Missing range does not erase an available Q score.",
+      "aggregation": "Better of point and qualifying range per side; worst side. No call F. No verified floor STORE SILENT.",
+      "otherwise": "F",
+      "timing_governs": false,
+      "oracle_mean_governs": false,
+      "rationale": "Do not cherry-pick later Q. Keep first-call and remaining-print timing/errors, oracle mean and its denominator visible; the receipt-weighted oracle mean includes post-fill forecasts and is not the preliminary objective."
     },
-    "HANDS": {
-      "metric": "post_only_violations",
-      "direction": "max",
-      "cutoffs": { "A": 0, "B": 1, "C": 2, "D": 3 }
+    "TRADE": {
+      "label": "Actual trade near each full-span floor",
+      "maximum_both_fill_error_cents": { "A": 1, "B": 2, "C": 3 },
+      "both_filled_but_further": "D",
+      "one_valid_fill": "D",
+      "no_valid_fills": "F",
+      "past_floor_extra_penalty": false,
+      "rationale": "Both sides must meet the same tolerance. A 2c premium is B, including when the floor already printed. Preserve that fact; do not reset the target to a higher later floor, or apply a second penalty for the same overpay. Unknown queue means the missed earlier fill is not declared certain."
     },
-    "OUTCOME": {
-      "metric": "capture_ratio",
-      "direction": "min",
-      "cutoffs": { "A": 0.9, "B": 0.75, "C": 0.5, "D": 0.25 }
+    "PAIR": {
+      "label": "Complete under par, relative to what this game offered",
+      "par_cents": 100,
+      "minimum_capture_ratio": { "A": 0.75, "B": 0.5 },
+      "positive_capture_below_B": "C",
+      "complete_at_par": "D",
+      "incomplete_or_over_par": "F",
+      "no_offered_discount": "NOT OFFERED",
+      "rationale": "A captures at least three quarters, B at least half, C some discount; these are explicit v1 grading judgments, not fitted cutoffs. No fixed 97/99 pair-price bands. Verified zero offer is outside the offer denominator, not an abstention failure or success."
     }
+  },
+  "letter": {
+    "aggregation": "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it.",
+    "capture_bonus_steps": 0,
+    "no_offer_label": "NOT OFFERED",
+    "no_offer_display": "—",
+    "pass_marks": ["A", "B"],
+    "certification": "Performance grade only; author-token shares remain diagnostic and Gate-1 certification remains STORE SILENT."
   }
 }

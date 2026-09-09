@@ -1,0 +1,1567 @@
+{
+  "scope": "Face-only rubric; no replay, no engine edit; before = actual working cards, not assumed HEAD",
+  "before_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+  "protected_sha256_before": {
+    "arb-executor/analysis/window1_v54_dual_belief_os.js": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "arb-executor/analysis/window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "arb-executor/analysis/build_window1_v54_dual_belief.js": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c",
+    "window1-watch/face_contract.mjs": "ff317befac17d51130c89b0680787f9c5f45f7d1409cba8727b83a57457a4ce7",
+    "window1-watch/data/index.json": "05f519dbcc596f33f9fd541dae581f15be58c9e6b21f470daa798f1ddd6aa218",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.face.json": "0a1ed88b2cd4b79acfe5d7071e988fc19db9eb66c2ab667a82c42c38993b6d4a",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.face.json.gz": "e80a16116b315937d1eb50b9ed2b339db16a9655689df77df48521401438782d",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.face.json": "af3a8d5bfc91db294d94a65963a3ba560b347b43de6030063d2de39a997ea796",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.face.json.gz": "3692a015e959c0bcb2474afa75e779bd090a7eaf9b883c97ceb26137e9ffa0f2",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.face.json": "0e7f389375721e3ff2235b7ab7c6a80005940db034862ad0b284dab413c2b546",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.face.json.gz": "78715fd3ac237a3868199683b034552d47689f9c5d66929e21ecd659abfd5a55",
+    "window1-watch/data/KXATPMATCH-26JUL12ALTGAS.face.json": "a3dbe538aa2d7fe4a9025b6014ba6d1b48dbce0326d38fae08ef0cae1d85feea",
+    "window1-watch/data/KXATPMATCH-26JUL12ALTGAS.face.json.gz": "c3c161b1624e765900f55cfe7d2c53662e4332a6aa81473abc43aa20f1d53cc9",
+    "window1-watch/data/KXATPMATCH-26JUL18DANPRA.face.json": "276cf896ed5068d4343c9779f0a5dbdbc824a7de06954ba923448b7ebcc681e7",
+    "window1-watch/data/KXATPMATCH-26JUL18DANPRA.face.json.gz": "dc0122cc283d52deb1b785219245a1f6c46b5371e0c6d9949c2176a69a2b8ad2"
+  },
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "before": {
+        "letter": "F",
+        "governing": "MICRO · OUTCOME",
+        "sections": {
+          "SENTENCE": "C",
+          "MACRO": "C",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "F"
+        },
+        "lines": [
+          "SENTENCE: Q 63.53% · X 63.53% authored (token metric)",
+          "MACRO: BAR: QUIET_WOBBLE / QUIET_WOBBLE · GIU: QUIET_WOBBLE / ONE_STEP_UP",
+          "MICRO: BAR: first/full 2¢ / 262.08m · remaining MAE 0.83¢ / 70.21m · GIU: first/full 1¢ / 199.04m · remaining MAE 2¢ / 120.88m",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 0 of 7¢ captured"
+        ],
+        "first_calls": {
+          "BAR": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+            "receipt_order": 64,
+            "epoch": 1783841945.000004,
+            "minutes_to_bell": 539.2499999324481,
+            "q50": 25,
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783857526,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 27,
+              "floor_epoch": 1783841801.305
+            },
+            "floor_already_observed_at_call": true,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 262.0782499988874,
+            "target_floor_cents": 27,
+            "target_floor_epoch": 1783841801.305,
+            "target_minutes_to_bell": 541.6449166655541
+          },
+          "GIU": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+            "receipt_order": 64,
+            "epoch": 1783841945.000004,
+            "minutes_to_bell": 539.2499999324481,
+            "q50": 67,
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783857432.683123,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 66,
+              "floor_epoch": 1783869375.227
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 199.04239794810613,
+            "target_floor_cents": 66,
+            "target_floor_epoch": 1783869375.227,
+            "target_minutes_to_bell": 82.07955000003179
+          }
+        },
+        "roles": null,
+        "fills": {
+          "BAR": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          },
+          "GIU": {
+            "filled": true,
+            "cents": 69,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1783865397.812,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1783874300,
+              "span_start_epoch": 1783831858,
+              "span_end_epoch": 1783874300,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": [
+                "W1TT-C-001"
+              ]
+            },
+            "reason": null
+          }
+        },
+        "pair_sum": null,
+        "captured_cents": 0,
+        "offered_cents": 7,
+        "oracle": null,
+        "provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "1c02b3084496dfdd37a4425533bb6f43dc3f334c3a0f89dc1955c564bc7000a0",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "b9ec30551297e8d87acc5ee5a8021345a50db1b3e2f4a736b74e8b33c4afeb71",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "0a1ed88b2cd4b79acfe5d7071e988fc19db9eb66c2ab667a82c42c38993b6d4a",
+          "stage_inputs_sha256": "f755d30236cc7564f88d8b09f3c7e7f0f6cf28f0b56dad3db5730b3eb72b89fc",
+          "stage_files_count": 246,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+          "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
+          "grade_contract_sha256": "12f964099209ad1f0864cc5115e1434695acdd635d256cbde35eff2726a6b8ee",
+          "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+          "grade_measurements_sha256": "d2baf793eebf3dacfbd84fceec8bff8e886e8ca6d2f1ce3616bcd33e9e03d347",
+          "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
+          "fields_sha256": "9552187b32ce8c3f3a317e3d78bd2646f1f576ef457314ed7097dc5e39ba98eb",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9"
+        }
+      },
+      "after": {
+        "letter": "F",
+        "governing": "MACRO · PAIR",
+        "sections": {
+          "MACRO": "F",
+          "MICRO": "B",
+          "TRADE": "D",
+          "PAIR": "F"
+        },
+        "lines": [
+          "MACRO: F · BAR FALLER → NOT_CALLABLE · GIU CLIMBER → NOT_CALLABLE",
+          "MICRO: B · BAR Q 25 vs floor 27¢; range 24–27 · GIU Q 67 vs floor 66¢; range 66–69",
+          "TRADE: D · BAR unfilled · GIU 69¢ (+3¢)",
+          "PAIR: F · STORE SILENT¢ pair · 0 of 7¢ captured"
+        ],
+        "first_calls": {
+          "BAR": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+            "receipt_order": 64,
+            "epoch": 1783841945.000004,
+            "minutes_to_bell": 539.2499999324481,
+            "q50": 25,
+            "q25": 24,
+            "q75": 27,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783857526,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 27,
+              "floor_epoch": 1783841801.305
+            },
+            "floor_already_observed_at_call": true,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 262.0782499988874,
+            "target_floor_cents": 27,
+            "target_floor_epoch": 1783841801.305,
+            "target_minutes_to_bell": 541.6449166655541
+          },
+          "GIU": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+            "receipt_order": 64,
+            "epoch": 1783841945.000004,
+            "minutes_to_bell": 539.2499999324481,
+            "q50": 67,
+            "q25": 66,
+            "q75": 69,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783857432.683123,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 66,
+              "floor_epoch": 1783869375.227
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 199.04239794810613,
+            "target_floor_cents": 66,
+            "target_floor_epoch": 1783869375.227,
+            "target_minutes_to_bell": 82.07955000003179
+          }
+        },
+        "roles": {
+          "BAR": {
+            "called_role": "FALLER",
+            "realized_role": "NOT_CALLABLE",
+            "correct": false,
+            "first_recorded_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+            "first_recorded_epoch": 1783841945.000004,
+            "first_bind_epoch": 1783841801.417,
+            "final_stored_role": "NOT_CALLABLE",
+            "flip_count": 0,
+            "open_cents": 31.5,
+            "close_cents": 32,
+            "realized_drift_cents": 0.5,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legA_close_c - legA_open_postformation_c"
+          },
+          "GIU": {
+            "called_role": "CLIMBER",
+            "realized_role": "NOT_CALLABLE",
+            "correct": false,
+            "first_recorded_receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473",
+            "first_recorded_epoch": 1783841945.000004,
+            "first_bind_epoch": 1783841801.426,
+            "final_stored_role": "NOT_CALLABLE",
+            "flip_count": 0,
+            "open_cents": 67,
+            "close_cents": 66,
+            "realized_drift_cents": -1,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legB_close_c - legB_open_postformation_c"
+          }
+        },
+        "fills": {
+          "BAR": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          },
+          "GIU": {
+            "filled": true,
+            "cents": 69,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1783865397.812,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1783874300,
+              "span_start_epoch": 1783831858,
+              "span_end_epoch": 1783874300,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": [
+                "W1TT-C-001"
+              ]
+            },
+            "reason": null
+          }
+        },
+        "pair_sum": null,
+        "captured_cents": 0,
+        "offered_cents": 7,
+        "oracle": {
+          "BAR": {
+            "mean_absolute_gap_cents": 2.526850969176994,
+            "comparable_receipts": 3147,
+            "receipt_count": 5000,
+            "missing_q_receipts": 59,
+            "no_future_print_receipts": 1794
+          },
+          "GIU": {
+            "mean_absolute_gap_cents": 2.2224626704176584,
+            "comparable_receipts": 4621,
+            "receipt_count": 5000,
+            "missing_q_receipts": 59,
+            "no_future_print_receipts": 320
+          }
+        },
+        "provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "1c02b3084496dfdd37a4425533bb6f43dc3f334c3a0f89dc1955c564bc7000a0",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "b9ec30551297e8d87acc5ee5a8021345a50db1b3e2f4a736b74e8b33c4afeb71",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "0a1ed88b2cd4b79acfe5d7071e988fc19db9eb66c2ab667a82c42c38993b6d4a",
+          "stage_inputs_sha256": "f755d30236cc7564f88d8b09f3c7e7f0f6cf28f0b56dad3db5730b3eb72b89fc",
+          "stage_files_count": 246,
+          "rubric_sha256": "3b29277e397f425742a83750c7588c1bbfc2c98ae2c217ec73f1ee7a3038ada9",
+          "receipt_sha256": "fef7af4dd0875850a0511e71d15bac9ff4ce7aecf966d1935480850b5d94a5fd",
+          "grade_builder_sha256": "cac4c4d652b5a779f1cf79f4712f93a8af03a29323b9a6b2b342a0e984b8b9b2",
+          "grade_contract_sha256": "16364f6b1798336c95eb699e8cfe6006422ca55efbc1d92d06ca605f82a70ba3",
+          "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+          "grade_measurements_sha256": "a8a7d92dbee038d1c7065daaac549e43e51ddeddd05d61c4a657d586e8060480",
+          "grade_operator_standard_sha256": "52b9a56b2a77668d3cad1baaa8de672ccf1d89cd994a5aded9293a957a4f04f5",
+          "grade_prints_sha256": "13c24f57fa489bcc1156650c565f07af63b736909397ceb3e6a260aa7b576560",
+          "fields_sha256": "d2e6833ee559fe85887680d021dd3dd9512bf7bf8c146d62090341a9a196e255",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6"
+        }
+      },
+      "previous_history_snapshots_preserved": 5,
+      "snapshots_appended": 2
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "before": {
+        "letter": "F",
+        "governing": "MACRO · MICRO · OUTCOME",
+        "sections": {
+          "SENTENCE": "C",
+          "MACRO": "F",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "F"
+        },
+        "lines": [
+          "SENTENCE: Q 69.35% · X 69.35% authored (token metric)",
+          "MACRO: LAJ: QUIET_WOBBLE / ONE_STEP_DOWN · SVA: QUIET_WOBBLE / DRIFT_UP",
+          "MICRO: LAJ: first/full 7¢ / 584.54m · remaining MAE 4.91¢ / 242.02m · SVA: first/full 2¢ / 68.58m · remaining MAE 1.88¢ / 177.73m",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 1 of 8¢ captured"
+        ],
+        "first_calls": {
+          "LAJ": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322",
+            "receipt_order": 38,
+            "epoch": 1784020204.000008,
+            "minutes_to_bell": 969.9333331982294,
+            "q50": 58,
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784025051,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 51,
+              "floor_epoch": 1784060123.2
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 7,
+            "timing_error_minutes": 584.5366666674614,
+            "target_floor_cents": 51,
+            "target_floor_epoch": 1784060123.2,
+            "target_minutes_to_bell": 304.6133333325386
+          },
+          "SVA": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322",
+            "receipt_order": 38,
+            "epoch": 1784020204.000008,
+            "minutes_to_bell": 969.9333331982294,
+            "q50": 39,
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784024316.414281,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 41,
+              "floor_epoch": 1784020201.8
+            },
+            "floor_already_observed_at_call": true,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 68.57690468231837,
+            "target_floor_cents": 41,
+            "target_floor_epoch": 1784020201.8,
+            "target_minutes_to_bell": 969.9700000007947
+          }
+        },
+        "roles": null,
+        "fills": {
+          "LAJ": {
+            "filled": true,
+            "cents": 54,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1784050973.062,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784078400,
+              "span_start_epoch": 1784007603,
+              "span_end_epoch": 1784078400,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          },
+          "SVA": {
+            "filled": true,
+            "cents": 45,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1784073810.907,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784078400,
+              "span_start_epoch": 1784007603,
+              "span_end_epoch": 1784078400,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          }
+        },
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "offered_cents": 8,
+        "oracle": null,
+        "provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "1fc23f67385259fef95622a3020477439675566cdbb0332c18e6b7335852aec1",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "6aebf3ade8d309d10a6e920b3e86e2efa45fc185667c3eb531c4906a0181eb9f",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "af3a8d5bfc91db294d94a65963a3ba560b347b43de6030063d2de39a997ea796",
+          "stage_inputs_sha256": "724257bba9c21f1e6404991a93ccd289e17600462867cecace4a0bfab8f901c9",
+          "stage_files_count": 135,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+          "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
+          "grade_contract_sha256": "12f964099209ad1f0864cc5115e1434695acdd635d256cbde35eff2726a6b8ee",
+          "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+          "grade_measurements_sha256": "d2baf793eebf3dacfbd84fceec8bff8e886e8ca6d2f1ce3616bcd33e9e03d347",
+          "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
+          "fields_sha256": "9552187b32ce8c3f3a317e3d78bd2646f1f576ef457314ed7097dc5e39ba98eb",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9"
+        }
+      },
+      "after": {
+        "letter": "F",
+        "governing": "MICRO",
+        "sections": {
+          "MACRO": "C",
+          "MICRO": "F",
+          "TRADE": "D",
+          "PAIR": "C"
+        },
+        "lines": [
+          "MACRO: C · LAJ CLIMBER → FALLER · SVA CLIMBER → CLIMBER",
+          "MICRO: F · LAJ Q 58 vs floor 51¢; range 58–60 · SVA Q 39 vs floor 41¢; range 38–41",
+          "TRADE: D · LAJ 54¢ (+3¢) · SVA 45¢ (+4¢; floor printed earlier)",
+          "PAIR: C · 99¢ pair · 1 of 8¢ captured"
+        ],
+        "first_calls": {
+          "LAJ": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322",
+            "receipt_order": 38,
+            "epoch": 1784020204.000008,
+            "minutes_to_bell": 969.9333331982294,
+            "q50": 58,
+            "q25": 58,
+            "q75": 60,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784025051,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 51,
+              "floor_epoch": 1784060123.2
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 7,
+            "timing_error_minutes": 584.5366666674614,
+            "target_floor_cents": 51,
+            "target_floor_epoch": 1784060123.2,
+            "target_minutes_to_bell": 304.6133333325386
+          },
+          "SVA": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322",
+            "receipt_order": 38,
+            "epoch": 1784020204.000008,
+            "minutes_to_bell": 969.9333331982294,
+            "q50": 39,
+            "q25": 38,
+            "q75": 41,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784024316.414281,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 41,
+              "floor_epoch": 1784020201.8
+            },
+            "floor_already_observed_at_call": true,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 68.57690468231837,
+            "target_floor_cents": 41,
+            "target_floor_epoch": 1784020201.8,
+            "target_minutes_to_bell": 969.9700000007947
+          }
+        },
+        "roles": {
+          "LAJ": {
+            "called_role": "CLIMBER",
+            "realized_role": "FALLER",
+            "correct": false,
+            "first_recorded_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322",
+            "first_recorded_epoch": 1784020204.000008,
+            "first_bind_epoch": 1784020202,
+            "final_stored_role": "FALLER",
+            "flip_count": 1,
+            "open_cents": 59,
+            "close_cents": 53,
+            "realized_drift_cents": -6,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legA_close_c - legA_open_postformation_c"
+          },
+          "SVA": {
+            "called_role": "CLIMBER",
+            "realized_role": "CLIMBER",
+            "correct": true,
+            "first_recorded_receipt": "6a125304-0f14-4aa4-5dfd-3d57fd746a9d",
+            "first_recorded_epoch": 1784020216.83,
+            "first_bind_epoch": 1784020216.83,
+            "final_stored_role": "CLIMBER",
+            "flip_count": 0,
+            "open_cents": 41,
+            "close_cents": 48,
+            "realized_drift_cents": 7,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legB_close_c - legB_open_postformation_c"
+          }
+        },
+        "fills": {
+          "LAJ": {
+            "filled": true,
+            "cents": 54,
+            "vs_floor_cents": 3,
+            "fill_epoch": 1784050973.062,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784078400,
+              "span_start_epoch": 1784007603,
+              "span_end_epoch": 1784078400,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          },
+          "SVA": {
+            "filled": true,
+            "cents": 45,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1784073810.907,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784078400,
+              "span_start_epoch": 1784007603,
+              "span_end_epoch": 1784078400,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          }
+        },
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "offered_cents": 8,
+        "oracle": {
+          "LAJ": {
+            "mean_absolute_gap_cents": 2.31136563876652,
+            "comparable_receipts": 136200,
+            "receipt_count": 136245,
+            "missing_q_receipts": 44,
+            "no_future_print_receipts": 1
+          },
+          "SVA": {
+            "mean_absolute_gap_cents": 2.288341799416318,
+            "comparable_receipts": 136033,
+            "receipt_count": 136245,
+            "missing_q_receipts": 44,
+            "no_future_print_receipts": 168
+          }
+        },
+        "provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "1fc23f67385259fef95622a3020477439675566cdbb0332c18e6b7335852aec1",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "6aebf3ade8d309d10a6e920b3e86e2efa45fc185667c3eb531c4906a0181eb9f",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "af3a8d5bfc91db294d94a65963a3ba560b347b43de6030063d2de39a997ea796",
+          "stage_inputs_sha256": "724257bba9c21f1e6404991a93ccd289e17600462867cecace4a0bfab8f901c9",
+          "stage_files_count": 135,
+          "rubric_sha256": "3b29277e397f425742a83750c7588c1bbfc2c98ae2c217ec73f1ee7a3038ada9",
+          "receipt_sha256": "fef7af4dd0875850a0511e71d15bac9ff4ce7aecf966d1935480850b5d94a5fd",
+          "grade_builder_sha256": "cac4c4d652b5a779f1cf79f4712f93a8af03a29323b9a6b2b342a0e984b8b9b2",
+          "grade_contract_sha256": "16364f6b1798336c95eb699e8cfe6006422ca55efbc1d92d06ca605f82a70ba3",
+          "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+          "grade_measurements_sha256": "a8a7d92dbee038d1c7065daaac549e43e51ddeddd05d61c4a657d586e8060480",
+          "grade_operator_standard_sha256": "52b9a56b2a77668d3cad1baaa8de672ccf1d89cd994a5aded9293a957a4f04f5",
+          "grade_prints_sha256": "13c24f57fa489bcc1156650c565f07af63b736909397ceb3e6a260aa7b576560",
+          "fields_sha256": "d2e6833ee559fe85887680d021dd3dd9512bf7bf8c146d62090341a9a196e255",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6"
+        }
+      },
+      "previous_history_snapshots_preserved": 5,
+      "snapshots_appended": 2
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "before": {
+        "letter": "F",
+        "governing": "MACRO · OUTCOME",
+        "sections": {
+          "SENTENCE": "A",
+          "MACRO": "F",
+          "MICRO": "D",
+          "HANDS": "A",
+          "OUTCOME": "F"
+        },
+        "lines": [
+          "SENTENCE: Q 95.87% · X 95.87% authored (token metric)",
+          "MACRO: PAL: QUIET_WOBBLE / LATE_BREAK_UP · URS: QUIET_WOBBLE / LATE_BREAK_DOWN",
+          "MICRO: PAL: first/full 0¢ / 220.11m · remaining MAE 3.8¢ / 178.68m · URS: first/full 6¢ / 50.56m · remaining MAE 5.59¢ / 21.27m",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 0 of 4¢ captured"
+        ],
+        "first_calls": {
+          "PAL": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+            "receipt_order": 50,
+            "epoch": 1784021162.00001,
+            "minutes_to_bell": 351.41666649977367,
+            "q50": 39,
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784028860,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 39,
+              "floor_epoch": 1784042066.596
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 0,
+            "timing_error_minutes": 220.1099333326022,
+            "target_floor_cents": 39,
+            "target_floor_epoch": 1784042066.596,
+            "target_minutes_to_bell": 3.0067333340644837
+          },
+          "URS": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+            "receipt_order": 50,
+            "epoch": 1784021162.00001,
+            "minutes_to_bell": 351.41666649977367,
+            "q50": 63,
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784029664,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 57,
+              "floor_epoch": 1784032697.601
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 50.560016667842866,
+            "target_floor_cents": 57,
+            "target_floor_epoch": 1784032697.601,
+            "target_minutes_to_bell": 159.1566499988238
+          }
+        },
+        "roles": null,
+        "fills": {
+          "PAL": {
+            "filled": true,
+            "cents": 43,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1784035631.709,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784042247,
+              "span_start_epoch": 1784001495,
+              "span_end_epoch": 1784042247,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": [
+                "W1TT-C-002"
+              ]
+            },
+            "reason": null
+          },
+          "URS": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          }
+        },
+        "pair_sum": null,
+        "captured_cents": 0,
+        "offered_cents": 4,
+        "oracle": null,
+        "provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "b68855b99823a597a79bce4f667d6a1540b24799154da2593fe72ebe8f651313",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "31e91de70d8a0c727a51bc410b9b105392e14c52a92799d7d3f21258d17ea178",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "0e7f389375721e3ff2235b7ab7c6a80005940db034862ad0b284dab413c2b546",
+          "stage_inputs_sha256": "78aa5472874469c16147820b7502936b16738264e1a2242daa1601930e753c7e",
+          "stage_files_count": 1216,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+          "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
+          "grade_contract_sha256": "12f964099209ad1f0864cc5115e1434695acdd635d256cbde35eff2726a6b8ee",
+          "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+          "grade_measurements_sha256": "d2baf793eebf3dacfbd84fceec8bff8e886e8ca6d2f1ce3616bcd33e9e03d347",
+          "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
+          "fields_sha256": "9552187b32ce8c3f3a317e3d78bd2646f1f576ef457314ed7097dc5e39ba98eb",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9"
+        }
+      },
+      "after": {
+        "letter": "F",
+        "governing": "MICRO · PAIR",
+        "sections": {
+          "MACRO": "C",
+          "MICRO": "F",
+          "TRADE": "D",
+          "PAIR": "F"
+        },
+        "lines": [
+          "MACRO: C · PAL CLIMBER → CLIMBER · URS CLIMBER → NOT_CALLABLE",
+          "MICRO: F · PAL Q 39 vs floor 39¢; range 38–39 · URS Q 63 vs floor 57¢; range 61–63",
+          "TRADE: D · PAL 43¢ (+4¢) · URS unfilled",
+          "PAIR: F · STORE SILENT¢ pair · 0 of 4¢ captured"
+        ],
+        "first_calls": {
+          "PAL": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+            "receipt_order": 50,
+            "epoch": 1784021162.00001,
+            "minutes_to_bell": 351.41666649977367,
+            "q50": 39,
+            "q25": 38,
+            "q75": 39,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784028860,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 39,
+              "floor_epoch": 1784042066.596
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 0,
+            "timing_error_minutes": 220.1099333326022,
+            "target_floor_cents": 39,
+            "target_floor_epoch": 1784042066.596,
+            "target_minutes_to_bell": 3.0067333340644837
+          },
+          "URS": {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+            "receipt_order": 50,
+            "epoch": 1784021162.00001,
+            "minutes_to_bell": 351.41666649977367,
+            "q50": 63,
+            "q25": 61,
+            "q75": 63,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784029664,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 57,
+              "floor_epoch": 1784032697.601
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 6,
+            "timing_error_minutes": 50.560016667842866,
+            "target_floor_cents": 57,
+            "target_floor_epoch": 1784032697.601,
+            "target_minutes_to_bell": 159.1566499988238
+          }
+        },
+        "roles": {
+          "PAL": {
+            "called_role": "CLIMBER",
+            "realized_role": "CLIMBER",
+            "correct": true,
+            "first_recorded_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+            "first_recorded_epoch": 1784021162.00001,
+            "first_bind_epoch": 1784021161.637,
+            "final_stored_role": "CLIMBER",
+            "flip_count": 0,
+            "open_cents": 38,
+            "close_cents": 41,
+            "realized_drift_cents": 3,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legA_close_c - legA_open_postformation_c"
+          },
+          "URS": {
+            "called_role": "CLIMBER",
+            "realized_role": "NOT_CALLABLE",
+            "correct": false,
+            "first_recorded_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+            "first_recorded_epoch": 1784021162.00001,
+            "first_bind_epoch": 1784021162,
+            "final_stored_role": "NOT_CALLABLE",
+            "flip_count": 1,
+            "open_cents": 62,
+            "close_cents": 61,
+            "realized_drift_cents": -1,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legB_close_c - legB_open_postformation_c"
+          }
+        },
+        "fills": {
+          "PAL": {
+            "filled": true,
+            "cents": 43,
+            "vs_floor_cents": 4,
+            "fill_epoch": 1784035631.709,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784042247,
+              "span_start_epoch": 1784001495,
+              "span_end_epoch": 1784042247,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": [
+                "W1TT-C-002"
+              ]
+            },
+            "reason": null
+          },
+          "URS": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          }
+        },
+        "pair_sum": null,
+        "captured_cents": 0,
+        "offered_cents": 4,
+        "oracle": {
+          "PAL": {
+            "mean_absolute_gap_cents": 3.659486006808201,
+            "comparable_receipts": 38483,
+            "receipt_count": 38509,
+            "missing_q_receipts": 25,
+            "no_future_print_receipts": 1
+          },
+          "URS": {
+            "mean_absolute_gap_cents": 4.512892493241838,
+            "comparable_receipts": 38472,
+            "receipt_count": 38509,
+            "missing_q_receipts": 25,
+            "no_future_print_receipts": 12
+          }
+        },
+        "provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "b68855b99823a597a79bce4f667d6a1540b24799154da2593fe72ebe8f651313",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "31e91de70d8a0c727a51bc410b9b105392e14c52a92799d7d3f21258d17ea178",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "0e7f389375721e3ff2235b7ab7c6a80005940db034862ad0b284dab413c2b546",
+          "stage_inputs_sha256": "78aa5472874469c16147820b7502936b16738264e1a2242daa1601930e753c7e",
+          "stage_files_count": 1216,
+          "rubric_sha256": "3b29277e397f425742a83750c7588c1bbfc2c98ae2c217ec73f1ee7a3038ada9",
+          "receipt_sha256": "fef7af4dd0875850a0511e71d15bac9ff4ce7aecf966d1935480850b5d94a5fd",
+          "grade_builder_sha256": "cac4c4d652b5a779f1cf79f4712f93a8af03a29323b9a6b2b342a0e984b8b9b2",
+          "grade_contract_sha256": "16364f6b1798336c95eb699e8cfe6006422ca55efbc1d92d06ca605f82a70ba3",
+          "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+          "grade_measurements_sha256": "a8a7d92dbee038d1c7065daaac549e43e51ddeddd05d61c4a657d586e8060480",
+          "grade_operator_standard_sha256": "52b9a56b2a77668d3cad1baaa8de672ccf1d89cd994a5aded9293a957a4f04f5",
+          "grade_prints_sha256": "13c24f57fa489bcc1156650c565f07af63b736909397ceb3e6a260aa7b576560",
+          "fields_sha256": "d2e6833ee559fe85887680d021dd3dd9512bf7bf8c146d62090341a9a196e255",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6"
+        }
+      },
+      "previous_history_snapshots_preserved": 5,
+      "snapshots_appended": 2
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "before": {
+        "letter": "F",
+        "governing": "MACRO · MICRO",
+        "sections": {
+          "SENTENCE": "C",
+          "MACRO": "F",
+          "MICRO": "F",
+          "HANDS": "A",
+          "OUTCOME": "C"
+        },
+        "lines": [
+          "SENTENCE: Q 77.38% · X 77.38% authored (token metric)",
+          "MACRO: ALT: ROUND_TRIP / DRIFT_UP · GAS: ROUND_TRIP / LATE_BREAK_DOWN",
+          "MICRO: ALT: first/full 1¢ / 1522.36m · remaining MAE 0.74¢ / 215.09m · GAS: first/full 3¢ / 196.41m · remaining MAE 0.98¢ / 83.26m",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 2 of 4¢ captured"
+        ],
+        "first_calls": {
+          "ALT": {
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+            "receipt_order": 20,
+            "epoch": 1783820728.000002,
+            "minutes_to_bell": 3574.533333301544,
+            "q50": 57,
+            "q_author": "POOL_BASE",
+            "x_author": "POOL_BASE_FLOOR_MTB",
+            "deadline_epoch": 1783924788,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 58,
+              "floor_epoch": 1783833446.5
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 1522.3583333333333,
+            "target_floor_cents": 58,
+            "target_floor_epoch": 1783833446.5,
+            "target_minutes_to_bell": 3362.5583333333334
+          },
+          "GAS": {
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148",
+            "receipt_order": 18,
+            "epoch": 1783810130.000001,
+            "minutes_to_bell": 3751.166666650772,
+            "q50": 41,
+            "q_author": "POOL_BASE",
+            "x_author": "POOL_BASE_FLOOR_MTB",
+            "deadline_epoch": 1783997882.837823,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 38,
+              "floor_epoch": 1784009667.7
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 196.41436961889266,
+            "target_floor_cents": 38,
+            "target_floor_epoch": 1784009667.7,
+            "target_minutes_to_bell": 425.5383333325386
+          }
+        },
+        "roles": null,
+        "fills": {
+          "ALT": {
+            "filled": true,
+            "cents": 60,
+            "vs_floor_cents": 2,
+            "fill_epoch": 1784000663.801,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784035200,
+              "span_start_epoch": 1783790234,
+              "span_end_epoch": 1784035200,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          },
+          "GAS": {
+            "filled": true,
+            "cents": 38,
+            "vs_floor_cents": 0,
+            "fill_epoch": 1784025043.114,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784035200,
+              "span_start_epoch": 1783790234,
+              "span_end_epoch": 1784035200,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          }
+        },
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "offered_cents": 4,
+        "oracle": null,
+        "provenance": {
+          "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+          "trace_sha256": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "cabdf2661ac68b54e6feefe7d8b29e6f3751eeb2a1d94083bd470d4c732d211e",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "a3dbe538aa2d7fe4a9025b6014ba6d1b48dbce0326d38fae08ef0cae1d85feea",
+          "stage_inputs_sha256": "538d9ecf68ed5835212645f02b3e052f33e70a1820ae4004883ab2d58cc390e0",
+          "stage_files_count": 169,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+          "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
+          "grade_contract_sha256": "12f964099209ad1f0864cc5115e1434695acdd635d256cbde35eff2726a6b8ee",
+          "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+          "grade_measurements_sha256": "d2baf793eebf3dacfbd84fceec8bff8e886e8ca6d2f1ce3616bcd33e9e03d347",
+          "grade_prints_sha256": "13c24f57fa489bcc1156650c565f07af63b736909397ceb3e6a260aa7b576560",
+          "fields_sha256": "217e9d2d5a88e2573b7160320789dd6d64e68151f9c8695e5a2a6e60087f8225",
+          "os_commit": "944a0cf5d3e154003233531f6d48059340e2de53",
+          "os_commit_order": 3030,
+          "grading_commit": "85e7523e4cb6c92cf1cf83c74eab540b865d6925"
+        }
+      },
+      "after": {
+        "letter": "C",
+        "governing": "MICRO",
+        "sections": {
+          "MACRO": "A",
+          "MICRO": "C",
+          "TRADE": "B",
+          "PAIR": "B"
+        },
+        "lines": [
+          "MACRO: A · ALT CLIMBER → CLIMBER · GAS FALLER → FALLER",
+          "MICRO: C · ALT Q 57 vs floor 58¢; range 55–58 · GAS Q 41 vs floor 38¢; range 38–43",
+          "TRADE: B · ALT 60¢ (+2¢; floor printed earlier) · GAS 38¢ (+0¢; floor printed earlier)",
+          "PAIR: B · 98¢ pair · 2 of 4¢ captured"
+        ],
+        "first_calls": {
+          "ALT": {
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+            "receipt_order": 20,
+            "epoch": 1783820728.000002,
+            "minutes_to_bell": 3574.533333301544,
+            "q50": 57,
+            "q25": 55,
+            "q75": 58,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_BASE",
+            "x_author": "POOL_BASE_FLOOR_MTB",
+            "deadline_epoch": 1783924788,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 58,
+              "floor_epoch": 1783833446.5
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 1,
+            "timing_error_minutes": 1522.3583333333333,
+            "target_floor_cents": 58,
+            "target_floor_epoch": 1783833446.5,
+            "target_minutes_to_bell": 3362.5583333333334
+          },
+          "GAS": {
+            "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148",
+            "receipt_order": 18,
+            "epoch": 1783810130.000001,
+            "minutes_to_bell": 3751.166666650772,
+            "q50": 41,
+            "q25": 38,
+            "q75": 43,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_BASE",
+            "x_author": "POOL_BASE_FLOOR_MTB",
+            "deadline_epoch": 1783997882.837823,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 38,
+              "floor_epoch": 1784009667.7
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 3,
+            "timing_error_minutes": 196.41436961889266,
+            "target_floor_cents": 38,
+            "target_floor_epoch": 1784009667.7,
+            "target_minutes_to_bell": 425.5383333325386
+          }
+        },
+        "roles": {
+          "ALT": {
+            "called_role": "CLIMBER",
+            "realized_role": "CLIMBER",
+            "correct": true,
+            "first_recorded_receipt": "3e9ee739-aa2a-7e6a-586c-cc7000fe5f8a",
+            "first_recorded_epoch": 1783799321.156,
+            "first_bind_epoch": 1783799321.156,
+            "final_stored_role": "CLIMBER",
+            "flip_count": 0,
+            "open_cents": 57,
+            "close_cents": 65,
+            "realized_drift_cents": 8,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legA_close_c - legA_open_postformation_c"
+          },
+          "GAS": {
+            "called_role": "FALLER",
+            "realized_role": "FALLER",
+            "correct": true,
+            "first_recorded_receipt": "5c5ed8fb-e9e6-7711-00e3-14195939c0e7",
+            "first_recorded_epoch": 1783877860.516,
+            "first_bind_epoch": 1783877860.516,
+            "final_stored_role": "FALLER",
+            "flip_count": 0,
+            "open_cents": 43,
+            "close_cents": 38,
+            "realized_drift_cents": -5,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legB_close_c - legB_open_postformation_c"
+          }
+        },
+        "fills": {
+          "ALT": {
+            "filled": true,
+            "cents": 60,
+            "vs_floor_cents": 2,
+            "fill_epoch": 1784000663.801,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784035200,
+              "span_start_epoch": 1783790234,
+              "span_end_epoch": 1784035200,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          },
+          "GAS": {
+            "filled": true,
+            "cents": 38,
+            "vs_floor_cents": 0,
+            "fill_epoch": 1784025043.114,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1784035200,
+              "span_start_epoch": 1783790234,
+              "span_end_epoch": 1784035200,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          }
+        },
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "offered_cents": 4,
+        "oracle": {
+          "ALT": {
+            "mean_absolute_gap_cents": 2.1188197767145134,
+            "comparable_receipts": 40128,
+            "receipt_count": 40394,
+            "missing_q_receipts": 248,
+            "no_future_print_receipts": 18
+          },
+          "GAS": {
+            "mean_absolute_gap_cents": 2.4593714257297727,
+            "comparable_receipts": 40218,
+            "receipt_count": 40394,
+            "missing_q_receipts": 65,
+            "no_future_print_receipts": 111
+          }
+        },
+        "provenance": {
+          "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+          "trace_sha256": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "cabdf2661ac68b54e6feefe7d8b29e6f3751eeb2a1d94083bd470d4c732d211e",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "a3dbe538aa2d7fe4a9025b6014ba6d1b48dbce0326d38fae08ef0cae1d85feea",
+          "stage_inputs_sha256": "538d9ecf68ed5835212645f02b3e052f33e70a1820ae4004883ab2d58cc390e0",
+          "stage_files_count": 169,
+          "rubric_sha256": "3b29277e397f425742a83750c7588c1bbfc2c98ae2c217ec73f1ee7a3038ada9",
+          "receipt_sha256": "fef7af4dd0875850a0511e71d15bac9ff4ce7aecf966d1935480850b5d94a5fd",
+          "grade_builder_sha256": "cac4c4d652b5a779f1cf79f4712f93a8af03a29323b9a6b2b342a0e984b8b9b2",
+          "grade_contract_sha256": "16364f6b1798336c95eb699e8cfe6006422ca55efbc1d92d06ca605f82a70ba3",
+          "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+          "grade_measurements_sha256": "a8a7d92dbee038d1c7065daaac549e43e51ddeddd05d61c4a657d586e8060480",
+          "grade_operator_standard_sha256": "52b9a56b2a77668d3cad1baaa8de672ccf1d89cd994a5aded9293a957a4f04f5",
+          "grade_prints_sha256": "13c24f57fa489bcc1156650c565f07af63b736909397ceb3e6a260aa7b576560",
+          "fields_sha256": "d2e6833ee559fe85887680d021dd3dd9512bf7bf8c146d62090341a9a196e255",
+          "os_commit": "944a0cf5d3e154003233531f6d48059340e2de53",
+          "os_commit_order": 3030,
+          "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6"
+        }
+      },
+      "previous_history_snapshots_preserved": 2,
+      "snapshots_appended": 1
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "before": {
+        "letter": "STORE SILENT",
+        "governing": "OUTCOME",
+        "sections": {
+          "SENTENCE": "D",
+          "MACRO": "C",
+          "MICRO": "D",
+          "HANDS": "A",
+          "OUTCOME": "STORE SILENT"
+        },
+        "lines": [
+          "SENTENCE: Q 41.53% · X 41.53% authored (token metric)",
+          "MACRO: DAN: QUIET_WOBBLE / QUIET_WOBBLE · PRA: ROUND_TRIP / SLEEPER",
+          "MICRO: DAN: first/full 2¢ / 148.14m · remaining MAE 1.11¢ / 60.71m · PRA: first/full 0¢ / 147.83m · remaining MAE 0.87¢ / 101.89m",
+          "HANDS: 0 same-second · 0 post-only · 0 pre-formation",
+          "OUTCOME: 0 of 0¢ captured"
+        ],
+        "first_calls": {
+          "DAN": {
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258",
+            "receipt_order": 69,
+            "epoch": 1784339443.000002,
+            "minutes_to_bell": 560.2833333015442,
+            "q50": 57,
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784348195.109282,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 59,
+              "floor_epoch": 1784339306.8
+            },
+            "floor_already_observed_at_call": true,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 148.1384880344073,
+            "target_floor_cents": 59,
+            "target_floor_epoch": 1784339306.8,
+            "target_minutes_to_bell": 562.5533333341281
+          },
+          "PRA": {
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258",
+            "receipt_order": 69,
+            "epoch": 1784339443.000002,
+            "minutes_to_bell": 560.2833333015442,
+            "q50": 41,
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784351424,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 41,
+              "floor_epoch": 1784342554
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 0,
+            "timing_error_minutes": 147.83333333333334,
+            "target_floor_cents": 41,
+            "target_floor_epoch": 1784342554,
+            "target_minutes_to_bell": 508.43333333333334
+          }
+        },
+        "roles": null,
+        "fills": {
+          "DAN": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          },
+          "PRA": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          }
+        },
+        "pair_sum": null,
+        "captured_cents": 0,
+        "offered_cents": 0,
+        "oracle": null,
+        "provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "08f58fa460e1d63ae4651a085b099dbbfd38db48291271b9414bad33258ddd52",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "3dc0c5268d130172298b780f7a58f36cb2ce452bfee563ba7e68b42a0cd4a373",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "276cf896ed5068d4343c9779f0a5dbdbc824a7de06954ba923448b7ebcc681e7",
+          "stage_inputs_sha256": "04bee3554dbdbdbbfff2ec2d64be02bc5c675c758363eac42ab6c0209e0d8f73",
+          "stage_files_count": 118,
+          "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",
+          "receipt_sha256": "d9187d3e5ddb7eba51f4baa97177829f417b5235296bad613a4d26fae96f65db",
+          "grade_builder_sha256": "eb71f9379f688365dafd4761e2e0fd1080594178149b563323a3154db1b530a4",
+          "grade_contract_sha256": "12f964099209ad1f0864cc5115e1434695acdd635d256cbde35eff2726a6b8ee",
+          "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+          "grade_measurements_sha256": "d2baf793eebf3dacfbd84fceec8bff8e886e8ca6d2f1ce3616bcd33e9e03d347",
+          "grade_prints_sha256": "3b066c5ec6f7664f948df2f534f50920f2529df29f4b807f945aee41c4c55038",
+          "fields_sha256": "9552187b32ce8c3f3a317e3d78bd2646f1f576ef457314ed7097dc5e39ba98eb",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9"
+        }
+      },
+      "after": {
+        "letter": "NOT OFFERED",
+        "governing": "NOT OFFERED — corrected floor pair offers no discount",
+        "sections": {
+          "MACRO": "C",
+          "MICRO": "B",
+          "TRADE": "NOT OFFERED",
+          "PAIR": "NOT OFFERED"
+        },
+        "lines": [
+          "MACRO: C · DAN CLIMBER → CLIMBER · PRA CLIMBER → NOT_CALLABLE",
+          "MICRO: B · DAN Q 57 vs floor 59¢; range 56–59 · PRA Q 41 vs floor 41¢; range 39–42",
+          "TRADE: NOT OFFERED · DAN unfilled · PRA unfilled",
+          "PAIR: NOT OFFERED · Not offered — recorded floors sum to par or above"
+        ],
+        "first_calls": {
+          "DAN": {
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258",
+            "receipt_order": 69,
+            "epoch": 1784339443.000002,
+            "minutes_to_bell": 560.2833333015442,
+            "q50": 57,
+            "q25": 56,
+            "q75": 59,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784348195.109282,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 59,
+              "floor_epoch": 1784339306.8
+            },
+            "floor_already_observed_at_call": true,
+            "floor_error_cents": 2,
+            "timing_error_minutes": 148.1384880344073,
+            "target_floor_cents": 59,
+            "target_floor_epoch": 1784339306.8,
+            "target_minutes_to_bell": 562.5533333341281
+          },
+          "PRA": {
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258",
+            "receipt_order": 69,
+            "epoch": 1784339443.000002,
+            "minutes_to_bell": 560.2833333015442,
+            "q50": 41,
+            "q25": 39,
+            "q75": 42,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1784351424,
+            "target": {
+              "status": "OK",
+              "kind": "FULL_SPAN_RECORDED_FLOOR",
+              "floor_cents": 41,
+              "floor_epoch": 1784342554
+            },
+            "floor_already_observed_at_call": false,
+            "floor_error_cents": 0,
+            "timing_error_minutes": 147.83333333333334,
+            "target_floor_cents": 41,
+            "target_floor_epoch": 1784342554,
+            "target_minutes_to_bell": 508.43333333333334
+          }
+        },
+        "roles": {
+          "DAN": {
+            "called_role": "CLIMBER",
+            "realized_role": "CLIMBER",
+            "correct": true,
+            "first_recorded_receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9649",
+            "first_recorded_epoch": 1784347221.000004,
+            "first_bind_epoch": 1784346568.144,
+            "final_stored_role": "CLIMBER",
+            "flip_count": 0,
+            "open_cents": 58,
+            "close_cents": 61,
+            "realized_drift_cents": 3,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legA_close_c - legA_open_postformation_c"
+          },
+          "PRA": {
+            "called_role": "CLIMBER",
+            "realized_role": "NOT_CALLABLE",
+            "correct": false,
+            "first_recorded_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258",
+            "first_recorded_epoch": 1784339443.000002,
+            "first_bind_epoch": 1784339443.000002,
+            "final_stored_role": "NOT_CALLABLE",
+            "flip_count": 0,
+            "open_cents": 41,
+            "close_cents": 41,
+            "realized_drift_cents": 0,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legB_close_c - legB_open_postformation_c"
+          }
+        },
+        "fills": {
+          "DAN": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          },
+          "PRA": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          }
+        },
+        "pair_sum": null,
+        "captured_cents": 0,
+        "offered_cents": 0,
+        "oracle": {
+          "DAN": {
+            "mean_absolute_gap_cents": 2.541740674955595,
+            "comparable_receipts": 11823,
+            "receipt_count": 12696,
+            "missing_q_receipts": 4,
+            "no_future_print_receipts": 869
+          },
+          "PRA": {
+            "mean_absolute_gap_cents": 1.7061473016932187,
+            "comparable_receipts": 11989,
+            "receipt_count": 12696,
+            "missing_q_receipts": 4,
+            "no_future_print_receipts": 703
+          }
+        },
+        "provenance": {
+          "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+          "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+          "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+          "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "truth_row_sha256": "08f58fa460e1d63ae4651a085b099dbbfd38db48291271b9414bad33258ddd52",
+          "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+          "effective_truth_sha256": "3dc0c5268d130172298b780f7a58f36cb2ce452bfee563ba7e68b42a0cd4a373",
+          "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+          "face_sha256": "276cf896ed5068d4343c9779f0a5dbdbc824a7de06954ba923448b7ebcc681e7",
+          "stage_inputs_sha256": "04bee3554dbdbdbbfff2ec2d64be02bc5c675c758363eac42ab6c0209e0d8f73",
+          "stage_files_count": 118,
+          "rubric_sha256": "3b29277e397f425742a83750c7588c1bbfc2c98ae2c217ec73f1ee7a3038ada9",
+          "receipt_sha256": "fef7af4dd0875850a0511e71d15bac9ff4ce7aecf966d1935480850b5d94a5fd",
+          "grade_builder_sha256": "cac4c4d652b5a779f1cf79f4712f93a8af03a29323b9a6b2b342a0e984b8b9b2",
+          "grade_contract_sha256": "16364f6b1798336c95eb699e8cfe6006422ca55efbc1d92d06ca605f82a70ba3",
+          "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+          "grade_measurements_sha256": "a8a7d92dbee038d1c7065daaac549e43e51ddeddd05d61c4a657d586e8060480",
+          "grade_operator_standard_sha256": "52b9a56b2a77668d3cad1baaa8de672ccf1d89cd994a5aded9293a957a4f04f5",
+          "grade_prints_sha256": "13c24f57fa489bcc1156650c565f07af63b736909397ceb3e6a260aa7b576560",
+          "fields_sha256": "d2e6833ee559fe85887680d021dd3dd9512bf7bf8c146d62090341a9a196e255",
+          "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+          "os_commit_order": 3022,
+          "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6"
+        }
+      },
+      "previous_history_snapshots_preserved": 5,
+      "snapshots_appended": 2
+    }
+  ],
+  "protected_sha256_after": {
+    "arb-executor/analysis/window1_v54_dual_belief_os.js": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "arb-executor/analysis/window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "arb-executor/analysis/build_window1_v54_dual_belief.js": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c",
+    "window1-watch/face_contract.mjs": "ff317befac17d51130c89b0680787f9c5f45f7d1409cba8727b83a57457a4ce7",
+    "window1-watch/data/index.json": "05f519dbcc596f33f9fd541dae581f15be58c9e6b21f470daa798f1ddd6aa218",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.face.json": "0a1ed88b2cd4b79acfe5d7071e988fc19db9eb66c2ab667a82c42c38993b6d4a",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.face.json.gz": "e80a16116b315937d1eb50b9ed2b339db16a9655689df77df48521401438782d",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.face.json": "af3a8d5bfc91db294d94a65963a3ba560b347b43de6030063d2de39a997ea796",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.face.json.gz": "3692a015e959c0bcb2474afa75e779bd090a7eaf9b883c97ceb26137e9ffa0f2",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.face.json": "0e7f389375721e3ff2235b7ab7c6a80005940db034862ad0b284dab413c2b546",
+    "window1-watch/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.face.json.gz": "78715fd3ac237a3868199683b034552d47689f9c5d66929e21ecd659abfd5a55",
+    "window1-watch/data/KXATPMATCH-26JUL12ALTGAS.face.json": "a3dbe538aa2d7fe4a9025b6014ba6d1b48dbce0326d38fae08ef0cae1d85feea",
+    "window1-watch/data/KXATPMATCH-26JUL12ALTGAS.face.json.gz": "c3c161b1624e765900f55cfe7d2c53662e4332a6aa81473abc43aa20f1d53cc9",
+    "window1-watch/data/KXATPMATCH-26JUL18DANPRA.face.json": "276cf896ed5068d4343c9779f0a5dbdbc824a7de06954ba923448b7ebcc681e7",
+    "window1-watch/data/KXATPMATCH-26JUL18DANPRA.face.json.gz": "dc0122cc283d52deb1b785219245a1f6c46b5371e0c6d9949c2176a69a2b8ad2"
+  },
+  "status": "PASS — existing outcomes, stage bindings, OS/face hashes and full history prefixes preserved",
+  "old_history_entries": 35,
+  "new_history_entries": 44
+}

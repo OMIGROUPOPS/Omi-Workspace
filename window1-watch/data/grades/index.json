@@ -208,7 +208,7 @@
       "revision": 0,
       "grade_sha256": "95525f2520fabef599672fce0370eacb6455c9a95cd2056af5b0a279acbd709e",
       "append_order": 8,
-      "x": 302,
+      "x": 370,
       "y": 88,
       "hover_lines": [
         "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
@@ -232,7 +232,7 @@
       "revision": 0,
       "grade_sha256": "04b0185997ef839d2680529a517f01cfec8689a55c48a4bd2e5e2f038a7febf2",
       "append_order": 9,
-      "x": 166,
+      "x": 234,
       "y": 88,
       "hover_lines": [
         "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
@@ -256,7 +256,7 @@
       "revision": 0,
       "grade_sha256": "720ed5ed0153a036abc8a6f01fdc0797973be5ca281f2ae53196490e3b7866fb",
       "append_order": 10,
-      "x": 302,
+      "x": 370,
       "y": 88,
       "hover_lines": [
         "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
@@ -280,7 +280,7 @@
       "revision": 0,
       "grade_sha256": "97b86b03ce4191fd3e84f84c8d23bf956c9adabe9b7cdc62cb683312e28b17c5",
       "append_order": 11,
-      "x": 166,
+      "x": 234,
       "y": 88,
       "hover_lines": [
         "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
@@ -304,7 +304,7 @@
       "revision": 0,
       "grade_sha256": "9f036aa261e6ac64f2bf662d55b51d10ad4d5aae5f53a534dbae4bc67c9e7f3a",
       "append_order": 12,
-      "x": 166,
+      "x": 234,
       "y": 88,
       "hover_lines": [
         "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
@@ -808,13 +808,253 @@
       "revision": 0,
       "grade_sha256": "e82cac350a7ef829e4593d55f48a3700205857ebe2181daa923939a31fc7490e",
       "append_order": 33,
-      "x": 336,
+      "x": 404,
       "y": 88,
       "hover_lines": [
         "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346 · F",
         "MACRO · MICRO",
         "2026-09-09T00:23:31.387Z · run 34",
         "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-09T01:31:05.944Z",
+      "os_sha": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace_sha": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+      "os_commit": "944a0cf5d3e154003233531f6d48059340e2de53",
+      "commit_order": 3030,
+      "grading_commit": "85e7523e4cb6c92cf1cf83c74eab540b865d6925",
+      "letter": "F",
+      "capture_ratio": 0.5,
+      "governing_section": "MACRO · MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/70b68856_c5a1a0fc.json",
+      "revision": 1,
+      "grade_sha256": "9dfbec90f9bc7cbf3123802d7a42f522eb1072af50b64cdd4b0748272050ad09",
+      "append_order": 34,
+      "x": 302,
+      "y": 88,
+      "hover_lines": [
+        "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346 · F",
+        "MACRO · MICRO",
+        "2026-09-09T01:31:05.944Z · run 35",
+        "OS commit 944a0cf5d3e154003233531f6d48059340e2de53"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-08T17:25:14.272Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 5,
+      "grade_sha256": "24fa87f1b79800b4b929d6fd94c27f245a634807046825fc9a93787f57e2f4a7",
+      "append_order": 35,
+      "x": 166,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T17:25:14.272Z · run 36",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-08T17:25:15.558Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MACRO · MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 5,
+      "grade_sha256": "0f855315f22bfb7dd6703e1a010c3a86c61d3c7d2ba32db2c364bdbb21e8f735",
+      "append_order": 36,
+      "x": 166,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO · OUTCOME",
+        "2026-09-08T17:25:15.558Z · run 37",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-08T17:25:19.395Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 5,
+      "grade_sha256": "cadd16d85bdb5a34a30b838f42ef6322da1893e71b448cba7ed5dbd9df5ff824",
+      "append_order": 37,
+      "x": 302,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · OUTCOME",
+        "2026-09-08T17:25:19.395Z · run 38",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-08T17:25:22.060Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "STORE SILENT",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "OUTCOME",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 5,
+      "grade_sha256": "024829cea1f8e687800a1b7b78d7ae5f89c04dc87067df2c028286c561a0e91b",
+      "append_order": 38,
+      "x": 166,
+      "y": 106,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · STORE SILENT",
+        "OUTCOME",
+        "2026-09-08T17:25:22.060Z · run 39",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-09T15:19:15.769Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · PAIR",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 6,
+      "grade_sha256": "58ed1b16884a60a4c03444edc0ce918da98bfc9569c1d226e1dee7e25867e500",
+      "append_order": 39,
+      "x": 200,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · PAIR",
+        "2026-09-09T15:19:15.769Z · run 40",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-09T15:19:17.432Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MICRO",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 6,
+      "grade_sha256": "9f89dadc780ab9eae56576cf69f0a7945fa88a101f9fdfa3d3ee714ced09bc8b",
+      "append_order": 40,
+      "x": 200,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO",
+        "2026-09-09T15:19:17.432Z · run 41",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-09T15:19:22.197Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · PAIR",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 6,
+      "grade_sha256": "25406f2233c08748621430ea9c5f91f07e01622ece0370c1a8f80ad97044ca92",
+      "append_order": 41,
+      "x": 336,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · PAIR",
+        "2026-09-09T15:19:22.197Z · run 42",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-09T15:19:24.538Z",
+      "os_sha": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace_sha": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+      "os_commit": "944a0cf5d3e154003233531f6d48059340e2de53",
+      "commit_order": 3030,
+      "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+      "letter": "C",
+      "capture_ratio": 0.5,
+      "governing_section": "MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/70b68856_c5a1a0fc.json",
+      "revision": 2,
+      "grade_sha256": "39c3bc7912af6d44fabb620c1878e19c826638eda1bff89162957faa032dc0ec",
+      "append_order": 42,
+      "x": 336,
+      "y": 52,
+      "hover_lines": [
+        "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346 · C",
+        "MICRO",
+        "2026-09-09T15:19:24.538Z · run 43",
+        "OS commit 944a0cf5d3e154003233531f6d48059340e2de53"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-09T15:19:26.096Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+      "letter": "NOT OFFERED",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "NOT OFFERED — corrected floor pair offers no discount",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 6,
+      "grade_sha256": "b342b8ea27b6d8b9fb998b4f764cf9865275106ba8ef39be1a384388dc9f8f36",
+      "append_order": 43,
+      "x": 200,
+      "y": 124,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · NOT OFFERED",
+        "NOT OFFERED — corrected floor pair offers no discount",
+        "2026-09-09T15:19:26.096Z · run 44",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
       ]
     }
   ],
@@ -825,13 +1065,14 @@
       "C",
       "D",
       "F",
-      "STORE SILENT"
+      "STORE SILENT",
+      "NOT OFFERED"
     ]
   },
   "views": {
     "KXATPMATCH-26JUL12ALTGAS": {
-      "width": 400,
-      "height": 126,
+      "width": 468,
+      "height": 158,
       "labels": [
         {
           "letter": "A",
@@ -856,12 +1097,16 @@
         {
           "letter": "—",
           "y": 106
+        },
+        {
+          "letter": "N/O",
+          "y": 124
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14URSPAL": {
-      "width": 366,
-      "height": 126,
+      "width": 434,
+      "height": 158,
       "labels": [
         {
           "letter": "A",
@@ -886,12 +1131,16 @@
         {
           "letter": "—",
           "y": 106
+        },
+        {
+          "letter": "N/O",
+          "y": 124
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12GIUBAR": {
-      "width": 230,
-      "height": 126,
+      "width": 298,
+      "height": 158,
       "labels": [
         {
           "letter": "A",
@@ -916,12 +1165,16 @@
         {
           "letter": "—",
           "y": 106
+        },
+        {
+          "letter": "N/O",
+          "y": 124
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14LAJSVA": {
-      "width": 230,
-      "height": 126,
+      "width": 298,
+      "height": 158,
       "labels": [
         {
           "letter": "A",
@@ -946,12 +1199,16 @@
         {
           "letter": "—",
           "y": 106
+        },
+        {
+          "letter": "N/O",
+          "y": 124
         }
       ]
     },
     "KXATPMATCH-26JUL18DANPRA": {
-      "width": 230,
-      "height": 126,
+      "width": 298,
+      "height": 158,
       "labels": [
         {
           "letter": "A",
@@ -976,6 +1233,10 @@
         {
           "letter": "—",
           "y": 106
+        },
+        {
+          "letter": "N/O",
+          "y": 124
         }
       ]
     }

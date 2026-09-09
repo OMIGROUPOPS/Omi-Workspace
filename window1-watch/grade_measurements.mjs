@@ -75,6 +75,7 @@ export function microMeasurements(face, decisions, printInput) {
         epoch: row.epoch, eligible: reason === null, eligibility_reason: reason,
         minutes_to_bell: finite(bell) ? (bell - row.epoch) / 60 : SILENT,
         q50: d?.q50 ?? null, q_source: d?.q_source ?? null,
+        q25: d?.q25 ?? null, q75: d?.q75 ?? null, band_source: d?.band_source ?? null,
         q_author: d?.q_author ?? null, x_author: d?.x_author ?? null,
         deadline_epoch: deadline, stored_deadline_epoch: d?.deadline_epoch ?? null,
         stored_x_minutes_to_trace_bell: d?.floor_mtb ?? null,
@@ -112,6 +113,7 @@ export function microMeasurements(face, decisions, printInput) {
       first_eligible_full_span: first ? {
         receipt: first.receipt, receipt_order: first.receipt_order, epoch: first.epoch,
         minutes_to_bell: first.minutes_to_bell, q50: first.q50,
+        q25: first.q25, q75: first.q75, band_source: first.band_source,
         q_author: first.q_author, x_author: first.x_author, deadline_epoch: first.deadline_epoch,
         target: full, floor_already_observed_at_call: finite(full.floor_epoch) ? full.floor_epoch <= first.epoch : SILENT,
         ...scoreTarget(first, full, bell),

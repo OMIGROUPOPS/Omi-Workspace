@@ -224,7 +224,7 @@ test("span-bound capture excludes bell and partials; same timestamp forces F", (
 test("missing rubric section is not an A; demonstrated F still dominates", () => {
   assert.equal(worstLetter(["A", SILENT], rubric), SILENT);
   assert.equal(worstLetter(["F", SILENT], rubric), "F");
-  assert.match(rubric.status, /PLACEHOLDER/);
+  assert.match(rubric.status, /OPERATOR STANDARD v1/);
 });
 test("history retains repeated hashes and earlier snapshots", async () => {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), "face-grade-test-"));

@@ -883,6 +883,21 @@ sample: the full row-272 renewal and 57→56 supersession, with source OS/trace 
 
 ## Oracle path and sentence gap — RULER, NOT AN OS INPUT
 
+Bench source correction: the default join is now
+`arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_NAMED_CHECKS.json`
+at `c78259251d784b090961ace0d8f08e5c1af99796`, SHA256
+`d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325`.
+That file contains all five named games, including the challenger checks; it is
+not a request to put challenger games in an ATP_MAIN member pool. The former
+minute-library proof is never an automatic fallback. A different file at the
+default path fails until an explicit baseline is selected. `provenance.bench_commit`
+and `bench.source_commit` record this binding for refreshed faces. Missing games
+remain STORE SILENT. Corrected bells still rebase only already-observed bench
+receipts; no future same-numbered gate is moved backwards. The local
+`refresh_bench_join.mjs` updates saved faces without replay, preserving OS fields,
+tape, oracle and ruler. A grade whose bench hash changes must be rebuilt rather
+than silently relabeled; otherwise only its face-file hash is rebound.
+
 `oracle` is hindsight only. Its **perfect sentence** is the minimum of strictly
 later positive-size true prints from the custody tape, inside the corrected
 verified span (`span_start_epoch <= print epoch <= span_end_epoch`, print strictly
@@ -932,3 +947,75 @@ use maximum absolute gap with earliest receipt as tiebreak. `hud_line` is stored
 text rounded to two decimals, with null shown STORE SILENT. HUD is explicitly
 full-run hindsight even while replay is paused; no pricing, conduct or grade rule
 is changed. Historical grade snapshots remain; rebuilt grades only bind the new face.
+
+## Operator-standard rubric v1 — face grading only
+
+This section supersedes the earlier PLACEHOLDER grading/letter rules, not their
+raw measurements. `grade_rubric.json` is the complete operator-editable rule
+record. Status: preliminary performance test, **not Gate-1 certification**.
+Every new threshold is a visible grading judgment, not an OS constant or a fitted
+rule. Existing stage, tape, face, engine and corrected truth inputs are unchanged.
+
+The four governing sections are MACRO, MICRO, TRADE, PAIR. Overall is the worst;
+there is no capture bonus. A demonstrated named branch, pre-formation placement,
+same-second fill, post-only violation, out-of-span/bell fill or over-par pair is
+a hard F. Missing safety evidence prevents a passing letter; it is not assumed
+safe. A verified nonpositive offered discount is `NOT OFFERED`, shown as `—`
+and an `N/O` history row, not a successful no-trade or an abstention failure.
+Hard failures still override it. Unknown offer is not the same as no offer.
+
+- `MACRO.operator_roles[leg]`: first stored directional `first_bind` from
+  `layers.macro.context.pool_cascade.sides[leg].roles` (fallback the stored
+  `belief.pool_cascade.roles`), inside the corrected span and no later than its
+  fill. The first recorded receipt/epoch and original first-bind epoch remain.
+  No later correct call replaces it. If recorded role history never binds,
+  `called_role=NOT_CALLABLE`; no history means STORE SILENT.
+  `realized_role` uses corrected `effective_row.leg*_close_c` minus corrected
+  `leg*_open_postformation_c`; never the stale net-travel column. The filed
+  RECOGNITION_OPERATING_POINT @41c1f724 ±2¢ rule separates CLIMBER/FALLER from
+  NOT_CALLABLE. Open/close/drift and source columns are written. `correct` is
+  equality. Both right=A; one=C; neither=F. Final stored role and flip count are
+  diagnostics; flips do not automatically worsen a correct initial idea.
+- `MICRO.receipt_calls[].q25/q75/band_source` and
+  `first_eligible_full_span` copy the same selected receipt's
+  `pricing_authority.true_conditioning.quantiles.q25/q75.level_cents`, falling
+  back only to stored `belief.pool_cascade.quantiles`. No new pool is computed.
+  `operator_first_call[leg]` records point/range letters, band width, containment,
+  source/receipt, Q and floor error. Point error A≤1¢, B≤2¢, C≤3¢, otherwise F.
+  An ordered q25≤q50≤q75 band containing the floor earns B if width≤4¢ or C if
+  width≤6¢; never A from a range alone. These widths are twice the respective
+  point tolerance. Best point/range letter per side, then worst side. Missing
+  range does not erase a valid point score; verified no eligible call=F.
+- First/full-span, every-receipt remaining path, strictly future-print-only
+  targets and matching timing errors remain intact. `mode_grades` explicitly
+  marks remaining-path/future-print modes diagnostic, not governing. Oracle
+  `mean_absolute_gap_cents` belongs under `MICRO.oracle_diagnostic`, copied from
+  the hash-bound saved face with its provenance and receipt/missing denominators.
+  It includes post-fill forecasts and is receipt-, not time-weighted: no letter
+  cutoff. Timing also remains diagnostic for this preliminary standard.
+- `TRADE.legs` preserves actual cents and corrected-span validity from OUTCOME.
+  Both fills' absolute full-span floor premiums A≤1¢, B≤2¢, C≤3¢; further=D;
+  one valid fill=D; none=F (except no offer). No asymmetric free pass for the
+  second side. `floor_printed_before_fill` and `floor_printed_before_order`
+  compare the corrected floor epoch to actual fill and original lineage start.
+  Full-span premium remains even if the floor already printed: 2¢ is B, not
+  exact, with no extra second penalty. Do not substitute a later higher floor
+  or claim an earlier maker fill was certain. Both lineage/current-price ages
+  remain separately reported.
+- `PAIR` retains the existing valid-fill pair sum, offered/captured amounts and
+  capture ratio. Complete under par: A≥75% of offer, B≥50%, C positive below
+  half. Complete at par=D; incomplete/over-par=F. 75%/50% are explicit v1 grading
+  choices, not fitted boundaries; fixed 97/99 price bands are not used.
+- SENTENCE and HANDS remain full audit objects; OUTCOME remains unchanged.
+  Author-token shares still say **authored**, not certified. `display` has four
+  governing short lines with their letters and numeric hover data, plus an
+  authorship diagnostic line; oracle/timing/flips are in diagnostic hovers.
+  `LETTER.rubric_id`, `capture_bonus_applied=false`,
+  `performance_not_certification=true`, and `safety_evidence_missing` state scope.
+- Provenance adds `grade_operator_standard_sha256`; the receipt embeds the
+  entire rubric and review rationale alongside the four existing prior-art
+  citations. `regrade_operator_standard.mjs` captures actual working before
+  cards, preserves exact full history snapshots (including refreshed local
+  cards not already in history), regrades existing stage files only, and writes
+  `proof/GRADE_RUBRIC_V1_BEFORE_AFTER.json`. It verifies unchanged outcomes,
+  author counts, stage bindings, OS/builder/face hashes and old history prefixes.

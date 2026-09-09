@@ -1,6 +1,116 @@
 {
-  "version": 2,
+  "version": 3,
   "role": "REPORT ONLY — no OS inputs changed",
+  "operator_standard": {
+    "version": 3,
+    "rubric_id": "OPERATOR_STANDARD_V1",
+    "status": "OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "F"
+    ],
+    "missing": "STORE SILENT; missing evidence is not success. A verified absence of a call is F, not missing evidence.",
+    "scope": "Face grading only. Cutoffs are visible grading judgments, not engine constants or fitted trading rules.",
+    "hard_failures": [
+      "named_tokens_found",
+      "pre_formation_placements",
+      "same_second_fill",
+      "post_only_violations",
+      "fill_outside_corrected_span",
+      "pair_over_par"
+    ],
+    "sections": {
+      "MACRO": {
+        "label": "Initial macro idea, not the pool's exact family name",
+        "role_drift_cents": 2,
+        "role_source": "RECOGNITION_OPERATING_POINT @41c1f724: close minus post-formation open; >=+2 CLIMBER, <=-2 FALLER, else NOT_CALLABLE. Use corrected close/open, never stale net_travel.",
+        "selection": "First recorded directional first_bind inside the corrected span and no later than that side's first fill; never select a later correct call. If a complete stored role history never binds, NOT_CALLABLE. Missing role history is STORE SILENT.",
+        "minimum_correct_side_share": {
+          "A": 1,
+          "C": 0.5
+        },
+        "otherwise": "F",
+        "flip_penalty": false,
+        "rationale": "Both initial directions right is A; one is C; neither F. Later revisions are disclosed, not punished merely for adapting. Exact family and timing remain diagnostics. No separate B/D boundary is needed."
+      },
+      "MICRO": {
+        "label": "First eligible floor call or a useful stored range",
+        "maximum_point_error_cents": {
+          "A": 1,
+          "B": 2,
+          "C": 3
+        },
+        "range_credit": {
+          "B": {
+            "maximum_width_cents": 4
+          },
+          "C": {
+            "maximum_width_cents": 6
+          }
+        },
+        "range_rule": "Same first eligible receipt's q25-q75 must contain the recorded floor and its q50, with ordered finite endpoints. Width = q75-q25. B width 4 is +/-2; C width 6 is +/-3. Range alone never earns A. Missing range does not erase an available Q score.",
+        "aggregation": "Better of point and qualifying range per side; worst side. No call F. No verified floor STORE SILENT.",
+        "otherwise": "F",
+        "timing_governs": false,
+        "oracle_mean_governs": false,
+        "rationale": "Do not cherry-pick later Q. Keep first-call and remaining-print timing/errors, oracle mean and its denominator visible; the receipt-weighted oracle mean includes post-fill forecasts and is not the preliminary objective."
+      },
+      "TRADE": {
+        "label": "Actual trade near each full-span floor",
+        "maximum_both_fill_error_cents": {
+          "A": 1,
+          "B": 2,
+          "C": 3
+        },
+        "both_filled_but_further": "D",
+        "one_valid_fill": "D",
+        "no_valid_fills": "F",
+        "past_floor_extra_penalty": false,
+        "rationale": "Both sides must meet the same tolerance. A 2c premium is B, including when the floor already printed. Preserve that fact; do not reset the target to a higher later floor, or apply a second penalty for the same overpay. Unknown queue means the missed earlier fill is not declared certain."
+      },
+      "PAIR": {
+        "label": "Complete under par, relative to what this game offered",
+        "par_cents": 100,
+        "minimum_capture_ratio": {
+          "A": 0.75,
+          "B": 0.5
+        },
+        "positive_capture_below_B": "C",
+        "complete_at_par": "D",
+        "incomplete_or_over_par": "F",
+        "no_offered_discount": "NOT OFFERED",
+        "rationale": "A captures at least three quarters, B at least half, C some discount; these are explicit v1 grading judgments, not fitted cutoffs. No fixed 97/99 pair-price bands. Verified zero offer is outside the offer denominator, not an abstention failure or success."
+      }
+    },
+    "letter": {
+      "aggregation": "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it.",
+      "capture_bonus_steps": 0,
+      "no_offer_label": "NOT OFFERED",
+      "no_offer_display": "—",
+      "pass_marks": [
+        "A",
+        "B"
+      ],
+      "certification": "Performance grade only; author-token shares remain diagnostic and Gate-1 certification remains STORE SILENT."
+    }
+  },
+  "operator_review": {
+    "decision": "AMEND",
+    "basis": "Operator preliminary goal: macro idea, floor or useful range, nearby trade, complete under par; not last-cent perfection or Gate-1 certification.",
+    "changes": [
+      "Initial directional call is frozen before fill; later corrections and flip counts are disclosed, not cherry-picked or automatically penalized.",
+      "Same first eligible Q and bounded q25-q75 range; no later accurate call selection. Timing and oracle mean remain diagnostics, not preliminary letter cutoffs.",
+      "Both trades must satisfy the same full-span floor tolerance. An earlier floor keeps its 2c premium at B, without an invented queue fill or duplicate penalty.",
+      "PAIR uses offered-relative capture, not 97/99 absolute sums. No capture uplift; hard safety/named failures cannot be bought off.",
+      "Verified no-under-par-offer games are NOT OFFERED, not failed for no trade and not awarded a passing overall letter."
+    ],
+    "new_cutoffs": "Explicit v1 grading judgments in grade_rubric.json, not fitted on the five games. Price tolerances inherit counsel's 1/2/3c; band widths 4/6 are twice the corresponding 2/3c tolerance; 75%/50% capture thresholds are labeled grading choices.",
+    "macro_prior_art": "RECOGNITION_OPERATING_POINT @41c1f724; realized close minus post-formation open, +/-2c. Corrected columns, not cached net_travel.",
+    "scope": "No engine, pool, pricing, conduct, replay or population bench change."
+  },
   "citations": {
     "PER_GAME_L1_L8": {
       "path": "C:/tmp/omi-v53-understanding-organ-20260819/.claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/PER_GAME_L1_L8.json",
@@ -33,10 +143,10 @@
     }
   },
   "bench_taxonomy_receipt": {
-    "path": "arb-executor/analysis/tune_bench_v2/TUNE_BENCH_RECEIPT.json",
-    "sha256": "5ee21f7380bd5b251719e7ecb467c85092f7b6b70ea20c1db44ce0a581a8a857",
-    "bytes": 28853,
-    "commit": "00432041cd307ed22de3d0a7377fab6e04654f17",
+    "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+    "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b",
+    "bytes": 33824,
+    "commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
     "role": "Realized family rule, inherited 17-point taxonomy plus declared bench choices.",
     "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
     "bench_choices": {
@@ -56,7 +166,7 @@
       "sleeper": "actual post-formation true-print count < category empirical p10; bench choice, not taxonomy law",
       "small_net_branch": "abs(net)<5: ROUND_TRIP if travel>=10; otherwise QUIET_WOBBLE; no extra band filter"
     },
-    "label": "PROOF RUN — STALE LIBRARY (ends 2026-05-01) — NOT A RULING"
+    "label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD"
   },
   "rules": {
     "authorship": "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
@@ -66,7 +176,7 @@
     "taxonomy": "Read realized labels from the hash-bound bench. Compare each side's latest stored family as of bench bell minus gate*60 against that same bench gate; no OS timestamp or family is recomputed. MICRO and chart clocks stay unchanged.",
     "cascade_writers": "FIELDS.md maps POOL_FIRST_TICK (alias), POOL_FIRST-TICK-ONLY, POOL_BASE, POOL_CASCADE:* and POOL_CASCADE_WRITER to ORGAN. Hold/veto precedence and raw tokens remain unchanged.",
     "ruler_comparison": "Apply every event-matching correction from W1_GROUND_TRUTH_CORRECTIONS.jsonl @15955e44 in ledger order to the original pinned row. Effective floors, bell, span and denominator grade this run; original CSV and full correction JSONL rows remain alongside. Every observed fill is revalidated against both corrected span and bell. No trace, face input, or OS call is changed.",
-    "micro": "First eligible stored resolved P/Q/X forecast in receipt order versus full recorded span; every eligible receipt versus its remaining path, with separate carried state and strictly future-print targets. Match timing to each target using the original absolute deadline. Existing rubric cutoffs unchanged; worst of the two grading modes. Receipt-level errors, means and denominators retained.",
+    "micro": "First eligible stored resolved P/Q/X forecast in receipt order versus full recorded span; use its stored q25/q75 only for bounded range credit. Every receipt/remaining-path and strictly future-print score remains diagnostic, as do timing and receipt-weighted oracle mean. Never move a stored absolute deadline.",
     "hands_ages": "Separate original PLACE lineage age from current-price age, resetting only the latter on price change; remove/fill ends the lineage. Fill same-second check uses the current-price start timestamp. The legacy chart age is preserved, not used as current-price duration.",
     "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
   }

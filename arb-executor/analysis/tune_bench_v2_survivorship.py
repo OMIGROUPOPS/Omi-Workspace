@@ -1437,13 +1437,58 @@ def add_eligible_utility(scoreboard):
     return scoreboard
 
 
+def new_matched_cell():
+    """Reporting only; never changes a prediction or its call status."""
+    return dict(eligible=0, step_calls=0, first_calls=0, n=0,
+                step_error_sum=0.0, first_error_sum=0.0,
+                step_timing_sum=0.0, first_timing_sum=0.0,
+                step_band_hits=0, first_band_hits=0, step_closer=0, tied=0)
+
+
+def add_matched_cell(cell, step, first):
+    cell["eligible"] += 1
+    cell["step_calls"] += step.get("status") == "OK"
+    cell["first_calls"] += first.get("status") == "OK"
+    if step.get("status") != "OK" or first.get("status") != "OK":
+        return
+    a, b = step["floor_absolute_error_cents"], first["floor_absolute_error_cents"]
+    cell["n"] += 1
+    cell["step_error_sum"] += a
+    cell["first_error_sum"] += b
+    cell["step_timing_sum"] += step["floor_timing_absolute_error_minutes"]
+    cell["first_timing_sum"] += first["floor_timing_absolute_error_minutes"]
+    cell["step_band_hits"] += step["floor_band_coverage"]
+    cell["first_band_hits"] += first["floor_band_coverage"]
+    cell["step_closer"] += a < b
+    cell["tied"] += a == b
+
+
+def finish_matched_cell(cell):
+    def mean(key):
+        return cell[key]/cell["n"] if cell["n"] else None
+    def coverage(key):
+        return cell[key]/cell["eligible"] if cell["eligible"] else None
+    return dict(n=cell["n"], eligible_queries=cell["eligible"],
+        step_called_queries=cell["step_calls"], first_called_queries=cell["first_calls"],
+        step_call_coverage=coverage("step_calls"), first_call_coverage=coverage("first_calls"),
+        matched_call_coverage=coverage("n"),
+        step_floor_mae=mean("step_error_sum"), first_floor_mae=mean("first_error_sum"),
+        step_timing_mae_minutes=mean("step_timing_sum"), first_timing_mae_minutes=mean("first_timing_sum"),
+        step_q25_q75_floor_band_coverage=mean("step_band_hits"),
+        first_q25_q75_floor_band_coverage=mean("first_band_hits"),
+        step_strictly_closer_queries=cell["step_closer"],
+        step_strictly_closer_share=mean("step_closer"), tied_queries=cell["tied"],
+        qualifies=cell["n"] >= 100 and cell["step_closer"] >= .50*cell["n"],
+        step_authorship_enabled=False)
+
+
 def summarize(scoreboard):
     def number(x):
         return "—" if x is None else f"{x:.3f}"
     def get(cell, key, stat="mean"):
         return cell.get("metrics", {}).get(key, {}).get(stat)
     out = ["# " + scoreboard["label"], "", "No engine change or automatic rule selection. Book reach is diagnostic only, not execution proof.", "",
-           "Error means are conditional on called sides. Utility shows both called-pair and all-eligible-query denominators; NO-CALL contributes zero only to reach/discount utility. These are not matched-cohort comparisons.", ""]
+           "Error means are conditional on called sides. Utility shows both called-pair and all-eligible-query denominators; NO-CALL contributes zero only to reach/discount utility. The rule-wide tables are not matched-cohort comparisons; the separately labelled STEP / FIRST table is matched.", ""]
     for category, section in scoreboard["categories"].items():
         out += [f"## {category}", ""]
         for level, key in (("MACRO — favorite / underdog last-path MAE", "path_last_mae_cents"),
@@ -1498,6 +1543,25 @@ def summarize(scoreboard):
                 metrics = row.get("rules", {}).get(rule, {}).get("metrics", {})
                 cells.append(" / ".join(str(metrics.get(f"sides.{side}.floor_absolute_error_cents", {}).get("n", 0)) for side in SIDES))
             out.append("| " + " | ".join([str(gate), str(row.get("scorable_queries", 0)), *cells]) + " |")
+        out.append("")
+    for category, gates in scoreboard.get("matched_step_first", {}).items():
+        out += [f"## {category} — matched STEP / FIRST", "",
+                "Same query, side and gate; SCORABLE and both calls OK. Floor errors in cents; timing errors in minutes. Call coverage uses all eligible queries; band coverage uses only the matched cohort. Ties remain in n but are not strict wins. Qualification is n >= 100 and STEP strictly closer on at least half. Report only: no engine author changed.", "",
+                "| Gate | Side | STEP calls / eligible | FIRST calls / eligible | Matched n | Floor MAE STEP / FIRST | Timing MAE STEP / FIRST | q25–q75 coverage STEP / FIRST | STEP strict wins / n | Strict-win share | Qualifies |",
+                "|---:|---|---:|---:|---:|---|---|---|---:|---:|---|"]
+        for gate in GATES:
+            for side in SIDES:
+                row = gates[str(gate)][side]
+                def paired(a, b):
+                    return number(row[a])+" / "+number(row[b])
+                out.append("| " + " | ".join([str(gate), side,
+                    f"{row['step_called_queries']} / {row['eligible_queries']}",
+                    f"{row['first_called_queries']} / {row['eligible_queries']}", str(row["n"]),
+                    paired("step_floor_mae", "first_floor_mae"),
+                    paired("step_timing_mae_minutes", "first_timing_mae_minutes"),
+                    paired("step_q25_q75_floor_band_coverage", "first_q25_q75_floor_band_coverage"),
+                    f"{row['step_strictly_closer_queries']} / {row['n']}",
+                    number(row["step_strictly_closer_share"]), "YES" if row["qualifies"] else "NO"]) + " |")
         out.append("")
     out += ["## Declared limits", ""] + ["- " + line for line in scoreboard["limitations"]]
     return "\n".join(out)+"\n"
@@ -1556,6 +1620,8 @@ def build_outputs(args):
         "Roles, first-bind and flips use only receipts observed from first pair bind through this receipt. Final-truth accuracy lives in a separately labelled retrospective evaluation block. Gate SCORABLE is an evaluation denominator only, never a prediction gate.",
         "VALIDITY retains the raw share for audit and is labelled INVALID: ESS < 10 below the atlas evidence floor; never an accepted call below ten."
     ])
+    if "ATP_CHALL" in args.categories:
+        limitations.append("SUPERSEDES ATP_CHALL @f93ecba3 with the c7825925 corrected definitions. The matched STEP/FIRST authorization test is report-only; qualifying a side/gate does not install an engine author.")
     output = dict(label=LABEL if args.proof else "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD" if args.tick_counts else "BELL-CLOCK SURVIVORSHIP BENCH — NOT A TRADING RULING",
                   categories={}, limitations=limitations, prior_art=prior_art)
     query_audit = {}
@@ -1566,8 +1632,7 @@ def build_outputs(args):
         status = {str(g): Counter() for g in GATES}
         recognition = {str(g): new_cell() for g in GATES}
         initials = []
-        matched = {str(g): {s: dict(n=0, step_error_sum=0.0, first_error_sum=0.0,
-                                  step_closer=0, tied=0) for s in SIDES} for g in GATES}
+        matched = {str(g): {s: new_matched_cell() for s in SIDES} for g in GATES}
         if args.limit_queries:
             queries = queries[:args.limit_queries]
         executor = None
@@ -1592,14 +1657,7 @@ def build_outputs(args):
                     for side in SIDES:
                         step = row["rules"]["STEP-FORECAST"].get("sides", {}).get(side, {})
                         first = row["rules"]["FIRST-TICK-ONLY"].get("sides", {}).get(side, {})
-                        if step.get("status") == first.get("status") == "OK":
-                            a, b = step["floor_absolute_error_cents"], first["floor_absolute_error_cents"]
-                            cell = matched[gate][side]
-                            cell["n"] += 1
-                            cell["step_error_sum"] += a
-                            cell["first_error_sum"] += b
-                            cell["step_closer"] += a < b
-                            cell["tied"] += a == b
+                        add_matched_cell(matched[gate][side], step, first)
                     for rule, pred in row["rules"].items():
                         add_cell(cells[gate][rule], pred)
                     rec = dict(status="OK", sides=row["recognition"])
@@ -1621,14 +1679,7 @@ def build_outputs(args):
                 recognition=finish_cell(recognition[key]),
                 rules={r: finish_cell(cell) for r, cell in cells[key].items()} if not wta_silent else {})
         output["categories"][category] = category_output
-        matched_cohorts[category] = {gate: {side: dict(
-            n=cell["n"],
-            step_floor_mae=cell["step_error_sum"]/cell["n"] if cell["n"] else None,
-            first_floor_mae=cell["first_error_sum"]/cell["n"] if cell["n"] else None,
-            step_strictly_closer_share=cell["step_closer"]/cell["n"] if cell["n"] else None,
-            tied_queries=cell["tied"],
-            qualifies=cell["n"] >= 100 and cell["step_closer"] >= .50*cell["n"],
-            step_authorship_enabled=False)
+        matched_cohorts[category] = {gate: {side: finish_matched_cell(cell)
             for side, cell in sides.items()} for gate, sides in matched.items()}
     named = dict(label=output["label"], prior_art=prior_art, events={}, input_receipt={})
     if not args.skip_named:
@@ -1650,6 +1701,10 @@ def build_outputs(args):
                            "VALIDITY invalid below ESS ten; prior ATP_MAIN @0c8850b7 superseded"] if args.tick_counts else []),
         supersedes=dict(commit="0c8850b7", scope="ATP_MAIN tables and five named checks",
             reason="pointwise-quantile minima and future-query forecast timestamps replaced; receipt-time first-bind"),
+        corrected_definition=dict(commit="c7825925", scope="forecasting functions unchanged",
+            regenerated_categories=args.categories,
+            replaces_category_publication={"ATP_CHALL": "f93ecba3"} if "ATP_CHALL" in args.categories else {},
+            reporting_extension="Matched timing, call/band coverage and strict-win count only; no prediction, pool or engine change"),
         organ_contract=dict(version="CAUSAL_MEMBER_FLOORS_FIXED_ATLAS_RECEIPT_ROLES",
             gates_minutes_to_bell=GATES, quantiles=QUANTILES, no_call_ess_floor=10,
             role_drift_cents=2, discovery_side_boundary_cents=50,
@@ -1690,6 +1745,9 @@ def build_outputs(args):
         no_call="ESS < 10 after role/availability filter, counted explicitly with separate denominators; never replace with a different pool",
         matched_step_first=dict(scope="REPORT_ONLY; FIRST-TICK-ONLY then BASE authors; STEP telemetry",
             cohort="same query, side and gate; SCORABLE and both rules status OK",
+            timing="mean absolute floor-time error on exactly the same matched queries as floor MAE",
+            call_coverage="rule called sides / all SCORABLE queries at this gate; NO-CALL remains in denominator",
+            band_coverage="share of matched queries whose actual remaining floor lies in the rule's q25-q75 band",
             criterion=dict(minimum_matched_queries=100, minimum_step_strictly_closer_share=.50,
                            ties="included in denominator, not STEP wins"),
             categories=matched_cohorts),
@@ -1697,6 +1755,7 @@ def build_outputs(args):
         determinism="fixed event_id/timestamp order; exact inverse weighted CDF; no randomness or runtime stamps in artifacts; --verify-repeat byte-compares both builds",
         limitations=limitations)
     output["query_set_audit"] = query_audit
+    output["matched_step_first"] = matched_cohorts
     add_eligible_utility(output)
     args.out.mkdir(parents=True, exist_ok=True)
     paths = {}
@@ -1716,6 +1775,28 @@ def build_outputs(args):
 
 def self_test():
     import tempfile
+    # Matched reporting: no-call denominators, ties, timing and the filed boundary.
+    m = new_matched_cell()
+    assert finish_matched_cell(m)["step_floor_mae"] is None
+    assert not finish_matched_cell(m)["qualifies"]
+    step = dict(status="OK", floor_absolute_error_cents=2,
+                floor_timing_absolute_error_minutes=40, floor_band_coverage=True)
+    first = dict(status="OK", floor_absolute_error_cents=3,
+                 floor_timing_absolute_error_minutes=20, floor_band_coverage=False)
+    add_matched_cell(m, step, first)
+    add_matched_cell(m, step, {**first, "floor_absolute_error_cents": 2})
+    add_matched_cell(m, dict(status="NO-CALL"), first)
+    report = finish_matched_cell(m)
+    assert report["n"] == 2 and report["eligible_queries"] == 3
+    assert report["step_called_queries"] == 2 and report["first_called_queries"] == 3
+    assert report["step_strictly_closer_share"] == .5 and report["tied_queries"] == 1
+    assert report["step_timing_mae_minutes"] == 40 and report["first_timing_mae_minutes"] == 20
+    assert report["step_q25_q75_floor_band_coverage"] == 1 and report["first_q25_q75_floor_band_coverage"] == 0
+    assert not report["qualifies"]
+    boundary = {**m, "n": 100, "step_closer": 50}
+    assert finish_matched_cell(boundary)["qualifies"]
+    assert not finish_matched_cell({**boundary, "step_closer": 49})["qualifies"]
+    assert not finish_matched_cell({**boundary, "n": 99})["qualifies"]
     values = np.array([[[0, 12.5]], [[2, 80000]], [[1, 4.0]]])
     w = np.array([1., 2., 1.])
     for q, vals in quantile_cube(values, w).items():
@@ -1981,7 +2062,7 @@ def self_test():
         assert list(leg.low) == [58,57]
         assert adapted[0].date == "2026-06-01"
         assert bound["volume_is_not_print_count"]
-    print("SELF-TEST PASS: quantiles; exact counts; ESS/no-call family boundary; cached forecasts; separate price/volume factors; future-mutation causality; walk-forward exclusions; direct/1-worker/2-worker byte equality; eligible-query utility denominators; native-tick sidecar contract; same-player reporting", flush=True)
+    print("SELF-TEST PASS: quantiles; exact counts; ESS/no-call family boundary; cached forecasts; separate price/volume factors; future-mutation causality; walk-forward exclusions; direct/1-worker/2-worker byte equality; eligible-query utility denominators; native-tick sidecar contract; same-player reporting; matched STEP/FIRST denominators, timing, ties and authorization boundary", flush=True)
 
 
 def merge_category_runs(args):

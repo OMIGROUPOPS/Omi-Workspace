@@ -1,0 +1,81 @@
+{
+  "baseline_commit": "c7825925",
+  "named_check_baseline": {
+    "reference": "c7825925:arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_NAMED_CHECKS.json",
+    "byte_identical": true,
+    "sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+    "ruler_corrections_15955e44_applied": false,
+    "limitation": "Exact c7825925 reproduction: GIUBAR, URSPAL and DANPRA retain the baseline loader's pre-correction bells. These named checks are not a corrected-ruler rebase. The 2287-game ATP_CHALL library comparison is unaffected."
+  },
+  "baseline_script_sha256": "b4d1f33f33f91c6ba99e40a510c760dd2c6c13f9452cffeef14616a2f8f1cced",
+  "changed_existing_definitions": [
+    "summarize",
+    "build_outputs",
+    "self_test"
+  ],
+  "command": [
+    "C:\\Users\\omigr\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-u",
+    "arb-executor/analysis/tune_bench_v2_survivorship.py",
+    "--library",
+    "arb-executor/data/durable/RANGE_OVERLAP_LIBRARY_TICKS.jsonl.gz",
+    "--library-receipt",
+    "arb-executor/data/durable/RANGE_OVERLAP_LIBRARY_TICKS_RECEIPT.json",
+    "--tick-counts",
+    "arb-executor/data/durable/RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+    "--out",
+    "arb-executor/analysis/tune_bench_v2_ticks/ATP_CHALL",
+    "--categories",
+    "ATP_CHALL",
+    "--workers",
+    "6",
+    "--verify-repeat"
+  ],
+  "determinism_passes": {
+    "RUN1": {
+      "NAMED_CHECKS": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "RECEIPT": "d28a6702af384c2dd7bd2091dff8569196cf820efa58f8fb460a59ad08032a48",
+      "SCOREBOARD": "ddecb67fa930e3a9520a80b88e269c7a186d1464bf6bace8febe0477da223f31",
+      "SUMMARY": "362b125a7708cf28bf8eaaefc2f59ee502cb5d50972478c8db52c8aa8b97c66b"
+    },
+    "RUN2": {
+      "NAMED_CHECKS": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "RECEIPT": "d28a6702af384c2dd7bd2091dff8569196cf820efa58f8fb460a59ad08032a48",
+      "SCOREBOARD": "ddecb67fa930e3a9520a80b88e269c7a186d1464bf6bace8febe0477da223f31",
+      "SUMMARY": "362b125a7708cf28bf8eaaefc2f59ee502cb5d50972478c8db52c8aa8b97c66b"
+    }
+  },
+  "engine_author_changed": false,
+  "named_check_events": [
+    "26JUL12ALTGAS",
+    "26JUL12GIUBAR",
+    "26JUL14LAJSVA",
+    "26JUL14URSPAL",
+    "26JUL18DANPRA"
+  ],
+  "protected_sha256_after": {
+    "arb-executor/analysis/build_window1_v54_dual_belief.js": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c",
+    "arb-executor/analysis/window1_v54_dual_belief_os.js": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "arb-executor/analysis/window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74"
+  },
+  "protected_sha256_before": {
+    "arb-executor/analysis/build_window1_v54_dual_belief.js": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c",
+    "arb-executor/analysis/window1_v54_dual_belief_os.js": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "arb-executor/analysis/window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74"
+  },
+  "qualification_rule": {
+    "minimum_matched_queries": 100,
+    "minimum_step_strictly_closer_share": 0.5,
+    "ties": "included in denominator, not STEP wins"
+  },
+  "qualifying_gates_by_side": {
+    "favorite": [],
+    "underdog": []
+  },
+  "query_count": 2287,
+  "replaced_ATP_CHALL_commit": "f93ecba3",
+  "script_sha256": "1cf7b7787daa40c45e096546edadebae6cef778184a7ca219404309646c1a8da",
+  "status": "PASS",
+  "unchanged_prediction_definitions": "AST_IDENTICAL"
+}

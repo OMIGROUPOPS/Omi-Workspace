@@ -48,6 +48,12 @@ export function TuneHud({
           </p>
         )}
       </div>
+      <div aria-label="Sentence GAP" className="mb-3 border-b border-border pb-3 text-xs tabular-nums">
+        {game.face.legs.map((leg, i) => <p key={leg} className={i === 0 ? "text-alt" : "text-gas"}>
+          {game.face.oracle?.legs[leg]?.hud_line ?? `${leg} GAP: STORE SILENT`}
+        </p>)}
+        <p className="mt-1 text-muted">Full-run hindsight · tape ruler, not an OS input · mean over comparable receipts</p>
+      </div>
       <div className="grid gap-3 lg:grid-cols-[2fr_1fr_1fr_1fr]">
         <div className="min-w-0">
           <p className="text-xs uppercase tracking-[0.14em] text-muted">Brain · sentence</p>

@@ -11,7 +11,7 @@
     "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
     "effective_truth_sha256": "3dc0c5268d130172298b780f7a58f36cb2ce452bfee563ba7e68b42a0cd4a373",
     "true_print_source_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
-    "face_sha256": "9893274446d828a48785c0077bd95f3277abd740446a617299c138c07ca16570",
+    "face_sha256": "56641eb821babfb46fcc1531945f55c7fbd13a8a380db899553072696e8909ce",
     "stage_inputs_sha256": "04bee3554dbdbdbbfff2ec2d64be02bc5c675c758363eac42ab6c0209e0d8f73",
     "stage_files_count": 118,
     "rubric_sha256": "7b8acc8780414bc420b11118d4d5d5c55f82cab6381909782d1447ee7dccc685",

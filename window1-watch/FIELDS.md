@@ -880,3 +880,55 @@ and `data/**/*.stages/` are local-only and ignored by Git. Existing historical
 commits are not rewritten. The local face continues to read these files normally.
 `data/accountable-bids/ACCOUNTABLE_BIDS_SAMPLE.json` is the committed 50-line
 sample: the full row-272 renewal and 57→56 supersession, with source OS/trace hashes.
+
+## Oracle path and sentence gap — RULER, NOT AN OS INPUT
+
+`oracle` is hindsight only. Its **perfect sentence** is the minimum of strictly
+later positive-size true prints from the custody tape, inside the corrected
+verified span (`span_start_epoch <= print epoch <= span_end_epoch`, print strictly
+before corrected bell). Equal-time and triggering prints are not later. No
+remaining print means null / STORE SILENT, never the last price or the table floor.
+It uses `grade_prints.mjs`'s filed receipt-identity dedupe and acceptance rule.
+Unknown / NO_FORMATION / EMPTY spans are silent with their recorded reason.
+
+`oracle.provenance`: print-tape path, SHA256, bytes, source/accepted/invalid/duplicate
+counts; book-tape SHA256 and full row counts; unchanged OS/trace SHA256; original
+truth commit/row SHA and correction commit; effective span/bell and first-tick epoch.
+The truth table supplies bounds only, **never the oracle's price**.
+`oracle.rules` records these definitions; `status`, `reason`, `role`, `label`,
+`detail_url`, `sha256_uncompressed` bind the separate `<event>.oracle.json.gz`.
+This is derived ruler data, not the excluded accountability/stage stream. Raw
+prints are never copied or committed. Loading verifies the uncompressed SHA.
+
+Every book row (even unchanged prices), every finite print receipt (zero-size rows
+remain receipt positions, not floor witnesses), and trace receipt from the face's
+stored first tick through corrected bell is included once by receipt identity.
+Trace/renewal timestamps override raw book-second clocks when present. At each
+receipt, the latest stored decision at or before it supplies sentence Q, selected
+author layer and that layer's ESS; it never uses STEP's band as Q. Null Q remains
+null. Exact TICK renewal status is read, never forward-filled or inferred on traces
+without accountability. Pre-first-tick inspection has no oracle extrapolation.
+
+Detail `columns`/`ticks`: epoch, corrected minutesToBell, play/inspection progress,
+receipt identity, stored clock label, latest decision receipt_index. Per leg,
+`value_columns`/`values`: profile index, signed `Q - perfect` gap, normalized bar top
+and height. `profiles`: Q, perfect, signed gap, layer, ESS, renewal_status and three
+stored hover lines; the stored clock is the fourth. Browser does only selection and
+pixel placement. Red is positive (sentence too high), blue negative (too low).
+
+`oracle.legs[side]`: lossless change-only `path` for the thin 35%-alpha step line;
+full receipt data is not downsampled. `extent` is the maximum absolute finite gap
+for bar scaling. `fill_points` contains corrected-span-valid trace fill receipt,
+index, cents, signed gap, play/inspection progress, normalized y and stored label.
+The filling print itself is excluded from the at-fill remaining-floor query.
+
+`mean_absolute_gap_cents` is the equally receipt-weighted mean of |Q - perfect|
+over finite comparisons from first tick to bell, **not elapsed-time-weighted**.
+`receipt_count`, `comparable_receipts`, `missing_q_receipts`, and
+`no_future_print_receipts` expose denominators; missing sets can overlap.
+`at_fill_gap_cents` is signed (first valid fill if several), not an absolute error.
+`widest_absolute_gap_cents`, `widest_signed_gap_cents`, `widest_minutes_to_bell`
+use maximum absolute gap with earliest receipt as tiebreak. `hud_line` is stored
+text rounded to two decimals, with null shown STORE SILENT. HUD is explicitly
+full-run hindsight even while replay is paused; no pricing, conduct or grade rule
+is changed. Historical grade snapshots remain; rebuilt grades only bind the new face.

@@ -13,6 +13,7 @@ import {
 } from "recharts";
 import { SILENT, type LoadedGame, type Frame } from "@/lib/tune-tape";
 import { BidActionMarkers } from "./bid-action-markers";
+import { OracleGap } from "./oracle-gap";
 type Props = { game: LoadedGame; frame: number; side: string; onReceipt: (index: number) => void };
 const price = (v: unknown) => (v == null ? SILENT : `${v}¢`);
 function ChartTip({
@@ -136,6 +137,19 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
             isAnimationActive={false}
           />
           <Line
+            className="oracle-path"
+            name="perfect sentence"
+            type="stepAfter"
+            data={game.face.oracle?.legs[side]?.path ?? []}
+            dataKey="perfect"
+            stroke={stroke}
+            strokeWidth={1}
+            strokeOpacity={0.35}
+            dot={false}
+            connectNulls={false}
+            isAnimationActive={false}
+          />
+          <Line
             type="stepAfter"
             dataKey={`${prefix}Bid`}
             stroke="var(--color-muted)"
@@ -190,6 +204,7 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
             here (25–75%).
           </p>
           <p className="mt-1 text-xs text-muted">{game.face.render.marker_legend}</p>
+          <p className="mt-1 text-xs" style={{ color: stroke }}>Thin step = perfect sentence · RULER, not an OS input</p>
         </div>
         <div className="text-right tabular-nums">
           <p className="font-display text-3xl leading-none">{price(last)}</p>
@@ -240,6 +255,7 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
           onReceipt={onReceipt}
         />
       </div>
+      <OracleGap game={game} side={side} now={now} color={stroke} />
       {atBell && miss ? <p className="text-xs text-muted">{miss.label}</p> : null}
     </section>
   );

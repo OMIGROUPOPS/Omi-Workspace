@@ -1,5 +1,17 @@
 // Selection and decoding only; prices, clocks, metrics and text are builder output.
 export const SILENT = "STORE SILENT";
+export type OracleLeg = {
+  hud_line: string;
+  path: { minutesToBell: number; perfect: number | null }[];
+  fill_points: { receipt: string; index: number; gap: number | null; progress: number;
+    inspection_progress: number; y: number | null; label: string }[];
+};
+export type OracleData = {
+  ticks: [number, number, number, number, string, string, number | null][];
+  legs: Record<string, { values: [number, number | null, number | null, number | null][];
+    profiles: { Q: number | null; perfect: number | null; gap: number | null;
+      layer: string | null; ess: number | null; renewal_status: string | null; lines: string[] }[] }>;
+};
 export type LegDisplay = {
   current_rest: number | null;
   rest_known: boolean;
@@ -123,6 +135,8 @@ export type BidAction = {
   };
 };
 export type FaceData = {
+  oracle?: { role: string; status: string; reason: string | null; detail_url?: string;
+    sha256_uncompressed?: string; legs: Record<string, OracleLeg> };
   version: number;
   legs: string[];
   category: string | null;
@@ -247,6 +261,8 @@ export type GradeHistoryView = {
   labels: { letter: string; y: number }[];
 };
 export type LoadedGame = {
+  oracle?: OracleData | null;
+  oracle_status?: string;
   face: FaceData;
   frames: Frame[];
   grade?: Grade | null;
@@ -312,7 +328,20 @@ export async function loadTuneGame(url: string, signal?: AbortSignal): Promise<L
     candidate.provenance.os_sha256 === face.provenance.os_sha256 &&
     candidate.provenance.trace_sha256 === face.provenance.trace_sha256 &&
     candidate.provenance.face_sha256 === faceSha;
+  let oracle: OracleData | null = null, oracleStatus = SILENT;
+  if (face.oracle?.detail_url) {
+    const r = await fetch(face.oracle.detail_url, { signal, cache: "no-cache" });
+    if (r.ok) {
+      const bytes = await r.arrayBuffer();
+      const digest = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)))
+        .map(n => n.toString(16).padStart(2, "0")).join("");
+      if (digest !== face.oracle.sha256_uncompressed) throw new Error("Oracle ruler SHA mismatch");
+      oracle = JSON.parse(new TextDecoder().decode(bytes)) as OracleData;
+      oracleStatus = "OK";
+    } else oracleStatus = `${SILENT} — oracle ruler HTTP ${r.status}`;
+  }
   return {
+    oracle, oracle_status: oracleStatus,
     face,
     frames,
     grade: bound ? candidate : null,

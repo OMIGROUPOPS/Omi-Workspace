@@ -1,0 +1,266 @@
+{
+  "baseline": "944a0cf5d3e154003233531f6d48059340e2de53",
+  "role": "RULER — NOT AN OS INPUT",
+  "tests": [
+    "All receipt floors match independent forward multiset sweep",
+    "Signed gaps and receipt-weighted means verified",
+    "Every existing face field except oracle is unchanged",
+    "No engine replay; source OS and trace hashes unchanged",
+    "Positive-size source accepted by filed grade_prints rule",
+    "All five saved games checked"
+  ],
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "oracle_sha256": "60f61619363dd5265e8ee0700e8e44355a421c9e54c3a8c14754db3d49e159ba",
+      "oracle_gzip_bytes": 80178,
+      "legs": {
+        "BAR": {
+          "mean_absolute_gap_cents": 2.526850969176994,
+          "at_fill_gap_cents": null,
+          "widest_absolute_gap_cents": 3,
+          "widest_signed_gap_cents": -3,
+          "widest_minutes_to_bell": 539.2499999324481,
+          "receipt_count": 5000,
+          "comparable_receipts": 3147,
+          "missing_q_receipts": 59,
+          "no_future_print_receipts": 1794,
+          "hud_line": "BAR GAP: mean |Q − floor| from first tick 2.53¢ · at fill STORE SILENT¢ · widest 3¢ at 539.25m",
+          "fill_points": [],
+          "extent": 3
+        },
+        "GIU": {
+          "mean_absolute_gap_cents": 2.2224626704176584,
+          "at_fill_gap_cents": 2,
+          "widest_absolute_gap_cents": 3,
+          "widest_signed_gap_cents": 3,
+          "widest_minutes_to_bell": 388.49999998410544,
+          "receipt_count": 5000,
+          "comparable_receipts": 4621,
+          "missing_q_receipts": 59,
+          "no_future_print_receipts": 320,
+          "hud_line": "GIU GAP: mean |Q − floor| from first tick 2.22¢ · at fill 2¢ · widest 3¢ at 388.5m",
+          "fill_points": [
+            {
+              "receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+              "index": 3387,
+              "cents": 69,
+              "gap": 2,
+              "progress": 0.7260755323863889,
+              "inspection_progress": 0.7927796089347909,
+              "y": 0.16666666666666666,
+              "label": "GIU fill 69¢ · gap 2¢ · 148.37m to bell"
+            }
+          ],
+          "extent": 3
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "oracle_sha256": "caf3acb1e989046846404d018982b2390195aa08936b4e4a121ec2465cae8d6f",
+      "oracle_gzip_bytes": 690537,
+      "legs": {
+        "LAJ": {
+          "mean_absolute_gap_cents": 2.31136563876652,
+          "at_fill_gap_cents": 2,
+          "widest_absolute_gap_cents": 9,
+          "widest_signed_gap_cents": 9,
+          "widest_minutes_to_bell": 904.816666650772,
+          "receipt_count": 136245,
+          "comparable_receipts": 136200,
+          "missing_q_receipts": 44,
+          "no_future_print_receipts": 1,
+          "hud_line": "LAJ GAP: mean |Q − floor| from first tick 2.31¢ · at fill 2¢ · widest 9¢ at 904.82m",
+          "fill_points": [
+            {
+              "receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+              "index": 7189,
+              "cents": 54,
+              "gap": 2,
+              "progress": 0.5287319515385482,
+              "inspection_progress": 0.6141235842771676,
+              "y": 0.3888888888888889,
+              "label": "LAJ fill 54¢ · gap 2¢ · 457.12m to bell"
+            }
+          ],
+          "extent": 9
+        },
+        "SVA": {
+          "mean_absolute_gap_cents": 2.288341799416318,
+          "at_fill_gap_cents": 2,
+          "widest_absolute_gap_cents": 7,
+          "widest_signed_gap_cents": -7,
+          "widest_minutes_to_bell": 730.1499999841054,
+          "receipt_count": 136245,
+          "comparable_receipts": 136033,
+          "missing_q_receipts": 44,
+          "no_future_print_receipts": 168,
+          "hud_line": "SVA GAP: mean |Q − floor| from first tick 2.29¢ · at fill 2¢ · widest 7¢ at 730.15m",
+          "fill_points": [
+            {
+              "receipt": "2ce0ce6a-df98-6075-9abc-e0e7cf733a6e",
+              "index": 118599,
+              "cents": 45,
+              "gap": 2,
+              "progress": 0.9211471254177042,
+              "inspection_progress": 0.9354349086202749,
+              "y": 0.35714285714285715,
+              "label": "SVA fill 45¢ · gap 2¢ · 76.48m to bell"
+            }
+          ],
+          "extent": 7
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "oracle_sha256": "22e7b92f8540f23023f1cd90779403a7e526841b8d892eb610bccdad48f088ad",
+      "oracle_gzip_bytes": 298508,
+      "legs": {
+        "PAL": {
+          "mean_absolute_gap_cents": 3.659486006808201,
+          "at_fill_gap_cents": 3,
+          "widest_absolute_gap_cents": 4,
+          "widest_signed_gap_cents": 4,
+          "widest_minutes_to_bell": 299.7666666150093,
+          "receipt_count": 38509,
+          "comparable_receipts": 38483,
+          "missing_q_receipts": 25,
+          "no_future_print_receipts": 1,
+          "hud_line": "PAL GAP: mean |Q − floor| from first tick 3.66¢ · at fill 3¢ · widest 4¢ at 299.77m",
+          "fill_points": [
+            {
+              "receipt": "c0a9b9a6-2191-5e33-f09e-2e92e56d313c",
+              "index": 35558,
+              "cents": 43,
+              "gap": 3,
+              "progress": 0.6862614601458034,
+              "inspection_progress": 0.8471795647746463,
+              "y": 0.125,
+              "label": "PAL fill 43¢ · gap 3¢ · 110.25m to bell"
+            }
+          ],
+          "extent": 4
+        },
+        "URS": {
+          "mean_absolute_gap_cents": 4.512892493241838,
+          "at_fill_gap_cents": null,
+          "widest_absolute_gap_cents": 6,
+          "widest_signed_gap_cents": 6,
+          "widest_minutes_to_bell": 351.41666649977367,
+          "receipt_count": 38509,
+          "comparable_receipts": 38472,
+          "missing_q_receipts": 25,
+          "no_future_print_receipts": 12,
+          "hud_line": "URS GAP: mean |Q − floor| from first tick 4.51¢ · at fill STORE SILENT¢ · widest 6¢ at 351.42m",
+          "fill_points": [],
+          "extent": 6
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace_sha256": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+      "oracle_sha256": "39483d50b56de5d34e37b97d700ab580914c428a9feec27625d80990648f585c",
+      "oracle_gzip_bytes": 717429,
+      "legs": {
+        "ALT": {
+          "mean_absolute_gap_cents": 2.1188197767145134,
+          "at_fill_gap_cents": -2,
+          "widest_absolute_gap_cents": 3,
+          "widest_signed_gap_cents": -3,
+          "widest_minutes_to_bell": 2672.433333281676,
+          "receipt_count": 40394,
+          "comparable_receipts": 40128,
+          "missing_q_receipts": 248,
+          "no_future_print_receipts": 18,
+          "hud_line": "ALT GAP: mean |Q − floor| from first tick 2.12¢ · at fill -2¢ · widest 3¢ at 2672.43m",
+          "fill_points": [
+            {
+              "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+              "index": 32976,
+              "cents": 60,
+              "gap": -2,
+              "progress": 0.8547770086826318,
+              "inspection_progress": 0.8658616482888694,
+              "y": 0.8333333333333334,
+              "label": "ALT fill 60¢ · gap -2¢ · 575.6m to bell"
+            }
+          ],
+          "extent": 3
+        },
+        "GAS": {
+          "mean_absolute_gap_cents": 2.4593714257297727,
+          "at_fill_gap_cents": -1,
+          "widest_absolute_gap_cents": 3,
+          "widest_signed_gap_cents": 3,
+          "widest_minutes_to_bell": 3751.166666650772,
+          "receipt_count": 40394,
+          "comparable_receipts": 40218,
+          "missing_q_receipts": 65,
+          "no_future_print_receipts": 111,
+          "hud_line": "GAS GAP: mean |Q − floor| from first tick 2.46¢ · at fill -1¢ · widest 3¢ at 3751.17m",
+          "fill_points": [
+            {
+              "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+              "index": 36243,
+              "cents": 38,
+              "gap": -1,
+              "progress": 0.957290801822672,
+              "inspection_progress": 0.9605507268894437,
+              "y": 0.6666666666666666,
+              "label": "GAS fill 38¢ · gap -1¢ · 169.28m to bell"
+            }
+          ],
+          "extent": 3
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "oracle_sha256": "00040953f9294d18418e1faa666820f8dc1274598f5d4a25bacd2b5dd15dfc48",
+      "oracle_gzip_bytes": 103845,
+      "legs": {
+        "DAN": {
+          "mean_absolute_gap_cents": 2.541740674955595,
+          "at_fill_gap_cents": null,
+          "widest_absolute_gap_cents": 3,
+          "widest_signed_gap_cents": -3,
+          "widest_minutes_to_bell": 513.2152333339055,
+          "receipt_count": 12696,
+          "comparable_receipts": 11823,
+          "missing_q_receipts": 4,
+          "no_future_print_receipts": 869,
+          "hud_line": "DAN GAP: mean |Q − floor| from first tick 2.54¢ · at fill STORE SILENT¢ · widest 3¢ at 513.22m",
+          "fill_points": [],
+          "extent": 3
+        },
+        "PRA": {
+          "mean_absolute_gap_cents": 1.7061473016932187,
+          "at_fill_gap_cents": null,
+          "widest_absolute_gap_cents": 2,
+          "widest_signed_gap_cents": -2,
+          "widest_minutes_to_bell": 508.4338166673978,
+          "receipt_count": 12696,
+          "comparable_receipts": 11989,
+          "missing_q_receipts": 4,
+          "no_future_print_receipts": 703,
+          "hud_line": "PRA GAP: mean |Q − floor| from first tick 1.71¢ · at fill STORE SILENT¢ · widest 2¢ at 508.43m",
+          "fill_points": [],
+          "extent": 2
+        }
+      }
+    }
+  ],
+  "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346"
+}

@@ -11,10 +11,14 @@ import { readGradeRulers, applyRulerDisplayClock } from "./grade_rulers.mjs";
 import { packFace } from "./face_encoding.mjs";
 import { readPinnedTruth, attachRecordedTruth } from "./recorded_truth.mjs";
 import { chartSource, attachChartActions } from "./chart_actions.mjs";
+import { attachOraclePath } from "./oracle_path.mjs";
+import { readGradePrints } from "./grade_prints.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const dataPath = path.join(here, "data", "altgas.json");
 let legs = [];
+const bookReceipts = [];
+const bookSources = [];
 
 const args = Object.fromEntries(process.argv.slice(2).reduce((pairs, value, index, values) => {
   if (value.startsWith("--")) pairs.push([value.slice(2), values[index + 1]]);
@@ -251,12 +255,16 @@ async function loadRawFromTrace(file, event, custodyTapeDir) {
 }
 
 async function loadTape(file) {
-  const input = fs.createReadStream(file).pipe(zlib.createGunzip());
+  const digest = crypto.createHash("sha256");
+  const source = fs.createReadStream(file);
+  source.on("data", bytes => digest.update(bytes));
+  const input = source.pipe(zlib.createGunzip());
   const lines = readline.createInterface({ input, crlfDelay: Infinity });
   let header = null;
   let indexes = null;
   let previous = null;
   const rows = [];
+  let sourceRow = 0;
   for await (const line of lines) {
     if (!header) {
       header = parseCsvLine(line);
@@ -268,8 +276,11 @@ async function loadTape(file) {
     }
     if (!line) continue;
     const fields = parseCsvLine(line);
+    sourceRow++;
+    const epoch = parseNewYorkEpoch(fields[indexes.ts_et]);
+    bookReceipts.push({ epoch, receipt: `${path.basename(file)}#row-${sourceRow}`, kind: "BOOK" });
     const row = {
-      t: hoursFromFirstStage(parseNewYorkEpoch(fields[indexes.ts_et])),
+      t: hoursFromFirstStage(epoch),
       bid: cents(fields[indexes.bid_1]),
       ask: cents(fields[indexes.ask_1]),
       last: cents(fields[indexes.last_trade], true),
@@ -280,6 +291,7 @@ async function loadTape(file) {
       previous = signature;
     }
   }
+  bookSources.push({ path: file, sha256: digest.digest("hex"), rows: sourceRow });
   return rows;
 }
 
@@ -445,6 +457,10 @@ if (tracePath) {
     face.accountability = { detail_url: `/data/${name}`, rows: raw.accountability.length,
       sha256_uncompressed: crypto.createHash("sha256").update(auditPayload).digest("hex") };
   }
+  const prints = await readGradePrints(args.prints ?? path.resolve(tapeDir, "..", "prints.jsonl"),
+    [{ event: eventId, legs }], { includeReceipts: true });
+  await attachOraclePath(face, { prints: prints[eventId], bookReceipts, bookSources,
+    accountability: raw.accountability ?? [], dataRoot: path.dirname(outputPath) });
 }
 
 const payload = `${JSON.stringify(tracePath ? packFace(face) : face)}\n`;

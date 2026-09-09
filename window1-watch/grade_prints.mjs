@@ -3,7 +3,7 @@ import fs from "node:fs";
 import readline from "node:readline";
 import crypto from "node:crypto";
 
-export async function readGradePrints(file, games) {
+export async function readGradePrints(file, games, { includeReceipts = false } = {}) {
   const tickers = new Map(games.flatMap((g) => g.legs.map((leg) => [`${g.event}-${leg}`, { event: g.event, leg }])));
   const events = Object.fromEntries(games.map((g) => [g.event, { legs: Object.fromEntries(g.legs.map((l) => [l, []])) }]));
   const input = fs.createReadStream(file), digest = crypto.createHash("sha256");
@@ -17,6 +17,10 @@ export async function readGradePrints(file, games) {
     const row = JSON.parse(line), target = tickers.get(row.ticker);
     if (!target) continue;
     const epoch = Date.parse(row.exchange_ts) / 1000;
+    if (includeReceipts && Number.isFinite(epoch) && (row.receipt_id ?? row.trade_id)) {
+      (events[target.event].receipts ??= []).push({ epoch, receipt: row.receipt_id ?? row.trade_id,
+        leg: target.leg, kind: "PRINT" });
+    }
     if (row.true_print !== true || !Number.isFinite(row.price_cents) ||
         !Number.isFinite(row.size) || row.size <= 0 || !Number.isFinite(epoch) || !(row.receipt_id ?? row.trade_id)) {
       invalid++; continue;

@@ -1,0 +1,471 @@
+{
+  "by_tour_month": {
+    "ATP_CHALL/2026-04": {
+      "bell_source:CORPUS_SCHED_HONEST:milestone_sportradar": 594,
+      "bell_source:both_sides_trade_density": 266,
+      "formation_source:FIRST_BOTH_SIDES_TRADE": 472,
+      "formation_source:JUNE_OPEN_PLUS_120": 388,
+      "has_source:spaces_ticks": 834,
+      "has_source:spaces_trades": 860,
+      "library_legs": 860
+    },
+    "ATP_CHALL/2026-05": {
+      "bell_source:CORPUS_SCHED_HONEST:milestone_sportradar": 1058,
+      "bell_source:both_sides_trade_density": 24,
+      "formation_source:FIRST_BOTH_SIDES_TRADE": 1044,
+      "formation_source:JUNE_OPEN_PLUS_120": 38,
+      "has_source:backfill": 888,
+      "has_source:spaces_ticks": 502,
+      "has_source:spaces_trades": 424,
+      "library_legs": 1082
+    },
+    "ATP_CHALL/2026-06": {
+      "bell_source:CORPUS_SCHED_HONEST:milestone_sportradar": 1906,
+      "bell_source:both_sides_trade_density": 28,
+      "formation_source:FIRST_BOTH_SIDES_TRADE": 1934,
+      "has_source:backfill": 1849,
+      "has_source:spaces_ticks": 1874,
+      "has_source:spaces_trades": 1866,
+      "library_legs": 1934
+    },
+    "ATP_CHALL/2026-07": {
+      "bell_source:CORPUS_SCHED_HONEST:milestone_sportradar": 726,
+      "bell_source:both_sides_trade_density": 2,
+      "formation_source:FIRST_BOTH_SIDES_TRADE": 728,
+      "has_source:backfill": 716,
+      "has_source:spaces_ticks": 712,
+      "has_source:spaces_trades": 726,
+      "library_legs": 728
+    },
+    "ATP_MAIN/2026-04": {
+      "bell_source:CORPUS_OFFICIAL_MACHINE_RECEIPT": 2,
+      "bell_source:CORPUS_SCHED_HONEST:milestone_sportradar": 186,
+      "bell_source:both_sides_trade_density": 68,
+      "formation_source:FIRST_BOTH_SIDES_TRADE": 150,
+      "formation_source:JUNE_OPEN_PLUS_120": 106,
+      "has_source:spaces_ticks": 256,
+      "has_source:spaces_trades": 256,
+      "library_legs": 256
+    },
+    "ATP_MAIN/2026-05": {
+      "bell_source:CORPUS_SCHED_HONEST:milestone_sportradar": 636,
+      "bell_source:both_sides_trade_density": 8,
+      "formation_source:FIRST_BOTH_SIDES_TRADE": 640,
+      "formation_source:JUNE_OPEN_PLUS_120": 4,
+      "has_source:backfill": 586,
+      "has_source:spaces_ticks": 252,
+      "has_source:spaces_trades": 246,
+      "library_legs": 644
+    },
+    "ATP_MAIN/2026-06": {
+      "bell_source:CORPUS_SCHED_HONEST:milestone_sportradar": 758,
+      "bell_source:both_sides_trade_density": 96,
+      "formation_source:FIRST_BOTH_SIDES_TRADE": 854,
+      "has_source:backfill": 744,
+      "has_source:spaces_ticks": 852,
+      "has_source:spaces_trades": 852,
+      "library_legs": 854
+    },
+    "ATP_MAIN/2026-07": {
+      "bell_source:CORPUS_SCHED_HONEST:milestone_sportradar": 118,
+      "bell_source:both_sides_trade_density": 6,
+      "formation_source:FIRST_BOTH_SIDES_TRADE": 124,
+      "has_source:backfill": 118,
+      "has_source:spaces_ticks": 120,
+      "has_source:spaces_trades": 124,
+      "library_legs": 124
+    }
+  },
+  "cohort_census": {
+    "ATP_CHALL:first_tick_tie_STORE_SILENT": 15,
+    "ATP_CHALL:non_three_character_leg_id": 53,
+    "ATP_CHALL:oriented_pairs": 2287,
+    "ATP_CHALL:pair_events": 2302,
+    "ATP_MAIN:first_tick_tie_STORE_SILENT": 11,
+    "ATP_MAIN:non_three_character_leg_id": 23,
+    "ATP_MAIN:oriented_pairs": 928,
+    "ATP_MAIN:pair_events": 939,
+    "ITF_M:first_tick_tie_STORE_SILENT": 23,
+    "ITF_M:non_three_character_leg_id": 8,
+    "ITF_M:oriented_pairs": 1552,
+    "ITF_M:pair_events": 1575,
+    "ITF_W:first_tick_tie_STORE_SILENT": 13,
+    "ITF_W:non_three_character_leg_id": 11,
+    "ITF_W:oriented_pairs": 1489,
+    "ITF_W:pair_events": 1502,
+    "WTA_CHALL:first_tick_tie_STORE_SILENT": 7,
+    "WTA_CHALL:oriented_pairs": 496,
+    "WTA_CHALL:pair_events": 503,
+    "WTA_MAIN:first_tick_tie_STORE_SILENT": 13,
+    "WTA_MAIN:non_three_character_leg_id": 2,
+    "WTA_MAIN:oriented_pairs": 917,
+    "WTA_MAIN:pair_events": 930
+  },
+  "fields": [
+    {
+      "block": "SOURCE",
+      "causal_definition": "Formation rule observable by formation; categorical, not the eventual floor.",
+      "kind": "categorical",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "formation_source",
+      "source": "library + causal formation rule"
+    },
+    {
+      "block": "SOURCE",
+      "causal_definition": "Bell-source token only if its publication epoch is verified <= receipt.",
+      "kind": "categorical",
+      "leakage_exclusions": "Trade-density inference and undated historical machine receipts are retrospective; excluded from features.",
+      "name": "bell_source",
+      "source": "library + publication receipt"
+    },
+    {
+      "block": "WAKE_CADENCE_SPREAD",
+      "causal_definition": "First in-span observed finite positive non-crossed BBO, on the filed bell clock; not a liquidity threshold.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "book_wake_mtb",
+      "source": "native library BBO"
+    },
+    {
+      "block": "WAKE_CADENCE_SPREAD",
+      "causal_definition": "Elapsed receipt minutes since that first observed BBO; absent before wake.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "book_awake_minutes",
+      "source": "native library BBO"
+    },
+    {
+      "block": "WAKE_CADENCE_SPREAD",
+      "causal_definition": "Median of completed inter-print gaps since formation, observed by this receipt.",
+      "kind": "numeric",
+      "leakage_exclusions": "Full-span library cadence_s is NEVER a predictor; fewer than two observed prints => missing.",
+      "name": "prefix_cadence_seconds",
+      "source": "accepted positive-size print witnesses"
+    },
+    {
+      "block": null,
+      "causal_definition": "Diagnostic rank interval using filed quantiles, learned only from earlier resolved games; no second vote for cadence.",
+      "kind": "categorical",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "cadence_class",
+      "source": "earlier-category rank distribution"
+    },
+    {
+      "block": "WAKE_CADENCE_SPREAD",
+      "causal_definition": "Current ask minus bid, cents; crossed books missing.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "spread_cents",
+      "source": "native library BBO"
+    },
+    {
+      "block": null,
+      "causal_definition": "Filed Foundation label applied to current spread; diagnostic only, not a duplicated spread vote.",
+      "kind": "categorical",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "spread_band",
+      "source": "cell_key_helpers.spread_band_name"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "Current completed-minute bid close minus previous completed-minute bid close; quote movement, NOT observed consumption.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "bid_consumption_velocity",
+      "source": "completed minute native BBO closes"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "Current completed-minute ask close minus previous completed-minute ask close; quote movement, NOT observed consumption.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "ask_consumption_velocity",
+      "source": "completed minute native BBO closes"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "YES-aggressor contracts minus NO-aggressor contracts in latest completed minute; missing if any positive-size print is unattributed.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "taker_flow",
+      "source": "deduplicated accepted prints + original taker_side"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "Sum of sizes with taker_side=yes in latest completed minute; not an event count.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "taker_yes_contracts",
+      "source": "deduplicated accepted prints + original taker_side"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "Sum of sizes with taker_side=no in latest completed minute; not an event count.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "taker_no_contracts",
+      "source": "deduplicated accepted prints + original taker_side"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "Distinct traded prices in latest completed minute; not consumed resting levels.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "distinct_levels_traded",
+      "source": "accepted positive-size prints"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "Stored bid_depth_5 / (bid_depth_5 + ask_depth_5); latest observed snapshot, zero denominator missing.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "depth_ratio",
+      "source": "original five-level book capture"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "Latest observed sum of five bid sizes, contracts.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "bid_depth_5",
+      "source": "original five-level book capture"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "Latest observed sum of five ask sizes, contracts.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "ask_depth_5",
+      "source": "original five-level book capture"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "Signed taker flow times that completed minute's bid-close change; learned interaction, not a trading rule.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "pressure_x_bid_response",
+      "source": "completed-minute flow and BBO"
+    },
+    {
+      "block": "FLOW_LEVELS_DEPTH",
+      "causal_definition": "NO-aggressor contracts times bid-depth change between the same consecutive completed-minute closes; no replenishment claim from quote prices alone.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "sell_pressure_x_replenishment",
+      "source": "completed-minute flow and five-level book"
+    },
+    {
+      "block": "CLUSTERING_INTENSITY",
+      "causal_definition": "Population standard deviation of within-minute inter-trade gaps, at minute close; undefined with fewer than three trades.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "trade_clustering",
+      "source": "accepted positive-size prints"
+    },
+    {
+      "block": "CLUSTERING_INTENSITY",
+      "causal_definition": "Number of completed in-span minutes with positive volume, causal count underlying the filed intensity class.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "positive_minutes_so_far",
+      "source": "accepted positive-size prints"
+    },
+    {
+      "block": "CLUSTERING_INTENSITY",
+      "causal_definition": "Share of completed in-span minute buckets with positive volume; full-lifetime intensity excluded.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "causal_volume_intensity",
+      "source": "accepted positive-size prints"
+    },
+    {
+      "block": "OPEN_INTEREST",
+      "causal_definition": "Latest observed OI available by receipt, never backfilled from later observations.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "open_interest",
+      "source": "Foundation overlap or original observed OI"
+    },
+    {
+      "block": "OPEN_INTEREST",
+      "causal_definition": "Change between consecutive observed completed-minute OI values; unavailable if either value missing.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "open_interest_delta",
+      "source": "Foundation overlap or original observed OI"
+    },
+    {
+      "block": "PARTNER_PAIR",
+      "causal_definition": "Other leg's causally carried bid.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "partner_bid",
+      "source": "same-receipt partner BBO"
+    },
+    {
+      "block": "PARTNER_PAIR",
+      "causal_definition": "Other leg's causally carried ask.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "partner_ask",
+      "source": "same-receipt partner BBO"
+    },
+    {
+      "block": "PARTNER_PAIR",
+      "causal_definition": "Sum of both bids, cents.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "paired_bid_sum",
+      "source": "same-receipt pair BBO"
+    },
+    {
+      "block": "PARTNER_PAIR",
+      "causal_definition": "Sum of both asks, cents.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "paired_ask_sum",
+      "source": "same-receipt pair BBO"
+    },
+    {
+      "block": "PARTNER_PAIR",
+      "causal_definition": "Filed par minus both bids, cents.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "paired_arb_gap_maker",
+      "source": "same-receipt pair BBO"
+    },
+    {
+      "block": "PARTNER_PAIR",
+      "causal_definition": "Both asks minus filed par, cents.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "paired_arb_gap_taker",
+      "source": "same-receipt pair BBO"
+    },
+    {
+      "block": "PARTNER_PAIR",
+      "causal_definition": "Absolute deviation of paired midpoint sum from filed par, cents; NOT last-price sum.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "pair_gap_abs",
+      "source": "same-receipt pair BBO"
+    },
+    {
+      "block": null,
+      "causal_definition": "Availability only in v1; UNKNOWN without verified sequence coverage, not inferred from date or bucket presence.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "ws_depth_available",
+      "source": "snapshot-seeded gap-free WS depth epochs"
+    },
+    {
+      "block": null,
+      "causal_definition": "An exact-key in-span snapshot has been observed by receipt; undated rows and unjoinable backup excluded.",
+      "kind": "numeric",
+      "leakage_exclusions": "No observation after the receipt; missing is not zero.",
+      "name": "odds_available",
+      "source": "exact-event archived fv_history timestamps"
+    }
+  ],
+  "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+  "print_counts_provenance": {
+    "calibration_scope": "All oriented library legs in category, no named games. Retrospective data-set scale, not per-query walk-forward calibration.",
+    "category_print_count_distributions": {
+      "ATP_CHALL": {
+        "count": 4574,
+        "max": 2976.0,
+        "mean": 62.666593790992565,
+        "min": 1.0,
+        "q10": 5.0,
+        "q25": 11.0,
+        "q50": 27.0,
+        "q75": 70.0,
+        "q90": 158.0
+      },
+      "ATP_MAIN": {
+        "count": 1856,
+        "max": 16545.0,
+        "mean": 415.7429956896552,
+        "min": 2.0,
+        "q10": 34.0,
+        "q25": 88.0,
+        "q50": 224.0,
+        "q75": 459.0,
+        "q90": 893.0
+      },
+      "ITF_M": {
+        "count": 3104,
+        "max": 1214.0,
+        "mean": 149.2326030927835,
+        "min": 3.0,
+        "q10": 39.0,
+        "q25": 71.0,
+        "q50": 122.0,
+        "q75": 193.0,
+        "q90": 281.0
+      },
+      "ITF_W": {
+        "count": 2978,
+        "max": 1093.0,
+        "mean": 139.8821356615178,
+        "min": 3.0,
+        "q10": 34.0,
+        "q25": 66.0,
+        "q50": 113.0,
+        "q75": 180.0,
+        "q90": 264.0
+      },
+      "WTA_CHALL": {
+        "count": 992,
+        "max": 1682.0,
+        "mean": 47.621975806451616,
+        "min": 1.0,
+        "q10": 4.0,
+        "q25": 8.0,
+        "q50": 20.0,
+        "q75": 52.0,
+        "q90": 123.0
+      },
+      "WTA_MAIN": {
+        "count": 1834,
+        "max": 6350.0,
+        "mean": 228.71374045801528,
+        "min": 1.0,
+        "q10": 17.0,
+        "q25": 43.0,
+        "q50": 109.0,
+        "q75": 246.0,
+        "q90": 486.0
+      }
+    },
+    "checks": {
+      "final_count_matches": 15502,
+      "final_count_mismatches": 0,
+      "grid_identity": "Every library leg, in library order; own floor(native ts) seconds with accepted in-span prints; independent of library change points",
+      "legs_checked": 15502,
+      "rows_checked": 1405183,
+      "total_true_prints_in_spans": 2430670
+    },
+    "gate_join": "Latest sidecar second <= gate epoch; zero before the first print second. Independent accepted-print-second count grid; library price/change-point grid unchanged. Second bucket labels are floor(native ts), not subsecond arrival times.",
+    "sidecar_path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+    "sidecar_receipt_sha256": "89a1be15f323f96ef90556b08130722159cae69c26d33fe461c122894b67918b",
+    "sidecar_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+    "sleeper_p10_by_category": {
+      "ATP_CHALL": 5.0,
+      "ATP_MAIN": 34.0,
+      "ITF_M": 39.0,
+      "ITF_W": 34.0,
+      "WTA_CHALL": 4.0,
+      "WTA_MAIN": 17.0
+    },
+    "source": "true_print_count_in_span from tick-library rows; exact gate-prefix counts from cutter-bound sidecar",
+    "volume_is_not_print_count": true
+  },
+  "restrictions": [
+    "Source provenance counts are not per-receipt feature availability.",
+    "No Foundation full-lifetime intensity or full-leg cadence enters the feature vector.",
+    "Native library spans and FIRST eligibility remain unchanged.",
+    "Bell clock is the filed replay ruler; inferred bell-source metadata is not causal evidence."
+  ],
+  "status": "LINEAGE_INVENTORY_ONLY_NOT_A_BLOCK_RESULT"
+}

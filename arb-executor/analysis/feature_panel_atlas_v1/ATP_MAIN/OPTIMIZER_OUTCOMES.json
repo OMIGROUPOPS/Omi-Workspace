@@ -1,0 +1,1778 @@
+[
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_1",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_2",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_3",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_4",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_5",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_6",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_CLUSTERING_INTENSITY",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_FLOW_LEVELS_DEPTH",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_OPEN_INTEREST",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_PARTNER_PAIR",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_SOURCE",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-04",
+    "outcome": "NO_EARLIER_TRAINING",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_WAKE_CADENCE_SPREAD",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_1",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_2",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_3",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_4",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_5",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_6",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_CLUSTERING_INTENSITY",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_FLOW_LEVELS_DEPTH",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_OPEN_INTEREST",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_PARTNER_PAIR",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_SOURCE",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 124
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": null,
+      "first_crps": null,
+      "reason": "NO_USABLE_INNER_VALIDATION",
+      "selected": "FIRST_ZERO",
+      "validation_games": 0
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-05",
+    "outcome": "NO_INNER_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_WAKE_CADENCE_SPREAD",
+    "zero_control_is_not_a_converged_feature_fit": true
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 8.700754353108131e-11,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.015740488204978,
+      "first_crps": 1.018044380963014,
+      "reason": "STRICT_INNER_CRPS_IMPROVEMENT",
+      "selected": "CONTINUOUS",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.4520991667711529,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "CONVERGED",
+    "refit_gradient": 8.145656950246872e-11,
+    "refit_status": "PROJECTED_GRADIENT_CONVERGED",
+    "variant": "CUMULATIVE_1",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 2.064429356629649e-15,
+        "legacy_status": "OBJECTIVE_STALLED",
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": true,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0157883675820834,
+      "first_crps": 1.018044380963014,
+      "reason": "STRICT_INNER_CRPS_IMPROVEMENT",
+      "selected": "CONTINUOUS",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.4520991667711529,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "CONVERGED",
+    "refit_gradient": 8.145656630195473e-11,
+    "refit_status": "PROJECTED_GRADIENT_CONVERGED",
+    "variant": "CUMULATIVE_2",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 2.281492938460152e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0302259952480997,
+      "first_crps": 1.018044380963014,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_3",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 2.281492939027664e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0302259952480997,
+      "first_crps": 1.018044380963014,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_4",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 5.615635836713189e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0302108439668465,
+      "first_crps": 1.018044380963014,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_5",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 5.6156358274432605e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0302108439668465,
+      "first_crps": 1.018044380963014,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_6",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 5.615635831373493e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0302108439668465,
+      "first_crps": 1.018044380963014,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_CLUSTERING_INTENSITY",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 9.557816777611139e-13,
+        "legacy_status": "OBJECTIVE_STALLED",
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": true,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0165709404055971,
+      "first_crps": 1.018044380963014,
+      "reason": "STRICT_INNER_CRPS_IMPROVEMENT",
+      "selected": "CONTINUOUS",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 2.7658443005091082,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.3718427175793078,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "CONVERGED",
+    "refit_gradient": 1.67231939381694e-09,
+    "refit_status": "PROJECTED_GRADIENT_CONVERGED",
+    "variant": "LEAVE_OUT_FLOW_LEVELS_DEPTH",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 2.281492939027664e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0302259952480997,
+      "first_crps": 1.018044380963014,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_OPEN_INTEREST",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 5.615635836713189e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0302108439668465,
+      "first_crps": 1.018044380963014,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_PARTNER_PAIR",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 6.102602005274207e-12,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0302108654452562,
+      "first_crps": 1.018044380963014,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_SOURCE",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 4.248390663000095e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 310
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.030210862625104,
+      "first_crps": 1.018044380963014,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 303
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-06",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_WAKE_CADENCE_SPREAD",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 8.700754353108131e-11,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0149792927209178,
+      "first_crps": 1.0172578699727455,
+      "reason": "STRICT_INNER_CRPS_IMPROVEMENT",
+      "selected": "CONTINUOUS",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.45255652453858536,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "CONVERGED",
+    "refit_gradient": 8.262938312929982e-11,
+    "refit_status": "PROJECTED_GRADIENT_CONVERGED",
+    "variant": "CUMULATIVE_1",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 2.064429356629649e-15,
+        "legacy_status": "OBJECTIVE_STALLED",
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": true,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0150211649780172,
+      "first_crps": 1.0172578699727455,
+      "reason": "STRICT_INNER_CRPS_IMPROVEMENT",
+      "selected": "CONTINUOUS",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.45255652453858497,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "CONVERGED",
+    "refit_gradient": 8.262939906664824e-11,
+    "refit_status": "PROJECTED_GRADIENT_CONVERGED",
+    "variant": "CUMULATIVE_2",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 2.281492938460152e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0296023289264018,
+      "first_crps": 1.0172578699727455,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_3",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 2.281492939027664e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0296023289264018,
+      "first_crps": 1.0172578699727455,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_4",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 5.615635836713189e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0295868776405874,
+      "first_crps": 1.0172578699727455,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_5",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 5.6156358274432605e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0295868776405874,
+      "first_crps": 1.0172578699727455,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "CUMULATIVE_6",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 5.615635831373493e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0295868776405874,
+      "first_crps": 1.0172578699727455,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_CLUSTERING_INTENSITY",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 9.557816777611139e-13,
+        "legacy_status": "OBJECTIVE_STALLED",
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": true,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0158003445319448,
+      "first_crps": 1.0172578699727455,
+      "reason": "STRICT_INNER_CRPS_IMPROVEMENT",
+      "selected": "CONTINUOUS",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 2.7644711365874883,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.3725048638552496,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "CONVERGED",
+    "refit_gradient": 1.7813390871960003e-15,
+    "refit_status": "PROJECTED_GRADIENT_CONVERGED",
+    "variant": "LEAVE_OUT_FLOW_LEVELS_DEPTH",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 2.281492939027664e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0296023289264018,
+      "first_crps": 1.0172578699727455,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_OPEN_INTEREST",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 5.615635836713189e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0295868776405874,
+      "first_crps": 1.0172578699727455,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_PARTNER_PAIR",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 6.102602005274207e-12,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0295868995013278,
+      "first_crps": 1.0172578699727455,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_SOURCE",
+    "zero_control_is_not_a_converged_feature_fit": false
+  },
+  {
+    "attempts": [
+      {
+        "gradient": null,
+        "legacy_status": null,
+        "month": "2026-04",
+        "outcome": "NO_INNER_TRAINING_OR_VALIDATION",
+        "refinement": false,
+        "status": "NO_INNER_TRAINING_OR_VALIDATION",
+        "validation_games": 126
+      },
+      {
+        "gradient": 4.248390663000095e-09,
+        "legacy_status": null,
+        "month": "2026-05",
+        "outcome": "CONVERGED",
+        "refinement": false,
+        "status": "PROJECTED_GRADIENT_CONVERGED",
+        "validation_games": 315
+      }
+    ],
+    "category": "ATP_MAIN",
+    "choice": {
+      "candidate_crps": 1.0295868966373887,
+      "first_crps": 1.0172578699727455,
+      "reason": "FIRST_BETTER_OR_TIED",
+      "selected": "FIRST_ZERO",
+      "validation_games": 308
+    },
+    "coefficients": {
+      "CLUSTERING_INTENSITY": 0.0,
+      "FLOW_LEVELS_DEPTH": 0.0,
+      "OPEN_INTEREST": 0.0,
+      "PARTNER_PAIR": 0.0,
+      "SOURCE": 0.0,
+      "WAKE_CADENCE_SPREAD": 0.0
+    },
+    "month": "2026-07",
+    "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+    "refit_gradient": null,
+    "refit_status": null,
+    "variant": "LEAVE_OUT_WAKE_CADENCE_SPREAD",
+    "zero_control_is_not_a_converged_feature_fit": false
+  }
+]

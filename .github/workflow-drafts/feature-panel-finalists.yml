@@ -1,0 +1,69 @@
+# INACTIVE DRAFT: outside .github/workflows. Do not move/enable automatically.
+name: Feature panel finalist proof (approval draft)
+on:
+  workflow_dispatch:
+    inputs:
+      release_sha256:
+        description: SHA256 of the operator-approved library-only input release
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: feature-panel-finalist-proof
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      # Pin immutable action SHA and numerical runtime during approval.
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            arb-executor/analysis/feature_panel_atlas_v1
+            arb-executor/analysis/feature_panel_actions_plan.py
+          sparse-checkout-cone-mode: false
+      - id: plan
+        shell: bash
+        run: |
+          python arb-executor/analysis/feature_panel_actions_plan.py \
+            --results-root arb-executor/analysis/feature_panel_atlas_v1 --shards 5 > matrix.json
+          echo "matrix=$(cat matrix.json)" >> "$GITHUB_OUTPUT"
+  proof-shard:
+    needs: plan
+    if: ${{ vars.FEATURE_PANEL_PROOF_APPROVED == 'true' && needs.plan.outputs.matrix != '{"include": []}' }}
+    environment: feature-panel-approved
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          # Final release must supply the reviewed exact code/input manifest;
+          # never checkout the named-check faces, tapes or renewals for a job.
+          sparse-checkout: |
+            arb-executor/analysis/feature_panel_atlas_v1
+            arb-executor/analysis/feature_panel_actions_plan.py
+          sparse-checkout-cone-mode: false
+      - name: Stop until the approval release and proof adapter are installed
+        shell: bash
+        run: |
+          echo 'NOT ENABLED: requires reviewed private release, pinned runtime, required environment reviewers, and byte-parity-tested execution adapter.'
+          exit 1
+      # Approved sequence, not activated here:
+      # 1. Verify required environment reviewers/protected branch policy.
+      # 2. Download exact INPUT_NAMES with prefix-scoped read-only credentials.
+      # 3. Check hashes, library membership, tune date and tag exclusions.
+      # 4. Complete member library and frozen models in every shard.
+      # 5. Full receipts of assigned whole queries; FIRST + advancing blocks.
+      # 6. Private score journals encrypted before any approved transfer.
+      # 7. Canonical-order reducer per pass, complete determinism comparison.
+      # 8. Only reviewed aggregate summaries/hashes as public artifacts.

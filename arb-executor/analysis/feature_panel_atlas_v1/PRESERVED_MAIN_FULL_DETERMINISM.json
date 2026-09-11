@@ -1,0 +1,55 @@
+{
+  "actions_launched": false,
+  "chall_full_passes": "HELD_UNLESS_ATLAS_VARIANT_QUALIFIES",
+  "completed_utc": "2026-09-11T19:01:28.9110539Z",
+  "engine_hashes_unchanged": {
+    "arb-executor/analysis/build_window1_v54_dual_belief.js": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c",
+    "arb-executor/analysis/window1_v54_dual_belief_os.js": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "arb-executor/analysis/window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74"
+  },
+  "excluded_only": {
+    "FEATURE_PANEL_RECEIPT.json": [
+      "numerical_execution.elapsed_seconds"
+    ]
+  },
+  "files_compared": 1366,
+  "full_canonical_manifest_private_path": "C:\\tmp\\feature_panel_v1\\ATP_MAIN_DURABLE_DETERMINISM.json",
+  "full_canonical_manifest_sha256": "143433cb90b0b5b250fcb14321f55772d7274c746990f7f4fcbd2c351aacce3a",
+  "passes": {
+    "durable_pass1": {
+      "evaluations": 1353,
+      "receipt_sha256": "e6f2c3bd33acfe9ed6bc4df21a7cdc5e10ec0959ca87230b6e57506ed23c0174",
+      "receipts": 880577,
+      "scoreboard_sha256": "ed096deeb93ca3dc64eb9d39190b6897c022f0176f16757d4051ffbcd5dee718",
+      "streams": {
+        "PRIMARY": {
+          "games": 928,
+          "receipts": 609960
+        },
+        "STRICT_HOLDOUT": {
+          "games": 425,
+          "receipts": 270617
+        }
+      }
+    },
+    "durable_pass2": {
+      "evaluations": 1353,
+      "receipt_sha256": "448bcc34e51cc8275cb3e9d3db43fe7abfd5cf46002b660229ace8f4d302b054",
+      "receipts": 880577,
+      "scoreboard_sha256": "ed096deeb93ca3dc64eb9d39190b6897c022f0176f16757d4051ffbcd5dee718",
+      "streams": {
+        "PRIMARY": {
+          "games": 928,
+          "receipts": 609960
+        },
+        "STRICT_HOLDOUT": {
+          "games": 425,
+          "receipts": 270617
+        }
+      }
+    }
+  },
+  "schema": "PRESERVED_MAIN_FULL_DETERMINISM_V1",
+  "scope": "Original full-receipt MAIN pass 2 preserved to completion; BEFORE the atlas optimizer repair. This is not a full-receipt proof of the repaired feature variants.",
+  "status": "VERIFIED_DETERMINISTIC"
+}

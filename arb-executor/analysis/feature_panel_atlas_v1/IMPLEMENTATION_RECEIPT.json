@@ -1,0 +1,239 @@
+{
+  "schema": "FEATURE_PANEL_ATLAS_IMPLEMENTATION_RECEIPT_V1",
+  "date": "2026-09-11",
+  "status": "BOTH_SCREENS_VERIFIED_NO_QUALIFYING_VARIANTS",
+  "branch": "face/window1-watch-20260903",
+  "parent_commit": "f11c30f74e7dfbb33d589d4f5f759be3fce581c7",
+  "scope": "Bench only. Engine, builder, pricing, pool, conduct and face unchanged.",
+  "screens": [
+    {
+      "category": "ATP_MAIN",
+      "gate_counts": {
+        "PRIMARY": {
+          "games": 928,
+          "gate_receipts": 11518
+        },
+        "STRICT_HOLDOUT": {
+          "games": 425,
+          "gate_receipts": 5170
+        }
+      },
+      "results_sha256": "19aa78f8ba4710b4e2e711482f309abd0ba9b72fd01c8b03111229ddf86b9afd",
+      "source_receipt_sha256": "312e1141696a9bdd305e1943b2cb364f728fcc8871eff5794e486f684ae0293e",
+      "source_scoreboard_sha256": "2ebbdf568d47d5cc77a27ba67e386d4ccf1b00f3e8125758fbb40899e0d09799",
+      "optimizer_sha256": "cae3d7e9c256078d44643c3b1629140e52c347d896caee517d3743ae23fb871c",
+      "score_contract": {
+        "engine_authorship_enabled": false,
+        "minimum_matched_queries": 100,
+        "minimum_strictly_closer_share": 0.5,
+        "no_call_ess_floor": 10,
+        "quantiles": [
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          0.9
+        ],
+        "ties": "included in denominator, not strict wins"
+      },
+      "advancement": {
+        "evidence": [],
+        "full_receipt_two_pass_proof_required": true,
+        "june_may_select": false,
+        "rule": "Filed n/strict-win criterion, per side/gate/target; selection excludes June completely",
+        "variants": []
+      },
+      "cache": {
+        "budget_bytes": 134217728,
+        "bytes": 6680160,
+        "cache_changes_membership": false,
+        "clocks_rounded": false,
+        "evictions": 0,
+        "hits": 11836345,
+        "key": [
+          "source manifest hash",
+          "member event",
+          "exact float64 minutes-to-bell bytes",
+          "span sha256"
+        ],
+        "misses": 13917,
+        "source_scope": "3cac94c945f4fbd3c12ac32fe02761ce6de8dfda41bda0d600e9eb7d75763aea"
+      },
+      "elapsed_seconds": 2193.9850000000006,
+      "optimizer_counts": [
+        {
+          "outcome": "CONVERGED",
+          "count": 6
+        },
+        {
+          "outcome": "NO_EARLIER_TRAINING",
+          "count": 12
+        },
+        {
+          "outcome": "NO_INNER_VALIDATION",
+          "count": 12
+        },
+        {
+          "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+          "count": 18
+        }
+      ],
+      "legacy_inner_stalls_recovered": 4
+    },
+    {
+      "category": "ATP_CHALL",
+      "gate_counts": {
+        "PRIMARY": {
+          "games": 2287,
+          "gate_receipts": 19080
+        },
+        "STRICT_HOLDOUT": {
+          "games": 958,
+          "gate_receipts": 8154
+        }
+      },
+      "results_sha256": "3de9693ba9e14bdc3679358b0c09a5686bbefd77ec61efcb32cdea9cfa1ac92e",
+      "source_receipt_sha256": "b6e4cc29dd52e4de6263577a3a9c80e47aa635a09b5c9172433ff3884b2467d4",
+      "source_scoreboard_sha256": "98c2c17b6917fcaa0ee34dd8ba422210cfd60ee6d7cc1d0542694fa7f9616718",
+      "optimizer_sha256": "2cf6e0d3db7798718261f01bcb92d2c369a7140e4a8596c536ca05e598195247",
+      "score_contract": {
+        "engine_authorship_enabled": false,
+        "minimum_matched_queries": 100,
+        "minimum_strictly_closer_share": 0.5,
+        "no_call_ess_floor": 10,
+        "quantiles": [
+          0.1,
+          0.25,
+          0.5,
+          0.75,
+          0.9
+        ],
+        "ties": "included in denominator, not strict wins"
+      },
+      "advancement": {
+        "evidence": [],
+        "full_receipt_two_pass_proof_required": true,
+        "june_may_select": false,
+        "rule": "Filed n/strict-win criterion, per side/gate/target; selection excludes June completely",
+        "variants": []
+      },
+      "cache": {
+        "budget_bytes": 134217728,
+        "bytes": 16113600,
+        "cache_changes_membership": false,
+        "clocks_rounded": false,
+        "evictions": 0,
+        "hits": 43348404,
+        "key": [
+          "source manifest hash",
+          "member event",
+          "exact float64 minutes-to-bell bytes",
+          "span sha256"
+        ],
+        "misses": 33570,
+        "source_scope": "3cac94c945f4fbd3c12ac32fe02761ce6de8dfda41bda0d600e9eb7d75763aea"
+      },
+      "elapsed_seconds": 7657.514999999999,
+      "optimizer_counts": [
+        {
+          "outcome": "CONVERGED",
+          "count": 22
+        },
+        {
+          "outcome": "NO_EARLIER_TRAINING",
+          "count": 12
+        },
+        {
+          "outcome": "NO_INNER_VALIDATION",
+          "count": 12
+        },
+        {
+          "outcome": "ZERO_WEIGHT_BY_VALIDATION",
+          "count": 2
+        }
+      ],
+      "legacy_inner_stalls_recovered": 16
+    }
+  ],
+  "preserved_main_full_pass2": {
+    "status": "COMPLETE_VERIFIED_DETERMINISTIC",
+    "evaluations": 1353,
+    "receipts": 880577,
+    "files_compared": 1366,
+    "excluded_only": "FEATURE_PANEL_RECEIPT.json numerical_execution.elapsed_seconds",
+    "proof": "PRESERVED_MAIN_FULL_DETERMINISM.json",
+    "note": "Original full-run learner, before the atlas numerical repair; not full-cadence proof of repaired variants."
+  },
+  "validation": {
+    "tests": 169,
+    "status": "PASS",
+    "test_receipt": "TEST_RECEIPT.json",
+    "staged_python_source_byte_parity": {
+      "files": 35,
+      "mismatches": 0
+    },
+    "main_first_gate_parity": {
+      "status": "EXACT",
+      "side_gate_stream_cells": 60
+    },
+    "atlas_population_passes_per_tour": 1,
+    "finalists_require_full_receipt_full_universe_two_passes": true
+  },
+  "optimizer": {
+    "scientific_objective_and_convergence_tolerance": "UNCHANGED",
+    "recorded_inner_stalls_recovered": 20,
+    "unresolved_month_variant_stalls": 0,
+    "april": "NO_EARLIER_TRAINING for every variant in both tours",
+    "may": "NO_INNER_VALIDATION for every variant in both tours",
+    "absent_validation_is_not_zero_effect_evidence": true
+  },
+  "execution_provenance": {
+    "executed_launcher": "source/feature_panel_atlas_run.executed.py",
+    "post_launch_change": "Current launcher private summary projects r0_conduct rather than nonexistent conduct. Public publisher already uses r0_conduct. No fitting, forecast, scoring, selection or cache change.",
+    "june": "New-experiment holdout, not historically unseen; weights, scales and member library frozen. June cannot select finalists.",
+    "no_rounded_cache_clocks": true
+  },
+  "advancement": {
+    "ATP_MAIN": [],
+    "ATP_CHALL": [],
+    "new_full_proofs_launched": false,
+    "reason": "No side/gate/target meets the unchanged filed criterion on non-June selection games."
+  },
+  "actions": {
+    "draft": ".github/workflow-drafts/feature-panel-finalists.yml",
+    "matrix": "ACTIONS_PROPOSED_MATRIX.json",
+    "jobs": 0,
+    "enabled": false,
+    "launched": false,
+    "inputs_uploaded": false,
+    "input_allowlist": "ACTIONS_INPUT_ALLOWLIST.json",
+    "approval_instructions": "ACTIONS_APPROVAL.md",
+    "note": "Inactive security/matrix draft; enabling requires approved input release, pinned runtime/actions, environment reviewers and reviewed proof/reducer adapter."
+  },
+  "bindings": [
+    {
+      "path": "arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v54_functionable_os.js",
+      "sha256": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "sha256": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c"
+    },
+    {
+      "path": "arb-executor/analysis/feature_panel_atlas_v1/TEST_RECEIPT.json",
+      "sha256": "728f54ee802bd7d24ace6339238b2b17cc013bf7bb80952ac97657e9d5ed0818"
+    },
+    {
+      "path": "arb-executor/analysis/feature_panel_atlas_v1/PRESERVED_MAIN_FULL_DETERMINISM.json",
+      "sha256": "d0b8151370a37dd46d17547bd26d29f45b38ab2354987729db899146e00b6400"
+    },
+    {
+      "path": "arb-executor/analysis/feature_panel_atlas_v1/source/feature_panel_atlas_run.executed.py",
+      "sha256": "f5eee79687e6f14c1b43ea4c7de023cea3df89b361bfad14bf16f18cd9f25e4a"
+    }
+  ]
+}

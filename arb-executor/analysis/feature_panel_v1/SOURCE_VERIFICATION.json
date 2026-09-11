@@ -1,0 +1,72 @@
+{
+  "status": "SOURCE_INPUTS_VERIFIED_NOT_A_BENCH_RESULT",
+  "verification_date_utc": "2026-09-10",
+  "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+  "library_receipt_sha256": "533c3271d8734caa6f1ccd7dc36563a6726a4c540060d3a1b33cfa011596a282",
+  "core_extractor_sha256": "24bfeb8f39157d0a1ddcf72cc1e173f84a75cfc4af3793bff47daf7b955d081f",
+  "source_store": {
+    "sha256_start": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "sha256_end": "852608a0d57d91ef288cc68f41662d68e0b5f0a40fc954222e41d8bf404eb63d",
+    "shared_lock": "/root/Omi-Workspace/arb-executor/state/subsecond_store.db.lock",
+    "held_through_spool_publication": true,
+    "sealed_spool_sha256": "a09e25084cb78af08d24660373502c7ca453930477f13ec13e93bc0a7e102fa0",
+    "long_original_object_phase": "Read sealed spool and original objects; original writer lock released. No source-store writes."
+  },
+  "local_inputs": {
+    "FEATURE_SOURCES.jsonl.gz": {"bytes": 332881242, "sha256": "aaeabfe312768da633569e9f3a8ef760aba7e948ecf5187cf1757cb97f94188e"},
+    "POSITIVE_PRINT_WITNESSES.jsonl.gz": {"bytes": 10183863, "sha256": "139178e58a581fe7e68b52d8bb350daab0f5226aa9acd3cf8a2ac756e82d72f6", "publication": "PRIVATE_INPUT_ONLY_NEVER_COMMITTED"},
+    "FEATURE_EXTRACT_RECEIPT.json": {"sha256": "c52187b9c03405fda698c6830b22bc6c7b61b81e0baf1215a908b41a93a8b1fe"},
+    "SUPPLEMENTAL_AVAILABILITY.jsonl.gz": {"bytes": 3496312, "sha256": "65e9eeb352ec9e1e3a83fe6759e1b362b0dae8d511d3d743cc0049d699c34250"},
+    "SUPPLEMENTAL_AVAILABILITY_RECEIPT.json": {"sha256": "b591b612e0ba7d2be1a7e4bd0b6d908aa5f6989580c2c4c4947b747890d679a6"}
+  },
+  "core_stream_checks": {
+    "legs": 6482,
+    "ATP_MAIN_library_legs": 1878,
+    "ATP_CHALL_library_legs": 4604,
+    "accepted_prints": 1066837,
+    "positive_prints": 1056664,
+    "library_path_volume_points_reproduced": 1191619,
+    "minute_rows": 6500617,
+    "book_states": 9710648,
+    "distinct_original_objects": 10756,
+    "verified_book_objects": 5401,
+    "verified_trade_objects": 5354,
+    "invalid_spans": 0,
+    "out_of_span_minute_availability": 0,
+    "inconsistent_manifests": 0,
+    "invalid_verified_ETag_bindings": 0,
+    "note": "These are source census counts, not per-receipt model availability. Availability is measured by the population panel."
+  },
+  "excluded_original_objects": [
+    {
+      "object": "spaces:ticks/KXATPCHALLENGERMATCH-26JUN05SEAPOL-SEA.csv.gz",
+      "stored_reason": "UNVERIFIED: source object read/parse failed",
+      "failure_type": "ValueError",
+      "specific_exception_message": "NOT_RETAINED",
+      "book_states_retained": 0,
+      "minute_rows": 586,
+      "nonnull_minute_book_closes": 0,
+      "all_five_wake_fields_null": true,
+      "verified_trade_information_retained_independently": true,
+      "policy": "Missing book/depth/wake features; no guessed values and no query or member removed."
+    }
+  ],
+  "supplemental": {
+    "exact_library_legs_and_spans_matched": 6482,
+    "oi_rows": 245044,
+    "odds_leg_poll_epochs": 1358922,
+    "odds_archive_hashes_matched_to_existing_local_audit": 4,
+    "local_odds_audit_sha256": "187716d9fd2a7a3701a817d0304faa54a1d4e57f0712936a65d1f4e6f45f8b10",
+    "ws_depth_availability": "UNKNOWN: sequence integrity unverified; not a zero observation"
+  },
+  "production_preflight": {
+    "ATP_MAIN": {"status": "VERIFIED_NO_BENCH_RUN", "oriented_pairs": 928, "required_legs": 1856},
+    "ATP_CHALL": {"status": "VERIFIED_NO_BENCH_RUN", "oriented_pairs": 2287, "required_legs": 4574},
+    "scope": "Full immutable input hashes, receipt chains, native spans, per-leg count/path-volume proofs, source-object eligibility and complete witness census checked; no smoke or subset used."
+  },
+  "engine_and_builder_sha256_unchanged_before_population": {
+    "window1_v54_dual_belief_os.js": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "build_window1_v54_dual_belief.js": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c"
+  }
+}

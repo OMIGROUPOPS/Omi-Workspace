@@ -1,0 +1,84 @@
+{
+  "approval_requirements": [
+    "Spaces prefix and per-object keys",
+    "protected environment reviewers",
+    "pinned runtime and action SHAs",
+    "proof adapter and byte parity"
+  ],
+  "approved": false,
+  "files": [
+    {
+      "bytes": 7202,
+      "name": "FEATURE_EXTRACT_RECEIPT.json",
+      "sha256": "c52187b9c03405fda698c6830b22bc6c7b61b81e0baf1215a908b41a93a8b1fe",
+      "spaces_object_key": null
+    },
+    {
+      "bytes": 332881242,
+      "name": "FEATURE_SOURCES.jsonl.gz",
+      "sha256": "aaeabfe312768da633569e9f3a8ef760aba7e948ecf5187cf1757cb97f94188e",
+      "spaces_object_key": null
+    },
+    {
+      "bytes": 8776,
+      "name": "ODDS_COVERAGE_RECEIPT.json",
+      "sha256": "187716d9fd2a7a3701a817d0304faa54a1d4e57f0712936a65d1f4e6f45f8b10",
+      "spaces_object_key": null
+    },
+    {
+      "bytes": 10183863,
+      "name": "POSITIVE_PRINT_WITNESSES.jsonl.gz",
+      "sha256": "139178e58a581fe7e68b52d8bb350daab0f5226aa9acd3cf8a2ac756e82d72f6",
+      "spaces_object_key": null
+    },
+    {
+      "bytes": 86693550,
+      "name": "RANGE_OVERLAP_LIBRARY_TICKS.jsonl.gz",
+      "sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+      "spaces_object_key": null
+    },
+    {
+      "bytes": 9021278,
+      "name": "RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+      "sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+      "spaces_object_key": null
+    },
+    {
+      "bytes": 4681,
+      "name": "RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS_RECEIPT.json",
+      "sha256": "89a1be15f323f96ef90556b08130722159cae69c26d33fe461c122894b67918b",
+      "spaces_object_key": null
+    },
+    {
+      "bytes": 25283,
+      "name": "RANGE_OVERLAP_LIBRARY_TICKS_RECEIPT.json",
+      "sha256": "533c3271d8734caa6f1ccd7dc36563a6726a4c540060d3a1b33cfa011596a282",
+      "spaces_object_key": null
+    },
+    {
+      "bytes": 3496312,
+      "name": "SUPPLEMENTAL_AVAILABILITY.jsonl.gz",
+      "sha256": "65e9eeb352ec9e1e3a83fe6759e1b362b0dae8d511d3d743cc0049d699c34250",
+      "spaces_object_key": null
+    },
+    {
+      "bytes": 6474,
+      "name": "SUPPLEMENTAL_AVAILABILITY_RECEIPT.json",
+      "sha256": "b591b612e0ba7d2be1a7e4bd0b6d908aa5f6989580c2c4c4947b747890d679a6",
+      "spaces_object_key": null
+    }
+  ],
+  "public_artifacts": [
+    "ATLAS_SCREEN_RECEIPT.json",
+    "ATLAS_SCREEN_RESULTS.json",
+    "DETERMINISM.json",
+    "OPTIMIZER_OUTCOMES.json",
+    "PROOF_RECEIPT.json",
+    "PROOF_SUMMARY.json",
+    "SHARD_COUNTS.json",
+    "SUMMARY.md"
+  ],
+  "schema": "FEATURE_PANEL_ACTIONS_RELEASE_V1",
+  "status": "LOCAL_INPUT_IDENTITIES_ONLY; no private release uploaded or authorized",
+  "tune_sample_allowed": false
+}

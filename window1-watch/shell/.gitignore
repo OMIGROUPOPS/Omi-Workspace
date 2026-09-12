@@ -3,3 +3,6 @@ dist/
 .output/
 .tanstack/
 .vercel/
+.demo-public/
+dist-demo/
+.env*

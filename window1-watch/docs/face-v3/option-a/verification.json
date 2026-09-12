@@ -1,0 +1,67 @@
+{
+  "base": "http://127.0.0.1:8084",
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "grade": "F",
+      "face_sha": "0a1ed88b2cd4b79acfe5d7071e988fc19db9eb66c2ab667a82c42c38993b6d4a",
+      "sentences": [
+        "Believes 27¢ by 5:00 to the bell.",
+        "Believes 67¢ by 5:26 to the bell."
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "grade": "F",
+      "face_sha": "af3a8d5bfc91db294d94a65963a3ba560b347b43de6030063d2de39a997ea796",
+      "sentences": [
+        "Believes 54¢ by 5:27 to the bell.",
+        "Believes 44¢ by 6:07 to the bell."
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "grade": "F",
+      "face_sha": "0e7f389375721e3ff2235b7ab7c6a80005940db034862ad0b284dab413c2b546",
+      "sentences": [
+        "No forecast here yet.",
+        "No forecast here yet."
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "grade": "C",
+      "face_sha": "a3dbe538aa2d7fe4a9025b6014ba6d1b48dbce0326d38fae08ef0cae1d85feea",
+      "sentences": [
+        "Believes 61¢ by 6:10 to the bell.",
+        "Believes 38¢ by 4:02 to the bell."
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "grade": "—",
+      "face_sha": "276cf896ed5068d4343c9779f0a5dbdbc824a7de06954ba923448b7ebcc681e7",
+      "sentences": [
+        "Believes 57¢ by 5:53 to the bell.",
+        "Believes 39¢ by 4:29 to the bell."
+      ]
+    }
+  ],
+  "views": [
+    {
+      "name": "desktop",
+      "overflow": false,
+      "chartHeight": 716,
+      "pageHeight": 1000,
+      "minChartWidth": 1552
+    },
+    {
+      "name": "phone",
+      "overflow": false,
+      "chartHeight": 608,
+      "pageHeight": 844,
+      "minChartWidth": 366
+    }
+  ],
+  "errors": []
+}

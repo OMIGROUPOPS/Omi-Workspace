@@ -231,6 +231,7 @@ export type Game = {
   version: number;
 };
 export type Grade = {
+  OUTCOME?: { pair_completed: boolean; pair_sum: number | null; captured_cents: number | null };
   event: string;
   timestamp: string;
   provenance: { os_sha256: string; trace_sha256: string; face_sha256: string };

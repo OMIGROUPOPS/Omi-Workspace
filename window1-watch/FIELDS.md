@@ -1071,3 +1071,39 @@ on known outcomes, null for zero offer, with missing denominator disclosed.
 history never multiplies latest-game denominators. `contract` names every rule;
 `inputs`, `index_sha256`, `history_sha256` bind the sources. Tour filtering is
 selection only. Display rounds decimals; exact stored values remain on hover.
+
+### LAB Option A — two charts and a sentence
+
+This is a display-only reading view. No face, grade, oracle, tape or engine
+values are rewritten. The default screen contains no metric tables or raw
+author/status tokens. Details retains the original book, pool layers, full
+receipt inspector, bid log, grade/history, bands and sentence-gap views.
+
+- The large sentence uses `os[].legs[side].sentence.Q` and `.X`, conditional
+  on the stored `.status`: RESOLVED → “Believes <Q>¢ by <X as h:mm> to the bell.”;
+  another status with a stored call → “Not enough evidence for a new bid.”;
+  missing Q → “No forecast here yet.” This is a gloss, not an authorship change.
+- H:mm is nearest-minute formatting of the stored minutes-to-bell, not a new
+  deadline. Exact current/forecast prices, time, member count, receipt and trace
+  hash remain in the header hover; raw status/author tokens stay in Details.
+- `grade.display.letter` and `grade.OUTCOME.pair_sum/captured_cents` are explicitly
+  labeled final (known afterward). Missing outcome is “No pair result here”,
+  never an invented incomplete result.
+- Tape/rest paths use the existing `render.ticks` columns. Each side has its
+  own data-derived visual y extent; padding and SVG coordinates are geometry
+  only. Tape/rest and action markers stop at the selected replay receipt.
+- Recorded floors still use corrected `truth.legs`; the dotted perfect-sentence
+  path still uses `oracle.legs[side].path`. Both are hindsight rulers, not OS
+  inputs, and remain visible through the bell. No invented floor or interpolation
+  across missing values. Coincident ruler paths are not offset for visibility.
+- One time-based scrubber replaces visible gate chips. It selects stored frames;
+  floors and fills use their stored time/progress. Later fill markers explicitly
+  say “later in replay” on hover. Full gate controls remain inside Details.
+- Bid/fill cards retain `card_lines` and raw `details_lines`. The supersession
+  front gloss reads only `bid_accountability.assumption` / `.renewal`: PENDING →
+  “promise pending”, FULFILLED → “promise reached”, MISSED_AT_DEADLINE →
+  “deadline missed”; missing → “no renewal data here”. Member count is “Pool of
+  <member_count> games”, never confused with effective sample size. Original
+  author tokens, assumptions, renewal and supersession records remain in Details.
+- STORE SILENT is “no data here” on the reading surface. The inspector preserves
+  raw fields verbatim. Amber is reserved for bids/fills; no side-specific colors.

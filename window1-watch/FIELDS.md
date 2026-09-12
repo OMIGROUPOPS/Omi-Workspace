@@ -1019,3 +1019,25 @@ Hard failures still override it. Unknown offer is not the same as no offer.
   cards not already in history), regrades existing stage files only, and writes
   `proof/GRADE_RUBRIC_V1_BEFORE_AFTER.json`. It verifies unchanged outcomes,
   author counts, stage bindings, OS/builder/face hashes and old history prefixes.
+
+## FACE v3 / LAB terminal (presentation only)
+
+- The fixed inspector replaces the modal, reading the identical `detail_url`
+  (local gzip via face-data middleware) plus the unchanged compact receipt.
+  No stage/renewal files are added to public deployment.
+- Sentence table selects `os[].legs[leg].pool_cascade.selected_layer` and its
+  stored `floors.q50.level_cents`, `floors.q50.minutes_to_bell`, q25/q75, ESS,
+  member count and weight sum. Roles come from the same receipt's `roles`.
+  Display decimals round to two places; hover retains exact value, source path,
+  OS and trace. No forecast, deadline, role or price is recalculated.
+- Book top uses that receipt's `bid/ask/last/running_low`. Deeper prices,
+  sizes and maker residuals are STORE SILENT: compact files do not contain them.
+  Individual pool members/weights are also absent from these stage outputs;
+  counts or sums must not be presented as reconstructed individual rows.
+- Tape/oracle/bands/receipt gap geometry, grades and historical grades are
+  unchanged. The amended terminal palette replaces side colors; amber marks
+  our bids/fills, signed gap is grey above/below zero. No decorative icons.
+- `Load prepared face` reads a user-selected built face, not a raw-tape replay.
+  It requires OS/trace provenance and rejects explicitly sealed/holdout/live-paper
+  source metadata. Static hosting has no OS runner. The temporary-builder-edit
+  rerun fallback is deliberately not invoked by this face-only build.

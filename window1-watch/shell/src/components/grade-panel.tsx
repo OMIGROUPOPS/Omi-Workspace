@@ -23,7 +23,6 @@ export function GradePanel({ game }: { game: LoadedGame }) {
               title={s.hover_lines.join("\n")}
               className="truncate text-xs tabular-nums"
             >
-              <span className={s.mark === "✓" ? "text-good" : "text-amber"}>{s.mark}</span>{" "}
               <span className="text-muted">{s.name}</span> · {s.line}
             </p>
           ))}

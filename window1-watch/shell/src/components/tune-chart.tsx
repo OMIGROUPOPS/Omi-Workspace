@@ -45,7 +45,7 @@ function ChartTip({
 export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt }: Props) {
   const first = side === game.face.legs[0],
     prefix = first ? "first" : "second",
-    stroke = first ? "var(--color-alt)" : "var(--color-gas)";
+    stroke = "var(--color-fg)";
   const now = game.frames[frame],
     data = game.frames.slice(now.pre_first_tick ? 0 : game.face.render.play_start_frame),
     axis = now.pre_first_tick ? game.face.render.inspection_axis : game.face.render.axis;
@@ -180,7 +180,7 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
             className="rest-history"
             type="stepAfter"
             dataKey={`${prefix}Rest`}
-            stroke={stroke}
+            stroke="var(--color-rest)"
             strokeWidth={2.4}
             strokeDasharray="6 5"
             dot={false}
@@ -193,17 +193,17 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
     [game, side, now.pre_first_tick, onReceipt],
   );
   return (
-    <section className="px-4 py-5 sm:px-5">
+    <section className="px-4 py-5 sm:px-5" title={`OS/TAPE/RULER · ${side} · ${game.face.provenance.event_id} · trace ${game.face.provenance.trace_sha256} · oracle ${game.face.oracle?.detail_url ?? SILENT}`}>
       <header className="mb-3 flex items-end justify-between gap-3">
         <div>
           <h2 className="font-display text-2xl leading-none" style={{ color: stroke }}>
             {side}
           </h2>
           <p className="mt-2 text-xs text-muted">
-            Grey = book. Bright = last trade. Dashed = our bid. Shade = where lookalikes went from
+            Grey = book / last. Amber dashed = our bid. Shade = where lookalikes went from
             here (25–75%).
           </p>
-          <p className="mt-1 text-xs text-muted">{game.face.render.marker_legend}</p>
+          <p className="mt-1 text-xs text-muted">Bid and fill marks open their stored reasons. Floor is a recorded ruler.</p>
           <p className="mt-1 text-xs" style={{ color: stroke }}>Thin step = perfect sentence · RULER, not an OS input</p>
         </div>
         <div className="text-right tabular-nums">
@@ -228,14 +228,14 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
             aria-label={rulerMarker.hover_note}
             title={rulerMarker.hover_note}
             data-boundary={rulerMarker.boundary}
-            className="recorded-floor-flag pointer-events-auto absolute z-10 -translate-x-1/2 -translate-y-full rounded bg-bg/90 px-1 text-lg leading-none"
+            className="recorded-floor-flag pointer-events-auto absolute z-10 -translate-x-1/2 -translate-y-full bg-bg px-1 text-[10px] leading-none"
             style={{
               color: stroke,
               left: `calc(36px + (100% - 44px) * ${rulerMarker.display_progress})`,
               top: `calc(16px + (100% - 46px) * ${rulerMarker.price})`,
             }}
           >
-            {rulerMarker.glyph}
+            floor
           </span>
         ) : null}
         {rulerMarker?.price != null ? (
@@ -251,11 +251,11 @@ export const TuneChart = memo(function TuneChart({ game, frame, side, onReceipt 
           actions={[...(game.face.render.bid_actions ?? []), ...(game.face.render.supersessions ?? [])]}
           now={now}
           side={side}
-          color={stroke}
+          color="var(--color-rest)"
           onReceipt={onReceipt}
         />
       </div>
-      <OracleGap game={game} side={side} now={now} color={stroke} />
+      <OracleGap game={game} side={side} now={now} color="var(--color-rest)" />
       {atBell && miss ? <p className="text-xs text-muted">{miss.label}</p> : null}
     </section>
   );

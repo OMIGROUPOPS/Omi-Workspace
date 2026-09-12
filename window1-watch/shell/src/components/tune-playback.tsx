@@ -92,7 +92,7 @@ export function TunePlayback({
               }}
               aria-label={`Checkpoint ${c.minutesToBell} minutes to bell`}
             >
-              ⚑ {c.label}
+              {c.label}
             </button>
           ))}
       </div>

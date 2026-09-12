@@ -23,7 +23,7 @@ export function OracleGap({ game, side, now, color }: {
       audit.ticks.forEach((tick, i) => {
         const value = series.values[i];
         if (value[1] == null || value[2] == null) return;
-        ctx.fillStyle = value[1] > 0 ? "#ef5555" : "#4a9eff";
+        ctx.fillStyle = value[1] > 0 ? "#d0d0d0" : "#858585";
         const x = 36 + (width - 44) * tick[progressIndex];
         const next = audit.ticks[i + 1]?.[progressIndex] ?? tick[progressIndex];
         ctx.fillRect(x, 8 + (height - 16) * value[2], Math.max(1, (next - tick[progressIndex]) * (width - 44)), (height - 16) * (value[3] ?? 0));
@@ -42,7 +42,7 @@ export function OracleGap({ game, side, now, color }: {
   };
   const profile = hover != null && series ? series.profiles[series.values[hover][0]] : null;
   return <div className="mt-2" aria-label={`${side} sentence gap strip`}>
-    <p className="text-xs text-muted">Sentence gap · red too high · blue too low · ● fill</p>
+    <p className="text-xs text-muted">Sentence gap · above zero: too high · below zero: too low · amber: fill</p>
     {!audit || !series ? <p className="text-xs text-muted">{game.oracle_status ?? SILENT}</p> :
       <div className="relative h-20" onMouseLeave={() => setHover(null)}>
         <canvas ref={canvas} className="h-full w-full" style={{ clipPath: `inset(0 calc(8px + (100% - 44px) * ${now.plot_remaining}) 0 0)` }} onMouseMove={e => pick(e.clientX)} aria-label={`${side} signed Q minus perfect sentence; hover to inspect each receipt`} />
@@ -52,7 +52,7 @@ export function OracleGap({ game, side, now, color }: {
             onMouseEnter={() => setHover(f.index)} onFocus={() => setHover(f.index)} onBlur={() => setHover(null)}
             className="absolute -translate-x-1/2 -translate-y-1/2 text-sm" style={{ color,
               left: `calc(36px + (100% - 44px) * ${now.pre_first_tick ? f.inspection_progress : f.progress})`,
-              top: `calc(8px + (100% - 16px) * ${f.y})` }}>●</button>)}
+              top: `calc(8px + (100% - 16px) * ${f.y})`, width:6,height:6,backgroundColor:color,borderRadius:'50%' }} />)}
         {profile && hover != null ? <div role="tooltip" className="pointer-events-none absolute bottom-full left-10 z-30 rounded border border-border bg-raised p-2 text-xs text-fg shadow-lg">
           <p>{audit.ticks[hover][5]}</p>{profile.lines.map((line, i) => <p key={i}>{line}</p>)}
         </div> : null}

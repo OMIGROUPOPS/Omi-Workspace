@@ -68,9 +68,9 @@ export function BidActionMarkers({
                   if (e.key === "Escape") setHover(null);
                 }}
                 onClick={() => onReceipt(a.receipt_index)}
-                className={`bid-action-marker absolute flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-sm bg-bg/85 text-base leading-none outline-offset-2 hover:outline hover:outline-1 ${a.fill ? "fill-burst" : ""}`}
+                className={`bid-action-marker absolute flex h-3 w-3 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-base leading-none outline-offset-2 hover:outline hover:outline-1 ${a.fill ? "fill-burst" : ""}`}
               >
-                {a.glyph}
+                <span aria-hidden="true" style={{width:a.fill?6:4,height:a.fill?6:4,background:'currentColor',borderRadius:a.fill?'50%':0}} />
               </button>
               {a.fill ? (
                 <div

@@ -1,0 +1,32 @@
+{
+  "status": "STATIC_MOCKUPS_NOT_APPLICATION",
+  "inputs": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "face_sha256": "0a1ed88b2cd4b79acfe5d7071e988fc19db9eb66c2ab667a82c42c38993b6d4a",
+      "grade_sha256": "58ed1b16884a60a4c03444edc0ce918da98bfc9569c1d226e1dee7e25867e500"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "face_sha256": "af3a8d5bfc91db294d94a65963a3ba560b347b43de6030063d2de39a997ea796",
+      "grade_sha256": "9f89dadc780ab9eae56576cf69f0a7945fa88a101f9fdfa3d3ee714ced09bc8b"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "face_sha256": "0e7f389375721e3ff2235b7ab7c6a80005940db034862ad0b284dab413c2b546",
+      "grade_sha256": "25406f2233c08748621430ea9c5f91f07e01622ece0370c1a8f80ad97044ca92"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "face_sha256": "a3dbe538aa2d7fe4a9025b6014ba6d1b48dbce0326d38fae08ef0cae1d85feea",
+      "grade_sha256": "39c3bc7912af6d44fabb620c1878e19c826638eda1bff89162957faa032dc0ec"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "face_sha256": "276cf896ed5068d4343c9779f0a5dbdbc824a7de06954ba923448b7ebcc681e7",
+      "grade_sha256": "b342b8ea27b6d8b9fb998b4f764cf9865275106ba8ef39be1a384388dc9f8f36"
+    }
+  ],
+  "desk": "Historical replay examples, never live paper positions",
+  "engine_changes": false
+}

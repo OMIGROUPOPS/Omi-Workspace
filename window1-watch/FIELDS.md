@@ -1041,3 +1041,15 @@ Hard failures still override it. Unknown offer is not the same as no offer.
   It requires OS/trace provenance and rejects explicitly sealed/holdout/live-paper
   source metadata. Static hosting has no OS runner. The temporary-builder-edit
   rerun fallback is deliberately not invoked by this face-only build.
+
+### DESK / LIVE_PAPER_DESK_V1
+
+`data/desk-status.json` is a disconnected UI contract, not live measurements.
+`activation.cohort_policy_approved` records the operator's rule approval;
+`read_only_key_verified`, `disjoint_cohort_runtime_verified` and
+`worker_os_binding_verified` remain false until separately proved.
+`heartbeat`, `tape_freshness`, `positions`, `resting_bids`, `closed_pairs` and
+`missing_sides` are null, not empty arrays or zero counts. No historical game
+is recast as live. Runtime data must be tagged LIVE_PAPER; row values carry
+source receipts and OS/ledger hashes. This component only reads JSON; it
+contains no engine, key, order endpoint or worker-start operation.

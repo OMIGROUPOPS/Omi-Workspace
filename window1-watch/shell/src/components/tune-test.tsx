@@ -7,6 +7,7 @@ import { TuneHud } from "./tune-scene";
 import { ReceiptInspector } from "./receipt-inspector";
 import { TuneReceipts } from "./tune-receipts";
 import { LabSide, LabBidLog } from "./lab-panels";
+import { DeskPanel } from "./desk-panel";
 import "../tune-motion.css";
 import "../terminal.css";
 type Tab="lab"|"desk"|"scoreboard";
@@ -55,7 +56,7 @@ export function TuneTest() {
       {game.face.legs.map(l=><TuneChart key={l} game={game} frame={frame} side={l} onReceipt={inspect}/>)}
       <LabBidLog game={game} receiptIndex={receiptIndex} onReceipt={inspect}/><TuneReceipts receipts={game.face.os} onInspect={inspect}/></div>
       <div className="lab-column" title={"Source: stored face/grade/ruler/bench; OS "+game.face.provenance.os_sha256+"; trace "+game.face.provenance.trace_sha256}><TuneHud game={game} receipt={receipt} bench={checkpoint?.bench??null}/><ReceiptInspector receipt={inspected==null?receipt:game.face.os[inspected]} onClose={closeInspector}/></div></div></>:null}
-    </>:<section><h2>{tab==="desk"?"DESK / PAPER":"SCOREBOARD"}</h2><p className="terminal-muted">Next signed build part. No fabricated live data or totals.</p></section>}
+    </>:tab==="desk"?<DeskPanel/>:<section><h2>SCOREBOARD</h2><p className="terminal-muted">Next signed build part. No fabricated totals.</p></section>}
     <footer>/ game search · [ ] switch game · G gate · Space play/pause · arrows receipt · Escape current inspector · LAB is research, not an order terminal</footer>
   </main>;
 }

@@ -26,6 +26,7 @@ const indexBytes = readFileSync(resolve(source, "index.json"));
 const index = JSON.parse(indexBytes);
 if (index.games.length !== 5) throw new Error("Demo requires the five reviewed games; review the allowlist before extending it");
 put("data/index.json", indexBytes);
+put("data/desk-status.json", readFileSync(resolve(source, "desk-status.json")));
 for (const game of index.games) {
   if (!/^[A-Z0-9-]+$/.test(game.event) || game.url !== `/data/${game.event}.face.json`) throw new Error("Unexpected game URL");
   const faceBytes = readFileSync(within(source, `${game.event}.face.json`));

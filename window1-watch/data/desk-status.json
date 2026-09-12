@@ -1,0 +1,26 @@
+{
+  "schema": "LIVE_PAPER_DESK_V1",
+  "status": "DISCONNECTED",
+  "source_class": "LIVE_PAPER",
+  "activation": {
+    "cohort_policy_approved": true,
+    "approval_source": "Operator FACE v3 DESIGN AMENDMENT + BUILD ORDER",
+    "read_only_key_verified": false,
+    "disjoint_cohort_runtime_verified": false,
+    "worker_os_binding_verified": false
+  },
+  "provenance": {
+    "source": "Static disconnected deployment contract; not a recorder measurement",
+    "os_sha256": null,
+    "ledger_sha256": null,
+    "source_receipt": null,
+    "captured_at": null
+  },
+  "heartbeat": null,
+  "tape_freshness": null,
+  "positions": null,
+  "resting_bids": null,
+  "closed_pairs": null,
+  "missing_sides": null,
+  "faults": ["READ_ONLY_KEY_UNVERIFIED", "COHORT_RUNTIME_UNVERIFIED", "NO_PAPER_WORKER_CONNECTED"]
+}

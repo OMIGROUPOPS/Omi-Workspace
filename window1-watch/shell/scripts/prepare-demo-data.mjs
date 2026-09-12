@@ -3,9 +3,11 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSy
 import { dirname, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { gunzipSync } from "node:zlib";
+import { buildScoreboard } from "../../build_scoreboard.mjs";
 
 const shell = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const source = resolve(shell, "../data");
+buildScoreboard(source);
 const target = resolve(shell, ".demo-public");
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 const entries = [];
@@ -27,6 +29,7 @@ const index = JSON.parse(indexBytes);
 if (index.games.length !== 5) throw new Error("Demo requires the five reviewed games; review the allowlist before extending it");
 put("data/index.json", indexBytes);
 put("data/desk-status.json", readFileSync(resolve(source, "desk-status.json")));
+put("data/scoreboard.json", readFileSync(resolve(source, "scoreboard.json")));
 for (const game of index.games) {
   if (!/^[A-Z0-9-]+$/.test(game.event) || game.url !== `/data/${game.event}.face.json`) throw new Error("Unexpected game URL");
   const faceBytes = readFileSync(within(source, `${game.event}.face.json`));

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { loadGameIndex, loadTuneGame } from "@/lib/tape";
 import { frameForReceipt, type Game, type LoadedGame } from "@/lib/tune-tape";
 import { TuneChart } from "./tune-chart";
@@ -8,10 +8,13 @@ import { ReceiptInspector } from "./receipt-inspector";
 import { TuneReceipts } from "./tune-receipts";
 import { LabSide, LabBidLog } from "./lab-panels";
 import { DeskPanel } from "./desk-panel";
+import { ScoreboardPanel } from "./scoreboard-panel";
 import "../tune-motion.css";
 import "../terminal.css";
 type Tab="lab"|"desk"|"scoreboard";
 export function TuneTest() {
+  const importedUrls=useRef<string[]>([]);
+  useEffect(()=>()=>importedUrls.current.forEach(url=>URL.revokeObjectURL(url)),[]);
   const [games,setGames]=useState<Game[]>([]),[event,setEvent]=useState<string|null>(null),[game,setGame]=useState<LoadedGame|null>(null);
   const [tab,setTab]=useState<Tab>(()=>{const t=new URLSearchParams(location.search).get("tab");return t==="desk"||t==="scoreboard"?t:"lab"});
   const [error,setError]=useState<string|null>(null),[frame,setFrame]=useState(0),[playing,setPlaying]=useState(false),[inspected,setInspected]=useState<number|null>(null),[selectedReceipt,setSelectedReceipt]=useState<number|null>(null);
@@ -37,7 +40,18 @@ export function TuneTest() {
     if((e.key==="ArrowLeft"||e.key==="ArrowRight")&&game&&tab==="lab"){e.preventDefault();const next=e.key==="ArrowRight"?game.face.os.find(r=>receiptIndex==null||r.index>receiptIndex):[...game.face.os].reverse().find(r=>receiptIndex!=null&&r.index<receiptIndex);if(next){setFrame(frameForReceipt(game.frames,next));setSelectedReceipt(next.index);setInspected(null);setPlaying(false)}}
   };document.addEventListener("keydown",key);return()=>document.removeEventListener("keydown",key)},[tab,now,game,games,event,receiptIndex]);
   async function importFace(file:File){
-    try {const raw=JSON.parse(await file.text());if(raw.version!==2||!/^KX[A-Z0-9-]+$/.test(raw.provenance?.event_id))throw Error("Choose a built .face.json with an event and OS/trace provenance");if(/SEALED|HOLDOUT|LIVE_PAPER/.test(JSON.stringify(raw.provenance)))throw Error("This source class is excluded from LAB imports");if(!raw.provenance.os_sha256||!raw.provenance.trace_sha256)throw Error("Missing OS or trace binding");const url=URL.createObjectURL(file);const imported=await loadTuneGame(url);setPlaying(false);setInspected(null);setSelectedReceipt(null);setGame(imported);setFrame(imported.face.render.play_start_frame);(window as unknown as {TUNE_DATA:LoadedGame}).TUNE_DATA=imported;setError(null);URL.revokeObjectURL(url)}catch(e){setError(String(e))}
+    let url:string|undefined;
+    try {
+      const raw=JSON.parse(await file.text());
+      if(raw.version!==2||!/^KX[A-Z0-9-]+$/.test(raw.provenance?.event_id))throw Error("Choose a built .face.json with an event and OS/trace provenance");
+      if(/SEALED|HOLDOUT|LIVE_PAPER/.test(JSON.stringify(raw.provenance)))throw Error("This source class is excluded from LAB imports");
+      if(!raw.provenance.os_sha256||!raw.provenance.trace_sha256)throw Error("Missing OS or trace binding");
+      url=URL.createObjectURL(file);const imported=await loadTuneGame(url);
+      const reviewed=games.some(g=>g.event===raw.provenance.event_id)&&imported.grade_status==="OK";
+      if(!reviewed&&!["LIBRARY","TUNE_SAMPLE"].includes(raw.provenance.source_class??raw.provenance.cohort))throw Error("Unreviewed import needs explicit LIBRARY or TUNE_SAMPLE provenance");
+      const entry:Game={event:raw.provenance.event_id,category:raw.category??null,os_sha:raw.provenance.os_sha256,trace_sha:raw.provenance.trace_sha256,url,version:raw.version};
+      importedUrls.current.push(url);setGames(previous=>[...previous.filter(g=>g.event!==entry.event),entry]);setEvent(entry.event);setError(null);
+    }catch(e){if(url)URL.revokeObjectURL(url);setError(String(e))}
   }
   return <main className="terminal">
     <header className="terminal-header"><strong>WINDOW-1 WATCH</strong><nav aria-label="Terminal tabs">{(["lab","desk","scoreboard"] as Tab[]).map(t=><button key={t} aria-current={tab===t?"page":undefined} onClick={()=>changeTab(t)}>{t.toUpperCase()}</button>)}</nav><span className={tab==="desk"?"terminal-fault":"terminal-muted"}>{tab==="desk"?"PAPER / DISCONNECTED":"STORED REPLAY / NO ORDERS"}</span></header>
@@ -46,7 +60,8 @@ export function TuneTest() {
       <div className="terminal-toolbar"><label htmlFor="load-game">Game </label><select id="load-game" value={event??""} onChange={e=>setEvent(e.target.value)}>{games.map(g=><option key={g.event} value={g.event}>{g.event}</option>)}</select>
       <label htmlFor="gate-jump">Gate </label><select id="gate-jump" value={checkpoint?.minutesToBell??""} onChange={e=>{const c=game?.face.render.checkpoints.find(c=>c.minutesToBell===Number(e.target.value));if(c){selectFrame(c.frame);setPlaying(false)}}}>{game?.face.render.checkpoints.map(c=><option key={c.minutesToBell} value={c.minutesToBell}>{c.minutesToBell}m</option>)}</select>
       <label>Load prepared face <input type="file" accept=".json" onChange={e=>{const f=e.target.files?.[0];if(f)void importFace(f)}}/></label></div>
-      <details><summary>Run pinned OS / load another tape</summary><p>Static hosting displays prepared runs; it does not execute an engine. Load a hash-bound .face.json from your local library/tune workflow. Raw tape execution is not connected to this browser. No temporary builder edits are made.</p></details>
+      <details><summary>Run pinned OS / load another tape</summary><p>Static hosting displays prepared runs; it does not execute an engine. Load a hash-bound .face.json from your local library/tune workflow. New games require LIBRARY or TUNE_SAMPLE provenance; sealed/live inputs are excluded. Raw tape execution is not connected to this browser. No temporary builder edits are made.</p></details>
+      {games.find(g=>g.event===event)?.url.startsWith("blob:")?<p className="terminal-muted">LOCAL PREPARED FACE / this file selection lasts until refresh; optional grade and oracle must match its hashes.</p>:null}
       {error?<p role="alert" className="terminal-fault">STORE SILENT — {error}</p>:null}
       {!game&&!error?<p>Loading verified face/grade/oracle…</p>:null}
       {game&&now?<><div className="terminal-provenance" title={JSON.stringify(game.face.provenance)}>OS {game.face.provenance.os_sha256}<br/>TRACE {game.face.provenance.trace_sha256} · BELL {game.face.bell.source} · {now.clock_label}</div>
@@ -56,7 +71,7 @@ export function TuneTest() {
       {game.face.legs.map(l=><TuneChart key={l} game={game} frame={frame} side={l} onReceipt={inspect}/>)}
       <LabBidLog game={game} receiptIndex={receiptIndex} onReceipt={inspect}/><TuneReceipts receipts={game.face.os} onInspect={inspect}/></div>
       <div className="lab-column" title={"Source: stored face/grade/ruler/bench; OS "+game.face.provenance.os_sha256+"; trace "+game.face.provenance.trace_sha256}><TuneHud game={game} receipt={receipt} bench={checkpoint?.bench??null}/><ReceiptInspector receipt={inspected==null?receipt:game.face.os[inspected]} onClose={closeInspector}/></div></div></>:null}
-    </>:tab==="desk"?<DeskPanel/>:<section><h2>SCOREBOARD</h2><p className="terminal-muted">Next signed build part. No fabricated totals.</p></section>}
+    </>:tab==="desk"?<DeskPanel/>:<ScoreboardPanel onGame={e=>{changeTab("lab");setEvent(e)}}/>}
     <footer>/ game search · [ ] switch game · G gate · Space play/pause · arrows receipt · Escape current inspector · LAB is research, not an order terminal</footer>
   </main>;
 }

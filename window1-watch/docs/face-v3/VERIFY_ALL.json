@@ -1,0 +1,42 @@
+{
+  "base": "http://127.0.0.1:8083",
+  "phase": "all",
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "face_sha": "0a1ed88b2cd4b79acfe5d7071e988fc19db9eb66c2ab667a82c42c38993b6d4a",
+      "grade": "F",
+      "trace": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "face_sha": "af3a8d5bfc91db294d94a65963a3ba560b347b43de6030063d2de39a997ea796",
+      "grade": "F",
+      "trace": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "face_sha": "0e7f389375721e3ff2235b7ab7c6a80005940db034862ad0b284dab413c2b546",
+      "grade": "F",
+      "trace": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "face_sha": "a3dbe538aa2d7fe4a9025b6014ba6d1b48dbce0326d38fae08ef0cae1d85feea",
+      "grade": "C",
+      "trace": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "face_sha": "276cf896ed5068d4343c9779f0a5dbdbc824a7de06954ba923448b7ebcc681e7",
+      "grade": "—",
+      "trace": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439"
+    }
+  ],
+  "js_errors": [],
+  "inspector": "fixed; no modal",
+  "keyboard": "game and gate focus verified",
+  "sources": "all five face hashes unchanged",
+  "imports": "prepared face selection/provenance aligned; sealed-source test rejected",
+  "desk": "disconnected, zero fabricated games"
+}

@@ -1,0 +1,1772 @@
+{
+  "schema": "FACE_SCOREBOARD_V1",
+  "scope": "Loaded LAB games, not live trading or the entire library",
+  "contract": {
+    "latest": "Each indexed game exactly once, current grade only. Historical revisions never enter aggregate game counts.",
+    "completion": "Valid corrected-span pairs / all indexed games; offer-eligible denominator also shown.",
+    "capture": "Sum of stored OUTCOME.captured_cents; incomplete pairs remain zero as graded. No regrading.",
+    "offer": "Sum of stored OUTCOME.best_capturable_cents, with known/missing and zero-offer counts.",
+    "participation": "Considered = face.os nonempty. Bid = a stored PLACE_REST or REPRICE_REST in HANDS.actions. This is not an exchange-listed-universe denominator.",
+    "missing_side": "Show stored unfilled outcome, latest recorded action/tokens and explicit missing cause; do not infer intent.",
+    "history": "All stored indexed revisions, with their original rubric/letter/source. Old rules are not silently regraded.",
+    "prior_art": "Day Sheet 439695d9 / 155a1d6b; Performance & Grading 281bce1f; current operator rubric unchanged."
+  },
+  "inputs": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "face_sha256": "0a1ed88b2cd4b79acfe5d7071e988fc19db9eb66c2ab667a82c42c38993b6d4a",
+      "grade_sha256": "58ed1b16884a60a4c03444edc0ce918da98bfc9569c1d226e1dee7e25867e500",
+      "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "face_sha256": "af3a8d5bfc91db294d94a65963a3ba560b347b43de6030063d2de39a997ea796",
+      "grade_sha256": "9f89dadc780ab9eae56576cf69f0a7945fa88a101f9fdfa3d3ee714ced09bc8b",
+      "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "face_sha256": "0e7f389375721e3ff2235b7ab7c6a80005940db034862ad0b284dab413c2b546",
+      "grade_sha256": "25406f2233c08748621430ea9c5f91f07e01622ece0370c1a8f80ad97044ca92",
+      "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "face_sha256": "a3dbe538aa2d7fe4a9025b6014ba6d1b48dbce0326d38fae08ef0cae1d85feea",
+      "grade_sha256": "39c3bc7912af6d44fabb620c1878e19c826638eda1bff89162957faa032dc0ec",
+      "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace_sha256": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+      "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "face_sha256": "276cf896ed5068d4343c9779f0a5dbdbc824a7de06954ba923448b7ebcc681e7",
+      "grade_sha256": "b342b8ea27b6d8b9fb998b4f764cf9865275106ba8ef39be1a384388dc9f8f36",
+      "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+    }
+  ],
+  "index_sha256": "05f519dbcc596f33f9fd541dae581f15be58c9e6b21f470daa798f1ddd6aa218",
+  "history_sha256": "ca08ec104648acc94560a5a91622f513935a37b34b6bdb6d9c44efe273a9be35",
+  "rows": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "game": "BAR / GIU",
+      "category": "ATP_CHALL",
+      "mode": "LAB",
+      "timestamp": "2026-09-09T15:19:15.769Z",
+      "letter": "F",
+      "sections": [
+        {
+          "name": "MACRO",
+          "mark": "!",
+          "line": "F · BAR FALLER → NOT_CALLABLE · GIU CLIMBER → NOT_CALLABLE",
+          "hover_lines": [
+            "MACRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"F\",\"metrics\":{\"correct_side_share\":0},\"legs\":{\"BAR\":{\"called_role\":\"FALLER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473\",\"first_recorded_epoch\":1783841945.000004,\"first_bind_epoch\":1783841801.417,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":31.5,\"close_cents\":32,\"realized_drift_cents\":0.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"GIU\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473\",\"first_recorded_epoch\":1783841945.000004,\"first_bind_epoch\":1783841801.426,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":67,\"close_cents\":66,\"realized_drift_cents\":-1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+            "Flips (diagnostic): BAR 0 · GIU 0"
+          ]
+        },
+        {
+          "name": "MICRO",
+          "mark": "✓",
+          "line": "B · BAR Q 25 vs floor 27¢; range 24–27 · GIU Q 67 vs floor 66¢; range 66–69",
+          "hover_lines": [
+            "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"B\",\"legs\":{\"BAR\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"B\",\"q50\":25,\"q25\":24,\"q75\":27,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":27,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"GIU\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":67,\"q25\":66,\"q75\":69,\"floor_error_cents\":1,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-473\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":66,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+            "Oracle mean gap (diagnostic): BAR: 2.53¢ · GIU: 2.22¢ · BAR: first 262.08m; remaining MAE 87.3m · GIU: first 199.04m; remaining MAE 140.16m"
+          ]
+        },
+        {
+          "name": "TRADE",
+          "mark": "!",
+          "line": "D · BAR unfilled · GIU 69¢ (+3¢)",
+          "hover_lines": [
+            "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"BAR\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":27,\"floor_epoch\":1783841801.305,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"GIU\":{\"filled\":true,\"cents\":69,\"vs_floor_cents\":3,\"fill_epoch\":1783865397.812,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783874300,\"span_start_epoch\":1783831858,\"span_end_epoch\":1783874300,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[\"W1TT-C-001\"]},\"reason\":null,\"floor_cents\":66,\"floor_epoch\":1783869375.227,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":390.88019993305204,\"current_price_age_minutes\":240.13019998470944,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+            "Ages: GIU lineage 390.88m, current price 240.13m"
+          ]
+        },
+        {
+          "name": "PAIR",
+          "mark": "!",
+          "line": "F · STORE SILENT¢ pair · 0 of 7¢ captured",
+          "hover_lines": [
+            "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":7}}",
+            "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+          ]
+        }
+      ],
+      "governing": "MACRO · PAIR",
+      "source": {
+        "face_sha256": "0a1ed88b2cd4b79acfe5d7071e988fc19db9eb66c2ab667a82c42c38993b6d4a",
+        "grade_sha256": "58ed1b16884a60a4c03444edc0ce918da98bfc9569c1d226e1dee7e25867e500",
+        "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+        "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+      },
+      "called_by_os": true,
+      "any_bid": true,
+      "valid_fills": 1,
+      "side_count": 2,
+      "completed": false,
+      "pair_sum": null,
+      "captured_cents": 0,
+      "offered_cents": 7,
+      "capture_ratio": 0,
+      "missing_sides": [
+        {
+          "side": "BAR",
+          "disposition": "UNFILLED_IN_CORRECTED_SPAN",
+          "reason": "STORE SILENT — no filed miss cause",
+          "last_action": "REPRICE_REST",
+          "last_action_tokens": [
+            "REPRICE_REST",
+            "PRICING_AUTHORITY_TARGET_EXECUTED",
+            "POOL_CASCADE_WRITER",
+            "PRICING_AUTHORITY_TARGET_EXECUTED"
+          ],
+          "receipt": "f6988de7-aeba-53c2-ff8e-dd70aa8fe0a3"
+        }
+      ],
+      "legs": {
+        "BAR": {
+          "filled": false,
+          "cents": null,
+          "vs_floor_cents": null,
+          "fill_epoch": null,
+          "valid_span_fill": false,
+          "revalidation": null,
+          "reason": null
+        },
+        "GIU": {
+          "filled": true,
+          "cents": 69,
+          "vs_floor_cents": 3,
+          "fill_epoch": 1783865397.812,
+          "valid_span_fill": true,
+          "revalidation": {
+            "ruler_bell_epoch": 1783874300,
+            "span_start_epoch": 1783831858,
+            "span_end_epoch": 1783874300,
+            "at_or_after_span_start": true,
+            "before_span_end": true,
+            "before_bell": true,
+            "correction_ids": [
+              "W1TT-C-001"
+            ]
+          },
+          "reason": null
+        }
+      },
+      "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.grade.json",
+      "ruler_line": "Grading ruler: BAR 27¢ + GIU 66¢ · 7¢ offered · 1 filed corrections",
+      "diagnostic_lines": [
+        "Q 63.53% · X 63.53% authored (token metric); Gate-1 certification STORE SILENT",
+        "Oracle mean gap (diagnostic): BAR: 2.53¢ · GIU: 2.22¢",
+        "Timing (diagnostic): BAR: first 262.08m; remaining MAE 87.3m · GIU: first 199.04m; remaining MAE 140.16m",
+        "Exact family, flips, authorship and full receipt error series remain in the JSON; none is silently certified."
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "game": "LAJ / SVA",
+      "category": "ATP_CHALL",
+      "mode": "LAB",
+      "timestamp": "2026-09-09T15:19:17.432Z",
+      "letter": "F",
+      "sections": [
+        {
+          "name": "MACRO",
+          "mark": "!",
+          "line": "C · LAJ CLIMBER → FALLER · SVA CLIMBER → CLIMBER",
+          "hover_lines": [
+            "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"LAJ\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"FALLER\",\"correct\":false,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322\",\"first_recorded_epoch\":1784020204.000008,\"first_bind_epoch\":1784020202,\"final_stored_role\":\"FALLER\",\"flip_count\":1,\"open_cents\":59,\"close_cents\":53,\"realized_drift_cents\":-6,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"SVA\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"6a125304-0f14-4aa4-5dfd-3d57fd746a9d\",\"first_recorded_epoch\":1784020216.83,\"first_bind_epoch\":1784020216.83,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":41,\"close_cents\":48,\"realized_drift_cents\":7,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+            "Flips (diagnostic): LAJ 1 · SVA 0"
+          ]
+        },
+        {
+          "name": "MICRO",
+          "mark": "!",
+          "line": "F · LAJ Q 58 vs floor 51¢; range 58–60 · SVA Q 39 vs floor 41¢; range 38–41",
+          "hover_lines": [
+            "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"F\",\"legs\":{\"LAJ\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":58,\"q25\":58,\"q75\":60,\"floor_error_cents\":7,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":51,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"SVA\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"B\",\"q50\":39,\"q25\":38,\"q75\":41,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-322\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":41,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+            "Oracle mean gap (diagnostic): LAJ: 2.31¢ · SVA: 2.29¢ · LAJ: first 584.54m; remaining MAE 248.91m · SVA: first 68.58m; remaining MAE 165.77m"
+          ]
+        },
+        {
+          "name": "TRADE",
+          "mark": "!",
+          "line": "D · LAJ 54¢ (+3¢) · SVA 45¢ (+4¢; floor printed earlier)",
+          "hover_lines": [
+            "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"LAJ\":{\"filled\":true,\"cents\":54,\"vs_floor_cents\":3,\"fill_epoch\":1784050973.062,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784078400,\"span_start_epoch\":1784007603,\"span_end_epoch\":1784078400,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":51,\"floor_epoch\":1784060123.2,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":238.85103328227996,\"current_price_age_minutes\":187.6510333021482,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"SVA\":{\"filled\":true,\"cents\":45,\"vs_floor_cents\":4,\"fill_epoch\":1784073810.907,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784078400,\"span_start_epoch\":1784007603,\"span_end_epoch\":1784078400,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":41,\"floor_epoch\":1784020201.8,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":893.448449865977,\"current_price_age_minutes\":388.24844998518626,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+            "Ages: LAJ lineage 238.85m, current price 187.65m · SVA lineage 893.45m, current price 388.25m"
+          ]
+        },
+        {
+          "name": "PAIR",
+          "mark": "!",
+          "line": "C · 99¢ pair · 1 of 8¢ captured",
+          "hover_lines": [
+            "PAIR: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"C\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":0.125,\"offered_cents\":8}}",
+            "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+          ]
+        }
+      ],
+      "governing": "MICRO",
+      "source": {
+        "face_sha256": "af3a8d5bfc91db294d94a65963a3ba560b347b43de6030063d2de39a997ea796",
+        "grade_sha256": "9f89dadc780ab9eae56576cf69f0a7945fa88a101f9fdfa3d3ee714ced09bc8b",
+        "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+        "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+      },
+      "called_by_os": true,
+      "any_bid": true,
+      "valid_fills": 2,
+      "side_count": 2,
+      "completed": true,
+      "pair_sum": 99,
+      "captured_cents": 1,
+      "offered_cents": 8,
+      "capture_ratio": 0.125,
+      "missing_sides": [],
+      "legs": {
+        "LAJ": {
+          "filled": true,
+          "cents": 54,
+          "vs_floor_cents": 3,
+          "fill_epoch": 1784050973.062,
+          "valid_span_fill": true,
+          "revalidation": {
+            "ruler_bell_epoch": 1784078400,
+            "span_start_epoch": 1784007603,
+            "span_end_epoch": 1784078400,
+            "at_or_after_span_start": true,
+            "before_span_end": true,
+            "before_bell": true,
+            "correction_ids": []
+          },
+          "reason": null
+        },
+        "SVA": {
+          "filled": true,
+          "cents": 45,
+          "vs_floor_cents": 4,
+          "fill_epoch": 1784073810.907,
+          "valid_span_fill": true,
+          "revalidation": {
+            "ruler_bell_epoch": 1784078400,
+            "span_start_epoch": 1784007603,
+            "span_end_epoch": 1784078400,
+            "at_or_after_span_start": true,
+            "before_span_end": true,
+            "before_bell": true,
+            "correction_ids": []
+          },
+          "reason": null
+        }
+      },
+      "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.grade.json",
+      "ruler_line": "Grading ruler: LAJ 51¢ + SVA 41¢ · 8¢ offered · 0 filed corrections",
+      "diagnostic_lines": [
+        "Q 69.35% · X 69.35% authored (token metric); Gate-1 certification STORE SILENT",
+        "Oracle mean gap (diagnostic): LAJ: 2.31¢ · SVA: 2.29¢",
+        "Timing (diagnostic): LAJ: first 584.54m; remaining MAE 248.91m · SVA: first 68.58m; remaining MAE 165.77m",
+        "Exact family, flips, authorship and full receipt error series remain in the JSON; none is silently certified."
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "game": "PAL / URS",
+      "category": "ATP_CHALL",
+      "mode": "LAB",
+      "timestamp": "2026-09-09T15:19:22.197Z",
+      "letter": "F",
+      "sections": [
+        {
+          "name": "MACRO",
+          "mark": "!",
+          "line": "C · PAL CLIMBER → CLIMBER · URS CLIMBER → NOT_CALLABLE",
+          "hover_lines": [
+            "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"PAL\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053\",\"first_recorded_epoch\":1784021162.00001,\"first_bind_epoch\":1784021161.637,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":38,\"close_cents\":41,\"realized_drift_cents\":3,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"URS\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053\",\"first_recorded_epoch\":1784021162.00001,\"first_bind_epoch\":1784021162,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":1,\"open_cents\":62,\"close_cents\":61,\"realized_drift_cents\":-1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+            "Flips (diagnostic): PAL 0 · URS 1"
+          ]
+        },
+        {
+          "name": "MICRO",
+          "mark": "!",
+          "line": "F · PAL Q 39 vs floor 39¢; range 38–39 · URS Q 63 vs floor 57¢; range 61–63",
+          "hover_lines": [
+            "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"F\",\"legs\":{\"PAL\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":39,\"q25\":38,\"q75\":39,\"floor_error_cents\":0,\"band_width_cents\":1,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":39,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"URS\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":63,\"q25\":61,\"q75\":63,\"floor_error_cents\":6,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":57,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+            "Oracle mean gap (diagnostic): PAL: 3.66¢ · URS: 4.51¢ · PAL: first 220.11m; remaining MAE 179.14m · URS: first 50.56m; remaining MAE 21.48m"
+          ]
+        },
+        {
+          "name": "TRADE",
+          "mark": "!",
+          "line": "D · PAL 43¢ (+4¢) · URS unfilled",
+          "hover_lines": [
+            "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"PAL\":{\"filled\":true,\"cents\":43,\"vs_floor_cents\":4,\"fill_epoch\":1784035631.709,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784042247,\"span_start_epoch\":1784001495,\"span_end_epoch\":1784042247,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[\"W1TT-C-002\"]},\"reason\":null,\"floor_cents\":39,\"floor_epoch\":1784042066.596,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":205.8451498866081,\"current_price_age_minutes\":189.3951499859492,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"URS\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":57,\"floor_epoch\":1784032697.601,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+            "Ages: PAL lineage 205.85m, current price 189.4m"
+          ]
+        },
+        {
+          "name": "PAIR",
+          "mark": "!",
+          "line": "F · STORE SILENT¢ pair · 0 of 4¢ captured",
+          "hover_lines": [
+            "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":4}}",
+            "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+          ]
+        }
+      ],
+      "governing": "MICRO · PAIR",
+      "source": {
+        "face_sha256": "0e7f389375721e3ff2235b7ab7c6a80005940db034862ad0b284dab413c2b546",
+        "grade_sha256": "25406f2233c08748621430ea9c5f91f07e01622ece0370c1a8f80ad97044ca92",
+        "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+        "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+      },
+      "called_by_os": true,
+      "any_bid": true,
+      "valid_fills": 1,
+      "side_count": 2,
+      "completed": false,
+      "pair_sum": null,
+      "captured_cents": 0,
+      "offered_cents": 4,
+      "capture_ratio": 0,
+      "missing_sides": [
+        {
+          "side": "URS",
+          "disposition": "UNFILLED_IN_CORRECTED_SPAN",
+          "reason": "STORE SILENT — no filed miss cause",
+          "last_action": null,
+          "last_action_tokens": null,
+          "receipt": null
+        }
+      ],
+      "legs": {
+        "PAL": {
+          "filled": true,
+          "cents": 43,
+          "vs_floor_cents": 4,
+          "fill_epoch": 1784035631.709,
+          "valid_span_fill": true,
+          "revalidation": {
+            "ruler_bell_epoch": 1784042247,
+            "span_start_epoch": 1784001495,
+            "span_end_epoch": 1784042247,
+            "at_or_after_span_start": true,
+            "before_span_end": true,
+            "before_bell": true,
+            "correction_ids": [
+              "W1TT-C-002"
+            ]
+          },
+          "reason": null
+        },
+        "URS": {
+          "filled": false,
+          "cents": null,
+          "vs_floor_cents": null,
+          "fill_epoch": null,
+          "valid_span_fill": false,
+          "revalidation": null,
+          "reason": null
+        }
+      },
+      "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.grade.json",
+      "ruler_line": "Grading ruler: PAL 39¢ + URS 57¢ · 4¢ offered · 1 filed corrections",
+      "diagnostic_lines": [
+        "Q 95.87% · X 95.87% authored (token metric); Gate-1 certification STORE SILENT",
+        "Oracle mean gap (diagnostic): PAL: 3.66¢ · URS: 4.51¢",
+        "Timing (diagnostic): PAL: first 220.11m; remaining MAE 179.14m · URS: first 50.56m; remaining MAE 21.48m",
+        "Exact family, flips, authorship and full receipt error series remain in the JSON; none is silently certified."
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "game": "ALT / GAS",
+      "category": "ATP_MAIN",
+      "mode": "LAB",
+      "timestamp": "2026-09-09T15:19:24.538Z",
+      "letter": "C",
+      "sections": [
+        {
+          "name": "MACRO",
+          "mark": "✓",
+          "line": "A · ALT CLIMBER → CLIMBER · GAS FALLER → FALLER",
+          "hover_lines": [
+            "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"ALT\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"3e9ee739-aa2a-7e6a-586c-cc7000fe5f8a\",\"first_recorded_epoch\":1783799321.156,\"first_bind_epoch\":1783799321.156,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":57,\"close_cents\":65,\"realized_drift_cents\":8,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"GAS\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"5c5ed8fb-e9e6-7711-00e3-14195939c0e7\",\"first_recorded_epoch\":1783877860.516,\"first_bind_epoch\":1783877860.516,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":43,\"close_cents\":38,\"realized_drift_cents\":-5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+            "Flips (diagnostic): ALT 0 · GAS 0"
+          ]
+        },
+        {
+          "name": "MICRO",
+          "mark": "!",
+          "line": "C · ALT Q 57 vs floor 58¢; range 55–58 · GAS Q 41 vs floor 38¢; range 38–43",
+          "hover_lines": [
+            "MICRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"C\",\"legs\":{\"ALT\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":57,\"q25\":55,\"q75\":58,\"floor_error_cents\":1,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":58,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"GAS\":{\"letter\":\"C\",\"point_letter\":\"C\",\"range_letter\":\"C\",\"q50\":41,\"q25\":38,\"q75\":43,\"floor_error_cents\":3,\"band_width_cents\":5,\"band_contains_floor\":true,\"receipt\":\"KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":38,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+            "Oracle mean gap (diagnostic): ALT: 2.12¢ · GAS: 2.46¢ · ALT: first 1522.36m; remaining MAE 170.18m · GAS: first 196.41m; remaining MAE 74.7m"
+          ]
+        },
+        {
+          "name": "TRADE",
+          "mark": "✓",
+          "line": "B · ALT 60¢ (+2¢; floor printed earlier) · GAS 38¢ (+0¢; floor printed earlier)",
+          "hover_lines": [
+            "TRADE: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"B\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"ALT\":{\"filled\":true,\"cents\":60,\"vs_floor_cents\":2,\"fill_epoch\":1784000663.801,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784035200,\"span_start_epoch\":1783790234,\"span_end_epoch\":1784035200,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":58,\"floor_epoch\":1783833446.5,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":2998.9300166368484,\"current_price_age_minutes\":6.091066670417786,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"GAS\":{\"filled\":true,\"cents\":38,\"vs_floor_cents\":0,\"fill_epoch\":1784025043.114,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784035200,\"span_start_epoch\":1783790234,\"span_end_epoch\":1784035200,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":38,\"floor_epoch\":1784009667.7,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":3581.8852333188056,\"current_price_age_minutes\":10.7185666680336,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+            "Ages: ALT lineage 2998.93m, current price 6.09m · GAS lineage 3581.89m, current price 10.72m"
+          ]
+        },
+        {
+          "name": "PAIR",
+          "mark": "✓",
+          "line": "B · 98¢ pair · 2 of 4¢ captured",
+          "hover_lines": [
+            "PAIR: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"B\",\"metrics\":{\"pair_sum\":98,\"capture_ratio\":0.5,\"offered_cents\":4}}",
+            "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+          ]
+        }
+      ],
+      "governing": "MICRO",
+      "source": {
+        "face_sha256": "a3dbe538aa2d7fe4a9025b6014ba6d1b48dbce0326d38fae08ef0cae1d85feea",
+        "grade_sha256": "39c3bc7912af6d44fabb620c1878e19c826638eda1bff89162957faa032dc0ec",
+        "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+        "trace_sha256": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+      },
+      "called_by_os": true,
+      "any_bid": true,
+      "valid_fills": 2,
+      "side_count": 2,
+      "completed": true,
+      "pair_sum": 98,
+      "captured_cents": 2,
+      "offered_cents": 4,
+      "capture_ratio": 0.5,
+      "missing_sides": [],
+      "legs": {
+        "ALT": {
+          "filled": true,
+          "cents": 60,
+          "vs_floor_cents": 2,
+          "fill_epoch": 1784000663.801,
+          "valid_span_fill": true,
+          "revalidation": {
+            "ruler_bell_epoch": 1784035200,
+            "span_start_epoch": 1783790234,
+            "span_end_epoch": 1784035200,
+            "at_or_after_span_start": true,
+            "before_span_end": true,
+            "before_bell": true,
+            "correction_ids": []
+          },
+          "reason": null
+        },
+        "GAS": {
+          "filled": true,
+          "cents": 38,
+          "vs_floor_cents": 0,
+          "fill_epoch": 1784025043.114,
+          "valid_span_fill": true,
+          "revalidation": {
+            "ruler_bell_epoch": 1784035200,
+            "span_start_epoch": 1783790234,
+            "span_end_epoch": 1784035200,
+            "at_or_after_span_start": true,
+            "before_span_end": true,
+            "before_bell": true,
+            "correction_ids": []
+          },
+          "reason": null
+        }
+      },
+      "grade_url": "/data/KXATPMATCH-26JUL12ALTGAS.grade.json",
+      "ruler_line": "Grading ruler: ALT 58¢ + GAS 38¢ · 4¢ offered · 0 filed corrections",
+      "diagnostic_lines": [
+        "Q 77.38% · X 77.38% authored (token metric); Gate-1 certification STORE SILENT",
+        "Oracle mean gap (diagnostic): ALT: 2.12¢ · GAS: 2.46¢",
+        "Timing (diagnostic): ALT: first 1522.36m; remaining MAE 170.18m · GAS: first 196.41m; remaining MAE 74.7m",
+        "Exact family, flips, authorship and full receipt error series remain in the JSON; none is silently certified."
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "game": "DAN / PRA",
+      "category": "ATP_MAIN",
+      "mode": "LAB",
+      "timestamp": "2026-09-09T15:19:26.096Z",
+      "letter": "—",
+      "sections": [
+        {
+          "name": "MACRO",
+          "mark": "!",
+          "line": "C · DAN CLIMBER → CLIMBER · PRA CLIMBER → NOT_CALLABLE",
+          "hover_lines": [
+            "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"DAN\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9649\",\"first_recorded_epoch\":1784347221.000004,\"first_bind_epoch\":1784346568.144,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":58,\"close_cents\":61,\"realized_drift_cents\":3,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"PRA\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258\",\"first_recorded_epoch\":1784339443.000002,\"first_bind_epoch\":1784339443.000002,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":41,\"close_cents\":41,\"realized_drift_cents\":0,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+            "Flips (diagnostic): DAN 0 · PRA 0"
+          ]
+        },
+        {
+          "name": "MICRO",
+          "mark": "✓",
+          "line": "B · DAN Q 57 vs floor 59¢; range 56–59 · PRA Q 41 vs floor 41¢; range 39–42",
+          "hover_lines": [
+            "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"B\",\"legs\":{\"DAN\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"B\",\"q50\":57,\"q25\":56,\"q75\":59,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":59,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"PRA\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":41,\"q25\":39,\"q75\":42,\"floor_error_cents\":0,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-1258\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":41,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+            "Oracle mean gap (diagnostic): DAN: 2.54¢ · PRA: 1.71¢ · DAN: first 148.14m; remaining MAE 44.25m · PRA: first 147.83m; remaining MAE 100.05m"
+          ]
+        },
+        {
+          "name": "TRADE",
+          "mark": "!",
+          "line": "NOT OFFERED · DAN unfilled · PRA unfilled",
+          "hover_lines": [
+            "TRADE: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"valid_fills\":0,\"side_count\":2},\"legs\":{\"DAN\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":59,\"floor_epoch\":1784339306.8,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"PRA\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":41,\"floor_epoch\":1784342554,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+            "Ages: "
+          ]
+        },
+        {
+          "name": "PAIR",
+          "mark": "!",
+          "line": "NOT OFFERED · Not offered — recorded floors sum to par or above",
+          "hover_lines": [
+            "PAIR: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+            "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":\"STORE SILENT\",\"offered_cents\":0}}",
+            "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+          ]
+        }
+      ],
+      "governing": "NOT OFFERED — corrected floor pair offers no discount",
+      "source": {
+        "face_sha256": "276cf896ed5068d4343c9779f0a5dbdbc824a7de06954ba923448b7ebcc681e7",
+        "grade_sha256": "b342b8ea27b6d8b9fb998b4f764cf9865275106ba8ef39be1a384388dc9f8f36",
+        "os_sha256": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+        "trace_sha256": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+      },
+      "called_by_os": true,
+      "any_bid": true,
+      "valid_fills": 0,
+      "side_count": 2,
+      "completed": false,
+      "pair_sum": null,
+      "captured_cents": 0,
+      "offered_cents": 0,
+      "capture_ratio": "STORE SILENT",
+      "missing_sides": [
+        {
+          "side": "DAN",
+          "disposition": "UNFILLED_IN_CORRECTED_SPAN",
+          "reason": "STORE SILENT — no filed miss cause",
+          "last_action": "REPRICE_REST",
+          "last_action_tokens": [
+            "REPRICE_REST",
+            "PRICING_AUTHORITY_TARGET_EXECUTED",
+            "POOL_CASCADE_WRITER",
+            "PRICING_AUTHORITY_TARGET_EXECUTED"
+          ],
+          "receipt": "KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9650"
+        },
+        {
+          "side": "PRA",
+          "disposition": "UNFILLED_IN_CORRECTED_SPAN",
+          "reason": "STORE SILENT — no filed miss cause",
+          "last_action": "REPRICE_REST",
+          "last_action_tokens": [
+            "REPRICE_REST",
+            "PRICING_AUTHORITY_TARGET_EXECUTED",
+            "POOL_CASCADE_WRITER",
+            "PRICING_AUTHORITY_TARGET_EXECUTED"
+          ],
+          "receipt": "KXATPMATCH-26JUL18DANPRA|ATLAS_GATE|1784357760"
+        }
+      ],
+      "legs": {
+        "DAN": {
+          "filled": false,
+          "cents": null,
+          "vs_floor_cents": null,
+          "fill_epoch": null,
+          "valid_span_fill": false,
+          "revalidation": null,
+          "reason": null
+        },
+        "PRA": {
+          "filled": false,
+          "cents": null,
+          "vs_floor_cents": null,
+          "fill_epoch": null,
+          "valid_span_fill": false,
+          "revalidation": null,
+          "reason": null
+        }
+      },
+      "grade_url": "/data/KXATPMATCH-26JUL18DANPRA.grade.json",
+      "ruler_line": "Grading ruler: DAN 59¢ + PRA 41¢ · 0¢ offered · 0 filed corrections",
+      "diagnostic_lines": [
+        "Q 41.53% · X 41.53% authored (token metric); Gate-1 certification STORE SILENT",
+        "Oracle mean gap (diagnostic): DAN: 2.54¢ · PRA: 1.71¢",
+        "Timing (diagnostic): DAN: first 148.14m; remaining MAE 44.25m · PRA: first 147.83m; remaining MAE 100.05m",
+        "Exact family, flips, authorship and full receipt error series remain in the JSON; none is silently certified."
+      ]
+    }
+  ],
+  "summaries": [
+    {
+      "category": "ALL",
+      "games": 5,
+      "considered": 5,
+      "bid": 5,
+      "participation_unknown": 0,
+      "complete": 2,
+      "one_sided": 2,
+      "unfilled": 1,
+      "offer_eligible": 4,
+      "no_offer": 1,
+      "outcome_known": 5,
+      "outcome_missing": 0,
+      "eligible_complete": 2,
+      "captured_cents": 3,
+      "offered_cents": 23,
+      "capture_ratio": 0.13043478260869565,
+      "completion_rate": 0.4,
+      "eligible_completion_rate": 0.5
+    },
+    {
+      "category": "ATP_CHALL",
+      "games": 3,
+      "considered": 3,
+      "bid": 3,
+      "participation_unknown": 0,
+      "complete": 1,
+      "one_sided": 2,
+      "unfilled": 0,
+      "offer_eligible": 3,
+      "no_offer": 0,
+      "outcome_known": 3,
+      "outcome_missing": 0,
+      "eligible_complete": 1,
+      "captured_cents": 1,
+      "offered_cents": 19,
+      "capture_ratio": 0.05263157894736842,
+      "completion_rate": 0.3333333333333333,
+      "eligible_completion_rate": 0.3333333333333333
+    },
+    {
+      "category": "ATP_MAIN",
+      "games": 2,
+      "considered": 2,
+      "bid": 2,
+      "participation_unknown": 0,
+      "complete": 1,
+      "one_sided": 0,
+      "unfilled": 1,
+      "offer_eligible": 1,
+      "no_offer": 1,
+      "outcome_known": 2,
+      "outcome_missing": 0,
+      "eligible_complete": 1,
+      "captured_cents": 2,
+      "offered_cents": 4,
+      "capture_ratio": 0.5,
+      "completion_rate": 0.5,
+      "eligible_completion_rate": 1
+    }
+  ],
+  "history": [
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-06T17:48:50.060Z",
+      "os_sha": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+      "trace_sha": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+      "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+      "commit_order": 2997,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "HANDS: same-second fill",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/986b8233_c2fe78f2.json",
+      "revision": 0,
+      "grade_sha256": "77e557dedcff55fd57276a60665db9a032b7bf0c4581556cb43b64fce7e49b8b",
+      "append_order": 0,
+      "x": 30,
+      "y": 88,
+      "hover_lines": [
+        "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1 · F",
+        "HANDS: same-second fill",
+        "2026-09-06T17:48:50.060Z · run 1",
+        "OS commit 2dfb5b0abf3fdf8669b8750d2780effd44a7319c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-06T17:49:19.309Z",
+      "os_sha": "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2",
+      "trace_sha": "ab2345dea8b3db2237dca97bf03f3fcece95eae334e3f4940f5b6583271171a0",
+      "os_commit": "ed3b813ba9c3e383b223dba0f4f75751b2fb24e7",
+      "commit_order": 2994,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "SENTENCE: named tokens",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/a394097b_ab2345de.json",
+      "revision": 0,
+      "grade_sha256": "529d0e18dc99f721cb3d756bbbcf3d2dc8fb0fd50b342e68ccef6ea96ceeb2f8",
+      "append_order": 1,
+      "x": 30,
+      "y": 88,
+      "hover_lines": [
+        "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2 · F",
+        "SENTENCE: named tokens",
+        "2026-09-06T17:49:19.309Z · run 2",
+        "OS commit ed3b813ba9c3e383b223dba0f4f75751b2fb24e7"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-06T17:52:56.951Z",
+      "os_sha": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+      "trace_sha": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+      "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+      "commit_order": 2997,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "HANDS: same-second fill",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/986b8233_c2fe78f2.json",
+      "revision": 1,
+      "grade_sha256": "b90ff6995b6fd8dafd9674a668a07a6c18b59dfca513eb5d3aed095e7989ed33",
+      "append_order": 2,
+      "x": 64,
+      "y": 88,
+      "hover_lines": [
+        "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1 · F",
+        "HANDS: same-second fill",
+        "2026-09-06T17:52:56.951Z · run 3",
+        "OS commit 2dfb5b0abf3fdf8669b8750d2780effd44a7319c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-06T17:53:14.785Z",
+      "os_sha": "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2",
+      "trace_sha": "ab2345dea8b3db2237dca97bf03f3fcece95eae334e3f4940f5b6583271171a0",
+      "os_commit": "ed3b813ba9c3e383b223dba0f4f75751b2fb24e7",
+      "commit_order": 2994,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "SENTENCE: named tokens",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/a394097b_ab2345de.json",
+      "revision": 1,
+      "grade_sha256": "2c584c77727530a9d0617916e3c032caac19350c763598ce975723ff1c410e9b",
+      "append_order": 3,
+      "x": 64,
+      "y": 88,
+      "hover_lines": [
+        "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2 · F",
+        "SENTENCE: named tokens",
+        "2026-09-06T17:53:14.785Z · run 4",
+        "OS commit ed3b813ba9c3e383b223dba0f4f75751b2fb24e7"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-06T17:58:18.310Z",
+      "os_sha": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+      "trace_sha": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+      "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+      "commit_order": 2997,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "HANDS: same-second fill",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/986b8233_c2fe78f2.json",
+      "revision": 2,
+      "grade_sha256": "9c9a5f33b6114ce37165602a700823aab02487769cb7ec00f481dac493f6f128",
+      "append_order": 4,
+      "x": 98,
+      "y": 88,
+      "hover_lines": [
+        "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1 · F",
+        "HANDS: same-second fill",
+        "2026-09-06T17:58:18.310Z · run 5",
+        "OS commit 2dfb5b0abf3fdf8669b8750d2780effd44a7319c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-06T17:58:36.624Z",
+      "os_sha": "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2",
+      "trace_sha": "ab2345dea8b3db2237dca97bf03f3fcece95eae334e3f4940f5b6583271171a0",
+      "os_commit": "ed3b813ba9c3e383b223dba0f4f75751b2fb24e7",
+      "commit_order": 2994,
+      "grading_commit": "26e3a7a8617eb3c1ca061d1a5d84f83e0ba0d01b",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "SENTENCE: named tokens",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/a394097b_ab2345de.json",
+      "revision": 2,
+      "grade_sha256": "9b792678fa114d7941ffd7d4f0ee458750d207b874a4a4a5b31821219e7c5a3c",
+      "append_order": 5,
+      "x": 98,
+      "y": 88,
+      "hover_lines": [
+        "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2 · F",
+        "SENTENCE: named tokens",
+        "2026-09-06T17:58:36.624Z · run 6",
+        "OS commit ed3b813ba9c3e383b223dba0f4f75751b2fb24e7"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-06T18:05:03.614Z",
+      "os_sha": "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1",
+      "trace_sha": "c2fe78f28b12abf02f53ad8ec37ffe252fb0fb99f79cc6d83c7732f555c6d480",
+      "os_commit": "2dfb5b0abf3fdf8669b8750d2780effd44a7319c",
+      "commit_order": 2997,
+      "grading_commit": "00f67fa14031c44ab6e773a9d013fb0bce78ff1d",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "HANDS: same-second fill",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/986b8233_c2fe78f2.json",
+      "revision": 3,
+      "grade_sha256": "c9f07afd20f8b995b5d8ab40027fde11943c799aeb8230b04254ac159e3420f4",
+      "append_order": 6,
+      "x": 132,
+      "y": 88,
+      "hover_lines": [
+        "986b8233be188cc484574536e2ab1ff8dd42a7d9a0b7a3a804cc852fcb984ec1 · F",
+        "HANDS: same-second fill",
+        "2026-09-06T18:05:03.614Z · run 7",
+        "OS commit 2dfb5b0abf3fdf8669b8750d2780effd44a7319c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-06T18:05:23.974Z",
+      "os_sha": "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2",
+      "trace_sha": "ab2345dea8b3db2237dca97bf03f3fcece95eae334e3f4940f5b6583271171a0",
+      "os_commit": "ed3b813ba9c3e383b223dba0f4f75751b2fb24e7",
+      "commit_order": 2994,
+      "grading_commit": "00f67fa14031c44ab6e773a9d013fb0bce78ff1d",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "SENTENCE: named tokens",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/a394097b_ab2345de.json",
+      "revision": 3,
+      "grade_sha256": "0667cf798eef2cff3b49465c33e755a12cc940dae95fb75d90e4f26e2f0731be",
+      "append_order": 7,
+      "x": 132,
+      "y": 88,
+      "hover_lines": [
+        "a394097bd8aacc1b110b05dcb7677aef837f2cd09c170dcaacec470d73a3a0b2 · F",
+        "SENTENCE: named tokens",
+        "2026-09-06T18:05:23.974Z · run 8",
+        "OS commit ed3b813ba9c3e383b223dba0f4f75751b2fb24e7"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-08T03:43:49.723Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+      "letter": "F",
+      "capture_ratio": 0.5,
+      "governing_section": "MACRO · MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/b745ce7a_2a6af0af.json",
+      "revision": 0,
+      "grade_sha256": "95525f2520fabef599672fce0370eacb6455c9a95cd2056af5b0a279acbd709e",
+      "append_order": 8,
+      "x": 370,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO",
+        "2026-09-08T03:43:49.723Z · run 9",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-08T03:44:05.246Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 0,
+      "grade_sha256": "04b0185997ef839d2680529a517f01cfec8689a55c48a4bd2e5e2f038a7febf2",
+      "append_order": 9,
+      "x": 234,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T03:44:05.246Z · run 10",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-08T03:44:28.223Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 0,
+      "grade_sha256": "720ed5ed0153a036abc8a6f01fdc0797973be5ca281f2ae53196490e3b7866fb",
+      "append_order": 10,
+      "x": 370,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T03:44:28.223Z · run 11",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-08T03:44:55.673Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MACRO · MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 0,
+      "grade_sha256": "97b86b03ce4191fd3e84f84c8d23bf956c9adabe9b7cdc62cb683312e28b17c5",
+      "append_order": 11,
+      "x": 234,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO · OUTCOME",
+        "2026-09-08T03:44:55.673Z · run 12",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-08T03:45:15.243Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+      "letter": "F",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 0,
+      "grade_sha256": "9f036aa261e6ac64f2bf662d55b51d10ad4d5aae5f53a534dbae4bc67c9e7f3a",
+      "append_order": 12,
+      "x": 234,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO",
+        "2026-09-08T03:45:15.243Z · run 13",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-08T04:28:56.793Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "letter": "F",
+      "capture_ratio": 0.5,
+      "governing_section": "MACRO · MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/b745ce7a_2a6af0af.json",
+      "revision": 1,
+      "grade_sha256": "5ee12c82f1ec7135256860052e91e7424a55f9971471a3cef30b21174dbeebfe",
+      "append_order": 13,
+      "x": 166,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO",
+        "2026-09-08T04:28:56.793Z · run 14",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-08T04:28:58.414Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 1,
+      "grade_sha256": "7a880e21dd71c759bd94228ba7cc6f82b0e78c67a51ab6b8abb3dc42454d561a",
+      "append_order": 14,
+      "x": 30,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T04:28:58.414Z · run 15",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-08T04:29:02.578Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 1,
+      "grade_sha256": "05ac3d92c708d19e4912605718abf0841f991c193a692015541b6c12b81fe6f6",
+      "append_order": 15,
+      "x": 166,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO · OUTCOME",
+        "2026-09-08T04:29:02.578Z · run 16",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-08T04:29:04.059Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MACRO · MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 1,
+      "grade_sha256": "222c98e704c0320629c9a32fc0412dacb24c88a1785097855732a4591b5f2a5d",
+      "append_order": 16,
+      "x": 30,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO · OUTCOME",
+        "2026-09-08T04:29:04.059Z · run 17",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-08T04:29:05.441Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "letter": "F",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 1,
+      "grade_sha256": "dc0b7d04c11d13a2e4a4108ae84b6fdc326193e153a1ef7ac70956cbb7f7342f",
+      "append_order": 17,
+      "x": 30,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO",
+        "2026-09-08T04:29:05.441Z · run 18",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-08T16:06:43.859Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 2,
+      "grade_sha256": "530e44111001ca1290602eccb8bc09872b1504f48ee9ac30eb08f867b916879b",
+      "append_order": 18,
+      "x": 64,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T16:06:43.859Z · run 19",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-08T16:06:45.182Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MACRO · MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 2,
+      "grade_sha256": "2b3fb1a27c93714c4c4243142017d7f07bdf3e483034b4e1c1c4a56650f0ebfa",
+      "append_order": 19,
+      "x": 64,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO · OUTCOME",
+        "2026-09-08T16:06:45.182Z · run 20",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-08T16:06:49.520Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 2,
+      "grade_sha256": "de00863b9a8120276c3c4c9ee36d0bb3f7d9c42873ecaf1ef809cc0fa02fa4dd",
+      "append_order": 20,
+      "x": 200,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · OUTCOME",
+        "2026-09-08T16:06:49.520Z · run 21",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-08T16:06:50.945Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+      "letter": "F",
+      "capture_ratio": 0.5,
+      "governing_section": "MACRO · MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/b745ce7a_2a6af0af.json",
+      "revision": 2,
+      "grade_sha256": "87fe5d46bae0fd05920753ff6d52a3c8ff6dd2f166e1de55e4d7a7537c56611b",
+      "append_order": 21,
+      "x": 200,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO",
+        "2026-09-08T16:06:50.945Z · run 22",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-08T16:06:52.072Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "df4c99bdc98a7f824a7767e5808f93be6c68ce1c",
+      "letter": "STORE SILENT",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "OUTCOME",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 2,
+      "grade_sha256": "31117cda18fcd9981874971bfcd7aff318bee329beb823c68b3666077a55f576",
+      "append_order": 22,
+      "x": 64,
+      "y": 106,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · STORE SILENT",
+        "OUTCOME",
+        "2026-09-08T16:06:52.072Z · run 23",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-08T17:17:40.055Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 3,
+      "grade_sha256": "0cfebf919dd3e5effb5abb26562a5d14457c9e36cc1dc3ff4f08334a708688b9",
+      "append_order": 23,
+      "x": 98,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T17:17:40.055Z · run 24",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-08T17:17:41.369Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MACRO · MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 3,
+      "grade_sha256": "c24dc0c67171b9a3727dffebac910f81fe0f1062545b4508ee0272e15dd9675b",
+      "append_order": 24,
+      "x": 98,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO · OUTCOME",
+        "2026-09-08T17:17:41.369Z · run 25",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-08T17:17:45.288Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 3,
+      "grade_sha256": "ac69b5e931cebf317579fa1c9e35038bc4fc93b6577645c5bc35f379a971b253",
+      "append_order": 25,
+      "x": 234,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · OUTCOME",
+        "2026-09-08T17:17:45.288Z · run 26",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-08T17:17:46.753Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0.5,
+      "governing_section": "MACRO · MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/b745ce7a_2a6af0af.json",
+      "revision": 3,
+      "grade_sha256": "820c68ecc61897f86df899dd15c18d79a750bc8252d703708589187baa0491b1",
+      "append_order": 26,
+      "x": 234,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO",
+        "2026-09-08T17:17:46.753Z · run 27",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-08T17:17:47.877Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "STORE SILENT",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "OUTCOME",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 3,
+      "grade_sha256": "984ac771b34d97943188904fa81a18c180dffbd6592fa3470dee5947b9e3bb19",
+      "append_order": 27,
+      "x": 98,
+      "y": 106,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · STORE SILENT",
+        "OUTCOME",
+        "2026-09-08T17:17:47.877Z · run 28",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-08T17:25:14.272Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 4,
+      "grade_sha256": "d2736febc72b620e5a51cbe0f613d1a63eaddb13dfcd7d05d6bda1f129ace5cb",
+      "append_order": 28,
+      "x": 132,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T17:25:14.272Z · run 29",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-08T17:25:15.558Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MACRO · MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 4,
+      "grade_sha256": "6399419e5776c44d3a0786f6e276fb550784cbc322c858d3e6b27dbb196516de",
+      "append_order": 29,
+      "x": 132,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO · OUTCOME",
+        "2026-09-08T17:25:15.558Z · run 30",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-08T17:25:19.395Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 4,
+      "grade_sha256": "08dc147410e891b08afff3cac3cab411f6fca2466a7dd9e8a4a1f8e847325549",
+      "append_order": 30,
+      "x": 268,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · OUTCOME",
+        "2026-09-08T17:25:19.395Z · run 31",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-08T17:25:20.941Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0.5,
+      "governing_section": "MACRO · MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/b745ce7a_2a6af0af.json",
+      "revision": 4,
+      "grade_sha256": "c15111fc213b12df32ac102e5797f6d404e5d6e1c0f523fbb3103b7eacf6e620",
+      "append_order": 31,
+      "x": 268,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO",
+        "2026-09-08T17:25:20.941Z · run 32",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-08T17:25:22.060Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "STORE SILENT",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "OUTCOME",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 4,
+      "grade_sha256": "f1e65dabbab7e79a969e3c73c2f0efc4c1bd42a4dc83569de53486ebb22c6892",
+      "append_order": 32,
+      "x": 132,
+      "y": 106,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · STORE SILENT",
+        "OUTCOME",
+        "2026-09-08T17:25:22.060Z · run 33",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-09T00:23:31.387Z",
+      "os_sha": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace_sha": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "314fdbbd16989009954918b61a60187158b9e8ca",
+      "letter": "F",
+      "capture_ratio": 0.5,
+      "governing_section": "MACRO · MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/70b68856_c5a1a0fc.json",
+      "revision": 0,
+      "grade_sha256": "e82cac350a7ef829e4593d55f48a3700205857ebe2181daa923939a31fc7490e",
+      "append_order": 33,
+      "x": 404,
+      "y": 88,
+      "hover_lines": [
+        "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346 · F",
+        "MACRO · MICRO",
+        "2026-09-09T00:23:31.387Z · run 34",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-09T01:31:05.944Z",
+      "os_sha": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace_sha": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+      "os_commit": "944a0cf5d3e154003233531f6d48059340e2de53",
+      "commit_order": 3030,
+      "grading_commit": "85e7523e4cb6c92cf1cf83c74eab540b865d6925",
+      "letter": "F",
+      "capture_ratio": 0.5,
+      "governing_section": "MACRO · MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/70b68856_c5a1a0fc.json",
+      "revision": 1,
+      "grade_sha256": "9dfbec90f9bc7cbf3123802d7a42f522eb1072af50b64cdd4b0748272050ad09",
+      "append_order": 34,
+      "x": 302,
+      "y": 88,
+      "hover_lines": [
+        "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346 · F",
+        "MACRO · MICRO",
+        "2026-09-09T01:31:05.944Z · run 35",
+        "OS commit 944a0cf5d3e154003233531f6d48059340e2de53"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-08T17:25:14.272Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 5,
+      "grade_sha256": "24fa87f1b79800b4b929d6fd94c27f245a634807046825fc9a93787f57e2f4a7",
+      "append_order": 35,
+      "x": 166,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · OUTCOME",
+        "2026-09-08T17:25:14.272Z · run 36",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-08T17:25:15.558Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MACRO · MICRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 5,
+      "grade_sha256": "0f855315f22bfb7dd6703e1a010c3a86c61d3c7d2ba32db2c364bdbb21e8f735",
+      "append_order": 36,
+      "x": 166,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · MICRO · OUTCOME",
+        "2026-09-08T17:25:15.558Z · run 37",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-08T17:25:19.395Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · OUTCOME",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 5,
+      "grade_sha256": "cadd16d85bdb5a34a30b838f42ef6322da1893e71b448cba7ed5dbd9df5ff824",
+      "append_order": 37,
+      "x": 302,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · OUTCOME",
+        "2026-09-08T17:25:19.395Z · run 38",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-08T17:25:22.060Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "a71d0b3d874d74b1f0a8a42169eb751949934ef9",
+      "letter": "STORE SILENT",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "OUTCOME",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 5,
+      "grade_sha256": "024829cea1f8e687800a1b7b78d7ae5f89c04dc87067df2c028286c561a0e91b",
+      "append_order": 38,
+      "x": 166,
+      "y": 106,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · STORE SILENT",
+        "OUTCOME",
+        "2026-09-08T17:25:22.060Z · run 39",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-09T15:19:15.769Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · PAIR",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/b745ce7a_2a6af0af.json",
+      "revision": 6,
+      "grade_sha256": "58ed1b16884a60a4c03444edc0ce918da98bfc9569c1d226e1dee7e25867e500",
+      "append_order": 39,
+      "x": 200,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MACRO · PAIR",
+        "2026-09-09T15:19:15.769Z · run 40",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-09T15:19:17.432Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+      "letter": "F",
+      "capture_ratio": 0.125,
+      "governing_section": "MICRO",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/b745ce7a_2a6af0af.json",
+      "revision": 6,
+      "grade_sha256": "9f89dadc780ab9eae56576cf69f0a7945fa88a101f9fdfa3d3ee714ced09bc8b",
+      "append_order": 40,
+      "x": 200,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO",
+        "2026-09-09T15:19:17.432Z · run 41",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-09T15:19:22.197Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MICRO · PAIR",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/b745ce7a_2a6af0af.json",
+      "revision": 6,
+      "grade_sha256": "25406f2233c08748621430ea9c5f91f07e01622ece0370c1a8f80ad97044ca92",
+      "append_order": 41,
+      "x": 336,
+      "y": 88,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · F",
+        "MICRO · PAIR",
+        "2026-09-09T15:19:22.197Z · run 42",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-09T15:19:24.538Z",
+      "os_sha": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace_sha": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+      "os_commit": "944a0cf5d3e154003233531f6d48059340e2de53",
+      "commit_order": 3030,
+      "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+      "letter": "C",
+      "capture_ratio": 0.5,
+      "governing_section": "MICRO",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/70b68856_c5a1a0fc.json",
+      "revision": 2,
+      "grade_sha256": "39c3bc7912af6d44fabb620c1878e19c826638eda1bff89162957faa032dc0ec",
+      "append_order": 42,
+      "x": 336,
+      "y": 52,
+      "hover_lines": [
+        "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346 · C",
+        "MICRO",
+        "2026-09-09T15:19:24.538Z · run 43",
+        "OS commit 944a0cf5d3e154003233531f6d48059340e2de53"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-09T15:19:26.096Z",
+      "os_sha": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+      "trace_sha": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+      "os_commit": "87049680809b07f878a2a1c454ccc309f8f2f24c",
+      "commit_order": 3022,
+      "grading_commit": "969111f3a530e4169279519b4b1f458de0ea4eb6",
+      "letter": "NOT OFFERED",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "NOT OFFERED — corrected floor pair offers no discount",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/b745ce7a_2a6af0af.json",
+      "revision": 6,
+      "grade_sha256": "b342b8ea27b6d8b9fb998b4f764cf9865275106ba8ef39be1a384388dc9f8f36",
+      "append_order": 43,
+      "x": 200,
+      "y": 124,
+      "hover_lines": [
+        "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231 · NOT OFFERED",
+        "NOT OFFERED — corrected floor pair offers no discount",
+        "2026-09-09T15:19:26.096Z · run 44",
+        "OS commit 87049680809b07f878a2a1c454ccc309f8f2f24c"
+      ]
+    }
+  ]
+}

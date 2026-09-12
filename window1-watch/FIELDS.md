@@ -1053,3 +1053,21 @@ Hard failures still override it. Unknown offer is not the same as no offer.
 is recast as live. Runtime data must be tagged LIVE_PAPER; row values carry
 source receipts and OS/ledger hashes. This component only reads JSON; it
 contains no engine, key, order endpoint or worker-start operation.
+
+### SCOREBOARD / FACE_SCOREBOARD_V1
+
+`build_scoreboard.mjs` writes `data/scoreboard.json` from hash-verified existing
+face/grade pairs and `grades/index.json`. It does not regrade or replay.
+`rows` retains each indexed game once, section lines, source hashes, corrected
+OUTCOME, missing sides and last recorded action. Unfiled miss causes remain
+STORE SILENT. `summaries` counts games/considered/bid/complete/one-sided/unfilled,
+offer-eligible/zero-offer/missing outcomes and eligible completions, plus sums
+of captured/offered cents. `considered` means nonempty face.os; `bid` means a
+HANDS PLACE_REST/REPRICE_REST. This is the loaded collection, not all exchange
+markets. Completion rate is complete/all games; eligible completion rate is
+eligible-complete/positive-offer games. Capture ratio is sum capture/sum offer
+on known outcomes, null for zero offer, with missing denominator disclosed.
+`history` preserves indexed revisions and their original letter/rubric context;
+history never multiplies latest-game denominators. `contract` names every rule;
+`inputs`, `index_sha256`, `history_sha256` bind the sources. Tour filtering is
+selection only. Display rounds decimals; exact stored values remain on hover.

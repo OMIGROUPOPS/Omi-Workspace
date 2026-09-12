@@ -6,7 +6,9 @@ import { createHash } from "node:crypto";
 
 const shell = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = resolve(shell, "dist-demo");
-const upload = resolve(shell, ".vercel/demo-upload");
+// Content-addressed upload roots cannot retain an obsolete bundle from a prior build.
+const buildId = createHash("sha256").update(readFileSync(resolve(dist, "index.html"))).update(readFileSync(resolve(dist, "demo-assets.json"))).digest("hex").slice(0, 16);
+const upload = resolve(shell, `.vercel/demo-upload-${buildId}`);
 const output = resolve(upload, ".vercel/output");
 const manifest = JSON.parse(readFileSync(resolve(dist, "demo-assets.json")));
 const allowed = new Map(manifest.assets.map(entry => [entry.path, entry.sha256]));

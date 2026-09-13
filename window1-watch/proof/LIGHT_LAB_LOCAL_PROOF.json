@@ -1,0 +1,75 @@
+{
+  "base": "http://127.0.0.1:8084",
+  "status": "PASS",
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "pressure": "OK",
+      "grade": "F",
+      "floors": [
+        27,
+        66
+      ],
+      "overflow": false
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "pressure": "OK",
+      "grade": "F",
+      "floors": [
+        51,
+        41
+      ],
+      "overflow": false
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "pressure": "OK",
+      "grade": "F",
+      "floors": [
+        39,
+        57
+      ],
+      "overflow": false
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "pressure": "OK",
+      "grade": "C",
+      "floors": [
+        58,
+        38
+      ],
+      "overflow": false
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "pressure": "OK",
+      "grade": "—",
+      "floors": [
+        59,
+        41
+      ],
+      "overflow": false
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "pressure": "OK",
+      "grade": "C",
+      "floors": [
+        58,
+        38
+      ],
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "C:\\Users\\omigr\\omi-w1-face\\window1-watch\\proof\\light-lab-local-480.png",
+    "C:\\Users\\omigr\\omi-w1-face\\window1-watch\\proof\\light-lab-local-phone.png",
+    "C:\\Users\\omigr\\omi-w1-face\\window1-watch\\proof\\light-lab-local-filled.png"
+  ],
+  "at480": "Game\nGIUBAR\nLAJSVA\nURSPAL\nALT vs GAS\nDANPRA\nRECORDED FLOORS · KNOWN AFTERWARD\nALT 58¢\nGAS 38¢\nbest capturable 96¢ · 4¢ under par\nC\n\nFINAL PAIR\n98¢\n2 of 4¢ captured\n\nDetails +\nALT\nFirst side\n62¢\nlast true trade\n63\n61\n58\nnow\nfirst tick\nbell\nRecorded floor 58¢\nfilled\nBid-setting call\n60¢\n→\nFilled\n60¢\nTrade 60¢ · T - 9hr 36 min\n2¢ above floor 58¢\nTRADED VOLUME\nwatched\n3,938.55 contracts67 prints\nFIVE-LEVEL SIZE\nrecorded\n21,611\nbid / ask\n44,283\nBook 61¢ / 62¢\nSpread 1¢\nGAS\nSecond side\n40¢\nlast true trade\n43\n40\n38\nnow\nfirst tick\nbell\nRecorded floor 38¢\nbid history\nBid-setting call\n38¢\n→\nStanding bid\n38¢\nT - 9hr 9 min\nTRADED VOLUME\nwatched\n2,862.98 contracts38 prints\nFIVE-LEVEL SIZE\nrecorded\n20,795\nbid / ask\n44,168\nBook 39¢ / 40¢\nSpread 1¢\nDECISION ENGINE\nT - 8hr 0 min\n928 past pairs\nBoth first prices + same clock\n59¢ / 43¢ · T - 66hr 4 min\nCALL NOW\nseparate from a filled bid\nALT · rising\n61¢\nby T - 6hr 10 min\n284 matching games\nFirst-price pool\nGAS · falling\n38¢\nby T - 4hr 2 min\n321 matching games\nFirst-price pool\nMOVE + VOLUME\nwatch only\nPrice match\n1×\nVolume match\n0.465×\nLast checkpoint medians, not this tick\nT - 12hr 0 min → T - 8hr 0 min\nALT 14.81\nenough effective games\nGAS 27.49\nenough effective games\nLast-move agreement · 10.07%\nBID-SETTING CALL → SECURED\nALT · filled\n60¢ → 60¢\nGAS · resting\n38¢ → not filled\nBook + pair checks apply before posting\n\nLast recorded receipt · T - 8hr 0 min\n\nTape · rises / falls\nCurrent call\nOur bid / fill\nRecorded floor\nPerfect sentence\nPRESSURE CHAIN\nRecorded where available · not installed price setters\nAggressive trades\nWho hit the book\nno data here\nMaker response\nAdded / pulled / refilled\nno data here\nPrice response\nHeld / slipped / recovered\nno data here\nPartner response\nFollowed / diverged\nno data here\nPair book midpoints 102¢ · snapshot, not a response\nMore recorded fields in Details\nPrev\nPlay\nNext\nfirst tick\nbell\nT - 8hr 0 min\n\nFloor, perfect sentence & final grade: hindsight, not machine inputs.\nOS 70b68856 · trace c5a1a0fc",
+  "bothFilled": "Game\nGIUBAR\nLAJSVA\nURSPAL\nALT vs GAS\nDANPRA\nRECORDED FLOORS · KNOWN AFTERWARD\nALT 58¢\nGAS 38¢\nbest capturable 96¢ · 4¢ under par\nC\n\nFINAL PAIR\n98¢\n2 of 4¢ captured\n\nDetails +\nALT\nFirst side\n62¢\nlast true trade\n63\n61\n58\nnow\nfirst tick\nbell\nRecorded floor 58¢\nfilled\nBid-setting call\n60¢\n→\nFilled\n60¢\nTrade 60¢ · T - 9hr 36 min\n2¢ above floor 58¢\nTRADED VOLUME\nwatched\n8,853.34 contracts112 prints\nFIVE-LEVEL SIZE\nrecorded\n31,580\nbid / ask\n41,387\nBook 61¢ / 62¢\nSpread 1¢\nGAS\nSecond side\n38¢\nlast true trade\n43\n40\n38\nnow\nfirst tick\nbell\nRecorded floor 38¢\nfilled\nBid-setting call\n38¢\n→\nFilled\n38¢\nTrade 38¢ · T - 2hr 49 min\n0¢ above floor 38¢\nTRADED VOLUME\nwatched\n5,887.28 contracts68 prints\nFIVE-LEVEL SIZE\nrecorded\n29,053\nbid / ask\n44,242\nBook 38¢ / 39¢\nSpread 1¢\nDECISION ENGINE\nT - 2hr 49 min\n928 past pairs\nBoth first prices + same clock\n59¢ / 43¢ · T - 66hr 4 min\nCALL NOW\nseparate from a filled bid\nALT · rising\n61¢\nby T - 1hr 50 min\n325 matching games\nFirst-price pool\nGAS · falling\n37¢\nby T - 1hr 57 min\n366 matching games\nFirst-price pool\nMOVE + VOLUME\nwatch only\nPrice match\n1×\nVolume match\n0.382×\nLast checkpoint medians, not this tick\nT - 4hr 0 min → T - 3hr 0 min\nALT 7.48\ntoo few to call\nGAS 9.39\ntoo few to call\nLast-move agreement · not rated\nBID-SETTING CALL → SECURED\nALT · filled\n60¢ → 60¢\nGAS · filled\n38¢ → 38¢\nBook + pair checks apply before posting\n\nLast recorded receipt · T - 2hr 49 min\n\nTape · rises / falls\nCurrent call\nOur bid / fill\nRecorded floor\nPerfect sentence\nPRESSURE CHAIN\nRecorded where available · not installed price setters\nAggressive trades\nWho hit the book\nno data here\nMaker response\nAdded / pulled / refilled\nno data here\nPrice response\nHeld / slipped / recovered\nno data here\nPartner response\nFollowed / diverged\nno data here\nPair book midpoints 100¢ · snapshot, not a response\nMore recorded fields in Details\nPrev\nPlay\nNext\nfirst tick\nbell\nT - 2hr 49 min\n\nFloor, perfect sentence & final grade: hindsight, not machine inputs.\nOS 70b68856 · trace c5a1a0fc",
+  "fillCard": "ALT · Filled at 60¢\n\nWhy: a 60¢ trade reached our 60¢ bid\n\nBid-setting call: 60¢ by T - 8hr 6 min\n\n2¢ above floor 58¢ · this price stood 6.09m\n\ndetails ▸\nInspect this bid\nClose"
+}

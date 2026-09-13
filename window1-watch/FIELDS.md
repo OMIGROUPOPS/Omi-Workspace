@@ -1144,3 +1144,69 @@ existing lossless face encoding, applied to `rows` only.
 
 The static deployment allowlist includes the five compact pressure assets,
 never raw print/depth/API-label objects or per-tick stage/renewal files.
+
+### Light decision-engine LAB (display projection only)
+
+The selected three-column sample is implemented without copying its frozen
+numbers. Existing face, grade, truth and oracle contracts retain their exact
+bytes. Additions below are in `<event>.pressure.json`; no OS, bench, conduct,
+library or raw tape is run or changed by this presentation build.
+
+- `legs.<side>.values.book_bid/book_ask`: connected causal `reads.books`
+  bid/ask in cents, with the same value/source/epoch/missingness structure.
+- `legs.<side>.display.book/spread`: formatted book and **ask minus bid**,
+  computed here, never in the browser. `bid_depth_fraction` is bid five-level
+  size / (bid + ask five-level size), null when missing or total is zero.
+  It controls bar geometry, not buying probability or predictive strength.
+- `display.q/q_cents`, `deadline`, `band`, `count`, `effective`, `author`,
+  `status`, `role`: selected stored pool layer q50, q50 epoch converted using
+  the corrected face bell, q25–q75, member count, ESS, layer/status/role.
+  `source` names the stage path; `raw` preserves original tokens.
+  CLIMBER → rising; FALLER → falling; NOT_CALLABLE → direction not called;
+  FIRST-TICK-ONLY → First-price pool; BASE → Broad pool;
+  STEP-FORECAST → Move-tested pool. RESOLVED → price-setting forecast;
+  a stored non-resolved status → not enough evidence. Unknown → no data here.
+- `display.step_effective/step_status`: STEP ESS and stored status. OK →
+  enough effective games; NO-CALL → too few to call. This is distinct from
+  member count and does not authorize STEP. No threshold is reimplemented.
+- `engine.pool/first_prices/first_clock`: pair pool count and its stored
+  first-tick prices/epoch. The common pair source is shown before side filters.
+- `engine.price_factor/volume_factor`: stored likelihood-factor medians,
+  formatted as multipliers. `factor_interval/factor_scope` explicitly say
+  these are **last checkpoint medians, not this tick**. `step_role` glosses
+  TELEMETRY_ONLY as watch only. `validity` shows the stored weighted agreement
+  only for status OK; otherwise not rated, with `validity_reason` retained.
+  This is agreement on the last move, not confidence in the selected Q.
+- `executions[]`: chronological display lineage from existing bid actions.
+  `side/receipt_index/action_id` identify the action. `origin_receipt_index`,
+  `origin_receipt`, `origin_clock` identify the last action that changed this
+  bid's price (including placement), not its original order and not a later
+  same-price renewal. `q/q_cents` is that action's sentence Q; `value/cents`
+  is the standing or filled bid. `status` is Filled / Standing bid / Bid removed.
+  `clock`, `print`, `floor_line`, `source` carry existing fill evidence.
+  `price_age_minutes` is fill epoch minus price-setting epoch divided by 60,
+  distinct from order-lineage age. Fill `card_lines` contain four stored
+  English lines, quoting this price-setting call; original assumptions,
+  renewals, placing sentence and raw source fields remain in Details.
+- Carrying is causal by **both time and receipt order**: at equal timestamps
+  a later decision stage is not visible on an earlier receipt. The label is
+  always Last recorded receipt. Executions are selected independently by
+  receipt order so a fill is visible at its own receipt, not one stage later.
+  Row minutes use the face's canonical corrected-bell receipt clock, avoiding
+  floating-point re-conversion drift between simultaneous records. Factor
+  interval endpoints receive that clock's offset from the original pool clock.
+- The pressure chain's aggressive trades and maker response use only their
+  bound fields; synchronized price/partner response intervals are missing.
+  All five games currently show no data here for the chain. Book midpoints
+  are displayed separately as a snapshot, never described as a response.
+- The LAB charts reuse tape, rest, action, truth and oracle fields. The call
+  line is the stored sentence Q carried in receipt order. Green/red means
+  a tape step rose/fell; flat is gray; amber means our bids/fills. Axis
+  placement, step-path geometry and color are presentation, not new forecasts.
+  Top floors/capture/grade are explicitly final hindsight (RULER), never
+  knowledge at the scrubbed time. Every clock is displayed as T - h hr m min.
+
+The engine panel, book/volume readouts and bid-setting-to-fill links have
+source hovers. Raw tokens and full lineage are disclosure-only. Replay,
+keyboard, game picker, existing inspector, oracle gap/grade/history remain
+available; DESK and SCOREBOARD are unchanged.

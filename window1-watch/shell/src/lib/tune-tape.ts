@@ -231,7 +231,7 @@ export type Game = {
   version: number;
 };
 export type Grade = {
-  OUTCOME?: { pair_completed: boolean; pair_sum: number | null; captured_cents: number | null };
+  OUTCOME?: { pair_completed: boolean; pair_sum: number | null; captured_cents: number | null; best_capturable_cents?:number|null };
   event: string;
   timestamp: string;
   provenance: { os_sha256: string; trace_sha256: string; face_sha256: string };
@@ -276,12 +276,15 @@ export type LoadedGame = {
   history_view?: GradeHistoryView | null;
 };
 export type PressureValue = {label:string;value:number|null;text:string;source:string|null;source_epoch:number|null;reason:string|null};
+export type PressureDisplay = {book:string;spread:string;bid_depth_fraction:number|null;q:string;q_cents:number|null;deadline:string;band:string;count:string;effective:string;role:string;author:string;status:string;step_effective:string;step_status:string;source:string;raw:Record<string,string|null>};
+export type PressureExecution = {side:string;receipt_index:number;action_id:string;origin_receipt_index:number|null;origin_receipt:string|null;q_cents:number|null;q:string;cents:number|null;status:string;value:string;clock:string;origin_clock:string;print:string|null;floor_line:string|null;price_age_minutes:number|null;card_lines:string[]|null;source:string};
 export type PressureRow = {
   receipt_index:number;receipt_id:string;receipt:string;timestamp_epoch:number;minutes_to_bell:number;clock_label:string;stage_sha256:string;
   pair:{text:string;source:string};
-  legs:Record<string,{values:Record<string,PressureValue>;cards:{label:string;text:string;keys:string[];source?:string;raw_layer?:string|null;note?:string}[]}>;
+  engine?:{pool:string;first_prices:string;first_clock:string;price_factor:string;volume_factor:string;factor_interval:string;factor_scope:string;step_role:string;validity:string;validity_reason:string|null;source:string};
+  legs:Record<string,{display?:PressureDisplay;values:Record<string,PressureValue>;cards:{label:string;text:string;keys:string[];source?:string;raw_layer?:string|null;note?:string}[]}>;
 };
-export type PressureData = {schema:string;event:string;provenance:{face_sha256:string;os_sha256:string;trace_sha256:string};rows:PressureRow[];dictionary?:unknown[]};
+export type PressureData = {schema:string;event:string;provenance:{face_sha256:string;os_sha256:string;trace_sha256:string};rows:PressureRow[];executions?:PressureExecution[];dictionary?:unknown[]};
 async function json<T>(url: string, signal?: AbortSignal): Promise<T> {
   const response = await fetch(url, { signal, cache: "no-cache" });
   if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);

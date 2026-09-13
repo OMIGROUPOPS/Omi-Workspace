@@ -3,6 +3,11 @@ import type { BidAction, Receipt } from './tune-tape';
 // Display formatting only. Q, X, authorship, grade and ruler values are never recomputed.
 export const plain = (value: string | null | undefined) => value?.replaceAll('STORE SILENT', 'no data here') ?? 'no data here';
 export const cents = (value: number | null | undefined) => value == null ? 'no data here' : `${value}¢`;
+export function replayClock(minutes:number|null|undefined) {
+  if(minutes==null||!Number.isFinite(minutes))return 'no time recorded';
+  const rounded=Math.round(Math.abs(minutes));
+  return `T ${minutes<0?'+':'-'} ${Math.floor(rounded/60)}hr ${rounded%60} min`;
+}
 export function bellTime(minutes: number | null | undefined) {
   if (minutes == null || !Number.isFinite(minutes)) return 'no time recorded';
   const rounded = Math.round(Math.abs(minutes));

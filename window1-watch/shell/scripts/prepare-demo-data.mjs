@@ -41,6 +41,17 @@ for (const game of index.games) {
       grade.provenance.trace_sha256 !== face.provenance.trace_sha256) throw new Error(`Unbound grade: ${game.event}`);
   put(`data/${game.event}.face.json`, faceBytes);
   put(`data/${game.event}.grade.json`, gradeBytes);
+  const pressureFile = within(source, `${game.event}.pressure.json`);
+  // On the desktop a deliberate pressure rebuild joins local stages. Hosted
+  // builds only consume the reviewed compact asset; they have no stage files.
+  if (existsSync(pressureFile)) {
+    const pressureBytes = readFileSync(pressureFile);
+    const pressure = JSON.parse(pressureBytes);
+    if (pressure.event !== game.event || pressure.provenance.face_sha256 !== sha(faceBytes) ||
+        pressure.provenance.trace_sha256 !== face.provenance.trace_sha256 ||
+        pressure.provenance.os_sha256 !== face.provenance.os_sha256) throw new Error(`Unbound pressure: ${game.event}`);
+    put(`data/${game.event}.pressure.json`, pressureBytes);
+  }
   if (face.oracle?.detail_url) {
     if (face.oracle.detail_url !== `/data/${game.event}.oracle.json`) throw new Error("Unexpected oracle URL");
     const oracleBytes = gunzipSync(readFileSync(within(source, `${game.event}.oracle.json.gz`)));
@@ -68,7 +79,7 @@ const detailFiles = files(source).filter(path => /\.stages[\\/]|[\\/]renewals[^\
 const omittedBytes = detailFiles.reduce((sum, path) => sum + statSync(path).size, 0);
 const manifest = {
   games: index.games.map(game => game.event),
-  policy: "Static face/grade/oracle plus picker/history only. No raw exports, engine, credentials, stages or renewal streams.",
+  policy: "Static face/grade/oracle/pressure plus picker/history only. Pressure is compact hash-bound receipt readings, not raw depth or trades. No raw exports, engine, credentials, stages or renewal streams.",
   omitted_detail_files: detailFiles.length,
   omitted_detail_bytes: omittedBytes,
   assets: entries,

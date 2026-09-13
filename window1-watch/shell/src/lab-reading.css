@@ -1,4 +1,10 @@
 /* Option A: a reading surface, scoped to LAB. DESK and SCOREBOARD are unchanged. */
+.lab-pressure{flex-shrink:0;padding:8px 0;border-bottom:1px solid var(--color-border);font:11px/1.4 ui-monospace,Consolas,monospace}
+.lab-pressure>header,.lab-pressure>footer{display:flex;justify-content:space-between;gap:12px;color:var(--color-muted);font-size:9px}
+.lab-pressure-side{display:grid;grid-template-columns:40px 1.2fr 1fr 1fr 1fr;align-items:center;gap:12px;padding:5px 0}
+.lab-pressure-side strong{font-weight:400}.lab-pressure-side details{position:relative;border:0;padding:0;min-width:0}.lab-pressure-side summary{cursor:pointer;list-style:none}.lab-pressure-side summary::after{content:none!important}.lab-pressure-side summary small{display:block;color:var(--color-muted);font-size:9px}.lab-pressure-side summary span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lab-pressure-popover{position:absolute;bottom:100%;left:0;width:290px;max-width:80vw;background:var(--color-bg);border:1px solid var(--color-border);padding:12px;z-index:40;overflow-wrap:anywhere}.lab-pressure-popover p{margin:0 0 7px}.lab-pressure-popover small{display:block;font-size:10px;color:var(--color-muted)}
+@media(max-width:700px){.lab-pressure{font-size:9px}.lab-pressure-side{gap:5px;grid-template-columns:28px 1fr 1fr 1fr 1fr}.lab-pressure>footer span:last-child{display:none}.lab-pressure-popover{position:fixed;bottom:20%;left:5%;width:90%;max-width:90%}}
 .terminal.reading-terminal{padding:8px 24px;font-family:Arial,Helvetica,sans-serif}
 .reading-terminal .terminal-header{height:32px;padding:0;border:0;font-size:10px;letter-spacing:.08em;color:var(--color-muted)}
 .reading-terminal .terminal-header strong{font-weight:400}.reading-terminal .terminal-header nav{gap:22px}.reading-terminal .terminal-header button{font-size:10px}

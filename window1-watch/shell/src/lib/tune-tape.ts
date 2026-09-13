@@ -264,6 +264,8 @@ export type GradeHistoryView = {
   labels: { letter: string; y: number }[];
 };
 export type LoadedGame = {
+  pressure?: PressureData | null;
+  pressure_status?: string;
   oracle?: OracleData | null;
   oracle_status?: string;
   face: FaceData;
@@ -273,6 +275,13 @@ export type LoadedGame = {
   history?: GradeHistory[];
   history_view?: GradeHistoryView | null;
 };
+export type PressureValue = {label:string;value:number|null;text:string;source:string|null;source_epoch:number|null;reason:string|null};
+export type PressureRow = {
+  receipt_index:number;receipt_id:string;receipt:string;timestamp_epoch:number;minutes_to_bell:number;clock_label:string;stage_sha256:string;
+  pair:{text:string;source:string};
+  legs:Record<string,{values:Record<string,PressureValue>;cards:{label:string;text:string;keys:string[];source?:string;raw_layer?:string|null;note?:string}[]}>;
+};
+export type PressureData = {schema:string;event:string;provenance:{face_sha256:string;os_sha256:string;trace_sha256:string};rows:PressureRow[];dictionary?:unknown[]};
 async function json<T>(url: string, signal?: AbortSignal): Promise<T> {
   const response = await fetch(url, { signal, cache: "no-cache" });
   if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
@@ -320,12 +329,25 @@ export async function loadTuneGame(url: string, signal?: AbortSignal): Promise<L
     if (!r.headers.get("content-type")?.includes("application/json")) return null;
     return r.json();
   };
-  const [candidate, index] = await Promise.all([
+  const [candidate, index, pressureCandidate] = await Promise.all([
     optional<Grade>(`/data/${face.provenance.event_id}.grade.json`),
     optional<{ grades: GradeHistory[]; views: Record<string, GradeHistoryView> }>(
       "/data/grades/index.json",
     ),
+    optional<PressureData>(`/data/${face.provenance.event_id}.pressure.json`),
   ]);
+  const pressureBound = pressureCandidate?.schema === 'LAB_PRESSURE_READS_V1' &&
+    pressureCandidate.event === face.provenance.event_id &&
+    pressureCandidate.provenance.face_sha256 === faceSha &&
+    pressureCandidate.provenance.os_sha256 === face.provenance.os_sha256 &&
+    pressureCandidate.provenance.trace_sha256 === face.provenance.trace_sha256;
+  if (pressureBound && pressureCandidate.dictionary) {
+    const dictionary = pressureCandidate.dictionary;
+    const decode = (v:unknown):unknown => v && typeof v === 'object' ?
+      '$ref' in v ? dictionary[(v as {$ref:number}).$ref] : Array.isArray(v) ? v.map(decode) :
+      Object.fromEntries(Object.entries(v).map(([k,x])=>[k,decode(x)])) : v;
+    pressureCandidate.rows = pressureCandidate.rows.map(r=>decode(r) as PressureRow);
+  }
   const bound =
     candidate?.event === face.provenance.event_id &&
     candidate.provenance.os_sha256 === face.provenance.os_sha256 &&
@@ -344,6 +366,8 @@ export async function loadTuneGame(url: string, signal?: AbortSignal): Promise<L
     } else oracleStatus = `${SILENT} — oracle ruler HTTP ${r.status}`;
   }
   return {
+    pressure:pressureBound?pressureCandidate:null,
+    pressure_status:pressureBound?'OK':pressureCandidate?'no data here — pressure source does not match this replay':'no data here — no pressure readings joined',
     oracle, oracle_status: oracleStatus,
     face,
     frames,

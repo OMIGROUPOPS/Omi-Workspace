@@ -1107,3 +1107,40 @@ receipt inspector, bid log, grade/history, bands and sentence-gap views.
   author tokens, assumptions, renewal and supersession records remain in Details.
 - STORE SILENT is “no data here” on the reading surface. The inspector preserves
   raw fields verbatim. Amber is reserved for bids/fills; no side-specific colors.
+# LAB pressure readings — display only
+
+`<event>.pressure.json` is built by `build_lab_pressure.mjs` from this face's
+local decision-stage files, without replaying or editing the OS. It is a
+separate compact static asset: the face/grade/oracle hashes are unchanged.
+`provenance` binds the exact face bytes, OS SHA, trace SHA and projection code
+SHA. Each row binds event, receipt, trace row and deterministic receipt ID;
+`stage_sha256` records the uncompressed source stage. `dictionary` is the
+existing lossless face encoding, applied to `rows` only.
+
+- `receipt_index`, `receipt_id`, `receipt`, `trace_row`, `timestamp_epoch`:
+  exact source identity. `minutes_to_bell` uses the face's corrected bell;
+  `clock_label` is its rounded display as `T - <hours>hr <minutes> min`.
+- `legs.<side>.values.contracts/prints`: stored `reads.volume.value` contracts
+  and print_count, not an aggressor estimate or an independently verified fill.
+- `bid_depth/ask_depth/top_bid/top_ask`: stored `reads.depth_size.value`
+  five-level and best-level sizes. These are snapshots, **not consumption,
+  maker pull/add, queue priority, or an absorption measurement**.
+- `taker_flow/maker_residual/refill_ratio/queue/open_interest`: null with
+  reason where no exact event/receipt/span-bound feature exists. The recovery
+  covers library members, not these five named checks; arithmetic never fills
+  missing API direction. Screen averages never become game measurements.
+- Each value carries `value`, `unit`, display `text`, `source` field path,
+  `source_epoch` and `reason`. Only CONNECTED finite numeric reads at or before
+  the receipt are displayed. True zero stays zero; missing is `no data here`.
+- `cards`: builder-written plain text, field keys and (for Current call) the
+  stored selected pool layer, q50 level and member count. Book/volume visibility
+  is explicitly **not** a claim that those fields authored this call.
+- `pair.mid_sum_cents`: the stored joint-state midpoint sum, not last-price sum
+  or captured discount. `pair.text/source` carry that distinction.
+- `missing_receipt_indices` lists absent local decision stages. LAB selects
+  only a row at or before the displayed replay time and labels it **Last
+  recorded receipt**. This is carried receipt state, not newly inferred values
+  on intervening ticks. Browser binding failures show `no data here`.
+
+The static deployment allowlist includes the five compact pressure assets,
+never raw print/depth/API-label objects or per-tick stage/renewal files.

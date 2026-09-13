@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { frameForReceipt, type Game, type LoadedGame, type Receipt } from '@/lib/tune-tape';
 import { bellTime, plain } from '@/lib/reading-view';
 import { ReadingChart } from './reading-chart';
+import { LabPressure } from './lab-pressure';
 import { TuneChart } from './tune-chart';
 import { TunePlayback } from './tune-playback';
 import { TuneHud } from './tune-scene';
@@ -43,6 +44,7 @@ export function LabReading({game,games,event,frame,receipt,receiptIndex,playing,
         <button className="reading-details-button" aria-expanded={details} aria-controls="reading-details" onClick={()=>setDetails(v=>!v)}>Details {details?'−':'+'}</button>
       </header>
       <div className="reading-charts">{game.face.legs.map(side=><ReadingChart key={side} game={game} frame={frame} side={side} receipt={receipt} onReceipt={inspect}/>)}</div>
+      <LabPressure game={game} minutesToBell={now.minutesToBell}/>
       <div className="reading-transport">
         <div className="reading-transport-buttons"><button aria-label="Previous receipt" onClick={()=>jump(-1)}>Prev</button><button disabled={now.pre_first_tick} onClick={()=>onPlaying(!playing)}>{playing?'Pause':'Play'}</button><button aria-label="Next receipt" onClick={()=>jump(1)}>Next</button></div>
         <div className="reading-timeline">

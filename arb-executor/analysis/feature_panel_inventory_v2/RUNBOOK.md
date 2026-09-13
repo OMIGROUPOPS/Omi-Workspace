@@ -1,4 +1,34 @@
-# Eleven-block recovery — active work, not results
+# Eleven-block recovery — completed screen; history below
+
+## 2026-09-13 — final CHALL publication verified; all four passes complete
+
+The retry queue at `C:\tmp\feature_panel_inventory_v2\restart_20260912T1721Z`
+finished MAIN twice then CHALL twice. All four pass exit markers and
+`SCREEN_QUEUE.exit` are 0; queue PID18476 and final worker PID2692 are absent.
+MAIN completed 1353/1353 evaluations per pass (928 primary +425 frozen June),
+16688 gate receipts. CHALL completed 3245/3245 per pass (2287 primary +958
+frozen June),27234 gate receipts; final pass elapsed11600.844s.
+
+The unchanged guarded inventory publisher compared CHALL's full population
+across both passes before writing `ATP_CHALL/`: DETERMINISTIC and exact
+unchanged-FIRST parity in all60 side/gate cells. Its final results SHA256 is
+`1b403de9659b3108f1d098f11b4208e7e43d3d63a81fbaea0a2bcc0f2057e3fc`.
+The raw pass2 receipt SHA256 is
+`b46ece9e6cae39decb25ac10b9a37e0a6cca873c793af73d952b1f4a0f8e3277`.
+`ATP_CHALL_PASS1/` remains the historical provisional report; it is superseded
+by this verified final publication, without deleting or changing its files.
+`OPERATOR_REPORT.md` now presents both verified tours and the final verdict.
+
+No variant qualifies under the filed rule; June remains separate and cannot
+select. No full-cadence finalist is advanced. No new scientific test, engine,
+face, input, or definition change was made to close this run. Raw private
+extracts and per-query outputs stay outside git. After the compact reports
+are committed and pushed, remove the completed 30-minute follow-up.
+
+Engine pins reverified at completion:
+- OS: `70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346`
+- Functionable: `83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74`
+- Builder: `6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c`
 
 ## 2026-09-13 — MAIN published; CHALL first-pass report only
 

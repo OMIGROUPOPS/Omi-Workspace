@@ -1,10 +1,10 @@
 # Eleven-block screen — operator publication
 
-MAIN: both full screens deterministic; unchanged FIRST parity exact. CHALL: completed pass 1, determinism pending; second pass remains running. This is GATE-SIM, not receipt-cadence proof. No engine edits or replay.
+MAIN and CHALL: both complete population screens deterministic; unchanged FIRST parity exact in all 60 side/gate cells per tour. All four passes and the queue exited 0. This is GATE-SIM, not receipt-cadence proof. No engine edits or replay. Final receipts are in ATP_MAIN/ and ATP_CHALL/; ATP_CHALL_PASS1/ preserves the earlier provisional publication.
 
 ## Lineage coverage first
 
-Percent of PRIMARY side/gate receipts with a recorded feature. Columns are April / May / June / July. Numeric zero counts as observed. Unknown WS availability is not zero. Counts, sources and per-feature leakage exclusions are in each LINEAGE_COVERAGE.json. CHALL coverage belongs to its completed first pass.
+Percent of PRIMARY side/gate receipts with a recorded feature. Columns are April / May / June / July. Numeric zero counts as observed. Unknown WS availability is not zero. Counts, sources and per-feature leakage exclusions are in each LINEAGE_COVERAGE.json. Both tours' coverage is now verified across both passes.
 
 | Field | MAIN Apr | May | Jun | Jul | CHALL Apr | May | Jun | Jul |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -359,9 +359,9 @@ Advancing variants: NONE
 | 2026-07 | LEAVE_OUT_SPREAD_BEHAVIOR | ZERO_WEIGHT_BY_VALIDATION | 308 | 2026-04: NO_INNER_TRAINING_OR_VALIDATION; 2026-05: PROJECTED_GRADIENT_CONVERGED | not selected |
 | 2026-07 | LEAVE_OUT_WAKE_CADENCE_SPREAD | ZERO_WEIGHT_BY_VALIDATION | 308 | 2026-04: NO_INNER_TRAINING_OR_VALIDATION; 2026-05: PROJECTED_GRADIENT_CONVERGED | not selected |
 
-# PASS 1 — DETERMINISM PENDING
+# CHALL — BOTH PASSES VERIFIED
 
-Completed first-pass scores, not a final verified tour publication. No advancement is authorized by this provisional report.
+Full-population determinism and exact unchanged-FIRST parity passed. Both passes completed 3,245 evaluations: 2,287 primary games plus 958 frozen-June games, totaling 27,234 gate receipts per pass. No variant meets the filed advancement rule.
 
 # ATP_CHALL — full-universe atlas screen
 
@@ -663,7 +663,7 @@ Advancing variants: NONE
 
 ## Astra’s verdict
 
-REJECT promotion of any block into the OS on this screen. MAIN is verified and has no qualifying side/gate cell. CHALL pass 1 also has none, but its scientific verdict remains provisional until the second pass agrees. MAIN C1/C2 move average floor error by about one-thousandth of a cent; the full eleven-block fit falls back to FIRST. The observed flow and maker readings should be visible as readings, not represented as authors. Missing May books, nearly absent refill denominators and June/July open interest, plus deferred WS, mean “all inventory recovered” would be false. This rejects this learned likelihood test, not the usefulness of book behavior in principle. It does not identify an irreducible tape ceiling; FIRST’s attained errors are measured performance, not a floor on possible error. No full-cadence finalist is authorized.
+REJECT promotion of any block into the OS under this screen's filed criterion. Both tours are verified and neither has a qualifying side/gate cell. MAIN C1/C2 move matched average floor error by about one-thousandth of a cent; the full eleven-block fit returns FIRST. CHALL C11 improves matched floor MAE by 0.005512¢, with 79 fewer calls among 38,160 eligible side/gate receipts; that small improvement does not meet the filed strict-win rule. The observed flow and maker readings should be visible as readings, not represented as authors. Missing May books, nearly absent refill denominators and June/July open interest, plus deferred WS, mean “all inventory recovered” would be false. This rejects promotion through this learned likelihood test, not the usefulness of book behavior in principle. It does not identify an irreducible tape ceiling; FIRST’s attained errors are measured performance, not a floor on possible error. No full-cadence finalist is authorized. Proposed residual/deadline models and revised criteria remain unrun proposals, not retroactive changes to this screen.
 
 ## LAB integration
 

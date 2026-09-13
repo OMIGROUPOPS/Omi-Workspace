@@ -1,0 +1,2087 @@
+{
+  "binding": {
+    "audit_aggregate_sha256": "f95c5bada3a0bba4f2d5b84435e6f5651b0062ee7220e7e1a2e678f2922869b1",
+    "code": {
+      "absorption_residual_data.py": "523bf3769823bfd6eca5ebcdf0575bf9959b2ccf4bfa798c55aa268c25e2ef9c",
+      "absorption_residual_model.py": "655aa0f6f3b14642928b3094324c76ede8aaf6b90f0f5dc9b86c45af1d1c9431",
+      "absorption_residual_run.py": "afc730e0539bdeaf7236365009382ee671b38017f61d8cfe33ddd96891f1d0af",
+      "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+      "conduct_scoreboard_v2.py": "a53fba520a2ddf6925c33be9fed86f3bb2e751a1000ee969bccccd0781ffc450",
+      "feature_panel_bench.py": "9f6d7a0730b08eed1f17132438b8db0d45b4f93b7ec7ffab4cdedea4b4bf1e4d",
+      "feature_panel_inventory_gate_extract.py": "1978bcc675d8090e06df9ebed5a601cad8c88f72ba5ee668c3f11fdcc4ad5618",
+      "feature_panel_run.py": "d57397ffc6b566281eb3d59a26fb667ea68f07f4a9782186c02bfb25bc0ef972",
+      "feature_panel_scoring.py": "3556cda79e3a4f39dd338d9b643548949abb06f3769e456ba3c1277d6c31a3f9",
+      "tune_bench_floor_calls.py": "7e605a8cceded5f9a4a3ab29f375f0e1ae90320d3a45caa3169ef52ac7b404ba",
+      "tune_bench_v2_survivorship.py": "1cf7b7787daa40c45e096546edadebae6cef778184a7ca219404309646c1a8da"
+    },
+    "contract_sha256": "f5fc318b71ee3c01aaa618672f996192ac99ea83c56fac8937a7946e3a18a5d1",
+    "counts_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+    "gate_inputs_sha256": "53c4851ad03bbe86e82555c5dc13075ec7e150a0a56718f4b7a385de45b86273",
+    "gate_receipt_sha256": "ca39df332501d67739cc2a562c8d431fd3d7ce8a5068d084bca615f7bd6bbeca",
+    "input_pins_sha256": "b8b4fa0c0b3ff133a949c9c9aa488361d8993e2464e905ac4037b9942f9e60c3",
+    "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+    "remote_audit_receipt_sha256": "923d1e64af27e2371e22fb2743c09875dd7982f666556f41da222bbde316c54d",
+    "reservation_sha256": "35c446003a9aed6c11b2600ae59509f811160188fd7a324c98276e885970676f",
+    "source_receipt_sha256": "c52187b9c03405fda698c6830b22bc6c7b61b81e0baf1215a908b41a93a8b1fe",
+    "witness_sha256": "139178e58a581fe7e68b52d8bb350daab0f5226aa9acd3cf8a2ac756e82d72f6"
+  },
+  "comparisons": [
+    {
+      "base_fallback": 0,
+      "book_supported": 0,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "FIRST",
+      "control_calls": 1925,
+      "control_crps": 1.224328622760618,
+      "control_mae": 1.4624785928357358,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "6f65f3131eb5f12043f957fe608ee9c5defca2f5e73eb406b987d6dc7e3b43cd"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1925,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "42e9e936be583b61cca25d70b8ae7cc2ff5d6eb0a8ee717961da8d79c7ca2ffd"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 1925,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_CORRECTION",
+      "variant_calls": 1925,
+      "variant_crps": 1.224328622760618,
+      "variant_mae": 1.4624785928357358
+    },
+    {
+      "base_fallback": 2,
+      "book_supported": 1960,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "FIRST",
+      "control_calls": 1925,
+      "control_crps": 1.224328622760618,
+      "control_mae": 1.4624785928357358,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "f37a08f7eedcb85fa397d0949f176d504cce6a7542f7fdaf3996e85871088403"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1925,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "7ab2c286f672481fb3a620fe64f1cb6a1ddf932e8632f3de47f87212fd6d8db6"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 1925,
+      "unsafe_forecasts": 0,
+      "variant": "BOOK_CORRECTION",
+      "variant_calls": 1925,
+      "variant_crps": 1.224328622760618,
+      "variant_mae": 1.4624785928357358
+    },
+    {
+      "base_fallback": 2,
+      "book_supported": 1960,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1925,
+      "control_crps": 1.224328622760618,
+      "control_mae": 1.4624785928357358,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "23a9230d8cfd4fa38601f667d9453bc887803f41bf6a3c1b7eab89ff1a1b3b74"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1925,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "3eaf6472414ee2490145ea18a6a40e61b7e03cea9e22e75b26a2ef50e846c842"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 1925,
+      "unsafe_forecasts": 0,
+      "variant": "BOOK_CORRECTION",
+      "variant_calls": 1925,
+      "variant_crps": 1.224328622760618,
+      "variant_mae": 1.4624785928357358
+    },
+    {
+      "base_fallback": 153,
+      "book_supported": 1809,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1925,
+      "control_crps": 1.224328622760618,
+      "control_mae": 1.4624785928357358,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "a67298ced589e3c9f32b9179c55dc44fb72d5556a2a1a8b1170d41a655f5f428"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1925,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "943c65c5631906aceae5fd5571fa6b572b100de9cbb39b8aa32897d073053093"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 1925,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_API_FLOW",
+      "variant_calls": 1925,
+      "variant_crps": 1.224328622760618,
+      "variant_mae": 1.4624785928357358
+    },
+    {
+      "base_fallback": 385,
+      "book_supported": 1554,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1925,
+      "control_crps": 1.224328622760618,
+      "control_mae": 1.4624785928357358,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "db25da0802832d39fbda45dc6091b2c2021ab83827ca2aa79bb0ca0952efcb9b"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1925,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "cb1ba4f0e23e1ef15641ac4a62e5d16b22c4b861e2343232cbe2f66bf1dbcb3c"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 1925,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_PER_LEVEL_MAKER",
+      "variant_calls": 1925,
+      "variant_crps": 1.224328622760618,
+      "variant_mae": 1.4624785928357358
+    },
+    {
+      "base_fallback": 1886,
+      "book_supported": 39,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1925,
+      "control_crps": 1.224328622760618,
+      "control_mae": 1.4624785928357358,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "62f612e0c3946cd170292788aca9281f04156b2e1256c91d28826083e6e52326"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1925,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "42bb3b625f0e9f2902df76075a56ee21d986a38193c73ca35c4371b2241f1152"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 1925,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+      "variant_calls": 1925,
+      "variant_crps": 1.224328622760618,
+      "variant_mae": 1.4624785928357358
+    },
+    {
+      "base_fallback": 236,
+      "book_supported": 1703,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1925,
+      "control_crps": 1.224328622760618,
+      "control_mae": 1.4624785928357358,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "cdbb82d955e4d7088e664d5df5e4ab18439ff9c03c5f2aa86325b0959daf0160"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1925,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "5c6dd6a383ee8f36bc7d12cf942bbb89d85b4280e6d34725fd24140a6bfd6a03"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 1925,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_IMBALANCE",
+      "variant_calls": 1925,
+      "variant_crps": 1.224328622760618,
+      "variant_mae": 1.4624785928357358
+    },
+    {
+      "base_fallback": 131,
+      "book_supported": 1808,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1925,
+      "control_crps": 1.224328622760618,
+      "control_mae": 1.4624785928357358,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "00bccdfc236b07a7e2700ac9f670646ed0c180d4ab1e7d8aa16eaf69b15ba3bc"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1925,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "4ce30bfe2809aff211cefaec7d9e0ebbd72ee4c7c3df72e2489d46c962672b35"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 1925,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_SPREAD",
+      "variant_calls": 1925,
+      "variant_crps": 1.224328622760618,
+      "variant_mae": 1.4624785928357358
+    },
+    {
+      "base_fallback": 76,
+      "book_supported": 1863,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1925,
+      "control_crps": 1.224328622760618,
+      "control_mae": 1.4624785928357358,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "2e8bb3f274dbcdb9b61d0c9acf29b30dd4525a124c10869d7212cb8005f2682c"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1925,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "abc3e4b6ea7194ae02ad01d8bd39e9b7b8a6f1d8ba12f5d722c115846a7a67d2"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 1925,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_PAIR_GAP",
+      "variant_calls": 1925,
+      "variant_crps": 1.224328622760618,
+      "variant_mae": 1.4624785928357358
+    },
+    {
+      "base_fallback": 0,
+      "book_supported": 0,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "FIRST",
+      "control_calls": 1921,
+      "control_crps": 1.0122824894076705,
+      "control_mae": 1.3146661077018218,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "17c68b656cccbab9d7a0199a8779dafbb8fbf6721f9abe3534f6d7fd1b821668"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1921,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "7363c1e7674574bb93e1d58460ef80ed184c9d4156a446f1356e794e4afcbfa6"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 1915,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_CORRECTION",
+      "variant_calls": 1921,
+      "variant_crps": 1.0122824894076705,
+      "variant_mae": 1.3146661077018218
+    },
+    {
+      "base_fallback": 2,
+      "book_supported": 1960,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "FIRST",
+      "control_calls": 1921,
+      "control_crps": 1.0122824894076705,
+      "control_mae": 1.3146661077018218,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "7e2cc589fda1f38e04a0c67f7a40192b0d44553f01bc816af930fe3bc1f6b54d"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1921,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "6649deff16f5d6b38cc7643614ffea4215a56678b654aad4612717b8c5531236"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 1915,
+      "unsafe_forecasts": 0,
+      "variant": "BOOK_CORRECTION",
+      "variant_calls": 1921,
+      "variant_crps": 1.0122824894076705,
+      "variant_mae": 1.3146661077018218
+    },
+    {
+      "base_fallback": 2,
+      "book_supported": 1960,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1921,
+      "control_crps": 1.0122824894076705,
+      "control_mae": 1.3146661077018218,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "1473e78f690e21dff50190d3df7d4bdb214720dd2a24fc48af2108c0d546d02e"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1921,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "a1468f0cf7d49fc1d5c7fd76ef2d6d4ecb3163f0967f8afbcc13ef17b6eac0f7"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 1915,
+      "unsafe_forecasts": 0,
+      "variant": "BOOK_CORRECTION",
+      "variant_calls": 1921,
+      "variant_crps": 1.0122824894076705,
+      "variant_mae": 1.3146661077018218
+    },
+    {
+      "base_fallback": 153,
+      "book_supported": 1809,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1921,
+      "control_crps": 1.0122824894076705,
+      "control_mae": 1.3146661077018218,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "d8550643dace72808dd3f30f76ec40ecdb6451601a8812ecdf1e3482b3560932"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1921,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "b7c99591267679aa7d1a10227de9e03b67ef9dd1aaffae36cbb7d4ead5a4a44d"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 1915,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_API_FLOW",
+      "variant_calls": 1921,
+      "variant_crps": 1.0122824894076705,
+      "variant_mae": 1.3146661077018218
+    },
+    {
+      "base_fallback": 389,
+      "book_supported": 1554,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1921,
+      "control_crps": 1.0122824894076705,
+      "control_mae": 1.3146661077018218,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "52c91438da1fd68dacd253f0c04d567d94ef1d4c5c4eca9f9ed6808687aa3490"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1921,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "3ab6bb9d4f657eb36addb8ef212592de6f71fc68757a06a956990a44173628f9"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 1915,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_PER_LEVEL_MAKER",
+      "variant_calls": 1921,
+      "variant_crps": 1.0122824894076705,
+      "variant_mae": 1.3146661077018218
+    },
+    {
+      "base_fallback": 1882,
+      "book_supported": 39,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1921,
+      "control_crps": 1.0122824894076705,
+      "control_mae": 1.3146661077018218,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "600b647c3b8549b6c0dc75650e347b373164ac9c1d7894a447ea145fec2447fd"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1921,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "40639bd4ea9df2796a5519bf7c646661849402c6a66d6943a173f75288f78ef9"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 1915,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+      "variant_calls": 1921,
+      "variant_crps": 1.0122824894076705,
+      "variant_mae": 1.3146661077018218
+    },
+    {
+      "base_fallback": 240,
+      "book_supported": 1703,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1921,
+      "control_crps": 1.0122824894076705,
+      "control_mae": 1.3146661077018218,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "2ecad65ebe57954841a5388e1f9a7e767dfc552ced442bd0f7e3f4e2b3db687c"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1921,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "98dddf75bf43834982fddb747982dbfcdc1417513301cd8337c75989c2f32898"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 1915,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_IMBALANCE",
+      "variant_calls": 1921,
+      "variant_crps": 1.0122824894076705,
+      "variant_mae": 1.3146661077018218
+    },
+    {
+      "base_fallback": 135,
+      "book_supported": 1808,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1921,
+      "control_crps": 1.0122824894076705,
+      "control_mae": 1.3146661077018218,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "1ff7070cd2a0998edc50277b7afa6512ec1f7ec4b03c80cc7b18cf10f4d0810d"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1921,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "cfc3d0ca40c70f0a509f8bbe36cec07353b1b55ce84e045a6debaad25db93664"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 1915,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_SPREAD",
+      "variant_calls": 1921,
+      "variant_crps": 1.0122824894076705,
+      "variant_mae": 1.3146661077018218
+    },
+    {
+      "base_fallback": 80,
+      "book_supported": 1863,
+      "category": "ATP_MAIN",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 1921,
+      "control_crps": 1.0122824894076705,
+      "control_mae": 1.3146661077018218,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "f1a0cfb802a9080cd922014b5759a735d176bf8e2eaed1085798a62042a4b579"
+      },
+      "eligible_gate_opportunities": 1962,
+      "eligible_universe_games": 140,
+      "first_calls": 1921,
+      "games_with_atlas_opportunities": 140,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 13,
+        "n_games": 140,
+        "seed_sha256": "bd370df5f05566b3096b1efc9d8e0f423827df9ea6e94a521d20be13c29b00f0"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 1915,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_PAIR_GAP",
+      "variant_calls": 1921,
+      "variant_crps": 1.0122824894076705,
+      "variant_mae": 1.3146661077018218
+    },
+    {
+      "base_fallback": 0,
+      "book_supported": 0,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "FIRST",
+      "control_calls": 2893,
+      "control_crps": 1.188203083167469,
+      "control_mae": 1.4250746492982518,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "271272bd2a23c44f91e4f08070654f2d45bb6bdc5579a8222429becd70773faf"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2893,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "344ba4ae67d58d45773161e82a61534948747aafc67ff871aad9acce36a3ea32"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 2479,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_CORRECTION",
+      "variant_calls": 2893,
+      "variant_crps": 1.188203083167469,
+      "variant_mae": 1.4250746492982518
+    },
+    {
+      "base_fallback": 0,
+      "book_supported": 2907,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "FIRST",
+      "control_calls": 2893,
+      "control_crps": 1.188203083167469,
+      "control_mae": 1.4250746492982518,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "a06df5ed12ae3c9f5236ca855a28041884253ac87c878337fd741a3972b36437"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2893,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "fa7aa271a858d98f2fec0ef3229b9af393da39dbea581d1c4d71150d756e4553"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 2479,
+      "unsafe_forecasts": 0,
+      "variant": "BOOK_CORRECTION",
+      "variant_calls": 2893,
+      "variant_crps": 1.188203083167469,
+      "variant_mae": 1.4250746492982518
+    },
+    {
+      "base_fallback": 0,
+      "book_supported": 2907,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2893,
+      "control_crps": 1.188203083167469,
+      "control_mae": 1.4250746492982518,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "2eff8d905b2419c941eea5d152200b55d6bd93e4eb27b97ba3c9a82a802047c6"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2893,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "1cd5273934b56475624ca526b40e0c5a64acb99a619326e56e6fbdbe6c223e7b"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 2479,
+      "unsafe_forecasts": 0,
+      "variant": "BOOK_CORRECTION",
+      "variant_calls": 2893,
+      "variant_crps": 1.188203083167469,
+      "variant_mae": 1.4250746492982518
+    },
+    {
+      "base_fallback": 27,
+      "book_supported": 2880,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2893,
+      "control_crps": 1.188203083167469,
+      "control_mae": 1.4250746492982518,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "8fdc4315cc587852178e927b38c348d642bd9893d6ce5620186bb52d0be33cc3"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2893,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "f3379056318686da4aeb59b767ccf69a474a339970fe10050bedf0bdc169a968"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 2479,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_API_FLOW",
+      "variant_calls": 2893,
+      "variant_crps": 1.188203083167469,
+      "variant_mae": 1.4250746492982518
+    },
+    {
+      "base_fallback": 500,
+      "book_supported": 2397,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2893,
+      "control_crps": 1.188203083167469,
+      "control_mae": 1.4250746492982518,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "8eb5b71653ea7d8581dbe059154847241040090e2dc17e5ad3f63af38f82721b"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2893,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "68e4b79836d1cdb728db2d2def5f43a921429a6736f9a23079b4101948088bc6"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 2479,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_PER_LEVEL_MAKER",
+      "variant_calls": 2893,
+      "variant_crps": 1.188203083167469,
+      "variant_mae": 1.4250746492982518
+    },
+    {
+      "base_fallback": 2857,
+      "book_supported": 36,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": false,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2893,
+      "control_crps": 1.188203083167469,
+      "control_mae": 1.4250746492982518,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0001561240328692512,
+        "draws": 50000,
+        "interval": [
+          -0.0009507646339747975,
+          0.0010519342647250054
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "1f1263041c9655597b1c76b814f07463f364705e4c5023bf60e7087e7464d24e"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2893,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": -9.34094546724888e-05,
+        "draws": 50000,
+        "interval": [
+          -0.001886912119659898,
+          0.0013979753185852292
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "2db128798115ff53de901d95ac6e72215ab3fa636e891e7b5c48f6145d9aaac4"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 2479,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+      "variant_calls": 2893,
+      "variant_crps": 1.1883592072003384,
+      "variant_mae": 1.4249812398435793
+    },
+    {
+      "base_fallback": 236,
+      "book_supported": 2663,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2893,
+      "control_crps": 1.188203083167469,
+      "control_mae": 1.4250746492982518,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "1a7ed9eada5830ccf2ab9fe43a4cca4a19f9cdde60213fe5b063acbe8d3c7d63"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2893,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "30e9e690078614022af7432b432075535c2bb5a4f2f6c0565f816fe8eccc505a"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 2479,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_IMBALANCE",
+      "variant_calls": 2893,
+      "variant_crps": 1.188203083167469,
+      "variant_mae": 1.4250746492982518
+    },
+    {
+      "base_fallback": 186,
+      "book_supported": 2713,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2893,
+      "control_crps": 1.188203083167469,
+      "control_mae": 1.4250746492982518,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "33bf75448a5d0c144327d18be079f64d36ab3eb204f4244825fa71c579c575e5"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2893,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "68996d9eb6491dbf5828ffa2e883bca2910658d6806a087e5f1b48f138fc3412"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 2479,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_SPREAD",
+      "variant_calls": 2893,
+      "variant_crps": 1.188203083167469,
+      "variant_mae": 1.4250746492982518
+    },
+    {
+      "base_fallback": 141,
+      "book_supported": 2758,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2893,
+      "control_crps": 1.188203083167469,
+      "control_mae": 1.4250746492982518,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "29c5d0168cf18190a4303ba807e7b122d2adb1fca5f937b3d4684ff3dbae3a67"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2893,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 322,
+        "seed_sha256": "23681ac9465c1f4b57437e9248842f4c8b4756d23a84cf7a2a0b5792bca22382"
+      },
+      "pass_bar": false,
+      "side": "favourite",
+      "target_available": 2479,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_PAIR_GAP",
+      "variant_calls": 2893,
+      "variant_crps": 1.188203083167469,
+      "variant_mae": 1.4250746492982518
+    },
+    {
+      "base_fallback": 0,
+      "book_supported": 0,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "FIRST",
+      "control_calls": 2894,
+      "control_crps": 0.9328832990244881,
+      "control_mae": 1.16399187330716,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "ac9846877c87f3e4da9fc8b246e5aa9f84515f8010950cf4cdc79da4fdfd1587"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2894,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "4d3b94bfd5b2a3f7d0d176e1d57e804ad4f31bd1f3a455da86178e7c27a6d8c4"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 2364,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_CORRECTION",
+      "variant_calls": 2894,
+      "variant_crps": 0.9328832990244881,
+      "variant_mae": 1.16399187330716
+    },
+    {
+      "base_fallback": 0,
+      "book_supported": 2907,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "FIRST",
+      "control_calls": 2894,
+      "control_crps": 0.9328832990244881,
+      "control_mae": 1.16399187330716,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "bdf6e478ae8690f077563773287d67bd8a4caedd930fecdebd6a3b0374d3c09f"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2894,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "1d03f818c8572cea67e5121db6109da6df52226762bcf10d8fe104c059f2fb26"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 2364,
+      "unsafe_forecasts": 0,
+      "variant": "BOOK_CORRECTION",
+      "variant_calls": 2894,
+      "variant_crps": 0.9328832990244881,
+      "variant_mae": 1.16399187330716
+    },
+    {
+      "base_fallback": 0,
+      "book_supported": 2907,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2894,
+      "control_crps": 0.9328832990244881,
+      "control_mae": 1.16399187330716,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "cf45aa017fc47b6ab1b145f5218cad55e90122f3c3ab287914970418ee31bb17"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2894,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "bf2b998319c316387b899246e1f4e93cdab5f508e3a16a1aac1ab9ad2a46bf2a"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 2364,
+      "unsafe_forecasts": 0,
+      "variant": "BOOK_CORRECTION",
+      "variant_calls": 2894,
+      "variant_crps": 0.9328832990244881,
+      "variant_mae": 1.16399187330716
+    },
+    {
+      "base_fallback": 27,
+      "book_supported": 2880,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2894,
+      "control_crps": 0.9328832990244881,
+      "control_mae": 1.16399187330716,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "8c6eefe12033fb67795af1011a822efb6a7031701760d46d29493b732eae012f"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2894,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "c454f5e1085a8908299581bb76a8670ee5141e2b84a8d6648a18b061722fe6ec"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 2364,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_API_FLOW",
+      "variant_calls": 2894,
+      "variant_crps": 0.9328832990244881,
+      "variant_mae": 1.16399187330716
+    },
+    {
+      "base_fallback": 498,
+      "book_supported": 2397,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2894,
+      "control_crps": 0.9328832990244881,
+      "control_mae": 1.16399187330716,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "48abf922170b50af637b05adbdd51ee8c629421de4deeca04deb9557ea0ec52a"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2894,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "ed527665360e764019db7c9d75efa405c5757f115e89c9a339cef6d6f4655670"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 2364,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_PER_LEVEL_MAKER",
+      "variant_calls": 2894,
+      "variant_crps": 0.9328832990244881,
+      "variant_mae": 1.16399187330716
+    },
+    {
+      "base_fallback": 2858,
+      "book_supported": 36,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2894,
+      "control_crps": 0.9328832990244881,
+      "control_mae": 1.16399187330716,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "9a3ba52def101f0ab52fd91a76559081a2841930d82105378befaf3624e80495"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2894,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "168b46b231712aa26f2a1a24228bab88f79fd90187725a81e5be891fa230ef2b"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 2364,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+      "variant_calls": 2894,
+      "variant_crps": 0.9328832990244881,
+      "variant_mae": 1.16399187330716
+    },
+    {
+      "base_fallback": 233,
+      "book_supported": 2663,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2894,
+      "control_crps": 0.9328832990244881,
+      "control_mae": 1.16399187330716,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "3b7933dc899aff3544a9cad6e06dcb3a865597d800528b54de3f5bb9eb889e32"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2894,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "5f3f8b5e4ac1337ab715b819ce04e9a4cd47847f1ed2cf12da63e145a3fc0079"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 2364,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_IMBALANCE",
+      "variant_calls": 2894,
+      "variant_crps": 0.9328832990244881,
+      "variant_mae": 1.16399187330716
+    },
+    {
+      "base_fallback": 183,
+      "book_supported": 2713,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2894,
+      "control_crps": 0.9328832990244881,
+      "control_mae": 1.16399187330716,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "61c0f38c80f37cb3b863feab66262a49b7bfced5c977d15aeee6f4640a7ea2e7"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2894,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "ec3065acaf2a9201eba01f9c00c95a699bcb719379bbc2690d72bb1ffe71082b"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 2364,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_SPREAD",
+      "variant_calls": 2894,
+      "variant_crps": 0.9328832990244881,
+      "variant_mae": 1.16399187330716
+    },
+    {
+      "base_fallback": 138,
+      "book_supported": 2758,
+      "category": "ATP_CHALL",
+      "checks": {
+        "adjusted_interval": false,
+        "coverage_preserved": true,
+        "crps_nonincreasing": true,
+        "enough_games": true,
+        "safe": true,
+        "useful_effect": false
+      },
+      "control": "BASE_CORRECTION",
+      "control_calls": 2894,
+      "control_crps": 0.9328832990244881,
+      "control_mae": 1.16399187330716,
+      "crps": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "1d5d585fa39e046bf1f96d836d2a5b9cbc9b8a9fc6148ecc3fef4f97c476ca77"
+      },
+      "eligible_gate_opportunities": 2907,
+      "eligible_universe_games": 344,
+      "first_calls": 2894,
+      "games_with_atlas_opportunities": 342,
+      "mae": {
+        "comparisons": 36,
+        "confidence": 0.95,
+        "delta": 0.0,
+        "draws": 50000,
+        "interval": [
+          0.0,
+          0.0
+        ],
+        "method": "date then game hierarchical percentile bootstrap",
+        "n_dates": 10,
+        "n_games": 314,
+        "seed_sha256": "852836eb6d9258af1a3e4fafd8bc5dab18db00454507ce1dcfd3db161954b741"
+      },
+      "pass_bar": false,
+      "side": "underdog",
+      "target_available": 2364,
+      "unsafe_forecasts": 0,
+      "variant": "BASE_PLUS_PAIR_GAP",
+      "variant_calls": 2894,
+      "variant_crps": 0.9328832990244881,
+      "variant_mae": 1.16399187330716
+    }
+  ],
+  "confirmation_label": "historically inspected — not fresh",
+  "execution_resume_sha256": "5bc3cf87cedbff0de8bf375b5c8c00f5dbe61a650d3d6c9db822d4efe45269b0",
+  "fresh_confirmation": "DEFERRED to LIVE_PAPER after DESK activation",
+  "phase": "confirmation",
+  "schema": "ABSORPTION_RESIDUAL_RESULTS_V1"
+}

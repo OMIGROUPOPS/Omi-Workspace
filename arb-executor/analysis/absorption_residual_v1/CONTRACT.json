@@ -1,0 +1,67 @@
+{
+  "schema": "ABSORPTION_RESIDUAL_CONTRACT_V1",
+  "status": "FROZEN_BEFORE_ANY_FIT__AUDIT_GATE_PENDING",
+  "date": "2026-09-13",
+  "reservation": {
+    "file": "RESERVATION.json",
+    "sha256": "35c446003a9aed6c11b2600ae59509f811160188fd7a324c98276e885970676f",
+    "label": "historically inspected — not fresh",
+    "reserved_games": {"ATP_MAIN": 140, "ATP_CHALL": 344},
+    "development_games": {"ATP_MAIN": 788, "ATP_CHALL": 1943},
+    "fresh_confirmation": "DEFERRED to LIVE_PAPER after DESK activation",
+    "access": "Selection reads identity and formation/bell metadata only. Reserved outcomes never enter fitting, normalizers, choices or another reserved game's member pool. One final confirmation scoring pass after all development choices are locked. No retuning after confirmation."
+  },
+  "audit_gate": {
+    "required_status": "AUDIT_COMPLETE",
+    "unexplained_reconciliation_failures": 0,
+    "minimum_measured_independent_games_per_tour": 100,
+    "failure_action": "STOP; no fit, residual test, or finalist replay",
+    "remote_output": "/mnt/omi-trading-data-nyc3/library/absorption_audit_20260913/production",
+    "privacy": "Audit intervals, snapshots, prints and source/API identities remain on droplet. Only requested aggregate reports may be reported. Desktop models may use only already-present hash-bound derived gate inputs and existing pinned library/witness files; no new data transfer."
+  },
+  "universe": {
+    "categories": ["ATP_MAIN", "ATP_CHALL"],
+    "category_boundary": "Separate fits and pools; no cross-tour training",
+    "cadence": "The existing 15 atlas gates; no query future timestamp grid",
+    "primary_target": "Strictly later accepted positive-size print minimum, before the exact library bell, within unchanged formation-to-bell span. No later print means missing target, not a carried floor or zero.",
+    "baseline": "Unchanged FIRST member selection, first prices, causal receipt-time role, walk-forward member bell < query formation, leave-self-out and event-name same-day exclusion, original ESS fence.",
+    "development": "Earlier-resolved, earlier-event-date development games only. Each outer event-name month freezes fitting/scales before its earliest query formation; inner expanding calendar-month folds obey the same rule. June is development when not reserved, not the previous experiment's separate holdout.",
+    "confirmation": "Weights/scales/model choices frozen before the category's earliest reserved formation. Both FIRST and corrections use only non-reserved members with bell before that cutoff. Reserved outcomes never feed another reserved query.",
+    "matching": "Identical game, orientation, receipt and reachable target. Report all eligible gate opportunities, FIRST calls, target availability and actual book-feature support alongside matched results. Retrospective target availability never controls a forecast."
+  },
+  "models": {
+    "FIRST": "Unchanged weighted candidate distribution and Q, not a point-mass proxy for CRPS",
+    "BASE_CORRECTION": "Predict actual remaining floor minus FIRST Q from own/opposite first prices, log1p(minutes-to-bell), and own receipt-time role only",
+    "BOOK_CORRECTION": "Same baseline plus all six causal book blocks jointly; no member reweighting or member selection change",
+    "block_diagnostics": "Six BASE_PLUS_SINGLE_BLOCK fits, each compared to BASE_CORRECTION; diagnostics do not replace the all-block primary model or select a winner on confirmation",
+    "blocks": ["API_FLOW", "PER_LEVEL_MAKER", "CONSUMED_LEVEL_REFILL", "IMBALANCE", "SPREAD", "PAIR_GAP"],
+    "book_features": "Own and partner sides. Canonical API-label-only flow/yes/no contracts; net adds/pulls at observed levels indexed by prior displayed rank with distances from current price; corrected consumed-level refill including previous best; recorded top/five-level imbalance and changes; spread and previous-receipt rate; partner bid/ask sums and pair gap. Flow times measured refill is an explicit absorption interaction. No bookmaker odds, ws-depth, arithmetic substitutes, future cadence, or unavailable OI added.",
+    "refill": "Same consumed-level accounting and three-state missingness as audit. Existing local per-level gate proof may be used only when both endpoint seconds are complete by the gate and all consumed/potentially-consumed levels on that book side resolve. Missing and zero-denominator ratios remain absent, not zero.",
+    "learner": "Equal-game-weight ridge residual regression with an unpenalized intercept and training-only weighted-median intercept recentering. Continuous predictors use earlier-training empirical ranks; baseline numeric predictors additionally use hinge terms at the filed quantile knots. Role and missingness indicators are explicit. This is a specified residual model family, not a claim to test every possible book model.",
+    "normalization": "Only earlier training observations define ranks, knots and active columns. Absent numeric values get the training rank median solely inside the model matrix plus an explicit missingness indicator; source fields remain null. Constant/no-observation columns do not get invented scales.",
+    "regularization": "Candidate ridge strengths: zero and positive training weighted-design Gram eigenvalue quantiles at the existing filed quantile probabilities. No economic coefficient is typed. Select by inner equal-game floor MAE, then CRPS, then stronger regularization on exact ties. Always include zero correction; lack of inner validation or no strict inner improvement returns zero correction with an explicit reason.",
+    "distribution": "Translate every original FIRST candidate by the learned correction, retaining original weights and spread; report the translated weighted median Q and CRPS. No rounding, clipping, invented residual variance or change to FIRST's call status. Out-of-market-range forecasts are flagged and fail promotion rather than silently repaired.",
+    "missing_book": "No comparable book readings: BOOK_CORRECTION falls back to BASE_CORRECTION and records that fact. Report true book-supported coverage separately from forecast coverage.",
+    "timing_and_conduct": "Unchanged and not replayed; this order tests residual levels/distributions only"
+  },
+  "inference": {
+    "unit": "Average paired receipt losses within game/side first; games have equal weight. Resample event dates, then games within dates; keep all of a game's receipts together.",
+    "contrasts_per_tour_side": ["BASE_CORRECTION minus FIRST", "BOOK_CORRECTION minus FIRST", "BOOK_CORRECTION minus BASE_CORRECTION", "each of six BASE_PLUS_SINGLE_BLOCK minus BASE_CORRECTION"],
+    "multiplicity": "Bonferroni simultaneous two-sided 95% intervals across 9 contrasts x 2 orientations x 2 tours = 36 comparisons, separately reported for MAE and CRPS. No gate-specific or role-specific promotion claim.",
+    "bootstrap_draws": 50000,
+    "bootstrap_seed": "Derived from the frozen contract SHA256 and the named comparison; deterministic, never chosen using outcomes",
+    "bar": {
+      "minimum_independent_matched_games": 100,
+      "minimum_floor_mae_improvement_cents": 0.10,
+      "adjusted_mae_interval_upper_bound": "strictly below zero for variant-minus-control",
+      "crps": "Matched mean CRPS must not increase; adjusted CRPS interval also reported, not misrepresented as proof of equality",
+      "coverage": "No reduction in called/eligible coverage relative to control; book-supported observations and FIRST/BASE fallback separately counted",
+      "book_incremental_value": "Report BOOK minus BASE specifically; book promotion requires the bar against BASE and against FIRST",
+      "safety": "No nonfinite or out-of-market-range forecast promoted"
+    },
+    "confirmation": "Apply the same predeclared tests once on the frozen reserved slice; distinguish insufficient n, failure and passing historical confirmation. Passing does not substitute for fresh LIVE_PAPER confirmation."
+  },
+  "no_engine_edit": true,
+  "no_finalist_replay": true,
+  "publication": "Scripts, frozen contract/metadata manifest, aggregate audit receipt and model summaries only; no raw prints or per-receipt training rows committed. Any substantive method change requires a new contract before fitting, not an in-place edit."
+}

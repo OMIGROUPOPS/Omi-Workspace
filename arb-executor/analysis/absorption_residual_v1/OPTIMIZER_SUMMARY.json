@@ -1,0 +1,2242 @@
+[
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_CORRECTION",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_CORRECTION",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_CORRECTION",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 83,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 83,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 83,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 83,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 83,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 83,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 83,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 83,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_CORRECTION",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 86,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 86,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 86,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 86,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 86,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 86,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 86,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 86,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.3543287246807338,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 301,
+    "model": "BASE_CORRECTION",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 386,
+    "zero_mae": 1.2350881860848644
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.3491962795125518,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 301,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 386,
+    "zero_mae": 1.2350881860848644
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.244362881235854,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 301,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 386,
+    "zero_mae": 1.2350881860848644
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.2766925812611172,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 301,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 386,
+    "zero_mae": 1.2350881860848644
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.2817863750266076,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 301,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 386,
+    "zero_mae": 1.2350881860848644
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.2936660288926924,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 301,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 386,
+    "zero_mae": 1.2350881860848644
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.2840602337715465,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 301,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 386,
+    "zero_mae": 1.2350881860848644
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.3555869467431194,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 301,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 386,
+    "zero_mae": 1.2350881860848644
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.4416774833804138,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 299,
+    "model": "BASE_CORRECTION",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 387,
+    "zero_mae": 1.2977096018065901
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.4958754706071953,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 299,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 387,
+    "zero_mae": 1.2977096018065901
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.5",
+    "best_nonzero_mae": 1.3183678453227994,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 299,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 387,
+    "zero_mae": 1.2977096018065901
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.3998864079170406,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 299,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 387,
+    "zero_mae": 1.2977096018065901
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.4127908270527945,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 299,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 387,
+    "zero_mae": 1.2977096018065901
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.4294227663333623,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 299,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 387,
+    "zero_mae": 1.2977096018065901
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.4055918663494318,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 299,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 387,
+    "zero_mae": 1.2977096018065901
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.4497195690638962,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 299,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 387,
+    "zero_mae": 1.2977096018065901
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.660906347217247,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 639,
+    "model": "BASE_CORRECTION",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 724,
+    "zero_mae": 1.5641013351107211
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6509122239524123,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 639,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 724,
+    "zero_mae": 1.5641013351107211
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.5686183539575935,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 639,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 724,
+    "zero_mae": 1.5641013351107211
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6107775478571205,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 639,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 724,
+    "zero_mae": 1.5641013351107211
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6355757583901307,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 639,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 724,
+    "zero_mae": 1.5641013351107211
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.604995810923337,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 639,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 724,
+    "zero_mae": 1.5641013351107211
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6210550636437124,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 639,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 724,
+    "zero_mae": 1.5641013351107211
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6687997840898086,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 639,
+    "model": "BOOK_CORRECTION",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 724,
+    "zero_mae": 1.5641013351107211
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.5811102245067958,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 637,
+    "model": "BASE_CORRECTION",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 725,
+    "zero_mae": 1.4897042082285403
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6011853399712903,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 637,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 725,
+    "zero_mae": 1.4897042082285403
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.5",
+    "best_nonzero_mae": 1.4994670223013244,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 637,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 725,
+    "zero_mae": 1.4897042082285403
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.5496895177057617,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 637,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 725,
+    "zero_mae": 1.4897042082285403
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.5695516383161805,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 637,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 725,
+    "zero_mae": 1.4897042082285403
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.5610804051779716,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 637,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 725,
+    "zero_mae": 1.4897042082285403
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.5614833903875192,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 637,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 725,
+    "zero_mae": 1.4897042082285403
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.5808003829710133,
+    "category": "ATP_MAIN",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 637,
+    "model": "BOOK_CORRECTION",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 725,
+    "zero_mae": 1.4897042082285403
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_CORRECTION",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "favourite",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_CORRECTION",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [],
+    "inner_validation_games": null,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-04",
+    "reason": "NO_EARLIER_TRAINING",
+    "side": "underdog",
+    "training_games": 0,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_CORRECTION",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 332,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 332,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 332,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 332,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 332,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 332,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 332,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "favourite",
+    "training_games": 332,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_CORRECTION",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 329,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 329,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 329,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 329,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 329,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 329,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 329,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": null,
+    "best_nonzero_mae": null,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": null,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-05",
+    "reason": "NO_INNER_VALIDATION; ZERO_CORRECTION",
+    "side": "underdog",
+    "training_games": 329,
+    "zero_mae": null
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.953546874484741,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 481,
+    "model": "BASE_CORRECTION",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 815,
+    "zero_mae": 1.7784910284910271
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.9749333807427834,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 481,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 815,
+    "zero_mae": 1.7784910284910271
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.7775630469723462,
+    "category": "ATP_CHALL",
+    "choice": "EIGEN_Q0.9",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 481,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-06",
+    "reason": "SELECTED_BY_EARLIER_INNER_VALIDATION",
+    "side": "favourite",
+    "training_games": 815,
+    "zero_mae": 1.7784910284910271
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8679846415138983,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 481,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 815,
+    "zero_mae": 1.7784910284910271
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8751260869465058,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 481,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 815,
+    "zero_mae": 1.7784910284910271
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8538092133703623,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 481,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 815,
+    "zero_mae": 1.7784910284910271
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8717157577596244,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 481,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 815,
+    "zero_mae": 1.7784910284910271
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.75",
+    "best_nonzero_mae": 2.172076159474286,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 481,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 815,
+    "zero_mae": 1.7784910284910271
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.7440255682808072,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 471,
+    "model": "BASE_CORRECTION",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 802,
+    "zero_mae": 1.6028484725936956
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.7250152327609203,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 471,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 802,
+    "zero_mae": 1.6028484725936956
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6065625340223852,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 471,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 802,
+    "zero_mae": 1.6028484725936956
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.660704812228337,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 471,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 802,
+    "zero_mae": 1.6028484725936956
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6809773508366508,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 471,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 802,
+    "zero_mae": 1.6028484725936956
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6342894340742689,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 471,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 802,
+    "zero_mae": 1.6028484725936956
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6635699393409693,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 471,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 802,
+    "zero_mae": 1.6028484725936956
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.7583350882827034,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 471,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-06",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 802,
+    "zero_mae": 1.6028484725936956
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8282991192135258,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1381,
+    "model": "BASE_CORRECTION",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1715,
+    "zero_mae": 1.745411775046091
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.833159010468018,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1381,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1715,
+    "zero_mae": 1.745411775046091
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.7450115654913685,
+    "category": "ATP_CHALL",
+    "choice": "EIGEN_Q0.9",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1381,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-07",
+    "reason": "SELECTED_BY_EARLIER_INNER_VALIDATION",
+    "side": "favourite",
+    "training_games": 1715,
+    "zero_mae": 1.745411775046091
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8009749494919074,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1381,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1715,
+    "zero_mae": 1.745411775046091
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.797549596755393,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1381,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1715,
+    "zero_mae": 1.745411775046091
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.7588534308012236,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1381,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1715,
+    "zero_mae": 1.745411775046091
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8044447387318592,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1381,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1715,
+    "zero_mae": 1.745411775046091
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.895620509965662,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1381,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1715,
+    "zero_mae": 1.745411775046091
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6493632404658012,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1354,
+    "model": "BASE_CORRECTION",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1685,
+    "zero_mae": 1.5451343134134854
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6763760020129452,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1354,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1685,
+    "zero_mae": 1.5451343134134854
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.5464653122146315,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1354,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1685,
+    "zero_mae": 1.5451343134134854
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.607338198723291,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1354,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1685,
+    "zero_mae": 1.5451343134134854
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6172990414374757,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1354,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1685,
+    "zero_mae": 1.5451343134134854
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.5502520701394258,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1354,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1685,
+    "zero_mae": 1.5451343134134854
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.635727584340211,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1354,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1685,
+    "zero_mae": 1.5451343134134854
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.60211777057005,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1354,
+    "model": "BOOK_CORRECTION",
+    "month": "2026-07",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1685,
+    "zero_mae": 1.5451343134134854
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8303242225044998,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1387,
+    "model": "BASE_CORRECTION",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1721,
+    "zero_mae": 1.747273270669089
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8349821287229837,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1387,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1721,
+    "zero_mae": 1.747273270669089
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.7468747923741563,
+    "category": "ATP_CHALL",
+    "choice": "EIGEN_Q0.9",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1387,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "SELECTED_BY_EARLIER_INNER_VALIDATION",
+    "side": "favourite",
+    "training_games": 1721,
+    "zero_mae": 1.747273270669089
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.803238356993824,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1387,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1721,
+    "zero_mae": 1.747273270669089
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.7993045475292422,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1387,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1721,
+    "zero_mae": 1.747273270669089
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.76104949605505,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1387,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1721,
+    "zero_mae": 1.747273270669089
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8067623928581626,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1387,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1721,
+    "zero_mae": 1.747273270669089
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.8961345279594035,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1387,
+    "model": "BOOK_CORRECTION",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "favourite",
+    "training_games": 1721,
+    "zero_mae": 1.747273270669089
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6556176380873564,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1360,
+    "model": "BASE_CORRECTION",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1691,
+    "zero_mae": 1.5502328104901633
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6831769009395587,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1360,
+    "model": "BASE_PLUS_API_FLOW",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1691,
+    "zero_mae": 1.5502328104901633
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.551557937237775,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1360,
+    "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1691,
+    "zero_mae": 1.5502328104901633
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6137250705081432,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1360,
+    "model": "BASE_PLUS_IMBALANCE",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1691,
+    "zero_mae": 1.5502328104901633
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6232371656059665,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1360,
+    "model": "BASE_PLUS_PAIR_GAP",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1691,
+    "zero_mae": 1.5502328104901633
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.5566117294959323,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1360,
+    "model": "BASE_PLUS_PER_LEVEL_MAKER",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1691,
+    "zero_mae": 1.5502328104901633
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6424014757478944,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1360,
+    "model": "BASE_PLUS_SPREAD",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1691,
+    "zero_mae": 1.5502328104901633
+  },
+  {
+    "best_nonzero_choice": "EIGEN_Q0.9",
+    "best_nonzero_mae": 1.6078559233817573,
+    "category": "ATP_CHALL",
+    "choice": "ZERO",
+    "inner_folds_without_training": [
+      "2026-04"
+    ],
+    "inner_validation_games": 1360,
+    "model": "BOOK_CORRECTION",
+    "month": "CONFIRMATION_FROZEN",
+    "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+    "side": "underdog",
+    "training_games": 1691,
+    "zero_mae": 1.5502328104901633
+  }
+]

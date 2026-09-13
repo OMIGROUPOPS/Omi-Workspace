@@ -1,0 +1,386 @@
+[
+  {
+    "all_eligible_games": 788,
+    "base_crps": 1.2376168277118054,
+    "base_mae": 1.5414451590264597,
+    "book_crps": 1.2376168277118054,
+    "book_incremental_pass": false,
+    "book_mae": 1.5414451590264597,
+    "book_minus_base": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 53,
+      "n_games": 738,
+      "seed_sha256": "113662947a35ef127fd28644e86ed14c56cfd1c35ba137c3a39494fee02e11e8"
+    },
+    "book_minus_first": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 53,
+      "n_games": 738,
+      "seed_sha256": "c1f2e0cac1e966970a4eae44773ac67849402cae7ba5e490e0afb93a96e87439"
+    },
+    "called_gate_rows": 8467,
+    "called_share": 0.8860401841774801,
+    "category": "ATP_MAIN",
+    "eligible_gate_rows": 9556,
+    "first_crps": 1.2376168277118054,
+    "first_mae": 1.5414451590264597,
+    "matched_games": 738,
+    "phase": "development",
+    "scored_gate_rows": 7832,
+    "side": "favourite",
+    "target_gate_rows": 8891,
+    "unsafe_book_forecasts": 0
+  },
+  {
+    "all_eligible_games": 788,
+    "base_crps": 1.180146582061705,
+    "base_mae": 1.5026666312187287,
+    "book_crps": 1.180146582061705,
+    "book_incremental_pass": false,
+    "book_mae": 1.5026666312187287,
+    "book_minus_base": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 53,
+      "n_games": 739,
+      "seed_sha256": "97a26cfe439eb81aa2fa0fcc736645eb23264512d918ffbc4581a493cfbc552f"
+    },
+    "book_minus_first": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 53,
+      "n_games": 739,
+      "seed_sha256": "32b19a0cbea575eaf4c6616f4e5c168d6849d16eed07a0441fb125703bbbc690"
+    },
+    "called_gate_rows": 8309,
+    "called_share": 0.8695060694851402,
+    "category": "ATP_MAIN",
+    "eligible_gate_rows": 9556,
+    "first_crps": 1.180146582061705,
+    "first_mae": 1.5026666312187287,
+    "matched_games": 739,
+    "phase": "development",
+    "scored_gate_rows": 7671,
+    "side": "underdog",
+    "target_gate_rows": 8862,
+    "unsafe_book_forecasts": 1
+  },
+  {
+    "all_eligible_games": 1943,
+    "base_crps": 1.7566619208526644,
+    "base_mae": 2.0497991462236147,
+    "book_crps": 1.7566619208526644,
+    "book_incremental_pass": false,
+    "book_mae": 2.0497991462236147,
+    "book_minus_base": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 64,
+      "n_games": 1741,
+      "seed_sha256": "88c110d1914a9448dbd5664b865fb188d6670dd761d63b096bd59d4ecaf4202e"
+    },
+    "book_minus_first": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 64,
+      "n_games": 1741,
+      "seed_sha256": "7873e7604cc30ae27470408a511f1a1b2e616cb495def2deee8256e5ca368ede"
+    },
+    "called_gate_rows": 15067,
+    "called_share": 0.931614419093551,
+    "category": "ATP_CHALL",
+    "eligible_gate_rows": 16173,
+    "first_crps": 1.7566619208526644,
+    "first_mae": 2.0497991462236147,
+    "matched_games": 1741,
+    "phase": "development",
+    "scored_gate_rows": 12218,
+    "side": "favourite",
+    "target_gate_rows": 13280,
+    "unsafe_book_forecasts": 0
+  },
+  {
+    "all_eligible_games": 1943,
+    "base_crps": 1.5530054854436788,
+    "base_mae": 1.8869274014510717,
+    "book_crps": 1.5530054854436788,
+    "book_incremental_pass": false,
+    "book_mae": 1.8869274014510717,
+    "book_minus_base": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 64,
+      "n_games": 1711,
+      "seed_sha256": "3023d294a6a0f732ad77eb8f289c157e681665957318b6747e8ea5418dd8e8f9"
+    },
+    "book_minus_first": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 64,
+      "n_games": 1711,
+      "seed_sha256": "aab31cceacd86266fb74df4111a440e6b91d3eb0c27549ec60e54f65f43d95d3"
+    },
+    "called_gate_rows": 15079,
+    "called_share": 0.9323563964632412,
+    "category": "ATP_CHALL",
+    "eligible_gate_rows": 16173,
+    "first_crps": 1.5530054854436788,
+    "first_mae": 1.8869274014510717,
+    "matched_games": 1711,
+    "phase": "development",
+    "scored_gate_rows": 12069,
+    "side": "underdog",
+    "target_gate_rows": 13114,
+    "unsafe_book_forecasts": 5
+  },
+  {
+    "all_eligible_games": 140,
+    "base_crps": 1.224328622760618,
+    "base_mae": 1.4624785928357358,
+    "book_crps": 1.224328622760618,
+    "book_incremental_pass": false,
+    "book_mae": 1.4624785928357358,
+    "book_minus_base": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 13,
+      "n_games": 140,
+      "seed_sha256": "3eaf6472414ee2490145ea18a6a40e61b7e03cea9e22e75b26a2ef50e846c842"
+    },
+    "book_minus_first": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 13,
+      "n_games": 140,
+      "seed_sha256": "7ab2c286f672481fb3a620fe64f1cb6a1ddf932e8632f3de47f87212fd6d8db6"
+    },
+    "called_gate_rows": 1925,
+    "called_share": 0.9811416921508664,
+    "category": "ATP_MAIN",
+    "eligible_gate_rows": 1962,
+    "first_crps": 1.224328622760618,
+    "first_mae": 1.4624785928357358,
+    "matched_games": 140,
+    "phase": "confirmation",
+    "scored_gate_rows": 1888,
+    "side": "favourite",
+    "target_gate_rows": 1925,
+    "unsafe_book_forecasts": 0
+  },
+  {
+    "all_eligible_games": 140,
+    "base_crps": 1.0122824894076705,
+    "base_mae": 1.3146661077018218,
+    "book_crps": 1.0122824894076705,
+    "book_incremental_pass": false,
+    "book_mae": 1.3146661077018218,
+    "book_minus_base": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 13,
+      "n_games": 140,
+      "seed_sha256": "a1468f0cf7d49fc1d5c7fd76ef2d6d4ecb3163f0967f8afbcc13ef17b6eac0f7"
+    },
+    "book_minus_first": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 13,
+      "n_games": 140,
+      "seed_sha256": "6649deff16f5d6b38cc7643614ffea4215a56678b654aad4612717b8c5531236"
+    },
+    "called_gate_rows": 1921,
+    "called_share": 0.9791029561671764,
+    "category": "ATP_MAIN",
+    "eligible_gate_rows": 1962,
+    "first_crps": 1.0122824894076705,
+    "first_mae": 1.3146661077018218,
+    "matched_games": 140,
+    "phase": "confirmation",
+    "scored_gate_rows": 1874,
+    "side": "underdog",
+    "target_gate_rows": 1915,
+    "unsafe_book_forecasts": 0
+  },
+  {
+    "all_eligible_games": 344,
+    "base_crps": 1.188203083167469,
+    "base_mae": 1.4250746492982518,
+    "book_crps": 1.188203083167469,
+    "book_incremental_pass": false,
+    "book_mae": 1.4250746492982518,
+    "book_minus_base": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 10,
+      "n_games": 322,
+      "seed_sha256": "1cd5273934b56475624ca526b40e0c5a64acb99a619326e56e6fbdbe6c223e7b"
+    },
+    "book_minus_first": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 10,
+      "n_games": 322,
+      "seed_sha256": "fa7aa271a858d98f2fec0ef3229b9af393da39dbea581d1c4d71150d756e4553"
+    },
+    "called_gate_rows": 2893,
+    "called_share": 0.9951840385276918,
+    "category": "ATP_CHALL",
+    "eligible_gate_rows": 2907,
+    "first_crps": 1.188203083167469,
+    "first_mae": 1.4250746492982518,
+    "matched_games": 322,
+    "phase": "confirmation",
+    "scored_gate_rows": 2465,
+    "side": "favourite",
+    "target_gate_rows": 2479,
+    "unsafe_book_forecasts": 0
+  },
+  {
+    "all_eligible_games": 344,
+    "base_crps": 0.9328832990244881,
+    "base_mae": 1.16399187330716,
+    "book_crps": 0.9328832990244881,
+    "book_incremental_pass": false,
+    "book_mae": 1.16399187330716,
+    "book_minus_base": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 10,
+      "n_games": 314,
+      "seed_sha256": "bf2b998319c316387b899246e1f4e93cdab5f508e3a16a1aac1ab9ad2a46bf2a"
+    },
+    "book_minus_first": {
+      "comparisons": 36,
+      "confidence": 0.95,
+      "delta": 0.0,
+      "draws": 50000,
+      "interval": [
+        0.0,
+        0.0
+      ],
+      "method": "date then game hierarchical percentile bootstrap",
+      "n_dates": 10,
+      "n_games": 314,
+      "seed_sha256": "1d03f818c8572cea67e5121db6109da6df52226762bcf10d8fe104c059f2fb26"
+    },
+    "called_gate_rows": 2894,
+    "called_share": 0.9955280357757138,
+    "category": "ATP_CHALL",
+    "eligible_gate_rows": 2907,
+    "first_crps": 0.9328832990244881,
+    "first_mae": 1.16399187330716,
+    "matched_games": 314,
+    "phase": "confirmation",
+    "scored_gate_rows": 2351,
+    "side": "underdog",
+    "target_gate_rows": 2364,
+    "unsafe_book_forecasts": 0
+  }
+]

@@ -1,0 +1,232 @@
+{
+  "rows": [
+    {
+      "block_supported_side_gate_rows": {
+        "BASE_PLUS_API_FLOW": 2654,
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": 0,
+        "BASE_PLUS_IMBALANCE": 2372,
+        "BASE_PLUS_PAIR_GAP": 2934,
+        "BASE_PLUS_PER_LEVEL_MAKER": 2224,
+        "BASE_PLUS_SPREAD": 2732,
+        "BOOK_CORRECTION": 2948
+      },
+      "category": "ATP_MAIN",
+      "independent_games": 126,
+      "independent_games_with_measured_refill": 0,
+      "month": "2026-04",
+      "own_book_side_gate_states": 5896,
+      "phase": "development",
+      "refill_status_counts": {
+        "UNOBSERVED": 2747,
+        "ZERO_DENOMINATOR": 3149
+      },
+      "side_gate_rows": 2948
+    },
+    {
+      "block_supported_side_gate_rows": {
+        "BASE_PLUS_API_FLOW": 7918,
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": 362,
+        "BASE_PLUS_IMBALANCE": 2764,
+        "BASE_PLUS_PAIR_GAP": 3150,
+        "BASE_PLUS_PER_LEVEL_MAKER": 2590,
+        "BASE_PLUS_SPREAD": 2980,
+        "BOOK_CORRECTION": 8044
+      },
+      "category": "ATP_MAIN",
+      "independent_games": 315,
+      "independent_games_with_measured_refill": 46,
+      "month": "2026-05",
+      "own_book_side_gate_states": 16092,
+      "phase": "development",
+      "refill_status_counts": {
+        "MEASURED": 341,
+        "UNOBSERVED": 11633,
+        "ZERO_DENOMINATOR": 4118
+      },
+      "side_gate_rows": 8046
+    },
+    {
+      "block_supported_side_gate_rows": {
+        "BASE_PLUS_API_FLOW": 7786,
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": 22,
+        "BASE_PLUS_IMBALANCE": 6122,
+        "BASE_PLUS_PAIR_GAP": 8040,
+        "BASE_PLUS_PER_LEVEL_MAKER": 5304,
+        "BASE_PLUS_SPREAD": 7048,
+        "BOOK_CORRECTION": 8118
+      },
+      "category": "ATP_MAIN",
+      "independent_games": 347,
+      "independent_games_with_measured_refill": 11,
+      "month": "2026-06",
+      "own_book_side_gate_states": 16236,
+      "phase": "development",
+      "refill_status_counts": {
+        "MEASURED": 12,
+        "UNOBSERVED": 8039,
+        "ZERO_DENOMINATOR": 8185
+      },
+      "side_gate_rows": 8118
+    },
+    {
+      "block_supported_side_gate_rows": {
+        "BASE_PLUS_API_FLOW": 6810,
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": 0,
+        "BASE_PLUS_IMBALANCE": 6338,
+        "BASE_PLUS_PAIR_GAP": 6788,
+        "BASE_PLUS_PER_LEVEL_MAKER": 5900,
+        "BASE_PLUS_SPREAD": 6546,
+        "BOOK_CORRECTION": 7054
+      },
+      "category": "ATP_CHALL",
+      "independent_games": 426,
+      "independent_games_with_measured_refill": 0,
+      "month": "2026-04",
+      "own_book_side_gate_states": 14124,
+      "phase": "development",
+      "refill_status_counts": {
+        "UNOBSERVED": 4356,
+        "ZERO_DENOMINATOR": 9768
+      },
+      "side_gate_rows": 7062
+    },
+    {
+      "block_supported_side_gate_rows": {
+        "BASE_PLUS_API_FLOW": 8544,
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": 132,
+        "BASE_PLUS_IMBALANCE": 3572,
+        "BASE_PLUS_PAIR_GAP": 3832,
+        "BASE_PLUS_PER_LEVEL_MAKER": 3180,
+        "BASE_PLUS_SPREAD": 3662,
+        "BOOK_CORRECTION": 8660
+      },
+      "category": "ATP_CHALL",
+      "independent_games": 529,
+      "independent_games_with_measured_refill": 32,
+      "month": "2026-05",
+      "own_book_side_gate_states": 17324,
+      "phase": "development",
+      "refill_status_counts": {
+        "MEASURED": 90,
+        "UNOBSERVED": 12050,
+        "ZERO_DENOMINATOR": 5184
+      },
+      "side_gate_rows": 8662
+    },
+    {
+      "block_supported_side_gate_rows": {
+        "BASE_PLUS_API_FLOW": 16222,
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": 22,
+        "BASE_PLUS_IMBALANCE": 14288,
+        "BASE_PLUS_PAIR_GAP": 15652,
+        "BASE_PLUS_PER_LEVEL_MAKER": 12172,
+        "BASE_PLUS_SPREAD": 14960,
+        "BOOK_CORRECTION": 16308
+      },
+      "category": "ATP_CHALL",
+      "independent_games": 949,
+      "independent_games_with_measured_refill": 11,
+      "month": "2026-06",
+      "own_book_side_gate_states": 32616,
+      "phase": "development",
+      "refill_status_counts": {
+        "MEASURED": 11,
+        "UNOBSERVED": 12323,
+        "ZERO_DENOMINATOR": 20282
+      },
+      "side_gate_rows": 16308
+    },
+    {
+      "block_supported_side_gate_rows": {
+        "BASE_PLUS_API_FLOW": 314,
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": 0,
+        "BASE_PLUS_IMBALANCE": 308,
+        "BASE_PLUS_PAIR_GAP": 314,
+        "BASE_PLUS_PER_LEVEL_MAKER": 302,
+        "BASE_PLUS_SPREAD": 314,
+        "BOOK_CORRECTION": 314
+      },
+      "category": "ATP_CHALL",
+      "independent_games": 18,
+      "independent_games_with_measured_refill": 0,
+      "month": "2026-07",
+      "own_book_side_gate_states": 628,
+      "phase": "development",
+      "refill_status_counts": {
+        "UNOBSERVED": 72,
+        "ZERO_DENOMINATOR": 556
+      },
+      "side_gate_rows": 314
+    },
+    {
+      "block_supported_side_gate_rows": {
+        "BASE_PLUS_API_FLOW": 2152,
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": 46,
+        "BASE_PLUS_IMBALANCE": 2014,
+        "BASE_PLUS_PAIR_GAP": 2124,
+        "BASE_PLUS_PER_LEVEL_MAKER": 1860,
+        "BASE_PLUS_SPREAD": 2084,
+        "BOOK_CORRECTION": 2222
+      },
+      "category": "ATP_MAIN",
+      "independent_games": 78,
+      "independent_games_with_measured_refill": 19,
+      "month": "2026-06",
+      "own_book_side_gate_states": 4444,
+      "phase": "confirmation",
+      "refill_status_counts": {
+        "MEASURED": 24,
+        "UNOBSERVED": 1323,
+        "ZERO_DENOMINATOR": 3097
+      },
+      "side_gate_rows": 2222
+    },
+    {
+      "block_supported_side_gate_rows": {
+        "BASE_PLUS_API_FLOW": 1466,
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": 32,
+        "BASE_PLUS_IMBALANCE": 1392,
+        "BASE_PLUS_PAIR_GAP": 1602,
+        "BASE_PLUS_PER_LEVEL_MAKER": 1248,
+        "BASE_PLUS_SPREAD": 1532,
+        "BOOK_CORRECTION": 1698
+      },
+      "category": "ATP_MAIN",
+      "independent_games": 62,
+      "independent_games_with_measured_refill": 10,
+      "month": "2026-07",
+      "own_book_side_gate_states": 3404,
+      "phase": "confirmation",
+      "refill_status_counts": {
+        "MEASURED": 18,
+        "UNOBSERVED": 1569,
+        "ZERO_DENOMINATOR": 1817
+      },
+      "side_gate_rows": 1702
+    },
+    {
+      "block_supported_side_gate_rows": {
+        "BASE_PLUS_API_FLOW": 5760,
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": 72,
+        "BASE_PLUS_IMBALANCE": 5326,
+        "BASE_PLUS_PAIR_GAP": 5516,
+        "BASE_PLUS_PER_LEVEL_MAKER": 4794,
+        "BASE_PLUS_SPREAD": 5426,
+        "BOOK_CORRECTION": 5814
+      },
+      "category": "ATP_CHALL",
+      "independent_games": 342,
+      "independent_games_with_measured_refill": 32,
+      "month": "2026-07",
+      "own_book_side_gate_states": 11628,
+      "phase": "confirmation",
+      "refill_status_counts": {
+        "MEASURED": 38,
+        "UNOBSERVED": 3073,
+        "ZERO_DENOMINATOR": 8517
+      },
+      "side_gate_rows": 5814
+    }
+  ],
+  "rule": "Own leg only; each bid/ask book side counted once, partner not double-counted. Block support means at least one actual numeric field, not complete absorption coverage."
+}

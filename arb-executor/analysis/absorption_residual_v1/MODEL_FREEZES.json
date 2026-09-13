@@ -1,0 +1,5158 @@
+{
+  "ATP_CHALL": {
+    "binding": {
+      "audit_aggregate_sha256": "f95c5bada3a0bba4f2d5b84435e6f5651b0062ee7220e7e1a2e678f2922869b1",
+      "code": {
+        "absorption_residual_data.py": "523bf3769823bfd6eca5ebcdf0575bf9959b2ccf4bfa798c55aa268c25e2ef9c",
+        "absorption_residual_model.py": "655aa0f6f3b14642928b3094324c76ede8aaf6b90f0f5dc9b86c45af1d1c9431",
+        "absorption_residual_run.py": "219174c5c37f6d1a4f075383a0514c2e864bbafe16ad8a3c6d0564ff0af7a2dc",
+        "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+        "conduct_scoreboard_v2.py": "a53fba520a2ddf6925c33be9fed86f3bb2e751a1000ee969bccccd0781ffc450",
+        "feature_panel_bench.py": "9f6d7a0730b08eed1f17132438b8db0d45b4f93b7ec7ffab4cdedea4b4bf1e4d",
+        "feature_panel_inventory_gate_extract.py": "1978bcc675d8090e06df9ebed5a601cad8c88f72ba5ee668c3f11fdcc4ad5618",
+        "feature_panel_run.py": "d57397ffc6b566281eb3d59a26fb667ea68f07f4a9782186c02bfb25bc0ef972",
+        "feature_panel_scoring.py": "3556cda79e3a4f39dd338d9b643548949abb06f3769e456ba3c1277d6c31a3f9",
+        "tune_bench_floor_calls.py": "7e605a8cceded5f9a4a3ab29f375f0e1ae90320d3a45caa3169ef52ac7b404ba",
+        "tune_bench_v2_survivorship.py": "1cf7b7787daa40c45e096546edadebae6cef778184a7ca219404309646c1a8da"
+      },
+      "contract_sha256": "f5fc318b71ee3c01aaa618672f996192ac99ea83c56fac8937a7946e3a18a5d1",
+      "counts_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+      "gate_inputs_sha256": "53c4851ad03bbe86e82555c5dc13075ec7e150a0a56718f4b7a385de45b86273",
+      "gate_receipt_sha256": "ca39df332501d67739cc2a562c8d431fd3d7ce8a5068d084bca615f7bd6bbeca",
+      "input_pins_sha256": "b8b4fa0c0b3ff133a949c9c9aa488361d8993e2464e905ac4037b9942f9e60c3",
+      "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+      "remote_audit_receipt_sha256": "923d1e64af27e2371e22fb2743c09875dd7982f666556f41da222bbde316c54d",
+      "reservation_sha256": "35c446003a9aed6c11b2600ae59509f811160188fd7a324c98276e885970676f",
+      "source_receipt_sha256": "c52187b9c03405fda698c6830b22bc6c7b61b81e0baf1215a908b41a93a8b1fe",
+      "witness_sha256": "139178e58a581fe7e68b52d8bb350daab0f5226aa9acd3cf8a2ac756e82d72f6"
+    },
+    "first_reserved_event_date": "2026-07-01",
+    "first_reserved_formation": 1782894960,
+    "frozen_before_confirmation": true,
+    "model_sha256": "688c71644e85c4fcb33cb6b95e785a9ca4deb5e92323ac4959e50b21de23b1ee",
+    "models": {
+      "0": {
+        "BASE_CORRECTION": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 334
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.859464893804398,
+                  "mae": 2.3037789313941577,
+                  "ridge_strength": 3.5178145996930326e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.826943504163666,
+                  "mae": 2.259361451724059,
+                  "ridge_strength": 0.00012793250191136816
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.781742160242826,
+                  "mae": 2.2167977556782796,
+                  "ridge_strength": 0.0007638604224036988
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.710394926803179,
+                  "mae": 2.127696220095887,
+                  "ridge_strength": 0.006208425887002745
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.62480085293247,
+                  "mae": 1.9831079168068477,
+                  "ridge_strength": 0.2392440191425842
+                },
+                "OLS": {
+                  "crps": 1.9104844637595042,
+                  "mae": 2.374148420156164,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.567282523304334,
+                  "mae": 1.7990837969453046,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 332,
+              "validation_games": 491
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.48062344626918,
+                  "mae": 1.7989595754199117,
+                  "ridge_strength": 3.157985525061519e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.4790764269577512,
+                  "mae": 1.793117343058701,
+                  "ridge_strength": 9.143587670684832e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.4720069868844128,
+                  "mae": 1.782521963393994,
+                  "ridge_strength": 0.0007478079426644697
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.462611486801851,
+                  "mae": 1.7607728839734562,
+                  "ridge_strength": 0.006032361476222905
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.464685332815908,
+                  "mae": 1.7466001221669407,
+                  "ridge_strength": 0.244668789255727
+                },
+                "OLS": {
+                  "crps": 1.4948191913786948,
+                  "mae": 1.82025493196999,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.4518790064476497,
+                  "mae": 1.7188815648637066,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 815,
+              "validation_games": 896
+            }
+          ],
+          "model": "BASE_CORRECTION",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1721,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.6147338649712657,
+              "games": 1387,
+              "mae": 1.9776663553646523,
+              "strength_tiebreak": 3.3379000623772755e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.6022218738994274,
+              "games": 1387,
+              "mae": 1.9581684298320903,
+              "strength_tiebreak": 0.00010968418930910824
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.5816536848793525,
+              "games": 1387,
+              "mae": 1.936256220071416,
+              "strength_tiebreak": 0.0007558341825340842
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.5503271818563948,
+              "games": 1387,
+              "mae": 1.890664274049962,
+              "strength_tiebreak": 0.006120393681612825
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.5213664578175174,
+              "games": 1387,
+              "mae": 1.8303242225044998,
+              "strength_tiebreak": 0.2419564041991556
+            },
+            "OLS": {
+              "crps": 1.641965297174641,
+              "games": 1387,
+              "mae": 2.016334025480741,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.492732017822294,
+              "games": 1387,
+              "mae": 1.747273270669089,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_API_FLOW": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 334
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 2.2810052786120774,
+                  "mae": 2.731495457127378,
+                  "ridge_strength": 2.5208865155354048e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 2.237470610836226,
+                  "mae": 2.6846263384644695,
+                  "ridge_strength": 0.0001290330142047929
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 2.050908063197415,
+                  "mae": 2.4865081661851383,
+                  "ridge_strength": 0.0012153202933366384
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.7072019070256013,
+                  "mae": 2.1230436184375323,
+                  "ridge_strength": 0.018172066450686083
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.6277878475985763,
+                  "mae": 2.003643261149466,
+                  "ridge_strength": 0.36671746442746955
+                },
+                "OLS": {
+                  "crps": 2.885200913692865,
+                  "mae": 3.3423809494492853,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.567282523304334,
+                  "mae": 1.7990837969453046,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 332,
+              "validation_games": 491
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5094234948942071,
+                  "mae": 1.8367159520270793,
+                  "ridge_strength": 4.276551153155224e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5060073623101151,
+                  "mae": 1.8338736866977168,
+                  "ridge_strength": 0.00010200007053424194
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.4844409840118868,
+                  "mae": 1.8043216061256862,
+                  "ridge_strength": 0.0013568831767139043
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.470263889549467,
+                  "mae": 1.7540123465468829,
+                  "ridge_strength": 0.019346435727820077
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.4642744088290724,
+                  "mae": 1.74255733405624,
+                  "ridge_strength": 0.2901832921233843
+                },
+                "OLS": {
+                  "crps": 1.5251830691538915,
+                  "mae": 1.8574683026121805,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.4518790064476497,
+                  "mae": 1.7188815648637066,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 815,
+              "validation_games": 896
+            }
+          ],
+          "model": "BASE_PLUS_API_FLOW",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1721,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.782564558921226,
+              "games": 1387,
+              "mae": 2.1534691870697955,
+              "strength_tiebreak": 3.398718834345314e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.7649464070298846,
+              "games": 1387,
+              "mae": 2.1350413521753486,
+              "strength_tiebreak": 0.00011551654236951743
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.6849711468670376,
+              "games": 1387,
+              "mae": 2.0458166320731923,
+              "strength_tiebreak": 0.0012861017350252713
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.5541402893914151,
+              "games": 1387,
+              "mae": 1.8846499489248993,
+              "strength_tiebreak": 0.01875925108925308
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.5221584019334897,
+              "games": 1387,
+              "mae": 1.8349821287229837,
+              "strength_tiebreak": 0.3284503782754269
+            },
+            "OLS": {
+              "crps": 2.006631347213471,
+              "games": 1387,
+              "mae": 2.3831295207787404,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.492732017822294,
+              "games": 1387,
+              "mae": 1.747273270669089,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": {
+          "choice": "EIGEN_Q0.9",
+          "fit": {
+            "active_fields": [
+              "first_own",
+              "first_partner",
+              "log_mtb",
+              "role:CLIMBER",
+              "role:FALLER",
+              "role:NOT_CALLABLE",
+              "CONSUMED_LEVEL_REFILL:own:ask:pressure_x_refill",
+              "CONSUMED_LEVEL_REFILL:own:ask:refill",
+              "CONSUMED_LEVEL_REFILL:own:bid:pressure_x_refill",
+              "CONSUMED_LEVEL_REFILL:own:bid:refill",
+              "CONSUMED_LEVEL_REFILL:partner:ask:pressure_x_refill",
+              "CONSUMED_LEVEL_REFILL:partner:ask:refill",
+              "CONSUMED_LEVEL_REFILL:partner:bid:pressure_x_refill",
+              "CONSUMED_LEVEL_REFILL:partner:bid:refill"
+            ],
+            "choice": "EIGEN_Q0.9",
+            "coefficients": [
+              -0.15378917961836086,
+              -1.176893894756452e-16,
+              -0.15076239551689463,
+              -0.1214158083252999,
+              -0.05285062552180665,
+              -0.013931970465864836,
+              -0.0007617299167564132,
+              -0.22927718024654126,
+              2.357652357581629e-17,
+              -0.22152026478206613,
+              -0.18019474594822552,
+              -0.11200623236688642,
+              -0.06621100010187847,
+              -0.04047771564011755,
+              0.1395468233094916,
+              -3.5033318187660004e-17,
+              0.13675788832866878,
+              0.126966376236337,
+              0.07447385455551486,
+              0.008801514543498734,
+              0.001860602632491811,
+              -0.17364736218997767,
+              1.0320313701532071e-17,
+              0.07613446427849171,
+              -1.1880207109926495e-17,
+              0.0975128979114856,
+              -1.995765307593439e-18,
+              -2.9279617005767586e-05,
+              -0.009096482242324502,
+              -0.0013089435154652813,
+              -0.009096482242324495,
+              -5.0189526241351714e-18,
+              -0.0025961408736976236,
+              0.0007875212073256972,
+              -0.0025961408736976345,
+              -4.444765312621396e-30,
+              -0.0036322243663813123,
+              0.0010552050076775767,
+              -0.0036322243663813153,
+              -5.549783207732555e-30,
+              -0.0010306935756955568,
+              -0.000711201788698463,
+              -0.0010306935756955638
+            ],
+            "design_columns": 43,
+            "intercept": 0.37730975870883493,
+            "objective": "equal-game ridge squared residual, then training weighted-median intercept recenter",
+            "ridge_strength": 0.24370843146008256,
+            "status": "EIGEN_SOLVE_COMPLETE",
+            "training_rows": 12052
+          },
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 334
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5709010252728068,
+                  "mae": 1.8049811953028374,
+                  "ridge_strength": 3.5178145996930326e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5702903094590952,
+                  "mae": 1.804317224581768,
+                  "ridge_strength": 0.00012793250191136816
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.5688537692310083,
+                  "mae": 1.8031547166432802,
+                  "ridge_strength": 0.0007638604224036988
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.5663167066442558,
+                  "mae": 1.800420239758629,
+                  "ridge_strength": 0.006208425887002745
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.5650766939559866,
+                  "mae": 1.798174715253888,
+                  "ridge_strength": 0.2392440191425842
+                },
+                "OLS": {
+                  "crps": 1.5715481959844515,
+                  "mae": 1.8055203627281993,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.567282523304334,
+                  "mae": 1.7990837969453046,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 332,
+              "validation_games": 491
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.4524607713281503,
+                  "mae": 1.719879786736461,
+                  "ridge_strength": 3.157442125583392e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.452321664498087,
+                  "mae": 1.7197392488271448,
+                  "ridge_strength": 0.0001024417519475125
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.4520491661844057,
+                  "mae": 1.7192963439353255,
+                  "ridge_strength": 0.0007470657062829363
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.4518675734873094,
+                  "mae": 1.7188765044068977,
+                  "ridge_strength": 0.0060489132434080545
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.4518399618701352,
+                  "mae": 1.7187628926710878,
+                  "ridge_strength": 0.24468168280551061
+                },
+                "OLS": {
+                  "crps": 1.4525489303399384,
+                  "mae": 1.7199497628532383,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.4518790064476497,
+                  "mae": 1.7188815648637066,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 815,
+              "validation_games": 896
+            }
+          ],
+          "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE",
+            "CONSUMED_LEVEL_REFILL:own:ask:pressure_x_refill",
+            "CONSUMED_LEVEL_REFILL:own:ask:refill",
+            "CONSUMED_LEVEL_REFILL:own:bid:pressure_x_refill",
+            "CONSUMED_LEVEL_REFILL:own:bid:refill",
+            "CONSUMED_LEVEL_REFILL:partner:ask:pressure_x_refill",
+            "CONSUMED_LEVEL_REFILL:partner:ask:refill",
+            "CONSUMED_LEVEL_REFILL:partner:bid:pressure_x_refill",
+            "CONSUMED_LEVEL_REFILL:partner:bid:refill"
+          ],
+          "reason": "SELECTED_BY_EARLIER_INNER_VALIDATION",
+          "training_games": 1721,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.4943887920107937,
+              "games": 1387,
+              "mae": 1.750005808081877,
+              "strength_tiebreak": 3.337628362638212e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.4940827349204766,
+              "games": 1387,
+              "mae": 1.7496799742024303,
+              "strength_tiebreak": 0.00011518712692944034
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.4933981640905931,
+              "games": 1387,
+              "mae": 1.7489823287944508,
+              "strength_tiebreak": 0.0007554630643433176
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.4923827316560625,
+              "games": 1387,
+              "mae": 1.7477431043043028,
+              "strength_tiebreak": 0.0061286695652054
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.4919259283114856,
+              "games": 1387,
+              "mae": 1.7468747923741563,
+              "strength_tiebreak": 0.2419628509740474
+            },
+            "OLS": {
+              "crps": 1.494674841970404,
+              "games": 1387,
+              "mae": 1.7502418785984486,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.492732017822294,
+              "games": 1387,
+              "mae": 1.747273270669089,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_IMBALANCE": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 334
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.7095081940890826,
+                  "mae": 2.03907770296759,
+                  "ridge_strength": 7.935930857667129e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.6915168151350661,
+                  "mae": 2.016957522792371,
+                  "ridge_strength": 0.0003248944068041498
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.6500858413596962,
+                  "mae": 1.9596175115812435,
+                  "ridge_strength": 0.005039644391443151
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.609317542834987,
+                  "mae": 1.9043849028771642,
+                  "ridge_strength": 0.08099761199970615
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.596743769778701,
+                  "mae": 1.8870212943812688,
+                  "ridge_strength": 0.24162717299862552
+                },
+                "OLS": {
+                  "crps": 1.7444273790908882,
+                  "mae": 2.0838577494247468,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.567282523304334,
+                  "mae": 1.7990837969453046,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 332,
+              "validation_games": 491
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.515544267730489,
+                  "mae": 1.854307701227607,
+                  "ridge_strength": 5.254133295210315e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5121642574737295,
+                  "mae": 1.8490364190158826,
+                  "ridge_strength": 0.00011935714884471405
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.488730974880876,
+                  "mae": 1.8148911390607452,
+                  "ridge_strength": 0.0035040595343285865
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.4762558635742782,
+                  "mae": 1.7828753544109825,
+                  "ridge_strength": 0.04207995057850055
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.4651826079316372,
+                  "mae": 1.7573260553674444,
+                  "ridge_strength": 0.24490444527135116
+                },
+                "OLS": {
+                  "crps": 1.5343310939640742,
+                  "mae": 1.880570317756508,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.4518790064476497,
+                  "mae": 1.7188815648637066,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 815,
+              "validation_games": 896
+            }
+          ],
+          "model": "BASE_PLUS_IMBALANCE",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1721,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.584207777349861,
+              "games": 1387,
+              "mae": 1.91971654827471,
+              "strength_tiebreak": 6.595032076438722e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.5756553215052476,
+              "games": 1387,
+              "mae": 1.9084807318884536,
+              "strength_tiebreak": 0.00022212577782443194
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.5458508302818137,
+              "games": 1387,
+              "mae": 1.8661244836227961,
+              "strength_tiebreak": 0.004271851962885868
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.52335988990233,
+              "games": 1387,
+              "mae": 1.8258899097800487,
+              "strength_tiebreak": 0.06153878128910335
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.5117554489315717,
+              "games": 1387,
+              "mae": 1.803238356993824,
+              "strength_tiebreak": 0.24326580913498835
+            },
+            "OLS": {
+              "crps": 1.60870548184963,
+              "games": 1387,
+              "mae": 1.9525343616996262,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.492732017822294,
+              "games": 1387,
+              "mae": 1.747273270669089,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_PAIR_GAP": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 334
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.7276203975873365,
+                  "mae": 2.071246856733036,
+                  "ridge_strength": 4.520375034456348e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.718715439504993,
+                  "mae": 2.0668878617156476,
+                  "ridge_strength": 0.00013562279716670183
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.674810131692844,
+                  "mae": 2.009965914992141,
+                  "ridge_strength": 0.0027675883711901516
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.6093862445267046,
+                  "mae": 1.9126932787512232,
+                  "ridge_strength": 0.12104349360866444
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.5985365561614593,
+                  "mae": 1.894303305340063,
+                  "ridge_strength": 0.2564059765797346
+                },
+                "OLS": {
+                  "crps": 1.750435839895586,
+                  "mae": 2.0973116933612976,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.567282523304334,
+                  "mae": 1.7990837969453046,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 332,
+              "validation_games": 491
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.6355900633158922,
+                  "mae": 1.9385568416413774,
+                  "ridge_strength": 5.2902122139298596e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.633092325730238,
+                  "mae": 1.932495841634039,
+                  "ridge_strength": 0.0001251889432275983
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.5986445446159356,
+                  "mae": 1.884226847160253,
+                  "ridge_strength": 0.002012670227172031
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.5082267766328272,
+                  "mae": 1.782212394882511,
+                  "ridge_strength": 0.08353704540749407
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.473519562657138,
+                  "mae": 1.747246076452107,
+                  "ridge_strength": 0.40098820493429993
+                },
+                "OLS": {
+                  "crps": 1.6451192647387924,
+                  "mae": 1.952547485977983,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.4518790064476497,
+                  "mae": 1.7188815648637066,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 815,
+              "validation_games": 896
+            }
+          ],
+          "model": "BASE_PLUS_PAIR_GAP",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1721,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.6681689343521426,
+              "games": 1387,
+              "mae": 1.9855292983176605,
+              "strength_tiebreak": 4.905293624193104e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.6634030314716979,
+              "games": 1387,
+              "mae": 1.9800708105309894,
+              "strength_tiebreak": 0.00013040587019715007
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.6256072722689723,
+              "games": 1387,
+              "mae": 1.9287386584835824,
+              "strength_tiebreak": 0.0023901292991810913
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.544037374135274,
+              "games": 1387,
+              "mae": 1.8284028159203896,
+              "strength_tiebreak": 0.10229026950807926
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.517775758627305,
+              "games": 1387,
+              "mae": 1.7993045475292422,
+              "strength_tiebreak": 0.32869709075701725
+            },
+            "OLS": {
+              "crps": 1.6824014842066983,
+              "games": 1387,
+              "mae": 2.003794224136027,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.492732017822294,
+              "games": 1387,
+              "mae": 1.747273270669089,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_PER_LEVEL_MAKER": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 334
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.7240055931936453,
+                  "mae": 2.0585637886733403,
+                  "ridge_strength": 0.0005464238756428271
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.6740089525722774,
+                  "mae": 1.992398975524121,
+                  "ridge_strength": 0.00352483969091079
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.6345348166363676,
+                  "mae": 1.9383392583772507,
+                  "ridge_strength": 0.011170561826506522
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.614215135607018,
+                  "mae": 1.9094171885308233,
+                  "ridge_strength": 0.022072680109218035
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.5846539243912854,
+                  "mae": 1.8721370627741047,
+                  "ridge_strength": 0.1572020600464777
+                },
+                "OLS": {
+                  "crps": 1.7741630239694062,
+                  "mae": 2.1164561137167586,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.567282523304334,
+                  "mae": 1.7990837969453046,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 332,
+              "validation_games": 491
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5233494629613056,
+                  "mae": 1.8609126861313368,
+                  "ridge_strength": 0.0007065080973116665
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.4881579974583532,
+                  "mae": 1.8128311234684154,
+                  "ridge_strength": 0.0032494275031073917
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.4670997511344623,
+                  "mae": 1.7815390711428623,
+                  "ridge_strength": 0.007552324752881575
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.4512217631300803,
+                  "mae": 1.7578723103542524,
+                  "ridge_strength": 0.014948282090368444
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.4145325338252301,
+                  "mae": 1.7001745013462826,
+                  "ridge_strength": 0.11033053753896595
+                },
+                "OLS": {
+                  "crps": 1.5560453542829606,
+                  "mae": 1.908499527810341,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.4518790064476497,
+                  "mae": 1.7188815648637066,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 815,
+              "validation_games": 896
+            }
+          ],
+          "model": "BASE_PLUS_PER_LEVEL_MAKER",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1721,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.5943820224018819,
+              "games": 1387,
+              "mae": 1.930881461436401,
+              "strength_tiebreak": 0.0006264659864772468
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.5539495035585238,
+              "games": 1387,
+              "mae": 1.8763984020259867,
+              "strength_tiebreak": 0.003387133597009091
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.5263720057569827,
+              "games": 1387,
+              "mae": 1.8370465635236015,
+              "strength_tiebreak": 0.009361443289694049
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.5089216520170134,
+              "games": 1387,
+              "mae": 1.8115194157505734,
+              "strength_tiebreak": 0.01851048109979324
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.474755751394036,
+              "games": 1387,
+              "mae": 1.76104949605505,
+              "strength_tiebreak": 0.1337662987927218
+            },
+            "OLS": {
+              "crps": 1.6332593238691502,
+              "games": 1387,
+              "mae": 1.982116459086514,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.492732017822294,
+              "games": 1387,
+              "mae": 1.747273270669089,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_SPREAD": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 334
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.7234110411736572,
+                  "mae": 2.067522640877163,
+                  "ridge_strength": 4.5679801344579026e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.7120091005312073,
+                  "mae": 2.055039323093349,
+                  "ridge_strength": 0.0001357033077406903
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.6798560256310768,
+                  "mae": 2.014039135266998,
+                  "ridge_strength": 0.001400176399078117
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.6104906081393524,
+                  "mae": 1.9082143075615634,
+                  "ridge_strength": 0.053803287589348714
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.5956767677704324,
+                  "mae": 1.890548296707878,
+                  "ridge_strength": 0.2607444649426736
+                },
+                "OLS": {
+                  "crps": 1.753350441790675,
+                  "mae": 2.0978929131671733,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.567282523304334,
+                  "mae": 1.7990837969453046,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 332,
+              "validation_games": 491
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5234540478786316,
+                  "mae": 1.8756236067104317,
+                  "ridge_strength": 5.285898165242492e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.522175744220421,
+                  "mae": 1.8729530579270703,
+                  "ridge_strength": 0.00012467502215282068
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.5140481840460611,
+                  "mae": 1.858746914542896,
+                  "ridge_strength": 0.0010710543744399937
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.4907934360312678,
+                  "mae": 1.8124062128400615,
+                  "ridge_strength": 0.039011613473616945
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.4674547629002905,
+                  "mae": 1.7608484656369465,
+                  "ridge_strength": 0.4002102508897207
+                },
+                "OLS": {
+                  "crps": 1.5334787461659494,
+                  "mae": 1.8906199158135784,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.4518790064476497,
+                  "mae": 1.7188815648637066,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 815,
+              "validation_games": 896
+            }
+          ],
+          "model": "BASE_PLUS_SPREAD",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1721,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.59423911183527,
+              "games": 1387,
+              "mae": 1.9435561415163913,
+              "strength_tiebreak": 4.926939149850197e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.5893770260867481,
+              "games": 1387,
+              "mae": 1.9374118583572386,
+              "strength_tiebreak": 0.00013018916494675548
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.572744399055609,
+              "games": 1387,
+              "mae": 1.9137205846045648,
+              "strength_tiebreak": 0.0012356153867590554
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.533166407556192,
+              "games": 1387,
+              "mae": 1.8463224165230159,
+              "strength_tiebreak": 0.04640745053148283
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.5128455375154597,
+              "games": 1387,
+              "mae": 1.8067623928581626,
+              "strength_tiebreak": 0.33047735791619715
+            },
+            "OLS": {
+              "crps": 1.6113136434635276,
+              "games": 1387,
+              "mae": 1.9639948557563438,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.492732017822294,
+              "games": 1387,
+              "mae": 1.747273270669089,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BOOK_CORRECTION": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 334
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 2.402864515048874,
+                  "mae": 2.7218841532520672,
+                  "ridge_strength": 0.0005307404793501118
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 2.1190016594072003,
+                  "mae": 2.4371557755795203,
+                  "ridge_strength": 0.0032666083975974205
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.9560832321512434,
+                  "mae": 2.2518930174940377,
+                  "ridge_strength": 0.011933669451121655
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.9139507307582506,
+                  "mae": 2.1843772924995717,
+                  "ridge_strength": 0.03594782450074704
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.9678589935426098,
+                  "mae": 2.1997357273438536,
+                  "ridge_strength": 0.15586003598187928
+                },
+                "OLS": {
+                  "crps": 2.6979776906562134,
+                  "mae": 3.030032120548512,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.567282523304334,
+                  "mae": 1.7990837969453046,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 332,
+              "validation_games": 491
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.796354940164339,
+                  "mae": 2.1290929723879968,
+                  "ridge_strength": 0.00013436847942895498
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.7183197668660535,
+                  "mae": 2.0307740654554287,
+                  "ridge_strength": 0.0017800574344331674
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.6448700300448975,
+                  "mae": 1.937439434444039,
+                  "ridge_strength": 0.00777691630464998
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.5705708956788196,
+                  "mae": 1.8485167568923786,
+                  "ridge_strength": 0.02306222282683512
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.4778072660941273,
+                  "mae": 1.7297637814217195,
+                  "ridge_strength": 0.10354299134525002
+                },
+                "OLS": {
+                  "crps": 1.8255674001051705,
+                  "mae": 2.165339261962661,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.4518790064476497,
+                  "mae": 1.7188815648637066,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 815,
+              "validation_games": 896
+            }
+          ],
+          "model": "BOOK_CORRECTION",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1721,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 2.0110602042366588,
+              "games": 1387,
+              "mae": 2.3389419051956812,
+              "strength_tiebreak": 0.0003325544793895334
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.860161734593309,
+              "games": 1387,
+              "mae": 2.174633776825962,
+              "strength_tiebreak": 0.002523332916015294
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.7550399523478646,
+              "games": 1387,
+              "mae": 2.048756456273563,
+              "strength_tiebreak": 0.009855292877885818
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.6921278524372918,
+              "games": 1387,
+              "mae": 1.9674118707951407,
+              "strength_tiebreak": 0.02950502366379108
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.6512862842464024,
+              "games": 1387,
+              "mae": 1.8961345279594035,
+              "strength_tiebreak": 0.12970151366356464
+            },
+            "OLS": {
+              "crps": 2.134401900941914,
+              "games": 1387,
+              "mae": 2.47144178075549,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.492732017822294,
+              "games": 1387,
+              "mae": 1.747273270669089,
+              "strength_tiebreak": 0.0
+            }
+          }
+        }
+      },
+      "1": {
+        "BASE_CORRECTION": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 331
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.731875912351845,
+                  "mae": 2.160027024237443,
+                  "ridge_strength": 3.637538963006852e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.694310568877293,
+                  "mae": 2.1215428767002624,
+                  "ridge_strength": 0.00012723385621383324
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.6290968842732207,
+                  "mae": 2.067164259392548,
+                  "ridge_strength": 0.0007834070611540153
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.5361949896009153,
+                  "mae": 1.9687189897739001,
+                  "ridge_strength": 0.006042857178916682
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.394316125509534,
+                  "mae": 1.776841742954481,
+                  "ridge_strength": 0.2411652967510596
+                },
+                "OLS": {
+                  "crps": 1.7729421133420844,
+                  "mae": 2.2051758669505994,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3746035697736931,
+                  "mae": 1.6210736081048576,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 329,
+              "validation_games": 480
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3457788503520796,
+                  "mae": 1.7117936779317373,
+                  "ridge_strength": 3.129308106759468e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3352556451527626,
+                  "mae": 1.6998153806024054,
+                  "ridge_strength": 8.906049689528935e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3115636385166276,
+                  "mae": 1.668173938207735,
+                  "ridge_strength": 0.0007436199847904585
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.2884000705453706,
+                  "mae": 1.6279674635821206,
+                  "ridge_strength": 0.005990049857555222
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.2695415409773707,
+                  "mae": 1.589495399068926,
+                  "ridge_strength": 0.2461957489393297
+                },
+                "OLS": {
+                  "crps": 1.3670122854003437,
+                  "mae": 1.7418774314913115,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.2545555935214556,
+                  "mae": 1.5115923754276015,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 802,
+              "validation_games": 880
+            }
+          ],
+          "model": "BASE_CORRECTION",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1691,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.4820484016461142,
+              "games": 1360,
+              "mae": 1.869993682510222,
+              "strength_tiebreak": 3.38342353488316e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.461980912349656,
+              "games": 1360,
+              "mae": 1.848660379225179,
+              "strength_tiebreak": 0.00010814717655456129
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.4236341958424839,
+              "games": 1360,
+              "mae": 1.8089940515670804,
+              "strength_tiebreak": 0.0007635135229722369
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.3758571008002694,
+              "games": 1360,
+              "mae": 1.7482327081203957,
+              "strength_tiebreak": 0.006016453518235952
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.3135796296357811,
+              "games": 1360,
+              "mae": 1.6556176380873564,
+              "strength_tiebreak": 0.24368052284519465
+            },
+            "OLS": {
+              "crps": 1.510281636438605,
+              "games": 1360,
+              "mae": 1.9053945263592953,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2969254674928334,
+              "games": 1360,
+              "mae": 1.5502328104901633,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_API_FLOW": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 331
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.7385666396618675,
+                  "mae": 2.2047677997938635,
+                  "ridge_strength": 2.488368424563432e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.68645619626648,
+                  "mae": 2.152507879114413,
+                  "ridge_strength": 0.00013226731830911194
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.6013484168164767,
+                  "mae": 2.0695528958688665,
+                  "ridge_strength": 0.001193323630460746
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.4908115146347325,
+                  "mae": 1.9392206600492778,
+                  "ridge_strength": 0.01794016320683179
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.3764690408425395,
+                  "mae": 1.7568026608173317,
+                  "ridge_strength": 0.39485747613880107
+                },
+                "OLS": {
+                  "crps": 43.95650773342141,
+                  "mae": 44.428195912895404,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3746035697736931,
+                  "mae": 1.6210736081048576,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 329,
+              "validation_games": 480
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3499111510758037,
+                  "mae": 1.7335209266486304,
+                  "ridge_strength": 4.267845492668095e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3388486460734126,
+                  "mae": 1.718214296513805,
+                  "ridge_strength": 0.00011369443902375184
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.314488447163724,
+                  "mae": 1.686195034299819,
+                  "ridge_strength": 0.0010480490492851837
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.281419866294335,
+                  "mae": 1.6202298059958837,
+                  "ridge_strength": 0.019710332663991813
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.2841427915797474,
+                  "mae": 1.643017395551683,
+                  "ridge_strength": 0.3079976367684999
+                },
+                "OLS": {
+                  "crps": 1.3735502077083028,
+                  "mae": 1.7646635552169325,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.2545555935214556,
+                  "mae": 1.5115923754276015,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 802,
+              "validation_games": 880
+            }
+          ],
+          "model": "BASE_PLUS_API_FLOW",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1691,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.4870836764591202,
+              "games": 1360,
+              "mae": 1.8998433524645948,
+              "strength_tiebreak": 3.378106958615763e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.461533663788613,
+              "games": 1360,
+              "mae": 1.8714943844904908,
+              "strength_tiebreak": 0.0001229808786664319
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.4157331423352841,
+              "games": 1360,
+              "mae": 1.821497808971248,
+              "strength_tiebreak": 0.001120686339872965
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.3553228010027105,
+              "games": 1360,
+              "mae": 1.732814813308847,
+              "strength_tiebreak": 0.0188252479354118
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.3167285266136741,
+              "games": 1360,
+              "mae": 1.6831769009395587,
+              "strength_tiebreak": 0.3514275564536505
+            },
+            "OLS": {
+              "crps": 16.402829334430578,
+              "games": 1360,
+              "mae": 16.822380857926976,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2969254674928334,
+              "games": 1360,
+              "mae": 1.5502328104901633,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 331
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3964610370570696,
+                  "mae": 1.64607128433449,
+                  "ridge_strength": 3.637538963006852e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3933596005753541,
+                  "mae": 1.6431400359298896,
+                  "ridge_strength": 0.00012723385621383324
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3863101578764856,
+                  "mae": 1.636920865628033,
+                  "ridge_strength": 0.0007834070611540153
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.3792552385510888,
+                  "mae": 1.629850215932523,
+                  "ridge_strength": 0.006042857178916682
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.3747528361349275,
+                  "mae": 1.624718030881759,
+                  "ridge_strength": 0.2411652967510596
+                },
+                "OLS": {
+                  "crps": 1.3979831828615465,
+                  "mae": 1.6476572273981733,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3746035697736931,
+                  "mae": 1.6210736081048576,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 329,
+              "validation_games": 480
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.254811414797008,
+                  "mae": 1.5123142447356257,
+                  "ridge_strength": 3.128484544785873e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.2547295970628751,
+                  "mae": 1.5121645675795847,
+                  "ridge_strength": 0.00011553971298252857
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.2545201159870347,
+                  "mae": 1.5119049180306456,
+                  "ridge_strength": 0.0007434692050246207
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.2543496709297897,
+                  "mae": 1.5117184969340605,
+                  "ridge_strength": 0.006062103308071619
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.2544117849895084,
+                  "mae": 1.5116524316137823,
+                  "ridge_strength": 0.24623065552422785
+                },
+                "OLS": {
+                  "crps": 1.254926214831159,
+                  "mae": 1.5125098493343772,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.2545555935214556,
+                  "mae": 1.5115923754276015,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 802,
+              "validation_games": 880
+            }
+          ],
+          "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1691,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.3048053991240882,
+              "games": 1360,
+              "mae": 1.5595226116528726,
+              "strength_tiebreak": 3.383011753896362e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.3036578335966909,
+              "games": 1360,
+              "mae": 1.5583912034679286,
+              "strength_tiebreak": 0.0001213867845981809
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.3010342484186055,
+              "games": 1360,
+              "mae": 1.5560281936532536,
+              "strength_tiebreak": 0.000763438133089318
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.2984339889137773,
+              "games": 1360,
+              "mae": 1.5534120448158717,
+              "strength_tiebreak": 0.006052480243494151
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2968850971584798,
+              "games": 1360,
+              "mae": 1.551557937237775,
+              "strength_tiebreak": 0.2436979761376437
+            },
+            "OLS": {
+              "crps": 1.305416909430119,
+              "games": 1360,
+              "mae": 1.5602089239451296,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2969254674928334,
+              "games": 1360,
+              "mae": 1.5502328104901633,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_IMBALANCE": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 331
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5518144590915843,
+                  "mae": 1.8901826372166637,
+                  "ridge_strength": 7.916108755685665e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5383731115813948,
+                  "mae": 1.8755273845474425,
+                  "ridge_strength": 0.00015458533455035056
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.4578067342358052,
+                  "mae": 1.7924790446187566,
+                  "ridge_strength": 0.005303595754614119
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.3968463770040762,
+                  "mae": 1.710736946176703,
+                  "ridge_strength": 0.07704093991186305
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.376069493009848,
+                  "mae": 1.6792274009734676,
+                  "ridge_strength": 0.23568702895884683
+                },
+                "OLS": {
+                  "crps": 1.5826629815360291,
+                  "mae": 1.9166076708265698,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3746035697736931,
+                  "mae": 1.6210736081048576,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 329,
+              "validation_games": 480
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3669897846333736,
+                  "mae": 1.7226193704564454,
+                  "ridge_strength": 4.4323556144802935e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3557769336120997,
+                  "mae": 1.708523902018102,
+                  "ridge_strength": 0.00012057355643635532
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3126549710423334,
+                  "mae": 1.6455647399121507,
+                  "ridge_strength": 0.0038827463653624086
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.2770410640066698,
+                  "mae": 1.5950061773487265,
+                  "ridge_strength": 0.05128548568728317
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.2651516922594883,
+                  "mae": 1.5779965266179656,
+                  "ridge_strength": 0.2465037614649281
+                },
+                "OLS": {
+                  "crps": 1.3902184786648422,
+                  "mae": 1.7540884441622846,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.2545555935214556,
+                  "mae": 1.5115923754276015,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 802,
+              "validation_games": 880
+            }
+          ],
+          "model": "BASE_PLUS_IMBALANCE",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1691,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.432222022677448,
+              "games": 1360,
+              "mae": 1.7817593469600514,
+              "strength_tiebreak": 6.17423218508298e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.4202226434836158,
+              "games": 1360,
+              "mae": 1.7674663076166925,
+              "strength_tiebreak": 0.00013757944549335293
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.3638850051106173,
+              "games": 1360,
+              "mae": 1.6974168474556586,
+              "strength_tiebreak": 0.0045931710599882635
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.319325292123401,
+              "games": 1360,
+              "mae": 1.6358523310527187,
+              "strength_tiebreak": 0.0641632127995731
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.3042991513478503,
+              "games": 1360,
+              "mae": 1.6137250705081432,
+              "strength_tiebreak": 0.24109539521188747
+            },
+            "OLS": {
+              "crps": 1.458140067913496,
+              "games": 1360,
+              "mae": 1.8114481712202677,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2969254674928334,
+              "games": 1360,
+              "mae": 1.5502328104901633,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_PAIR_GAP": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 331
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5634294914578495,
+                  "mae": 1.9079949389493325,
+                  "ridge_strength": 3.918892418325133e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5496016832677066,
+                  "mae": 1.8965104483173063,
+                  "ridge_strength": 0.00014671817233829947
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.4992424246673528,
+                  "mae": 1.8371474810985655,
+                  "ridge_strength": 0.002136570456514666
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.4033445333242216,
+                  "mae": 1.71878413424402,
+                  "ridge_strength": 0.11651732244049709
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.388689244648645,
+                  "mae": 1.6989427086255533,
+                  "ridge_strength": 0.2580664253328395
+                },
+                "OLS": {
+                  "crps": 1.575629632422346,
+                  "mae": 1.9186889780030114,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3746035697736931,
+                  "mae": 1.6210736081048576,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 329,
+              "validation_games": 480
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3689791937368976,
+                  "mae": 1.7107069715590766,
+                  "ridge_strength": 4.4985867080828074e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3575910847658164,
+                  "mae": 1.6964169900949413,
+                  "ridge_strength": 0.00013379749989628922
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3276715495431632,
+                  "mae": 1.6536959033741527,
+                  "ridge_strength": 0.0020732066550016577
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.2847958184240964,
+                  "mae": 1.5874720120579897,
+                  "ridge_strength": 0.08213706878025476
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.273538044159991,
+                  "mae": 1.5819432330498278,
+                  "ridge_strength": 0.4113902923393757
+                },
+                "OLS": {
+                  "crps": 1.3885305235047962,
+                  "mae": 1.736951216558164,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.2545555935214556,
+                  "mae": 1.5115923754276015,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 802,
+              "validation_games": 880
+            }
+          ],
+          "model": "BASE_PLUS_PAIR_GAP",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1691,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.4376087105795865,
+              "games": 1360,
+              "mae": 1.7803380188732856,
+              "strength_tiebreak": 4.20873956320397e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.4253595312958953,
+              "games": 1360,
+              "mae": 1.767038210644011,
+              "strength_tiebreak": 0.00014025783611729435
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.3882259760575832,
+              "games": 1360,
+              "mae": 1.7184435190415928,
+              "strength_tiebreak": 0.002104888555758162
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.3266365413300223,
+              "games": 1360,
+              "mae": 1.6338174669471766,
+              "strength_tiebreak": 0.09932719561037592
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.3141796443324572,
+              "games": 1360,
+              "mae": 1.6232371656059665,
+              "strength_tiebreak": 0.33472835883610763
+            },
+            "OLS": {
+              "crps": 1.4545655031227547,
+              "games": 1360,
+              "mae": 1.8010939558916395,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2969254674928334,
+              "games": 1360,
+              "mae": 1.5502328104901633,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_PER_LEVEL_MAKER": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 331
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5419722931309816,
+                  "mae": 1.910320626119178,
+                  "ridge_strength": 0.0006516858693369836
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.4728770544299445,
+                  "mae": 1.8271338677617603,
+                  "ridge_strength": 0.003857008963804086
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.422886294407871,
+                  "mae": 1.756822285605026,
+                  "ridge_strength": 0.011505576266434892
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.3970213553784423,
+                  "mae": 1.7212195126616918,
+                  "ridge_strength": 0.02305241759073693
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.351102253136048,
+                  "mae": 1.6524225919125772,
+                  "ridge_strength": 0.16550718301969383
+                },
+                "OLS": {
+                  "crps": 1.6100926937225195,
+                  "mae": 1.9720565314114085,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3746035697736931,
+                  "mae": 1.6210736081048576,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 329,
+              "validation_games": 480
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.318914752174628,
+                  "mae": 1.6606551124977116,
+                  "ridge_strength": 0.0006864654941682698
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.2813962354832131,
+                  "mae": 1.6096910298217555,
+                  "ridge_strength": 0.0036438041987921508
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.260660600523045,
+                  "mae": 1.57943626572772,
+                  "ridge_strength": 0.007996206422301352
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.2449419692169037,
+                  "mae": 1.5561012472354112,
+                  "ridge_strength": 0.01596264953595075
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.2123482473806533,
+                  "mae": 1.5043512590868524,
+                  "ridge_strength": 0.11334376078243882
+                },
+                "OLS": {
+                  "crps": 1.3735957810640496,
+                  "mae": 1.7311076753285335,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.2545555935214556,
+                  "mae": 1.5115923754276015,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 802,
+              "validation_games": 880
+            }
+          ],
+          "model": "BASE_PLUS_PER_LEVEL_MAKER",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1691,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.3976409431004,
+              "games": 1360,
+              "mae": 1.748772352599406,
+              "strength_tiebreak": 0.0006690756817526267
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.3489777009938235,
+              "games": 1360,
+              "mae": 1.6864355608594048,
+              "strength_tiebreak": 0.0037504065812981185
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.3179167277765123,
+              "games": 1360,
+              "mae": 1.642043096272651,
+              "strength_tiebreak": 0.009750891344368122
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.298617046685681,
+              "games": 1360,
+              "mae": 1.6143782820917458,
+              "strength_tiebreak": 0.01950753356334384
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2613202494119684,
+              "games": 1360,
+              "mae": 1.5566117294959323,
+              "strength_tiebreak": 0.13942547190106633
+            },
+            "OLS": {
+              "crps": 1.4570652796493917,
+              "games": 1360,
+              "mae": 1.8161484480636656,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2969254674928334,
+              "games": 1360,
+              "mae": 1.5502328104901633,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_SPREAD": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 331
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5274635498353741,
+                  "mae": 1.8500887242904878,
+                  "ridge_strength": 4.014743958999276e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5085690120530924,
+                  "mae": 1.8340367462794744,
+                  "ridge_strength": 0.0001468352875398279
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.467032661215392,
+                  "mae": 1.8006251492380796,
+                  "ridge_strength": 0.0013868289607540597
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.4082135469434345,
+                  "mae": 1.7254132926555,
+                  "ridge_strength": 0.05269599444566927
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.3779864530720578,
+                  "mae": 1.681835945239682,
+                  "ridge_strength": 0.2716648606689111
+                },
+                "OLS": {
+                  "crps": 1.5466976797263043,
+                  "mae": 1.8687891735504256,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3746035697736931,
+                  "mae": 1.6210736081048576,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 329,
+              "validation_games": 480
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3652616192508762,
+                  "mae": 1.7475226949764189,
+                  "ridge_strength": 4.500025703649756e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.353117341024272,
+                  "mae": 1.7297486449315376,
+                  "ridge_strength": 0.00013351371548358588
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3289358429846578,
+                  "mae": 1.6931662859264949,
+                  "ridge_strength": 0.0009685639384668606
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.289230670532902,
+                  "mae": 1.6231933175324627,
+                  "ridge_strength": 0.03894038735906892
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.2833788797084482,
+                  "mae": 1.6208917651160102,
+                  "ridge_strength": 0.41083475996738983
+                },
+                "OLS": {
+                  "crps": 1.3842815434757412,
+                  "mae": 1.772010024773552,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.2545555935214556,
+                  "mae": 1.5115923754276015,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 802,
+              "validation_games": 880
+            }
+          ],
+          "model": "BASE_PLUS_SPREAD",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1691,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.42250935945717,
+              "games": 1360,
+              "mae": 1.7837224700284442,
+              "strength_tiebreak": 4.257384831324516e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.4079826366815025,
+              "games": 1360,
+              "mae": 1.7665562101131618,
+              "strength_tiebreak": 0.0001401745015117069
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.3776758964778582,
+              "games": 1360,
+              "mae": 1.7310929435658773,
+              "strength_tiebreak": 0.0011776964496104602
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.3312246269130896,
+              "games": 1360,
+              "mae": 1.659270955811182,
+              "strength_tiebreak": 0.04581819090236909
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.3167697879544276,
+              "games": 1360,
+              "mae": 1.6424014757478944,
+              "strength_tiebreak": 0.3412498103181505
+            },
+            "OLS": {
+              "crps": 1.4416048856818224,
+              "games": 1360,
+              "mae": 1.806167371400684,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2969254674928334,
+              "games": 1360,
+              "mae": 1.5502328104901633,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BOOK_CORRECTION": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776552300,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 331
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 2.626148735958627,
+                  "mae": 3.374896995383542,
+                  "ridge_strength": 0.0004715254272032723
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 2.304116049652024,
+                  "mae": 3.012822917268387,
+                  "ridge_strength": 0.0031701092554555364
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.8655226684560284,
+                  "mae": 2.494056995104899,
+                  "ridge_strength": 0.01168848086416866
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.5726498360450671,
+                  "mae": 2.1074544806484328,
+                  "ridge_strength": 0.03716526360440706
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.389928220378163,
+                  "mae": 1.7881119948774924,
+                  "ridge_strength": 0.16429192383048846
+                },
+                "OLS": {
+                  "crps": 2.701615963579193,
+                  "mae": 3.46693670703553,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3746035697736931,
+                  "mae": 1.6210736081048576,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777582500,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 329,
+              "validation_games": 480
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.4237285304404175,
+                  "mae": 1.7892748273771717,
+                  "ridge_strength": 0.00017256355443876195
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3617646970235622,
+                  "mae": 1.7041628919917582,
+                  "ridge_strength": 0.001748444975045211
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3050667152727946,
+                  "mae": 1.623184481807405,
+                  "ridge_strength": 0.007962582883071912
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.2634018167182592,
+                  "mae": 1.5585645738208347,
+                  "ridge_strength": 0.025106206357197222
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.2246870673047732,
+                  "mae": 1.5095344298386286,
+                  "ridge_strength": 0.1012866622212602
+                },
+                "OLS": {
+                  "crps": 1.4769539825387172,
+                  "mae": 1.8584169155162058,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.2545555935214556,
+                  "mae": 1.5115923754276015,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780258680,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 802,
+              "validation_games": 880
+            }
+          ],
+          "model": "BOOK_CORRECTION",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 1691,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.8481121323880212,
+              "games": 1360,
+              "mae": 2.3489061807911833,
+              "strength_tiebreak": 0.00032204449082101714
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.6943592920689017,
+              "games": 1360,
+              "mae": 2.1660429009129207,
+              "strength_tiebreak": 0.0024592771152503736
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.5028746987492307,
+              "games": 1360,
+              "mae": 1.9305512512065204,
+              "strength_tiebreak": 0.009825531873620286
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.3725481764806622,
+              "games": 1360,
+              "mae": 1.7522904232893988,
+              "strength_tiebreak": 0.031135734980802143
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2830074742718525,
+              "games": 1360,
+              "mae": 1.6078559233817573,
+              "strength_tiebreak": 0.13278929302587433
+            },
+            "OLS": {
+              "crps": 1.909187622905944,
+              "games": 1360,
+              "mae": 2.4261297831112616,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2969254674928334,
+              "games": 1360,
+              "mae": 1.5502328104901633,
+              "strength_tiebreak": 0.0
+            }
+          }
+        }
+      }
+    },
+    "reference": {
+      "no_named_checks_or_population_scoreboards_opened": true,
+      "receipt": {
+        "commit": "969111f3",
+        "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_CHALL/TUNE_BENCH_RECEIPT.json",
+        "sha256": "d28a6702af384c2dd7bd2091dff8569196cf820efa58f8fb460a59ad08032a48"
+      },
+      "reference": {
+        "commit": "c7825925",
+        "structural_equivalence": [
+          "load_tick_library",
+          "load_named_inputs",
+          "initial_pool",
+          "remaining_floor",
+          "Pair",
+          "Leg",
+          "role",
+          "date_key"
+        ]
+      }
+    }
+  },
+  "ATP_MAIN": {
+    "binding": {
+      "audit_aggregate_sha256": "f95c5bada3a0bba4f2d5b84435e6f5651b0062ee7220e7e1a2e678f2922869b1",
+      "code": {
+        "absorption_residual_data.py": "523bf3769823bfd6eca5ebcdf0575bf9959b2ccf4bfa798c55aa268c25e2ef9c",
+        "absorption_residual_model.py": "655aa0f6f3b14642928b3094324c76ede8aaf6b90f0f5dc9b86c45af1d1c9431",
+        "absorption_residual_run.py": "219174c5c37f6d1a4f075383a0514c2e864bbafe16ad8a3c6d0564ff0af7a2dc",
+        "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+        "conduct_scoreboard_v2.py": "a53fba520a2ddf6925c33be9fed86f3bb2e751a1000ee969bccccd0781ffc450",
+        "feature_panel_bench.py": "9f6d7a0730b08eed1f17132438b8db0d45b4f93b7ec7ffab4cdedea4b4bf1e4d",
+        "feature_panel_inventory_gate_extract.py": "1978bcc675d8090e06df9ebed5a601cad8c88f72ba5ee668c3f11fdcc4ad5618",
+        "feature_panel_run.py": "d57397ffc6b566281eb3d59a26fb667ea68f07f4a9782186c02bfb25bc0ef972",
+        "feature_panel_scoring.py": "3556cda79e3a4f39dd338d9b643548949abb06f3769e456ba3c1277d6c31a3f9",
+        "tune_bench_floor_calls.py": "7e605a8cceded5f9a4a3ab29f375f0e1ae90320d3a45caa3169ef52ac7b404ba",
+        "tune_bench_v2_survivorship.py": "1cf7b7787daa40c45e096546edadebae6cef778184a7ca219404309646c1a8da"
+      },
+      "contract_sha256": "f5fc318b71ee3c01aaa618672f996192ac99ea83c56fac8937a7946e3a18a5d1",
+      "counts_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+      "gate_inputs_sha256": "53c4851ad03bbe86e82555c5dc13075ec7e150a0a56718f4b7a385de45b86273",
+      "gate_receipt_sha256": "ca39df332501d67739cc2a562c8d431fd3d7ce8a5068d084bca615f7bd6bbeca",
+      "input_pins_sha256": "b8b4fa0c0b3ff133a949c9c9aa488361d8993e2464e905ac4037b9942f9e60c3",
+      "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+      "remote_audit_receipt_sha256": "923d1e64af27e2371e22fb2743c09875dd7982f666556f41da222bbde316c54d",
+      "reservation_sha256": "35c446003a9aed6c11b2600ae59509f811160188fd7a324c98276e885970676f",
+      "source_receipt_sha256": "c52187b9c03405fda698c6830b22bc6c7b61b81e0baf1215a908b41a93a8b1fe",
+      "witness_sha256": "139178e58a581fe7e68b52d8bb350daab0f5226aa9acd3cf8a2ac756e82d72f6"
+    },
+    "first_reserved_event_date": "2026-06-25",
+    "first_reserved_formation": 1782330300,
+    "frozen_before_confirmation": true,
+    "model_sha256": "4ac65fda0712d133555309886f63ae62c7b12ed86c1245a08d73ae8cea46ea83",
+    "models": {
+      "0": {
+        "BASE_CORRECTION": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 85
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.0794430128093586,
+                  "mae": 1.400658226297413,
+                  "ridge_strength": 4.1417468919095285e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.0729835431670458,
+                  "mae": 1.3890092935120384,
+                  "ridge_strength": 7.469026979565488e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.0699513002187817,
+                  "mae": 1.387126289704455,
+                  "ridge_strength": 0.000641533887748862
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0653066912259317,
+                  "mae": 1.3813118692062827,
+                  "ridge_strength": 0.006484930271017752
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0585536907769202,
+                  "mae": 1.3669425599106542,
+                  "ridge_strength": 0.2450895383412599
+                },
+                "OLS": {
+                  "crps": 1.095528410077988,
+                  "mae": 1.4261709098976492,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9969844600328711,
+                  "mae": 1.2375853086637394,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 83,
+              "validation_games": 306
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.547909831321714,
+                  "mae": 1.9780539196925422,
+                  "ridge_strength": 4.525140179675638e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5464131878016638,
+                  "mae": 1.9772378311192333,
+                  "ridge_strength": 8.776721038934633e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.5442239130316195,
+                  "mae": 1.9789435756537053,
+                  "ridge_strength": 0.0010596204082774362
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.542513795848196,
+                  "mae": 1.9772995342529205,
+                  "ridge_strength": 0.007450127711346055
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.5137811377926251,
+                  "mae": 1.9310352328503329,
+                  "ridge_strength": 0.2650237796025748
+                },
+                "OLS": {
+                  "crps": 1.5499699534196956,
+                  "mae": 1.9772943869112045,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.473572432183154,
+                  "mae": 1.8641430891430895,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 386,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_CORRECTION",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 724,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.3235736083721354,
+              "games": 639,
+              "mae": 1.7015545735596636,
+              "strength_tiebreak": 4.333443535792583e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.3197004002301567,
+              "games": 639,
+              "mae": 1.6955509257862105,
+              "strength_tiebreak": 8.12287400925006e-05
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.3171074505578657,
+              "games": 639,
+              "mae": 1.6955381147765995,
+              "strength_tiebreak": 0.0008505771480131491
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.3139920837755623,
+              "games": 639,
+              "mae": 1.69189699042777,
+              "strength_tiebreak": 0.006967528991181904
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2957848955597524,
+              "games": 639,
+              "mae": 1.660906347217247,
+              "strength_tiebreak": 0.2550566589719173
+            },
+            "OLS": {
+              "crps": 1.3323500594250748,
+              "games": 639,
+              "mae": 1.7133761021441496,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2453472060830186,
+              "games": 639,
+              "mae": 1.5641013351107211,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_API_FLOW": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 85
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.1143826476579894,
+                  "mae": 1.465493809331506,
+                  "ridge_strength": 7.04875433807258e-06
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.1081722120886683,
+                  "mae": 1.4575241892415995,
+                  "ridge_strength": 7.765605059099384e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.0998043922840215,
+                  "mae": 1.445432708939293,
+                  "ridge_strength": 0.0008419809876627792
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0950358171121217,
+                  "mae": 1.440206131796183,
+                  "ridge_strength": 0.026067989951865597
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0572020911364282,
+                  "mae": 1.3624214017477856,
+                  "ridge_strength": 0.44259018320397864
+                },
+                "OLS": {
+                  "crps": 67.51290340589469,
+                  "mae": 67.87866606376475,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9969844600328711,
+                  "mae": 1.2375853086637394,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 83,
+              "validation_games": 306
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5381814948567014,
+                  "mae": 1.9669049066993458,
+                  "ridge_strength": 7.919703189147188e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5354489779587925,
+                  "mae": 1.9647731712709902,
+                  "ridge_strength": 0.00025456917376909314
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.5350266341749836,
+                  "mae": 1.967090496501776,
+                  "ridge_strength": 0.002192468645655245
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.530155791102554,
+                  "mae": 1.96014242329566,
+                  "ridge_strength": 0.05504735875893654
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.5039668985455312,
+                  "mae": 1.9160118984107193,
+                  "ridge_strength": 0.3800543792889238
+                },
+                "OLS": {
+                  "crps": 1.544597334661279,
+                  "mae": 1.9734358325206114,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.473572432183154,
+                  "mae": 1.8641430891430895,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 386,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_API_FLOW",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 724,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.33523556802915,
+              "games": 639,
+              "mae": 1.7267925502133377,
+              "strength_tiebreak": 4.312289311477223e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.3308375689505643,
+              "games": 639,
+              "mae": 1.7218652080456478,
+              "strength_tiebreak": 0.0001661126121800435
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.3266103493257906,
+              "games": 639,
+              "mae": 1.7172825418943898,
+              "strength_tiebreak": 0.001517224816659012
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.3217884796141783,
+              "games": 639,
+              "mae": 1.711158847084642,
+              "strength_tiebreak": 0.04055767435540107
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2900231879552566,
+              "games": 639,
+              "mae": 1.6509122239524123,
+              "strength_tiebreak": 0.4113222812464512
+            },
+            "OLS": {
+              "crps": 33.13505376313925,
+              "games": 639,
+              "mae": 33.53368692917275,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2453472060830186,
+              "games": 639,
+              "mae": 1.5641013351107211,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 85
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.0021698009889342,
+                  "mae": 1.247782955033823,
+                  "ridge_strength": 4.1417468919095285e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.0017026594357943,
+                  "mae": 1.246923361577951,
+                  "ridge_strength": 7.469026979565488e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.0014869401913162,
+                  "mae": 1.2467317505580926,
+                  "ridge_strength": 0.000641533887748862
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.001288206837139,
+                  "mae": 1.2467637795053923,
+                  "ridge_strength": 0.006484930271017752
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0013226779299407,
+                  "mae": 1.2467084565083402,
+                  "ridge_strength": 0.2450895383412599
+                },
+                "OLS": {
+                  "crps": 1.0037220748484292,
+                  "mae": 1.2503645920148068,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9969844600328711,
+                  "mae": 1.2375853086637394,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 83,
+              "validation_games": 306
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.4739408396124516,
+                  "mae": 1.8645688651333279,
+                  "ridge_strength": 8.524188813724477e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.4739433782329214,
+                  "mae": 1.8646155876903323,
+                  "ridge_strength": 0.0001662907667995351
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.473934561668531,
+                  "mae": 1.8647040668535715,
+                  "ridge_strength": 0.001059265711550927
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.4739106036404557,
+                  "mae": 1.8646887290168415,
+                  "ridge_strength": 0.009646597879171619
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.473765066984864,
+                  "mae": 1.8644274489109678,
+                  "ridge_strength": 0.23285164808665695
+                },
+                "OLS": {
+                  "crps": 1.4739041852514319,
+                  "mae": 1.8643712730816346,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.473572432183154,
+                  "mae": 1.8641430891430895,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 386,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 724,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.2480223140744293,
+              "games": 639,
+              "mae": 1.569206598325111,
+              "strength_tiebreak": 6.332967852817003e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.2477999354286635,
+              "games": 639,
+              "mae": 1.5688193103970758,
+              "strength_tiebreak": 0.00012049051829759498
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.2476920387076116,
+              "games": 639,
+              "mae": 1.5687736618670007,
+              "strength_tiebreak": 0.0008503997996498944
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.247584385452952,
+              "games": 639,
+              "mae": 1.5687810067155807,
+              "strength_tiebreak": 0.008065764075094685
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2475250496909573,
+              "games": 639,
+              "mae": 1.5686183539575935,
+              "strength_tiebreak": 0.23897059321395842
+            },
+            "OLS": {
+              "crps": 1.2487465549176,
+              "games": 639,
+              "mae": 1.5703399046834319,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2453472060830186,
+              "games": 639,
+              "mae": 1.5641013351107211,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_IMBALANCE": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 85
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.0429912323231334,
+                  "mae": 1.3188460803624484,
+                  "ridge_strength": 5.362681372411224e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.0418008377763512,
+                  "mae": 1.3173282705340466,
+                  "ridge_strength": 0.00014051163689847383
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.0352714168130823,
+                  "mae": 1.3094520625787585,
+                  "ridge_strength": 0.005809078012584934
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0238702955550405,
+                  "mae": 1.2926855219756153,
+                  "ridge_strength": 0.06333761796501527
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0153216158098863,
+                  "mae": 1.2785098934612962,
+                  "ridge_strength": 0.34214427321963686
+                },
+                "OLS": {
+                  "crps": 1.0497352700256324,
+                  "mae": 1.3278889693235856,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9969844600328711,
+                  "mae": 1.2375853086637394,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 83,
+              "validation_games": 306
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5653015112314137,
+                  "mae": 2.0053020907725605,
+                  "ridge_strength": 7.995170227076759e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5624822228803859,
+                  "mae": 2.002731339635302,
+                  "ridge_strength": 0.0002541742688635897
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.5413386406444887,
+                  "mae": 1.9727463291207434,
+                  "ridge_strength": 0.006932226399634723
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.5220513712414636,
+                  "mae": 1.9437979940830978,
+                  "ridge_strength": 0.03760353129978261
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.5041569669225818,
+                  "mae": 1.9161045816262559,
+                  "ridge_strength": 0.26524202704045785
+                },
+                "OLS": {
+                  "crps": 1.568333295077504,
+                  "mae": 2.0065062908821014,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.473572432183154,
+                  "mae": 1.8641430891430895,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 386,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_IMBALANCE",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 724,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.3151810959795613,
+              "games": 639,
+              "mae": 1.6765766773367317,
+              "strength_tiebreak": 6.678925799743991e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.3131418412812708,
+              "games": 639,
+              "mae": 1.674510151614982,
+              "strength_tiebreak": 0.00019734295288103177
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.2989965897956464,
+              "games": 639,
+              "mae": 1.6551124550020457,
+              "strength_tiebreak": 0.006370652206109828
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.2834857857014867,
+              "games": 639,
+              "mae": 1.6319976553274012,
+              "strength_tiebreak": 0.05047057463239894
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2700667987841079,
+              "games": 639,
+              "mae": 1.6107775478571205,
+              "strength_tiebreak": 0.3036931501300474
+            },
+            "OLS": {
+              "crps": 1.3199905788554813,
+              "games": 639,
+              "mae": 1.6815346157695716,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2453472060830186,
+              "games": 639,
+              "mae": 1.5641013351107211,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_PAIR_GAP": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 85
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.048433087992033,
+                  "mae": 1.3297348018563346,
+                  "ridge_strength": 4.545068167331818e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.046963897456422,
+                  "mae": 1.3284186623894558,
+                  "ridge_strength": 0.00010188563656336924
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.0423585303780678,
+                  "mae": 1.3215373465095488,
+                  "ridge_strength": 0.0017916518855519063
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0292396008225269,
+                  "mae": 1.3035357806391503,
+                  "ridge_strength": 0.05013585868746948
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0167517504230714,
+                  "mae": 1.2835204553025141,
+                  "ridge_strength": 0.2984201045332424
+                },
+                "OLS": {
+                  "crps": 1.057193532096044,
+                  "mae": 1.3408303915910493,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9969844600328711,
+                  "mae": 1.2375853086637394,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 83,
+              "validation_games": 306
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.570177196523299,
+                  "mae": 2.0168553102951994,
+                  "ridge_strength": 5.972265403502181e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5661954323199376,
+                  "mae": 2.012354233768067,
+                  "ridge_strength": 0.00015110713502181102
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.5611453199565881,
+                  "mae": 2.0084093616393384,
+                  "ridge_strength": 0.002169611018364736
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.5523644624766757,
+                  "mae": 1.9970002057921714,
+                  "ridge_strength": 0.070095873467468
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.5290925313645862,
+                  "mae": 1.9590860369030751,
+                  "ridge_strength": 0.37860530682987514
+                },
+                "OLS": {
+                  "crps": 1.5744356598521685,
+                  "mae": 2.0197725746614816,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.473572432183154,
+                  "mae": 1.8641430891430895,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 386,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_PAIR_GAP",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 724,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.3203279051139603,
+              "games": 639,
+              "mae": 1.6878116865357433,
+              "strength_tiebreak": 5.258666785417e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.3175493452021978,
+              "games": 639,
+              "mae": 1.6848357911360556,
+              "strength_tiebreak": 0.00012649638579259012
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.312712209454199,
+              "games": 639,
+              "mae": 1.6794847346757769,
+              "strength_tiebreak": 0.001980631451958321
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.30185396534652,
+              "games": 639,
+              "mae": 1.6649186500850912,
+              "strength_tiebreak": 0.060115866077468744
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2837462418996357,
+              "games": 639,
+              "mae": 1.6355757583901307,
+              "strength_tiebreak": 0.3385127056815588
+            },
+            "OLS": {
+              "crps": 1.326742246560503,
+              "games": 639,
+              "mae": 1.6946453320643733,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2453472060830186,
+              "games": 639,
+              "mae": 1.5641013351107211,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_PER_LEVEL_MAKER": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 85
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.1134408381075926,
+                  "mae": 1.4181606232422332,
+                  "ridge_strength": 0.00013145674835590124
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.0905958221687029,
+                  "mae": 1.385385088935959,
+                  "ridge_strength": 0.0013425176652746866
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.070872777058444,
+                  "mae": 1.3613560598659076,
+                  "ridge_strength": 0.0059945827679198
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0546652804502687,
+                  "mae": 1.3400122319997378,
+                  "ridge_strength": 0.018263546638362542
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.026173334936218,
+                  "mae": 1.2952059971773227,
+                  "ridge_strength": 0.15191688861371536
+                },
+                "OLS": {
+                  "crps": 1.1397950051924641,
+                  "mae": 1.4549399434551171,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9969844600328711,
+                  "mae": 1.2375853086637394,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 83,
+              "validation_games": 306
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5642580396032264,
+                  "mae": 1.9840926299129793,
+                  "ridge_strength": 0.0001515284764221746
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.5449170362645184,
+                  "mae": 1.9645060258565628,
+                  "ridge_strength": 0.0011024843048025052
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.512238895525467,
+                  "mae": 1.9246351496234984,
+                  "ridge_strength": 0.004852012140269852
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.4943259422390966,
+                  "mae": 1.9041027380983566,
+                  "ridge_strength": 0.011605322723896225
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.4823994266075708,
+                  "mae": 1.8896675316629197,
+                  "ridge_strength": 0.08430584161367909
+                },
+                "OLS": {
+                  "crps": 1.5851490559179344,
+                  "mae": 2.008466731025274,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.473572432183154,
+                  "mae": 1.8641430891430895,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 386,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_PER_LEVEL_MAKER",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 724,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.3483737459292613,
+              "games": 639,
+              "mae": 1.7130829365776912,
+              "strength_tiebreak": 0.00014149261238903792
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.3273547647256771,
+              "games": 639,
+              "mae": 1.6871805067678223,
+              "strength_tiebreak": 0.001222500985038596
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.3008804725975966,
+              "games": 639,
+              "mae": 1.6548958672043699,
+              "strength_tiebreak": 0.0054232974540948265
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.2837842168754325,
+              "games": 639,
+              "mae": 1.6339748901074673,
+              "strength_tiebreak": 0.014934434681129384
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.263924960173402,
+              "games": 639,
+              "mae": 1.604995810923337,
+              "strength_tiebreak": 0.11811136511369721
+            },
+            "OLS": {
+              "crps": 1.371880918950808,
+              "games": 639,
+              "mae": 1.7433975651466054,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2453472060830186,
+              "games": 639,
+              "mae": 1.5641013351107211,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_SPREAD": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 85
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.039965607708,
+                  "mae": 1.3162654395028806,
+                  "ridge_strength": 4.709991901837907e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.0394197962463483,
+                  "mae": 1.3156515947520708,
+                  "ridge_strength": 0.00010448274058735848
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.0405766760775754,
+                  "mae": 1.3194642654635733,
+                  "ridge_strength": 0.0008479763101137088
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0247169592969934,
+                  "mae": 1.2961024464408708,
+                  "ridge_strength": 0.07293531501052697
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0182791290594146,
+                  "mae": 1.2857571594927972,
+                  "ridge_strength": 0.30659249069846545
+                },
+                "OLS": {
+                  "crps": 1.047679450572371,
+                  "mae": 1.3278351536012936,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9969844600328711,
+                  "mae": 1.2375853086637394,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 83,
+              "validation_games": 306
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.5468642804729398,
+                  "mae": 1.9824096981567731,
+                  "ridge_strength": 5.839457209541013e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.545324488790978,
+                  "mae": 1.9808766479132482,
+                  "ridge_strength": 8.921655613816489e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.540184472829391,
+                  "mae": 1.9772037139097804,
+                  "ridge_strength": 0.0010818333481311473
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.534015389539648,
+                  "mae": 1.9693948268007841,
+                  "ridge_strength": 0.03843537287553504
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.5107091287853154,
+                  "mae": 1.929166651241851,
+                  "ridge_strength": 0.3737017095513614
+                },
+                "OLS": {
+                  "crps": 1.553862983694484,
+                  "mae": 1.9896255158202074,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.473572432183154,
+                  "mae": 1.8641430891430895,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 386,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_SPREAD",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 724,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.30412407097987,
+              "games": 639,
+              "mae": 1.6634110390830779,
+              "strength_tiebreak": 5.27472455568946e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.3030602698259444,
+              "games": 639,
+              "mae": 1.6623181717515576,
+              "strength_tiebreak": 9.684964836276168e-05
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.300935668751057,
+              "games": 639,
+              "mae": 1.6622298935270896,
+              "strength_tiebreak": 0.000964904829122428
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.2901260004093624,
+              "games": 639,
+              "mae": 1.6469731235298393,
+              "strength_tiebreak": 0.055685343943031006
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2748975796208,
+              "games": 639,
+              "mae": 1.6210550636437124,
+              "strength_tiebreak": 0.34014710012491345
+            },
+            "OLS": {
+              "crps": 1.3114652354388243,
+              "games": 639,
+              "mae": 1.6727118212365024,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2453472060830186,
+              "games": 639,
+              "mae": 1.5641013351107211,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BOOK_CORRECTION": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 85
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.2162269408451776,
+                  "mae": 1.6240393688837116,
+                  "ridge_strength": 0.00014602997051626403
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.1781205755149946,
+                  "mae": 1.5662341106102167,
+                  "ridge_strength": 0.0012653235110198131
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.1440008556885704,
+                  "mae": 1.5146419197313732,
+                  "ridge_strength": 0.006694829668323532
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.1109132308415095,
+                  "mae": 1.4629250016803603,
+                  "ridge_strength": 0.030071905012214087
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0577792040143597,
+                  "mae": 1.3656884897372896,
+                  "ridge_strength": 0.17525797013401526
+                },
+                "OLS": {
+                  "crps": 79.1364397677366,
+                  "mae": 79.59831837234879,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9969844600328711,
+                  "mae": 1.2375853086637394,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 83,
+              "validation_games": 306
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.663580593288997,
+                  "mae": 2.147122096421411,
+                  "ridge_strength": 0.0001691399210583999
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.6377735787896037,
+                  "mae": 2.1192234133691787,
+                  "ridge_strength": 0.0009628357481112902
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.5878469552972008,
+                  "mae": 2.056544416298358,
+                  "ridge_strength": 0.00495772539556295
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.5413621189986,
+                  "mae": 1.9920579902976128,
+                  "ridge_strength": 0.01915721974773062
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.515450925612417,
+                  "mae": 1.947334487008339,
+                  "ridge_strength": 0.09006410953394896
+                },
+                "OLS": {
+                  "crps": 1.6792738653976818,
+                  "mae": 2.165339381875254,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.473572432183154,
+                  "mae": 1.8641430891430895,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 386,
+              "validation_games": 333
+            }
+          ],
+          "model": "BOOK_CORRECTION",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 724,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.4493549005694213,
+              "games": 639,
+              "mae": 1.8966317761920903,
+              "strength_tiebreak": 0.00015758494578733197
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.4176580560947198,
+              "games": 639,
+              "mae": 1.854411634583197,
+              "strength_tiebreak": 0.0011140796295655516
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.3753009357663073,
+              "games": 639,
+              "mae": 1.7970418123085337,
+              "strength_tiebreak": 0.005826277531943241
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.3352316655149226,
+              "games": 639,
+              "mae": 1.7386703619456898,
+              "strength_tiebreak": 0.024614562379972352
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2962841856922207,
+              "games": 639,
+              "mae": 1.6687997840898086,
+              "strength_tiebreak": 0.13266103983398211
+            },
+            "OLS": {
+              "crps": 38.7714378186304,
+              "games": 639,
+              "mae": 39.245920870271036,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.2453472060830186,
+              "games": 639,
+              "mae": 1.5641013351107211,
+              "strength_tiebreak": 0.0
+            }
+          }
+        }
+      },
+      "1": {
+        "BASE_CORRECTION": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 88
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.1087670188417595,
+                  "mae": 1.4998374192860868,
+                  "ridge_strength": 3.629297620451821e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.0961629686812935,
+                  "mae": 1.4809036258617638,
+                  "ridge_strength": 8.353094399815256e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.0937867136440664,
+                  "mae": 1.4806232950074665,
+                  "ridge_strength": 0.0008810761614896635
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0919953504124063,
+                  "mae": 1.4789088359462084,
+                  "ridge_strength": 0.006871792939481624
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0695871078941133,
+                  "mae": 1.443012994019036,
+                  "ridge_strength": 0.25127694304509246
+                },
+                "OLS": {
+                  "crps": 1.1614081346823937,
+                  "mae": 1.5770405593293595,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9821268685164354,
+                  "mae": 1.2925780998971785,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 86,
+              "validation_games": 304
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3730807102366882,
+                  "mae": 1.7419261557375592,
+                  "ridge_strength": 4.38686408876211e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3694928679522698,
+                  "mae": 1.7369737356633286,
+                  "ridge_strength": 8.71772692745709e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3617775979025497,
+                  "mae": 1.7293304030415564,
+                  "ridge_strength": 0.0008957480116624974
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.3604266082015855,
+                  "mae": 1.7295738941768168,
+                  "ridge_strength": 0.007345830049267255
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.342193369680562,
+                  "mae": 1.7071809694565832,
+                  "ridge_strength": 0.2512340569645264
+                },
+                "OLS": {
+                  "crps": 1.3850487910557576,
+                  "mae": 1.7589963628538798,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3144512783503255,
+                  "mae": 1.6696631779965108,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 387,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_CORRECTION",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 725,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.2469404242334574,
+              "games": 637,
+              "mae": 1.6263924416382691,
+              "strength_tiebreak": 4.008080854606965e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.2390497135121175,
+              "games": 637,
+              "mae": 1.6147675922101494,
+              "strength_tiebreak": 8.535410663636174e-05
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.2338824192297417,
+              "games": 637,
+              "mae": 1.6106381568212063,
+              "strength_tiebreak": 0.0008884120865760804
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.2323212669646775,
+              "games": 637,
+              "mae": 1.6099472415832456,
+              "strength_tiebreak": 0.007108811494374439
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2120955618578302,
+              "games": 637,
+              "mae": 1.5811102245067958,
+              "strength_tiebreak": 0.25125550000480945
+            },
+            "OLS": {
+              "crps": 1.2783191842464914,
+              "games": 637,
+              "mae": 1.6721603121922568,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.1558537578016561,
+              "games": 637,
+              "mae": 1.4897042082285403,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_API_FLOW": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 88
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.183977096495256,
+                  "mae": 1.6244615473500021,
+                  "ridge_strength": 6.597980073460992e-06
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.1505188598070175,
+                  "mae": 1.5748875088211982,
+                  "ridge_strength": 8.638283770410911e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.1272107670926639,
+                  "mae": 1.5369620404906787,
+                  "ridge_strength": 0.0009822753905854675
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.1130485392762526,
+                  "mae": 1.5150587607646784,
+                  "ridge_strength": 0.02213325666349876
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.101987010804863,
+                  "mae": 1.4978355424347949,
+                  "ridge_strength": 0.4149839302194185
+                },
+                "OLS": {
+                  "crps": 45.15143097839288,
+                  "mae": 45.602396463681984,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9821268685164354,
+                  "mae": 1.2925780998971785,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 86,
+              "validation_games": 304
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3665261686102577,
+                  "mae": 1.7311068847296507,
+                  "ridge_strength": 6.034205721736476e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.36215088436784,
+                  "mae": 1.7258558788956893,
+                  "ridge_strength": 0.00022844614809641094
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.357853831004131,
+                  "mae": 1.7218254763316523,
+                  "ridge_strength": 0.0022031232986728646
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.354332152604949,
+                  "mae": 1.7198747105370578,
+                  "ridge_strength": 0.054295356734332396
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.3346639283559645,
+                  "mae": 1.6955347046892928,
+                  "ridge_strength": 0.38860122152396775
+                },
+                "OLS": {
+                  "crps": 1.3764933209554064,
+                  "mae": 1.7461420347860537,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3144512783503255,
+                  "mae": 1.6696631779965108,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 387,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_API_FLOW",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 725,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.2794069881974468,
+              "games": 637,
+              "mae": 1.680211778664638,
+              "strength_tiebreak": 3.347001864541288e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.261152241563303,
+              "games": 637,
+              "mae": 1.6538081795194808,
+              "strength_tiebreak": 0.00015741449290026003
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.2477824158878268,
+              "games": 637,
+              "mae": 1.6336017958047195,
+              "strength_tiebreak": 0.001592699344629166
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.2391826730885853,
+              "games": 637,
+              "mae": 1.6221289511480417,
+              "strength_tiebreak": 0.03821430669891558
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2236218829312628,
+              "games": 637,
+              "mae": 1.6011853399712903,
+              "strength_tiebreak": 0.40179257587169315
+            },
+            "OLS": {
+              "crps": 22.26751537411239,
+              "games": 637,
+              "mae": 22.67597146396089,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.1558537578016561,
+              "games": 637,
+              "mae": 1.4897042082285403,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_CONSUMED_LEVEL_REFILL": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 88
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 0.9943739192260231,
+                  "mae": 1.3142992987389486,
+                  "ridge_strength": 3.629297620451821e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 0.99305201874531,
+                  "mae": 1.3131197390334128,
+                  "ridge_strength": 8.353094399815256e-05
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 0.9919425744765774,
+                  "mae": 1.3128965696713448,
+                  "ridge_strength": 0.0008810761614896635
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 0.9918817939513348,
+                  "mae": 1.3130461032682779,
+                  "ridge_strength": 0.006871792939481624
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 0.9918618803833009,
+                  "mae": 1.3135437053366057,
+                  "ridge_strength": 0.25127694304509246
+                },
+                "OLS": {
+                  "crps": 0.9991537867358126,
+                  "mae": 1.319208351073358,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9821268685164354,
+                  "mae": 1.2925780998971785,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 86,
+              "validation_games": 304
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3146567620016074,
+                  "mae": 1.6700950207318086,
+                  "ridge_strength": 8.102436348578417e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3146138130968161,
+                  "mae": 1.6699988436190845,
+                  "ridge_strength": 0.00015946700072639087
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3145045598827665,
+                  "mae": 1.6697895976752397,
+                  "ridge_strength": 0.0009264056488958568
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.3145123763384234,
+                  "mae": 1.6698787352482243,
+                  "ridge_strength": 0.01049621761167162
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.3145767870927827,
+                  "mae": 1.6699531315622087,
+                  "ridge_strength": 0.2000527316421194
+                },
+                "OLS": {
+                  "crps": 1.314882083673989,
+                  "mae": 1.6705589104842042,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3144512783503255,
+                  "mae": 1.6696631779965108,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 387,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_CONSUMED_LEVEL_REFILL",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 725,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.1618059233771532,
+              "games": 637,
+              "mae": 1.5002961204400824,
+              "strength_tiebreak": 5.8658669845151196e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.1611526113968824,
+              "games": 637,
+              "mae": 1.4996829130161893,
+              "strength_tiebreak": 0.00012149897236227172
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.1605660299557945,
+              "games": 637,
+              "mae": 1.4994670223013244,
+              "strength_tiebreak": 0.0009037409051927601
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.1605411093907394,
+              "games": 637,
+              "mae": 1.4995849830945294,
+              "strength_tiebreak": 0.008684005275576622
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.160565277454349,
+              "games": 637,
+              "mae": 1.4998613488736945,
+              "strength_tiebreak": 0.22566483734360593
+            },
+            "OLS": {
+              "crps": 1.1642048430629912,
+              "games": 637,
+              "mae": 1.5028814064639575,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.1558537578016561,
+              "games": 637,
+              "mae": 1.4897042082285403,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_IMBALANCE": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 88
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.0481481106757073,
+                  "mae": 1.4099839820311608,
+                  "ridge_strength": 6.264254107604078e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.0470998816582677,
+                  "mae": 1.4083027056576627,
+                  "ridge_strength": 0.0001837195638639627
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.045929225659987,
+                  "mae": 1.4083746268323372,
+                  "ridge_strength": 0.006345203295461381
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0382370609647138,
+                  "mae": 1.3981708389546839,
+                  "ridge_strength": 0.06318189730663276
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0345754339268118,
+                  "mae": 1.3930743664334446,
+                  "ridge_strength": 0.2974506782778647
+                },
+                "OLS": {
+                  "crps": 1.0694157929050727,
+                  "mae": 1.4378081287909965,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9821268685164354,
+                  "mae": 1.2925780998971785,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 86,
+              "validation_games": 304
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3757457677305476,
+                  "mae": 1.7441558284267453,
+                  "ridge_strength": 7.451270327716183e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3745260882048265,
+                  "mae": 1.74355478088625,
+                  "ridge_strength": 0.0002277587264967593
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3596680445667406,
+                  "mae": 1.7217296781141773,
+                  "ridge_strength": 0.006817026575261122
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.3408370107597316,
+                  "mae": 1.6950135221317295,
+                  "ridge_strength": 0.039505015528047395
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.3349890565559792,
+                  "mae": 1.6926655116600706,
+                  "ridge_strength": 0.24625881796602575
+                },
+                "OLS": {
+                  "crps": 1.3822706334222599,
+                  "mae": 1.7526324777297657,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3144512783503255,
+                  "mae": 1.6696631779965108,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 387,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_IMBALANCE",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 725,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.2194040287279242,
+              "games": 637,
+              "mae": 1.5846766427057755,
+              "strength_tiebreak": 6.857762217660131e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.2182661717367678,
+              "games": 637,
+              "mae": 1.583560069945134,
+              "strength_tiebreak": 0.00020573914518036098
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.2099402565798445,
+              "games": 637,
+              "mae": 1.5721850382559674,
+              "strength_tiebreak": 0.006581114935361251
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.1964251037931926,
+              "games": 637,
+              "mae": 1.5533491960943326,
+              "strength_tiebreak": 0.051343456417340075
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.1916205459134885,
+              "games": 637,
+              "mae": 1.5496895177057617,
+              "strength_tiebreak": 0.2718547481219452
+            },
+            "OLS": {
+              "crps": 1.2329647126730845,
+              "games": 637,
+              "mae": 1.602386634594152,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.1558537578016561,
+              "games": 637,
+              "mae": 1.4897042082285403,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_PAIR_GAP": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 88
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.058833172073293,
+                  "mae": 1.4274546307701927,
+                  "ridge_strength": 3.749785657796966e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.0554225264023056,
+                  "mae": 1.4258691528423557,
+                  "ridge_strength": 0.00014416253428498695
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.0585305959187468,
+                  "mae": 1.4333329831755837,
+                  "ridge_strength": 0.002040380241953253
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0500002245519375,
+                  "mae": 1.4201552077239161,
+                  "ridge_strength": 0.052252869841145834
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0413756389663213,
+                  "mae": 1.405766541833413,
+                  "ridge_strength": 0.32023537028489574
+                },
+                "OLS": {
+                  "crps": 1.071348414448994,
+                  "mae": 1.4481222474054518,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9821268685164354,
+                  "mae": 1.2925780998971785,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 86,
+              "validation_games": 304
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3968454083288036,
+                  "mae": 1.7743330817706708,
+                  "ridge_strength": 5.940304189965668e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3916123444636725,
+                  "mae": 1.7676204370771962,
+                  "ridge_strength": 0.00013728488290670567
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3829389179544118,
+                  "mae": 1.7575800694722261,
+                  "ridge_strength": 0.0021740974146158085
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.3620701689844805,
+                  "mae": 1.7311457391222356,
+                  "ridge_strength": 0.06682095916160279
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.3506746986629243,
+                  "mae": 1.7190731678379865,
+                  "ridge_strength": 0.3924723010075665
+                },
+                "OLS": {
+                  "crps": 1.412491457733559,
+                  "mae": 1.7936370755861797,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3144512783503255,
+                  "mae": 1.6696631779965108,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 387,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_PAIR_GAP",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 725,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.2355334462853578,
+              "games": 637,
+              "mae": 1.6087898335695008,
+              "strength_tiebreak": 4.845044923881317e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.2311701079006345,
+              "games": 637,
+              "mae": 1.6045240628112754,
+              "strength_tiebreak": 0.00014072370859584632
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.2281192477835452,
+              "games": 637,
+              "mae": 1.6028373469695898,
+              "strength_tiebreak": 0.002107238828284531
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.2131388297262498,
+              "games": 637,
+              "mae": 1.5827295357547488,
+              "strength_tiebreak": 0.05953691450137431
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.203065728258267,
+              "games": 637,
+              "mae": 1.5695516383161805,
+              "strength_tiebreak": 0.35635383564623113
+            },
+            "OLS": {
+              "crps": 1.2496853585836256,
+              "games": 637,
+              "mae": 1.6287445987150004,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.1558537578016561,
+              "games": 637,
+              "mae": 1.4897042082285403,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_PER_LEVEL_MAKER": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 88
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.119540620912536,
+                  "mae": 1.5051997512242385,
+                  "ridge_strength": 0.00024340011829144146
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.1099039400021078,
+                  "mae": 1.4965461022033562,
+                  "ridge_strength": 0.0018888256200089877
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.0844780744300184,
+                  "mae": 1.4625344044294648,
+                  "ridge_strength": 0.007273776710367526
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0696432813302128,
+                  "mae": 1.4450946765921815,
+                  "ridge_strength": 0.02019760928815999
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.052876619098101,
+                  "mae": 1.4221249294810763,
+                  "ridge_strength": 0.1539337090369917
+                },
+                "OLS": {
+                  "crps": 1.1264573164866374,
+                  "mae": 1.512132712983916,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9821268685164354,
+                  "mae": 1.2925780998971785,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 86,
+              "validation_games": 304
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.377279467256653,
+                  "mae": 1.7478672638559223,
+                  "ridge_strength": 0.00016335092354616902
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3634875882161075,
+                  "mae": 1.7261007347223223,
+                  "ridge_strength": 0.0012218499790951382
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3494415148871703,
+                  "mae": 1.7053099899261563,
+                  "ridge_strength": 0.005183159347630737
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.3432258984053582,
+                  "mae": 1.6978386355004262,
+                  "ridge_strength": 0.012758093846843066
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.3328346849624282,
+                  "mae": 1.6879346532616242,
+                  "ridge_strength": 0.09175757811338967
+                },
+                "OLS": {
+                  "crps": 1.3913117585251658,
+                  "mae": 1.7703930253376674,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3144512783503255,
+                  "mae": 1.6696631779965108,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 387,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_PER_LEVEL_MAKER",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 725,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.2542769409009056,
+              "games": 637,
+              "mae": 1.6320573363205497,
+              "strength_tiebreak": 0.00020337552091880524
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.2424680763525977,
+              "games": 637,
+              "mae": 1.61654875939145,
+              "strength_tiebreak": 0.001555337799552063
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.2229911445591106,
+              "games": 637,
+              "mae": 1.5894484860156473,
+              "strength_tiebreak": 0.006228468028999132
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.2126621376661995,
+              "games": 637,
+              "mae": 1.5772198544829905,
+              "strength_tiebreak": 0.016477851567501527
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.1992283238592019,
+              "games": 637,
+              "mae": 1.5610804051779716,
+              "strength_tiebreak": 0.12284564357519068
+            },
+            "OLS": {
+              "crps": 1.2649134062807192,
+              "games": 637,
+              "mae": 1.6471416360825017,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.1558537578016561,
+              "games": 637,
+              "mae": 1.4897042082285403,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BASE_PLUS_SPREAD": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 88
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.044713487840032,
+                  "mae": 1.4044971770130745,
+                  "ridge_strength": 3.772601640285274e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.0481146685784932,
+                  "mae": 1.4122567308211726,
+                  "ridge_strength": 0.00014146508736753328
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.0533470227215376,
+                  "mae": 1.4238816919613817,
+                  "ridge_strength": 0.00097604914501281
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.042356875844609,
+                  "mae": 1.4071386193062843,
+                  "ridge_strength": 0.057321427658851724
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0369018448279823,
+                  "mae": 1.3986859850889872,
+                  "ridge_strength": 0.3433376835215724
+                },
+                "OLS": {
+                  "crps": 1.0637661940618612,
+                  "mae": 1.4303103886399617,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9821268685164354,
+                  "mae": 1.2925780998971785,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 86,
+              "validation_games": 304
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3747576973416464,
+                  "mae": 1.7471755461307272,
+                  "ridge_strength": 5.9874038004908285e-05
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.3711167048036095,
+                  "mae": 1.7423340767334092,
+                  "ridge_strength": 0.00013656281748108975
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.368128721838359,
+                  "mae": 1.7391646369780014,
+                  "ridge_strength": 0.0010605326461331278
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.3604431876733223,
+                  "mae": 1.7307109130971412,
+                  "ridge_strength": 0.037538592859696594
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.3440271888513387,
+                  "mae": 1.7101032438732666,
+                  "ridge_strength": 0.3844004109497792
+                },
+                "OLS": {
+                  "crps": 1.3878027339931822,
+                  "mae": 1.7655967912281711,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3144512783503255,
+                  "mae": 1.6696631779965108,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 387,
+              "validation_games": 333
+            }
+          ],
+          "model": "BASE_PLUS_SPREAD",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 725,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.2172483728699186,
+              "games": 637,
+              "mae": 1.5836367326114709,
+              "strength_tiebreak": 4.880002720388051e-05
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.2169681663225498,
+              "games": 637,
+              "mae": 1.5848089383388726,
+              "strength_tiebreak": 0.00013901395242431152
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.2179032327778985,
+              "games": 637,
+              "mae": 1.5886999348036654,
+              "strength_tiebreak": 0.001018290895572969
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.2086406149952553,
+              "games": 637,
+              "mae": 1.5762902265784275,
+              "strength_tiebreak": 0.04743001025927416
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.1974555960992188,
+              "games": 637,
+              "mae": 1.5614833903875192,
+              "strength_tiebreak": 0.3638690472356758
+            },
+            "OLS": {
+              "crps": 1.2331604920165393,
+              "games": 637,
+              "mae": 1.605585697999261,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.1558537578016561,
+              "games": 637,
+              "mae": 1.4897042082285403,
+              "strength_tiebreak": 0.0
+            }
+          }
+        },
+        "BOOK_CORRECTION": {
+          "choice": "ZERO",
+          "folds": [
+            {
+              "cutoff": 1776618420,
+              "month": "2026-04",
+              "status": "NO_INNER_VALIDATION_TRAINING",
+              "training_games": 0,
+              "validation_games": 88
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.3073405912547698,
+                  "mae": 1.7339741910415878,
+                  "ridge_strength": 0.0002663177749826116
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.2841511606300477,
+                  "mae": 1.7098966232171477,
+                  "ridge_strength": 0.0014497541941871988
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.2061149404129494,
+                  "mae": 1.616883349052968,
+                  "ridge_strength": 0.008123790505584733
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.0976709475108049,
+                  "mae": 1.4838391930215766,
+                  "ridge_strength": 0.03266059434543691
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.0708194932168664,
+                  "mae": 1.4479710125106937,
+                  "ridge_strength": 0.17776613649271644
+                },
+                "OLS": {
+                  "crps": 33.4755091817704,
+                  "mae": 33.92859666983187,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 0.9821268685164354,
+                  "mae": 1.2925780998971785,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1777545480,
+              "month": "2026-05",
+              "status": "VALIDATED",
+              "training_games": 86,
+              "validation_games": 304
+            },
+            {
+              "candidate_scores": {
+                "EIGEN_Q0.1": {
+                  "crps": 1.4310549276637279,
+                  "mae": 1.8236134290349495,
+                  "ridge_strength": 0.0002085915890988546
+                },
+                "EIGEN_Q0.25": {
+                  "crps": 1.4186433873815012,
+                  "mae": 1.8068997429558948,
+                  "ridge_strength": 0.0009988698532002174
+                },
+                "EIGEN_Q0.5": {
+                  "crps": 1.3956721089679591,
+                  "mae": 1.7727909033909337,
+                  "ridge_strength": 0.0053532423152998065
+                },
+                "EIGEN_Q0.75": {
+                  "crps": 1.3730825647824285,
+                  "mae": 1.7378544517506527,
+                  "ridge_strength": 0.02035551306992173
+                },
+                "EIGEN_Q0.9": {
+                  "crps": 1.3480619446210629,
+                  "mae": 1.7020620304783314,
+                  "ridge_strength": 0.0974857201862579
+                },
+                "OLS": {
+                  "crps": 1.4518022969110937,
+                  "mae": 1.8490487094253567,
+                  "ridge_strength": 0.0
+                },
+                "ZERO": {
+                  "crps": 1.3144512783503255,
+                  "mae": 1.6696631779965108,
+                  "ridge_strength": 0
+                }
+              },
+              "cutoff": 1780150080,
+              "month": "2026-06",
+              "status": "VALIDATED",
+              "training_games": 387,
+              "validation_games": 333
+            }
+          ],
+          "model": "BOOK_CORRECTION",
+          "names": [
+            "first_own",
+            "first_partner",
+            "log_mtb",
+            "role:CLIMBER",
+            "role:FALLER",
+            "role:NOT_CALLABLE"
+          ],
+          "reason": "ZERO_WEIGHT_BY_VALIDATION; NO_STRICT_INNER_MAE_IMPROVEMENT",
+          "training_games": 725,
+          "validation_curve": {
+            "EIGEN_Q0.1": {
+              "crps": 1.3720138628782914,
+              "games": 637,
+              "mae": 1.7808342636503625,
+              "strength_tiebreak": 0.0002374546820407331
+            },
+            "EIGEN_Q0.25": {
+              "crps": 1.35445871401817,
+              "games": 637,
+              "mae": 1.7606062603804173,
+              "strength_tiebreak": 0.001224312023693708
+            },
+            "EIGEN_Q0.5": {
+              "crps": 1.3052084052933552,
+              "games": 637,
+              "mae": 1.698386042294008,
+              "strength_tiebreak": 0.0067385164104422695
+            },
+            "EIGEN_Q0.75": {
+              "crps": 1.241645937387494,
+              "games": 637,
+              "mae": 1.6166289593587548,
+              "strength_tiebreak": 0.02650805370767932
+            },
+            "EIGEN_Q0.9": {
+              "crps": 1.2157515753481027,
+              "games": 637,
+              "mae": 1.5808003829710133,
+              "strength_tiebreak": 0.13762592833948717
+            },
+            "OLS": {
+              "crps": 16.73470165797425,
+              "games": 637,
+              "mae": 17.15859750057698,
+              "strength_tiebreak": 0.0
+            },
+            "ZERO": {
+              "crps": 1.1558537578016561,
+              "games": 637,
+              "mae": 1.4897042082285403,
+              "strength_tiebreak": 0.0
+            }
+          }
+        }
+      }
+    },
+    "reference": {
+      "no_named_checks_or_population_scoreboards_opened": true,
+      "receipt": {
+        "commit": "c7825925",
+        "path": "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_RECEIPT.json",
+        "sha256": "51213167ea2fd082f20bd59bc9a75dc5bde534cc3be9a53ef3341692f20f3631"
+      },
+      "reference": {
+        "commit": "c7825925",
+        "structural_equivalence": [
+          "load_tick_library",
+          "load_named_inputs",
+          "initial_pool",
+          "remaining_floor",
+          "Pair",
+          "Leg",
+          "role",
+          "date_key"
+        ]
+      }
+    }
+  }
+}

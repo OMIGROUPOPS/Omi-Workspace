@@ -1,0 +1,233 @@
+{
+  "audit_gate": {
+    "ATP_CHALL": {
+      "measured_independent_games": 763,
+      "minimum": 100,
+      "pass": true
+    },
+    "ATP_MAIN": {
+      "measured_independent_games": 449,
+      "minimum": 100,
+      "pass": true
+    }
+  },
+  "code_sha256s": {
+    "absorption_audit.py": "424d33cbe7e0b281d25e0e95d36e999485f5e36b6a18df2a8e8dd19bf6eac4ba",
+    "absorption_residual_data.py": "523bf3769823bfd6eca5ebcdf0575bf9959b2ccf4bfa798c55aa268c25e2ef9c",
+    "absorption_residual_model.py": "655aa0f6f3b14642928b3094324c76ede8aaf6b90f0f5dc9b86c45af1d1c9431",
+    "absorption_residual_pipeline.py": "99f10971e18f48d85e4743332299696672d159e1ad465df93aec1beffea5d2ba",
+    "absorption_residual_run.py": "afc730e0539bdeaf7236365009382ee671b38017f61d8cfe33ddd96891f1d0af",
+    "freeze_absorption_residual.py": "ec731e2e64f6879a494efac9591caf47449b827fc530a495110e2f9e0e27c894",
+    "publish_absorption_residual.py": "8ebc548568ebb9fc79539fbb5695e4b13660da9d993f5afa5010840164d527c2",
+    "resume_absorption_confirmation.py": "772428b9ce3e058591d2b44d0adba51507972359108597084aeaa58697b446e5",
+    "test_absorption_audit.py": "b1ab39162176397dad2cce9cc97ea45d1ef462a778e89ffb8279e8394e9363b7",
+    "test_absorption_residual_data.py": "3e5005063785cd90c7d510cd13ff2d8337232c52d496b09da5d15d9c6cfba4bf",
+    "test_absorption_residual_model.py": "163bc55029969602bd2fefcf18d2fffcf9c52d8cf91aa3d42bc1ca8b91e64f5c",
+    "test_absorption_residual_run.py": "acdd26ca15f20cc59fce77de916ef36aaff4d7ce0fb36c47cd6c38ea415f47ae"
+  },
+  "cohort_checks": [
+    {
+      "category": "ATP_MAIN",
+      "duplicate_receipts": 0,
+      "first_out_of_range_calls": 1,
+      "first_out_of_range_max": -1.0,
+      "first_out_of_range_min": -1.0,
+      "games_with_atlas_rows": 788,
+      "phase": "development",
+      "selected_games": 788,
+      "side_gate_rows": 19112,
+      "zero_atlas_games": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "duplicate_receipts": 0,
+      "first_out_of_range_calls": 5,
+      "first_out_of_range_max": -1.0,
+      "first_out_of_range_min": -2.0,
+      "games_with_atlas_rows": 1922,
+      "phase": "development",
+      "selected_games": 1943,
+      "side_gate_rows": 32346,
+      "zero_atlas_games": 21
+    },
+    {
+      "category": "ATP_MAIN",
+      "duplicate_receipts": 0,
+      "first_out_of_range_calls": 0,
+      "first_out_of_range_max": null,
+      "first_out_of_range_min": null,
+      "games_with_atlas_rows": 140,
+      "phase": "confirmation",
+      "selected_games": 140,
+      "side_gate_rows": 3924,
+      "zero_atlas_games": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "duplicate_receipts": 0,
+      "first_out_of_range_calls": 0,
+      "first_out_of_range_max": null,
+      "first_out_of_range_min": null,
+      "games_with_atlas_rows": 342,
+      "phase": "confirmation",
+      "selected_games": 344,
+      "side_gate_rows": 5814,
+      "zero_atlas_games": 2
+    }
+  ],
+  "confirmation_access": {
+    "ATP_CHALL": {
+      "binding": {
+        "audit_aggregate_sha256": "f95c5bada3a0bba4f2d5b84435e6f5651b0062ee7220e7e1a2e678f2922869b1",
+        "code": {
+          "absorption_residual_data.py": "523bf3769823bfd6eca5ebcdf0575bf9959b2ccf4bfa798c55aa268c25e2ef9c",
+          "absorption_residual_model.py": "655aa0f6f3b14642928b3094324c76ede8aaf6b90f0f5dc9b86c45af1d1c9431",
+          "absorption_residual_run.py": "219174c5c37f6d1a4f075383a0514c2e864bbafe16ad8a3c6d0564ff0af7a2dc",
+          "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+          "conduct_scoreboard_v2.py": "a53fba520a2ddf6925c33be9fed86f3bb2e751a1000ee969bccccd0781ffc450",
+          "feature_panel_bench.py": "9f6d7a0730b08eed1f17132438b8db0d45b4f93b7ec7ffab4cdedea4b4bf1e4d",
+          "feature_panel_inventory_gate_extract.py": "1978bcc675d8090e06df9ebed5a601cad8c88f72ba5ee668c3f11fdcc4ad5618",
+          "feature_panel_run.py": "d57397ffc6b566281eb3d59a26fb667ea68f07f4a9782186c02bfb25bc0ef972",
+          "feature_panel_scoring.py": "3556cda79e3a4f39dd338d9b643548949abb06f3769e456ba3c1277d6c31a3f9",
+          "tune_bench_floor_calls.py": "7e605a8cceded5f9a4a3ab29f375f0e1ae90320d3a45caa3169ef52ac7b404ba",
+          "tune_bench_v2_survivorship.py": "1cf7b7787daa40c45e096546edadebae6cef778184a7ca219404309646c1a8da"
+        },
+        "contract_sha256": "f5fc318b71ee3c01aaa618672f996192ac99ea83c56fac8937a7946e3a18a5d1",
+        "counts_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+        "gate_inputs_sha256": "53c4851ad03bbe86e82555c5dc13075ec7e150a0a56718f4b7a385de45b86273",
+        "gate_receipt_sha256": "ca39df332501d67739cc2a562c8d431fd3d7ce8a5068d084bca615f7bd6bbeca",
+        "input_pins_sha256": "b8b4fa0c0b3ff133a949c9c9aa488361d8993e2464e905ac4037b9942f9e60c3",
+        "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+        "remote_audit_receipt_sha256": "923d1e64af27e2371e22fb2743c09875dd7982f666556f41da222bbde316c54d",
+        "reservation_sha256": "35c446003a9aed6c11b2600ae59509f811160188fd7a324c98276e885970676f",
+        "source_receipt_sha256": "c52187b9c03405fda698c6830b22bc6c7b61b81e0baf1215a908b41a93a8b1fe",
+        "witness_sha256": "139178e58a581fe7e68b52d8bb350daab0f5226aa9acd3cf8a2ac756e82d72f6"
+      },
+      "label": "historically inspected — not fresh",
+      "model_sha256": "688c71644e85c4fcb33cb6b95e785a9ca4deb5e92323ac4959e50b21de23b1ee",
+      "started_at": "2026-09-13T21:48:20.564634+00:00"
+    },
+    "ATP_MAIN": {
+      "binding": {
+        "audit_aggregate_sha256": "f95c5bada3a0bba4f2d5b84435e6f5651b0062ee7220e7e1a2e678f2922869b1",
+        "code": {
+          "absorption_residual_data.py": "523bf3769823bfd6eca5ebcdf0575bf9959b2ccf4bfa798c55aa268c25e2ef9c",
+          "absorption_residual_model.py": "655aa0f6f3b14642928b3094324c76ede8aaf6b90f0f5dc9b86c45af1d1c9431",
+          "absorption_residual_run.py": "219174c5c37f6d1a4f075383a0514c2e864bbafe16ad8a3c6d0564ff0af7a2dc",
+          "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+          "conduct_scoreboard_v2.py": "a53fba520a2ddf6925c33be9fed86f3bb2e751a1000ee969bccccd0781ffc450",
+          "feature_panel_bench.py": "9f6d7a0730b08eed1f17132438b8db0d45b4f93b7ec7ffab4cdedea4b4bf1e4d",
+          "feature_panel_inventory_gate_extract.py": "1978bcc675d8090e06df9ebed5a601cad8c88f72ba5ee668c3f11fdcc4ad5618",
+          "feature_panel_run.py": "d57397ffc6b566281eb3d59a26fb667ea68f07f4a9782186c02bfb25bc0ef972",
+          "feature_panel_scoring.py": "3556cda79e3a4f39dd338d9b643548949abb06f3769e456ba3c1277d6c31a3f9",
+          "tune_bench_floor_calls.py": "7e605a8cceded5f9a4a3ab29f375f0e1ae90320d3a45caa3169ef52ac7b404ba",
+          "tune_bench_v2_survivorship.py": "1cf7b7787daa40c45e096546edadebae6cef778184a7ca219404309646c1a8da"
+        },
+        "contract_sha256": "f5fc318b71ee3c01aaa618672f996192ac99ea83c56fac8937a7946e3a18a5d1",
+        "counts_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+        "gate_inputs_sha256": "53c4851ad03bbe86e82555c5dc13075ec7e150a0a56718f4b7a385de45b86273",
+        "gate_receipt_sha256": "ca39df332501d67739cc2a562c8d431fd3d7ce8a5068d084bca615f7bd6bbeca",
+        "input_pins_sha256": "b8b4fa0c0b3ff133a949c9c9aa488361d8993e2464e905ac4037b9942f9e60c3",
+        "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+        "remote_audit_receipt_sha256": "923d1e64af27e2371e22fb2743c09875dd7982f666556f41da222bbde316c54d",
+        "reservation_sha256": "35c446003a9aed6c11b2600ae59509f811160188fd7a324c98276e885970676f",
+        "source_receipt_sha256": "c52187b9c03405fda698c6830b22bc6c7b61b81e0baf1215a908b41a93a8b1fe",
+        "witness_sha256": "139178e58a581fe7e68b52d8bb350daab0f5226aa9acd3cf8a2ac756e82d72f6"
+      },
+      "label": "historically inspected — not fresh",
+      "model_sha256": "4ac65fda0712d133555309886f63ae62c7b12ed86c1245a08d73ae8cea46ea83",
+      "started_at": "2026-09-13T21:47:48.297601+00:00"
+    }
+  },
+  "confirmation_label": "historically inspected — not fresh",
+  "contract_sha256": "f5fc318b71ee3c01aaa618672f996192ac99ea83c56fac8937a7946e3a18a5d1",
+  "engine_unchanged": {
+    "build_window1_v54_dual_belief.js": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c",
+    "window1_v54_dual_belief_os.js": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74"
+  },
+  "failure_and_resume": "Confirmation stopped after MAIN 140 and CHALL 109 at a zero-atlas game. Empty-input-only guard verified by AST; no refit, completed source outcomes not reopened; original checkpoints/models preserved.",
+  "fresh_confirmation": "DEFERRED to LIVE_PAPER after DESK activation",
+  "input_binding_confirmation": {
+    "audit_aggregate_sha256": "f95c5bada3a0bba4f2d5b84435e6f5651b0062ee7220e7e1a2e678f2922869b1",
+    "code": {
+      "absorption_residual_data.py": "523bf3769823bfd6eca5ebcdf0575bf9959b2ccf4bfa798c55aa268c25e2ef9c",
+      "absorption_residual_model.py": "655aa0f6f3b14642928b3094324c76ede8aaf6b90f0f5dc9b86c45af1d1c9431",
+      "absorption_residual_run.py": "afc730e0539bdeaf7236365009382ee671b38017f61d8cfe33ddd96891f1d0af",
+      "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+      "conduct_scoreboard_v2.py": "a53fba520a2ddf6925c33be9fed86f3bb2e751a1000ee969bccccd0781ffc450",
+      "feature_panel_bench.py": "9f6d7a0730b08eed1f17132438b8db0d45b4f93b7ec7ffab4cdedea4b4bf1e4d",
+      "feature_panel_inventory_gate_extract.py": "1978bcc675d8090e06df9ebed5a601cad8c88f72ba5ee668c3f11fdcc4ad5618",
+      "feature_panel_run.py": "d57397ffc6b566281eb3d59a26fb667ea68f07f4a9782186c02bfb25bc0ef972",
+      "feature_panel_scoring.py": "3556cda79e3a4f39dd338d9b643548949abb06f3769e456ba3c1277d6c31a3f9",
+      "tune_bench_floor_calls.py": "7e605a8cceded5f9a4a3ab29f375f0e1ae90320d3a45caa3169ef52ac7b404ba",
+      "tune_bench_v2_survivorship.py": "1cf7b7787daa40c45e096546edadebae6cef778184a7ca219404309646c1a8da"
+    },
+    "contract_sha256": "f5fc318b71ee3c01aaa618672f996192ac99ea83c56fac8937a7946e3a18a5d1",
+    "counts_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+    "gate_inputs_sha256": "53c4851ad03bbe86e82555c5dc13075ec7e150a0a56718f4b7a385de45b86273",
+    "gate_receipt_sha256": "ca39df332501d67739cc2a562c8d431fd3d7ce8a5068d084bca615f7bd6bbeca",
+    "input_pins_sha256": "b8b4fa0c0b3ff133a949c9c9aa488361d8993e2464e905ac4037b9942f9e60c3",
+    "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+    "remote_audit_receipt_sha256": "923d1e64af27e2371e22fb2743c09875dd7982f666556f41da222bbde316c54d",
+    "reservation_sha256": "35c446003a9aed6c11b2600ae59509f811160188fd7a324c98276e885970676f",
+    "source_receipt_sha256": "c52187b9c03405fda698c6830b22bc6c7b61b81e0baf1215a908b41a93a8b1fe",
+    "witness_sha256": "139178e58a581fe7e68b52d8bb350daab0f5226aa9acd3cf8a2ac756e82d72f6"
+  },
+  "input_binding_development": {
+    "audit_aggregate_sha256": "f95c5bada3a0bba4f2d5b84435e6f5651b0062ee7220e7e1a2e678f2922869b1",
+    "code": {
+      "absorption_residual_data.py": "523bf3769823bfd6eca5ebcdf0575bf9959b2ccf4bfa798c55aa268c25e2ef9c",
+      "absorption_residual_model.py": "655aa0f6f3b14642928b3094324c76ede8aaf6b90f0f5dc9b86c45af1d1c9431",
+      "absorption_residual_run.py": "219174c5c37f6d1a4f075383a0514c2e864bbafe16ad8a3c6d0564ff0af7a2dc",
+      "conduct_scoreboard.py": "af4ee87a3ea686272e6ada13adbcc399e40753331c25b7ee5a777592e526dd1a",
+      "conduct_scoreboard_v2.py": "a53fba520a2ddf6925c33be9fed86f3bb2e751a1000ee969bccccd0781ffc450",
+      "feature_panel_bench.py": "9f6d7a0730b08eed1f17132438b8db0d45b4f93b7ec7ffab4cdedea4b4bf1e4d",
+      "feature_panel_inventory_gate_extract.py": "1978bcc675d8090e06df9ebed5a601cad8c88f72ba5ee668c3f11fdcc4ad5618",
+      "feature_panel_run.py": "d57397ffc6b566281eb3d59a26fb667ea68f07f4a9782186c02bfb25bc0ef972",
+      "feature_panel_scoring.py": "3556cda79e3a4f39dd338d9b643548949abb06f3769e456ba3c1277d6c31a3f9",
+      "tune_bench_floor_calls.py": "7e605a8cceded5f9a4a3ab29f375f0e1ae90320d3a45caa3169ef52ac7b404ba",
+      "tune_bench_v2_survivorship.py": "1cf7b7787daa40c45e096546edadebae6cef778184a7ca219404309646c1a8da"
+    },
+    "contract_sha256": "f5fc318b71ee3c01aaa618672f996192ac99ea83c56fac8937a7946e3a18a5d1",
+    "counts_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+    "gate_inputs_sha256": "53c4851ad03bbe86e82555c5dc13075ec7e150a0a56718f4b7a385de45b86273",
+    "gate_receipt_sha256": "ca39df332501d67739cc2a562c8d431fd3d7ce8a5068d084bca615f7bd6bbeca",
+    "input_pins_sha256": "b8b4fa0c0b3ff133a949c9c9aa488361d8993e2464e905ac4037b9942f9e60c3",
+    "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+    "remote_audit_receipt_sha256": "923d1e64af27e2371e22fb2743c09875dd7982f666556f41da222bbde316c54d",
+    "reservation_sha256": "35c446003a9aed6c11b2600ae59509f811160188fd7a324c98276e885970676f",
+    "source_receipt_sha256": "c52187b9c03405fda698c6830b22bc6c7b61b81e0baf1215a908b41a93a8b1fe",
+    "witness_sha256": "139178e58a581fe7e68b52d8bb350daab0f5226aa9acd3cf8a2ac756e82d72f6"
+  },
+  "limitations": [
+    "Historical confirmation is not fresh; LIVE_PAPER deferred.",
+    "All-interval audit coverage does not imply absorption was measurable at atlas gates; see GATE_COVERAGE.",
+    "Measured residual is net displayed replenishment, not gross order additions or queue priority.",
+    "Zero selected correction and zero paired differences do not establish absence of every possible book signal.",
+    "Unchanged FIRST may emit out-of-market minima; these were flagged, not clipped; no conduct replay.",
+    "This is the frozen equal-game ridge/translated-distribution family, not every possible direct residual learner."
+  ],
+  "privacy": "Only code sent to droplet; aggregate audit report returned. All remote audit intervals/source rows remain remote. Existing desktop gate proofs/witnesses used locally; only aggregate results committed.",
+  "published_at": "2026-09-13T21:56:39.982902+00:00",
+  "remote_audit_receipt_sha256": "923d1e64af27e2371e22fb2743c09875dd7982f666556f41da222bbde316c54d",
+  "report_sha256s": {
+    "AUDIT_RECEIPT.json": "b33d888d60a24dca96c9d070e6803bc0ee3a5d5bc828ca4ce6b687ae0395a3a2",
+    "CONFIRMATION_RESULTS.json": "5c1e2f47d3a4b03a47127f2766a2b6b10b973465d570c64c0e1d496625c48ee0",
+    "DEVELOPMENT_RESULTS.json": "73840aa3d0910cb1a18366c09b3a1722d0f5cf321adb6992ddc83c2b4c618022",
+    "EXECUTION_RESUME.json": "cb75c3135ffd6058acbdbe09248ecdc7448b2eb46452f27c2cc1db047c5932c0",
+    "GATE_COVERAGE.json": "0d5869cb6593c3ef175a203b0917ca044589007baf46a10bf42d096d871b1879",
+    "MODEL_FREEZES.json": "68afbac8eccefefa4a7e6e1bc58ab270d8d3a152db353de81317a970d390f2ff",
+    "OPTIMIZER_OUTCOMES.json": "437bd5097c3f821e5208e37d9307ba17caa47f437ceea5025e685aff25738bf1",
+    "OPTIMIZER_SUMMARY.json": "16e3c19d6f8836c5c07288682c079fdb44b1a27c80ffc886e440c8ab3719c000",
+    "PRIMARY_SUMMARY.json": "4644516d219cc6bde826556f8ba4bf310313f97968570a73ae1acbcee9927051"
+  },
+  "reservation_sha256": "35c446003a9aed6c11b2600ae59509f811160188fd7a324c98276e885970676f",
+  "ruling": "No engine promotion from this run. Primary BASE and BOOK policies selected zero correction in every outer/confirmation fit; see diagnostic block results separately.",
+  "schema": "ABSORPTION_RESIDUAL_PUBLICATION_V1",
+  "status": "COMPLETE_NO_ENGINE_CHANGE_NO_REPLAY",
+  "tests": {
+    "exit_code": 0,
+    "output": "............................................................\n----------------------------------------------------------------------\nRan 60 tests in 0.199s\n\nOK"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "ABSORPTION_RESIDUAL_INPUT_PINS_V1",
+  "frozen_before_population_fit": true,
+  "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+  "source_receipt_sha256": "c52187b9c03405fda698c6830b22bc6c7b61b81e0baf1215a908b41a93a8b1fe",
+  "gate_receipt_sha256": "ca39df332501d67739cc2a562c8d431fd3d7ce8a5068d084bca615f7bd6bbeca",
+  "gate_inputs_sha256": "53c4851ad03bbe86e82555c5dc13075ec7e150a0a56718f4b7a385de45b86273",
+  "witness_sha256": "139178e58a581fe7e68b52d8bb350daab0f5226aa9acd3cf8a2ac756e82d72f6",
+  "contract_sha256": "f5fc318b71ee3c01aaa618672f996192ac99ea83c56fac8937a7946e3a18a5d1",
+  "reservation_sha256": "35c446003a9aed6c11b2600ae59509f811160188fd7a324c98276e885970676f",
+  "remote_recovery_receipt_sha256": "770e2db9c165f479f8afd52d31aef119a56b9e8d05420bacae9fd1e7a35db1a7",
+  "engine_unchanged": {
+    "window1_v54_dual_belief_os.js": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "build_window1_v54_dual_belief.js": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c"
+  },
+  "privacy": "All gate and witness inputs already existed on the desktop before this order. Audit per-interval data remains on the droplet; no new data transfer."
+}

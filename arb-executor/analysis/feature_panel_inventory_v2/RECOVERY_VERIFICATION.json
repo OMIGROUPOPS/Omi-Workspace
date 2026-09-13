@@ -1,0 +1,46 @@
+{
+  "schema": "AMENDED_RECOVERY_VERIFICATION_V1",
+  "status": "RECOVERY_VERIFIED_NOT_A_SCREEN_RESULT",
+  "completed_at": "2026-09-12T07:01:53.090896+00:00",
+  "recovery_exit_code": 0,
+  "recovery_receipt_sha256": "770e2db9c165f479f8afd52d31aef119a56b9e8d05420bacae9fd1e7a35db1a7",
+  "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+  "independent_audit": {
+    "parts_rehashed": 6482,
+    "unique_tickers": 6482,
+    "file_sizes_ready_metadata_and_full_bindings": "MATCH",
+    "part_and_month_tour_count_partitions": "RECONCILED",
+    "failures": [],
+    "access": "Read-only, nice 10, one derived part at a time; no live store opened"
+  },
+  "totals": {
+    "positive_prints": 1056664,
+    "API": 693025,
+    "arithmetic_only": 227076,
+    "unresolved": 136563,
+    "confirmed_offbook_excluded": 0
+  },
+  "coverage_by_month_tour": [
+    {"category":"ATP_MAIN","month":"2026-04","positive_prints":72769,"API":19355,"arithmetic_only":35092,"unresolved":18322,"confirmed_offbook_excluded":0},
+    {"category":"ATP_MAIN","month":"2026-05","positive_prints":212194,"API":172604,"arithmetic_only":21982,"unresolved":17608,"confirmed_offbook_excluded":0},
+    {"category":"ATP_MAIN","month":"2026-06","positive_prints":319567,"API":216748,"arithmetic_only":57541,"unresolved":45278,"confirmed_offbook_excluded":0},
+    {"category":"ATP_MAIN","month":"2026-07","positive_prints":166629,"API":107745,"arithmetic_only":43332,"unresolved":15552,"confirmed_offbook_excluded":0},
+    {"category":"ATP_CHALL","month":"2026-04","positive_prints":61526,"API":21529,"arithmetic_only":23271,"unresolved":16726,"confirmed_offbook_excluded":0},
+    {"category":"ATP_CHALL","month":"2026-05","positive_prints":68313,"API":47006,"arithmetic_only":12128,"unresolved":9179,"confirmed_offbook_excluded":0},
+    {"category":"ATP_CHALL","month":"2026-06","positive_prints":114113,"API":80711,"arithmetic_only":22479,"unresolved":10923,"confirmed_offbook_excluded":0},
+    {"category":"ATP_CHALL","month":"2026-07","positive_prints":41553,"API":27327,"arithmetic_only":11251,"unresolved":2975,"confirmed_offbook_excluded":0}
+  ],
+  "direction_rule": "Canonical Kalshi taker_outcome_side/taker_book_side, consistent exact identity, and explicit is_block_trade=false are required. Existing IDs match exactly with key consistency; absent IDs require a unique exact ticker/recorded second/YES price/size match. No fuzzy matching.",
+  "arithmetic_rule": "Separate completed-second estimated diagnostic with top-quote-change flag. Never substitutes for API labels in flow; unknown block status is not confirmed on-book.",
+  "denominators": "API/arithmetic-only/unresolved plus confirmed off-book reconcile the unchanged original positive-print universe. These are print-label counts, not per-gate feature availability or screen results.",
+  "ws_depth": {
+    "status": "DEFERRED_NOT_CHEAP",
+    "excluded_object": "ws_20260623_08.jsonl.gz",
+    "exclusion_reason": "Truncated gzip EOF",
+    "archives": 406,
+    "compressed_bytes": 6570463552,
+    "measured_seconds_per_object": 48.892,
+    "scope": "No partial WS result enters the screen; snapshot maker residuals remain in block 11. No WS/snapshot reconciliation is claimed."
+  },
+  "publication": "Aggregate receipt only; raw prints, API IDs, original objects and per-level source rows remain private."
+}

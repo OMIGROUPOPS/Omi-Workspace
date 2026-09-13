@@ -1,0 +1,39 @@
+{
+  "status": "RESUMED_NOT_COMPLETE",
+  "failed_pid": 2033698,
+  "failed_at_utc": "2026-09-11T22:58:44.327196+00:00",
+  "error_type": "EOFError",
+  "error": "Compressed file ended before the end-of-stream marker was reached",
+  "completed_legs_preserved": 1595,
+  "total_legs": 6482,
+  "failed_leg": "KXATPCHALLENGERMATCH-26JUN01BICMON-MON",
+  "fresh_read_integrity": [
+    {
+      "object": "spaces:ticks/KXATPCHALLENGERMATCH-26JUN01BICMON-MON.csv.gz",
+      "compressed_bytes": 3400616,
+      "content_length_matches": true,
+      "sha256": "5e91258e2aab578c8d3217be0d029cd7a88e8059ec4cbe661831df2fa5f8648b",
+      "md5": "6b56794bea06fa78612757e1016c07c5",
+      "response_and_filed_etag_match": true,
+      "gzip_integrity": "PASS"
+    },
+    {
+      "object": "spaces:trades/KXATPCHALLENGERMATCH-26JUN01BICMON-MON.csv.gz",
+      "compressed_bytes": 23055,
+      "content_length_matches": true,
+      "sha256": "bd8fb353b1a875e4e88fc6311f891bd72f6b1f6cfe390a1583d4b1530f89fcd2",
+      "md5": "e1d9eaa2f1da06396a193d25bf59d318",
+      "response_and_filed_etag_match": true,
+      "gzip_integrity": "PASS"
+    }
+  ],
+  "inference": "Fresh complete reads match both filed objects and pass gzip; consistent with an interrupted prior transfer, not demonstrated stored-object corruption.",
+  "resume_pid": 2067453,
+  "gate_dependency_pid": 2068053,
+  "failed_leg_passed_after_resume": true,
+  "verified_progress_after_resume": 1598,
+  "same_code_and_cli_binding": true,
+  "resume_rule": "Rehash ready checkpoints and check complete binding; rerun only the missing leg from fresh local state. No in-place callback retry and no source exclusion added.",
+  "prior_failure_preserved": "amended_production/interruption_20260911T225844Z/",
+  "publication": "No screens, complete extraction receipt, or scientific results yet."
+}

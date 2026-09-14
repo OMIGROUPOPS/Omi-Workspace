@@ -1,0 +1,255 @@
+{
+  "event": "KXATPMATCH-26JUL12ALTGAS",
+  "source": {
+    "os": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\window1_v54_dual_belief_os.js",
+      "sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "bytes": 31044,
+      "rows": null
+    },
+    "functionable": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\window1_v54_functionable_os.js",
+      "sha256": "372c69ed67df1e08a4e3719c642f1ba7719c5ebc5d1ad2e0eee873bbbd3cc83b",
+      "bytes": 44017,
+      "rows": null
+    },
+    "builder": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\build_window1_v54_dual_belief.js",
+      "sha256": "a5eed01dfbd8f00f1203f71d505602ac623e8c5f96130906e2066fb6bb9712e1",
+      "bytes": 183594,
+      "rows": null
+    },
+    "runner": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\replay_macro_default.mjs",
+      "sha256": "cf1554c9c8fad7bc61afba60dc5b4c3f69a61922f991a23ea902fa507dc58d7a",
+      "bytes": 6289,
+      "rows": null
+    },
+    "macro_library": {
+      "index": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\MACRO_LIBRARY_UNIFIED.jsonl.gz",
+        "sha256": "409863d33db1ff17ca8c78ba2f9fb30ebefe6dc43fb37034b64976a5feaced54",
+        "bytes": 95816492,
+        "rows": 31540
+      },
+      "materializer_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\MACRO_LIBRARY_UNIFIED_RECEIPT.json",
+        "sha256": "6d790812461fa3bfe8a995589b949ec6515984997c599aeb94a6a8526e272b89",
+        "bytes": 7704,
+        "rows": null
+      },
+      "print_counts": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\MACRO_LIBRARY_UNIFIED_PRINT_COUNTS.jsonl.gz",
+        "sha256": "384c7643a4cf6c3dff1900e75431bc7e0b3877c2c50900c0449e444e75382f05",
+        "bytes": 14909168,
+        "rows": 2240641
+      },
+      "print_counts_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\MACRO_LIBRARY_UNIFIED_RECEIPT.json",
+        "sha256": "6d790812461fa3bfe8a995589b949ec6515984997c599aeb94a6a8526e272b89",
+        "bytes": 7704,
+        "rows": null
+      },
+      "bench_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\tune_bench_v2_ticks\\ATP_MAIN\\TUNE_BENCH_RECEIPT.json",
+        "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b",
+        "bytes": 33824,
+        "rows": null
+      },
+      "macro_comparison_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\unified_macro_v1\\bench\\UNIFIED\\BENCH_RECEIPT.json",
+        "sha256": "62c106418b4d28c16e3372239e67716d2006df7f92cb65396157954991907241",
+        "bytes": 238808,
+        "rows": null
+      },
+      "source_verification": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\unified_macro_v1\\SOURCE_VERIFICATION.json",
+        "sha256": "18b4a3c4d2cc6cee4f1a3a4d7770a41bc99f50ee6265ac6940657f7d38de5cf6",
+        "bytes": 3546,
+        "rows": null
+      },
+      "grain": "MINUTE",
+      "membership": {
+        "rule": "EXACT_TICK_SOURCE",
+        "source_grain": "TICK",
+        "active_legs": 15500,
+        "inert_legs": 16040,
+        "configured_pairs": 7633,
+        "control": {
+          "count_rows": 861544,
+          "count_sha256": "975267d9fc1c72d8a7c3a388232aad3124915ab90ca6195f2d98e24e955e2a49",
+          "events": 7750,
+          "events_by_category": {
+            "ATP_CHALL": 2302,
+            "ATP_MAIN": 939,
+            "ITF_M": 1574,
+            "ITF_W": 1502,
+            "WTA_CHALL": 503,
+            "WTA_MAIN": 930
+          },
+          "events_by_month_category": {
+            "2026-04|ATP_CHALL": 430,
+            "2026-04|ATP_MAIN": 128,
+            "2026-04|WTA_CHALL": 116,
+            "2026-04|WTA_MAIN": 126,
+            "2026-05|ATP_CHALL": 541,
+            "2026-05|ATP_MAIN": 322,
+            "2026-05|WTA_CHALL": 62,
+            "2026-05|WTA_MAIN": 286,
+            "2026-06|ATP_CHALL": 967,
+            "2026-06|ATP_MAIN": 427,
+            "2026-06|ITF_M": 1027,
+            "2026-06|ITF_W": 1011,
+            "2026-06|WTA_CHALL": 233,
+            "2026-06|WTA_MAIN": 458,
+            "2026-07|ATP_CHALL": 364,
+            "2026-07|ATP_MAIN": 62,
+            "2026-07|ITF_M": 547,
+            "2026-07|ITF_W": 491,
+            "2026-07|WTA_CHALL": 92,
+            "2026-07|WTA_MAIN": 60
+          },
+          "legs": 15500,
+          "legs_without_postformation_prints": {
+            "ATP_CHALL": 3,
+            "WTA_CHALL": 1
+          },
+          "library_sha256": "00a58ffb7569dfeb86e58641e51cbdc1bf1e0f2e6f06640be2878184692bf5ee"
+        },
+        "policy": "Non-tick-source rows remain in the file only; excluded before pool and family configuration. No automatic older-history activation."
+      }
+    },
+    "ground_truth": {
+      "base_commit": "c0056976",
+      "base_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+      "base_sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "corrections_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+      "corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+      "corrections_applied": [
+        "W1TT-C-001",
+        "W1TT-C-002"
+      ]
+    },
+    "target_prints": {
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\prints.jsonl",
+      "bytes": 1766090446,
+      "scanned_rows": 4836462,
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+    },
+    "lineage": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_walk5_repair_v6_20260821\\FULL_DECISION_TRACE_5.jsonl.gz",
+      "sha256": "5e3f809e2762167dca917d9ad7f0166390b7a9a11f2e707830a40a71ec60b67d",
+      "bytes": 102934439,
+      "rows": 133626
+    },
+    "diagnostic_resources": {
+      "path": "C:\\tmp\\unified_macro_20260913\\replays\\pass_1\\receipts\\SOURCE_RECEIPTS.json",
+      "sha256": "52b6556f7047caad87faa3fd7787dd1bdba3005e4392d2e034536e0617c0102f",
+      "bytes": 39661,
+      "rows": null
+    }
+  },
+  "trace": {
+    "path": "C:\\tmp\\macro_tick_default_20260914\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+    "sha256": "53448a0b7626a8ddf02865f947d144d3e77a55d0bc9a0f5617c5617f0da3a3b1",
+    "bytes": 2545704,
+    "rows": null
+  },
+  "counts": {
+    "DECISION_STAGE": 138,
+    "FLOOR_PRINT_DECISION_INSTANT": 71,
+    "FILL_EVENT": 1,
+    "BID_ASSUMPTION": 129,
+    "BID_RENEWAL": 79508,
+    "SUPERSESSION": 127,
+    "ASSUMPTION_OUTCOME": 129
+  },
+  "execution": {
+    "run_source": "V54_BOOK_VETO_ONLY_20260826",
+    "gradeable": true,
+    "completed": false,
+    "combined_entry_cents": null,
+    "delta_vs_100_cents": null,
+    "legs": {
+      "ALT": {
+        "credited": true,
+        "entry_cents": 62,
+        "standing_target_cents": null,
+        "fill_receipt": "c19b14b6-8c1c-5180-be9e-a802325a8811",
+        "fill_event_receipt": {
+          "schema": "CITATION_RECEIPT_V1",
+          "kind": "QUERY_RECEIPT",
+          "citation_type": "FILL_EVENT",
+          "source_id": "KXATPMATCH-26JUL12ALTGAS|ALT",
+          "captured_at_receipt": "c19b14b6-8c1c-5180-be9e-a802325a8811",
+          "row_refs": [
+            "c19b14b6-8c1c-5180-be9e-a802325a8811"
+          ],
+          "context": {
+            "event_id": "KXATPMATCH-26JUL12ALTGAS",
+            "leg_id": "ALT",
+            "entry_cents": 62,
+            "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+            "triggering_print_price_cents": 62,
+            "fill_timestamp_epoch": 1784032244.854,
+            "prior_standing_target_cents": 62,
+            "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+            "standing_license_receipt": "033693bd-187f-42e1-af1e-7e37eb886d60",
+            "print_at_or_below_rest": true,
+            "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+          },
+          "receipt_id": "CR-03ae88e9037cb2e8cb65205cb39a2b01c4fd8e297c1190e6030f7514d3622368"
+        },
+        "fill_timestamp_epoch": 1784032244.854,
+        "standing_license_basis": null,
+        "standing_license_receipt": null,
+        "standing_captured_rest_level_cents": null,
+        "standing_captured_rest_license_receipt": null
+      },
+      "GAS": {
+        "credited": false,
+        "entry_cents": null,
+        "standing_target_cents": 37,
+        "fill_receipt": null,
+        "fill_event_receipt": null,
+        "fill_timestamp_epoch": null,
+        "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+        "standing_license_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784028000",
+        "standing_captured_rest_level_cents": 37,
+        "standing_captured_rest_license_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784028000"
+      }
+    }
+  },
+  "fills": [
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPMATCH-26JUL12ALTGAS|ALT",
+      "captured_at_receipt": "c19b14b6-8c1c-5180-be9e-a802325a8811",
+      "row_refs": [
+        "c19b14b6-8c1c-5180-be9e-a802325a8811"
+      ],
+      "context": {
+        "event_id": "KXATPMATCH-26JUL12ALTGAS",
+        "leg_id": "ALT",
+        "entry_cents": 62,
+        "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+        "triggering_print_price_cents": 62,
+        "fill_timestamp_epoch": 1784032244.854,
+        "prior_standing_target_cents": 62,
+        "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+        "standing_license_receipt": "033693bd-187f-42e1-af1e-7e37eb886d60",
+        "print_at_or_below_rest": true,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-03ae88e9037cb2e8cb65205cb39a2b01c4fd8e297c1190e6030f7514d3622368"
+    }
+  ],
+  "determinism_x2": true,
+  "load_tick_issues": [],
+  "sentence_action_weld": true,
+  "citation_weld": true,
+  "pair_conservation": true
+}

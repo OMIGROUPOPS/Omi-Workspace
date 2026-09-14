@@ -1,0 +1,3407 @@
+{
+  "status": "ACCEPTANCE_FAILED_PUSH_HELD",
+  "event": "KXATPMATCH-26JUL12ALTGAS",
+  "trace": {
+    "path": "C:\\tmp\\macro_tick_default_20260914\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+    "sha256": "53448a0b7626a8ddf02865f947d144d3e77a55d0bc9a0f5617c5617f0da3a3b1",
+    "bytes": 2545704,
+    "rows": null
+  },
+  "source": {
+    "os": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\window1_v54_dual_belief_os.js",
+      "sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "bytes": 31044,
+      "rows": null
+    },
+    "functionable": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\window1_v54_functionable_os.js",
+      "sha256": "372c69ed67df1e08a4e3719c642f1ba7719c5ebc5d1ad2e0eee873bbbd3cc83b",
+      "bytes": 44017,
+      "rows": null
+    },
+    "builder": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\build_window1_v54_dual_belief.js",
+      "sha256": "a5eed01dfbd8f00f1203f71d505602ac623e8c5f96130906e2066fb6bb9712e1",
+      "bytes": 183594,
+      "rows": null
+    },
+    "runner": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\replay_macro_default.mjs",
+      "sha256": "cf1554c9c8fad7bc61afba60dc5b4c3f69a61922f991a23ea902fa507dc58d7a",
+      "bytes": 6289,
+      "rows": null
+    },
+    "macro_library": {
+      "index": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\MACRO_LIBRARY_UNIFIED.jsonl.gz",
+        "sha256": "409863d33db1ff17ca8c78ba2f9fb30ebefe6dc43fb37034b64976a5feaced54",
+        "bytes": 95816492,
+        "rows": 31540
+      },
+      "materializer_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\MACRO_LIBRARY_UNIFIED_RECEIPT.json",
+        "sha256": "6d790812461fa3bfe8a995589b949ec6515984997c599aeb94a6a8526e272b89",
+        "bytes": 7704,
+        "rows": null
+      },
+      "print_counts": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\MACRO_LIBRARY_UNIFIED_PRINT_COUNTS.jsonl.gz",
+        "sha256": "384c7643a4cf6c3dff1900e75431bc7e0b3877c2c50900c0449e444e75382f05",
+        "bytes": 14909168,
+        "rows": 2240641
+      },
+      "print_counts_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\MACRO_LIBRARY_UNIFIED_RECEIPT.json",
+        "sha256": "6d790812461fa3bfe8a995589b949ec6515984997c599aeb94a6a8526e272b89",
+        "bytes": 7704,
+        "rows": null
+      },
+      "bench_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\tune_bench_v2_ticks\\ATP_MAIN\\TUNE_BENCH_RECEIPT.json",
+        "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b",
+        "bytes": 33824,
+        "rows": null
+      },
+      "macro_comparison_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\unified_macro_v1\\bench\\UNIFIED\\BENCH_RECEIPT.json",
+        "sha256": "62c106418b4d28c16e3372239e67716d2006df7f92cb65396157954991907241",
+        "bytes": 238808,
+        "rows": null
+      },
+      "source_verification": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\unified_macro_v1\\SOURCE_VERIFICATION.json",
+        "sha256": "18b4a3c4d2cc6cee4f1a3a4d7770a41bc99f50ee6265ac6940657f7d38de5cf6",
+        "bytes": 3546,
+        "rows": null
+      },
+      "grain": "MINUTE",
+      "membership": {
+        "rule": "EXACT_TICK_SOURCE",
+        "source_grain": "TICK",
+        "active_legs": 15500,
+        "inert_legs": 16040,
+        "configured_pairs": 7633,
+        "control": {
+          "count_rows": 861544,
+          "count_sha256": "975267d9fc1c72d8a7c3a388232aad3124915ab90ca6195f2d98e24e955e2a49",
+          "events": 7750,
+          "events_by_category": {
+            "ATP_CHALL": 2302,
+            "ATP_MAIN": 939,
+            "ITF_M": 1574,
+            "ITF_W": 1502,
+            "WTA_CHALL": 503,
+            "WTA_MAIN": 930
+          },
+          "events_by_month_category": {
+            "2026-04|ATP_CHALL": 430,
+            "2026-04|ATP_MAIN": 128,
+            "2026-04|WTA_CHALL": 116,
+            "2026-04|WTA_MAIN": 126,
+            "2026-05|ATP_CHALL": 541,
+            "2026-05|ATP_MAIN": 322,
+            "2026-05|WTA_CHALL": 62,
+            "2026-05|WTA_MAIN": 286,
+            "2026-06|ATP_CHALL": 967,
+            "2026-06|ATP_MAIN": 427,
+            "2026-06|ITF_M": 1027,
+            "2026-06|ITF_W": 1011,
+            "2026-06|WTA_CHALL": 233,
+            "2026-06|WTA_MAIN": 458,
+            "2026-07|ATP_CHALL": 364,
+            "2026-07|ATP_MAIN": 62,
+            "2026-07|ITF_M": 547,
+            "2026-07|ITF_W": 491,
+            "2026-07|WTA_CHALL": 92,
+            "2026-07|WTA_MAIN": 60
+          },
+          "legs": 15500,
+          "legs_without_postformation_prints": {
+            "ATP_CHALL": 3,
+            "WTA_CHALL": 1
+          },
+          "library_sha256": "00a58ffb7569dfeb86e58641e51cbdc1bf1e0f2e6f06640be2878184692bf5ee"
+        },
+        "policy": "Non-tick-source rows remain in the file only; excluded before pool and family configuration. No automatic older-history activation."
+      }
+    },
+    "ground_truth": {
+      "base_commit": "c0056976",
+      "base_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+      "base_sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "corrections_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+      "corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+      "corrections_applied": [
+        "W1TT-C-001",
+        "W1TT-C-002"
+      ]
+    },
+    "target_prints": {
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\prints.jsonl",
+      "bytes": 1766090446,
+      "scanned_rows": 4836462,
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+    },
+    "lineage": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_walk5_repair_v6_20260821\\FULL_DECISION_TRACE_5.jsonl.gz",
+      "sha256": "5e3f809e2762167dca917d9ad7f0166390b7a9a11f2e707830a40a71ec60b67d",
+      "bytes": 102934439,
+      "rows": 133626
+    },
+    "diagnostic_resources": {
+      "path": "C:\\tmp\\unified_macro_20260913\\replays\\pass_1\\receipts\\SOURCE_RECEIPTS.json",
+      "sha256": "52b6556f7047caad87faa3fd7787dd1bdba3005e4392d2e034536e0617c0102f",
+      "bytes": 39661,
+      "rows": null
+    }
+  },
+  "determinism_x2": true,
+  "independent_oracle": {
+    "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\macro_tick_default_v1\\TUNE_BENCH_NAMED_CHECKS.json",
+    "sha256": "3d0338b42f11060d8b01f56a9ccf9089b987ef958b206a7cd9e82c522d49911a",
+    "bytes": 1327900,
+    "rows": null
+  },
+  "comparable_gate_side_rows": 0,
+  "oracle_mismatches": 0,
+  "numeric_gate_side_rows": 30,
+  "numeric_mismatches_without_clock_override": 0,
+  "comparisons": [
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 2880,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 32.88577576004555,
+              "expected": 32.88577567445203
+            },
+            "q25_cents": {
+              "actual": 55,
+              "expected": 55
+            },
+            "q25_minutes_to_bell": {
+              "actual": 1405,
+              "expected": 1405
+            },
+            "q50_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q50_minutes_to_bell": {
+              "actual": 2404,
+              "expected": 2404
+            },
+            "q75_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q75_minutes_to_bell": {
+              "actual": 2880,
+              "expected": 2880
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 95,
+              "expected": 95
+            },
+            "q25_cents": {
+              "actual": 54,
+              "expected": 54
+            },
+            "q25_minutes_to_bell": {
+              "actual": 906,
+              "expected": 906
+            },
+            "q50_cents": {
+              "actual": 56,
+              "expected": 56
+            },
+            "q50_minutes_to_bell": {
+              "actual": 2113,
+              "expected": 2113
+            },
+            "q75_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q75_minutes_to_bell": {
+              "actual": 2850,
+              "expected": 2850
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 23.56590376028221,
+              "expected": 23.565903688718326
+            },
+            "q25_cents": {
+              "actual": 55,
+              "expected": 55
+            },
+            "q25_minutes_to_bell": {
+              "actual": 1074,
+              "expected": 1074
+            },
+            "q50_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q50_minutes_to_bell": {
+              "actual": 2328,
+              "expected": 2328
+            },
+            "q75_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q75_minutes_to_bell": {
+              "actual": 2880,
+              "expected": 2880
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 2880,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 32.88577576004555,
+              "expected": 32.88577567445203
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 131,
+              "expected": 131
+            },
+            "q50_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q50_minutes_to_bell": {
+              "actual": 616,
+              "expected": 616
+            },
+            "q75_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1414,
+              "expected": 1414
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 95,
+              "expected": 95
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 132,
+              "expected": 132
+            },
+            "q50_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q50_minutes_to_bell": {
+              "actual": 677,
+              "expected": 677
+            },
+            "q75_cents": {
+              "actual": 40,
+              "expected": 40
+            },
+            "q75_minutes_to_bell": {
+              "actual": 2155,
+              "expected": 2155
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 23.56590376028221,
+              "expected": 23.565903688718326
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 131,
+              "expected": 131
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 616,
+              "expected": 616
+            },
+            "q75_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1427,
+              "expected": 1427
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 2160,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 30.691313818171118,
+              "expected": 30.691313781464245
+            },
+            "q25_cents": {
+              "actual": 55,
+              "expected": 55
+            },
+            "q25_minutes_to_bell": {
+              "actual": 379,
+              "expected": 379
+            },
+            "q50_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q50_minutes_to_bell": {
+              "actual": 1421,
+              "expected": 1421
+            },
+            "q75_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1811,
+              "expected": 1811
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 60,
+              "expected": 60
+            },
+            "q25_cents": {
+              "actual": 56,
+              "expected": 56
+            },
+            "q25_minutes_to_bell": {
+              "actual": 741,
+              "expected": 741
+            },
+            "q50_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q50_minutes_to_bell": {
+              "actual": 1605,
+              "expected": 1605
+            },
+            "q75_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q75_minutes_to_bell": {
+              "actual": 2021,
+              "expected": 2021
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 16.77964585934505,
+              "expected": 16.779645855442446
+            },
+            "q25_cents": {
+              "actual": 53,
+              "expected": 53
+            },
+            "q25_minutes_to_bell": {
+              "actual": 48,
+              "expected": 48
+            },
+            "q50_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q50_minutes_to_bell": {
+              "actual": 757,
+              "expected": 757
+            },
+            "q75_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1749,
+              "expected": 1749
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 2160,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 77.01212857160193,
+              "expected": 77.01212849462155
+            },
+            "q25_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q25_minutes_to_bell": {
+              "actual": 131,
+              "expected": 131
+            },
+            "q50_cents": {
+              "actual": 40,
+              "expected": 40
+            },
+            "q50_minutes_to_bell": {
+              "actual": 616,
+              "expected": 616
+            },
+            "q75_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1670,
+              "expected": 1670
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 202,
+              "expected": 202
+            },
+            "q25_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q25_minutes_to_bell": {
+              "actual": 127,
+              "expected": 127
+            },
+            "q50_cents": {
+              "actual": 40,
+              "expected": 40
+            },
+            "q50_minutes_to_bell": {
+              "actual": 683,
+              "expected": 683
+            },
+            "q75_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1686,
+              "expected": 1686
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 49.994814062605855,
+              "expected": 49.99481404373926
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 146,
+              "expected": 146
+            },
+            "q50_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q50_minutes_to_bell": {
+              "actual": 1228,
+              "expected": 1228
+            },
+            "q75_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1882,
+              "expected": 1882
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 1440,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 51.10331151934501,
+              "expected": 51.10331150049828
+            },
+            "q25_cents": {
+              "actual": 55,
+              "expected": 55
+            },
+            "q25_minutes_to_bell": {
+              "actual": 283,
+              "expected": 283
+            },
+            "q50_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q50_minutes_to_bell": {
+              "actual": 757,
+              "expected": 757
+            },
+            "q75_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1388,
+              "expected": 1388
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 109,
+              "expected": 109
+            },
+            "q25_cents": {
+              "actual": 56,
+              "expected": 56
+            },
+            "q25_minutes_to_bell": {
+              "actual": 361,
+              "expected": 361
+            },
+            "q50_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q50_minutes_to_bell": {
+              "actual": 984,
+              "expected": 984
+            },
+            "q75_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1351,
+              "expected": 1351
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 27.43021373811668,
+              "expected": 27.43021373575006
+            },
+            "q25_cents": {
+              "actual": 55,
+              "expected": 55
+            },
+            "q25_minutes_to_bell": {
+              "actual": 64,
+              "expected": 64
+            },
+            "q50_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q50_minutes_to_bell": {
+              "actual": 732,
+              "expected": 732
+            },
+            "q75_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1409,
+              "expected": 1409
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 1440,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 132.86344616092504,
+              "expected": 132.86344607801786
+            },
+            "q25_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q25_minutes_to_bell": {
+              "actual": 131,
+              "expected": 131
+            },
+            "q50_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q50_minutes_to_bell": {
+              "actual": 616,
+              "expected": 616
+            },
+            "q75_cents": {
+              "actual": 42,
+              "expected": 42
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1231,
+              "expected": 1231
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 340,
+              "expected": 340
+            },
+            "q25_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q25_minutes_to_bell": {
+              "actual": 128,
+              "expected": 128
+            },
+            "q50_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q50_minutes_to_bell": {
+              "actual": 653,
+              "expected": 653
+            },
+            "q75_cents": {
+              "actual": 42,
+              "expected": 42
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1286,
+              "expected": 1286
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 79.53294665551327,
+              "expected": 79.5329466587834
+            },
+            "q25_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q25_minutes_to_bell": {
+              "actual": 297,
+              "expected": 297
+            },
+            "q50_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q50_minutes_to_bell": {
+              "actual": 722,
+              "expected": 722
+            },
+            "q75_cents": {
+              "actual": 42,
+              "expected": 42
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1332,
+              "expected": 1332
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 1080,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 73.26099794103149,
+              "expected": 73.26099797013867
+            },
+            "q25_cents": {
+              "actual": 56,
+              "expected": 56
+            },
+            "q25_minutes_to_bell": {
+              "actual": 305,
+              "expected": 305
+            },
+            "q50_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q50_minutes_to_bell": {
+              "actual": 706,
+              "expected": 706
+            },
+            "q75_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1042,
+              "expected": 1042
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 151,
+              "expected": 151
+            },
+            "q25_cents": {
+              "actual": 56,
+              "expected": 56
+            },
+            "q25_minutes_to_bell": {
+              "actual": 382,
+              "expected": 382
+            },
+            "q50_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q50_minutes_to_bell": {
+              "actual": 804,
+              "expected": 804
+            },
+            "q75_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1044,
+              "expected": 1044
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 18.556506421202283,
+              "expected": 18.5565064220814
+            },
+            "q25_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q25_minutes_to_bell": {
+              "actual": 724,
+              "expected": 724
+            },
+            "q50_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q50_minutes_to_bell": {
+              "actual": 903,
+              "expected": 903
+            },
+            "q75_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q75_minutes_to_bell": {
+              "actual": 1060,
+              "expected": 1060
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 1080,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 182.0071607109075,
+              "expected": 182.00716062387988
+            },
+            "q25_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q25_minutes_to_bell": {
+              "actual": 79,
+              "expected": 79
+            },
+            "q50_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q50_minutes_to_bell": {
+              "actual": 504,
+              "expected": 504
+            },
+            "q75_cents": {
+              "actual": 42,
+              "expected": 42
+            },
+            "q75_minutes_to_bell": {
+              "actual": 964,
+              "expected": 964
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 457,
+              "expected": 457
+            },
+            "q25_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q25_minutes_to_bell": {
+              "actual": 122,
+              "expected": 122
+            },
+            "q50_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q50_minutes_to_bell": {
+              "actual": 513,
+              "expected": 513
+            },
+            "q75_cents": {
+              "actual": 42,
+              "expected": 42
+            },
+            "q75_minutes_to_bell": {
+              "actual": 981,
+              "expected": 981
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 73.82365936874184,
+              "expected": 73.82365937790304
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 31,
+              "expected": 31
+            },
+            "q50_cents": {
+              "actual": 40,
+              "expected": 40
+            },
+            "q50_minutes_to_bell": {
+              "actual": 375,
+              "expected": 375
+            },
+            "q75_cents": {
+              "actual": 42,
+              "expected": 42
+            },
+            "q75_minutes_to_bell": {
+              "actual": 977,
+              "expected": 977
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 720,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 94.08058520490644,
+              "expected": 94.08058522927557
+            },
+            "q25_cents": {
+              "actual": 57,
+              "expected": 57
+            },
+            "q25_minutes_to_bell": {
+              "actual": 105,
+              "expected": 105
+            },
+            "q50_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q50_minutes_to_bell": {
+              "actual": 511,
+              "expected": 511
+            },
+            "q75_cents": {
+              "actual": 59,
+              "expected": 59
+            },
+            "q75_minutes_to_bell": {
+              "actual": 695,
+              "expected": 695
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 207,
+              "expected": 207
+            },
+            "q25_cents": {
+              "actual": 58,
+              "expected": 58
+            },
+            "q25_minutes_to_bell": {
+              "actual": 305,
+              "expected": 305
+            },
+            "q50_cents": {
+              "actual": 59,
+              "expected": 59
+            },
+            "q50_minutes_to_bell": {
+              "actual": 579,
+              "expected": 579
+            },
+            "q75_cents": {
+              "actual": 59,
+              "expected": 59
+            },
+            "q75_minutes_to_bell": {
+              "actual": 704,
+              "expected": 704
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 18.00455994979673,
+              "expected": 18.004559950283856
+            },
+            "q25_cents": {
+              "actual": 56,
+              "expected": 56
+            },
+            "q25_minutes_to_bell": {
+              "actual": 22,
+              "expected": 22
+            },
+            "q50_cents": {
+              "actual": 59,
+              "expected": 59
+            },
+            "q50_minutes_to_bell": {
+              "actual": 559,
+              "expected": 559
+            },
+            "q75_cents": {
+              "actual": 60,
+              "expected": 60
+            },
+            "q75_minutes_to_bell": {
+              "actual": 720,
+              "expected": 720
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 720,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 234.87457328916994,
+              "expected": 234.87457319501584
+            },
+            "q25_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q25_minutes_to_bell": {
+              "actual": 56,
+              "expected": 56
+            },
+            "q50_cents": {
+              "actual": 40,
+              "expected": 40
+            },
+            "q50_minutes_to_bell": {
+              "actual": 348,
+              "expected": 348
+            },
+            "q75_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q75_minutes_to_bell": {
+              "actual": 633,
+              "expected": 633
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 581,
+              "expected": 581
+            },
+            "q25_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q25_minutes_to_bell": {
+              "actual": 88,
+              "expected": 88
+            },
+            "q50_cents": {
+              "actual": 40,
+              "expected": 40
+            },
+            "q50_minutes_to_bell": {
+              "actual": 363,
+              "expected": 363
+            },
+            "q75_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q75_minutes_to_bell": {
+              "actual": 647,
+              "expected": 647
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 90.96674203176113,
+              "expected": 90.96674203701295
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 42,
+              "expected": 42
+            },
+            "q50_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q50_minutes_to_bell": {
+              "actual": 297,
+              "expected": 297
+            },
+            "q75_cents": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q75_minutes_to_bell": {
+              "actual": 565,
+              "expected": 565
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 480,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 115.37003221283912,
+              "expected": 115.37003220328334
+            },
+            "q25_cents": {
+              "actual": 59,
+              "expected": 59
+            },
+            "q25_minutes_to_bell": {
+              "actual": 72,
+              "expected": 72
+            },
+            "q50_cents": {
+              "actual": 60,
+              "expected": 60
+            },
+            "q50_minutes_to_bell": {
+              "actual": 358,
+              "expected": 358
+            },
+            "q75_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q75_minutes_to_bell": {
+              "actual": 461,
+              "expected": 461
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 248,
+              "expected": 248
+            },
+            "q25_cents": {
+              "actual": 60,
+              "expected": 60
+            },
+            "q25_minutes_to_bell": {
+              "actual": 128,
+              "expected": 128
+            },
+            "q50_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q50_minutes_to_bell": {
+              "actual": 379,
+              "expected": 379
+            },
+            "q75_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q75_minutes_to_bell": {
+              "actual": 474,
+              "expected": 474
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 14.425699127425746,
+              "expected": 14.425699128892722
+            },
+            "q25_cents": {
+              "actual": 55,
+              "expected": 55
+            },
+            "q25_minutes_to_bell": {
+              "actual": 7,
+              "expected": 7
+            },
+            "q50_cents": {
+              "actual": 60,
+              "expected": 60
+            },
+            "q50_minutes_to_bell": {
+              "actual": 293,
+              "expected": 293
+            },
+            "q75_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q75_minutes_to_bell": {
+              "actual": 404,
+              "expected": 404
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 480,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 129.7058005827614,
+              "expected": 129.7058005593216
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 209,
+              "expected": 209
+            },
+            "q75_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q75_minutes_to_bell": {
+              "actual": 439,
+              "expected": 439
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 264,
+              "expected": 264
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 54,
+              "expected": 54
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 232,
+              "expected": 232
+            },
+            "q75_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q75_minutes_to_bell": {
+              "actual": 429,
+              "expected": 429
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 25.298529877229626,
+              "expected": 25.298529879735003
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 83,
+              "expected": 83
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 199,
+              "expected": 199
+            },
+            "q75_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q75_minutes_to_bell": {
+              "actual": 467,
+              "expected": 467
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 360,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 117.74357170470543,
+              "expected": 117.74357169517148
+            },
+            "q25_cents": {
+              "actual": 59,
+              "expected": 59
+            },
+            "q25_minutes_to_bell": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q50_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q50_minutes_to_bell": {
+              "actual": 283,
+              "expected": 283
+            },
+            "q75_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q75_minutes_to_bell": {
+              "actual": 357,
+              "expected": 357
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 268,
+              "expected": 268
+            },
+            "q25_cents": {
+              "actual": 60,
+              "expected": 60
+            },
+            "q25_minutes_to_bell": {
+              "actual": 87,
+              "expected": 87
+            },
+            "q50_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q50_minutes_to_bell": {
+              "actual": 291,
+              "expected": 291
+            },
+            "q75_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q75_minutes_to_bell": {
+              "actual": 357,
+              "expected": 357
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 4.114393954065855,
+              "expected": 4.114393954737508
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 360,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 122.62772002057332,
+              "expected": 122.62772003680904
+            },
+            "q25_cents": {
+              "actual": 35,
+              "expected": 35
+            },
+            "q25_minutes_to_bell": {
+              "actual": 31,
+              "expected": 31
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 169,
+              "expected": 169
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 337,
+              "expected": 337
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 286,
+              "expected": 286
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 49,
+              "expected": 49
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 209,
+              "expected": 209
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 328,
+              "expected": 328
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 10.051091226586957,
+              "expected": 10.05109122792269
+            },
+            "q25_cents": {
+              "actual": 33,
+              "expected": 33
+            },
+            "q25_minutes_to_bell": {
+              "actual": 72,
+              "expected": 72
+            },
+            "q50_cents": {
+              "actual": 35,
+              "expected": 35
+            },
+            "q50_minutes_to_bell": {
+              "actual": 94,
+              "expected": 94
+            },
+            "q75_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q75_minutes_to_bell": {
+              "actual": 166,
+              "expected": 166
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 240,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 118.9972290913502,
+              "expected": 118.99722908077983
+            },
+            "q25_cents": {
+              "actual": 59,
+              "expected": 59
+            },
+            "q25_minutes_to_bell": {
+              "actual": 46,
+              "expected": 46
+            },
+            "q50_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q50_minutes_to_bell": {
+              "actual": 179,
+              "expected": 179
+            },
+            "q75_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q75_minutes_to_bell": {
+              "actual": 240,
+              "expected": 240
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 285,
+              "expected": 285
+            },
+            "q25_cents": {
+              "actual": 60,
+              "expected": 60
+            },
+            "q25_minutes_to_bell": {
+              "actual": 64,
+              "expected": 64
+            },
+            "q50_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q50_minutes_to_bell": {
+              "actual": 186,
+              "expected": 186
+            },
+            "q75_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q75_minutes_to_bell": {
+              "actual": 240,
+              "expected": 240
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 9.219688258578149,
+              "expected": 9.219688260128708
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 240,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 123.87717513691067,
+              "expected": 123.87717512364715
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 31,
+              "expected": 31
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 102,
+              "expected": 102
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 214,
+              "expected": 214
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 296,
+              "expected": 296
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 149,
+              "expected": 149
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 224,
+              "expected": 224
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 11.635357285606071,
+              "expected": 11.635357287449814
+            },
+            "q25_cents": {
+              "actual": 34,
+              "expected": 34
+            },
+            "q25_minutes_to_bell": {
+              "actual": 72,
+              "expected": 72
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 181,
+              "expected": 181
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 226,
+              "expected": 226
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 180,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 119.36178239187335,
+              "expected": 119.36178238523041
+            },
+            "q25_cents": {
+              "actual": 60,
+              "expected": 60
+            },
+            "q25_minutes_to_bell": {
+              "actual": 41,
+              "expected": 41
+            },
+            "q50_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q50_minutes_to_bell": {
+              "actual": 109,
+              "expected": 109
+            },
+            "q75_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q75_minutes_to_bell": {
+              "actual": 179,
+              "expected": 179
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 282,
+              "expected": 282
+            },
+            "q25_cents": {
+              "actual": 60,
+              "expected": 60
+            },
+            "q25_minutes_to_bell": {
+              "actual": 56,
+              "expected": 56
+            },
+            "q50_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q50_minutes_to_bell": {
+              "actual": 128,
+              "expected": 128
+            },
+            "q75_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q75_minutes_to_bell": {
+              "actual": 180,
+              "expected": 180
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 9.999551110311517,
+              "expected": 9.999551110962857
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 180,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 127.64023413452938,
+              "expected": 127.64023411500824
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 28,
+              "expected": 28
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 89,
+              "expected": 89
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 175,
+              "expected": 175
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 303,
+              "expected": 303
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 29,
+              "expected": 29
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 121,
+              "expected": 121
+            },
+            "q75_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q75_minutes_to_bell": {
+              "actual": 180,
+              "expected": 180
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 14.192463698696722,
+              "expected": 14.192463700296312
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 72,
+              "expected": 72
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 163,
+              "expected": 163
+            },
+            "q75_cents": {
+              "actual": 39,
+              "expected": 39
+            },
+            "q75_minutes_to_bell": {
+              "actual": 180,
+              "expected": 180
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 120,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 117.92853866948948,
+              "expected": 117.92853866152018
+            },
+            "q25_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q25_minutes_to_bell": {
+              "actual": 26,
+              "expected": 26
+            },
+            "q50_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q50_minutes_to_bell": {
+              "actual": 83,
+              "expected": 83
+            },
+            "q75_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q75_minutes_to_bell": {
+              "actual": 120,
+              "expected": 120
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 283,
+              "expected": 283
+            },
+            "q25_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q25_minutes_to_bell": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q50_minutes_to_bell": {
+              "actual": 92,
+              "expected": 92
+            },
+            "q75_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q75_minutes_to_bell": {
+              "actual": 120,
+              "expected": 120
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 5.883111596647497,
+              "expected": 5.883111595095325
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 120,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 130.9090728931465,
+              "expected": 130.90907287141928
+            },
+            "q25_cents": {
+              "actual": 35,
+              "expected": 35
+            },
+            "q25_minutes_to_bell": {
+              "actual": 21,
+              "expected": 21
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 72,
+              "expected": 72
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 120,
+              "expected": 120
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 305,
+              "expected": 305
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 23,
+              "expected": 23
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 79,
+              "expected": 79
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 120,
+              "expected": 120
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 10.497539377754673,
+              "expected": 10.497539377917995
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 97,
+              "expected": 97
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 120,
+              "expected": 120
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 120,
+              "expected": 120
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 90,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 119.83565943263598,
+              "expected": 119.83565942583427
+            },
+            "q25_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q25_minutes_to_bell": {
+              "actual": 20,
+              "expected": 20
+            },
+            "q50_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q50_minutes_to_bell": {
+              "actual": 65,
+              "expected": 65
+            },
+            "q75_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q75_minutes_to_bell": {
+              "actual": 90,
+              "expected": 90
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 283,
+              "expected": 283
+            },
+            "q25_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q25_minutes_to_bell": {
+              "actual": 28,
+              "expected": 28
+            },
+            "q50_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q50_minutes_to_bell": {
+              "actual": 71,
+              "expected": 71
+            },
+            "q75_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q75_minutes_to_bell": {
+              "actual": 90,
+              "expected": 90
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 3.099402995000638,
+              "expected": 3.0994029933006377
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 90,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 126.41879768730193,
+              "expected": 126.41879768830253
+            },
+            "q25_cents": {
+              "actual": 35,
+              "expected": 35
+            },
+            "q25_minutes_to_bell": {
+              "actual": 17,
+              "expected": 17
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 56,
+              "expected": 56
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 90,
+              "expected": 90
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 309,
+              "expected": 309
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 20,
+              "expected": 20
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 90,
+              "expected": 90
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 6.701025212049858,
+              "expected": 6.7010252137952895
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 60,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 117.02783743777105,
+              "expected": 117.02783742962222
+            },
+            "q25_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q25_minutes_to_bell": {
+              "actual": 14,
+              "expected": 14
+            },
+            "q50_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q50_minutes_to_bell": {
+              "actual": 45,
+              "expected": 45
+            },
+            "q75_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q75_minutes_to_bell": {
+              "actual": 60,
+              "expected": 60
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 280,
+              "expected": 280
+            },
+            "q25_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q25_minutes_to_bell": {
+              "actual": 22,
+              "expected": 22
+            },
+            "q50_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q50_minutes_to_bell": {
+              "actual": 53,
+              "expected": 53
+            },
+            "q75_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q75_minutes_to_bell": {
+              "actual": 60,
+              "expected": 60
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 2.2371509975811135,
+              "expected": 2.237150996701898
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 60,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 128.08460368123255,
+              "expected": 128.08460365723104
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 17,
+              "expected": 17
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 45,
+              "expected": 45
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 60,
+              "expected": 60
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 309,
+              "expected": 309
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 17,
+              "expected": 17
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 45,
+              "expected": 45
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 60,
+              "expected": 60
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 5.273544027800602,
+              "expected": 5.273544029191744
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 30,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 123.55463060413123,
+              "expected": 123.5546305909961
+            },
+            "q25_cents": {
+              "actual": 61,
+              "expected": 61
+            },
+            "q25_minutes_to_bell": {
+              "actual": 9,
+              "expected": 9
+            },
+            "q50_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q50_minutes_to_bell": {
+              "actual": 25,
+              "expected": 25
+            },
+            "q75_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q75_minutes_to_bell": {
+              "actual": 30,
+              "expected": 30
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 290,
+              "expected": 290
+            },
+            "q25_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q25_minutes_to_bell": {
+              "actual": 13,
+              "expected": 13
+            },
+            "q50_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q50_minutes_to_bell": {
+              "actual": 29,
+              "expected": 29
+            },
+            "q75_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q75_minutes_to_bell": {
+              "actual": 30,
+              "expected": 30
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 2.8151360468700997,
+              "expected": 2.8151360455649788
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 30,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 131.35201773115324,
+              "expected": 131.35201770621214
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 12,
+              "expected": 12
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 27,
+              "expected": 27
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 30,
+              "expected": 30
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 313,
+              "expected": 313
+            },
+            "q25_cents": {
+              "actual": 36,
+              "expected": 36
+            },
+            "q25_minutes_to_bell": {
+              "actual": 11,
+              "expected": 11
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 27,
+              "expected": 27
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 30,
+              "expected": 30
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 7.08646788148404,
+              "expected": 7.086467878649564
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 15,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 124.416517761022,
+              "expected": 124.41651774438958
+            },
+            "q25_cents": {
+              "actual": 62,
+              "expected": 62
+            },
+            "q25_minutes_to_bell": {
+              "actual": 5,
+              "expected": 5
+            },
+            "q50_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q50_minutes_to_bell": {
+              "actual": 13,
+              "expected": 13
+            },
+            "q75_cents": {
+              "actual": 64,
+              "expected": 64
+            },
+            "q75_minutes_to_bell": {
+              "actual": 15,
+              "expected": 15
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 297,
+              "expected": 297
+            },
+            "q25_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q25_minutes_to_bell": {
+              "actual": 7,
+              "expected": 7
+            },
+            "q50_cents": {
+              "actual": 64,
+              "expected": 64
+            },
+            "q50_minutes_to_bell": {
+              "actual": 15,
+              "expected": 15
+            },
+            "q75_cents": {
+              "actual": 64,
+              "expected": 64
+            },
+            "q75_minutes_to_bell": {
+              "actual": 15,
+              "expected": 15
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 5.887110779923289,
+              "expected": 5.88711078055276
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 15,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 134.51533059105063,
+              "expected": 134.51533055903633
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 5,
+              "expected": 5
+            },
+            "q50_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q50_minutes_to_bell": {
+              "actual": 14,
+              "expected": 14
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 15,
+              "expected": 15
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 315,
+              "expected": 315
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 7,
+              "expected": 7
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 15,
+              "expected": 15
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 15,
+              "expected": 15
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 7.5197416784650395,
+              "expected": 7.519741677890541
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "ALT",
+      "gate": 5,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 133.29943411366054,
+              "expected": 133.2994340938419
+            },
+            "q25_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q25_minutes_to_bell": {
+              "actual": 3,
+              "expected": 3
+            },
+            "q50_cents": {
+              "actual": 64,
+              "expected": 64
+            },
+            "q50_minutes_to_bell": {
+              "actual": 5,
+              "expected": 5
+            },
+            "q75_cents": {
+              "actual": 64,
+              "expected": 64
+            },
+            "q75_minutes_to_bell": {
+              "actual": 5,
+              "expected": 5
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 297,
+              "expected": 297
+            },
+            "q25_cents": {
+              "actual": 63,
+              "expected": 63
+            },
+            "q25_minutes_to_bell": {
+              "actual": 4,
+              "expected": 4
+            },
+            "q50_cents": {
+              "actual": 64,
+              "expected": 64
+            },
+            "q50_minutes_to_bell": {
+              "actual": 5,
+              "expected": 5
+            },
+            "q75_cents": {
+              "actual": 64,
+              "expected": 64
+            },
+            "q75_minutes_to_bell": {
+              "actual": 5,
+              "expected": 5
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 1.0369827444007724,
+              "expected": 1.0369827444199704
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "leg": "GAS",
+      "gate": 5,
+      "comparable": false,
+      "clock": {
+        "replay_first_epoch": 1783797385.046,
+        "bench_first_epoch": 1783797385.046757,
+        "first_epoch_delta_seconds": -0.0007569789886474609,
+        "note": "Inherited replay truncates exchange timestamps to milliseconds; the bench retains submillisecond decimals. Clock comparator is unchanged; not silently relabeled comparable."
+      },
+      "layers": {
+        "FIRST-TICK-ONLY": {
+          "fields": {
+            "ess": {
+              "actual": 141.8685572107783,
+              "expected": 141.86855717545635
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 3,
+              "expected": 3
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 5,
+              "expected": 5
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 5,
+              "expected": 5
+            }
+          },
+          "matches": true
+        },
+        "BASE": {
+          "fields": {
+            "ess": {
+              "actual": 320,
+              "expected": 320
+            },
+            "q25_cents": {
+              "actual": 37,
+              "expected": 37
+            },
+            "q25_minutes_to_bell": {
+              "actual": 3,
+              "expected": 3
+            },
+            "q50_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q50_minutes_to_bell": {
+              "actual": 5,
+              "expected": 5
+            },
+            "q75_cents": {
+              "actual": 38,
+              "expected": 38
+            },
+            "q75_minutes_to_bell": {
+              "actual": 5,
+              "expected": 5
+            }
+          },
+          "matches": true
+        },
+        "STEP-FORECAST": {
+          "fields": {
+            "ess": {
+              "actual": 7.8267999381534485,
+              "expected": 7.826799938415612
+            }
+          },
+          "matches": true
+        }
+      },
+      "selected": "FIRST-TICK-ONLY",
+      "validity_matches": true
+    }
+  ],
+  "before": {
+    "letter": "C",
+    "trace": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+    "fills": {
+      "ALT": {
+        "filled": true,
+        "cents": 60,
+        "fill_epoch": 1784000663.801
+      },
+      "GAS": {
+        "filled": true,
+        "cents": 38,
+        "fill_epoch": 1784025043.114
+      }
+    },
+    "outcome": {
+      "legs": {
+        "ALT": {
+          "filled": true,
+          "cents": 60,
+          "vs_floor_cents": 2,
+          "fill_epoch": 1784000663.801,
+          "valid_span_fill": true,
+          "revalidation": {
+            "ruler_bell_epoch": 1784035200,
+            "span_start_epoch": 1783790234,
+            "span_end_epoch": 1784035200,
+            "at_or_after_span_start": true,
+            "before_span_end": true,
+            "before_bell": true,
+            "correction_ids": []
+          },
+          "reason": null
+        },
+        "GAS": {
+          "filled": true,
+          "cents": 38,
+          "vs_floor_cents": 0,
+          "fill_epoch": 1784025043.114,
+          "valid_span_fill": true,
+          "revalidation": {
+            "ruler_bell_epoch": 1784035200,
+            "span_start_epoch": 1783790234,
+            "span_end_epoch": 1784035200,
+            "at_or_after_span_start": true,
+            "before_span_end": true,
+            "before_bell": true,
+            "correction_ids": []
+          },
+          "reason": null
+        }
+      },
+      "pair_completed": true,
+      "pair_sum": 98,
+      "captured_cents": 2,
+      "best_capturable_cents": 4,
+      "best_capturable_pair_sum_cents": 96,
+      "capture_ratio": 0.5,
+      "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+      "valid_pair_completed": true
+    }
+  },
+  "after": {
+    "letter": "F",
+    "trace": "53448a0b7626a8ddf02865f947d144d3e77a55d0bc9a0f5617c5617f0da3a3b1",
+    "fills": {
+      "ALT": {
+        "filled": true,
+        "cents": 62,
+        "fill_epoch": 1784032244.854
+      },
+      "GAS": {
+        "filled": false,
+        "cents": null,
+        "fill_epoch": null
+      }
+    },
+    "outcome": {
+      "legs": {
+        "ALT": {
+          "filled": true,
+          "cents": 62,
+          "vs_floor_cents": 4,
+          "fill_epoch": 1784032244.854,
+          "valid_span_fill": true,
+          "revalidation": {
+            "ruler_bell_epoch": 1784035200,
+            "span_start_epoch": 1783790234,
+            "span_end_epoch": 1784035200,
+            "at_or_after_span_start": true,
+            "before_span_end": true,
+            "before_bell": true,
+            "correction_ids": []
+          },
+          "reason": null
+        },
+        "GAS": {
+          "filled": false,
+          "cents": null,
+          "vs_floor_cents": null,
+          "fill_epoch": null,
+          "valid_span_fill": false,
+          "revalidation": null,
+          "reason": null
+        }
+      },
+      "pair_completed": false,
+      "pair_sum": null,
+      "captured_cents": 0,
+      "best_capturable_cents": 4,
+      "best_capturable_pair_sum_cents": 96,
+      "capture_ratio": 0,
+      "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+      "valid_pair_completed": false
+    }
+  },
+  "unchanged_fills": false,
+  "unchanged_grade": false,
+  "interpretation": "Exact minute-control membership is not a promise of native tick execution equivalence. No price or conduct tuning is authorized by the failed acceptance.",
+  "publication": "HELD_PENDING_OPERATOR_DECISION"
+}

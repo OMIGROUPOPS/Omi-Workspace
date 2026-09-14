@@ -1,0 +1,58 @@
+{
+  "rule": "EXACT_TICK_SOURCE",
+  "source_grain": "TICK",
+  "active_legs": 15500,
+  "inert_legs": 16040,
+  "configured_pairs": 7633,
+  "control": {
+    "count_rows": 861544,
+    "count_sha256": "975267d9fc1c72d8a7c3a388232aad3124915ab90ca6195f2d98e24e955e2a49",
+    "events": 7750,
+    "events_by_category": {
+      "ATP_CHALL": 2302,
+      "ATP_MAIN": 939,
+      "ITF_M": 1574,
+      "ITF_W": 1502,
+      "WTA_CHALL": 503,
+      "WTA_MAIN": 930
+    },
+    "events_by_month_category": {
+      "2026-04|ATP_CHALL": 430,
+      "2026-04|ATP_MAIN": 128,
+      "2026-04|WTA_CHALL": 116,
+      "2026-04|WTA_MAIN": 126,
+      "2026-05|ATP_CHALL": 541,
+      "2026-05|ATP_MAIN": 322,
+      "2026-05|WTA_CHALL": 62,
+      "2026-05|WTA_MAIN": 286,
+      "2026-06|ATP_CHALL": 967,
+      "2026-06|ATP_MAIN": 427,
+      "2026-06|ITF_M": 1027,
+      "2026-06|ITF_W": 1011,
+      "2026-06|WTA_CHALL": 233,
+      "2026-06|WTA_MAIN": 458,
+      "2026-07|ATP_CHALL": 364,
+      "2026-07|ATP_MAIN": 62,
+      "2026-07|ITF_M": 547,
+      "2026-07|ITF_W": 491,
+      "2026-07|WTA_CHALL": 92,
+      "2026-07|WTA_MAIN": 60
+    },
+    "legs": 15500,
+    "legs_without_postformation_prints": {
+      "ATP_CHALL": 3,
+      "WTA_CHALL": 1
+    },
+    "library_sha256": "00a58ffb7569dfeb86e58641e51cbdc1bf1e0f2e6f06640be2878184692bf5ee"
+  },
+  "policy": "Non-tick-source rows remain in the file only; excluded before pool and family configuration. No automatic older-history activation.",
+  "pairs_by_category": {
+    "ATP_CHALL": 2277,
+    "ATP_MAIN": 922,
+    "ITF_M": 1546,
+    "ITF_W": 1483,
+    "WTA_CHALL": 498,
+    "WTA_MAIN": 907
+  },
+  "named_event_excluded": true
+}

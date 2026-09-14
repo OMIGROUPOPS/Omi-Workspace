@@ -1,0 +1,26 @@
+{
+  "event": "KXATPMATCH-26JUL12ALTGAS",
+  "all_byte_identical": true,
+  "first": {
+    "sha256": "933ec13839847c901d0e8830d241944193a5be1f5d152469317a9efe4e89eb32",
+    "bytes": 136189202,
+    "counts": {
+      "stage_reads": 138,
+      "rearm_attempts": 0,
+      "fill_events": 1,
+      "floor_print_decision_instants": 71
+    }
+  },
+  "second": {
+    "sha256": "933ec13839847c901d0e8830d241944193a5be1f5d152469317a9efe4e89eb32",
+    "bytes": 136189202,
+    "counts": {
+      "stage_reads": 138,
+      "rearm_attempts": 0,
+      "fill_events": 1,
+      "floor_print_decision_instants": 71
+    }
+  },
+  "passes": 2,
+  "scope": "Two full same-process replays through the unchanged exported builder function; no other games executed."
+}

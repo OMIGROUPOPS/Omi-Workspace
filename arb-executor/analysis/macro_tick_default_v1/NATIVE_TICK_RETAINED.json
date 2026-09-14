@@ -1,0 +1,52 @@
+{
+  "recorded_at": "2026-09-14T16:49:55-04:00",
+  "status": "MINUTE_REBIND_REJECTED_NATIVE_TICK_RETAINED",
+  "operator_decision": "Do not publish the minute rebind. Retain native-tick execution; publish only evidence and GAMEPLAN.",
+  "baseline_commit": "6beb3a775dcb94cee4321e56c611efcc939632fd",
+  "branch": "face/window1-watch-20260903",
+  "active_binding": {
+    "corpus_property": "tick_library",
+    "grain": "TICK",
+    "library": "arb-executor/data/durable/RANGE_OVERLAP_LIBRARY_TICKS.jsonl.gz",
+    "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+    "count_sidecar_sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+    "dual_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "functionable_sha256": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "builder_sha256": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c",
+    "engine_and_binding_diff_from_baseline": false
+  },
+  "retained_native_result": {
+    "event": "KXATPMATCH-26JUL12ALTGAS",
+    "letter": "C",
+    "ALT_fill_cents": 60,
+    "GAS_fill_cents": 38,
+    "pair_sum_cents": 98,
+    "captured_cents": 2,
+    "best_capturable_cents": 4,
+    "trace_sha256": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+    "verification": "Restored committed face and grade snapshot, not a newly run replay. Failed-candidate trace remains in custody."
+  },
+  "inert_companion": {
+    "library": "arb-executor/data/durable/MACRO_LIBRARY_UNIFIED.jsonl.gz",
+    "library_sha256": "409863d33db1ff17ca8c78ba2f9fb30ebefe6dc43fb37034b64976a5feaced54",
+    "count_sidecar": "arb-executor/data/durable/MACRO_LIBRARY_UNIFIED_PRINT_COUNTS.jsonl.gz",
+    "count_sidecar_sha256": "384c7643a4cf6c3dff1900e75431bc7e0b3877c2c50900c0449e444e75382f05",
+    "retained_on_disk": true,
+    "loaded_by_os": false,
+    "included_in_evidence_commit": false
+  },
+  "rejected_candidate": {
+    "trace_sha256": "53448a0b7626a8ddf02865f947d144d3e77a55d0bc9a0f5617c5617f0da3a3b1",
+    "grade": "F",
+    "ALT_fill_cents": 62,
+    "GAS_filled": false,
+    "GAS_final_rest_cents": 37,
+    "captured_cents": 0,
+    "source_backup": "C:/tmp/macro_tick_default_20260914/rejected-source",
+    "face_backup": "C:/tmp/macro_tick_default_20260914/rejected-face",
+    "acceptance_record": "REPLAY_ACCEPTANCE.json"
+  },
+  "publication_scope": "GAMEPLAN, likeness_key_cutoff_v2 evidence, and minute-candidate acceptance evidence only; no engine, binding, executable code, library, face assets, raw prints or per-tick stage/renewal data.",
+  "historical_receipt_note": "Earlier no_commit/push-held fields describe the experiment when recorded. This disposition supersedes the pending decision without rewriting its evidence.",
+  "future_evidence": "LIVE_PAPER; separate from library and tune cohorts. Corpus and book mining closed."
+}

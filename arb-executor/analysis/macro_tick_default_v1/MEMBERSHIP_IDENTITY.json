@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "unified_sha256": "409863d33db1ff17ca8c78ba2f9fb30ebefe6dc43fb37034b64976a5feaced54",
+  "control_sha256": "00a58ffb7569dfeb86e58641e51cbdc1bf1e0f2e6f06640be2878184692bf5ee",
+  "rule": "source_grain == TICK; not a formation-date approximation",
+  "active_legs": 15500,
+  "active_legs_by_category": {
+    "ATP_CHALL": 4604,
+    "ATP_MAIN": 1878,
+    "ITF_M": 3148,
+    "ITF_W": 3004,
+    "WTA_CHALL": 1006,
+    "WTA_MAIN": 1860
+  },
+  "inert_legs": 16040,
+  "inert_legs_by_category": {
+    "ATP_CHALL": 6072,
+    "ATP_MAIN": 4654,
+    "WTA_CHALL": 902,
+    "WTA_MAIN": 4412
+  },
+  "full_row_mismatches": [],
+  "missing": [],
+  "extra": [],
+  "tune_name_violations": [],
+  "method": "Canonical complete JSON row equality for every active leg against the filed minute tick-only control B; source rows read only."
+}

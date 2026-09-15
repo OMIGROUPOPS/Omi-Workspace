@@ -73,7 +73,7 @@ export function ReadingChart({ game, frame, side, receipt, onReceipt }: {
   // Filled bids must remain selectable above dense same-price renewal markers.
   const pastActions = actions.filter(a => now.receipt_index != null && a.receipt_index <= now.receipt_index && a.marker_cents != null && a.minutes_to_bell != null).sort((a,b)=>Number(Boolean(a.fill))-Number(Boolean(b.fill)));
   const fill = game.face.render.fill_events.find(f => f.leg === side && f.receipt_index <= (now.receipt_index ?? -1));
-  const fillDisplay=action?.fill?game.pressure?.executions?.find(e=>e.action_id===action.id):undefined;
+  const fillDisplay=action?.fill?game.pressure?.executions?.find(e=>e.action_id===action.id||(action.timeline_pending&&e.receipt_index===action.receipt_index&&e.side===action.leg)):undefined;
   return <section className="reading-side" aria-label={`${side} chart and sentence`}>
     <header className="reading-sentence" title={`Tape last true trade ${cents(getLast(now))}; receipt's seen price ${cents(sentence?.P)}; forecast ${cents(sentence?.Q)}; expected ${sentence?.X ?? 'no time recorded'} minutes to bell.\n${memberCount == null ? 'No pool count here' : `Pool of ${memberCount} games`}.\nTrace ${game.face.provenance.trace_sha256}\n${receipt?.receipt ?? 'No receipt'}`}>
       <div><strong>{side}</strong><small>{first?'First side':'Second side'}</small></div><div className="engine-last"><b>{cents(getLast(now))}</b><small>last true trade</small></div>
@@ -112,7 +112,7 @@ export function ReadingChart({ game, frame, side, receipt, onReceipt }: {
       </div> : null}
       {floorHover ? <div className="reading-tip" role="tooltip"><p>{plain(floor?.markers.play?.hover_note)}</p><p>Known afterward, not used by the machine.</p></div> : null}
       {action ? <div className="reading-tip reading-action-tip" role="tooltip" onKeyDown={e=>{if(e.key==='Escape')setAction(null)}}>
-        <FourLineCard lines={fillDisplay?.card_lines??readingCard(action)} details={fillDisplay?[fillDisplay.source,...action.details_lines]:action.details_lines} color="var(--color-rest)"/>
+        <FourLineCard key={action.id} action={action} lines={fillDisplay?.card_lines??readingCard(action)} details={fillDisplay?[fillDisplay.source,...action.details_lines]:action.details_lines} color="var(--color-rest)"/>
         <div className="reading-tip-controls"><button onClick={()=>onReceipt(action.receipt_index)}>Inspect this bid</button><button onClick={()=>setAction(null)}>Close</button></div>
       </div> : null}
     </div>

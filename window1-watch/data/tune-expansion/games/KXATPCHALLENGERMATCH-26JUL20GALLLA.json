@@ -1,0 +1,113 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · GAL CLIMBER → CLIMBER · LLA FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"GAL\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL20GALLLA-LLA.csv.gz#row-589\",\"first_recorded_epoch\":1784532393.000004,\"first_bind_epoch\":1784532150,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":44,\"close_cents\":57,\"realized_drift_cents\":13,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"LLA\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL20GALLLA-LLA.csv.gz#row-589\",\"first_recorded_epoch\":1784532393.000004,\"first_bind_epoch\":1784532149.377,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":56,\"close_cents\":44,\"realized_drift_cents\":-12,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): GAL 0 · LLA 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · GAL Q 50 vs floor 46¢; range 46–51 · LLA Q 51 vs floor 43¢; range 49–51",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"GAL\":{\"letter\":\"C\",\"point_letter\":\"F\",\"range_letter\":\"C\",\"q50\":50,\"q25\":46,\"q75\":51,\"floor_error_cents\":4,\"band_width_cents\":5,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL20GALLLA-LLA.csv.gz#row-589\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":46,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_RANGE_CREDIT\"},\"LLA\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":51,\"q25\":49,\"q75\":51,\"floor_error_cents\":8,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL20GALLLA-LLA.csv.gz#row-589\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":43,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): GAL: 1.48¢ · LLA: 1.92¢ · GAL: first 176.71m; remaining MAE 65.71m · LLA: first 542.77m; remaining MAE 244.08m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · GAL 53¢ (+7¢; floor printed earlier) · LLA 45¢ (+2¢)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"GAL\":{\"filled\":true,\"cents\":53,\"vs_floor_cents\":7,\"fill_epoch\":1784543451.621,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784573100,\"span_start_epoch\":1784528971,\"span_end_epoch\":1784573100,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":46,\"floor_epoch\":1784530282.3,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":131.0436832825343,\"current_price_age_minutes\":78.40394999980927,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"LLA\":{\"filled\":true,\"cents\":45,\"vs_floor_cents\":2,\"fill_epoch\":1784557882.891,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784573100,\"span_start_epoch\":1784528971,\"span_end_epoch\":1784573100,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":43,\"floor_epoch\":1784571873.2,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":307.0981833179792,\"current_price_age_minutes\":40.71081666549047,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: GAL lineage 131.04m, current price 78.4m · LLA lineage 307.1m, current price 40.71m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "C · 98¢ pair · 2 of 11¢ captured",
+      "hover_lines": [
+        "PAIR: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"pair_sum\":98,\"capture_ratio\":0.18181818181818182,\"offered_cents\":11}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MICRO",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "leg_id": "GAL",
+      "entry_cents": 53,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 53,
+      "fill_timestamp_epoch": 1784543451.621,
+      "prior_standing_target_cents": 53,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "84790208-b185-6618-4818-96f676cb3fec",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "leg_id": "LLA",
+      "entry_cents": 45,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 45,
+      "fill_timestamp_epoch": 1784557882.891,
+      "prior_standing_target_cents": 45,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "91112127-669e-7f2b-fc4c-10b3d7563bc3",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 98,
+  "captured_cents": 2,
+  "offered_cents": 11,
+  "capture_ratio": 0.18181818181818182,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "dcd5a2b7e2862b40bc655a6440a458bccd76487566f228dd14fcefb857eb50c9",
+  "grade_sha256": "b9e3ebe5f987e11edaaf63afe49457fd83b41c5e2f2f43cab6fe6a0085609494",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL20GALLLA.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL20GALLLA.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL20GALLLA.sentences.json",
+  "fault": "MICRO: F · GAL Q 50 vs floor 46¢; range 46–51 · LLA Q 51 vs floor 43¢; range 49–51",
+  "fill_witnesses": [
+    {
+      "leg": "GAL",
+      "receipt": "fe847588-408a-5239-fdfd-3eff3cf03387",
+      "positive_size_witness": true,
+      "print_cents": 53,
+      "rest_cents": 53,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "LLA",
+      "receipt": "578e54a5-2bb1-5b0b-a562-fb6e32539674",
+      "positive_size_witness": true,
+      "print_cents": 45,
+      "rest_cents": 45,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

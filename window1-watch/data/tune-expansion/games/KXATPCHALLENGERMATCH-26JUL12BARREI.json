@@ -1,0 +1,170 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "STORE SILENT · BAR STORE SILENT → STORE SILENT · REI STORE SILENT → CLIMBER",
+      "hover_lines": [
+        "MACRO: STORE SILENT · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"STORE SILENT\",\"metrics\":{\"correct_side_share\":null},\"legs\":{\"BAR\":{\"called_role\":\"STORE SILENT\",\"realized_role\":\"STORE SILENT\",\"correct\":\"STORE SILENT\",\"first_recorded_receipt\":null,\"first_recorded_epoch\":null,\"first_bind_epoch\":null,\"final_stored_role\":\"STORE SILENT\",\"flip_count\":\"STORE SILENT\",\"open_cents\":69.5,\"close_cents\":null,\"realized_drift_cents\":null,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"REI\":{\"called_role\":\"STORE SILENT\",\"realized_role\":\"CLIMBER\",\"correct\":\"STORE SILENT\",\"first_recorded_receipt\":null,\"first_recorded_epoch\":null,\"first_bind_epoch\":null,\"final_stored_role\":\"STORE SILENT\",\"flip_count\":\"STORE SILENT\",\"open_cents\":30.5,\"close_cents\":34,\"realized_drift_cents\":3.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): BAR STORE SILENT · REI STORE SILENT"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · BAR Q STORE SILENT vs floor STORE SILENT¢; range STORE SILENT–STORE SILENT · REI Q STORE SILENT vs floor STORE SILENT¢; range STORE SILENT–STORE SILENT",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"BAR\":{\"letter\":\"F\",\"reason\":\"NO_ELIGIBLE_FORECAST\"},\"REI\":{\"letter\":\"F\",\"reason\":\"NO_ELIGIBLE_FORECAST\"}}}",
+        "Oracle mean gap (diagnostic): BAR: STORE SILENT · REI: STORE SILENT · BAR: first STORE SILENT; remaining MAE STORE SILENT · REI: first STORE SILENT; remaining MAE STORE SILENT"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "STORE SILENT · BAR 61¢ (+STORE SILENT¢) · REI 32¢ (+-2¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: STORE SILENT · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"STORE SILENT\",\"metrics\":{\"valid_fills\":0,\"side_count\":2},\"legs\":{\"BAR\":{\"filled\":true,\"cents\":61,\"vs_floor_cents\":\"STORE SILENT\",\"fill_epoch\":1783966753.338,\"valid_span_fill\":false,\"revalidation\":{\"ruler_bell_epoch\":1784036280,\"span_start_epoch\":1783902407,\"span_end_epoch\":1783914212.592,\"at_or_after_span_start\":true,\"before_span_end\":false,\"before_bell\":true,\"correction_ids\":[]},\"reason\":\"FILL_OUTSIDE_VERIFIED_SPAN\",\"floor_cents\":\"STORE SILENT\",\"floor_epoch\":null,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":163.90563331842424,\"current_price_age_minutes\":6.2020166675249735,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"REI\":{\"filled\":true,\"cents\":32,\"vs_floor_cents\":-2,\"fill_epoch\":1783946476.728,\"valid_span_fill\":false,\"revalidation\":{\"ruler_bell_epoch\":1784036280,\"span_start_epoch\":1783902407,\"span_end_epoch\":1783914212.592,\"at_or_after_span_start\":true,\"before_span_end\":false,\"before_bell\":true,\"correction_ids\":[]},\"reason\":\"FILL_OUTSIDE_VERIFIED_SPAN\",\"floor_cents\":34,\"floor_epoch\":1783907258.1,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":263.8287999471029,\"current_price_age_minutes\":89.06213331619898,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: REI lineage 263.83m, current price 89.06m · BAR lineage 163.91m, current price 6.2m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · 93¢ pair · 0 of STORE SILENT¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":93,\"capture_ratio\":\"STORE SILENT\",\"offered_cents\":\"STORE SILENT\"}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "TRADE: fill outside corrected span/bell",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "leg_id": "REI",
+      "entry_cents": 32,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 31,
+      "fill_timestamp_epoch": 1783946476.728,
+      "prior_standing_target_cents": 32,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL12BARREI-REI.csv.gz#row-15226",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "leg_id": "BAR",
+      "entry_cents": 61,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 61,
+      "fill_timestamp_epoch": 1783966753.338,
+      "prior_standing_target_cents": 61,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "c2911ae1-5482-597f-5f31-0817e0fc2bb8",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 0,
+  "completed": false,
+  "one_sided": false,
+  "pair_sum": 93,
+  "captured_cents": 0,
+  "offered_cents": "STORE SILENT",
+  "capture_ratio": "STORE SILENT",
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "BAR",
+      "reason": "FILL_OUTSIDE_VERIFIED_SPAN",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BARREI|ATLAS_GATE|1784035980",
+        "timestamp_epoch": 1784035980,
+        "leg": "BAR",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "CREDITED_LEG_READ_ONLY"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": null,
+      "reach_audit": {
+        "rest_intervals": 11,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "REI",
+      "reason": "FILL_OUTSIDE_VERIFIED_SPAN",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BARREI|ATLAS_GATE|1784035980",
+        "timestamp_epoch": 1784035980,
+        "leg": "REI",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "CREDITED_LEG_READ_ONLY"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 34,
+      "reach_audit": {
+        "rest_intervals": 2,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "837ca62d7553506c6758ead0eba48501bf64592384160051d7bd7fea52866c2f",
+  "grade_sha256": "6c645b1b438b62165c1855c5e3e7011a78bd0e7c953d59df26d5ec8bf0831d10",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL12BARREI.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL12BARREI.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL12BARREI.sentences.json",
+  "fault": "TRADE: fill outside corrected span/bell",
+  "fill_witnesses": [
+    {
+      "leg": "REI",
+      "receipt": "efc8df4d-4d57-67fc-9332-df3e29e259aa",
+      "positive_size_witness": true,
+      "print_cents": 31,
+      "rest_cents": 32,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "BAR",
+      "receipt": "16059e7a-6e3f-47c5-2462-2dc8db9a96fe",
+      "positive_size_witness": true,
+      "print_cents": 61,
+      "rest_cents": 61,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [
+    "TRADE: fill outside corrected span/bell"
+  ],
+  "offer_issue": {
+    "reason": "MISSING VERIFIED FLOOR ON A SIDE",
+    "recorded_floors": {
+      "BAR": null,
+      "REI": 34
+    },
+    "original_row_floor_sum": null,
+    "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+  }
+}

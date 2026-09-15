@@ -1,0 +1,735 @@
+{
+  "version": 1,
+  "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+  "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+  "trace_sha256": "f02e351304ab7821ebd1d35cb7ebaf09cca5ab5e1526dd8bd7e5a35e7ce7813c",
+  "grades": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "status": "UNGRADABLE",
+      "timestamp": "2026-09-14T21:40:45.346Z",
+      "provenance": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+        "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+        "trace_sha256": "f02e351304ab7821ebd1d35cb7ebaf09cca5ab5e1526dd8bd7e5a35e7ce7813c",
+        "trace_path": "C:\\tmp\\tune_expansion_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19SALVRB\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "cohort": "TUNE_SAMPLE",
+        "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+        "face_sha256": "517698b9f877d44efbba5ce4788118b35e5566a53ec313821d74516cae060b6e",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+      },
+      "SENTENCE": {
+        "receipts_total": 23,
+        "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL19SALVRB.sentences.json"
+      },
+      "MACRO": {
+        "status": "STORE SILENT",
+        "reason": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      },
+      "MICRO": {
+        "status": "STORE SILENT",
+        "reason": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      },
+      "HANDS": {
+        "actions": [
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-1",
+            "timestamp_epoch": 1784419876.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-1",
+            "timestamp_epoch": 1784419876.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-5",
+            "timestamp_epoch": 1784420142.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-5",
+            "timestamp_epoch": 1784420142.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-12",
+            "timestamp_epoch": 1784420142.000008,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-12",
+            "timestamp_epoch": 1784420142.000008,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-13",
+            "timestamp_epoch": 1784420143.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-13",
+            "timestamp_epoch": 1784420143.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-9",
+            "timestamp_epoch": 1784420144.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-9",
+            "timestamp_epoch": 1784420144.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-23",
+            "timestamp_epoch": 1784420154.000003,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-23",
+            "timestamp_epoch": 1784420154.000003,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-35",
+            "timestamp_epoch": 1784420289.000002,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-35",
+            "timestamp_epoch": 1784420289.000002,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-36",
+            "timestamp_epoch": 1784420344.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-36",
+            "timestamp_epoch": 1784420344.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-29",
+            "timestamp_epoch": 1784420344.000002,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-29",
+            "timestamp_epoch": 1784420344.000002,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-29",
+            "timestamp_epoch": 1784420344.000002,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-29",
+            "timestamp_epoch": 1784420344.000002,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-37",
+            "timestamp_epoch": 1784420345.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-37",
+            "timestamp_epoch": 1784420345.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-43",
+            "timestamp_epoch": 1784420355.000003,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-43",
+            "timestamp_epoch": 1784420355.000003,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-47",
+            "timestamp_epoch": 1784420368.000004,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-47",
+            "timestamp_epoch": 1784420368.000004,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-49",
+            "timestamp_epoch": 1784420395.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-49",
+            "timestamp_epoch": 1784420395.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-86",
+            "timestamp_epoch": 1784421656.000004,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-86",
+            "timestamp_epoch": 1784421656.000004,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-87",
+            "timestamp_epoch": 1784421657.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-87",
+            "timestamp_epoch": 1784421657.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "fabeaabb-3ab6-6c86-3761-07650bee728d",
+            "timestamp_epoch": 1784429770.29,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "fabeaabb-3ab6-6c86-3761-07650bee728d",
+            "timestamp_epoch": 1784429770.29,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-231",
+            "timestamp_epoch": 1784430345.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-231",
+            "timestamp_epoch": 1784430345.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-330",
+            "timestamp_epoch": 1784440313.000002,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-330",
+            "timestamp_epoch": 1784440313.000002,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-765",
+            "timestamp_epoch": 1784448243.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-765",
+            "timestamp_epoch": 1784448243.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-368",
+            "timestamp_epoch": 1784448345.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-368",
+            "timestamp_epoch": 1784448345.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-767",
+            "timestamp_epoch": 1784462077.000001,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB.csv.gz#row-767",
+            "timestamp_epoch": 1784462077.000001,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-372",
+            "timestamp_epoch": 1784462079.000002,
+            "leg": "SAL",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL.csv.gz#row-372",
+            "timestamp_epoch": 1784462079.000002,
+            "leg": "VRB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          }
+        ],
+        "execution": {
+          "run_source": "V54_BOOK_VETO_ONLY_20260826",
+          "gradeable": false,
+          "completed": false,
+          "combined_entry_cents": null,
+          "delta_vs_100_cents": null,
+          "legs": {
+            "SAL": {
+              "credited": false,
+              "entry_cents": null,
+              "standing_target_cents": null,
+              "fill_receipt": null,
+              "fill_event_receipt": null,
+              "fill_timestamp_epoch": null,
+              "standing_license_basis": null,
+              "standing_license_receipt": null,
+              "standing_captured_rest_level_cents": null,
+              "standing_captured_rest_license_receipt": null
+            },
+            "VRB": {
+              "credited": false,
+              "entry_cents": null,
+              "standing_target_cents": null,
+              "fill_receipt": null,
+              "fill_event_receipt": null,
+              "fill_timestamp_epoch": null,
+              "standing_license_basis": null,
+              "standing_license_receipt": null,
+              "standing_captured_rest_level_cents": null,
+              "standing_captured_rest_license_receipt": null
+            }
+          }
+        }
+      },
+      "OUTCOME": {
+        "legs": {
+          "SAL": {
+            "filled": false,
+            "cents": null,
+            "valid_span_fill": "STORE SILENT",
+            "reason": "UNKNOWN"
+          },
+          "VRB": {
+            "filled": false,
+            "cents": null,
+            "valid_span_fill": "STORE SILENT",
+            "reason": "UNKNOWN"
+          }
+        },
+        "pair_completed": false,
+        "valid_pair_completed": "STORE SILENT",
+        "pair_sum": null,
+        "captured_cents": null,
+        "best_capturable_cents": null,
+        "capture_ratio": null
+      },
+      "LETTER": {
+        "letter": "STORE SILENT",
+        "governing_section": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      },
+      "display": {
+        "letter": "—",
+        "label": "UNGRADABLE",
+        "governing": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+        "ruler_line": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+        "sections": [
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          },
+          {
+            "name": "TRADE",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          },
+          {
+            "name": "PAIR",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          }
+        ],
+        "diagnostic_hover_lines": [
+          "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+        ]
+      },
+      "RULER_COLUMNS": {
+        "role": "RULER COMPARISON ONLY — NOT AN OS INPUT",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+        "selection": "ALL FILED CORRECTIONS IN LEDGER ORDER — effective grading ruler; original rows retained",
+        "original_table": {
+          "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "26b952d875c2a20b2daac5ececedfcc30c42ae5484d657f9285351c1a9134478",
+          "row_number": 681,
+          "row_csv": "26JUL19SALVRB,KXATPCHALLENGERMATCH-26JUL19SALVRB,ATP_CHALL,1784419876,1784419876,1784473200,1784473200.0,SAL,VRB,1784420344,40.0,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1784420345,60.0,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1784420345,,,,1784470340.0,,UNKNOWN,no evidence; not guessed,1784420345,,UNKNOWN,NEITHER_FOR_REASON,",
+          "values": {
+            "code": "26JUL19SALVRB",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+            "category": "ATP_CHALL",
+            "recorder_open_epoch": "1784419876",
+            "w1_left_epoch": "1784419876",
+            "w1_right_epoch": "1784473200",
+            "scheduled_start_epoch": "1784473200.0",
+            "legA": "SAL",
+            "legB": "VRB",
+            "legA_formation_end_epoch": "1784420344",
+            "legA_open_postformation_c": "40.0",
+            "legA_floor_c": "UNKNOWN",
+            "legA_floor_epoch": "UNKNOWN",
+            "legA_close_c": "UNKNOWN",
+            "legA_close_epoch": "UNKNOWN",
+            "legA_contracts": "UNKNOWN",
+            "legA_premium_usd": "UNKNOWN",
+            "legA_journey": "UNKNOWN",
+            "legA_net_travel_c": "UNKNOWN",
+            "legA_us_first_post_epoch": "",
+            "legA_us_fill_c": "",
+            "legA_us_fill_epoch": "",
+            "legA_us_fill_stamp": "",
+            "legB_formation_end_epoch": "1784420345",
+            "legB_open_postformation_c": "60.0",
+            "legB_floor_c": "UNKNOWN",
+            "legB_floor_epoch": "UNKNOWN",
+            "legB_close_c": "UNKNOWN",
+            "legB_close_epoch": "UNKNOWN",
+            "legB_contracts": "UNKNOWN",
+            "legB_premium_usd": "UNKNOWN",
+            "legB_journey": "UNKNOWN",
+            "legB_net_travel_c": "UNKNOWN",
+            "legB_us_first_post_epoch": "",
+            "legB_us_fill_c": "",
+            "legB_us_fill_epoch": "",
+            "legB_us_fill_stamp": "",
+            "formation_end_game": "1784420345",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "",
+            "kalshi_close_time_epoch": "1784470340.0",
+            "bell_epoch": "",
+            "bell_source": "UNKNOWN",
+            "bell_precision": "no evidence; not guessed",
+            "span_start_epoch": "1784420345",
+            "span_end_epoch": "",
+            "verified_span": "UNKNOWN",
+            "pair_state": "NEITHER_FOR_REASON",
+            "locked_delta_valid_fills_c": ""
+          },
+          "status": "UNKNOWN",
+          "bell_epoch": null,
+          "bell_source": "UNKNOWN",
+          "span_start_epoch": 1784420345,
+          "span_end_epoch": null,
+          "legs": {
+            "SAL": {
+              "floor_cents": null,
+              "floor_epoch": null,
+              "close_cents": null,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "close_cents": "legA_close_c"
+              }
+            },
+            "VRB": {
+              "floor_cents": null,
+              "floor_epoch": null,
+              "close_cents": null,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "close_cents": "legB_close_c"
+              }
+            }
+          },
+          "floor_sum_cents": null,
+          "under_par_cents": null,
+          "campaign_ruler_columns": {},
+          "column_note": "Pinned CSV uses legA_floor_c / legB_floor_c, not a literal floor_cents column; absent campaign/ruler columns are not invented."
+        },
+        "correction_source": {
+          "commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+          "sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+        },
+        "restated_rows": [],
+        "effective_truth": {
+          "role": "RULER — NOT AN OS INPUT",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "26b952d875c2a20b2daac5ececedfcc30c42ae5484d657f9285351c1a9134478",
+          "row_number": 681,
+          "row_csv": "26JUL19SALVRB,KXATPCHALLENGERMATCH-26JUL19SALVRB,ATP_CHALL,1784419876,1784419876,1784473200,1784473200.0,SAL,VRB,1784420344,40.0,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1784420345,60.0,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1784420345,,,,1784470340.0,,UNKNOWN,no evidence; not guessed,1784420345,,UNKNOWN,NEITHER_FOR_REASON,",
+          "verified_span": "UNKNOWN",
+          "status": "STORE_SILENT",
+          "reason": "UNKNOWN",
+          "span_start_epoch": 1784420345,
+          "span_end_epoch": null,
+          "bell_epoch": null,
+          "bell_source": "UNKNOWN",
+          "table_bell_epoch": null,
+          "table_bell_source": "UNKNOWN",
+          "table_bell_delta_seconds": null,
+          "legs": {
+            "SAL": {
+              "status": "STORE_SILENT",
+              "reason": "UNKNOWN",
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "anchor_cents": "legA_open_postformation_c"
+              },
+              "anchor_cents": 40,
+              "floor_cents": null,
+              "floor_epoch": null,
+              "minutes_to_bell": null,
+              "line": "SAL: STORE SILENT — UNKNOWN",
+              "marker_label": null,
+              "chart_label": null,
+              "hover_note": null,
+              "markers": {}
+            },
+            "VRB": {
+              "status": "STORE_SILENT",
+              "reason": "UNKNOWN",
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "anchor_cents": "legB_open_postformation_c"
+              },
+              "anchor_cents": 60,
+              "floor_cents": null,
+              "floor_epoch": null,
+              "minutes_to_bell": null,
+              "line": "VRB: STORE SILENT — UNKNOWN",
+              "marker_label": null,
+              "chart_label": null,
+              "hover_note": null,
+              "markers": {}
+            }
+          },
+          "favorite_leg": "VRB",
+          "underdog_leg": "SAL",
+          "pair": {
+            "sum_cents": null,
+            "discount_cents": null,
+            "reason": "UNKNOWN",
+            "line": "best capturable = STORE SILENT — UNKNOWN",
+            "discount_line": "STORE SILENT",
+            "compact_line": "best capturable STORE SILENT — UNKNOWN"
+          },
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "effective_row": {
+            "code": "26JUL19SALVRB",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+            "category": "ATP_CHALL",
+            "recorder_open_epoch": "1784419876",
+            "w1_left_epoch": "1784419876",
+            "w1_right_epoch": "1784473200",
+            "scheduled_start_epoch": "1784473200.0",
+            "legA": "SAL",
+            "legB": "VRB",
+            "legA_formation_end_epoch": "1784420344",
+            "legA_open_postformation_c": "40.0",
+            "legA_floor_c": "UNKNOWN",
+            "legA_floor_epoch": "UNKNOWN",
+            "legA_close_c": "UNKNOWN",
+            "legA_close_epoch": "UNKNOWN",
+            "legA_contracts": "UNKNOWN",
+            "legA_premium_usd": "UNKNOWN",
+            "legA_journey": "UNKNOWN",
+            "legA_net_travel_c": "UNKNOWN",
+            "legA_us_first_post_epoch": "",
+            "legA_us_fill_c": "",
+            "legA_us_fill_epoch": "",
+            "legA_us_fill_stamp": "",
+            "legB_formation_end_epoch": "1784420345",
+            "legB_open_postformation_c": "60.0",
+            "legB_floor_c": "UNKNOWN",
+            "legB_floor_epoch": "UNKNOWN",
+            "legB_close_c": "UNKNOWN",
+            "legB_close_epoch": "UNKNOWN",
+            "legB_contracts": "UNKNOWN",
+            "legB_premium_usd": "UNKNOWN",
+            "legB_journey": "UNKNOWN",
+            "legB_net_travel_c": "UNKNOWN",
+            "legB_us_first_post_epoch": "",
+            "legB_us_fill_c": "",
+            "legB_us_fill_epoch": "",
+            "legB_us_fill_stamp": "",
+            "formation_end_game": "1784420345",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "",
+            "kalshi_close_time_epoch": "1784470340.0",
+            "bell_epoch": "",
+            "bell_source": "UNKNOWN",
+            "bell_precision": "no evidence; not guessed",
+            "span_start_epoch": "1784420345",
+            "span_end_epoch": "",
+            "verified_span": "UNKNOWN",
+            "pair_state": "NEITHER_FOR_REASON",
+            "locked_delta_valid_fills_c": ""
+          },
+          "row_csv_role": "Original pinned row, before correction overlays"
+        }
+      }
+    }
+  ]
+}

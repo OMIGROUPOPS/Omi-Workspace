@@ -1,0 +1,113 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "F · IVA CLIMBER → NOT_CALLABLE · ROD FALLER → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"correct_side_share\":0},\"legs\":{\"IVA\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL19RODIVA-ROD.csv.gz#row-364\",\"first_recorded_epoch\":1784456327.000005,\"first_bind_epoch\":1784453171,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":1,\"open_cents\":36.5,\"close_cents\":35,\"realized_drift_cents\":-1.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"ROD\":{\"called_role\":\"FALLER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"101696ab-1dd4-7b92-08fd-5c002e03ede9\",\"first_recorded_epoch\":1784465898.902,\"first_bind_epoch\":1784465898.902,\"final_stored_role\":\"CLIMBER\",\"flip_count\":1,\"open_cents\":64.5,\"close_cents\":66,\"realized_drift_cents\":1.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): IVA 1 · ROD 1"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "C · IVA Q 37 vs floor 34¢; range 32–39 · ROD Q 62 vs floor 62¢; range 60–64",
+      "hover_lines": [
+        "MICRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"legs\":{\"IVA\":{\"letter\":\"C\",\"point_letter\":\"C\",\"range_letter\":\"F\",\"q50\":37,\"q25\":32,\"q75\":39,\"floor_error_cents\":3,\"band_width_cents\":7,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL19RODIVA-ROD.csv.gz#row-364\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":34,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"ROD\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":62,\"q25\":60,\"q75\":64,\"floor_error_cents\":0,\"band_width_cents\":4,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL19RODIVA-ROD.csv.gz#row-364\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":62,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): IVA: 1.1¢ · ROD: 0.95¢ · IVA: first 161.46m; remaining MAE 91.52m · ROD: first 32.87m; remaining MAE 39.24m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "✓",
+      "line": "A · IVA 35¢ (+1¢) · ROD 62¢ (+0¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"IVA\":{\"filled\":true,\"cents\":35,\"vs_floor_cents\":1,\"fill_epoch\":1784482048.983,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784494200,\"span_start_epoch\":1784451880,\"span_end_epoch\":1784494200,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":34,\"floor_epoch\":1784490433.5,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":40.85745000044505,\"current_price_age_minutes\":40.85745000044505,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"ROD\":{\"filled\":true,\"cents\":62,\"vs_floor_cents\":0,\"fill_epoch\":1784465898.902,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784494200,\"span_start_epoch\":1784451880,\"span_end_epoch\":1784494200,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":62,\"floor_epoch\":1784465898.9,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":0.25046666463216144,\"current_price_age_minutes\":0.25046666463216144,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: ROD lineage 0.25m, current price 0.25m · IVA lineage 40.86m, current price 40.86m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "✓",
+      "line": "A · 97¢ pair · 3 of 4¢ captured",
+      "hover_lines": [
+        "PAIR: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"pair_sum\":97,\"capture_ratio\":0.75,\"offered_cents\":4}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MACRO",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "leg_id": "ROD",
+      "entry_cents": 62,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 62,
+      "fill_timestamp_epoch": 1784465898.902,
+      "prior_standing_target_cents": 62,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "5dddac35-2e9b-67c9-ef3c-17cac967700e",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "leg_id": "IVA",
+      "entry_cents": 35,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 35,
+      "fill_timestamp_epoch": 1784482048.983,
+      "prior_standing_target_cents": 35,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "c40bfbc9-6556-5e34-baca-5fa4a1b0c93e",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 97,
+  "captured_cents": 3,
+  "offered_cents": 4,
+  "capture_ratio": 0.75,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "5c947a8b4b5d74fff55054170442d1f59ff294797b87dfd5a91914928a9d8add",
+  "grade_sha256": "14f6bc0953c6d063b4d8c7735fcffef5c257489bfaf4b05b69d561c3baf49d1a",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL19RODIVA.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL19RODIVA.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL19RODIVA.sentences.json",
+  "fault": "MACRO: F · IVA CLIMBER → NOT_CALLABLE · ROD FALLER → NOT_CALLABLE",
+  "fill_witnesses": [
+    {
+      "leg": "ROD",
+      "receipt": "101696ab-1dd4-7b92-08fd-5c002e03ede9",
+      "positive_size_witness": true,
+      "print_cents": 62,
+      "rest_cents": 62,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "IVA",
+      "receipt": "697355a2-118e-50e4-207e-c5876a712751",
+      "positive_size_witness": true,
+      "print_cents": 35,
+      "rest_cents": 35,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

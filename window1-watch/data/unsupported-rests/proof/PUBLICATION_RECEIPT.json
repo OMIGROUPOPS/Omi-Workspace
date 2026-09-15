@@ -1,0 +1,22 @@
+{
+  "status": "PREVIEW_VERIFIED",
+  "preview_url": "https://omi-window1-watch-42rym9gn6-omi-groups-projects.vercel.app",
+  "deployment_id": "dpl_2nsMygRzFXurErdtdwJE39wmk2CT",
+  "production_target": "https://omi-window1-watch.vercel.app",
+  "build_id": "83abeb1645784a6e",
+  "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+  "selected_games_verified_local_and_hosted": 100,
+  "picker_entries": 104,
+  "static_files": 1152,
+  "upload_bytes": 175429795,
+  "excluded_full_stage_and_renewal_bytes": 4359760941,
+  "archive_receipt": "../ARCHIVE_RECEIPT.json",
+  "local_browser_proof": "STATIC_VERIFY.json",
+  "hosted_browser_proof": "HOSTED_VERIFY.json",
+  "large_timeline_proof": "AVDFEI_TIMELINE_VERIFY.json",
+  "bid_card_proof": "ALTGAS_BID_VERIFY.json",
+  "fault_storage_roundtrip_index_sha256": "7a6ecdc5b103dd30897099c563ad53ecda81ccb1e4ad375d8bd1ab34d85f95e6",
+  "determinism": "pass 1 + 10-game determinism sample",
+  "full_organ_record": "PENDING_FULL_UNIVERSE_TWO_PASS",
+  "storage": "Lossless gzip. Original JSON bytes, SHA256s and URLs retained. Raw oversized local files ignored; approved derived gzip archives committed. No engine, raw prints, sealed remainder, full stages or full renewals in the hosted bundle."
+}

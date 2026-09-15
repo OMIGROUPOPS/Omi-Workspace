@@ -1,0 +1,32 @@
+{
+  "schema": "TUNE_DETERMINISM_POLICY_V1",
+  "label": "pass 1 + 10-game determinism sample",
+  "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+  "seed": "589f41bec8e34da939ed6664a7db9e65a25c9b8a6ac86c7119caaceddab5656c",
+  "seed_source": "SHA256(original frozen draw seed + newline + unsupported-rests/tune-determinism-v1)",
+  "method": "Mandatory ALT/GAS and GANZIN, then eight lowest SHA256(seed + newline + event) among the remaining frozen selected100. No outcomes, availability or completed-pass status used for selection.",
+  "sample_events": [
+    "KXATPMATCH-26JUL12ALTGAS",
+    "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+    "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+    "KXWTAMATCH-26JUL20PODSTU",
+    "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+    "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+    "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+    "KXATPCHALLENGERMATCH-26JUL20MARROS",
+    "KXATPMATCH-26JUL12KOPPRI",
+    "KXATPMATCH-26JUL12BUDPEL"
+  ],
+  "mandatory_events": [
+    "KXATPMATCH-26JUL12ALTGAS",
+    "KXATPCHALLENGERMATCH-26JUL14GANZIN"
+  ],
+  "selected_games": 100,
+  "sample_size": 10,
+  "sample_selected_games": 9,
+  "extra_named_checks": 1,
+  "order": "Finish pass1 and persist a complete trace for every selected game before starting missing sample pass2s. Existing verified full comparisons are retained and reused.",
+  "scope": "TUNE ITERATION ONLY; ALT/GAS remains outside the selected100 denominator; remaining704 unrun.",
+  "final_record_rule": "Full two-pass determinism on every selected game is still required to finalize an organ change for the record; a passing sample does not establish that.",
+  "final_organ_acceptance": "NOT_ESTABLISHED_BY_SAMPLE"
+}

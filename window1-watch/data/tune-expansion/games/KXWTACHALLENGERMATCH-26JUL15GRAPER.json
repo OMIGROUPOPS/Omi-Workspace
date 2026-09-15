@@ -1,0 +1,129 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+  "category": "WTA_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · GRA CLIMBER → CLIMBER · PER FALLER → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"GRA\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"b79b3c18-ca75-6d57-3422-a88f01582c0b\",\"first_recorded_epoch\":1784078250.263,\"first_bind_epoch\":1784078250.263,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":86,\"close_cents\":88,\"realized_drift_cents\":2,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"PER\":{\"called_role\":\"FALLER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"07756d22-e48a-4e0f-306c-8563a0dc824c\",\"first_recorded_epoch\":1784086547.555,\"first_bind_epoch\":1784086547.555,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":14,\"close_cents\":13,\"realized_drift_cents\":-1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): GRA 0 · PER 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · GRA Q 86 vs floor 87¢; range 85–87 · PER Q 13 vs floor 12¢; range 12–13",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"GRA\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":86,\"q25\":85,\"q75\":87,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"b79b3c18-ca75-6d57-3422-a88f01582c0b\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":87,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"PER\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":13,\"q25\":12,\"q75\":13,\"floor_error_cents\":1,\"band_width_cents\":1,\"band_contains_floor\":true,\"receipt\":\"b79b3c18-ca75-6d57-3422-a88f01582c0b\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":12,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): GRA: 0.49¢ · PER: 0.29¢ · GRA: first 8.96m; remaining MAE 28.5m · PER: first 181.64m; remaining MAE 29.16m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · GRA 87¢ (+0¢) · PER unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"GRA\":{\"filled\":true,\"cents\":87,\"vs_floor_cents\":0,\"fill_epoch\":1784088377.296,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784106000,\"span_start_epoch\":1784063824,\"span_end_epoch\":1784106000,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":87,\"floor_epoch\":1784088377.3,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":59.55493331750234,\"current_price_age_minutes\":59.55493331750234,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"PER\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":12,\"floor_epoch\":1784086547.6,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: GRA lineage 59.55m, current price 59.55m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 1¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":1}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "leg_id": "GRA",
+      "entry_cents": 87,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 87,
+      "fill_timestamp_epoch": 1784088377.296,
+      "prior_standing_target_cents": 87,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTACHALLENGERMATCH-26JUL15GRAPER-GRA.csv.gz#row-1304",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 1,
+  "capture_ratio": 0,
+  "one_sided_reason": "PER: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+  "missing_sides": [
+    {
+      "leg": "PER",
+      "reason": "No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+      "last_action": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL15GRAPER-GRA.csv.gz#row-3475",
+        "timestamp_epoch": 1784105947.000024,
+        "leg": "PER",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 12,
+      "reach_audit": {
+        "rest_intervals": 48,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 1,
+        "first_boundary_crossing": {
+          "print": {
+            "epoch": 1784099770.03,
+            "price": 12,
+            "receipt": "4b938e0f-4ded-58d8-0c73-bf34ce1e32a6",
+            "source_row": 805
+          },
+          "interval": {
+            "level": 12,
+            "start_epoch": 1784099770.03,
+            "start_receipt": "4b938e0f-4ded-58d8-0c73-bf34ce1e32a6",
+            "end_epoch": 1784099772.000001
+          }
+        },
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "055f34241f4e47cfe5480af1f39389ee76964020eba5f1b72d368439c31142c7",
+  "grade_sha256": "6379171d5c302c40e32f792b4d0bbe1ad2ac27231cdc613d5728323126e58008",
+  "grade_url": "/data/KXWTACHALLENGERMATCH-26JUL15GRAPER.grade.json",
+  "face_url": "/data/KXWTACHALLENGERMATCH-26JUL15GRAPER.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL15GRAPER.sentences.json",
+  "fault": "PER: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+  "fill_witnesses": [
+    {
+      "leg": "GRA",
+      "receipt": "2cfc0c48-2597-58e9-b867-399b24d566d5",
+      "positive_size_witness": true,
+      "print_cents": 87,
+      "rest_cents": 87,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "event": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+  "base": "http://127.0.0.1:8083",
+  "initial": {
+    "chunks": 109,
+    "receipts": 55434,
+    "loaded": 512,
+    "markers": 55381
+  },
+  "after": {
+    "loaded": 1162,
+    "receipts": 55434,
+    "markers": 55381
+  },
+  "chunk_requests": [
+    "http://127.0.0.1:8083/data/KXWTACHALLENGERMATCH-26JUL13AVDFEI.timeline/54272.json",
+    "http://127.0.0.1:8083/data/KXWTACHALLENGERMATCH-26JUL13AVDFEI.timeline/0.json",
+    "http://127.0.0.1:8083/data/KXWTACHALLENGERMATCH-26JUL13AVDFEI.timeline/55296.json"
+  ],
+  "js_errors": []
+}

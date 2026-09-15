@@ -1,0 +1,32 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "0803cf27f74ea62455a177e00e908265975ed4a58bdddbc394b58e38330ac8b9",
+    "grade_sha256": "b9e3ebe5f987e11edaaf63afe49457fd83b41c5e2f2f43cab6fe6a0085609494",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "dcd5a2b7e2862b40bc655a6440a458bccd76487566f228dd14fcefb857eb50c9",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "b97f3499c889bd2784d6998a897bac5330cbda7d734f7bfbedfcdbe98670496e"
+  },
+  "known_span": true,
+  "classes": [],
+  "header": "Pair completed · no failed side",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 2,
+    "captured_cents": 2,
+    "best_capturable_cents": 11,
+    "pair_sum": 98,
+    "pair_completed": true,
+    "valid_fills": 2,
+    "legs": {
+      "GAL": true,
+      "LLA": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": []
+}

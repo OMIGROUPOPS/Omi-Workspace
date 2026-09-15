@@ -1,0 +1,895 @@
+{
+  "status": "PASS",
+  "base": "https://omi-window1-watch-42rym9gn6-omi-groups-projects.vercel.app",
+  "games": 100,
+  "rows": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "classes": [
+        "A",
+        "C"
+      ],
+      "known_span": true,
+      "safety_excluded": true,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "classes": [
+        "A",
+        "B",
+        "D"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "classes": [
+        "D"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "classes": [
+        "E"
+      ],
+      "known_span": false,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "classes": [
+        "B"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+      "classes": [
+        "A",
+        "D"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+      "classes": [
+        "A",
+        "C"
+      ],
+      "known_span": true,
+      "safety_excluded": true,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+      "classes": [
+        "A",
+        "D"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "classes": [
+        "D"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "classes": [
+        "A",
+        "B"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "classes": [
+        "E"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "classes": [
+        "B"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "classes": [
+        "E"
+      ],
+      "known_span": false,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "classes": [
+        "A",
+        "B"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "classes": [
+        "D"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+      "classes": [
+        "E"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "classes": [
+        "A",
+        "C"
+      ],
+      "known_span": true,
+      "safety_excluded": true,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "classes": [
+        "E"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12KOPPRI",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DEJGAU",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19TSICOL",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12BUDPEL",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19NEUHAN",
+      "classes": [
+        "A",
+        "B"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15PRADZU",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15CARUGO",
+      "classes": [
+        "A",
+        "B"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19STRSHE",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL16FARRUU",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GASDZU",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19DROUGO",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DOMSKA",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15VANDRO",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12OFNTIR",
+      "classes": [
+        "A",
+        "D"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CORDAN",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SLADAM",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CECOLI",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18HIPGIU",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "classes": [
+        "E"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "classes": [
+        "E"
+      ],
+      "known_span": false,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+      "classes": [
+        "D",
+        "E"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "classes": [
+        "E"
+      ],
+      "known_span": false,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13LEPIBR",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13GRAPAR",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KUDKOR",
+      "classes": [
+        "E"
+      ],
+      "known_span": false,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KRETOM",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13QUERUS",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13PRIGAR",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16KORANN",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MORAKS",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12AVASEI",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19GAOFRU",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17PUTSHE",
+      "classes": [
+        "E"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19YASBAR",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KAWWAL",
+      "classes": [
+        "A",
+        "D"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14PUTLIU",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13MORBEJ",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PODSTU",
+      "classes": [],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MICFRU",
+      "classes": [
+        "E"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16VALSAS",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17UDVBAD",
+      "classes": [
+        "A"
+      ],
+      "known_span": true,
+      "safety_excluded": false,
+      "status": "PASS"
+    }
+  ],
+  "scoreboard_capture": 20,
+  "scoreboard_completed": 15,
+  "omitted_stage_status": 404,
+  "js_errors": []
+}

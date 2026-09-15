@@ -1,0 +1,139 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "A · BER FALLER → FALLER · JOH CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"BER\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL14JOHBER-BER.csv.gz#row-423\",\"first_recorded_epoch\":1784020300.000002,\"first_bind_epoch\":1784020197,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":53,\"close_cents\":51,\"realized_drift_cents\":-2,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"JOH\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL14JOHBER-BER.csv.gz#row-423\",\"first_recorded_epoch\":1784020300.000002,\"first_bind_epoch\":1784020173.582,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":47,\"close_cents\":53,\"realized_drift_cents\":6,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): BER 0 · JOH 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "B · BER Q 47 vs floor 48¢; range 46–50 · JOH Q 47 vs floor 49¢; range 45–48",
+      "hover_lines": [
+        "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"legs\":{\"BER\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":47,\"q25\":46,\"q75\":50,\"floor_error_cents\":1,\"band_width_cents\":4,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14JOHBER-BER.csv.gz#row-423\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":48,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"JOH\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":47,\"q25\":45,\"q75\":48,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14JOHBER-BER.csv.gz#row-423\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":49,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): BER: 0.79¢ · JOH: 2.01¢ · BER: first 460.47m; remaining MAE 220.41m · JOH: first 425.04m; remaining MAE 192.05m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · BER 49¢ (+1¢; floor printed earlier) · JOH 50¢ (+1¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"BER\":{\"filled\":true,\"cents\":49,\"vs_floor_cents\":1,\"fill_epoch\":1784042195.833,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784070480,\"span_start_epoch\":1784007603,\"span_end_epoch\":1784055365.017,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":48,\"floor_epoch\":1784026390.4,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":263.42443333069485,\"current_price_age_minutes\":8.597216665744781,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"JOH\":{\"filled\":true,\"cents\":50,\"vs_floor_cents\":1,\"fill_epoch\":1784065272.268,\"valid_span_fill\":false,\"revalidation\":{\"ruler_bell_epoch\":1784070480,\"span_start_epoch\":1784007603,\"span_end_epoch\":1784055365.017,\"at_or_after_span_start\":true,\"before_span_end\":false,\"before_bell\":true,\"correction_ids\":[]},\"reason\":\"FILL_OUTSIDE_VERIFIED_SPAN\",\"floor_cents\":49,\"floor_epoch\":1784020173.5,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":104.30446664889654,\"current_price_age_minutes\":104.30446664889654,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: BER lineage 263.42m, current price 8.6m · JOH lineage 104.3m, current price 104.3m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · 99¢ pair · 0 of 3¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":0,\"offered_cents\":3}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "TRADE: fill outside corrected span/bell",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "leg_id": "BER",
+      "entry_cents": 49,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 49,
+      "fill_timestamp_epoch": 1784042195.833,
+      "prior_standing_target_cents": 49,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14JOHBER|ATLAS_GATE|1784041680",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "leg_id": "JOH",
+      "entry_cents": 50,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 50,
+      "fill_timestamp_epoch": 1784065272.268,
+      "prior_standing_target_cents": 50,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14JOHBER-BER.csv.gz#row-5854",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": 99,
+  "captured_cents": 0,
+  "offered_cents": 3,
+  "capture_ratio": 0,
+  "one_sided_reason": "JOH: FILL_OUTSIDE_VERIFIED_SPAN",
+  "missing_sides": [
+    {
+      "leg": "JOH",
+      "reason": "FILL_OUTSIDE_VERIFIED_SPAN",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14JOHBER|ATLAS_GATE|1784070180",
+        "timestamp_epoch": 1784070180,
+        "leg": "JOH",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "CREDITED_LEG_READ_ONLY"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 49,
+      "reach_audit": {
+        "rest_intervals": 5,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "84364a3fac084c3b3119ef2ccecd42bc53954efcdb4a98598d25c0cdb6b8771c",
+  "grade_sha256": "03d01e7e2446b4b0bd50b1a8f0b69f4a6c33564b618133474d9e6d7b59452db6",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL14JOHBER.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL14JOHBER.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL14JOHBER.sentences.json",
+  "fault": "TRADE: fill outside corrected span/bell",
+  "fill_witnesses": [
+    {
+      "leg": "BER",
+      "receipt": "81ab61f4-450c-414e-e501-44549cc3b748",
+      "positive_size_witness": true,
+      "print_cents": 49,
+      "rest_cents": 49,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "JOH",
+      "receipt": "aa747648-fb27-52b4-96be-d289d700a4f2",
+      "positive_size_witness": true,
+      "print_cents": 50,
+      "rest_cents": 50,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [
+    "TRADE: fill outside corrected span/bell"
+  ],
+  "offer_issue": null
+}

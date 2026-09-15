@@ -1,0 +1,116 @@
+{
+  "event": "KXWTAMATCH-26JUL16VALSAS",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · SAS CLIMBER → NOT_CALLABLE · VAL CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"SAS\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"64e1cc33-400f-6788-27c4-f52f83079218\",\"first_recorded_epoch\":1784138928.051,\"first_bind_epoch\":1784138161,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":1,\"open_cents\":34,\"close_cents\":33,\"realized_drift_cents\":-1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"VAL\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"64e1cc33-400f-6788-27c4-f52f83079218\",\"first_recorded_epoch\":1784138928.051,\"first_bind_epoch\":1784137987.859,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":65,\"close_cents\":69,\"realized_drift_cents\":4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): SAS 1 · VAL 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "B · SAS Q 34 vs floor 32¢; range 33–36 · VAL Q 65 vs floor 66¢; range 64–66",
+      "hover_lines": [
+        "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"legs\":{\"SAS\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":34,\"q25\":33,\"q75\":36,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"64e1cc33-400f-6788-27c4-f52f83079218\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":32,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"VAL\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":65,\"q25\":64,\"q75\":66,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"64e1cc33-400f-6788-27c4-f52f83079218\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":66,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): SAS: 0.89¢ · VAL: 1.49¢ · SAS: first 142.91m; remaining MAE 116.76m · VAL: first 220.38m; remaining MAE 139.07m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · SAS 34¢ (+2¢; floor printed earlier) · VAL unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"SAS\":{\"filled\":true,\"cents\":34,\"vs_floor_cents\":2,\"fill_epoch\":1784141991.018,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784212680,\"span_start_epoch\":1784126439,\"span_end_epoch\":1784208780,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":32,\"floor_epoch\":1784141991,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":30.966966648896534,\"current_price_age_minutes\":30.966966648896534,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"VAL\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":66,\"floor_epoch\":1784140149.8,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: SAS lineage 30.97m, current price 30.97m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 2¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":2}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL16VALSAS",
+      "leg_id": "SAS",
+      "entry_cents": 34,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 32,
+      "fill_timestamp_epoch": 1784141991.018,
+      "prior_standing_target_cents": 34,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTAMATCH-26JUL16VALSAS-SAS.csv.gz#row-185",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 2,
+  "capture_ratio": 0,
+  "one_sided_reason": "VAL: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "VAL",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTAMATCH-26JUL16VALSAS-SAS.csv.gz#row-6046",
+        "timestamp_epoch": 1784212678.000001,
+        "leg": "VAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 66,
+      "reach_audit": {
+        "rest_intervals": 4,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "52527a16543424642d8791a67da669bed0d1d5239839680c73dc30714423a373",
+  "grade_sha256": "82dbe0bf79a7a16be811a414f702c76afe95b2552fb2a2416b0cdff0ffb2d3e8",
+  "grade_url": "/data/KXWTAMATCH-26JUL16VALSAS.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL16VALSAS.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL16VALSAS.sentences.json",
+  "fault": "VAL: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "SAS",
+      "receipt": "0cf24b1c-92ef-645a-ca27-4698df35d1fe",
+      "positive_size_witness": true,
+      "print_cents": 32,
+      "rest_cents": 34,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

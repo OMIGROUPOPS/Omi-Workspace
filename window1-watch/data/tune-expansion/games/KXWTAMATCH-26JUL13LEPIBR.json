@@ -1,0 +1,116 @@
+{
+  "event": "KXWTAMATCH-26JUL13LEPIBR",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "F · IBR CLIMBER → NOT_CALLABLE · LEP CLIMBER → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"correct_side_share\":0},\"legs\":{\"IBR\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246\",\"first_recorded_epoch\":1783894516.000001,\"first_bind_epoch\":1783894516.000001,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":44,\"close_cents\":44,\"realized_drift_cents\":0,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"LEP\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246\",\"first_recorded_epoch\":1783894516.000001,\"first_bind_epoch\":1783893635.886,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":56,\"close_cents\":57,\"realized_drift_cents\":1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): IBR 0 · LEP 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · IBR Q 46 vs floor 43¢; range 43–47 · LEP Q 59 vs floor 55¢; range 58–59",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"IBR\":{\"letter\":\"B\",\"point_letter\":\"C\",\"range_letter\":\"B\",\"q50\":46,\"q25\":43,\"q75\":47,\"floor_error_cents\":3,\"band_width_cents\":4,\"band_contains_floor\":true,\"receipt\":\"KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":43,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_RANGE_CREDIT\"},\"LEP\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":59,\"q25\":58,\"q75\":59,\"floor_error_cents\":4,\"band_width_cents\":1,\"band_contains_floor\":false,\"receipt\":\"KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":55,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): IBR: 0.99¢ · LEP: 0.76¢ · IBR: first 154.77m; remaining MAE 88.38m · LEP: first 587.28m; remaining MAE 216.01m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · IBR unfilled · LEP 56¢ (+1¢)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"IBR\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":43,\"floor_epoch\":1783913207.8,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"LEP\":{\"filled\":true,\"cents\":56,\"vs_floor_cents\":1,\"fill_epoch\":1783922243.737,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783944000,\"span_start_epoch\":1783891806,\"span_end_epoch\":1783944000,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":55,\"floor_epoch\":1783942702.8,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":29.712283317248026,\"current_price_age_minutes\":29.712283317248026,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: LEP lineage 29.71m, current price 29.71m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 2¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":2}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MACRO · MICRO · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL13LEPIBR",
+      "leg_id": "LEP",
+      "entry_cents": 56,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 56,
+      "fill_timestamp_epoch": 1783922243.737,
+      "prior_standing_target_cents": 56,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-3124",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 2,
+  "capture_ratio": 0,
+  "one_sided_reason": "IBR: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "IBR",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+        "timestamp_epoch": 1783943999.000001,
+        "leg": "IBR",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 43,
+      "reach_audit": {
+        "rest_intervals": 4,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "4551a1a8eb7993c30cd07372a321a8edcc4ed057c42f2d404908bf6a46c4e18c",
+  "grade_sha256": "6cf883461bcd6e9c51ec595f88d951852fdcb030f9f52823aebdc1590c7c42f2",
+  "grade_url": "/data/KXWTAMATCH-26JUL13LEPIBR.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL13LEPIBR.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL13LEPIBR.sentences.json",
+  "fault": "IBR: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "LEP",
+      "receipt": "1863354c-2360-4332-0be2-a11ad0ee0764",
+      "positive_size_witness": true,
+      "print_cents": 56,
+      "rest_cents": 56,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

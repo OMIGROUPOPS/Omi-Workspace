@@ -1,0 +1,38 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {chromium} from 'playwright';
+const base=process.argv[2]??'http://127.0.0.1:8083';
+const out=process.argv[3]??'C:/tmp/unsupported_rests_20260914/lazy-proof';
+const event=process.argv[4]??'KXATPCHALLENGERMATCH-26JUL14GANZIN';
+fs.mkdirSync(out,{recursive:true});
+const browser=await chromium.launch({channel:'msedge',headless:true});
+const page=await browser.newPage({viewport:{width:1600,height:1100}}),errors=[],requests=[];
+page.on('pageerror',e=>errors.push(e.message));
+page.on('request',r=>{if(r.url().includes('.bid-details.json'))requests.push(r.url())});
+try{
+ await page.goto(base+'/?tab=lab&event='+event+'&gate=240');
+ await page.waitForFunction(event=>window.TUNE_DATA?.face.provenance.event_id===event&&window.TUNE_DATA.grade_status==='OK',event,{timeout:120000});
+ const initial=await page.evaluate(()=>({count:window.TUNE_DATA.face.bid_card_details?.action_count,os:window.TUNE_DATA.face.provenance.os_sha256,grade:window.TUNE_DATA.grade.LETTER.letter}));
+ assert(initial.count>0);assert.equal(requests.length,0,'No detail fetch at game load');
+ const buttons=page.locator('.reading-action[data-action-id]');
+ await buttons.first().waitFor({timeout:30000});
+ assert(await buttons.count()>1);
+ await buttons.first().focus();
+ const card=page.locator('.reading-action-tip .four-line-card');
+ await card.waitFor();
+ assert.equal(requests.length,0,'Four-line preview needs no detail fetch');
+ assert((await card.locator('[data-card-line]').count())<=4);
+ await card.locator('summary').click();
+ await card.locator('.raw-card-details p').filter({hasText:'Immutable assumption:'}).first().waitFor({timeout:120000});
+ assert.equal(requests.length,1);assert.equal(await card.getByRole('alert').count(),0);
+ await page.screenshot({path:path.join(out,event+'-lazy-card.png'),fullPage:true});
+ await page.locator('.reading-action-tip').getByRole('button',{name:'Close',exact:true}).click();
+ await buttons.nth(1).focus();
+ await page.locator('.reading-action-tip summary').click();
+ await page.locator('.reading-action-tip .raw-card-details p').filter({hasText:'Immutable assumption:'}).first().waitFor();
+ assert.equal(requests.length,1,'Second action uses verified per-game cache');
+ assert.deepEqual(errors,[]);
+ const result={status:'PASS',base,event,gate:240,...initial,detail_requests:requests.length,preview_fetches:0,js_errors:errors};
+ fs.writeFileSync(path.join(out,event+'-VERIFY.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+}finally{await browser.close();}

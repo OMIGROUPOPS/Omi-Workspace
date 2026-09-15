@@ -1,0 +1,129 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "NOT OFFERED",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · BIN CLIMBER → CLIMBER · GIL FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"BIN\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"06e3f722-46d6-6f25-6d4e-3fc1fd9d362e\",\"first_recorded_epoch\":1783859136.48,\"first_bind_epoch\":1783859136.48,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":77,\"close_cents\":85,\"realized_drift_cents\":8,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"GIL\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"06e3f722-46d6-6f25-6d4e-3fc1fd9d362e\",\"first_recorded_epoch\":1783859136.48,\"first_bind_epoch\":1783859000.304,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":23,\"close_cents\":15,\"realized_drift_cents\":-8,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): BIN 0 · GIL 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · BIN Q 85 vs floor 85¢; range 83–85 · GIL Q 16 vs floor 15¢; range 14–16",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"BIN\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":85,\"q25\":83,\"q75\":85,\"floor_error_cents\":0,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"06e3f722-46d6-6f25-6d4e-3fc1fd9d362e\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":85,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"GIL\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":16,\"q25\":14,\"q75\":16,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"06e3f722-46d6-6f25-6d4e-3fc1fd9d362e\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":15,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): BIN: 0¢ · GIL: 0.9¢ · BIN: first 348.29m; remaining MAE 3.64m · GIL: first 77.55m; remaining MAE 7.23m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "NOT OFFERED · BIN unfilled · GIL unfilled",
+      "hover_lines": [
+        "TRADE: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"valid_fills\":0,\"side_count\":2},\"legs\":{\"BIN\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":85,\"floor_epoch\":1783838239.1,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"GIL\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":15,\"floor_epoch\":1783863789.7,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: "
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "NOT OFFERED · Not offered — recorded floors sum to par or above",
+      "hover_lines": [
+        "PAIR: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":\"STORE SILENT\",\"offered_cents\":0}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "NOT OFFERED — corrected floor pair offers no discount",
+  "raw_engine_fills": [],
+  "raw_engine_completed": false,
+  "valid_fills": 0,
+  "completed": false,
+  "one_sided": false,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 0,
+  "capture_ratio": "STORE SILENT",
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "BIN",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL|BELL",
+        "timestamp_epoch": 1783864320,
+        "leg": "BIN",
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "PULL_UNSUPPORTED"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 85,
+      "reach_audit": {
+        "rest_intervals": 1029,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "GIL",
+      "reason": "No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-3710",
+        "timestamp_epoch": 1783864320.000001,
+        "leg": "GIL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 15,
+      "reach_audit": {
+        "rest_intervals": 1853,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 12,
+        "first_boundary_crossing": {
+          "print": {
+            "epoch": 1783863789.664,
+            "price": 15,
+            "receipt": "e07f90b4-fc61-531b-0e17-634244df017b",
+            "source_row": 1771
+          },
+          "interval": {
+            "level": 16,
+            "start_epoch": 1783863787.000013,
+            "start_receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-2849",
+            "end_epoch": 1783863789.664
+          }
+        },
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "f1ac2f3cfc408301a98332fb19cc5b2bb0c5677c14d78fe8fe959e00e4ad1d7e",
+  "grade_sha256": "d034564c70693fb3e359f2877bca78a7c53640338b13480700c7f495d8f599b6",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL12BINGIL.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL12BINGIL.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL12BINGIL.sentences.json",
+  "fault": "BIN: No later positive-size print reached a standing bid before the corrected bell | GIL: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+  "fill_witnesses": [],
+  "hard_failures": [],
+  "offer_issue": null
+}

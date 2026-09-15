@@ -1,0 +1,97 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "bd3ea8b94a3796e2c6b34fe5a4301a33de6fcc826956313b43e730eae9b97153",
+    "grade_sha256": "c716351c7480663c4a9ca5fe6bc66d7af8a1a3cccd5e0cba3bcab688f39f7b7f",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "059bb6284ab327cf2a2462244e0e68976088d3e3e1703efd000245c23410e5ed",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "c7027e28cfefde10c4818297b8556715c0cc907d62f924e26666303020d90b4f"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "VAS: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 4,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "SIN": true,
+      "VAS": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "VAS",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20VASSIN-VAS.csv.gz#row-173",
+          "action": "PLACE",
+          "placement_epoch": 1784506289.000001,
+          "bid_cents": 74,
+          "recorded_floor_cents": 76,
+          "recorded_floor_epoch": 1784528930.4,
+          "floor_minus_placement_minutes": 377.3566666523615,
+          "Q_at_placement": 74,
+          "remaining_positive_print_floor": 76,
+          "later_positive_prints": 27,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20VASSIN-VAS.csv.gz#row-208",
+          "action": "REPRICE",
+          "placement_epoch": 1784510804.000001,
+          "bid_cents": 75,
+          "recorded_floor_cents": 76,
+          "recorded_floor_epoch": 1784528930.4,
+          "floor_minus_placement_minutes": 302.1066666523615,
+          "Q_at_placement": 75,
+          "remaining_positive_print_floor": 76,
+          "later_positive_prints": 27,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20VASSIN-SIN.csv.gz#row-271",
+          "action": "REPRICE",
+          "placement_epoch": 1784519944.000001,
+          "bid_cents": 75,
+          "recorded_floor_cents": 76,
+          "recorded_floor_epoch": 1784528930.4,
+          "floor_minus_placement_minutes": 149.7733333190282,
+          "Q_at_placement": 75,
+          "remaining_positive_print_floor": 76,
+          "later_positive_prints": 21,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 28,
+      "unobserved_placements": []
+    }
+  ]
+}

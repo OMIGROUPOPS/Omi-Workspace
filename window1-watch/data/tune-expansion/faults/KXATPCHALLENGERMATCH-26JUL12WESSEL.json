@@ -1,0 +1,93 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "ff2fc36d1792dacc6db9ef25a75d1cec1c79ec116dd0ba91d87818362c22a436",
+    "grade_sha256": "7ae72d14d1ccfc821bbd8a23d7974c290ff445d5be19e8a3fe93a67ab79d25c5",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "eefc8333de6ecba0a9c168061a08d41693b93143ade12dcda034fcf63432933e",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "8a15bb92c97f54d6eeda4396eec30f307c2eb0fa215930067140ea19b294ca29"
+  },
+  "known_span": false,
+  "classes": [
+    "E"
+  ],
+  "header": "SEL: E · other / missing evidence | WES: E · other / missing evidence",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": null,
+    "captured_cents": null,
+    "best_capturable_cents": null,
+    "pair_sum": null,
+    "pair_completed": null,
+    "valid_fills": null,
+    "legs": {
+      "SEL": null,
+      "WES": null
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "SEL",
+      "scope": "UNKNOWN_SPAN_SIDE",
+      "raw_filled": false,
+      "safe_filled": null,
+      "classes": [
+        "E"
+      ],
+      "A": [],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": {
+        "reason": "No verified corrected span; A/B/D cannot be asserted.",
+        "first_eligible_call_present": false,
+        "placements": 0,
+        "placements_without_later_positive_print": 0,
+        "last_action": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-1146",
+          "timestamp_epoch": 1783855641.000001,
+          "leg": "SEL",
+          "action": "HOLD_REST",
+          "target_cents": null,
+          "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+        }
+      },
+      "positive_prints": null,
+      "unobserved_placements": []
+    },
+    {
+      "leg": "WES",
+      "scope": "UNKNOWN_SPAN_SIDE",
+      "raw_filled": false,
+      "safe_filled": null,
+      "classes": [
+        "E"
+      ],
+      "A": [],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": {
+        "reason": "No verified corrected span; A/B/D cannot be asserted.",
+        "first_eligible_call_present": false,
+        "placements": 0,
+        "placements_without_later_positive_print": 0,
+        "last_action": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-1146",
+          "timestamp_epoch": 1783855641.000001,
+          "leg": "WES",
+          "action": "HOLD_REST",
+          "target_cents": null,
+          "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+        }
+      },
+      "positive_prints": null,
+      "unobserved_placements": []
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+  "category": "WTA_CHALL",
+  "status": "UNGRADABLE",
+  "letter": "STORE SILENT",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "— · No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "— · No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "— · No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "— · No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+      ]
+    }
+  ],
+  "governing": "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+  "raw_engine_fills": [],
+  "raw_engine_completed": false,
+  "valid_fills": null,
+  "completed": null,
+  "one_sided": null,
+  "pair_sum": null,
+  "captured_cents": null,
+  "offered_cents": null,
+  "capture_ratio": null,
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "BAL",
+      "reason": "No verified span (EMPTY (bell before formation end))",
+      "last_action": {
+        "receipt": "4c277d8a-b81c-5f46-a97b-b0339834e11a",
+        "timestamp_epoch": 1783863240.229,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": null,
+      "reach_audit": null,
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "HUA",
+      "reason": "No verified span (EMPTY (bell before formation end))",
+      "last_action": {
+        "receipt": "4c277d8a-b81c-5f46-a97b-b0339834e11a",
+        "timestamp_epoch": 1783863240.229,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": null,
+      "reach_audit": null,
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "4e4f8752aa1bc83729b66bd7a5077adcb6ae8edfa8b85443ae4c2a07732b99ae",
+  "grade_sha256": "84a540c5663ae5e97b12e16b41a057341bc9dbe45ccca2e64a8da2dd1cbe9c5a",
+  "grade_url": "/data/KXWTACHALLENGERMATCH-26JUL12BALHUA.grade.json",
+  "face_url": "/data/KXWTACHALLENGERMATCH-26JUL12BALHUA.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL12BALHUA.sentences.json",
+  "fault": "No verified span: EMPTY (bell before formation end)",
+  "fill_witnesses": [],
+  "hard_failures": [],
+  "offer_issue": {
+    "reason": "EMPTY (bell before formation end)",
+    "recorded_floors": {
+      "BAL": null,
+      "HUA": null
+    },
+    "original_row_floor_sum": null,
+    "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+  }
+}

@@ -13,6 +13,9 @@ const text = (x) => (x == null ? SILENT : String(x));
 const cents = (x) => (finite(x) ? `${x}¢` : SILENT);
 const sha = (x) => crypto.createHash("sha256").update(x).digest("hex");
 const pct = (x) => (finite(x) ? `${(100 * x).toFixed(2)}%` : SILENT);
+export const CORRECTED_TICK_BENCH_COMMIT = "c78259251d784b090961ace0d8f08e5c1af99796";
+export const CORRECTED_TICK_BENCH_PATH = "arb-executor/analysis/tune_bench_v2_ticks/ATP_MAIN/TUNE_BENCH_NAMED_CHECKS.json";
+const CORRECTED_TICK_BENCH_SHA256 = "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325";
 const withoutSilent = (value) =>
   value?.stamp === SILENT ? null : (value ?? null);
 
@@ -105,6 +108,8 @@ export async function bindCustody(tracePath, traceSha, suppliedDir) {
           os_sha256: run.os_sha256,
           os_hash_source: path.join(dir, "FACE_RUN_PROVENANCE.json"),
           custody_manifest_sha256: sha(bytes),
+          ...(run.bell_alignment ? { bell_source_used: run.bell_source_used,
+            bell_alignment: run.bell_alignment } : {}),
         };
     } catch (error) {
       if (error.code !== "ENOENT") throw error;
@@ -217,12 +222,15 @@ export async function extendFace(face, { here, eventId, benchPath }) {
       : (benchPath ??
         path.resolve(
           here,
-          "../arb-executor/analysis/tune_bench_v2/TUNE_BENCH_NAMED_CHECKS.json",
+          "..", CORRECTED_TICK_BENCH_PATH,
         ));
   if (input) {
     try {
       const bytes = await fs.readFile(input),
         bench = JSON.parse(bytes);
+      if (path.resolve(input) === path.resolve(here,"..",CORRECTED_TICK_BENCH_PATH)
+          && sha(bytes) !== CORRECTED_TICK_BENCH_SHA256)
+        throw new Error("Corrected tick bench differs from c7825925; explicitly select a new baseline");
       named =
         Object.values(bench.events ?? {}).find((e) => e.event_id === eventId) ??
         null;
@@ -237,6 +245,8 @@ export async function extendFace(face, { here, eventId, benchPath }) {
   face.version = 2;
   face.provenance.bench_sha256 = benchSha;
   face.provenance.bench_label = benchLabel;
+  face.provenance.bench_commit = input && path.resolve(input) === path.resolve(here,"..",CORRECTED_TICK_BENCH_PATH)
+    ? CORRECTED_TICK_BENCH_COMMIT : null;
   const benchBell = named?.first_tick
     ? named.first_tick.epoch + named.first_tick.mtb_first * 60
     : null;

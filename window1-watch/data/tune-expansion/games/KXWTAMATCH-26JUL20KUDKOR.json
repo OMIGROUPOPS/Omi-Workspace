@@ -1,0 +1,102 @@
+{
+  "event": "KXWTAMATCH-26JUL20KUDKOR",
+  "category": "WTA_MAIN",
+  "status": "UNGRADABLE",
+  "letter": "STORE SILENT",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    }
+  ],
+  "governing": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+  "raw_engine_fills": [],
+  "raw_engine_completed": false,
+  "valid_fills": null,
+  "completed": null,
+  "one_sided": null,
+  "pair_sum": null,
+  "captured_cents": null,
+  "offered_cents": null,
+  "capture_ratio": null,
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "KOR",
+      "reason": "No verified span (UNKNOWN)",
+      "last_action": {
+        "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-1154",
+        "timestamp_epoch": 1784485091.000001,
+        "leg": "KOR",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": null,
+      "reach_audit": null,
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "KUD",
+      "reason": "No verified span (UNKNOWN)",
+      "last_action": {
+        "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-1154",
+        "timestamp_epoch": 1784485091.000001,
+        "leg": "KUD",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": null,
+      "reach_audit": null,
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "ad6754a640a6fd90dc1cdd97b1cc8f871244ffadc7118ff9c047f10e0f085067",
+  "grade_sha256": "0e1360e6565a748cd50d913334818aaeecaa6b0a03dc78fb13afaae05102bf1e",
+  "grade_url": "/data/KXWTAMATCH-26JUL20KUDKOR.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL20KUDKOR.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL20KUDKOR.sentences.json",
+  "fault": "No verified span: UNKNOWN",
+  "fill_witnesses": [],
+  "hard_failures": [],
+  "offer_issue": {
+    "reason": "UNKNOWN",
+    "recorded_floors": {
+      "KOR": null,
+      "KUD": null
+    },
+    "original_row_floor_sum": null,
+    "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+  }
+}

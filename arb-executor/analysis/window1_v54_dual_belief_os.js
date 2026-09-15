@@ -134,8 +134,8 @@ function freshDeadline(state, authority) {
     source: authority.true_conditioning.selected_layer ? `POOL_${authority.true_conditioning.selected_layer}_FLOOR_MTB` : "INSUFFICIENT_EVIDENCE",
     stale_modeled_deadline_clamped_to_emission: false };
 }
-// Receipt-only observer. Nothing below is read by pricing, conduct, or the pool.
-// Immutable assumptions and their outcomes live outside positions/standing licenses.
+// Immutable assumptions stay outside prices and the pool. Conduct consults them
+// only to require a renewed exact-level promise or pull an unsupported rest.
 function accountableBids(state) {
   return state.bid_accountability ??= { active: {}, monitors: new Map(), records: [], lines: [], last_renewal: {} };
 }
@@ -144,6 +144,42 @@ function accountableLine(state, kind, payload) {
     timestamp_epoch: state.current_epoch, ...payload });
   accountableBids(state).lines.push(line);
   return line;
+}
+function expiredRestLegIds(state, atEpoch) {
+  return state.leg_ids.filter(id => {
+    const position = state.positions[id], ledger = state.bid_accountability;
+    const assumption = ledger?.active[id], monitor = ledger?.monitors.get(assumption?.assumption_id);
+    return !position.credited && Number.isInteger(position.standing_target_cents) && assumption
+      && (monitor?.status === "MISSED_AT_DEADLINE"
+        || (monitor?.status !== "FULFILLED" && Number.isFinite(assumption.X_epoch) && atEpoch > assumption.X_epoch));
+  });
+}
+function restSupportDecision(state, id, belief, authority, target, blockedReason, reviewOnly) {
+  const position = state.positions[id], active = cent(position.standing_target_cents);
+  const ledger = state.bid_accountability, old = ledger?.active[id];
+  if (position.credited || active === null || !old) return null;
+  const priorStatus = ledger.monitors.get(old.assumption_id)?.status ?? null;
+  const deadlinePassed = priorStatus === "MISSED_AT_DEADLINE"
+    || (priorStatus !== "FULFILLED" && Number.isFinite(old.X_epoch) && state.current_epoch >= old.X_epoch);
+  const superseded = old.Q !== belief.predicted_cents || old.X_epoch !== belief.deadline.deadline_epoch
+    || old.q_author !== belief.q_author || old.x_author !== belief.x_author
+    || old.authority_source !== authority.authority_source;
+  const required = Boolean(reviewOnly || deadlinePassed || superseded);
+  const fresh = belief.status === "RESOLVED" && belief.deadline.emitted_at_receipt === state.receipt
+    && belief.deadline.emitted_at_epoch === state.current_epoch
+    && Number.isFinite(belief.deadline.deadline_epoch) && belief.deadline.deadline_epoch > state.current_epoch;
+  const exactRestSupported = fresh && belief.predicted_cents === active && target === active;
+  const replacementSupported = !reviewOnly && fresh && Number.isInteger(target)
+    && target !== active && belief.predicted_cents === target;
+  return { required, assumption_id: old.assumption_id, original_Q: old.Q, original_X_epoch: old.X_epoch,
+    prior_status: priorStatus, deadline_passed: deadlinePassed, assumption_superseded: superseded,
+    fresh_sentence_receipt: state.receipt, fresh_Q: belief.predicted_cents,
+    fresh_X_epoch: belief.deadline.deadline_epoch, fresh_status: belief.status,
+    active_rest_cents: active, proposed_target_cents: target, blocked_reason: blockedReason,
+    review_only: Boolean(reviewOnly), exact_rest_supported: exactRestSupported,
+    replacement_supported: replacementSupported, pull: required && !exactRestSupported && !replacementSupported,
+    reason: !fresh ? "NO_FRESH_RESOLVED_SENTENCE_WITH_DEADLINE_AHEAD"
+      : !exactRestSupported ? "FRESH_SENTENCE_DOES_NOT_SUPPORT_EXACT_REST" : "FRESH_SENTENCE_SUPPORTS_EXACT_REST" };
 }
 function accountableAssumption(state, derivation) {
   const id = derivation.leg_id, belief = derivation.layered_dual_belief.micro.beliefs[id];
@@ -166,6 +202,10 @@ function accountableDecision(state, derivation) {
   const ledger = accountableBids(state), id = derivation.leg_id, position = state.positions[id];
   const old = ledger.active[id] ?? null, action = derivation.action;
   if (position.credited || !Number.isInteger(position.standing_target_cents)) {
+    if (action.reason === "PULL_UNSUPPORTED") accountableLine(state, "PULL_UNSUPPORTED", {
+      leg_id: id, assumption_id: old?.assumption_id ?? null,
+      action: action.action, reason: derivation.derivation.rest_support?.reason ?? action.reason,
+      support_review: derivation.derivation.rest_support });
     if (old) accountableLine(state, "ASSUMPTION_CLOSED", { leg_id: id, assumption_id: old.assumption_id,
       reason: position.credited ? "FILL" : action.action, hold_reason: action.reason });
     delete ledger.active[id];
@@ -263,7 +303,7 @@ function accountableRenewals(state, tick, phase = "TICK") {
   }
   return rows;
 }
-function deriveJointActions({ state, reads, resources }) {
+function deriveJointActions({ state, reads, resources, restReviewLegIds = null }) {
   base.assertResources(resources);
   state.dual_belief ??= { first_coherence: null, rearm_by_leg: {}, coherence_history: [] };
   const ids = state.leg_ids, pool = base.poolSnapshot(state);
@@ -338,6 +378,19 @@ function deriveJointActions({ state, reads, resources }) {
   if (pairBlocked) for (const id of ids.filter(id => !state.positions[id].credited)) {
     targets[id] = cent(state.positions[id].standing_target_cents); modes[id] = "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE";
   }
+  // Post-only, book veto and pair cap above still select or block a new target.
+  // None of those blocks, by itself, renews the old price's promise.
+  const restSupport = {};
+  for (const id of ids) {
+    const reviewOnly = restReviewLegIds?.includes(id);
+    const check = restSupportDecision(state, id, beliefs[id], authorities[id], targets[id], modes[id], reviewOnly);
+    restSupport[id] = check;
+    if (!check?.required) continue;
+    if (check.pull) { targets[id] = null; modes[id] = "PULL_UNSUPPORTED"; }
+    else if (reviewOnly || targets[id] === check.active_rest_cents) {
+      targets[id] = check.active_rest_cents; modes[id] = "FRESH_SENTENCE_SUPPORTS_EXACT_REST";
+    }
+  }
   const allocation = { targets, lawful: sum(ids.map(id => state.positions[id].credited ? state.positions[id].entry_cents : targets[id])) <= base.PAR_BUDGET_CENTS,
     reason: pairBlocked ? "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE" : "POOL_Q_UNCHANGED_POST_ONLY_AND_PAIR_VETO", mode: "VETO_ONLY_NOT_PRICE_AUTHOR" };
   const derivations = ids.map(id => {
@@ -384,6 +437,7 @@ function deriveJointActions({ state, reads, resources }) {
       pair_conservation: { sibling_leg_id: sibling, sibling_commitment_cents: siblingCommitment, evaluated_target_cents: target, sum_cents: pairSum,
         at_or_below_99: pairSum === null || pairSum <= base.PAR_BUDGET_CENTS },
       derivation: { formation_end_epoch: state.legs[id].formation_end_epoch, target_basis: authorities[id].authority_source,
+        rest_support: restSupport[id],
         target_authority: authorities[id].authority_source, derived_target_cents: target,
         lawful_unallocated_target_cents: authorities[id].target_cents, pricing_authority: authorities[id], allocation,
         live_bid_cents: reads.books.value[id]?.bid_cents ?? null, live_ask_cents: reads.books.value[id]?.ask_cents ?? null,
@@ -408,4 +462,4 @@ function deriveJointActions({ state, reads, resources }) {
 
 
 module.exports = { ...base, CONTRACT_SUM_CENTS, SPREAD_SETTLE_COHERENCE_MAX_CENTS, LAYER_PROVENANCE, TECHNIQUE_CONTRACTS, PHASE_CENTRAL_BANDS, configurePhaseCentralSurface, configureNeighborSpecialistBinding, configureSurvivorShapeLibraries: survivorShapes.configureSurvivorShapeLibraries, weightedModeFloorSideCents, predictionSeatImmunityDecision, bookVetoOnlyDecision, pricingAuthorityForLeg, conditionPriorDistribution, deriveJointActions };
-Object.assign(module.exports, { accountableDecision, accountableRenewals });
+Object.assign(module.exports, { accountableDecision, accountableRenewals, expiredRestLegIds, restSupportDecision });

@@ -1,0 +1,82 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "9012ec9378bba6759a64f1b39565dc3c5554345d1167e4ba74262fdd0f9c2661",
+    "grade_sha256": "d5dc56b49c80ee31678555cbab280b180013518e00409314b91f59ab423f86ce",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "c7c1514c0bc753320d6bf728b4e70561bf670172fe2632722bf615a004160aea",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "3d136114252a21a977e236943562832612479164333792f4488ac75ae7b8efb0"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "BOU: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 2,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "BOU": false,
+      "ZHA": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "BOU",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL13BOUZHA-ZHA.csv.gz#row-323",
+          "action": "PLACE",
+          "placement_epoch": 1783927857.000007,
+          "bid_cents": 24,
+          "recorded_floor_cents": 24,
+          "recorded_floor_epoch": 1783923210.7,
+          "floor_minus_placement_minutes": -77.43833344777426,
+          "Q_at_placement": 24,
+          "remaining_positive_print_floor": 26,
+          "later_positive_prints": 11,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL13BOUZHA-BOU.csv.gz#row-1489",
+          "action": "REPRICE",
+          "placement_epoch": 1783938807.000001,
+          "bid_cents": 23,
+          "recorded_floor_cents": 24,
+          "recorded_floor_epoch": 1783923210.7,
+          "floor_minus_placement_minutes": -259.93833334843316,
+          "Q_at_placement": 23,
+          "remaining_positive_print_floor": 26,
+          "later_positive_prints": 11,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 14,
+      "unobserved_placements": []
+    }
+  ]
+}

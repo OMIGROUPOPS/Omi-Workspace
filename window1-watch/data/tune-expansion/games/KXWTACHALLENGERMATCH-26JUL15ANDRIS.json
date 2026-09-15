@@ -1,0 +1,129 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+  "category": "WTA_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · AND NOT_CALLABLE → NOT_CALLABLE · RIS CLIMBER → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"AND\":{\"called_role\":\"NOT_CALLABLE\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":true,\"first_recorded_receipt\":null,\"first_recorded_epoch\":null,\"first_bind_epoch\":null,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":56.5,\"close_cents\":57,\"realized_drift_cents\":0.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"RIS\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-625\",\"first_recorded_epoch\":1784082162.000001,\"first_bind_epoch\":1784081060.671,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":43,\"close_cents\":43,\"realized_drift_cents\":0,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): AND 0 · RIS 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "C · AND Q 55 vs floor 56¢; range 54–56 · RIS Q 40 vs floor 43¢; range 24–44",
+      "hover_lines": [
+        "MICRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"legs\":{\"AND\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":55,\"q25\":54,\"q75\":56,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-625\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":56,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"RIS\":{\"letter\":\"C\",\"point_letter\":\"C\",\"range_letter\":\"F\",\"q50\":40,\"q25\":24,\"q75\":44,\"floor_error_cents\":3,\"band_width_cents\":20,\"band_contains_floor\":true,\"receipt\":\"KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":43,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): AND: 0.82¢ · RIS: 0.68¢ · AND: first 381.31m; remaining MAE 9.55m · RIS: first 13.95m; remaining MAE 17.5m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · AND 56¢ (+0¢; floor printed earlier) · RIS unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"AND\":{\"filled\":true,\"cents\":56,\"vs_floor_cents\":0,\"fill_epoch\":1784086143.515,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784117160,\"span_start_epoch\":1784071474,\"span_end_epoch\":1784116875.678,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":56,\"floor_epoch\":1784080055.4,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":66.35858331918716,\"current_price_age_minutes\":0.11133333444595336,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"RIS\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":43,\"floor_epoch\":1784114895,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: AND lineage 66.36m, current price 0.11m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 1¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":1}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "leg_id": "AND",
+      "entry_cents": 56,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 56,
+      "fill_timestamp_epoch": 1784086143.515,
+      "prior_standing_target_cents": 56,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "6fd197d0-4a51-4f4c-4dd9-95b522a13a2e",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 1,
+  "capture_ratio": 0,
+  "one_sided_reason": "RIS: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+  "missing_sides": [
+    {
+      "leg": "RIS",
+      "reason": "No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+      "last_action": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3162",
+        "timestamp_epoch": 1784117150.000001,
+        "leg": "RIS",
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "PULL_UNSUPPORTED"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 43,
+      "reach_audit": {
+        "rest_intervals": 439,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 3,
+        "first_boundary_crossing": {
+          "print": {
+            "epoch": 1784114894.993,
+            "price": 43,
+            "receipt": "96f353c9-87f8-45f7-c21d-b1a1bfcf4ac2",
+            "source_row": 5344
+          },
+          "interval": {
+            "level": 43,
+            "start_epoch": 1784114894.993,
+            "start_receipt": "96f353c9-87f8-45f7-c21d-b1a1bfcf4ac2",
+            "end_epoch": 1784114895.000001
+          }
+        },
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "c9bc64af9287a4f7f7b398d68edd6ca2b04bfb3ee8eeb8ef321113819b89e1e3",
+  "grade_sha256": "b1420d8e9c19c3109a8accbdf42c3a56ec4ed66ad268c3e76b44bde55c00b085",
+  "grade_url": "/data/KXWTACHALLENGERMATCH-26JUL15ANDRIS.grade.json",
+  "face_url": "/data/KXWTACHALLENGERMATCH-26JUL15ANDRIS.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL15ANDRIS.sentences.json",
+  "fault": "RIS: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+  "fill_witnesses": [
+    {
+      "leg": "AND",
+      "receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd",
+      "positive_size_witness": true,
+      "print_cents": 56,
+      "rest_cents": 56,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

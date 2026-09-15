@@ -1,0 +1,1031 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+  "status": "UNGRADABLE",
+  "timestamp": "2026-09-15T16:56:05.049Z",
+  "provenance": {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "eefc8333de6ecba0a9c168061a08d41693b93143ade12dcda034fcf63432933e",
+    "trace_path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL12WESSEL\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+    "cohort": "TUNE_SAMPLE",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "face_sha256": "ff2fc36d1792dacc6db9ef25a75d1cec1c79ec116dd0ba91d87818362c22a436",
+    "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+  },
+  "SENTENCE": {
+    "receipts_total": 42,
+    "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL12WESSEL.sentences.json"
+  },
+  "MACRO": {
+    "status": "STORE SILENT",
+    "reason": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+  },
+  "MICRO": {
+    "status": "STORE SILENT",
+    "reason": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+  },
+  "HANDS": {
+    "actions": [
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-1",
+        "timestamp_epoch": 1783801048.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-1",
+        "timestamp_epoch": 1783801048.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-5",
+        "timestamp_epoch": 1783802164.000003,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-5",
+        "timestamp_epoch": 1783802164.000003,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-20",
+        "timestamp_epoch": 1783811337.000002,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-20",
+        "timestamp_epoch": 1783811337.000002,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-27",
+        "timestamp_epoch": 1783817419.000004,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-27",
+        "timestamp_epoch": 1783817419.000004,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-32",
+        "timestamp_epoch": 1783817433.000003,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-32",
+        "timestamp_epoch": 1783817433.000003,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-32",
+        "timestamp_epoch": 1783817433.000003,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-32",
+        "timestamp_epoch": 1783817433.000003,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-33",
+        "timestamp_epoch": 1783817456.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-33",
+        "timestamp_epoch": 1783817456.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-34",
+        "timestamp_epoch": 1783817456.000002,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-34",
+        "timestamp_epoch": 1783817456.000002,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-40",
+        "timestamp_epoch": 1783817466.000003,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-40",
+        "timestamp_epoch": 1783817466.000003,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-40",
+        "timestamp_epoch": 1783817466.000004,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-40",
+        "timestamp_epoch": 1783817466.000004,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-45",
+        "timestamp_epoch": 1783817479.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-45",
+        "timestamp_epoch": 1783817479.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-49",
+        "timestamp_epoch": 1783817479.000005,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-49",
+        "timestamp_epoch": 1783817479.000005,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-50",
+        "timestamp_epoch": 1783817479.000006,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-50",
+        "timestamp_epoch": 1783817479.000006,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-54",
+        "timestamp_epoch": 1783817479.00001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-54",
+        "timestamp_epoch": 1783817479.00001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-55",
+        "timestamp_epoch": 1783817480.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-55",
+        "timestamp_epoch": 1783817480.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-118",
+        "timestamp_epoch": 1783821975.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-118",
+        "timestamp_epoch": 1783821975.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-166",
+        "timestamp_epoch": 1783822331.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-166",
+        "timestamp_epoch": 1783822331.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-158",
+        "timestamp_epoch": 1783822426.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-158",
+        "timestamp_epoch": 1783822426.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "e02eff24-c309-5c70-caf6-c82ae9e2b183",
+        "timestamp_epoch": 1783824244.566,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "e02eff24-c309-5c70-caf6-c82ae9e2b183",
+        "timestamp_epoch": 1783824244.566,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "e1e1e1c3-47c8-550c-48f4-5515806280bc",
+        "timestamp_epoch": 1783824464.731,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "e1e1e1c3-47c8-550c-48f4-5515806280bc",
+        "timestamp_epoch": 1783824464.731,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-235",
+        "timestamp_epoch": 1783824678.000007,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-235",
+        "timestamp_epoch": 1783824678.000007,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "7b1e6619-ed7d-57e4-a2be-44183b10ad73",
+        "timestamp_epoch": 1783826556.363,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "7b1e6619-ed7d-57e4-a2be-44183b10ad73",
+        "timestamp_epoch": 1783826556.363,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c34f3adc-bda8-7dfc-2b37-94dbef5950eb",
+        "timestamp_epoch": 1783826832.895,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c34f3adc-bda8-7dfc-2b37-94dbef5950eb",
+        "timestamp_epoch": 1783826832.895,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "53bf5777-8643-764c-4f33-0d73a16a24f8",
+        "timestamp_epoch": 1783829408.644,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "53bf5777-8643-764c-4f33-0d73a16a24f8",
+        "timestamp_epoch": 1783829408.644,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c0512463-6125-7e4f-7ab5-a11fc1aba989",
+        "timestamp_epoch": 1783829408.644,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "c0512463-6125-7e4f-7ab5-a11fc1aba989",
+        "timestamp_epoch": 1783829408.644,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "d69713ba-d803-7f5a-745c-afc210215fbb",
+        "timestamp_epoch": 1783829408.644,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "d69713ba-d803-7f5a-745c-afc210215fbb",
+        "timestamp_epoch": 1783829408.644,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-585",
+        "timestamp_epoch": 1783829410.000011,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-585",
+        "timestamp_epoch": 1783829410.000011,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "2d5db49a-19c6-4c92-6237-3c8cdead106b",
+        "timestamp_epoch": 1783829604.157,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "2d5db49a-19c6-4c92-6237-3c8cdead106b",
+        "timestamp_epoch": 1783829604.157,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-459",
+        "timestamp_epoch": 1783829604.157001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-459",
+        "timestamp_epoch": 1783829604.157001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-662",
+        "timestamp_epoch": 1783829610.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-662",
+        "timestamp_epoch": 1783829610.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-664",
+        "timestamp_epoch": 1783829617.000002,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-664",
+        "timestamp_epoch": 1783829617.000002,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "07915412-1657-7ea2-16eb-f2c98011b3bc",
+        "timestamp_epoch": 1783830826.875,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "07915412-1657-7ea2-16eb-f2c98011b3bc",
+        "timestamp_epoch": 1783830826.875,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "853a0c5f-d6a9-7621-3f65-380f330102ac",
+        "timestamp_epoch": 1783830826.875,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "853a0c5f-d6a9-7621-3f65-380f330102ac",
+        "timestamp_epoch": 1783830826.875,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "87f8135c-ef34-77c8-3464-4d24e656528d",
+        "timestamp_epoch": 1783830826.875,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "87f8135c-ef34-77c8-3464-4d24e656528d",
+        "timestamp_epoch": 1783830826.875,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6bbf998f-baed-521f-b84b-24804511982b",
+        "timestamp_epoch": 1783832732.356,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6bbf998f-baed-521f-b84b-24804511982b",
+        "timestamp_epoch": 1783832732.356,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-890",
+        "timestamp_epoch": 1783833399.000002,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-890",
+        "timestamp_epoch": 1783833399.000002,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "250c605f-6f55-4ecf-637b-3a83aca32a83",
+        "timestamp_epoch": 1783833816.25,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "250c605f-6f55-4ecf-637b-3a83aca32a83",
+        "timestamp_epoch": 1783833816.25,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c77783a0-38fe-6234-178e-21ec92339eb3",
+        "timestamp_epoch": 1783834029,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c77783a0-38fe-6234-178e-21ec92339eb3",
+        "timestamp_epoch": 1783834029,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-1089",
+        "timestamp_epoch": 1783844142.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-1089",
+        "timestamp_epoch": 1783844142.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-1106",
+        "timestamp_epoch": 1783853894.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-1106",
+        "timestamp_epoch": 1783853894.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-1106",
+        "timestamp_epoch": 1783853894.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-WES.csv.gz#row-1106",
+        "timestamp_epoch": 1783853894.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-1146",
+        "timestamp_epoch": 1783855641.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-1146",
+        "timestamp_epoch": 1783855641.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      }
+    ],
+    "execution": {
+      "run_source": "V54_BOOK_VETO_ONLY_20260826",
+      "gradeable": false,
+      "completed": false,
+      "combined_entry_cents": null,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "SEL": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null
+        },
+        "WES": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null
+        }
+      }
+    }
+  },
+  "OUTCOME": {
+    "legs": {
+      "SEL": {
+        "filled": false,
+        "cents": null,
+        "valid_span_fill": "STORE SILENT",
+        "reason": "UNKNOWN"
+      },
+      "WES": {
+        "filled": false,
+        "cents": null,
+        "valid_span_fill": "STORE SILENT",
+        "reason": "UNKNOWN"
+      }
+    },
+    "pair_completed": false,
+    "valid_pair_completed": "STORE SILENT",
+    "pair_sum": null,
+    "captured_cents": null,
+    "best_capturable_cents": null,
+    "capture_ratio": null
+  },
+  "LETTER": {
+    "letter": "STORE SILENT",
+    "governing_section": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+  },
+  "display": {
+    "letter": "—",
+    "label": "UNGRADABLE",
+    "governing": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+    "ruler_line": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+    "sections": [
+      {
+        "name": "MACRO",
+        "mark": "!",
+        "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+        "hover_lines": [
+          "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+        ]
+      },
+      {
+        "name": "MICRO",
+        "mark": "!",
+        "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+        "hover_lines": [
+          "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+        ]
+      },
+      {
+        "name": "TRADE",
+        "mark": "!",
+        "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+        "hover_lines": [
+          "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+        ]
+      },
+      {
+        "name": "PAIR",
+        "mark": "!",
+        "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+        "hover_lines": [
+          "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+        ]
+      }
+    ],
+    "diagnostic_hover_lines": [
+      "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+    ]
+  },
+  "RULER_COLUMNS": {
+    "role": "RULER COMPARISON ONLY — NOT AN OS INPUT",
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+    "selection": "ALL FILED CORRECTIONS IN LEDGER ORDER — effective grading ruler; original rows retained",
+    "original_table": {
+      "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "4fea3a3c5ed67fa9ef5e4b567f269c21b09f034d0c337c82a04adc6f35af4677",
+      "row_number": 152,
+      "row_csv": "26JUL12WESSEL,KXATPCHALLENGERMATCH-26JUL12WESSEL,ATP_CHALL,1783801048,1783801048,1783854000,1783854000.0,SEL,WES,1783817480,49.0,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1783817456,49.5,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1783817480,,,,1783864757.0,,UNKNOWN,no evidence; not guessed,1783817480,,UNKNOWN,NEITHER_FOR_REASON,",
+      "values": {
+        "code": "26JUL12WESSEL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1783801048",
+        "w1_left_epoch": "1783801048",
+        "w1_right_epoch": "1783854000",
+        "scheduled_start_epoch": "1783854000.0",
+        "legA": "SEL",
+        "legB": "WES",
+        "legA_formation_end_epoch": "1783817480",
+        "legA_open_postformation_c": "49.0",
+        "legA_floor_c": "UNKNOWN",
+        "legA_floor_epoch": "UNKNOWN",
+        "legA_close_c": "UNKNOWN",
+        "legA_close_epoch": "UNKNOWN",
+        "legA_contracts": "UNKNOWN",
+        "legA_premium_usd": "UNKNOWN",
+        "legA_journey": "UNKNOWN",
+        "legA_net_travel_c": "UNKNOWN",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783817456",
+        "legB_open_postformation_c": "49.5",
+        "legB_floor_c": "UNKNOWN",
+        "legB_floor_epoch": "UNKNOWN",
+        "legB_close_c": "UNKNOWN",
+        "legB_close_epoch": "UNKNOWN",
+        "legB_contracts": "UNKNOWN",
+        "legB_premium_usd": "UNKNOWN",
+        "legB_journey": "UNKNOWN",
+        "legB_net_travel_c": "UNKNOWN",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1783817480",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1783864757.0",
+        "bell_epoch": "",
+        "bell_source": "UNKNOWN",
+        "bell_precision": "no evidence; not guessed",
+        "span_start_epoch": "1783817480",
+        "span_end_epoch": "",
+        "verified_span": "UNKNOWN",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "status": "UNKNOWN",
+      "bell_epoch": null,
+      "bell_source": "UNKNOWN",
+      "span_start_epoch": 1783817480,
+      "span_end_epoch": null,
+      "legs": {
+        "SEL": {
+          "floor_cents": null,
+          "floor_epoch": null,
+          "close_cents": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "close_cents": "legA_close_c"
+          }
+        },
+        "WES": {
+          "floor_cents": null,
+          "floor_epoch": null,
+          "close_cents": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "close_cents": "legB_close_c"
+          }
+        }
+      },
+      "floor_sum_cents": null,
+      "under_par_cents": null,
+      "campaign_ruler_columns": {},
+      "column_note": "Pinned CSV uses legA_floor_c / legB_floor_c, not a literal floor_cents column; absent campaign/ruler columns are not invented."
+    },
+    "correction_source": {
+      "commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+      "sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+    },
+    "restated_rows": [],
+    "effective_truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "4fea3a3c5ed67fa9ef5e4b567f269c21b09f034d0c337c82a04adc6f35af4677",
+      "row_number": 152,
+      "row_csv": "26JUL12WESSEL,KXATPCHALLENGERMATCH-26JUL12WESSEL,ATP_CHALL,1783801048,1783801048,1783854000,1783854000.0,SEL,WES,1783817480,49.0,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1783817456,49.5,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1783817480,,,,1783864757.0,,UNKNOWN,no evidence; not guessed,1783817480,,UNKNOWN,NEITHER_FOR_REASON,",
+      "verified_span": "UNKNOWN",
+      "status": "STORE_SILENT",
+      "reason": "UNKNOWN",
+      "span_start_epoch": 1783817480,
+      "span_end_epoch": null,
+      "bell_epoch": null,
+      "bell_source": "UNKNOWN",
+      "table_bell_epoch": null,
+      "table_bell_source": "UNKNOWN",
+      "table_bell_delta_seconds": null,
+      "legs": {
+        "SEL": {
+          "status": "STORE_SILENT",
+          "reason": "UNKNOWN",
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 49,
+          "floor_cents": null,
+          "floor_epoch": null,
+          "minutes_to_bell": null,
+          "line": "SEL: STORE SILENT — UNKNOWN",
+          "marker_label": null,
+          "chart_label": null,
+          "hover_note": null,
+          "markers": {}
+        },
+        "WES": {
+          "status": "STORE_SILENT",
+          "reason": "UNKNOWN",
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 49.5,
+          "floor_cents": null,
+          "floor_epoch": null,
+          "minutes_to_bell": null,
+          "line": "WES: STORE SILENT — UNKNOWN",
+          "marker_label": null,
+          "chart_label": null,
+          "hover_note": null,
+          "markers": {}
+        }
+      },
+      "favorite_leg": "WES",
+      "underdog_leg": "SEL",
+      "pair": {
+        "sum_cents": null,
+        "discount_cents": null,
+        "reason": "UNKNOWN",
+        "line": "best capturable = STORE SILENT — UNKNOWN",
+        "discount_line": "STORE SILENT",
+        "compact_line": "best capturable STORE SILENT — UNKNOWN"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12WESSEL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1783801048",
+        "w1_left_epoch": "1783801048",
+        "w1_right_epoch": "1783854000",
+        "scheduled_start_epoch": "1783854000.0",
+        "legA": "SEL",
+        "legB": "WES",
+        "legA_formation_end_epoch": "1783817480",
+        "legA_open_postformation_c": "49.0",
+        "legA_floor_c": "UNKNOWN",
+        "legA_floor_epoch": "UNKNOWN",
+        "legA_close_c": "UNKNOWN",
+        "legA_close_epoch": "UNKNOWN",
+        "legA_contracts": "UNKNOWN",
+        "legA_premium_usd": "UNKNOWN",
+        "legA_journey": "UNKNOWN",
+        "legA_net_travel_c": "UNKNOWN",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783817456",
+        "legB_open_postformation_c": "49.5",
+        "legB_floor_c": "UNKNOWN",
+        "legB_floor_epoch": "UNKNOWN",
+        "legB_close_c": "UNKNOWN",
+        "legB_close_epoch": "UNKNOWN",
+        "legB_contracts": "UNKNOWN",
+        "legB_premium_usd": "UNKNOWN",
+        "legB_journey": "UNKNOWN",
+        "legB_net_travel_c": "UNKNOWN",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1783817480",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1783864757.0",
+        "bell_epoch": "",
+        "bell_source": "UNKNOWN",
+        "bell_precision": "no evidence; not guessed",
+        "span_start_epoch": "1783817480",
+        "span_end_epoch": "",
+        "verified_span": "UNKNOWN",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    }
+  }
+}

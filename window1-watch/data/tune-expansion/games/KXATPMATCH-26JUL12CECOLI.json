@@ -1,0 +1,113 @@
+{
+  "event": "KXATPMATCH-26JUL12CECOLI",
+  "category": "ATP_MAIN",
+  "status": "GRADED",
+  "letter": "D",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · CEC CLIMBER → CLIMBER · OLI FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"CEC\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"5fad6135-fb5d-67de-58c3-4d504e656a4e\",\"first_recorded_epoch\":1783807246.695,\"first_bind_epoch\":1783806925.939,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":71,\"close_cents\":79,\"realized_drift_cents\":8,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"OLI\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"5fad6135-fb5d-67de-58c3-4d504e656a4e\",\"first_recorded_epoch\":1783807246.695,\"first_bind_epoch\":1783807246.695,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":29,\"close_cents\":25,\"realized_drift_cents\":-4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): CEC 0 · OLI 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "C · CEC Q 73 vs floor 74¢; range 71–73 · OLI Q 24 vs floor 21¢; range 22–25",
+      "hover_lines": [
+        "MICRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"legs\":{\"CEC\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"F\",\"q50\":73,\"q25\":71,\"q75\":73,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"5fad6135-fb5d-67de-58c3-4d504e656a4e\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":74,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"OLI\":{\"letter\":\"C\",\"point_letter\":\"C\",\"range_letter\":\"F\",\"q50\":24,\"q25\":22,\"q75\":25,\"floor_error_cents\":3,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"5fad6135-fb5d-67de-58c3-4d504e656a4e\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":21,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): CEC: 0.93¢ · OLI: 0.74¢ · CEC: first 188.28m; remaining MAE 275.29m · OLI: first 378.55m; remaining MAE 254.84m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · CEC 78¢ (+4¢; floor printed earlier) · OLI 21¢ (+0¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"CEC\":{\"filled\":true,\"cents\":78,\"vs_floor_cents\":4,\"fill_epoch\":1783848917.816,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783868700,\"span_start_epoch\":1783802949,\"span_end_epoch\":1783868700,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":74,\"floor_epoch\":1783806925.9,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":34.513599983851115,\"current_price_age_minutes\":34.513599983851115,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"OLI\":{\"filled\":true,\"cents\":21,\"vs_floor_cents\":0,\"fill_epoch\":1783826697.921,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783868700,\"span_start_epoch\":1783802949,\"span_end_epoch\":1783868700,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":21,\"floor_epoch\":1783826642.6,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":158.83201651573182,\"current_price_age_minutes\":0.03773333231608073,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: OLI lineage 158.83m, current price 0.04m · CEC lineage 34.51m, current price 34.51m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "C · 99¢ pair · 1 of 5¢ captured",
+      "hover_lines": [
+        "PAIR: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":0.2,\"offered_cents\":5}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "TRADE",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPMATCH-26JUL12CECOLI",
+      "leg_id": "OLI",
+      "entry_cents": 21,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 21,
+      "fill_timestamp_epoch": 1783826697.921,
+      "prior_standing_target_cents": 21,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "543c2b10-0c80-7613-fe08-128ff2974f79",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CECOLI",
+      "leg_id": "CEC",
+      "entry_cents": 78,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 77,
+      "fill_timestamp_epoch": 1783848917.816,
+      "prior_standing_target_cents": 78,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-484",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 99,
+  "captured_cents": 1,
+  "offered_cents": 5,
+  "capture_ratio": 0.2,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "92d8b820612d81e3ffdabaafdb9ba9b9e9144e3261d384754234ec3a76916052",
+  "grade_sha256": "467a6640c1497840236f494b41c9585757ae191a4ebbca978f9c8d41f73a59e1",
+  "grade_url": "/data/KXATPMATCH-26JUL12CECOLI.grade.json",
+  "face_url": "/data/KXATPMATCH-26JUL12CECOLI.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPMATCH-26JUL12CECOLI.sentences.json",
+  "fault": "TRADE: D · CEC 78¢ (+4¢; floor printed earlier) · OLI 21¢ (+0¢; floor printed earlier)",
+  "fill_witnesses": [
+    {
+      "leg": "OLI",
+      "receipt": "4618e9e3-64d6-47ff-286e-716fc7ea3534",
+      "positive_size_witness": true,
+      "print_cents": 21,
+      "rest_cents": 21,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "CEC",
+      "receipt": "125f8a02-2388-7958-14ae-5ada3504b862",
+      "positive_size_witness": true,
+      "print_cents": 77,
+      "rest_cents": 78,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

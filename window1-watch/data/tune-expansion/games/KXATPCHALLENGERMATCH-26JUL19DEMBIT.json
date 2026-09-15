@@ -1,0 +1,116 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "NOT OFFERED",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · BIT FALLER → FALLER · DEM CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"BIT\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"6aeb827c-ddf4-7f8e-84ea-a5c3a6c34bdd\",\"first_recorded_epoch\":1784436519.799,\"first_bind_epoch\":1784436267.631,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":40,\"close_cents\":38,\"realized_drift_cents\":-2,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"DEM\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"6aeb827c-ddf4-7f8e-84ea-a5c3a6c34bdd\",\"first_recorded_epoch\":1784436519.799,\"first_bind_epoch\":1784436519.799,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":60,\"close_cents\":64,\"realized_drift_cents\":4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): BIT 0 · DEM 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · BIT Q 36 vs floor 37¢; range 35–37 · DEM Q 63 vs floor 63¢; range 62–64",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"BIT\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":36,\"q25\":35,\"q75\":37,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"6aeb827c-ddf4-7f8e-84ea-a5c3a6c34bdd\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":37,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"DEM\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":63,\"q25\":62,\"q75\":64,\"floor_error_cents\":0,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"6aeb827c-ddf4-7f8e-84ea-a5c3a6c34bdd\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":63,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): BIT: 0.23¢ · DEM: 0.47¢ · BIT: first 8.14m; remaining MAE 19.53m · DEM: first 19.33m; remaining MAE 10.92m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · BIT unfilled · DEM 63¢ (+0¢)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"BIT\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":37,\"floor_epoch\":1784436267.6,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"DEM\":{\"filled\":true,\"cents\":63,\"vs_floor_cents\":0,\"fill_epoch\":1784438769.155,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784447460,\"span_start_epoch\":1784434564,\"span_end_epoch\":1784445960,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":63,\"floor_epoch\":1784438769.2,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":37.48926666577657,\"current_price_age_minutes\":37.48926666577657,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: DEM lineage 37.49m, current price 37.49m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "NOT OFFERED · Not offered — recorded floors sum to par or above",
+      "hover_lines": [
+        "PAIR: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":\"STORE SILENT\",\"offered_cents\":0}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "NOT OFFERED — corrected floor pair offers no discount",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "leg_id": "DEM",
+      "entry_cents": 63,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 63,
+      "fill_timestamp_epoch": 1784438769.155,
+      "prior_standing_target_cents": 63,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "6aeb827c-ddf4-7f8e-84ea-a5c3a6c34bdd",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 0,
+  "capture_ratio": "STORE SILENT",
+  "one_sided_reason": "BIT: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "BIT",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19DEMBIT-BIT.csv.gz#row-729",
+        "timestamp_epoch": 1784447450.000002,
+        "leg": "BIT",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 37,
+      "reach_audit": {
+        "rest_intervals": 1,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "c1bcab598960739d9722e3a317df3502280b22da5c9ed5375dc697b81bc85f4c",
+  "grade_sha256": "d56475685dd289f4929ff4defe84eb89af0f1ce48d374201ffe272b597b27e3f",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL19DEMBIT.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL19DEMBIT.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL19DEMBIT.sentences.json",
+  "fault": "BIT: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "DEM",
+      "receipt": "edc8a2e8-3b0e-606c-cfb9-6046e709e238",
+      "positive_size_witness": true,
+      "print_cents": 63,
+      "rest_cents": 63,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

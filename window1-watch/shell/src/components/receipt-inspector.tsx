@@ -14,10 +14,10 @@ export function ReceiptInspector({receipt,onClose}:{receipt:Receipt|null;onClose
     <p title={receipt?.detail_url??SILENT}>{receipt?.receipt??"Select a receipt"}</p>
     {onClose?<button onClick={onClose}>Follow current receipt</button>:null}
     {!receipt?<p className="terminal-muted">Select a tape receipt, action or gap to inspect.</p>:<>
-      <Tree name="Compact receipt · stored in face" value={receipt}/>
+      {receipt.timeline_pending?<p>Loading and verifying this receipt…</p>:<Tree name="Compact receipt · stored in face" value={receipt}/>}
       {error?<p className="terminal-muted">STORE SILENT — full stage unavailable here. Local LAB serves its original stage file. {error}</p>:data?<>
         <Tree name="Decision index" value={data.inspector}/><Tree name="Source and provenance" value={data.source}/><Tree name="Full stage · every stored field" value={data.row}/>
-      </>:receipt.detail_url?<p>Loading original stage…</p>:<p>STORE SILENT — no stage link.</p>}
+      </>:receipt.timeline_pending?null:receipt.detail_url?<p>Loading original stage…</p>:<p>STORE SILENT — no stage link.</p>}
     </>}
   </section>;
 }

@@ -9,6 +9,8 @@ import { fileURLToPath } from "node:url";
 import { extendFace, bindCustody, writeGameIndex, inspectorSummary, alignBenchToCorrectedRuler } from "./face_contract.mjs";
 import { readGradeRulers, applyRulerDisplayClock } from "./grade_rulers.mjs";
 import { packFace } from "./face_encoding.mjs";
+import { writeBidDetails } from "./bid_card_details.mjs";
+import { writeTimelineChunks } from "./timeline_chunks.mjs";
 import { buildPressure } from "./build_lab_pressure.mjs";
 import { readPinnedTruth, attachRecordedTruth } from "./recorded_truth.mjs";
 import { chartSource, attachChartActions } from "./chart_actions.mjs";
@@ -464,9 +466,13 @@ if (tracePath) {
     accountability: raw.accountability ?? [], dataRoot: path.dirname(outputPath) });
 }
 
-const payload = `${JSON.stringify(tracePath ? packFace(face) : face)}\n`;
-const compressedPayload = zlib.gzipSync(payload);
+const storedFace = tracePath ? writeTimelineChunks(writeBidDetails(face, path.dirname(outputPath)), path.dirname(outputPath)) : face;
+const payload = `${JSON.stringify(tracePath && !storedFace.timeline ? packFace(storedFace) : storedFace)}\n`;
+const compressedPayload = zlib.gzipSync(payload, {level: 9});
 if (compressedPayload.length >= 2 * 1024 * 1024) {
+  // Keep failed packaging evidence in its local custody, never in public assets.
+  if (tracePath) await fsp.writeFile(path.join(path.dirname(tracePath), "FACE_OVERSIZE.json.gz"), compressedPayload);
+  process.stderr.write(`${JSON.stringify({oversize_sections: Object.fromEntries(Object.entries(JSON.parse(payload)).map(([key, value]) => [key, zlib.gzipSync(JSON.stringify(value)).length]))})}\n`);
   throw new Error(`Face transfer payload exceeds 2 MiB: ${compressedPayload.length} bytes`);
 }
 const temporaryPath = `${outputPath}.tmp`;

@@ -1,0 +1,113 @@
+{
+  "event": "KXWTAMATCH-26JUL16KORANN",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · ANN CLIMBER → CLIMBER · KOR FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"ANN\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"59cef5fe-92bc-797c-c9dc-b3a9384016a4\",\"first_recorded_epoch\":1784143555.738,\"first_bind_epoch\":1784143290.536,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":46,\"close_cents\":54,\"realized_drift_cents\":8,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"KOR\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"173ea291-5a25-5118-aaf5-9d6a13ff4497\",\"first_recorded_epoch\":1784150013.641,\"first_bind_epoch\":1784150013.641,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":53.5,\"close_cents\":48,\"realized_drift_cents\":-5.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): ANN 0 · KOR 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · ANN Q 45 vs floor 47¢; range 43–46 · KOR Q 52 vs floor 47¢; range 50–53",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"ANN\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":45,\"q25\":43,\"q75\":46,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXWTAMATCH-26JUL16KORANN-KOR.csv.gz#row-119\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":47,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"KOR\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":52,\"q25\":50,\"q75\":53,\"floor_error_cents\":5,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXWTAMATCH-26JUL16KORANN-KOR.csv.gz#row-119\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":47,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): ANN: 1.08¢ · KOR: 1.27¢ · ANN: first 642.68m; remaining MAE 162.7m · KOR: first 713.24m; remaining MAE 275.41m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · ANN 51¢ (+4¢; floor printed earlier) · KOR 48¢ (+1¢)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"ANN\":{\"filled\":true,\"cents\":51,\"vs_floor_cents\":4,\"fill_epoch\":1784192755.231,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784211120,\"span_start_epoch\":1784126439,\"span_end_epoch\":1784211120,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":47,\"floor_epoch\":1784134262.3,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":604.070516649882,\"current_price_age_minutes\":53.92051666577657,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"KOR\":{\"filled\":true,\"cents\":48,\"vs_floor_cents\":1,\"fill_epoch\":1784171415.384,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784211120,\"span_start_epoch\":1784126439,\"span_end_epoch\":1784211120,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":47,\"floor_epoch\":1784206407.4,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":81.56553333600363,\"current_price_age_minutes\":31.689733318487804,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: KOR lineage 81.57m, current price 31.69m · ANN lineage 604.07m, current price 53.92m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "C · 99¢ pair · 1 of 6¢ captured",
+      "hover_lines": [
+        "PAIR: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":0.16666666666666666,\"offered_cents\":6}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MICRO",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL16KORANN",
+      "leg_id": "KOR",
+      "entry_cents": 48,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 48,
+      "fill_timestamp_epoch": 1784171415.384,
+      "prior_standing_target_cents": 48,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTAMATCH-26JUL16KORANN-KOR.csv.gz#row-5459",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16KORANN",
+      "leg_id": "ANN",
+      "entry_cents": 51,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 51,
+      "fill_timestamp_epoch": 1784192755.231,
+      "prior_standing_target_cents": 51,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTAMATCH-26JUL16KORANN|ATLAS_GATE|1784189520",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 99,
+  "captured_cents": 1,
+  "offered_cents": 6,
+  "capture_ratio": 0.16666666666666666,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "569ba876b10fe3f328ffc0b7f70c47dcc4f9b5e24d3a6342537d9e3f5d42b61d",
+  "grade_sha256": "71fe4e2433d453c94ba781b18597865fed5f500feeebefbd5b4d0e4bf93e1dad",
+  "grade_url": "/data/KXWTAMATCH-26JUL16KORANN.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL16KORANN.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL16KORANN.sentences.json",
+  "fault": "MICRO: F · ANN Q 45 vs floor 47¢; range 43–46 · KOR Q 52 vs floor 47¢; range 50–53",
+  "fill_witnesses": [
+    {
+      "leg": "KOR",
+      "receipt": "4796fedc-f53e-67c4-8da2-3f8e576186b6",
+      "positive_size_witness": true,
+      "print_cents": 48,
+      "rest_cents": 48,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "ANN",
+      "receipt": "c282a288-6c7c-7183-4cc1-cdd4acae06d9",
+      "positive_size_witness": true,
+      "print_cents": 51,
+      "rest_cents": 51,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

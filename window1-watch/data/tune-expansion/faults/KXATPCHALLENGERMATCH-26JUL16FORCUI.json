@@ -1,0 +1,97 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "2659374d25d97ac3f5ddf6f833b9f5f0768cdf8274c57fa76da73159bdeb6679",
+    "grade_sha256": "fa4f4af69304ae8fc1a9d0b24a528a263642b355afcafe9207082f1839b3a846",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "2c22e9390ac29d865df1e43e6348cd153191eb198eee9843f04ba9bbc9c2b917",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "5cdffd6058d2856ad243b05b19a5e044a40a5e062e2106b171c006d6f9da3865"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "FOR: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 3,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "CUI": true,
+      "FOR": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "FOR",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "8a29d7d5-0c74-7bdc-33d5-928219c91bff",
+          "action": "PLACE",
+          "placement_epoch": 1784183728.773,
+          "bid_cents": 44,
+          "recorded_floor_cents": 46,
+          "recorded_floor_epoch": 1784182850.3,
+          "floor_minus_placement_minutes": -14.641216667493184,
+          "Q_at_placement": 44,
+          "remaining_positive_print_floor": 46,
+          "later_positive_prints": 119,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL16FORCUI|ATLAS_GATE|1784196600",
+          "action": "REPRICE",
+          "placement_epoch": 1784196600,
+          "bid_cents": 45,
+          "recorded_floor_cents": 46,
+          "recorded_floor_epoch": 1784182850.3,
+          "floor_minus_placement_minutes": -229.1616666674614,
+          "Q_at_placement": 45,
+          "remaining_positive_print_floor": 46,
+          "later_positive_prints": 119,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL16FORCUI-FOR.csv.gz#row-3188",
+          "action": "PLACE",
+          "placement_epoch": 1784207041.000001,
+          "bid_cents": 45,
+          "recorded_floor_cents": 46,
+          "recorded_floor_epoch": 1784182850.3,
+          "floor_minus_placement_minutes": -403.1783333500226,
+          "Q_at_placement": 45,
+          "remaining_positive_print_floor": 47,
+          "later_positive_prints": 113,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 120,
+      "unobserved_placements": []
+    }
+  ]
+}

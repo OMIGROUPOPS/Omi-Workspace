@@ -1,0 +1,102 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+  "category": "ATP_CHALL",
+  "status": "UNGRADABLE",
+  "letter": "STORE SILENT",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    }
+  ],
+  "governing": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+  "raw_engine_fills": [],
+  "raw_engine_completed": false,
+  "valid_fills": null,
+  "completed": null,
+  "one_sided": null,
+  "pair_sum": null,
+  "captured_cents": null,
+  "offered_cents": null,
+  "capture_ratio": null,
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "SEL",
+      "reason": "No verified span (UNKNOWN)",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-1146",
+        "timestamp_epoch": 1783855641.000001,
+        "leg": "SEL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": null,
+      "reach_audit": null,
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "WES",
+      "reason": "No verified span (UNKNOWN)",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL.csv.gz#row-1146",
+        "timestamp_epoch": 1783855641.000001,
+        "leg": "WES",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": null,
+      "reach_audit": null,
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "eefc8333de6ecba0a9c168061a08d41693b93143ade12dcda034fcf63432933e",
+  "grade_sha256": "7ae72d14d1ccfc821bbd8a23d7974c290ff445d5be19e8a3fe93a67ab79d25c5",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL12WESSEL.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL12WESSEL.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL12WESSEL.sentences.json",
+  "fault": "No verified span: UNKNOWN",
+  "fill_witnesses": [],
+  "hard_failures": [],
+  "offer_issue": {
+    "reason": "UNKNOWN",
+    "recorded_floors": {
+      "SEL": null,
+      "WES": null
+    },
+    "original_row_floor_sum": null,
+    "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+  }
+}

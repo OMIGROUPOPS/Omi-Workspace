@@ -1,0 +1,113 @@
+{
+  "event": "KXWTAMATCH-26JUL13GRAPAR",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "A",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · GRA FALLER → FALLER · PAR CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"GRA\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100\",\"first_recorded_epoch\":1783880100,\"first_bind_epoch\":1783879653.378,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":14,\"close_cents\":12,\"realized_drift_cents\":-2,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"PAR\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100\",\"first_recorded_epoch\":1783880100,\"first_bind_epoch\":1783879858,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":86,\"close_cents\":90,\"realized_drift_cents\":4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): GRA 0 · PAR 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · GRA Q 10 vs floor 10¢; range 10–11 · PAR Q 88 vs floor 88¢; range 87–88",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"GRA\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":10,\"q25\":10,\"q75\":11,\"floor_error_cents\":0,\"band_width_cents\":1,\"band_contains_floor\":true,\"receipt\":\"KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":10,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"PAR\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":88,\"q25\":87,\"q75\":88,\"floor_error_cents\":0,\"band_width_cents\":1,\"band_contains_floor\":true,\"receipt\":\"KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":88,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): GRA: 0.37¢ · PAR: 1.33¢ · GRA: first 528.03m; remaining MAE 97.48m · PAR: first 573.03m; remaining MAE 249.25m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "✓",
+      "line": "A · GRA 10¢ (+0¢) · PAR 88¢ (+0¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"GRA\":{\"filled\":true,\"cents\":10,\"vs_floor_cents\":0,\"fill_epoch\":1783888171.054,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783966500,\"span_start_epoch\":1783851035,\"span_end_epoch\":1783966500,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":10,\"floor_epoch\":1783888171.1,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":70.03423331578573,\"current_price_age_minutes\":70.03423331578573,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"PAR\":{\"filled\":true,\"cents\":88,\"vs_floor_cents\":0,\"fill_epoch\":1783892584.217,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783966500,\"span_start_epoch\":1783851035,\"span_end_epoch\":1783966500,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":88,\"floor_epoch\":1783870625.1,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":208.07028333346048,\"current_price_age_minutes\":208.07028333346048,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: GRA lineage 70.03m, current price 70.03m · PAR lineage 208.07m, current price 208.07m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "✓",
+      "line": "A · 98¢ pair · 2 of 2¢ captured",
+      "hover_lines": [
+        "PAIR: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"pair_sum\":98,\"capture_ratio\":1,\"offered_cents\":2}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MACRO · MICRO · TRADE · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+      "leg_id": "GRA",
+      "entry_cents": 10,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 10,
+      "fill_timestamp_epoch": 1783888171.054,
+      "prior_standing_target_cents": 10,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-359",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+      "leg_id": "PAR",
+      "entry_cents": 88,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 88,
+      "fill_timestamp_epoch": 1783892584.217,
+      "prior_standing_target_cents": 88,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 98,
+  "captured_cents": 2,
+  "offered_cents": 2,
+  "capture_ratio": 1,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "d51e6a1e8f0049f8223addf2233433ea633032e5a72b251fc835cc2edaacc2a1",
+  "grade_sha256": "b9129bb250fc383870a6889a01491756f949efcc60f86bcb529e00a51cf7afd2",
+  "grade_url": "/data/KXWTAMATCH-26JUL13GRAPAR.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL13GRAPAR.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL13GRAPAR.sentences.json",
+  "fault": "MACRO: A · GRA FALLER → FALLER · PAR CLIMBER → CLIMBER | MICRO: A · GRA Q 10 vs floor 10¢; range 10–11 · PAR Q 88 vs floor 88¢; range 87–88 | TRADE: A · GRA 10¢ (+0¢) · PAR 88¢ (+0¢; floor printed earlier) | PAIR: A · 98¢ pair · 2 of 2¢ captured",
+  "fill_witnesses": [
+    {
+      "leg": "GRA",
+      "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc",
+      "positive_size_witness": true,
+      "print_cents": 10,
+      "rest_cents": 10,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "PAR",
+      "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466",
+      "positive_size_witness": true,
+      "print_cents": 88,
+      "rest_cents": 88,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

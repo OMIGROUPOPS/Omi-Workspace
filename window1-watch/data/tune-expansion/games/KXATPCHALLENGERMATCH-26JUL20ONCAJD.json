@@ -1,0 +1,115 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "F · AJD CLIMBER → NOT_CALLABLE · ONC CLIMBER → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"correct_side_share\":0},\"legs\":{\"AJD\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"7d389f28-73b1-7d5b-5d1c-1c97e98fe7a5\",\"first_recorded_epoch\":1784514208.789,\"first_bind_epoch\":1784514155.235,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":31.5,\"close_cents\":32,\"realized_drift_cents\":0.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"ONC\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"7d389f28-73b1-7d5b-5d1c-1c97e98fe7a5\",\"first_recorded_epoch\":1784514208.789,\"first_bind_epoch\":1784514208.789,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":68.5,\"close_cents\":69,\"realized_drift_cents\":0.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): AJD 0 · ONC 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "A · AJD Q 31 vs floor 31¢; range 26–32 · ONC Q 68 vs floor 68¢; range 66–69",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"AJD\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"C\",\"q50\":31,\"q25\":26,\"q75\":32,\"floor_error_cents\":0,\"band_width_cents\":6,\"band_contains_floor\":true,\"receipt\":\"7d389f28-73b1-7d5b-5d1c-1c97e98fe7a5\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":31,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"ONC\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":68,\"q25\":66,\"q75\":69,\"floor_error_cents\":0,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"7d389f28-73b1-7d5b-5d1c-1c97e98fe7a5\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":68,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): AJD: 1.13¢ · ONC: 0.05¢ · AJD: first 217.24m; remaining MAE 109.26m · ONC: first 249.78m; remaining MAE 142.53m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "A · AJD 31¢ (+0¢; floor printed earlier) · ONC 68¢ (+0¢)",
+      "hover_lines": [
+        "TRADE: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"AJD\":{\"filled\":true,\"cents\":31,\"vs_floor_cents\":0,\"fill_epoch\":1784517303.32,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784552400,\"span_start_epoch\":1784512368,\"span_end_epoch\":1784552400,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":31,\"floor_epoch\":1784517303.3,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":51.57551666498184,\"current_price_age_minutes\":51.57551666498184,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"ONC\":{\"filled\":true,\"cents\":68,\"vs_floor_cents\":0,\"fill_epoch\":1784543855.178,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784552400,\"span_start_epoch\":1784512368,\"span_end_epoch\":1784552400,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":68,\"floor_epoch\":1784543855.2,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":0,\"current_price_age_minutes\":0,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: AJD lineage 51.58m, current price 51.58m · ONC lineage 0m, current price 0m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "A · 99¢ pair · 1 of 1¢ captured",
+      "hover_lines": [
+        "PAIR: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":1,\"offered_cents\":1}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "HANDS: same-second fill",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "leg_id": "AJD",
+      "entry_cents": 31,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 31,
+      "fill_timestamp_epoch": 1784517303.32,
+      "prior_standing_target_cents": 31,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "7d389f28-73b1-7d5b-5d1c-1c97e98fe7a5",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "leg_id": "ONC",
+      "entry_cents": 68,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 68,
+      "fill_timestamp_epoch": 1784543855.178,
+      "prior_standing_target_cents": 68,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "95f31894-0756-5938-f7e3-ab7484c71f78",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 99,
+  "captured_cents": 1,
+  "offered_cents": 1,
+  "capture_ratio": 1,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "234920f138da4ccf098f252867dc5f2e5be1f49aec9d34f406328c34aecb787d",
+  "grade_sha256": "8ec6b1dac40b22f09f9e7ecd563ddffa6c7546f770b602826b237c012e2655f9",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL20ONCAJD.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL20ONCAJD.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL20ONCAJD.sentences.json",
+  "fault": "HANDS: same-second fill",
+  "fill_witnesses": [
+    {
+      "leg": "AJD",
+      "receipt": "12791ca5-4c53-7049-b709-f898c3f96ff6",
+      "positive_size_witness": true,
+      "print_cents": 31,
+      "rest_cents": 31,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "ONC",
+      "receipt": "e8965dc2-30e3-51bb-e9e7-cd67df9db230",
+      "positive_size_witness": true,
+      "print_cents": 68,
+      "rest_cents": 68,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [
+    "HANDS: same-second fill"
+  ],
+  "offer_issue": null
+}

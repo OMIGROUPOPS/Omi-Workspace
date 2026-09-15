@@ -1,0 +1,142 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "b07cfbd1a3b8ca0142b9539e8ad74ee0e61fa77ccc73537822cafa1ea46a67de",
+    "grade_sha256": "e881e07dda1013c8d96432fedacc16a85cd5bf6d46a727d7e53fb45eeca8e1f6",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "1264d340877ceec8dbc325dedf08a0b4d2a2c6b2359f77078d83a4edd20c6a97",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "f0c41b0af637cc6aeacf84262286e9bee71ccc235614fd3e991b066af8063364"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "BIG: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 12,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "BIG": false,
+      "HUR": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "BIG",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+          "action": "PLACE",
+          "placement_epoch": 1784456538.000001,
+          "bid_cents": 50,
+          "recorded_floor_cents": 51,
+          "recorded_floor_epoch": 1784456772.8,
+          "floor_minus_placement_minutes": 3.913333316644033,
+          "Q_at_placement": 50,
+          "remaining_positive_print_floor": 51,
+          "later_positive_prints": 483,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "e90d054a-90ea-67b8-1102-a632eac6d481",
+          "action": "REPRICE",
+          "placement_epoch": 1784456772.812,
+          "bid_cents": 49,
+          "recorded_floor_cents": 51,
+          "recorded_floor_epoch": 1784456772.8,
+          "floor_minus_placement_minutes": -0.00020000139872233073,
+          "Q_at_placement": 49,
+          "remaining_positive_print_floor": 52,
+          "later_positive_prints": 482,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+          "action": "REPRICE",
+          "placement_epoch": 1784462400,
+          "bid_cents": 50,
+          "recorded_floor_cents": 51,
+          "recorded_floor_epoch": 1784456772.8,
+          "floor_minus_placement_minutes": -93.78666666746139,
+          "Q_at_placement": 50,
+          "remaining_positive_print_floor": 52,
+          "later_positive_prints": 477,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "65c69fbf-4522-41cd-1f5e-d80e5d6e9f6d",
+          "action": "PLACE",
+          "placement_epoch": 1784467626.895,
+          "bid_cents": 54,
+          "recorded_floor_cents": 51,
+          "recorded_floor_epoch": 1784456772.8,
+          "floor_minus_placement_minutes": -180.90158333381018,
+          "Q_at_placement": 54,
+          "remaining_positive_print_floor": 55,
+          "later_positive_prints": 467,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-1557",
+          "action": "PLACE",
+          "placement_epoch": 1784484949.00002,
+          "bid_cents": 54,
+          "recorded_floor_cents": 51,
+          "recorded_floor_epoch": 1784456772.8,
+          "floor_minus_placement_minutes": -469.60333366791406,
+          "Q_at_placement": 54,
+          "remaining_positive_print_floor": 55,
+          "later_positive_prints": 462,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "88cb2339-33f8-4d44-7a44-8dab986a2a15",
+          "action": "REPRICE",
+          "placement_epoch": 1784486032.598,
+          "bid_cents": 53,
+          "recorded_floor_cents": 51,
+          "recorded_floor_epoch": 1784456772.8,
+          "floor_minus_placement_minutes": -487.6633000016212,
+          "Q_at_placement": 53,
+          "remaining_positive_print_floor": 55,
+          "later_positive_prints": 462,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 484,
+      "unobserved_placements": []
+    }
+  ]
+}

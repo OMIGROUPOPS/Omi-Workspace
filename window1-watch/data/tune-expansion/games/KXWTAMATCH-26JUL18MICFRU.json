@@ -1,0 +1,116 @@
+{
+  "event": "KXWTAMATCH-26JUL18MICFRU",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · FRU CLIMBER → CLIMBER · MIC FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"FRU\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522\",\"first_recorded_epoch\":1784333927.000001,\"first_bind_epoch\":1784333927.000001,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":69.5,\"close_cents\":75,\"realized_drift_cents\":5.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"MIC\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522\",\"first_recorded_epoch\":1784333927.000001,\"first_bind_epoch\":1784333842.827,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":30.5,\"close_cents\":26,\"realized_drift_cents\":-4.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): FRU 0 · MIC 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "B · FRU Q 70 vs floor 72¢; range 69–71 · MIC Q 26 vs floor 25¢; range 24–27",
+      "hover_lines": [
+        "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"legs\":{\"FRU\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":70,\"q25\":69,\"q75\":71,\"floor_error_cents\":2,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":72,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"MIC\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":26,\"q25\":24,\"q75\":27,\"floor_error_cents\":1,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":25,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): FRU: 0.96¢ · MIC: 0.77¢ · FRU: first 340.68m; remaining MAE 99.21m · MIC: first 132.04m; remaining MAE 22m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · FRU 76¢ (+4¢; floor printed earlier) · MIC unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"FRU\":{\"filled\":true,\"cents\":76,\"vs_floor_cents\":4,\"fill_epoch\":1784351764.256,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784365500,\"span_start_epoch\":1784323124,\"span_end_epoch\":1784365500,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":72,\"floor_epoch\":1784326528,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":122.06723333597184,\"current_price_age_minutes\":57.83759998480479,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"MIC\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":25,\"floor_epoch\":1784352709.3,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: FRU lineage 122.07m, current price 57.84m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 3¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":3}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL18MICFRU",
+      "leg_id": "FRU",
+      "entry_cents": 76,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 75,
+      "fill_timestamp_epoch": 1784351764.256,
+      "prior_standing_target_cents": 76,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-1601",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 3,
+  "capture_ratio": 0,
+  "one_sided_reason": "MIC: No resting bid; final decision HOLD_REST (POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST)",
+  "missing_sides": [
+    {
+      "leg": "MIC",
+      "reason": "No resting bid; final decision HOLD_REST (POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST)",
+      "last_action": {
+        "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+        "timestamp_epoch": 1784365493.000001,
+        "leg": "MIC",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 25,
+      "reach_audit": {
+        "rest_intervals": 0,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "0ae8fefb539fd5d9219360f7d6074dcaaff5bfad688240142e172f80522a7c53",
+  "grade_sha256": "ca3c1ade7fd58521757ffc0bd7536a9d6f7e7325145227abc8cefe6b933a532c",
+  "grade_url": "/data/KXWTAMATCH-26JUL18MICFRU.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL18MICFRU.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL18MICFRU.sentences.json",
+  "fault": "MIC: No resting bid; final decision HOLD_REST (POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST)",
+  "fill_witnesses": [
+    {
+      "leg": "FRU",
+      "receipt": "156cfd32-fdd3-56de-32b8-729eda0530d2",
+      "positive_size_witness": true,
+      "print_cents": 75,
+      "rest_cents": 76,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

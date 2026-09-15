@@ -1,0 +1,33 @@
+{
+  "schema": "TUNE_FAULT_DEPLOYMENT_V1",
+  "date": "2026-09-14",
+  "production_url": "https://omi-window1-watch.vercel.app",
+  "production_deployment_id": "dpl_3o6mLqBGJSL4KjwwQ1iTDM25KCg4",
+  "preview_url": "https://omi-window1-watch-ap370tzoi-omi-groups-projects.vercel.app",
+  "preview_deployment_id": "dpl_Cbqpt2Nx5jXZKxvkQDMQCC29HAaD",
+  "selected_games": 100,
+  "existing_other_games_preserved": 4,
+  "production_verification": "PRODUCTION_VERIFY.json",
+  "screenshot": "fault-GANZIN-480.png",
+  "upload": {
+    "files": 518,
+    "uploaded_asset_bytes": 57124607,
+    "uncompressed_asset_bytes": 746342869,
+    "representation": "Lossless HTTP gzip; original JSON asset bytes and hashes preserved."
+  },
+  "omitted": {
+    "full_stage_and_accountability_bytes": 2536473842,
+    "other": "Raw prints, remaining 704 game assets, engine files, credentials and private local source paths."
+  },
+  "verification": {
+    "local": "PASS: all 100 selected games",
+    "preview": "PASS: all 100 selected games",
+    "production": "PASS: all 100 selected games; no JavaScript errors; omitted stage requests return 404",
+    "types": "PASS",
+    "diff_check": "PASS",
+    "audited_scoreboard_completed": 27,
+    "audited_scoreboard_captured_cents": 32
+  },
+  "engine_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+  "scope": "Fault audit and face/static delivery only. No engine edit, replay, fitting, original grade replacement, git commit or git push."
+}

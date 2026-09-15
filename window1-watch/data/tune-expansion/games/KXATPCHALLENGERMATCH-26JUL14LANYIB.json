@@ -1,0 +1,116 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · LAN FALLER → NOT_CALLABLE · YIB CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"LAN\":{\"called_role\":\"FALLER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL14LANYIB-LAN.csv.gz#row-463\",\"first_recorded_epoch\":1784018081.000002,\"first_bind_epoch\":1784018081.000002,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":1,\"open_cents\":17,\"close_cents\":18,\"realized_drift_cents\":1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"YIB\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"e3026b74-b460-7193-df68-6a8c5bb76628\",\"first_recorded_epoch\":1784023491.034,\"first_bind_epoch\":1784023491.034,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":83,\"close_cents\":85,\"realized_drift_cents\":2,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): LAN 1 · YIB 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · LAN Q 13 vs floor 13¢; range 11–13 · YIB Q 82 vs floor 83¢; range 80–83",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"LAN\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":13,\"q25\":11,\"q75\":13,\"floor_error_cents\":0,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14LANYIB-LAN.csv.gz#row-463\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":13,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"YIB\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":82,\"q25\":80,\"q75\":83,\"floor_error_cents\":1,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14LANYIB-LAN.csv.gz#row-463\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":83,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): LAN: 1.75¢ · YIB: 2.32¢ · LAN: first 89.46m; remaining MAE 101m · YIB: first 96.92m; remaining MAE 821.66m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · LAN unfilled · YIB 86¢ (+3¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"LAN\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":13,\"floor_epoch\":1784012713.7,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"YIB\":{\"filled\":true,\"cents\":86,\"vs_floor_cents\":3,\"fill_epoch\":1784054522.614,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784077800,\"span_start_epoch\":1784008279,\"span_end_epoch\":1784077800,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":83,\"floor_epoch\":1784013635.6,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":309.89356665213904,\"current_price_age_minutes\":121.3102333188057,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: YIB lineage 309.89m, current price 121.31m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 4¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":4}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "leg_id": "YIB",
+      "entry_cents": 86,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 86,
+      "fill_timestamp_epoch": 1784054522.614,
+      "prior_standing_target_cents": 86,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LANYIB-LAN.csv.gz#row-4960",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 4,
+  "capture_ratio": 0,
+  "one_sided_reason": "LAN: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "LAN",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LANYIB-YIB.csv.gz#row-19592",
+        "timestamp_epoch": 1784077797.000001,
+        "leg": "LAN",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 13,
+      "reach_audit": {
+        "rest_intervals": 585,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "1c6b22ce62521377e0172c184abfed444c4b6d69cbc16b534716739aa360a86e",
+  "grade_sha256": "7d6237577082f6be004110b4af0a6973b136b0495ba4b2cbcd2582f332f5c61d",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL14LANYIB.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL14LANYIB.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL14LANYIB.sentences.json",
+  "fault": "LAN: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "YIB",
+      "receipt": "fa197556-87ea-77a5-3a7f-285fdae58240",
+      "positive_size_witness": true,
+      "print_cents": 86,
+      "rest_cents": 86,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

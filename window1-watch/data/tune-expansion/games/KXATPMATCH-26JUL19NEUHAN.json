@@ -1,0 +1,139 @@
+{
+  "event": "KXATPMATCH-26JUL19NEUHAN",
+  "category": "ATP_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · HAN CLIMBER → CLIMBER · NEU CLIMBER → FALLER",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"HAN\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPMATCH-26JUL19NEUHAN-NEU.csv.gz#row-761\",\"first_recorded_epoch\":1784403414.000001,\"first_bind_epoch\":1784402413,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":66.5,\"close_cents\":74,\"realized_drift_cents\":7.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"NEU\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"FALLER\",\"correct\":false,\"first_recorded_receipt\":\"KXATPMATCH-26JUL19NEUHAN-NEU.csv.gz#row-761\",\"first_recorded_epoch\":1784403414.000001,\"first_bind_epoch\":1784401779.369,\"final_stored_role\":\"FALLER\",\"flip_count\":1,\"open_cents\":32.5,\"close_cents\":29,\"realized_drift_cents\":-3.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): HAN 0 · NEU 1"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · HAN Q 67 vs floor 69¢; range 66–68 · NEU Q 34 vs floor 28¢; range 33–36",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"HAN\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":67,\"q25\":66,\"q75\":68,\"floor_error_cents\":2,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXATPMATCH-26JUL19NEUHAN-NEU.csv.gz#row-761\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":69,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"NEU\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":34,\"q25\":33,\"q75\":36,\"floor_error_cents\":6,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXATPMATCH-26JUL19NEUHAN-NEU.csv.gz#row-761\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":28,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): HAN: 1.57¢ · NEU: 4¢ · HAN: first 813.92m; remaining MAE 174.32m · NEU: first 370.59m; remaining MAE 163.12m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · HAN 69¢ (+0¢; floor printed earlier) · NEU 27¢ (+-1¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"HAN\":{\"filled\":true,\"cents\":69,\"vs_floor_cents\":0,\"fill_epoch\":1784503671.223,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784544420,\"span_start_epoch\":1784390968,\"span_end_epoch\":1784529756.932,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":69,\"floor_epoch\":1784396921.9,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":3.420383318265279,\"current_price_age_minutes\":3.420383318265279,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"NEU\":{\"filled\":true,\"cents\":27,\"vs_floor_cents\":-1,\"fill_epoch\":1784533683.268,\"valid_span_fill\":false,\"revalidation\":{\"ruler_bell_epoch\":1784544420,\"span_start_epoch\":1784390968,\"span_end_epoch\":1784529756.932,\"at_or_after_span_start\":true,\"before_span_end\":false,\"before_bell\":true,\"correction_ids\":[]},\"reason\":\"FILL_OUTSIDE_VERIFIED_SPAN\",\"floor_cents\":28,\"floor_epoch\":1784529338.1,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":76.4877997636795,\"current_price_age_minutes\":66.91869999965031,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: HAN lineage 3.42m, current price 3.42m · NEU lineage 76.49m, current price 66.92m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · 96¢ pair · 0 of 3¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":96,\"capture_ratio\":0,\"offered_cents\":3}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "TRADE: fill outside corrected span/bell",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPMATCH-26JUL19NEUHAN",
+      "leg_id": "HAN",
+      "entry_cents": 69,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 69,
+      "fill_timestamp_epoch": 1784503671.223,
+      "prior_standing_target_cents": 69,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPMATCH-26JUL19NEUHAN-HAN.csv.gz#row-41336",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19NEUHAN",
+      "leg_id": "NEU",
+      "entry_cents": 27,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 27,
+      "fill_timestamp_epoch": 1784533683.268,
+      "prior_standing_target_cents": 27,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "1ba0a251-abc4-7693-4330-1de370978914",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": 96,
+  "captured_cents": 0,
+  "offered_cents": 3,
+  "capture_ratio": 0,
+  "one_sided_reason": "NEU: FILL_OUTSIDE_VERIFIED_SPAN",
+  "missing_sides": [
+    {
+      "leg": "NEU",
+      "reason": "FILL_OUTSIDE_VERIFIED_SPAN",
+      "last_action": {
+        "receipt": "KXATPMATCH-26JUL19NEUHAN|ATLAS_GATE|1784544120",
+        "timestamp_epoch": 1784544120,
+        "leg": "NEU",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "CREDITED_LEG_READ_ONLY"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 28,
+      "reach_audit": {
+        "rest_intervals": 15,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "0f2d8896e0feec0d650f0a79f0d1e592f0347e99ed4fd1cbf3ba3799f3659944",
+  "grade_sha256": "12081c3cb76e8b3eae9c953a022781af19c43b03a9c0a55cbd139c05ab07c576",
+  "grade_url": "/data/KXATPMATCH-26JUL19NEUHAN.grade.json",
+  "face_url": "/data/KXATPMATCH-26JUL19NEUHAN.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPMATCH-26JUL19NEUHAN.sentences.json",
+  "fault": "TRADE: fill outside corrected span/bell",
+  "fill_witnesses": [
+    {
+      "leg": "HAN",
+      "receipt": "81760899-f440-6b22-0942-9a7732c802d9",
+      "positive_size_witness": true,
+      "print_cents": 69,
+      "rest_cents": 69,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "NEU",
+      "receipt": "380a46ec-9604-5e34-fb95-702627c643c6",
+      "positive_size_witness": true,
+      "print_cents": 27,
+      "rest_cents": 27,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [
+    "TRADE: fill outside corrected span/bell"
+  ],
+  "offer_issue": null
+}

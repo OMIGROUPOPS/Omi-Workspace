@@ -1,0 +1,116 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+  "category": "WTA_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "F · HRU CLIMBER → NOT_CALLABLE · ZVO NOT_CALLABLE → FALLER",
+      "hover_lines": [
+        "MACRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"correct_side_share\":0},\"legs\":{\"HRU\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"5e085371-50ed-670b-9ccd-c154e6f804e7\",\"first_recorded_epoch\":1784167107.436,\"first_bind_epoch\":1784167107.436,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":40.5,\"close_cents\":42,\"realized_drift_cents\":1.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"ZVO\":{\"called_role\":\"NOT_CALLABLE\",\"realized_role\":\"FALLER\",\"correct\":false,\"first_recorded_receipt\":null,\"first_recorded_epoch\":null,\"first_bind_epoch\":null,\"final_stored_role\":\"FALLER\",\"flip_count\":1,\"open_cents\":59,\"close_cents\":57,\"realized_drift_cents\":-2,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): HRU 0 · ZVO 1"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "C · HRU Q 37 vs floor 40¢; range 21–41 · ZVO Q 57 vs floor 57¢; range 56–58",
+      "hover_lines": [
+        "MICRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"legs\":{\"HRU\":{\"letter\":\"C\",\"point_letter\":\"C\",\"range_letter\":\"F\",\"q50\":37,\"q25\":21,\"q75\":41,\"floor_error_cents\":3,\"band_width_cents\":20,\"band_contains_floor\":true,\"receipt\":\"344765ae-4f49-7cdc-32b8-1dc5bed3cd1a\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":40,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"ZVO\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":57,\"q25\":56,\"q75\":58,\"floor_error_cents\":0,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"5e085371-50ed-670b-9ccd-c154e6f804e7\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":57,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): HRU: 1.31¢ · ZVO: 2.53¢ · HRU: first 47.5m; remaining MAE 67.41m · ZVO: first 233.6m; remaining MAE 149.13m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · HRU unfilled · ZVO 58¢ (+1¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"HRU\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":40,\"floor_epoch\":1784203428.1,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"ZVO\":{\"filled\":true,\"cents\":58,\"vs_floor_cents\":1,\"fill_epoch\":1784174657.72,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784203680,\"span_start_epoch\":1784160875,\"span_end_epoch\":1784203620,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":57,\"floor_epoch\":1784174657.7,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":125.83806666533152,\"current_price_age_minutes\":33.18415000041326,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: ZVO lineage 125.84m, current price 33.18m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 3¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":3}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MACRO · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "leg_id": "ZVO",
+      "entry_cents": 58,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 58,
+      "fill_timestamp_epoch": 1784174657.72,
+      "prior_standing_target_cents": 58,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "c9ceaa3d-4489-5543-05b6-5a9da0ad1bef",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 3,
+  "capture_ratio": 0,
+  "one_sided_reason": "HRU: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "HRU",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU-HRU.csv.gz#row-2121",
+        "timestamp_epoch": 1784203679.000001,
+        "leg": "HRU",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 40,
+      "reach_audit": {
+        "rest_intervals": 7,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "0a7cfb85495bf0b0aa326a2d0dbd81371ad54a84ee462a6006f2b9e725d9764d",
+  "grade_sha256": "296df0e6220d7b99a147af79bac5ce7704e2b644e769364d4a59fde5fc4a2b10",
+  "grade_url": "/data/KXWTACHALLENGERMATCH-26JUL16ZVOHRU.grade.json",
+  "face_url": "/data/KXWTACHALLENGERMATCH-26JUL16ZVOHRU.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL16ZVOHRU.sentences.json",
+  "fault": "HRU: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "ZVO",
+      "receipt": "17f37a04-19ce-40af-965e-03d077026b93",
+      "positive_size_witness": true,
+      "print_cents": 58,
+      "rest_cents": 58,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

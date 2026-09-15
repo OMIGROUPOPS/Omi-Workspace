@@ -1,0 +1,4296 @@
+{
+  "version": 1,
+  "event": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+  "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+  "trace_sha256": "9e864a3167790abd33b1ecfd283915479dc575d1917d1ab3e943f604f29f2158",
+  "grades": [
+    {
+      "version": 3,
+      "event": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "provenance": {
+        "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+        "trace_sha256": "9e864a3167790abd33b1ecfd283915479dc575d1917d1ab3e943f604f29f2158",
+        "bench_sha256": null,
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "truth_row_sha256": "92eb9ca14b5cbbd7ba8f11a9710355c8866dadc3ab3840b76dfe8fa76be2a118",
+        "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+        "truth_corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+        "effective_truth_sha256": "35e43154fe860b40dd48dfa5d0e85126e81512fa46eb33adaa234d1a7e5c358a",
+        "true_print_source_sha256": "21349e76722bb714823f380a09a0107e17f22aa7e5fab42feb57b55b5a41dd22",
+        "face_sha256": "781a9baabdfddf501e0f58f738446cf4b4397c3902dc35f699b2651d283d0541",
+        "stage_inputs_sha256": "bb6cbaa56c60a0a0fe4d3368f3abf5cce088796105575b7f4b85ca5b0f19ab38",
+        "stage_files_count": 38,
+        "rubric_sha256": "3b29277e397f425742a83750c7588c1bbfc2c98ae2c217ec73f1ee7a3038ada9",
+        "receipt_sha256": "5313a8766baa565ca8629d0467f4c5e21d064a7f085d8d09b9a702c486bed94c",
+        "grade_builder_sha256": "cac4c4d652b5a779f1cf79f4712f93a8af03a29323b9a6b2b342a0e984b8b9b2",
+        "grade_contract_sha256": "16364f6b1798336c95eb699e8cfe6006422ca55efbc1d92d06ca605f82a70ba3",
+        "grade_rulers_sha256": "0fc119b68e9e27e9eefe2006f96d5fc49f9ce926cf13f5a0286f51d17d85954d",
+        "grade_measurements_sha256": "a8a7d92dbee038d1c7065daaac549e43e51ddeddd05d61c4a657d586e8060480",
+        "grade_operator_standard_sha256": "52b9a56b2a77668d3cad1baaa8de672ccf1d89cd994a5aded9293a957a4f04f5",
+        "grade_prints_sha256": "13c24f57fa489bcc1156650c565f07af63b736909397ceb3e6a260aa7b576560",
+        "fields_sha256": "4270699c7b84bd86bf3b3bf419e8184a5e93683ba53dfccb7df84f02b8148808",
+        "os_commit": "944a0cf5d3e154003233531f6d48059340e2de53",
+        "os_commit_order": 3030,
+        "grading_commit": "e3f1df1f9cd7456641d55864783b9ff5e10834c1"
+      },
+      "SENTENCE": {
+        "receipts_total": 38,
+        "receipts_with_sentence": 12,
+        "leg_receipts_total": 69,
+        "leg_receipts_with_sentence": 31,
+        "q_organ_leg_receipts": 31,
+        "x_organ_leg_receipts": 31,
+        "share_q_authored_by_organ": 0.4492753623188406,
+        "share_x_authored_by_organ": 0.4492753623188406,
+        "non_organ_q_authors": [
+          "PRIOR_ONLY",
+          "LIBRARY_FRACTION_PRIOR",
+          "INSUFFICIENT_EVIDENCE",
+          "STORE SILENT",
+          "PRIOR_REWEIGHTED_BY_OWN_WALK"
+        ],
+        "named_tokens_found": [],
+        "named_token_evidence": [],
+        "author_counts": {
+          "q": {
+            "INSUFFICIENT_EVIDENCE": 38,
+            "POOL_FIRST-TICK-ONLY": 31
+          },
+          "x": {
+            "INSUFFICIENT_EVIDENCE": 38,
+            "POOL_FIRST-TICK-ONLY_FLOOR_MTB": 31
+          }
+        },
+        "authorship_scope": "Author-token metric excluding prior-only badges, including PRIOR_REWEIGHTED_BY_OWN_WALK; not certification of the Gate-1 own-receipt/weight chain.",
+        "gate_1_authorship_certification": "STORE SILENT",
+        "gate_1_reason": "Author labels do not independently prove causal own-print weights and own-clock authorship; do not equate the token share with passing Gate 1."
+      },
+      "MACRO": {
+        "last_gate": "STORE SILENT",
+        "receipt": null,
+        "comparison_clock": {
+          "source": "BENCH_FIRST_TICK_EPOCH_PLUS_MTB",
+          "bell_epoch": null,
+          "trace_bell_epoch": 1783933020,
+          "delta_seconds": null,
+          "last_gate_epoch": null,
+          "rule": "At bench bell minus gate*60, use each leg's latest stored OS family at or before that epoch; realized family and pool accuracy use the same bench gate. No OS call is recomputed."
+        },
+        "legs": {
+          "BIN": {
+            "realized_family": "STORE SILENT",
+            "family_called_at_last_gate": "STORE SILENT",
+            "family_call_receipt": null,
+            "family_call_epoch": null,
+            "family_call_minutes_to_bench_bell": null,
+            "family_call_age_at_gate_minutes": null,
+            "gate_after_trace_bell": null,
+            "family_match": "STORE SILENT",
+            "family_call_source": "Stored OS belief.family; cascade beliefs carry the selected pool's modal family",
+            "bench_families_by_rule": {},
+            "reason": "NO_BOUND_BENCH_EVENT"
+          },
+          "FUE": {
+            "realized_family": "STORE SILENT",
+            "family_called_at_last_gate": "STORE SILENT",
+            "family_call_receipt": null,
+            "family_call_epoch": null,
+            "family_call_minutes_to_bench_bell": null,
+            "family_call_age_at_gate_minutes": null,
+            "gate_after_trace_bell": null,
+            "family_match": "STORE SILENT",
+            "family_call_source": "Stored OS belief.family; cascade beliefs carry the selected pool's modal family",
+            "bench_families_by_rule": {},
+            "reason": "NO_BOUND_BENCH_EVENT"
+          }
+        },
+        "pile_ess_at_last_gate": "STORE SILENT",
+        "pool_accuracy_by_gate": [],
+        "bench_label": "STORE SILENT",
+        "bench_reason": "NO_BOUND_BENCH_EVENT",
+        "ess_source": "Bench validity pool, not OS membership ESS",
+        "operator_roles": {
+          "BIN": {
+            "called_role": "FALLER",
+            "realized_role": "FALLER",
+            "correct": true,
+            "first_recorded_receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+            "first_recorded_epoch": 1783913040.000005,
+            "first_bind_epoch": 1783911568.423,
+            "final_stored_role": "FALLER",
+            "flip_count": 0,
+            "open_cents": 44,
+            "close_cents": 38,
+            "realized_drift_cents": -6,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legA_close_c - legA_open_postformation_c"
+          },
+          "FUE": {
+            "called_role": "CLIMBER",
+            "realized_role": "CLIMBER",
+            "correct": true,
+            "first_recorded_receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+            "first_recorded_epoch": 1783913040.000005,
+            "first_bind_epoch": 1783913040.000005,
+            "final_stored_role": "CLIMBER",
+            "flip_count": 0,
+            "open_cents": 54,
+            "close_cents": 64,
+            "realized_drift_cents": 10,
+            "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+            "realized_source": "corrected effective_row.legB_close_c - legB_open_postformation_c"
+          }
+        },
+        "operator_rule": {
+          "label": "Initial macro idea, not the pool's exact family name",
+          "role_drift_cents": 2,
+          "role_source": "RECOGNITION_OPERATING_POINT @41c1f724: close minus post-formation open; >=+2 CLIMBER, <=-2 FALLER, else NOT_CALLABLE. Use corrected close/open, never stale net_travel.",
+          "selection": "First recorded directional first_bind inside the corrected span and no later than that side's first fill; never select a later correct call. If a complete stored role history never binds, NOT_CALLABLE. Missing role history is STORE SILENT.",
+          "minimum_correct_side_share": {
+            "A": 1,
+            "C": 0.5
+          },
+          "otherwise": "F",
+          "flip_penalty": false,
+          "rationale": "Both initial directions right is A; one is C; neither F. Later revisions are disclosed, not punished merely for adapting. Exact family and timing remain diagnostics. No separate B/D boundary is needed."
+        }
+      },
+      "MICRO": {
+        "version": 2,
+        "eligibility_rule": "First in trace receipt order with a stored resolved P/Q/X sentence, finite Q and deadline, after own formation and inside the corrected span and bell. No future target participates in selection.",
+        "deadline_rule": "Stored absolute deadline_epoch, else original trace bell minus stored X; express that same instant on the corrected ruler clock. Never move a prediction when the ruler bell changes.",
+        "remaining_rule": "At every eligible receipt: minimum of carried accepted true print and strictly later accepted prints before corrected span end/bell. A carried minimum is timed at the receipt, not credited as a new print. Also score the future-print-only target separately.",
+        "aggregation": "Better of point and qualifying range per side; worst side. No call F. No verified floor STORE SILENT.",
+        "clock": {
+          "ruler_bell_epoch": 1783934520,
+          "trace_bell_epoch": 1783933020
+        },
+        "print_source": {
+          "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13BINFUE.jsonl",
+          "sha256": "21349e76722bb714823f380a09a0107e17f22aa7e5fab42feb57b55b5a41dd22",
+          "bytes": 2087151,
+          "source_rows": 5660,
+          "selected_rows": 5660,
+          "duplicate_receipt_rows": 0,
+          "invalid_selected_rows": 0,
+          "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+          "leg_rows": {
+            "BIN": 3245,
+            "FUE": 2415
+          }
+        },
+        "legs": {
+          "BIN": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+              "receipt_order": 19,
+              "epoch": 1783913040.000005,
+              "minutes_to_bell": 357.9999999165535,
+              "q50": 39,
+              "q25": 37,
+              "q75": 40,
+              "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+              "q_author": "POOL_FIRST-TICK-ONLY",
+              "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+              "deadline_epoch": 1783919475,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.4
+              },
+              "floor_already_observed_at_call": false,
+              "floor_error_cents": 1,
+              "timing_error_minutes": 157.74000000158946,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.4,
+              "target_minutes_to_bell": 93.00999999841055
+            },
+            "remaining_path": {
+              "receipts_eligible": 19,
+              "receipts_scored": 19,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 0.5789473684210527,
+              "mean_timing_error_minutes": 32.97025531802261,
+              "max_floor_error_cents": 2,
+              "max_timing_error_minutes": 157.73948333263397
+            },
+            "executable_future_print": {
+              "receipts_eligible": 19,
+              "receipts_scored": 10,
+              "receipts_unscored": 9,
+              "mean_floor_error_cents": 1.1,
+              "mean_timing_error_minutes": 62.64348510424296,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          },
+          "FUE": {
+            "first_eligible_full_span": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+              "receipt_order": 19,
+              "epoch": 1783913040.000005,
+              "minutes_to_bell": 357.9999999165535,
+              "q50": 62,
+              "q25": 60,
+              "q75": 62,
+              "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+              "q_author": "POOL_FIRST-TICK-ONLY",
+              "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+              "deadline_epoch": 1783920731,
+              "target": {
+                "status": "OK",
+                "kind": "FULL_SPAN_RECORDED_FLOOR",
+                "floor_cents": 58,
+                "floor_epoch": 1783897755.6
+              },
+              "floor_already_observed_at_call": true,
+              "floor_error_cents": 4,
+              "timing_error_minutes": 382.9233333349228,
+              "target_floor_cents": 58,
+              "target_floor_epoch": 1783897755.6,
+              "target_minutes_to_bell": 612.7400000015895
+            },
+            "remaining_path": {
+              "receipts_eligible": 19,
+              "receipts_scored": 19,
+              "receipts_unscored": 0,
+              "mean_floor_error_cents": 0.7368421052631579,
+              "mean_timing_error_minutes": 22.399593094775554,
+              "max_floor_error_cents": 2,
+              "max_timing_error_minutes": 132.57450000047683
+            },
+            "executable_future_print": {
+              "receipts_eligible": 19,
+              "receipts_scored": 16,
+              "receipts_unscored": 3,
+              "mean_floor_error_cents": 1,
+              "mean_timing_error_minutes": 28.35571481461327,
+              "max_floor_error_cents": "STORE SILENT",
+              "max_timing_error_minutes": "STORE SILENT"
+            }
+          }
+        },
+        "receipt_calls": [
+          {
+            "leg": "BIN",
+            "receipt_order": 0,
+            "trace_row": 1,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-1",
+            "epoch": 1783891508.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 716.8666666507721,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 0,
+            "trace_row": 1,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-1",
+            "epoch": 1783891508.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 716.8666666507721,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 1,
+            "trace_row": 2,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-33",
+            "epoch": 1783896138.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 639.6999999841054,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 1,
+            "trace_row": 2,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-33",
+            "epoch": 1783896138.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 639.6999999841054,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 2,
+            "trace_row": 3,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-43",
+            "epoch": 1783896395.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 635.4166666507721,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 2,
+            "trace_row": 3,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-43",
+            "epoch": 1783896395.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 635.4166666507721,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 3,
+            "trace_row": 4,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-44",
+            "epoch": 1783896402.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 635.2999999841054,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 3,
+            "trace_row": 4,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-44",
+            "epoch": 1783896402.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 635.2999999841054,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 4,
+            "trace_row": 5,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-45",
+            "epoch": 1783897001.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 625.316666650772,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 4,
+            "trace_row": 5,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-45",
+            "epoch": 1783897001.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 625.316666650772,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 5,
+            "trace_row": 6,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-71",
+            "epoch": 1783897752.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 612.7999999841054,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 5,
+            "trace_row": 6,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-71",
+            "epoch": 1783897752.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 612.7999999841054,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 6,
+            "trace_row": 7,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-69",
+            "epoch": 1783897752.000002,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 612.7999999682108,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 6,
+            "trace_row": 7,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-69",
+            "epoch": 1783897752.000002,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 612.7999999682108,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 7,
+            "trace_row": 8,
+            "receipt": "3ca61f83-f38b-44d0-66a6-7a3981c2a158",
+            "epoch": 1783897755.603,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 612.7399500012398,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 7,
+            "trace_row": 8,
+            "receipt": "3ca61f83-f38b-44d0-66a6-7a3981c2a158",
+            "epoch": 1783897755.603,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 612.7399500012398,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 8,
+            "trace_row": 9,
+            "receipt": "5c3b26bf-676b-5124-e43e-a75f3de20198",
+            "epoch": 1783898062.092,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 607.6317999998729,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 8,
+            "trace_row": 9,
+            "receipt": "5c3b26bf-676b-5124-e43e-a75f3de20198",
+            "epoch": 1783898062.092,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 607.6317999998729,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 9,
+            "trace_row": 10,
+            "receipt": "2a41d9e9-3072-6ffc-d1d3-a7faf566d28a",
+            "epoch": 1783898070.499,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 607.4916833321254,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 9,
+            "trace_row": 10,
+            "receipt": "2a41d9e9-3072-6ffc-d1d3-a7faf566d28a",
+            "epoch": 1783898070.499,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 607.4916833321254,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 10,
+            "trace_row": 11,
+            "receipt": "d4da9d1c-c18f-6604-d71d-62be3809f7c4",
+            "epoch": 1783898070.499,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 607.4916833321254,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 10,
+            "trace_row": 11,
+            "receipt": "d4da9d1c-c18f-6604-d71d-62be3809f7c4",
+            "epoch": 1783898070.499,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 607.4916833321254,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 11,
+            "trace_row": 12,
+            "receipt": "5a72415a-5e47-403e-30fe-b69e7d356332",
+            "epoch": 1783898112.387,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 606.7935499986013,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 11,
+            "trace_row": 12,
+            "receipt": "5a72415a-5e47-403e-30fe-b69e7d356332",
+            "epoch": 1783898112.387,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 606.7935499986013,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 12,
+            "trace_row": 13,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-136",
+            "epoch": 1783898581.000003,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 598.983333281676,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 12,
+            "trace_row": 13,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-136",
+            "epoch": 1783898581.000003,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 598.983333281676,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 13,
+            "trace_row": 14,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-138",
+            "epoch": 1783898592.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 598.7999999841054,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 13,
+            "trace_row": 14,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-138",
+            "epoch": 1783898592.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 598.7999999841054,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 14,
+            "trace_row": 15,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-184",
+            "epoch": 1783898819.000009,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 595.0166665156682,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 14,
+            "trace_row": 15,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-184",
+            "epoch": 1783898819.000009,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 595.0166665156682,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 15,
+            "trace_row": 16,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-268",
+            "epoch": 1783901830.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 544.8333333174388,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 15,
+            "trace_row": 16,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-268",
+            "epoch": 1783901830.000001,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 544.8333333174388,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 16,
+            "trace_row": 17,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783904220",
+            "epoch": 1783904220,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 505,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 16,
+            "trace_row": 17,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783904220",
+            "epoch": 1783904220,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 505,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 17,
+            "trace_row": 18,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783911420",
+            "epoch": 1783911420,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 385,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 17,
+            "trace_row": 18,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783911420",
+            "epoch": 1783911420,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 385,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 18,
+            "trace_row": 19,
+            "receipt": "f833fd09-6b9f-4135-0c87-74cc6d0805a4",
+            "epoch": 1783911568.423,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 382.5262833317121,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 18,
+            "trace_row": 19,
+            "receipt": "f833fd09-6b9f-4135-0c87-74cc6d0805a4",
+            "epoch": 1783911568.423,
+            "eligible": false,
+            "eligibility_reason": "NO_RESOLVED_P_Q_X_FORECAST",
+            "minutes_to_bell": 382.5262833317121,
+            "q50": null,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "INSUFFICIENT_EVIDENCE",
+            "x_author": "INSUFFICIENT_EVIDENCE",
+            "deadline_epoch": null,
+            "stored_deadline_epoch": null,
+            "stored_x_minutes_to_trace_bell": null,
+            "x_minutes_to_corrected_bell": "STORE SILENT"
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 19,
+            "trace_row": 20,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+            "epoch": 1783913040.000005,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 357.9999999165535,
+            "q50": 39,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 37,
+            "q75": 40,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783919475,
+            "stored_deadline_epoch": 1783919475,
+            "stored_x_minutes_to_trace_bell": 225.75,
+            "x_minutes_to_corrected_bell": 250.75,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 40,
+                "observed_epoch": 1783911568.423,
+                "print_receipt": "f833fd09-6b9f-4135-0c87-74cc6d0805a4",
+                "source_row": 3245,
+                "evaluated_at_epoch": 1783913040.000005,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 157.73948333263397,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 157.73948333263397,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 19,
+            "trace_row": 20,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+            "epoch": 1783913040.000005,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 357.9999999165535,
+            "q50": 62,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 60,
+            "q75": 62,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783920731,
+            "stored_deadline_epoch": 1783920731,
+            "stored_x_minutes_to_trace_bell": 204.81666666666666,
+            "x_minutes_to_corrected_bell": 229.81666666666666,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 63,
+                "observed_epoch": 1783910199.601,
+                "print_receipt": "6d524263-ed57-54d8-33e1-7441198e20e0",
+                "source_row": 5651,
+                "evaluated_at_epoch": 1783913040.000005,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 132.57450000047683,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 132.57450000047683,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 20,
+            "trace_row": 21,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-681",
+            "epoch": 1783913612.000011,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 348.46666648387907,
+            "q50": 39,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 37,
+            "q75": 40,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783920077,
+            "stored_deadline_epoch": 1783920077,
+            "stored_x_minutes_to_trace_bell": 215.71666666666667,
+            "x_minutes_to_corrected_bell": 240.71666666666667,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 40,
+                "observed_epoch": 1783911568.423,
+                "print_receipt": "f833fd09-6b9f-4135-0c87-74cc6d0805a4",
+                "source_row": 3245,
+                "evaluated_at_epoch": 1783913612.000011,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 147.70614999930064,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 147.70614999930064,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 20,
+            "trace_row": 21,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-681",
+            "epoch": 1783913612.000011,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 348.46666648387907,
+            "q50": 61,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 60,
+            "q75": 62,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783921248.318239,
+            "stored_deadline_epoch": 1783921248.318239,
+            "stored_x_minutes_to_trace_bell": 196.19469601710637,
+            "x_minutes_to_corrected_bell": 221.19469601710637,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 63,
+                "observed_epoch": 1783910199.601,
+                "print_receipt": "6d524263-ed57-54d8-33e1-7441198e20e0",
+                "source_row": 5651,
+                "evaluated_at_epoch": 1783913612.000011,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 123.95252935091655,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 123.95252935091655,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 21,
+            "trace_row": 22,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783918620",
+            "epoch": 1783918620,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 265,
+            "q50": 39,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 38,
+            "q75": 40,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783923433,
+            "stored_deadline_epoch": 1783923433,
+            "stored_x_minutes_to_trace_bell": 159.78333333333333,
+            "x_minutes_to_corrected_bell": 184.78333333333333,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 40,
+                "observed_epoch": 1783911568.423,
+                "print_receipt": "f833fd09-6b9f-4135-0c87-74cc6d0805a4",
+                "source_row": 3245,
+                "evaluated_at_epoch": 1783918620,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 91.77281666596731,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 91.77281666596731,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 21,
+            "trace_row": 22,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783918620",
+            "epoch": 1783918620,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 265,
+            "q50": 63,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 61,
+            "q75": 64,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783925066,
+            "stored_deadline_epoch": 1783925066,
+            "stored_x_minutes_to_trace_bell": 132.56666666666666,
+            "x_minutes_to_corrected_bell": 157.56666666666666,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 64,
+                "observed_epoch": 1783918516.252,
+                "print_receipt": "74ace641-6590-7187-d6f8-e89551100a10",
+                "source_row": 5641,
+                "evaluated_at_epoch": 1783918620,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 60.32450000047684,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 60.32450000047684,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 22,
+            "trace_row": 23,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783922220",
+            "epoch": 1783922220,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 205,
+            "q50": 39,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 38,
+            "q75": 40,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783924455.043936,
+            "stored_deadline_epoch": 1783924455.043936,
+            "stored_x_minutes_to_trace_bell": 142.74926773309707,
+            "x_minutes_to_corrected_bell": 167.74926773309707,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 40,
+                "observed_epoch": 1783911568.423,
+                "print_receipt": "f833fd09-6b9f-4135-0c87-74cc6d0805a4",
+                "source_row": 3245,
+                "evaluated_at_epoch": 1783922220,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 74.73875106573105,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 74.73875106573105,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 22,
+            "trace_row": 23,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783922220",
+            "epoch": 1783922220,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 205,
+            "q50": 63,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 62,
+            "q75": 64,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783926179.34494,
+            "stored_deadline_epoch": 1783926179.34494,
+            "stored_x_minutes_to_trace_bell": 114.01091766754786,
+            "x_minutes_to_corrected_bell": 139.01091766754786,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 64,
+                "observed_epoch": 1783918516.252,
+                "print_receipt": "74ace641-6590-7187-d6f8-e89551100a10",
+                "source_row": 5641,
+                "evaluated_at_epoch": 1783922220,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 41.768751001358034,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 41.768751001358034,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 23,
+            "trace_row": 24,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-966",
+            "epoch": 1783923294.000001,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 187.09999998410544,
+            "q50": 39,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 38,
+            "q75": 40,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783924749.946584,
+            "stored_deadline_epoch": 1783924749.946584,
+            "stored_x_minutes_to_trace_bell": 137.83422360022863,
+            "x_minutes_to_corrected_bell": 162.83422360022863,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 40,
+                "observed_epoch": 1783911568.423,
+                "print_receipt": "f833fd09-6b9f-4135-0c87-74cc6d0805a4",
+                "source_row": 3245,
+                "evaluated_at_epoch": 1783923294.000001,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 69.8237069328626,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 69.8237069328626,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 23,
+            "trace_row": 24,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-966",
+            "epoch": 1783923294.000001,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 187.09999998410544,
+            "q50": 63,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 62,
+            "q75": 64,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783926696,
+            "stored_deadline_epoch": 1783926696,
+            "stored_x_minutes_to_trace_bell": 105.4,
+            "x_minutes_to_corrected_bell": 130.4,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 64,
+                "observed_epoch": 1783918516.252,
+                "print_receipt": "74ace641-6590-7187-d6f8-e89551100a10",
+                "source_row": 5641,
+                "evaluated_at_epoch": 1783923294.000001,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 33.15783333381017,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 33.15783333381017,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 24,
+            "trace_row": 25,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783925820",
+            "epoch": 1783925820,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 145,
+            "q50": 39,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 38,
+            "q75": 40,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783925938.110416,
+            "stored_deadline_epoch": 1783925938.110416,
+            "stored_x_minutes_to_trace_bell": 118.0314930677414,
+            "x_minutes_to_corrected_bell": 143.0314930677414,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 40,
+                "observed_epoch": 1783911568.423,
+                "print_receipt": "f833fd09-6b9f-4135-0c87-74cc6d0805a4",
+                "source_row": 3245,
+                "evaluated_at_epoch": 1783925820,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 50.02097640037537,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 50.02097640037537,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 24,
+            "trace_row": 25,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783925820",
+            "epoch": 1783925820,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 145,
+            "q50": 63,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 62,
+            "q75": 64,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783927804,
+            "stored_deadline_epoch": 1783927804,
+            "stored_x_minutes_to_trace_bell": 86.93333333333334,
+            "x_minutes_to_corrected_bell": 111.93333333333334,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 64,
+                "observed_epoch": 1783918516.252,
+                "print_receipt": "74ace641-6590-7187-d6f8-e89551100a10",
+                "source_row": 5641,
+                "evaluated_at_epoch": 1783925820,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 14.691166667143504,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 14.691166667143504,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 25,
+            "trace_row": 26,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783927620",
+            "epoch": 1783927620,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 115,
+            "q50": 40,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 38,
+            "q75": 40,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783927620,
+            "stored_deadline_epoch": 1783927620,
+            "stored_x_minutes_to_trace_bell": 90,
+            "x_minutes_to_corrected_bell": 115,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 40,
+                "observed_epoch": 1783911568.423,
+                "print_receipt": "f833fd09-6b9f-4135-0c87-74cc6d0805a4",
+                "source_row": 3245,
+                "evaluated_at_epoch": 1783927620,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 21.989483332633974,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 21.989483332633974,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 25,
+            "trace_row": 26,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783927620",
+            "epoch": 1783927620,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 115,
+            "q50": 63,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 62,
+            "q75": 64,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783928656.886146,
+            "stored_deadline_epoch": 1783928656.886146,
+            "stored_x_minutes_to_trace_bell": 72.71856423219045,
+            "x_minutes_to_corrected_bell": 97.71856423219045,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 64,
+                "observed_epoch": 1783918516.252,
+                "print_receipt": "74ace641-6590-7187-d6f8-e89551100a10",
+                "source_row": 5641,
+                "evaluated_at_epoch": 1783927620,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 0.4763975660006205,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 0.4763975660006205,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 26,
+            "trace_row": 27,
+            "receipt": "da775a8a-2606-6607-47fb-9fcd483cba87",
+            "epoch": 1783928635.028,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 98.08286666472753,
+            "q50": 39,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 37,
+            "q75": 39,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783928635.028,
+            "stored_deadline_epoch": 1783928635.028,
+            "stored_x_minutes_to_trace_bell": 73.08286666472753,
+            "x_minutes_to_corrected_bell": 98.08286666472753,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 39,
+                "observed_epoch": 1783928635.028,
+                "print_receipt": "da775a8a-2606-6607-47fb-9fcd483cba87",
+                "source_row": 3244,
+                "evaluated_at_epoch": 1783928635.028,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 5.072349997361501,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 5.072349997361501,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 26,
+            "trace_row": 27,
+            "receipt": "da775a8a-2606-6607-47fb-9fcd483cba87",
+            "epoch": 1783928635.028,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 98.08286666472753,
+            "q50": 63,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 62,
+            "q75": 64,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783929169,
+            "stored_deadline_epoch": 1783929169,
+            "stored_x_minutes_to_trace_bell": 64.18333333333334,
+            "x_minutes_to_corrected_bell": 89.18333333333334,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 64,
+                "observed_epoch": 1783918516.252,
+                "print_receipt": "74ace641-6590-7187-d6f8-e89551100a10",
+                "source_row": 5641,
+                "evaluated_at_epoch": 1783928635.028,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783928685.47,
+                "print_receipt": "bf0b973d-2436-7d27-ced3-f302b12aeca1",
+                "source_row": 5638,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 8.058833332856496,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 2,
+              "timing_error_minutes": 8.058833332856496,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783928685.47,
+              "target_minutes_to_bell": 97.24216666618983
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 27,
+            "trace_row": 28,
+            "receipt": "6f6e8c88-555b-7348-f901-eab48649f257",
+            "epoch": 1783928685.47,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 97.24216666618983,
+            "q50": 39,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 37,
+            "q75": 39,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783928685.47,
+            "stored_deadline_epoch": 1783928685.47,
+            "stored_x_minutes_to_trace_bell": 72.24216666618983,
+            "x_minutes_to_corrected_bell": 97.24216666618983,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 39,
+                "observed_epoch": 1783928635.028,
+                "print_receipt": "da775a8a-2606-6607-47fb-9fcd483cba87",
+                "source_row": 3244,
+                "evaluated_at_epoch": 1783928685.47,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 4.231649998823801,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 4.231649998823801,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 27,
+            "trace_row": 28,
+            "receipt": "6f6e8c88-555b-7348-f901-eab48649f257",
+            "epoch": 1783928685.47,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 97.24216666618983,
+            "q50": 61,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783929169,
+            "stored_deadline_epoch": 1783929169,
+            "stored_x_minutes_to_trace_bell": 64.18333333333334,
+            "x_minutes_to_corrected_bell": 89.18333333333334,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 62,
+                "observed_epoch": 1783928685.47,
+                "print_receipt": "6f6e8c88-555b-7348-f901-eab48649f257",
+                "source_row": 5640,
+                "evaluated_at_epoch": 1783928685.47,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783929245.509,
+                "print_receipt": "8cd51f98-f0ec-66ce-0c42-36b03eadde93",
+                "source_row": 5636,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783929245.509,
+                "print_receipt": "8cd51f98-f0ec-66ce-0c42-36b03eadde93",
+                "source_row": 5636,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 1.2751500010490417,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783929245.509,
+              "target_minutes_to_bell": 87.9081833322843
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 1.2751500010490417,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783929245.509,
+              "target_minutes_to_bell": 87.9081833322843
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 28,
+            "trace_row": 29,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-990",
+            "epoch": 1783928739.000001,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 96.34999998410542,
+            "q50": 39,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 37,
+            "q75": 39,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783928739.000001,
+            "stored_deadline_epoch": 1783928739.000001,
+            "stored_x_minutes_to_trace_bell": 71.34999998410542,
+            "x_minutes_to_corrected_bell": 96.34999998410542,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 39,
+                "observed_epoch": 1783928635.028,
+                "print_receipt": "da775a8a-2606-6607-47fb-9fcd483cba87",
+                "source_row": 3244,
+                "evaluated_at_epoch": 1783928739.000001,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 3.3394833167394,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 3.3394833167394,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 28,
+            "trace_row": 29,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-990",
+            "epoch": 1783928739.000001,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 96.34999998410542,
+            "q50": 61,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783929314,
+            "stored_deadline_epoch": 1783929314,
+            "stored_x_minutes_to_trace_bell": 61.766666666666666,
+            "x_minutes_to_corrected_bell": 86.76666666666667,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 62,
+                "observed_epoch": 1783928685.47,
+                "print_receipt": "6f6e8c88-555b-7348-f901-eab48649f257",
+                "source_row": 5640,
+                "evaluated_at_epoch": 1783928739.000001,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783929245.509,
+                "print_receipt": "8cd51f98-f0ec-66ce-0c42-36b03eadde93",
+                "source_row": 5636,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783929245.509,
+                "print_receipt": "8cd51f98-f0ec-66ce-0c42-36b03eadde93",
+                "source_row": 5636,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 1.141516665617625,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783929245.509,
+              "target_minutes_to_bell": 87.9081833322843
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 1.141516665617625,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783929245.509,
+              "target_minutes_to_bell": 87.9081833322843
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 29,
+            "trace_row": 30,
+            "receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+            "epoch": 1783928939.369,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 93.01051666736603,
+            "q50": 38,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 36,
+            "q75": 38,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783928939.369,
+            "stored_deadline_epoch": 1783928939.369,
+            "stored_x_minutes_to_trace_bell": 68.01051666736603,
+            "x_minutes_to_corrected_bell": 93.01051666736603,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 38,
+                "observed_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "evaluated_at_epoch": 1783928939.369,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.369,
+                "carried_print_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783928939.369,
+              "target_minutes_to_bell": 93.01051666736603
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 29,
+            "trace_row": 30,
+            "receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+            "epoch": 1783928939.369,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 93.01051666736603,
+            "q50": 61,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783929442,
+            "stored_deadline_epoch": 1783929442,
+            "stored_x_minutes_to_trace_bell": 59.63333333333333,
+            "x_minutes_to_corrected_bell": 84.63333333333334,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 62,
+                "observed_epoch": 1783928685.47,
+                "print_receipt": "6f6e8c88-555b-7348-f901-eab48649f257",
+                "source_row": 5640,
+                "evaluated_at_epoch": 1783928939.369,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783929245.509,
+                "print_receipt": "8cd51f98-f0ec-66ce-0c42-36b03eadde93",
+                "source_row": 5636,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 61,
+                "floor_epoch": 1783929245.509,
+                "print_receipt": "8cd51f98-f0ec-66ce-0c42-36b03eadde93",
+                "source_row": 5636,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 3.274849998950958,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783929245.509,
+              "target_minutes_to_bell": 87.9081833322843
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 3.274849998950958,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783929245.509,
+              "target_minutes_to_bell": 87.9081833322843
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 30,
+            "trace_row": 31,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783929420",
+            "epoch": 1783929420,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 85,
+            "q50": 38,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 37,
+            "q75": 38,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783929420,
+            "stored_deadline_epoch": 1783929420,
+            "stored_x_minutes_to_trace_bell": 60,
+            "x_minutes_to_corrected_bell": 85,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 38,
+                "observed_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "evaluated_at_epoch": 1783929420,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 38,
+                "floor_epoch": 1783929420,
+                "carried_print_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783929420,
+              "target_minutes_to_bell": 85
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 30,
+            "trace_row": 31,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783929420",
+            "epoch": 1783929420,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 85,
+            "q50": 60,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 59,
+            "q75": 61,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783929713.774453,
+            "stored_deadline_epoch": 1783929713.774453,
+            "stored_x_minutes_to_trace_bell": 55.10375911792119,
+            "x_minutes_to_corrected_bell": 80.1037591179212,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 61,
+                "observed_epoch": 1783929245.509,
+                "print_receipt": "5498405f-89f2-6940-210e-8452ddead36a",
+                "source_row": 5637,
+                "evaluated_at_epoch": 1783929420,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 61,
+                "floor_epoch": 1783929420,
+                "carried_print_epoch": 1783929245.509,
+                "print_receipt": "5498405f-89f2-6940-210e-8452ddead36a"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 63,
+                "floor_epoch": 1783930974.81,
+                "print_receipt": "0e93a5d3-f2ef-6db5-8007-b5cb5b1791ad",
+                "source_row": 5635,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 1,
+              "timing_error_minutes": 4.896240882078806,
+              "target_floor_cents": 61,
+              "target_floor_epoch": 1783929420,
+              "target_minutes_to_bell": 85
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 3,
+              "timing_error_minutes": 21.01725911696752,
+              "target_floor_cents": 63,
+              "target_floor_epoch": 1783930974.81,
+              "target_minutes_to_bell": 59.08650000095368
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 31,
+            "trace_row": 32,
+            "receipt": "0e93a5d3-f2ef-6db5-8007-b5cb5b1791ad",
+            "epoch": 1783930974.81,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 59.08650000095368,
+            "q50": 38,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 37,
+            "q75": 38,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783930974.81,
+            "stored_deadline_epoch": 1783930974.81,
+            "stored_x_minutes_to_trace_bell": 34.08650000095368,
+            "x_minutes_to_corrected_bell": 59.08650000095368,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 38,
+                "observed_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "evaluated_at_epoch": 1783930974.81,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 38,
+                "floor_epoch": 1783930974.81,
+                "carried_print_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783930974.81,
+              "target_minutes_to_bell": 59.08650000095368
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 31,
+            "trace_row": 32,
+            "receipt": "0e93a5d3-f2ef-6db5-8007-b5cb5b1791ad",
+            "epoch": 1783930974.81,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 59.08650000095368,
+            "q50": 63,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783930974.81,
+            "stored_deadline_epoch": 1783930974.81,
+            "stored_x_minutes_to_trace_bell": 34.08650000095368,
+            "x_minutes_to_corrected_bell": 59.08650000095368,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 63,
+                "observed_epoch": 1783930974.81,
+                "print_receipt": "0e93a5d3-f2ef-6db5-8007-b5cb5b1791ad",
+                "source_row": 5635,
+                "evaluated_at_epoch": 1783930974.81,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 63,
+                "floor_epoch": 1783930974.81,
+                "carried_print_epoch": 1783930974.81,
+                "print_receipt": "0e93a5d3-f2ef-6db5-8007-b5cb5b1791ad"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 63,
+                "floor_epoch": 1783931339.932,
+                "print_receipt": "486c2389-a657-6ab1-e7b2-bd624e8b5b5d",
+                "source_row": 5634,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 63,
+              "target_floor_epoch": 1783930974.81,
+              "target_minutes_to_bell": 59.08650000095368
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 6.085366666316986,
+              "target_floor_cents": 63,
+              "target_floor_epoch": 1783931339.932,
+              "target_minutes_to_bell": 53.00113333463669
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 32,
+            "trace_row": 33,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783931220",
+            "epoch": 1783931220,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 55,
+            "q50": 38,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 37,
+            "q75": 38,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783931220,
+            "stored_deadline_epoch": 1783931220,
+            "stored_x_minutes_to_trace_bell": 30,
+            "x_minutes_to_corrected_bell": 55,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 38,
+                "observed_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "evaluated_at_epoch": 1783931220,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 38,
+                "floor_epoch": 1783931220,
+                "carried_print_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783931220,
+              "target_minutes_to_bell": 55
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 32,
+            "trace_row": 33,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783931220",
+            "epoch": 1783931220,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 55,
+            "q50": 63,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 62,
+            "q75": 63,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783931220,
+            "stored_deadline_epoch": 1783931220,
+            "stored_x_minutes_to_trace_bell": 30,
+            "x_minutes_to_corrected_bell": 55,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 63,
+                "observed_epoch": 1783930974.81,
+                "print_receipt": "0e93a5d3-f2ef-6db5-8007-b5cb5b1791ad",
+                "source_row": 5635,
+                "evaluated_at_epoch": 1783931220,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 63,
+                "floor_epoch": 1783931220,
+                "carried_print_epoch": 1783930974.81,
+                "print_receipt": "0e93a5d3-f2ef-6db5-8007-b5cb5b1791ad"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 63,
+                "floor_epoch": 1783931339.932,
+                "print_receipt": "486c2389-a657-6ab1-e7b2-bd624e8b5b5d",
+                "source_row": 5634,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 63,
+              "target_floor_epoch": 1783931220,
+              "target_minutes_to_bell": 55
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 1.9988666653633118,
+              "target_floor_cents": 63,
+              "target_floor_epoch": 1783931339.932,
+              "target_minutes_to_bell": 53.00113333463669
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 33,
+            "trace_row": 34,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783932120",
+            "epoch": 1783932120,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 40,
+            "q50": 38,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 37,
+            "q75": 38,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783932120,
+            "stored_deadline_epoch": 1783932120,
+            "stored_x_minutes_to_trace_bell": 15,
+            "x_minutes_to_corrected_bell": 40,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 38,
+                "observed_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "evaluated_at_epoch": 1783932120,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 38,
+                "floor_epoch": 1783932120,
+                "carried_print_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783932120,
+              "target_minutes_to_bell": 40
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 33,
+            "trace_row": 34,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783932120",
+            "epoch": 1783932120,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 40,
+            "q50": 63,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 62,
+            "q75": 63,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783932120,
+            "stored_deadline_epoch": 1783932120,
+            "stored_x_minutes_to_trace_bell": 15,
+            "x_minutes_to_corrected_bell": 40,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 63,
+                "observed_epoch": 1783931339.932,
+                "print_receipt": "486c2389-a657-6ab1-e7b2-bd624e8b5b5d",
+                "source_row": 5634,
+                "evaluated_at_epoch": 1783932120,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 63,
+                "floor_epoch": 1783932120,
+                "carried_print_epoch": 1783931339.932,
+                "print_receipt": "486c2389-a657-6ab1-e7b2-bd624e8b5b5d"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 63,
+                "floor_epoch": 1783932345.53,
+                "print_receipt": "ad30acda-69e3-76d3-1be8-55beb330bc75",
+                "source_row": 5628,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 63,
+              "target_floor_epoch": 1783932120,
+              "target_minutes_to_bell": 40
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 3.7588333328564962,
+              "target_floor_cents": 63,
+              "target_floor_epoch": 1783932345.53,
+              "target_minutes_to_bell": 36.2411666671435
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 34,
+            "trace_row": 35,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783932720",
+            "epoch": 1783932720,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 30,
+            "q50": 38,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 38,
+            "q75": 38,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783932720,
+            "stored_deadline_epoch": 1783932720,
+            "stored_x_minutes_to_trace_bell": 5,
+            "x_minutes_to_corrected_bell": 30,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 38,
+                "observed_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "evaluated_at_epoch": 1783932720,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 38,
+                "floor_epoch": 1783932720,
+                "carried_print_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783932720,
+              "target_minutes_to_bell": 30
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 34,
+            "trace_row": 35,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783932720",
+            "epoch": 1783932720,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 30,
+            "q50": 64,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 64,
+            "q75": 64,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783932720,
+            "stored_deadline_epoch": 1783932720,
+            "stored_x_minutes_to_trace_bell": 5,
+            "x_minutes_to_corrected_bell": 30,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 64,
+                "observed_epoch": 1783932467.913,
+                "print_receipt": "b3abcd29-a504-7d63-c43b-1676230fef7c",
+                "source_row": 5625,
+                "evaluated_at_epoch": 1783932720,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 64,
+                "floor_epoch": 1783932720,
+                "carried_print_epoch": 1783932467.913,
+                "print_receipt": "b3abcd29-a504-7d63-c43b-1676230fef7c"
+              },
+              "executable_future_print": {
+                "status": "OK",
+                "kind": "EXECUTABLE_FUTURE_PRINT_OBSERVATION",
+                "floor_cents": 64,
+                "floor_epoch": 1783932728.105,
+                "print_receipt": "5adbc188-2d38-450b-ce54-b755c0185b80",
+                "source_row": 5624,
+                "note": "A later accepted true print, not proof of a hypothetical maker fill"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 64,
+              "target_floor_epoch": 1783932720,
+              "target_minutes_to_bell": 30
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0.13508333365122477,
+              "target_floor_cents": 64,
+              "target_floor_epoch": 1783932728.105,
+              "target_minutes_to_bell": 29.864916666348776
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 35,
+            "trace_row": 36,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-1490",
+            "epoch": 1783932972.000001,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 25.79999998410543,
+            "q50": 38,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 38,
+            "q75": 38,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783932972.000001,
+            "stored_deadline_epoch": 1783932972.000001,
+            "stored_x_minutes_to_trace_bell": 0.799999984105428,
+            "x_minutes_to_corrected_bell": 25.79999998410543,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 38,
+                "observed_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "evaluated_at_epoch": 1783932972.000001,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 38,
+                "floor_epoch": 1783932972.000001,
+                "carried_print_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783932972.000001,
+              "target_minutes_to_bell": 25.79999998410543
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 35,
+            "trace_row": 36,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-1490",
+            "epoch": 1783932972.000001,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 25.79999998410543,
+            "q50": 64,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783932972.000001,
+            "stored_deadline_epoch": 1783932972.000001,
+            "stored_x_minutes_to_trace_bell": 0.799999984105428,
+            "x_minutes_to_corrected_bell": 25.79999998410543,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 64,
+                "observed_epoch": 1783932728.105,
+                "print_receipt": "5adbc188-2d38-450b-ce54-b755c0185b80",
+                "source_row": 5624,
+                "evaluated_at_epoch": 1783932972.000001,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 64,
+                "floor_epoch": 1783932972.000001,
+                "carried_print_epoch": 1783932728.105,
+                "print_receipt": "5adbc188-2d38-450b-ce54-b755c0185b80"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 64,
+              "target_floor_epoch": 1783932972.000001,
+              "target_minutes_to_bell": 25.79999998410543
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 36,
+            "trace_row": 37,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-1498",
+            "epoch": 1783932993.000006,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 25.449999900658927,
+            "q50": 38,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 38,
+            "q75": 38,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783932993.000006,
+            "stored_deadline_epoch": 1783932993.000006,
+            "stored_x_minutes_to_trace_bell": 0.44999990065892537,
+            "x_minutes_to_corrected_bell": 25.449999900658927,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 38,
+                "observed_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "evaluated_at_epoch": 1783932993.000006,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 38,
+                "floor_epoch": 1783932993.000006,
+                "carried_print_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783932993.000006,
+              "target_minutes_to_bell": 25.449999900658927
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 36,
+            "trace_row": 37,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-1498",
+            "epoch": 1783932993.000006,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 25.449999900658927,
+            "q50": 64,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783932993.000006,
+            "stored_deadline_epoch": 1783932993.000006,
+            "stored_x_minutes_to_trace_bell": 0.44999990065892537,
+            "x_minutes_to_corrected_bell": 25.449999900658927,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 64,
+                "observed_epoch": 1783932728.105,
+                "print_receipt": "5adbc188-2d38-450b-ce54-b755c0185b80",
+                "source_row": 5624,
+                "evaluated_at_epoch": 1783932993.000006,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 64,
+                "floor_epoch": 1783932993.000006,
+                "carried_print_epoch": 1783932728.105,
+                "print_receipt": "5adbc188-2d38-450b-ce54-b755c0185b80"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 64,
+              "target_floor_epoch": 1783932993.000006,
+              "target_minutes_to_bell": 25.449999900658927
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "BIN",
+            "receipt_order": 37,
+            "trace_row": 38,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-1498",
+            "epoch": 1783932993.000006,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 25.449999900658927,
+            "q50": 38,
+            "q_source": "pricing_authority.true_conditioning.posterior_q50_cents",
+            "q25": 38,
+            "q75": 38,
+            "band_source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783932993.000006,
+            "stored_deadline_epoch": 1783932993.000006,
+            "stored_x_minutes_to_trace_bell": 0.44999990065892537,
+            "x_minutes_to_corrected_bell": 25.449999900658927,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 38,
+                "observed_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90",
+                "source_row": 3243,
+                "evaluated_at_epoch": 1783932993.000006,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 38,
+                "floor_epoch": 1783932993.000006,
+                "carried_print_epoch": 1783928939.369,
+                "print_receipt": "afb6a265-ef56-6f64-b7da-72cc4a4cfd90"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 38,
+              "target_floor_epoch": 1783932993.000006,
+              "target_minutes_to_bell": 25.449999900658927
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          },
+          {
+            "leg": "FUE",
+            "receipt_order": 37,
+            "trace_row": 38,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-1498",
+            "epoch": 1783932993.000006,
+            "eligible": true,
+            "eligibility_reason": null,
+            "minutes_to_bell": 25.449999900658927,
+            "q50": 64,
+            "q_source": "belief.predicted_cents",
+            "q25": null,
+            "q75": null,
+            "band_source": "belief.pool_cascade.quantiles.q25/q75.level_cents",
+            "q_author": "POOL_FIRST-TICK-ONLY",
+            "x_author": "POOL_FIRST-TICK-ONLY_FLOOR_MTB",
+            "deadline_epoch": 1783932993.000006,
+            "stored_deadline_epoch": 1783932993.000006,
+            "stored_x_minutes_to_trace_bell": 0.44999990065892537,
+            "x_minutes_to_corrected_bell": 25.449999900658927,
+            "targets": {
+              "carried_gate_state": {
+                "cents": 64,
+                "observed_epoch": 1783932728.105,
+                "print_receipt": "5adbc188-2d38-450b-ce54-b755c0185b80",
+                "source_row": 5624,
+                "evaluated_at_epoch": 1783932993.000006,
+                "executable_future_print": false
+              },
+              "remaining_path": {
+                "status": "OK",
+                "kind": "CARRIED_GATE_STATE_NOT_A_FUTURE_PRINT",
+                "floor_cents": 64,
+                "floor_epoch": 1783932993.000006,
+                "carried_print_epoch": 1783932728.105,
+                "print_receipt": "5adbc188-2d38-450b-ce54-b755c0185b80"
+              },
+              "executable_future_print": {
+                "status": "STORE SILENT",
+                "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+              }
+            },
+            "remaining_path_score": {
+              "floor_error_cents": 0,
+              "timing_error_minutes": 0,
+              "target_floor_cents": 64,
+              "target_floor_epoch": 1783932993.000006,
+              "target_minutes_to_bell": 25.449999900658927
+            },
+            "executable_future_print_score": {
+              "floor_error_cents": "STORE SILENT",
+              "timing_error_minutes": "STORE SILENT",
+              "reason": "NO_ACCEPTED_FUTURE_PRINT_IN_CORRECTED_SPAN"
+            }
+          }
+        ],
+        "mode_metrics": {
+          "first_eligible_full_span": {
+            "max_floor_error_cents": 4,
+            "max_timing_error_minutes": 382.9233333349228
+          },
+          "remaining_path": {
+            "max_floor_error_cents": 2,
+            "max_timing_error_minutes": 157.73948333263397
+          }
+        },
+        "operator_first_call": {
+          "BIN": {
+            "letter": "A",
+            "point_letter": "A",
+            "range_letter": "B",
+            "q50": 39,
+            "q25": 37,
+            "q75": 40,
+            "floor_error_cents": 1,
+            "band_width_cents": 3,
+            "band_contains_floor": true,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+            "source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "target_floor_cents": 38,
+            "floor_already_observed_at_call": false,
+            "reason": "FIRST_CALL_POINT_ERROR"
+          },
+          "FUE": {
+            "letter": "F",
+            "point_letter": "F",
+            "range_letter": "F",
+            "q50": 62,
+            "q25": 60,
+            "q75": 62,
+            "floor_error_cents": 4,
+            "band_width_cents": 2,
+            "band_contains_floor": false,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+            "source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+            "target_floor_cents": 58,
+            "floor_already_observed_at_call": true,
+            "reason": "FIRST_CALL_POINT_ERROR"
+          }
+        },
+        "mode_grades": {
+          "first_eligible_full_span": "F",
+          "remaining_path": "DIAGNOSTIC — does not govern",
+          "executable_future_print": "DIAGNOSTIC — does not govern"
+        },
+        "oracle_diagnostic": {
+          "scope": "Existing face oracle; receipt-weighted, includes post-fill forecasts; not a letter cutoff",
+          "provenance": {
+            "prints": {
+              "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13BINFUE.jsonl",
+              "sha256": "21349e76722bb714823f380a09a0107e17f22aa7e5fab42feb57b55b5a41dd22",
+              "bytes": 2087151,
+              "source_rows": 5660,
+              "selected_rows": 5660,
+              "duplicate_receipt_rows": 0,
+              "invalid_selected_rows": 0,
+              "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+              "leg_rows": {
+                "BIN": 3245,
+                "FUE": 2415
+              }
+            },
+            "books": [
+              {
+                "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz",
+                "sha256": "e1f5fd63246d6a8c6029820f851454b8cf362dcd88fe3ce1ccaf840e7289ea12",
+                "rows": 60725
+              },
+              {
+                "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks\\KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz",
+                "sha256": "50b16393824bbedb7e75888688547cc71e1f159fe975f373e51e0218f745f538",
+                "rows": 68159
+              }
+            ],
+            "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+            "trace_sha256": "9e864a3167790abd33b1ecfd283915479dc575d1917d1ab3e943f604f29f2158",
+            "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+            "truth_row_sha256": "92eb9ca14b5cbbd7ba8f11a9710355c8866dadc3ab3840b76dfe8fa76be2a118",
+            "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+            "span_start_epoch": 1783891508,
+            "span_end_epoch": 1783933020,
+            "bell_epoch": 1783934520,
+            "first_tick_epoch": 1783911568.423
+          },
+          "legs": {
+            "BIN": {
+              "mean_absolute_gap_cents": 1.0203527815468114,
+              "comparable_receipts": 737,
+              "receipt_count": 1999,
+              "missing_q_receipts": 66,
+              "no_future_print_receipts": 1196
+            },
+            "FUE": {
+              "mean_absolute_gap_cents": 0.7964118564742589,
+              "comparable_receipts": 1282,
+              "receipt_count": 1999,
+              "missing_q_receipts": 66,
+              "no_future_print_receipts": 651
+            }
+          }
+        }
+      },
+      "HANDS": {
+        "actions": [
+          {
+            "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783922220",
+            "leg": "FUE",
+            "action": "PLACE_REST",
+            "kind": "PLACE",
+            "minutes_to_bell": 204.99999999999997,
+            "old_cents": null,
+            "new_cents": 63,
+            "writer_class": "ORGAN",
+            "tokens": [
+              "PLACE_REST",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED"
+            ],
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783922220",
+            "order_lineage_start_epoch": 1783922220,
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783922220",
+            "current_price_start_epoch": 1783922220,
+            "order_lineage_age_minutes": 0,
+            "current_price_age_minutes": 0,
+            "same_second_fill": false,
+            "timestamp_epoch": 1783922220,
+            "rest_age_at_fill_minutes": null,
+            "legacy_display_rest_age_minutes": null,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL13BINFUE.stages/f1efd0fd40874d55b179ae40a3ca91368a02ce390e73f36f8f6780c6e7c0c207.json"
+          },
+          {
+            "receipt": "6f6e8c88-555b-7348-f901-eab48649f257",
+            "leg": "FUE",
+            "action": "FILL_EVENT",
+            "kind": "FILL",
+            "minutes_to_bell": 97.24216666618972,
+            "old_cents": 63,
+            "new_cents": null,
+            "writer_class": "ORGAN",
+            "tokens": [
+              "FILL_EVENT",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE_WRITER",
+              "POOL_CASCADE_WRITER",
+              "PRICING_AUTHORITY_TARGET_EXECUTED",
+              "POOL_CASCADE:FIRST-TICK-ONLY",
+              "POOL_FIRST-TICK-ONLY",
+              "POOL_FIRST-TICK-ONLY_FLOOR_MTB"
+            ],
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783922220",
+            "order_lineage_start_epoch": 1783922220,
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783922220",
+            "current_price_start_epoch": 1783922220,
+            "order_lineage_age_minutes": 107.75783333381017,
+            "current_price_age_minutes": 107.75783333381017,
+            "same_second_fill": false,
+            "timestamp_epoch": 1783928685.47,
+            "rest_age_at_fill_minutes": 107.75783333381017,
+            "legacy_display_rest_age_minutes": 107.75783333381017,
+            "source_url": "/data/KXATPCHALLENGERMATCH-26JUL13BINFUE.stages/290a6a2ed5b42575e8cec88b86cb150adf2c8f99b4a58c82a047d67fe2373539.json"
+          }
+        ],
+        "age_rule": "Lineage begins at PLACE, survives reprices, ends on remove/fill. Current-price age resets only on a level change. Same-second tests current-price start and fill timestamps, not rounded minute ages. Missing starts remain STORE SILENT.",
+        "placement_rows": 1,
+        "rest_age_at_fill_minutes": [
+          {
+            "leg": "FUE",
+            "receipt": "6f6e8c88-555b-7348-f901-eab48649f257",
+            "minutes": 107.75783333381017,
+            "order_lineage_age_minutes": 107.75783333381017,
+            "current_price_age_minutes": 107.75783333381017,
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783922220",
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE|ATLAS_GATE|1783922220"
+          }
+        ],
+        "post_only_violations": 0,
+        "observed_post_only_violations": 0,
+        "post_only_uncheckable": 0,
+        "pre_formation_placements": 0,
+        "observed_pre_formation_placements": 0,
+        "formation_uncheckable": 0,
+        "same_second_fills": 0,
+        "fill_age_uncheckable": 0,
+        "writer_class_unmapped": 0,
+        "violation_receipts": []
+      },
+      "OUTCOME": {
+        "legs": {
+          "BIN": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          },
+          "FUE": {
+            "filled": true,
+            "cents": 63,
+            "vs_floor_cents": 5,
+            "fill_epoch": 1783928685.47,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1783934520,
+              "span_start_epoch": 1783891508,
+              "span_end_epoch": 1783933020,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          }
+        },
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "best_capturable_pair_sum_cents": 96,
+        "capture_ratio": 0,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": false
+      },
+      "TRADE": {
+        "legs": {
+          "BIN": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null,
+            "floor_cents": 38,
+            "floor_epoch": 1783928939.4,
+            "floor_printed_before_fill": null,
+            "floor_printed_before_order": "STORE SILENT",
+            "order_lineage_age_minutes": null,
+            "current_price_age_minutes": null,
+            "note": "Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed"
+          },
+          "FUE": {
+            "filled": true,
+            "cents": 63,
+            "vs_floor_cents": 5,
+            "fill_epoch": 1783928685.47,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1783934520,
+              "span_start_epoch": 1783891508,
+              "span_end_epoch": 1783933020,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null,
+            "floor_cents": 58,
+            "floor_epoch": 1783897755.6,
+            "floor_printed_before_fill": true,
+            "floor_printed_before_order": true,
+            "order_lineage_age_minutes": 107.75783333381017,
+            "current_price_age_minutes": 107.75783333381017,
+            "note": "Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed"
+          }
+        },
+        "rule": {
+          "label": "Actual trade near each full-span floor",
+          "maximum_both_fill_error_cents": {
+            "A": 1,
+            "B": 2,
+            "C": 3
+          },
+          "both_filled_but_further": "D",
+          "one_valid_fill": "D",
+          "no_valid_fills": "F",
+          "past_floor_extra_penalty": false,
+          "rationale": "Both sides must meet the same tolerance. A 2c premium is B, including when the floor already printed. Preserve that fact; do not reset the target to a higher later floor, or apply a second penalty for the same overpay. Unknown queue means the missed earlier fill is not declared certain."
+        },
+        "same_second_fills": 0
+      },
+      "PAIR": {
+        "legs": {
+          "BIN": {
+            "filled": false,
+            "cents": null,
+            "vs_floor_cents": null,
+            "fill_epoch": null,
+            "valid_span_fill": false,
+            "revalidation": null,
+            "reason": null
+          },
+          "FUE": {
+            "filled": true,
+            "cents": 63,
+            "vs_floor_cents": 5,
+            "fill_epoch": 1783928685.47,
+            "valid_span_fill": true,
+            "revalidation": {
+              "ruler_bell_epoch": 1783934520,
+              "span_start_epoch": 1783891508,
+              "span_end_epoch": 1783933020,
+              "at_or_after_span_start": true,
+              "before_span_end": true,
+              "before_bell": true,
+              "correction_ids": []
+            },
+            "reason": null
+          }
+        },
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "best_capturable_pair_sum_cents": 96,
+        "capture_ratio": 0,
+        "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+        "valid_pair_completed": false,
+        "rule": {
+          "label": "Complete under par, relative to what this game offered",
+          "par_cents": 100,
+          "minimum_capture_ratio": {
+            "A": 0.75,
+            "B": 0.5
+          },
+          "positive_capture_below_B": "C",
+          "complete_at_par": "D",
+          "incomplete_or_over_par": "F",
+          "no_offered_discount": "NOT OFFERED",
+          "rationale": "A captures at least three quarters, B at least half, C some discount; these are explicit v1 grading judgments, not fitted cutoffs. No fixed 97/99 pair-price bands. Verified zero offer is outside the offer denominator, not an abstention failure or success."
+        },
+        "offered": true
+      },
+      "LETTER": {
+        "letter": "F",
+        "governing_section": "MICRO · PAIR",
+        "hard_failures": [],
+        "section_grades": {
+          "MACRO": {
+            "letter": "A",
+            "metrics": {
+              "correct_side_share": 1
+            },
+            "legs": {
+              "BIN": {
+                "called_role": "FALLER",
+                "realized_role": "FALLER",
+                "correct": true,
+                "first_recorded_receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+                "first_recorded_epoch": 1783913040.000005,
+                "first_bind_epoch": 1783911568.423,
+                "final_stored_role": "FALLER",
+                "flip_count": 0,
+                "open_cents": 44,
+                "close_cents": 38,
+                "realized_drift_cents": -6,
+                "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+                "realized_source": "corrected effective_row.legA_close_c - legA_open_postformation_c"
+              },
+              "FUE": {
+                "called_role": "CLIMBER",
+                "realized_role": "CLIMBER",
+                "correct": true,
+                "first_recorded_receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+                "first_recorded_epoch": 1783913040.000005,
+                "first_bind_epoch": 1783913040.000005,
+                "final_stored_role": "CLIMBER",
+                "flip_count": 0,
+                "open_cents": 54,
+                "close_cents": 64,
+                "realized_drift_cents": 10,
+                "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+                "realized_source": "corrected effective_row.legB_close_c - legB_open_postformation_c"
+              }
+            }
+          },
+          "MICRO": {
+            "letter": "F",
+            "legs": {
+              "BIN": {
+                "letter": "A",
+                "point_letter": "A",
+                "range_letter": "B",
+                "q50": 39,
+                "q25": 37,
+                "q75": 40,
+                "floor_error_cents": 1,
+                "band_width_cents": 3,
+                "band_contains_floor": true,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+                "source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+                "target_floor_cents": 38,
+                "floor_already_observed_at_call": false,
+                "reason": "FIRST_CALL_POINT_ERROR"
+              },
+              "FUE": {
+                "letter": "F",
+                "point_letter": "F",
+                "range_letter": "F",
+                "q50": 62,
+                "q25": 60,
+                "q75": 62,
+                "floor_error_cents": 4,
+                "band_width_cents": 2,
+                "band_contains_floor": false,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646",
+                "source": "pricing_authority.true_conditioning.quantiles.q25/q75.level_cents",
+                "target_floor_cents": 58,
+                "floor_already_observed_at_call": true,
+                "reason": "FIRST_CALL_POINT_ERROR"
+              }
+            }
+          },
+          "TRADE": {
+            "letter": "D",
+            "metrics": {
+              "valid_fills": 1,
+              "side_count": 2
+            },
+            "legs": {
+              "BIN": {
+                "filled": false,
+                "cents": null,
+                "vs_floor_cents": null,
+                "fill_epoch": null,
+                "valid_span_fill": false,
+                "revalidation": null,
+                "reason": null,
+                "floor_cents": 38,
+                "floor_epoch": 1783928939.4,
+                "floor_printed_before_fill": null,
+                "floor_printed_before_order": "STORE SILENT",
+                "order_lineage_age_minutes": null,
+                "current_price_age_minutes": null,
+                "note": "Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed"
+              },
+              "FUE": {
+                "filled": true,
+                "cents": 63,
+                "vs_floor_cents": 5,
+                "fill_epoch": 1783928685.47,
+                "valid_span_fill": true,
+                "revalidation": {
+                  "ruler_bell_epoch": 1783934520,
+                  "span_start_epoch": 1783891508,
+                  "span_end_epoch": 1783933020,
+                  "at_or_after_span_start": true,
+                  "before_span_end": true,
+                  "before_bell": true,
+                  "correction_ids": []
+                },
+                "reason": null,
+                "floor_cents": 58,
+                "floor_epoch": 1783897755.6,
+                "floor_printed_before_fill": true,
+                "floor_printed_before_order": true,
+                "order_lineage_age_minutes": 107.75783333381017,
+                "current_price_age_minutes": 107.75783333381017,
+                "note": "Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed"
+              }
+            }
+          },
+          "PAIR": {
+            "letter": "F",
+            "metrics": {
+              "pair_sum": null,
+              "capture_ratio": 0,
+              "offered_cents": 4
+            }
+          }
+        },
+        "rubric_status": "OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "rubric_id": "OPERATOR_STANDARD_V1",
+        "capture_bonus_applied": false,
+        "safety_evidence_missing": false,
+        "performance_not_certification": true
+      },
+      "display": {
+        "letter": "F",
+        "label": "OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "governing": "MICRO · PAIR",
+        "ruler_line": "Grading ruler: BIN 38¢ + FUE 58¢ · 4¢ offered · 0 filed corrections",
+        "ruler_hover_lines": [
+          "RULER — NOT AN OS INPUT · table c0056976c446afcb4d9603796a2e06c068ee94d6 · corrections 15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "Bell 1783934520 · span [1783891508, 1783933020)",
+          "Original rows, all corrections and per-fill eligibility remain in the grade JSON. No OS or trace changed."
+        ],
+        "diagnostic_line": "Q 44.93% · X 44.93% authored (token metric); Gate-1 certification STORE SILENT",
+        "diagnostic_hover_lines": [
+          "Q 44.93% · X 44.93% authored (token metric); Gate-1 certification STORE SILENT",
+          "Oracle mean gap (diagnostic): BIN: 1.02¢ · FUE: 0.8¢",
+          "Timing (diagnostic): BIN: first 157.74m; remaining MAE 62.64m · FUE: first 382.92m; remaining MAE 28.36m",
+          "Exact family, flips, authorship and full receipt error series remain in the JSON; none is silently certified."
+        ],
+        "sections": [
+          {
+            "name": "MACRO",
+            "mark": "✓",
+            "line": "A · BIN FALLER → FALLER · FUE CLIMBER → CLIMBER",
+            "hover_lines": [
+              "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+              "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"BIN\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646\",\"first_recorded_epoch\":1783913040.000005,\"first_bind_epoch\":1783911568.423,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":44,\"close_cents\":38,\"realized_drift_cents\":-6,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"FUE\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646\",\"first_recorded_epoch\":1783913040.000005,\"first_bind_epoch\":1783913040.000005,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":54,\"close_cents\":64,\"realized_drift_cents\":10,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+              "Flips (diagnostic): BIN 0 · FUE 0"
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "F · BIN Q 39 vs floor 38¢; range 37–40 · FUE Q 62 vs floor 58¢; range 60–62",
+            "hover_lines": [
+              "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+              "{\"letter\":\"F\",\"legs\":{\"BIN\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":39,\"q25\":37,\"q75\":40,\"floor_error_cents\":1,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":38,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"FUE\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":62,\"q25\":60,\"q75\":62,\"floor_error_cents\":4,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN.csv.gz#row-646\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":58,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+              "Oracle mean gap (diagnostic): BIN: 1.02¢ · FUE: 0.8¢ · BIN: first 157.74m; remaining MAE 62.64m · FUE: first 382.92m; remaining MAE 28.36m"
+            ]
+          },
+          {
+            "name": "TRADE",
+            "mark": "!",
+            "line": "D · BIN unfilled · FUE 63¢ (+5¢; floor printed earlier)",
+            "hover_lines": [
+              "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+              "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"BIN\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":38,\"floor_epoch\":1783928939.4,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"FUE\":{\"filled\":true,\"cents\":63,\"vs_floor_cents\":5,\"fill_epoch\":1783928685.47,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783934520,\"span_start_epoch\":1783891508,\"span_end_epoch\":1783933020,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":58,\"floor_epoch\":1783897755.6,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":107.75783333381017,\"current_price_age_minutes\":107.75783333381017,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+              "Ages: FUE lineage 107.76m, current price 107.76m"
+            ]
+          },
+          {
+            "name": "PAIR",
+            "mark": "!",
+            "line": "F · STORE SILENT¢ pair · 0 of 4¢ captured",
+            "hover_lines": [
+              "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+              "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":4}}",
+              "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+            ]
+          }
+        ]
+      },
+      "RULER_COLUMNS": {
+        "role": "RULER COMPARISON ONLY — NOT AN OS INPUT",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+        "selection": "ALL FILED CORRECTIONS IN LEDGER ORDER — effective grading ruler; original rows retained",
+        "original_table": {
+          "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "92eb9ca14b5cbbd7ba8f11a9710355c8866dadc3ab3840b76dfe8fa76be2a118",
+          "row_number": 169,
+          "row_csv": "26JUL13BINFUE,KXATPCHALLENGERMATCH-26JUL13BINFUE,ATP_CHALL,1783891508,1783891508,1783933020,1783944600.0,BIN,FUE,1783891508,44.0,38,1783928939.4,38,1783928939.4,253.39,98.9,MOVER,-6.0,1783929052,,,,1783891508,54.0,58,1783897755.6,64,1783932728.1,1533.05,964.89,MOVER,10.0,1783929138,61,1783929245.5,PRE_BELL_VALID,1783891508,,,1783934520.0,1783945230.0,1783934520.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783891508,1783933020,OK,PARTIAL_FOR_REASON,",
+          "values": {
+            "code": "26JUL13BINFUE",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+            "category": "ATP_CHALL",
+            "recorder_open_epoch": "1783891508",
+            "w1_left_epoch": "1783891508",
+            "w1_right_epoch": "1783933020",
+            "scheduled_start_epoch": "1783944600.0",
+            "legA": "BIN",
+            "legB": "FUE",
+            "legA_formation_end_epoch": "1783891508",
+            "legA_open_postformation_c": "44.0",
+            "legA_floor_c": "38",
+            "legA_floor_epoch": "1783928939.4",
+            "legA_close_c": "38",
+            "legA_close_epoch": "1783928939.4",
+            "legA_contracts": "253.39",
+            "legA_premium_usd": "98.9",
+            "legA_journey": "MOVER",
+            "legA_net_travel_c": "-6.0",
+            "legA_us_first_post_epoch": "1783929052",
+            "legA_us_fill_c": "",
+            "legA_us_fill_epoch": "",
+            "legA_us_fill_stamp": "",
+            "legB_formation_end_epoch": "1783891508",
+            "legB_open_postformation_c": "54.0",
+            "legB_floor_c": "58",
+            "legB_floor_epoch": "1783897755.6",
+            "legB_close_c": "64",
+            "legB_close_epoch": "1783932728.1",
+            "legB_contracts": "1533.05",
+            "legB_premium_usd": "964.89",
+            "legB_journey": "MOVER",
+            "legB_net_travel_c": "10.0",
+            "legB_us_first_post_epoch": "1783929138",
+            "legB_us_fill_c": "61",
+            "legB_us_fill_epoch": "1783929245.5",
+            "legB_us_fill_stamp": "PRE_BELL_VALID",
+            "formation_end_game": "1783891508",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "1783934520.0",
+            "kalshi_close_time_epoch": "1783945230.0",
+            "bell_epoch": "1783934520.0",
+            "bell_source": "TAPE_INFERENCE",
+            "bell_precision": "inferred, last resort: +-30min (89% validation)",
+            "span_start_epoch": "1783891508",
+            "span_end_epoch": "1783933020",
+            "verified_span": "OK",
+            "pair_state": "PARTIAL_FOR_REASON",
+            "locked_delta_valid_fills_c": ""
+          },
+          "status": "OK",
+          "bell_epoch": 1783934520,
+          "bell_source": "TAPE_INFERENCE",
+          "span_start_epoch": 1783891508,
+          "span_end_epoch": 1783933020,
+          "legs": {
+            "BIN": {
+              "floor_cents": 38,
+              "floor_epoch": 1783928939.4,
+              "close_cents": 38,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "close_cents": "legA_close_c"
+              }
+            },
+            "FUE": {
+              "floor_cents": 58,
+              "floor_epoch": 1783897755.6,
+              "close_cents": 64,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "close_cents": "legB_close_c"
+              }
+            }
+          },
+          "floor_sum_cents": 96,
+          "under_par_cents": 4,
+          "campaign_ruler_columns": {},
+          "column_note": "Pinned CSV uses legA_floor_c / legB_floor_c, not a literal floor_cents column; absent campaign/ruler columns are not invented."
+        },
+        "correction_source": {
+          "commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+          "sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+        },
+        "restated_rows": [],
+        "effective_truth": {
+          "role": "RULER — NOT AN OS INPUT",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "92eb9ca14b5cbbd7ba8f11a9710355c8866dadc3ab3840b76dfe8fa76be2a118",
+          "row_number": 169,
+          "row_csv": "26JUL13BINFUE,KXATPCHALLENGERMATCH-26JUL13BINFUE,ATP_CHALL,1783891508,1783891508,1783933020,1783944600.0,BIN,FUE,1783891508,44.0,38,1783928939.4,38,1783928939.4,253.39,98.9,MOVER,-6.0,1783929052,,,,1783891508,54.0,58,1783897755.6,64,1783932728.1,1533.05,964.89,MOVER,10.0,1783929138,61,1783929245.5,PRE_BELL_VALID,1783891508,,,1783934520.0,1783945230.0,1783934520.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783891508,1783933020,OK,PARTIAL_FOR_REASON,",
+          "verified_span": "OK",
+          "status": "OK",
+          "reason": null,
+          "span_start_epoch": 1783891508,
+          "span_end_epoch": 1783933020,
+          "bell_epoch": 1783934520,
+          "bell_source": "TAPE_INFERENCE",
+          "table_bell_epoch": 1783934520,
+          "table_bell_source": "TAPE_INFERENCE",
+          "table_bell_delta_seconds": 0,
+          "legs": {
+            "BIN": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "anchor_cents": "legA_open_postformation_c"
+              },
+              "anchor_cents": 44,
+              "floor_cents": 38,
+              "floor_epoch": 1783928939.4,
+              "minutes_to_bell": 93.00999999841055,
+              "line": "BIN 38¢ @ 93.01m to bell",
+              "marker_label": "BIN FLOOR · RECORDED 38¢ @ 93.01m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 38¢ · 93m to bell",
+              "hover_note": "Recorded floor 38¢ printed here · 93m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            },
+            "FUE": {
+              "status": "OK",
+              "reason": null,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "anchor_cents": "legB_open_postformation_c"
+              },
+              "anchor_cents": 54,
+              "floor_cents": 58,
+              "floor_epoch": 1783897755.6,
+              "minutes_to_bell": 612.7400000015895,
+              "line": "FUE 58¢ @ 612.74m to bell",
+              "marker_label": "FUE FLOOR · RECORDED 58¢ @ 612.74m to bell — RULER — NOT AN OS INPUT",
+              "chart_label": "recorded floor 58¢ · 612m to bell",
+              "hover_note": "Recorded floor 58¢ printed here · 612m to bell · from the truth table (not an OS input)",
+              "markers": {}
+            }
+          },
+          "favorite_leg": "FUE",
+          "underdog_leg": "BIN",
+          "pair": {
+            "sum_cents": 96,
+            "discount_cents": 4,
+            "reason": null,
+            "line": "best capturable = 58 + 38 = 96¢",
+            "discount_line": "4¢ under par",
+            "compact_line": "best capturable 96¢ · 4¢ under par"
+          },
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "effective_row": {
+            "code": "26JUL13BINFUE",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+            "category": "ATP_CHALL",
+            "recorder_open_epoch": "1783891508",
+            "w1_left_epoch": "1783891508",
+            "w1_right_epoch": "1783933020",
+            "scheduled_start_epoch": "1783944600.0",
+            "legA": "BIN",
+            "legB": "FUE",
+            "legA_formation_end_epoch": "1783891508",
+            "legA_open_postformation_c": "44.0",
+            "legA_floor_c": "38",
+            "legA_floor_epoch": "1783928939.4",
+            "legA_close_c": "38",
+            "legA_close_epoch": "1783928939.4",
+            "legA_contracts": "253.39",
+            "legA_premium_usd": "98.9",
+            "legA_journey": "MOVER",
+            "legA_net_travel_c": "-6.0",
+            "legA_us_first_post_epoch": "1783929052",
+            "legA_us_fill_c": "",
+            "legA_us_fill_epoch": "",
+            "legA_us_fill_stamp": "",
+            "legB_formation_end_epoch": "1783891508",
+            "legB_open_postformation_c": "54.0",
+            "legB_floor_c": "58",
+            "legB_floor_epoch": "1783897755.6",
+            "legB_close_c": "64",
+            "legB_close_epoch": "1783932728.1",
+            "legB_contracts": "1533.05",
+            "legB_premium_usd": "964.89",
+            "legB_journey": "MOVER",
+            "legB_net_travel_c": "10.0",
+            "legB_us_first_post_epoch": "1783929138",
+            "legB_us_fill_c": "61",
+            "legB_us_fill_epoch": "1783929245.5",
+            "legB_us_fill_stamp": "PRE_BELL_VALID",
+            "formation_end_game": "1783891508",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "1783934520.0",
+            "kalshi_close_time_epoch": "1783945230.0",
+            "bell_epoch": "1783934520.0",
+            "bell_source": "TAPE_INFERENCE",
+            "bell_precision": "inferred, last resort: +-30min (89% validation)",
+            "span_start_epoch": "1783891508",
+            "span_end_epoch": "1783933020",
+            "verified_span": "OK",
+            "pair_state": "PARTIAL_FOR_REASON",
+            "locked_delta_valid_fills_c": ""
+          },
+          "row_csv_role": "Original pinned row, before correction overlays"
+        }
+      },
+      "receipt": {
+        "version": 3,
+        "role": "REPORT ONLY — no OS inputs changed",
+        "operator_standard": {
+          "version": 3,
+          "rubric_id": "OPERATOR_STANDARD_V1",
+          "status": "OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+          "letters": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "F"
+          ],
+          "missing": "STORE SILENT; missing evidence is not success. A verified absence of a call is F, not missing evidence.",
+          "scope": "Face grading only. Cutoffs are visible grading judgments, not engine constants or fitted trading rules.",
+          "hard_failures": [
+            "named_tokens_found",
+            "pre_formation_placements",
+            "same_second_fill",
+            "post_only_violations",
+            "fill_outside_corrected_span",
+            "pair_over_par"
+          ],
+          "sections": {
+            "MACRO": {
+              "label": "Initial macro idea, not the pool's exact family name",
+              "role_drift_cents": 2,
+              "role_source": "RECOGNITION_OPERATING_POINT @41c1f724: close minus post-formation open; >=+2 CLIMBER, <=-2 FALLER, else NOT_CALLABLE. Use corrected close/open, never stale net_travel.",
+              "selection": "First recorded directional first_bind inside the corrected span and no later than that side's first fill; never select a later correct call. If a complete stored role history never binds, NOT_CALLABLE. Missing role history is STORE SILENT.",
+              "minimum_correct_side_share": {
+                "A": 1,
+                "C": 0.5
+              },
+              "otherwise": "F",
+              "flip_penalty": false,
+              "rationale": "Both initial directions right is A; one is C; neither F. Later revisions are disclosed, not punished merely for adapting. Exact family and timing remain diagnostics. No separate B/D boundary is needed."
+            },
+            "MICRO": {
+              "label": "First eligible floor call or a useful stored range",
+              "maximum_point_error_cents": {
+                "A": 1,
+                "B": 2,
+                "C": 3
+              },
+              "range_credit": {
+                "B": {
+                  "maximum_width_cents": 4
+                },
+                "C": {
+                  "maximum_width_cents": 6
+                }
+              },
+              "range_rule": "Same first eligible receipt's q25-q75 must contain the recorded floor and its q50, with ordered finite endpoints. Width = q75-q25. B width 4 is +/-2; C width 6 is +/-3. Range alone never earns A. Missing range does not erase an available Q score.",
+              "aggregation": "Better of point and qualifying range per side; worst side. No call F. No verified floor STORE SILENT.",
+              "otherwise": "F",
+              "timing_governs": false,
+              "oracle_mean_governs": false,
+              "rationale": "Do not cherry-pick later Q. Keep first-call and remaining-print timing/errors, oracle mean and its denominator visible; the receipt-weighted oracle mean includes post-fill forecasts and is not the preliminary objective."
+            },
+            "TRADE": {
+              "label": "Actual trade near each full-span floor",
+              "maximum_both_fill_error_cents": {
+                "A": 1,
+                "B": 2,
+                "C": 3
+              },
+              "both_filled_but_further": "D",
+              "one_valid_fill": "D",
+              "no_valid_fills": "F",
+              "past_floor_extra_penalty": false,
+              "rationale": "Both sides must meet the same tolerance. A 2c premium is B, including when the floor already printed. Preserve that fact; do not reset the target to a higher later floor, or apply a second penalty for the same overpay. Unknown queue means the missed earlier fill is not declared certain."
+            },
+            "PAIR": {
+              "label": "Complete under par, relative to what this game offered",
+              "par_cents": 100,
+              "minimum_capture_ratio": {
+                "A": 0.75,
+                "B": 0.5
+              },
+              "positive_capture_below_B": "C",
+              "complete_at_par": "D",
+              "incomplete_or_over_par": "F",
+              "no_offered_discount": "NOT OFFERED",
+              "rationale": "A captures at least three quarters, B at least half, C some discount; these are explicit v1 grading judgments, not fitted cutoffs. No fixed 97/99 pair-price bands. Verified zero offer is outside the offer denominator, not an abstention failure or success."
+            }
+          },
+          "letter": {
+            "aggregation": "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it.",
+            "capture_bonus_steps": 0,
+            "no_offer_label": "NOT OFFERED",
+            "no_offer_display": "—",
+            "pass_marks": [
+              "A",
+              "B"
+            ],
+            "certification": "Performance grade only; author-token shares remain diagnostic and Gate-1 certification remains STORE SILENT."
+          }
+        },
+        "operator_review": {
+          "decision": "AMEND",
+          "basis": "Operator preliminary goal: macro idea, floor or useful range, nearby trade, complete under par; not last-cent perfection or Gate-1 certification.",
+          "changes": [
+            "Initial directional call is frozen before fill; later corrections and flip counts are disclosed, not cherry-picked or automatically penalized.",
+            "Same first eligible Q and bounded q25-q75 range; no later accurate call selection. Timing and oracle mean remain diagnostics, not preliminary letter cutoffs.",
+            "Both trades must satisfy the same full-span floor tolerance. An earlier floor keeps its 2c premium at B, without an invented queue fill or duplicate penalty.",
+            "PAIR uses offered-relative capture, not 97/99 absolute sums. No capture uplift; hard safety/named failures cannot be bought off.",
+            "Verified no-under-par-offer games are NOT OFFERED, not failed for no trade and not awarded a passing overall letter."
+          ],
+          "new_cutoffs": "Explicit v1 grading judgments in grade_rubric.json, not fitted on the five games. Price tolerances inherit counsel's 1/2/3c; band widths 4/6 are twice the corresponding 2/3c tolerance; 75%/50% capture thresholds are labeled grading choices.",
+          "macro_prior_art": "RECOGNITION_OPERATING_POINT @41c1f724; realized close minus post-formation open, +/-2c. Corrected columns, not cached net_travel.",
+          "scope": "No engine, pool, pricing, conduct, replay or population bench change."
+        },
+        "citations": {
+          "PER_GAME_L1_L8": {
+            "path": "C:/tmp/omi-v53-understanding-organ-20260819/.claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/PER_GAME_L1_L8.json",
+            "sha256": "3f5ccde3d50d104910d2a23d9d15c7fc9e9a523895cfffa3aef4a2c14fd24ff1",
+            "bytes": 149794,
+            "commit": "STORE SILENT",
+            "role": "Replaced per-game L1–L8 report. Builder baseline reads rows[].L7_CREDIT.why.",
+            "rows": 5
+          },
+          "HONEST_SCOREBOARD": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/HONEST_SCOREBOARD.md",
+            "sha256": "bad5314cf12877755e922175d053084ba67d9849515a72bdd3e4861c11f49dc0",
+            "bytes": 6585,
+            "commit": "2aa454af4205468de598bc507527e7c608b35d42",
+            "role": "Truth-table offered cents and span-valid captured cents; complete under par, not apparent fills."
+          },
+          "OFFER_DENOMINATOR": {
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/OFFER_DENOMINATOR.md",
+            "sha256": "2842aacd0821138edee3bcf0d18464ba2f1a9d8dbb2d1016b65f780a69b45c7b",
+            "bytes": 3050,
+            "commit": "ce2e8b7cc84191083c522af3692d467576afca4f",
+            "role": "Definition B: verified-span floors under par; both credited fills inside the span for capture."
+          },
+          "GATE_1_OBJECT": {
+            "path": "artifacts/review_mirror/GATE_1_OBJECT.md",
+            "sha256": "bbeee3207af290c75ca6fb2cf3dfbc36d58afdfb588ed969fd425b40ad365398",
+            "bytes": 2136,
+            "commit": "67378c344419a70ec2b6f05d714c79358da0ea70",
+            "role": "P/Q/X require an author reading this leg; test 1 own receipt weights, test 2 own clock, test 3 no named pricing rule."
+          }
+        },
+        "bench_taxonomy_receipt": "STORE SILENT",
+        "rules": {
+          "authorship": "Q excludes PRIOR_REWEIGHTED_BY_OWN_WALK as a non-organ badge: 2dfb5b0abf3fdf8669b8750d2780effd44a7319c stamps the label from print count/slope without changing ownEvidenceChannelGrades or conditionPriorDistribution. Raw author counts are retained; X classification is unchanged. Remaining token shares are not Gate-1 evidence-chain certification.",
+          "missing": "STORE SILENT; no number or author is invented.",
+          "outcomes": "Offered = positive truth discount; captured = positive discount of span-valid complete, otherwise zero; partial is zero.",
+          "history": "Fixed OS8_trace8 file appends a full snapshot to grades[]; earlier rubric results are retained.",
+          "taxonomy": "Read realized labels from the hash-bound bench. Compare each side's latest stored family as of bench bell minus gate*60 against that same bench gate; no OS timestamp or family is recomputed. MICRO and chart clocks stay unchanged.",
+          "cascade_writers": "FIELDS.md maps POOL_FIRST_TICK (alias), POOL_FIRST-TICK-ONLY, POOL_BASE, POOL_CASCADE:* and POOL_CASCADE_WRITER to ORGAN. Hold/veto precedence and raw tokens remain unchanged.",
+          "ruler_comparison": "Apply every event-matching correction from W1_GROUND_TRUTH_CORRECTIONS.jsonl @15955e44 in ledger order to the original pinned row. Effective floors, bell, span and denominator grade this run; original CSV and full correction JSONL rows remain alongside. Every observed fill is revalidated against both corrected span and bell. No trace, face input, or OS call is changed.",
+          "micro": "First eligible stored resolved P/Q/X forecast in receipt order versus full recorded span; use its stored q25/q75 only for bounded range credit. Every receipt/remaining-path and strictly future-print score remains diagnostic, as do timing and receipt-weighted oracle mean. Never move a stored absolute deadline.",
+          "hands_ages": "Separate original PLACE lineage age from current-price age, resetting only the latter on price change; remove/fill ends the lineage. Fill same-second check uses the current-price start timestamp. The legacy chart age is preserved, not used as current-price duration.",
+          "named_scope": "Exact symbolic named tokens on rows; no inference that unrecorded code branches are absent."
+        }
+      },
+      "timestamp": "2026-09-14T21:45:48.050Z"
+    }
+  ]
+}

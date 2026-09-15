@@ -1,0 +1,121 @@
+{
+  "event": "KXATPMATCH-26JUL19DROUGO",
+  "category": "ATP_MAIN",
+  "status": "GRADED",
+  "letter": "STORE SILENT",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · DRO FALLER → FALLER · UGO CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"DRO\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67\",\"first_recorded_epoch\":1784397918.000001,\"first_bind_epoch\":1784397918.000001,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":50,\"close_cents\":47,\"realized_drift_cents\":-3,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"UGO\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67\",\"first_recorded_epoch\":1784397918.000001,\"first_bind_epoch\":1784397914.675,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":50,\"close_cents\":55,\"realized_drift_cents\":5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): DRO 0 · UGO 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "C · DRO Q 42 vs floor 45¢; range 40–42 · UGO Q 54 vs floor 51¢; range 52–55",
+      "hover_lines": [
+        "MICRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"legs\":{\"DRO\":{\"letter\":\"C\",\"point_letter\":\"C\",\"range_letter\":\"F\",\"q50\":42,\"q25\":40,\"q75\":42,\"floor_error_cents\":3,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":45,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"UGO\":{\"letter\":\"C\",\"point_letter\":\"C\",\"range_letter\":\"F\",\"q50\":54,\"q25\":52,\"q75\":55,\"floor_error_cents\":3,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":51,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): DRO: 0.63¢ · UGO: 1.14¢ · DRO: first 2463.55m; remaining MAE 174.22m · UGO: first 292.48m; remaining MAE 424.68m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "✓",
+      "line": "A · DRO 46¢ (+1¢; floor printed earlier) · UGO 51¢ (+0¢)",
+      "hover_lines": [
+        "TRADE: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"DRO\":{\"filled\":true,\"cents\":46,\"vs_floor_cents\":1,\"fill_epoch\":1784526842.339,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784549700,\"span_start_epoch\":1784396593,\"span_end_epoch\":1784549700,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":45,\"floor_epoch\":1784397821.1,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":303.4056499679883,\"current_price_age_minutes\":99.0389833331108,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"UGO\":{\"filled\":true,\"cents\":51,\"vs_floor_cents\":0,\"fill_epoch\":1784458569.674,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784549700,\"span_start_epoch\":1784396593,\"span_end_epoch\":1784549700,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":51,\"floor_epoch\":1784458569.7,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":98.09456665118536,\"current_price_age_minutes\":44.80175000031789,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: UGO lineage 98.09m, current price 44.8m · DRO lineage 303.41m, current price 99.04m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "STORE SILENT · 97¢ pair · 3 of STORE SILENT¢ captured",
+      "hover_lines": [
+        "PAIR: STORE SILENT · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"STORE SILENT\",\"metrics\":{\"pair_sum\":97,\"capture_ratio\":\"STORE SILENT\",\"offered_cents\":\"STORE SILENT\"}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPMATCH-26JUL19DROUGO",
+      "leg_id": "UGO",
+      "entry_cents": 51,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 51,
+      "fill_timestamp_epoch": 1784458569.674,
+      "prior_standing_target_cents": 51,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "7dab94ef-73c7-5d39-055f-252377a0125d",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19DROUGO",
+      "leg_id": "DRO",
+      "entry_cents": 46,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 46,
+      "fill_timestamp_epoch": 1784526842.339,
+      "prior_standing_target_cents": 46,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 97,
+  "captured_cents": 3,
+  "offered_cents": "STORE SILENT",
+  "capture_ratio": "STORE SILENT",
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "53731e948a0eb97d138a69915d792ca34069db595e011412707c69d2943bef74",
+  "grade_sha256": "73d82f241829a4da9f9c6d1980e69e4fd374cf51488d64a37b271ec49c7f4683",
+  "grade_url": "/data/KXATPMATCH-26JUL19DROUGO.grade.json",
+  "face_url": "/data/KXATPMATCH-26JUL19DROUGO.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPMATCH-26JUL19DROUGO.sentences.json",
+  "fault": "PAIR: STORE SILENT · 97¢ pair · 3 of STORE SILENT¢ captured",
+  "fill_witnesses": [
+    {
+      "leg": "UGO",
+      "receipt": "8e8324c1-f06b-4506-0d23-c1e8c439f783",
+      "positive_size_witness": true,
+      "print_cents": 51,
+      "rest_cents": 51,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "DRO",
+      "receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7",
+      "positive_size_witness": true,
+      "print_cents": 46,
+      "rest_cents": 46,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": {
+    "reason": "FAVORITE/UNDERDOG NOT IDENTIFIABLE FROM TABLE OPENS",
+    "recorded_floors": {
+      "DRO": 45,
+      "UGO": 51
+    },
+    "original_row_floor_sum": 96,
+    "note": "Both recorded floors exist. Equal opening prices prevent the current grader from identifying favorite/underdog and adding the floors. No grader repair or denominator substitution in this run."
+  }
+}

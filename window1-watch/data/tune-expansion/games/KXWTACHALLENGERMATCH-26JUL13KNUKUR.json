@@ -1,0 +1,116 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+  "category": "WTA_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · KNU CLIMBER → CLIMBER · KUR FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"KNU\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1518\",\"first_recorded_epoch\":1783924218.000002,\"first_bind_epoch\":1783922305.771,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":86,\"close_cents\":90,\"realized_drift_cents\":4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"KUR\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"01a626ab-506d-62f5-4a89-2211c42e4d2a\",\"first_recorded_epoch\":1783937497.312,\"first_bind_epoch\":1783937497.312,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":14,\"close_cents\":10,\"realized_drift_cents\":-4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): KNU 0 · KUR 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · KNU Q 84 vs floor 85¢; range 83–85 · KUR Q 13 vs floor 9¢; range 11–13",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"KNU\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":84,\"q25\":83,\"q75\":85,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"10b29cba-882c-7c33-9413-9cb79307ca25\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":85,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"KUR\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":13,\"q25\":11,\"q75\":13,\"floor_error_cents\":4,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"10b29cba-882c-7c33-9413-9cb79307ca25\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":9,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): KNU: 1.63¢ · KUR: 2.7¢ · KNU: first 209.6m; remaining MAE 44.67m · KUR: first 95.36m; remaining MAE 60.58m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · KNU unfilled · KUR 12¢ (+3¢)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"KNU\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":85,\"floor_epoch\":1783921478.7,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"KUR\":{\"filled\":true,\"cents\":12,\"vs_floor_cents\":3,\"fill_epoch\":1783937497.312,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783953060,\"span_start_epoch\":1783909110,\"span_end_epoch\":1783945823.414,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":9,\"floor_epoch\":1783942772.6,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":9.037966668605804,\"current_price_age_minutes\":9.037966668605804,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: KUR lineage 9.04m, current price 9.04m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 6¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":6}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MICRO · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "leg_id": "KUR",
+      "entry_cents": 12,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 12,
+      "fill_timestamp_epoch": 1783937497.312,
+      "prior_standing_target_cents": 12,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "449948e6-6879-42a9-c1ab-db5c289ffa09",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 6,
+  "capture_ratio": 0,
+  "one_sided_reason": "KNU: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "KNU",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-154515",
+        "timestamp_epoch": 1783953059.000016,
+        "leg": "KNU",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 85,
+      "reach_audit": {
+        "rest_intervals": 3,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "2a366e93e834f4894ef7596d41b335967315b1d1c9277e064c5ebb5ebf848270",
+  "grade_sha256": "6af0ea9619b194aa47b84f2b9ddbb830f90d928137a3cf9d809172089a597f52",
+  "grade_url": "/data/KXWTACHALLENGERMATCH-26JUL13KNUKUR.grade.json",
+  "face_url": "/data/KXWTACHALLENGERMATCH-26JUL13KNUKUR.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL13KNUKUR.sentences.json",
+  "fault": "KNU: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "KUR",
+      "receipt": "01a626ab-506d-62f5-4a89-2211c42e4d2a",
+      "positive_size_witness": true,
+      "print_cents": 12,
+      "rest_cents": 12,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

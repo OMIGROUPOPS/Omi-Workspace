@@ -1,0 +1,116 @@
+{
+  "event": "KXATPMATCH-26JUL15PRADZU",
+  "category": "ATP_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · DZU NOT_CALLABLE → FALLER · PRA CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"DZU\":{\"called_role\":\"NOT_CALLABLE\",\"realized_role\":\"FALLER\",\"correct\":false,\"first_recorded_receipt\":null,\"first_recorded_epoch\":null,\"first_bind_epoch\":null,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":66,\"close_cents\":62,\"realized_drift_cents\":-4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"PRA\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857\",\"first_recorded_epoch\":1784091078.000001,\"first_bind_epoch\":1784090835.278,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":34,\"close_cents\":38,\"realized_drift_cents\":4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): DZU 0 · PRA 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "C · DZU Q 65 vs floor 62¢; range 63–65 · PRA Q 32 vs floor 34¢; range 30–33",
+      "hover_lines": [
+        "MICRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"legs\":{\"DZU\":{\"letter\":\"C\",\"point_letter\":\"C\",\"range_letter\":\"F\",\"q50\":65,\"q25\":63,\"q75\":65,\"floor_error_cents\":3,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":62,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"PRA\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":32,\"q25\":30,\"q75\":33,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":34,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): DZU: 2.47¢ · PRA: 1.01¢ · DZU: first 601.5m; remaining MAE 191.82m · PRA: first 374.28m; remaining MAE 69.06m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · DZU 65¢ (+3¢) · PRA unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"DZU\":{\"filled\":true,\"cents\":65,\"vs_floor_cents\":3,\"fill_epoch\":1784094849.463,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784124900,\"span_start_epoch\":1784065315,\"span_end_epoch\":1784124900,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":62,\"floor_epoch\":1784124409.1,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":320.5577166517576,\"current_price_age_minutes\":62.857716651757556,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"PRA\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":34,\"floor_epoch\":1784075615.6,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: DZU lineage 320.56m, current price 62.86m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 4¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":4}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPMATCH-26JUL15PRADZU",
+      "leg_id": "DZU",
+      "entry_cents": 65,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 65,
+      "fill_timestamp_epoch": 1784094849.463,
+      "prior_standing_target_cents": 65,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 4,
+  "capture_ratio": 0,
+  "one_sided_reason": "PRA: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "PRA",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-9928",
+        "timestamp_epoch": 1784124899.000001,
+        "leg": "PRA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 34,
+      "reach_audit": {
+        "rest_intervals": 5,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "bc1ec225849327c382e9b0b1a5adbe0fc373ff71ffb5401d70909b73ae65c8ed",
+  "grade_sha256": "43e2b389ee9361133651aa1849652b3ed0b7c3ba34b5c090d3c48a79a89e296c",
+  "grade_url": "/data/KXATPMATCH-26JUL15PRADZU.grade.json",
+  "face_url": "/data/KXATPMATCH-26JUL15PRADZU.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPMATCH-26JUL15PRADZU.sentences.json",
+  "fault": "PRA: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "DZU",
+      "receipt": "283b6421-dfce-46bb-37b5-473d153cdd2a",
+      "positive_size_witness": true,
+      "print_cents": 65,
+      "rest_cents": 65,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

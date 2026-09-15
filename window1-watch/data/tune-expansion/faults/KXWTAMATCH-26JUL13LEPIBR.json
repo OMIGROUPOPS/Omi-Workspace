@@ -1,0 +1,97 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXWTAMATCH-26JUL13LEPIBR",
+  "category": "WTA_MAIN",
+  "provenance": {
+    "face_sha256": "4110ff0b08e82e30927638f60a24b47bfa7db5f0e16190c284f4bd528873e108",
+    "grade_sha256": "6cf883461bcd6e9c51ec595f88d951852fdcb030f9f52823aebdc1590c7c42f2",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "4551a1a8eb7993c30cd07372a321a8edcc4ed057c42f2d404908bf6a46c4e18c",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "1e03e202a8977b7c887a9bb04f124a4199a321f4766ade400a60571f1799010b"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "IBR: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 2,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "IBR": false,
+      "LEP": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "IBR",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "708edd0c-7bc4-4609-0c9c-158822c76974",
+          "action": "PLACE",
+          "placement_epoch": 1783898427.374,
+          "bid_cents": 42,
+          "recorded_floor_cents": 43,
+          "recorded_floor_epoch": 1783913207.8,
+          "floor_minus_placement_minutes": 246.34043333133062,
+          "Q_at_placement": 42,
+          "remaining_positive_print_floor": 43,
+          "later_positive_prints": 42,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "0767cfce-7b5a-5bda-c599-490e65a9d728",
+          "action": "REPRICE",
+          "placement_epoch": 1783912081.334,
+          "bid_cents": 42,
+          "recorded_floor_cents": 43,
+          "recorded_floor_epoch": 1783913207.8,
+          "floor_minus_placement_minutes": 18.774433330694833,
+          "Q_at_placement": 42,
+          "remaining_positive_print_floor": 43,
+          "later_positive_prints": 30,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-3124",
+          "action": "PLACE",
+          "placement_epoch": 1783920461.000001,
+          "bid_cents": 43,
+          "recorded_floor_cents": 43,
+          "recorded_floor_epoch": 1783913207.8,
+          "floor_minus_placement_minutes": -120.88666668335597,
+          "Q_at_placement": 43,
+          "remaining_positive_print_floor": 44,
+          "later_positive_prints": 16,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 44,
+      "unobserved_placements": []
+    }
+  ]
+}

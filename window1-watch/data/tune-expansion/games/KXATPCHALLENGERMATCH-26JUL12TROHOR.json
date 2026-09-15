@@ -1,0 +1,116 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · HOR FALLER → FALLER · TRO CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"HOR\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"5a6890aa-d5bb-4630-ca04-e0f0c03edbff\",\"first_recorded_epoch\":1783846209.47,\"first_bind_epoch\":1783846209.47,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":15,\"close_cents\":8,\"realized_drift_cents\":-7,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"TRO\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL12TROHOR-TRO.csv.gz#row-4042\",\"first_recorded_epoch\":1783836555.000002,\"first_bind_epoch\":1783836553.984,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":86,\"close_cents\":95,\"realized_drift_cents\":9,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): HOR 0 · TRO 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · HOR Q 12 vs floor 3¢; range 10–13 · TRO Q 88 vs floor 90¢; range 87–90",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"HOR\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":12,\"q25\":10,\"q75\":13,\"floor_error_cents\":9,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12TROHOR-TRO.csv.gz#row-4042\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":3,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"TRO\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"B\",\"q50\":88,\"q25\":87,\"q75\":90,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12TROHOR-TRO.csv.gz#row-4042\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":90,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): HOR: 0.63¢ · TRO: 0.1¢ · HOR: first 185.43m; remaining MAE 106.73m · TRO: first 311.05m; remaining MAE 66.32m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · HOR 7¢ (+4¢) · TRO unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"HOR\":{\"filled\":true,\"cents\":7,\"vs_floor_cents\":4,\"fill_epoch\":1783862037.324,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783870320,\"span_start_epoch\":1783836257,\"span_end_epoch\":1783870320,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":3,\"floor_epoch\":1783867816.1,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":263.7975666642189,\"current_price_age_minutes\":263.7975666642189,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"TRO\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":90,\"floor_epoch\":1783836554,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: HOR lineage 263.8m, current price 263.8m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 7¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":7}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MICRO · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "leg_id": "HOR",
+      "entry_cents": 7,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 5,
+      "fill_timestamp_epoch": 1783862037.324,
+      "prior_standing_target_cents": 7,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "5a6890aa-d5bb-4630-ca04-e0f0c03edbff",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 7,
+  "capture_ratio": 0,
+  "one_sided_reason": "TRO: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "TRO",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12TROHOR-HOR.csv.gz#row-11810",
+        "timestamp_epoch": 1783870319.000027,
+        "leg": "TRO",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 90,
+      "reach_audit": {
+        "rest_intervals": 3,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "28f0a5763cba838c9c627a3302a54310c0530a2f8de216874071807b44754025",
+  "grade_sha256": "4d0ac0b2083480c1bb72c87baac9c582d089ff75d9f13eb2608f67745c773084",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL12TROHOR.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL12TROHOR.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL12TROHOR.sentences.json",
+  "fault": "TRO: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "HOR",
+      "receipt": "0b710791-cc3d-6f4b-40f9-605e97a0e339",
+      "positive_size_witness": true,
+      "print_cents": 5,
+      "rest_cents": 7,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

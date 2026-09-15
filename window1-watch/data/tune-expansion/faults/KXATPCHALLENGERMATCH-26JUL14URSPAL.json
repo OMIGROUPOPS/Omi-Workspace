@@ -1,0 +1,144 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "e0cc88efb7b536be4ec2ff04f7519dcb48a2959ec88e86efafecc24ad303a845",
+    "grade_sha256": "581ef5efcbd4dce153b74b30be5e2d721865c10eb5f6bae6ebe481eaf31e5b5c",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "8015f6b2df60c1b5dd41613f566f75d50ab2ea7306b5cedc2cb7efb3ae5379a1",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "4a7529856f416cfc8969e284fd9d4bfc6926dbfddc469dc3472fa32135a62a4a"
+  },
+  "known_span": true,
+  "classes": [
+    "B"
+  ],
+  "header": "URS: B · sentence far off",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 4,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "PAL": true,
+      "URS": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "URS",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "B"
+      ],
+      "A": [],
+      "B": {
+        "first_eligible_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+        "epoch": 1784021162.00001,
+        "Q": 63,
+        "floor": 57,
+        "signed_error_cents": 6,
+        "layer": "FIRST-TICK-ONLY",
+        "member_count": 294,
+        "ess": 126.9874642424419,
+        "weight_sum": 16.830485161087882,
+        "verification": "Member count, weight sum and ESS reproduced from pinned library using stored receipt state; not a new OS replay.",
+        "top_five": [
+          {
+            "event_id": "KXATPCHALLENGERMATCH-26APR20MARGUE",
+            "date": "2026-04-20",
+            "weight": 0.4802606368421118,
+            "weight_share": 0.028535162964432863,
+            "first_prices": {
+              "GUE": 64,
+              "MAR": 39
+            },
+            "first_epoch": 1776657248,
+            "bell_epoch": 1776679200
+          },
+          {
+            "event_id": "KXATPCHALLENGERMATCH-26APR28WAWOFN",
+            "date": "2026-04-28",
+            "weight": 0.3556070260045886,
+            "weight_share": 0.021128744810443897,
+            "first_prices": {
+              "OFN": 63,
+              "WAW": 40
+            },
+            "first_epoch": 1777347953,
+            "bell_epoch": 1777377600
+          },
+          {
+            "event_id": "KXATPCHALLENGERMATCH-26APR27GIUPOU",
+            "date": "2026-04-27",
+            "weight": 0.32402629354595724,
+            "weight_share": 0.01925234421020178,
+            "first_prices": {
+              "GIU": 62,
+              "POU": 40
+            },
+            "first_epoch": 1777288109,
+            "bell_epoch": 1777309800
+          },
+          {
+            "event_id": "KXATPCHALLENGERMATCH-26MAY26DUTBRO",
+            "date": "2026-05-26",
+            "weight": 0.31194222302672464,
+            "weight_share": 0.018534357152575478,
+            "first_prices": {
+              "BRO": 63,
+              "DUT": 40
+            },
+            "first_epoch": 1779766303.095568,
+            "bell_epoch": 1779800100
+          },
+          {
+            "event_id": "KXATPCHALLENGERMATCH-26APR21RYBFEL",
+            "date": "2026-04-21",
+            "weight": 0.30361805405440234,
+            "weight_share": 0.018039768381506192,
+            "first_prices": {
+              "FEL": 62,
+              "RYB": 40
+            },
+            "first_epoch": 1776772751,
+            "bell_epoch": 1776795900
+          }
+        ],
+        "role_at_call": "CLIMBER",
+        "realized_role": "NOT_CALLABLE",
+        "role_at_call_right": false,
+        "grade_role_assessment": {
+          "called_role": "CLIMBER",
+          "realized_role": "NOT_CALLABLE",
+          "correct": false,
+          "first_recorded_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053",
+          "first_recorded_epoch": 1784021162.00001,
+          "first_bind_epoch": 1784021162,
+          "final_stored_role": "NOT_CALLABLE",
+          "flip_count": 1,
+          "open_cents": 62,
+          "close_cents": 61,
+          "realized_drift_cents": -1,
+          "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+          "realized_source": "corrected effective_row.legB_close_c - legB_open_postformation_c"
+        },
+        "stage_sha256": "6a6c37b6712299e72189ca6d415b7d93a4d7e1cb94ecaf9062bb4f70fd0c676f",
+        "source": "Existing grade MICRO first_eligible_full_span; immutable receipt. Member attribution reconstructed with count/ESS/weight-sum parity."
+      },
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 21,
+      "unobserved_placements": []
+    }
+  ]
+}

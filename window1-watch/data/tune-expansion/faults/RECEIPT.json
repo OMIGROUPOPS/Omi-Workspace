@@ -1,0 +1,2186 @@
+{
+  "schema": "TUNE_FAULT_AUDIT_V1",
+  "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+  "source_inputs": {
+    "window1_v54_dual_belief_os.js": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "build_window1_v54_dual_belief.js": "337a3fcbbddbb4dfc28df10213a1ce092cc7ed05885285754f96a1ebd62572f5"
+  },
+  "library": {
+    "index": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS.jsonl.gz",
+      "sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+      "bytes": 86693550,
+      "rows": 15502
+    },
+    "materializer_receipt": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_RECEIPT.json",
+      "sha256": "533c3271d8734caa6f1ccd7dc36563a6726a4c540060d3a1b33cfa011596a282",
+      "bytes": 25283,
+      "rows": null
+    },
+    "print_counts": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+      "sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+      "bytes": 9021278,
+      "rows": 1405183
+    },
+    "print_counts_receipt": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS_RECEIPT.json",
+      "sha256": "89a1be15f323f96ef90556b08130722159cae69c26d33fe461c122894b67918b",
+      "bytes": 4681,
+      "rows": null
+    },
+    "bench_receipt": {
+      "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\tune_bench_v2_ticks\\ATP_MAIN\\TUNE_BENCH_RECEIPT.json",
+      "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b",
+      "bytes": 33824,
+      "rows": null
+    }
+  },
+  "thresholds": [
+    {
+      "category": "ATP_CHALL",
+      "known_span_legs": 88,
+      "decile_rank": 9,
+      "N": 7,
+      "rule": "D iff positive accepted prints in corrected common span < N. N is empirical lower inverse-CDF 10th percentile (rank ceil(n/10)) among all known-span sides in this frozen draw, including zero counts; no minimum or interpolation.",
+      "sorted_counts": [
+        0,
+        3,
+        4,
+        4,
+        5,
+        5,
+        6,
+        7,
+        7,
+        8,
+        8,
+        9,
+        9,
+        10,
+        10,
+        10,
+        10,
+        13,
+        13,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        20,
+        21,
+        21,
+        21,
+        21,
+        21,
+        21,
+        23,
+        23,
+        24,
+        24,
+        24,
+        24,
+        26,
+        26,
+        27,
+        27,
+        28,
+        28,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        34,
+        35,
+        36,
+        37,
+        37,
+        37,
+        38,
+        38,
+        40,
+        40,
+        40,
+        43,
+        46,
+        47,
+        54,
+        55,
+        55,
+        57,
+        61,
+        67,
+        70,
+        74,
+        74,
+        79,
+        90,
+        105,
+        119,
+        120,
+        153,
+        168,
+        202,
+        222,
+        256,
+        297,
+        382,
+        484
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "known_span_legs": 36,
+      "decile_rank": 4,
+      "N": 16,
+      "rule": "D iff positive accepted prints in corrected common span < N. N is empirical lower inverse-CDF 10th percentile (rank ceil(n/10)) among all known-span sides in this frozen draw, including zero counts; no minimum or interpolation.",
+      "sorted_counts": [
+        6,
+        15,
+        16,
+        16,
+        18,
+        19,
+        20,
+        21,
+        23,
+        24,
+        25,
+        34,
+        36,
+        39,
+        44,
+        55,
+        55,
+        61,
+        68,
+        75,
+        78,
+        80,
+        99,
+        106,
+        150,
+        156,
+        178,
+        222,
+        265,
+        318,
+        533,
+        590,
+        614,
+        720,
+        846,
+        966
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "known_span_legs": 30,
+      "decile_rank": 3,
+      "N": 3,
+      "rule": "D iff positive accepted prints in corrected common span < N. N is empirical lower inverse-CDF 10th percentile (rank ceil(n/10)) among all known-span sides in this frozen draw, including zero counts; no minimum or interpolation.",
+      "sorted_counts": [
+        2,
+        3,
+        3,
+        3,
+        7,
+        8,
+        9,
+        10,
+        10,
+        12,
+        14,
+        17,
+        19,
+        19,
+        20,
+        21,
+        21,
+        22,
+        24,
+        24,
+        25,
+        27,
+        28,
+        29,
+        31,
+        32,
+        35,
+        41,
+        43,
+        47
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "known_span_legs": 36,
+      "decile_rank": 4,
+      "N": 22,
+      "rule": "D iff positive accepted prints in corrected common span < N. N is empirical lower inverse-CDF 10th percentile (rank ceil(n/10)) among all known-span sides in this frozen draw, including zero counts; no minimum or interpolation.",
+      "sorted_counts": [
+        12,
+        16,
+        17,
+        22,
+        26,
+        29,
+        32,
+        33,
+        34,
+        36,
+        44,
+        46,
+        47,
+        54,
+        54,
+        63,
+        71,
+        74,
+        84,
+        88,
+        90,
+        92,
+        98,
+        106,
+        110,
+        121,
+        127,
+        134,
+        140,
+        154,
+        170,
+        178,
+        182,
+        299,
+        559,
+        623
+      ]
+    }
+  ],
+  "definitions": {
+    "A": "Failed side: at least one actual PLACE or REPRICE inside the corrected span, with later accepted positive prints, and every such print strictly after that action and before min(corrected span end,bell) above the bid. No later prints is unobserved, not proof of A. Includes all price-setting actions; canonical distribution uses first qualifying action in receipt order. Q and full-span recorded floor retained separately. Delta=(floor_epoch-placement_epoch)/60; negative means floor came first. Later prints after cancellation count when distinguishing never-revisited from moved-off.",
+    "B": "Failed side: absolute difference of the existing first eligible Q and corrected full-span recorded floor strictly greater than 3 cents. No after-the-fact choice of forecast; no range rescue for this diagnostic. Top members are reconstructed, not falsely claimed to have been logged, with exact count and floating-point ESS/weight-sum parity.",
+    "C": "Any leg with stored HANDS.same_second_fill or a stored post-only/pre-formation violation. Exclude that leg from reachable-fill count and require two remaining eligible legs for pair credit; incomplete pair gets zero. Original grades/historical credits preserved as raw.",
+    "D": "Positive accepted prints in corrected common span fewer than tour-specific empirical bottom-decile N from all known-span selected sides; zeros included. Unknown spans not used in threshold and not labeled thin.",
+    "E": "Residual explanation for a failed side not in A/B/C/D, or explicit unknown span. Missing evidence never represented as zero or as an execution failure.",
+    "counts": "Multi-label. Report game incidence and failed-side incidence separately; E unknown spans separate. A and B overlap includes only failed sides, not successfully filled partners. Full original draw unchanged; no replay or tuning.",
+    "roles": "Role at the first eligible call versus realized role from existing corrected grade; original grade first-bind assessment also retained.",
+    "publication": "Only reviewed selected100 + the existing five demo games. No remaining704, raw prints, engine, full stages, renewal streams or local audit code in static assets."
+  },
+  "script_sha256": "72a914b67dac52ed18b03c5123a701e9823d53e896bbacc5b1930c4a352bef2d",
+  "inputs": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "face_sha256": "b8900dee28a131174dcf6a70026ab75bb1a7c71aff1e2578ed1e5a54840e8185",
+      "grade_sha256": "9e8b5373696a2917f7fbb8a5b4328780d15b54b42e4f3280cbda0c0ed678fb0d",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13GREVAN.jsonl",
+        "sha256": "fe084f5011e07b06092bbf85d2c86ccca3497b41c979db855e82cd76db99d9af",
+        "bytes": 323206,
+        "source_rows": 877,
+        "selected_rows": 877,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "GRE": 312,
+          "VAN": 565
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "face_sha256": "6dd7242731d724553bdbfe67819fa6fc74bec574c1c4d8a5db45a653a6d10490",
+      "grade_sha256": "8ec6b1dac40b22f09f9e7ecd563ddffa6c7546f770b602826b237c012e2655f9",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20ONCAJD.jsonl",
+        "sha256": "e00cbe8a9e0c19dc0e56e5208c216bb07d7c8c1c5db1a5dd7215122190b4d0eb",
+        "bytes": 1271280,
+        "source_rows": 3449,
+        "selected_rows": 3449,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "AJD": 1767,
+          "ONC": 1682
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "face_sha256": "b91eda9ec61f9f3b7468152ead4f12210731ce4465340c70fe6c6450503ac115",
+      "grade_sha256": "de5ae7e53145e992e06095670a2d24799598731cd6ff3709aec10a11dacdc091",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL18LAJYUN.jsonl",
+        "sha256": "1725c8c6f8d0dd1ff5017159476d5320599ddf0651b71177d31daeb73a512dd7",
+        "bytes": 13571729,
+        "source_rows": 36778,
+        "selected_rows": 36778,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "LAJ": 17486,
+          "YUN": 19292
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "face_sha256": "97ced5d7cdccde4ae378fdcd7d4149a8883af16732f8a46227491e519e21dd84",
+      "grade_sha256": "2660efda14dee4f5b455716a1c1432962fb8ba2739632481a9bad469a07b7263",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19WINSHE.jsonl",
+        "sha256": "781bcba943b24d4d47a2c50da34e9de0a35cc274706069f0daa4333d34f861be",
+        "bytes": 1324851,
+        "source_rows": 3590,
+        "selected_rows": 3590,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "SHE": 1277,
+          "WIN": 2313
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "face_sha256": "34636ae4a177db4b7b5068169319957c61e4037fc5eff94239f070256c363595",
+      "grade_sha256": "d56475685dd289f4929ff4defe84eb89af0f1ce48d374201ffe272b597b27e3f",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19DEMBIT.jsonl",
+        "sha256": "0bc9a9246d0ee9fc3ca0a747700cad17759381f81cbda4ef297711a3f366b287",
+        "bytes": 1024848,
+        "source_rows": 2779,
+        "selected_rows": 2779,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BIT": 1549,
+          "DEM": 1230
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "face_sha256": "76a42cd69e4528e8a3cbe1e8e38f05cafd5d3004cfcad45404b6a80e09076105",
+      "grade_sha256": "6c645b1b438b62165c1855c5e3e7011a78bd0e7c953d59df26d5ec8bf0831d10",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12BARREI.jsonl",
+        "sha256": "d39ee7a4c84322e545f497750e5452954f4adc8901df062aa32276c8904d86c2",
+        "bytes": 2604229,
+        "source_rows": 7059,
+        "selected_rows": 7059,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BAR": 4426,
+          "REI": 2633
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "face_sha256": "7c907417317050a0c3d6bed2ef10df59e045257af376f6f433754403f12d7569",
+      "grade_sha256": "9dfeac258f06ae6e14af67e51acf4b1b2656d93f6f6f148774ae455b4a1a71a3",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19SALVRB.jsonl",
+        "sha256": "60855c37fc8833d4f948f2288e68b53fcaaf9f51d67025e74a7d830bed2001cd",
+        "bytes": 370,
+        "source_rows": 1,
+        "selected_rows": 1,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "SAL": 1,
+          "VRB": 0
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "face_sha256": "3815e0a86cb4481144f9a361e7911612c2a504c8231bacdb5f0d707be464048c",
+      "grade_sha256": "71150477ffcf7c7d98bc3c4a6cd3969add2e68ba2ca3df7cafde7b6b9b94af95",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19VISAHT.jsonl",
+        "sha256": "a7e525afc6286a0b80237140fa1e6e3e566e14797e2b4692a649cb0b966f1bbb",
+        "bytes": 1372058,
+        "source_rows": 3719,
+        "selected_rows": 3719,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "AHT": 2722,
+          "VIS": 997
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "face_sha256": "a42fa0f08a7cfc83ae0ebaab51333f1bbf919d0ce7e87b730dea8e76a98f24db",
+      "grade_sha256": "653f081aca8a57b13735c1641ea6d440d8a463542a49dc98cdbae7e4c8239c7a",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12WESPAA.jsonl",
+        "sha256": "a10303179dfec1f134369e842be7677a1e38f1eca4c0dcb5345af04aa95ce9ef",
+        "bytes": 446892,
+        "source_rows": 1212,
+        "selected_rows": 1212,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "PAA": 532,
+          "WES": 680
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "face_sha256": "584e278a9d8d4ce465f1ddf2f0f28cfc6bca92e5dd1d296efe55aa0585a5e5d1",
+      "grade_sha256": "335b3aafb304dc63ceaabd9bb4b2f29cf91bfd4236395c92525366a9d9be5ec2",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14GANZIN.jsonl",
+        "sha256": "01686cf814ef56557493b380f74a08f1152d92fd6fc058c95f8c814dd4835815",
+        "bytes": 3984660,
+        "source_rows": 10810,
+        "selected_rows": 10810,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "GAN": 5864,
+          "ZIN": 4946
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "face_sha256": "858a76612b7ca39f70c14a939fe45883587bcf83a6242c5caa95436566d2d0b9",
+      "grade_sha256": "03d01e7e2446b4b0bd50b1a8f0b69f4a6c33564b618133474d9e6d7b59452db6",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14JOHBER.jsonl",
+        "sha256": "6f817fd46f01be0fb2637fd09eb4e69f48c608eaf3f090d5554572a7b49861aa",
+        "bytes": 1482929,
+        "source_rows": 4020,
+        "selected_rows": 4020,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BER": 2400,
+          "JOH": 1620
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "face_sha256": "ff0f8fdb9159d0601817ccb77149d730f490716b53414b8de0134f92ec457ce9",
+      "grade_sha256": "7d6237577082f6be004110b4af0a6973b136b0495ba4b2cbcd2582f332f5c61d",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14LANYIB.jsonl",
+        "sha256": "2e83fbe7628b6299bcbaee30167fd4657d4fbd7d4e6b3b469244a6c6410456fa",
+        "bytes": 2016753,
+        "source_rows": 5466,
+        "selected_rows": 5466,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "LAN": 3915,
+          "YIB": 1551
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "face_sha256": "4cc40478f3dd007e63c60754d84bcb158009c9f8c1dfe1969d08aeaa7fa21654",
+      "grade_sha256": "14f6bc0953c6d063b4d8c7735fcffef5c257489bfaf4b05b69d561c3baf49d1a",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19RODIVA.jsonl",
+        "sha256": "b0bb78adc43227b92b9f784482cc57fa605ce0948e0a6cc0a179553a07111f8a",
+        "bytes": 10781598,
+        "source_rows": 29222,
+        "selected_rows": 29222,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "IVA": 11900,
+          "ROD": 17322
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "face_sha256": "01592898e7c5fa4cfbb7b4f63ba1b73b4ea76ff12c5fe01cb30b7ac72a53ef06",
+      "grade_sha256": "3cdb1a9c0e9585959f6ab5e8ddbd2c047617025be8dffc05cd67ed62dd706dd8",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20OLIZIE.jsonl",
+        "sha256": "9e55df40616ad4cafc26634ab862f26e40c28d6156fa46748c19a5e0a1f6a3c1",
+        "bytes": 230224,
+        "source_rows": 625,
+        "selected_rows": 625,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "OLI": 265,
+          "ZIE": 360
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+      "face_sha256": "8d19c948a6e01fe2edc17214bd3209a37c184bcd0fb146611c1454865670b94c",
+      "grade_sha256": "71a6f27081f2b83081d3fb22b46cf971cc66210a4f24b0a2a0ad78ee41f84d17",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20CALKUM.jsonl",
+        "sha256": "4dbd8205652a2c1c90574c61cfecb2dd92d989f5782b3ea06cf5aaf3d1977eba",
+        "bytes": 751505,
+        "source_rows": 2039,
+        "selected_rows": 2039,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "CAL": 1142,
+          "KUM": 897
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "face_sha256": "d2f701765805991ed3c57785192bddee121a784430df3eccbd451fa8f6dfd1cd",
+      "grade_sha256": "6a17c285a6dc9647bac7a15cb8f4a51a49a1adbc55a0153512ab750050505e2a",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL15BONJUS.jsonl",
+        "sha256": "25e8d524329718b9da0adf25cbf88876c124fa8beabef05d315826b2c160797b",
+        "bytes": 1807369,
+        "source_rows": 4903,
+        "selected_rows": 4903,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BON": 2368,
+          "JUS": 2535
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+      "face_sha256": "e3ba61dc432d65395e655884dd3296d27d25a86ca9dc21c7cc25f660fe367768",
+      "grade_sha256": "e5c828019047d655b86fcd562f0ccc1cc92d69fad793b5e291ebe81e4bb295e6",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL16GRESAN.jsonl",
+        "sha256": "75d4d3678d2389768bf5de57b044f67b0fb851661dc2376371ce12fef7808d9a",
+        "bytes": 1930625,
+        "source_rows": 5234,
+        "selected_rows": 5234,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "GRE": 3073,
+          "SAN": 2161
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+      "face_sha256": "0267d503e315dbee158983221afa16bdc1476ba41b34a759bb76ff814e98e554",
+      "grade_sha256": "8122a84d7b6789c7cf06abcf9e71bfb6eb71de193d629156f86fc369dd52f06c",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12PIETAB.jsonl",
+        "sha256": "88950fb3b19898dcfc43c5e4a4e9b1c33c67fc41442ea4f406b710df3dfce7af",
+        "bytes": 698207,
+        "source_rows": 1894,
+        "selected_rows": 1894,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "PIE": 1000,
+          "TAB": 894
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "face_sha256": "1d0ab6fe00fbe8befcebe795ef5415cf0abbabdcf2da0d447ec7a008e44a493c",
+      "grade_sha256": "2115f0836f0d93a27e681960624e39a6452911376175e3102f9e15753cfe6ad2",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19MENKUM.jsonl",
+        "sha256": "6545662230801df7d6f2756a3e12fe8f7e75dd66fe706ef533ef8a0a6a94530c",
+        "bytes": 226127,
+        "source_rows": 614,
+        "selected_rows": 614,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "KUM": 185,
+          "MEN": 429
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "face_sha256": "28b110342f75a86f86295cd4fe4ebf6939f17969865b3cd13f588bb5d8df7161",
+      "grade_sha256": "fc34c2e07b1c029db8ef54f4704fdc915d009f20b8376a2531c9e0ec6e691981",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20WINARS.jsonl",
+        "sha256": "598722fa04bc0348787afc224019903378d187b6f12254d76bfc8a567bd41737",
+        "bytes": 5460511,
+        "source_rows": 14799,
+        "selected_rows": 14799,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "ARS": 6889,
+          "WIN": 7910
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "face_sha256": "ad3b2a52ceff540d430445d4d96c0af52a23e38bbd3b1d4581426ff8182f93bd",
+      "grade_sha256": "fbfd38b7931c4c585b7d9bcbef25ed23ea89d942c3fad56209129b34f74e88dc",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL16BICCAS.jsonl",
+        "sha256": "d3f90511186f91538008cad1584fdd3baec2464c2cf2f204ddb36d39af09e835",
+        "bytes": 3779179,
+        "source_rows": 10251,
+        "selected_rows": 10251,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BIC": 4403,
+          "CAS": 5848
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "face_sha256": "7895b6e1a5e65f813521162f7c9d0ed06168f3e7e241c298aa12af3588996e37",
+      "grade_sha256": "f5596757255e7b8c2de78e748e2e2e785050205a4a60a7fcb4a4b812291a89e9",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20MAYMAG.jsonl",
+        "sha256": "55887538bb893c9ead5985f02412667a8c8b48f89e8838f77ae626ffab46e7f4",
+        "bytes": 7300035,
+        "source_rows": 19784,
+        "selected_rows": 19784,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "MAG": 10832,
+          "MAY": 8952
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "face_sha256": "b07cfbd1a3b8ca0142b9539e8ad74ee0e61fa77ccc73537822cafa1ea46a67de",
+      "grade_sha256": "e881e07dda1013c8d96432fedacc16a85cd5bf6d46a727d7e53fb45eeca8e1f6",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19HURBIG.jsonl",
+        "sha256": "f0c41b0af637cc6aeacf84262286e9bee71ccc235614fd3e991b066af8063364",
+        "bytes": 6498084,
+        "source_rows": 17609,
+        "selected_rows": 17609,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BIG": 10435,
+          "HUR": 7174
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "face_sha256": "0803cf27f74ea62455a177e00e908265975ed4a58bdddbc394b58e38330ac8b9",
+      "grade_sha256": "b9e3ebe5f987e11edaaf63afe49457fd83b41c5e2f2f43cab6fe6a0085609494",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20GALLLA.jsonl",
+        "sha256": "b97f3499c889bd2784d6998a897bac5330cbda7d734f7bfbedfcdbe98670496e",
+        "bytes": 406493,
+        "source_rows": 1102,
+        "selected_rows": 1102,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "GAL": 520,
+          "LLA": 582
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "face_sha256": "0bf972605cba81f9760b60eb58bd2a263b29486730c0ff4647fc57661783f7bf",
+      "grade_sha256": "7783accc5b291ccccc4f1bd42906ece6b12dd0d223a8e2dc226fd4b79bafe127",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13BINFUE.jsonl",
+        "sha256": "21349e76722bb714823f380a09a0107e17f22aa7e5fab42feb57b55b5a41dd22",
+        "bytes": 2087151,
+        "source_rows": 5660,
+        "selected_rows": 5660,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BIN": 3245,
+          "FUE": 2415
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "face_sha256": "93dfecbcfafc222064e7664ac8e43e162f7e596e5acfb490e3ef82b18b886978",
+      "grade_sha256": "000a31c6a1673ffe5e27f31f2aa77fa8096bef85a2ef328de989e80f8ca0365d",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19BRUKRA.jsonl",
+        "sha256": "7a298dc00fb6a017899c09be030af11d801457cd48ba290ad073f4c680f77362",
+        "bytes": 1404556,
+        "source_rows": 3807,
+        "selected_rows": 3807,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BRU": 1774,
+          "KRA": 2033
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "face_sha256": "910e273c2414b862bfe6cbeec13c917636028753eb06bb90ecc08d0e2f88f33f",
+      "grade_sha256": "5f76869ee086867c441c323bd2503b696dc2a8252cb37fb83b2d6ef620e8f8b8",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12HERALM.jsonl",
+        "sha256": "636b7ae64253124a6e0f30665e1ff74678f6a1a5a6dfa1496f3ff1d3bbec3065",
+        "bytes": 4849018,
+        "source_rows": 13152,
+        "selected_rows": 13152,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "ALM": 2889,
+          "HER": 10263
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "face_sha256": "d8de40812cc014925d2ae00dc0f2ed566879e9fea9ee601e7eb8e88e4fd2e8a3",
+      "grade_sha256": "c4ccd482cf600dbf526df696ed401efd5f6bc837ba1dda58784797e495e96e74",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14IMAMCC.jsonl",
+        "sha256": "ee020885a3e49036e4249ec658389252ac915682502eb827787ef554bd5d5093",
+        "bytes": 3359994,
+        "source_rows": 9107,
+        "selected_rows": 9107,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "IMA": 4758,
+          "MCC": 4349
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "face_sha256": "a8073a23a729745a21d8103d8dc8fd51d834880a4fc00a08b2b99b3283c5bce6",
+      "grade_sha256": "9d509418e3155a2c0f0f1e6147ebe1388181091715b0eb48dc84f77be2633d53",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19ARNPOH.jsonl",
+        "sha256": "b936432e9a62a25d1f666a7fede249e39c7b7cd85313349f1a7b010d592792d6",
+        "bytes": 1371850,
+        "source_rows": 3719,
+        "selected_rows": 3719,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "ARN": 1517,
+          "POH": 2202
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "face_sha256": "bd3ea8b94a3796e2c6b34fe5a4301a33de6fcc826956313b43e730eae9b97153",
+      "grade_sha256": "c716351c7480663c4a9ca5fe6bc66d7af8a1a3cccd5e0cba3bcab688f39f7b7f",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20VASSIN.jsonl",
+        "sha256": "c7027e28cfefde10c4818297b8556715c0cc907d62f924e26666303020d90b4f",
+        "bytes": 1757872,
+        "source_rows": 4765,
+        "selected_rows": 4765,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "SIN": 2451,
+          "VAS": 2314
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+      "face_sha256": "9012ec9378bba6759a64f1b39565dc3c5554345d1167e4ba74262fdd0f9c2661",
+      "grade_sha256": "d5dc56b49c80ee31678555cbab280b180013518e00409314b91f59ab423f86ce",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13BOUZHA.jsonl",
+        "sha256": "3d136114252a21a977e236943562832612479164333792f4488ac75ae7b8efb0",
+        "bytes": 8398470,
+        "source_rows": 22764,
+        "selected_rows": 22764,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BOU": 11130,
+          "ZHA": 11634
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "face_sha256": "11bee82bdc35d48a1808c4776a546c45f0964d7e8ff58df7098c82b9d67bc9a7",
+      "grade_sha256": "af79dbbcf47cb775d8251d3406498a1f3f2130f72d990f9af5477f8b5e2927de",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20GALARN.jsonl",
+        "sha256": "6b1a9a3c2b1772ffb685d0f570fcf965b460cb7fa908fc7c61ebfb90332a3fb1",
+        "bytes": 1831947,
+        "source_rows": 4965,
+        "selected_rows": 4965,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "ARN": 2115,
+          "GAL": 2850
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+      "face_sha256": "2659374d25d97ac3f5ddf6f833b9f5f0768cdf8274c57fa76da73159bdeb6679",
+      "grade_sha256": "fa4f4af69304ae8fc1a9d0b24a528a263642b355afcafe9207082f1839b3a846",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL16FORCUI.jsonl",
+        "sha256": "5cdffd6058d2856ad243b05b19a5e044a40a5e062e2106b171c006d6f9da3865",
+        "bytes": 6257306,
+        "source_rows": 16967,
+        "selected_rows": 16967,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "CUI": 7684,
+          "FOR": 9283
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "face_sha256": "95c40d2adf5ab006aac8e2795f56248cbb7d6d4efd0b1d5b74e97fd1bc11972b",
+      "grade_sha256": "33de6fd681875d489d7cffb25868e595e26e6b1006e316bdca0bb49e07f57a28",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13NAPBAL.jsonl",
+        "sha256": "7a9f377ce0ffdf2ab55d9cf971309801244d099a7f4def6a0961d46a2800dcb4",
+        "bytes": 3128593,
+        "source_rows": 8486,
+        "selected_rows": 8486,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BAL": 3543,
+          "NAP": 4943
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "face_sha256": "4d67204a6ffd699768404c5eb3ffd11992ec71470b166fcdc4a0646338711bed",
+      "grade_sha256": "6d958572c95a6414513a85edbc9bb99a4d70b3df5a3f3b11a59f27340fe7971a",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12FEAWAL.jsonl",
+        "sha256": "c991fdbb547c121c7d5f7bc31f34b6fd993bc6c7fa3270f0041788b9375226f0",
+        "bytes": 8848172,
+        "source_rows": 23997,
+        "selected_rows": 23997,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "FEA": 11071,
+          "WAL": 12926
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "face_sha256": "e0cc88efb7b536be4ec2ff04f7519dcb48a2959ec88e86efafecc24ad303a845",
+      "grade_sha256": "581ef5efcbd4dce153b74b30be5e2d721865c10eb5f6bae6ebe481eaf31e5b5c",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14URSPAL.jsonl",
+        "sha256": "4a7529856f416cfc8969e284fd9d4bfc6926dbfddc469dc3472fa32135a62a4a",
+        "bytes": 335263,
+        "source_rows": 910,
+        "selected_rows": 910,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "PAL": 438,
+          "URS": 472
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "face_sha256": "ff2fc36d1792dacc6db9ef25a75d1cec1c79ec116dd0ba91d87818362c22a436",
+      "grade_sha256": "7ae72d14d1ccfc821bbd8a23d7974c290ff445d5be19e8a3fe93a67ab79d25c5",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12WESSEL.jsonl",
+        "sha256": "8a15bb92c97f54d6eeda4396eec30f307c2eb0fa215930067140ea19b294ca29",
+        "bytes": 16987,
+        "source_rows": 46,
+        "selected_rows": 46,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "SEL": 40,
+          "WES": 6
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "face_sha256": "33a48deebaa1b347b275edca056e75c0f2181bac5d73c51cc996e0a70b000360",
+      "grade_sha256": "f55a3eba9607127481a2bbea9f930a431561f5e0219b39fa2e8c9b365ca48f2e",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20ARSRIC.jsonl",
+        "sha256": "864ce1b40c28443de38eb924a3b90c11eb3cddd1d8c471ecbc13c4be64066461",
+        "bytes": 1331745,
+        "source_rows": 3612,
+        "selected_rows": 3612,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "ARS": 2163,
+          "RIC": 1449
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "face_sha256": "3c48cc3c6cb6daa9bbcf7c2fc7ba496368d6c2774591ab8226e8d34aa15db903",
+      "grade_sha256": "1f71401176fa530dfb5e5405360c1c248e4d38c6158efa18e811b7b9c2ebe640",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14ZHUYUN.jsonl",
+        "sha256": "4fc1d84f3269fca28a71ed10a8976e5c1629ba920bab1b8d487dd0965e34385b",
+        "bytes": 13521517,
+        "source_rows": 36662,
+        "selected_rows": 36662,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "YUN": 14596,
+          "ZHU": 22066
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "face_sha256": "2a981951b3f4c78d97f00a2b5c83f1fae4bc0e56f60ef33a38e43151851e58c0",
+      "grade_sha256": "36d3bce0ced2036fa6cb9bee3695aef8deb47b4f75b37ba264d4f068276e8b59",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19OLILAS.jsonl",
+        "sha256": "05123cd4e90c1f9140929134d96efb2fa097cbcf6f424b5821d49cc56ece8da8",
+        "bytes": 426848,
+        "source_rows": 1158,
+        "selected_rows": 1158,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "LAS": 848,
+          "OLI": 310
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "face_sha256": "3b82dcbf93bba6c245650e69e70baf43bc2852c49abb7374f664351c7c4b2b1d",
+      "grade_sha256": "ceed8710abf240cc3d6e1199b22573eb1d27f2e5a8e040a3910d0cb2a4a10ef6",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12BALPET.jsonl",
+        "sha256": "104ad87dc245285511685ebb195618df830fbaed42a74c9c7b1b95ceea641e16",
+        "bytes": 170151,
+        "source_rows": 462,
+        "selected_rows": 462,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BAL": 315,
+          "PET": 147
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+      "face_sha256": "85fe1d6f033f56d7972af8813e9e242dd373def956ebe95d8a46f530ab95bbdd",
+      "grade_sha256": "deebf073dd49ae3d4687146a33005d24d61f62d9e787381bdb60c4eca15c2b0e",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20MARROS.jsonl",
+        "sha256": "bef72e0f9bd6879fdd091919d448b8878bad37f61a045e5f98018a3a3edff408",
+        "bytes": 246610,
+        "source_rows": 669,
+        "selected_rows": 669,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "MAR": 289,
+          "ROS": 380
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "face_sha256": "0e54ba0178eecb6121db79704256803c4b751414cdd3cb82f5ec2116f5d4ebcd",
+      "grade_sha256": "4d0ac0b2083480c1bb72c87baac9c582d089ff75d9f13eb2608f67745c773084",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12TROHOR.jsonl",
+        "sha256": "c6c5fe93a9c728d85c2fb6cb0c4e19ab3dc4fb724e97e2e356a913a5a6d60595",
+        "bytes": 374997,
+        "source_rows": 1018,
+        "selected_rows": 1018,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "HOR": 697,
+          "TRO": 321
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "face_sha256": "6a3436b3eb736f69a20d8a6265563824ad9b7c05f6fc9687f2cd3f55b69735d2",
+      "grade_sha256": "878b61b487128c026e0e6740f885dd71acb3c8b6d91b2a0606ba0c3551cf1b6d",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14ZHOKOZ.jsonl",
+        "sha256": "aa218fc030c5915b270500d5cb91d46245867432e27c2d50b4658fb7e1f8d160",
+        "bytes": 3166891,
+        "source_rows": 8585,
+        "selected_rows": 8585,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "KOZ": 3426,
+          "ZHO": 5159
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "face_sha256": "09f8cfe3281651e1a4117cb294c9b8ef59e63a5028a6f2cbc6eb55e98506d979",
+      "grade_sha256": "be3f110956d1a78a470eeb4576b20eb624b9cc0da32ce65565d1813a8550d8a2",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL17ALCRON.jsonl",
+        "sha256": "b6f132351e8ee095c7e42d59b7c3ff3d3c72693099aa4c3301a92d4a0b0d2a37",
+        "bytes": 196583,
+        "source_rows": 533,
+        "selected_rows": 533,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "ALC": 281,
+          "RON": 252
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "face_sha256": "2ebf35d69c12796b85e64a43aa20eb2f143d3abcfe01209283d25376a51b1cb6",
+      "grade_sha256": "d034564c70693fb3e359f2877bca78a7c53640338b13480700c7f495d8f599b6",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12BINGIL.jsonl",
+        "sha256": "39f4f48f38f5785cb1b804a8ccc678d67acae0a898b8d434b4baba393576b8c3",
+        "bytes": 655361,
+        "source_rows": 1778,
+        "selected_rows": 1778,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BIN": 646,
+          "GIL": 1132
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12KOPPRI",
+      "face_sha256": "dc86fb09321d2771f43b11eab5105feb9438cf0da5b2f0d15fedd97a6887327f",
+      "grade_sha256": "cd2a080f5e9d94bdd7a5c6e21856b6a99e913400d6e6058d689dc624181ef17c",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12KOPPRI.jsonl",
+        "sha256": "f1ee536bf28d2dd0e38ceb9d1cb8dc9626ca12787d8afe1003745a5ad3e7527c",
+        "bytes": 1507515,
+        "source_rows": 4199,
+        "selected_rows": 4199,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "KOP": 2353,
+          "PRI": 1846
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DEJGAU",
+      "face_sha256": "585f0f56059ea25ff0eb7cf7f56a55d36759ec7dc6d7865e90477d30f3ef5e8d",
+      "grade_sha256": "a5f75177d0f25002189ba319c6b2286e486ae4b8d892f044f197d7a1ca49a715",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12DEJGAU.jsonl",
+        "sha256": "e15437427359491492a6d877efde945429ec430baddf0e5d672da762ae43194a",
+        "bytes": 3006258,
+        "source_rows": 8369,
+        "selected_rows": 8369,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "DEJ": 4990,
+          "GAU": 3379
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL19TSICOL",
+      "face_sha256": "52fa6fb677de607497260064f7124d347714889ffa28ee9c24e87817960b3d99",
+      "grade_sha256": "447d6f23780cf5a9d4836abbf23c85e7d1c0199d0405f85a9aab907d1453aed8",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19TSICOL.jsonl",
+        "sha256": "a5b57701b54fe891edf0e4eaa3ea0f7d3353fc131a3f527b93ff6e14a2626d00",
+        "bytes": 4580881,
+        "source_rows": 12770,
+        "selected_rows": 12770,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "COL": 6883,
+          "TSI": 5887
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12BUDPEL",
+      "face_sha256": "32ecc8beaafab55bb395590fa727b7adbe6da71597a90e3ec7b41a9949634d00",
+      "grade_sha256": "87263fbb339cc2b75e0d66d382a2d58a96a7afbf653d832d2f91a2f56a1aa378",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12BUDPEL.jsonl",
+        "sha256": "0a11ba5daaa0c0f68add07af1f3d0c02827bbddb48091dda12d11523bb69bdc4",
+        "bytes": 407750,
+        "source_rows": 1136,
+        "selected_rows": 1136,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BUD": 468,
+          "PEL": 668
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL19NEUHAN",
+      "face_sha256": "bc10d59d2c3784eb5f56e90b3f9b80809c99f0ad5f304105c396eec807d79ac5",
+      "grade_sha256": "12081c3cb76e8b3eae9c953a022781af19c43b03a9c0a55cbd139c05ab07c576",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19NEUHAN.jsonl",
+        "sha256": "0b5bd347629b1b020af03348c7bd69a28adf65977152975bb2827f86e1dcc342",
+        "bytes": 1182697,
+        "source_rows": 3294,
+        "selected_rows": 3294,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "HAN": 1537,
+          "NEU": 1757
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL15PRADZU",
+      "face_sha256": "2b24d417929a62207737697a40b081acc4d72b42f814e35166cb7e904b149857",
+      "grade_sha256": "43e2b389ee9361133651aa1849652b3ed0b7c3ba34b5c090d3c48a79a89e296c",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL15PRADZU.jsonl",
+        "sha256": "c56bb1e9e0070c14fb05f70a25c01ab5cb9a0a3e919b51ac23bd5e090a944c3f",
+        "bytes": 955148,
+        "source_rows": 2663,
+        "selected_rows": 2663,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "DZU": 1265,
+          "PRA": 1398
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL15CARUGO",
+      "face_sha256": "a6da00ed5ad80cf2b596f4168e45ab5f28053e81957c365171e4391302ad0ccd",
+      "grade_sha256": "ff8bd0bdb2d659fb606378427d5b87b251544ae3a87675613996d34b264fbe28",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL15CARUGO.jsonl",
+        "sha256": "532af5e6f895df1d9cb1d3ebd089b82d66bb7a552e84204023c0fabf94dd8492",
+        "bytes": 3927107,
+        "source_rows": 10939,
+        "selected_rows": 10939,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "CAR": 5126,
+          "UGO": 5813
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL19STRSHE",
+      "face_sha256": "92ec35d6c88e5fc672e0175eb4592c8b2e9be6382071d938729c75b36763a441",
+      "grade_sha256": "ce031ce01272b36638b0b8837b576a37a59c2101bfd4c680cdd6951ab89d8c9f",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19STRSHE.jsonl",
+        "sha256": "6ce729c69fd95670e0a3187f5aff0aaf54e5923251f1353545ad9900eeac4ed3",
+        "bytes": 2180938,
+        "source_rows": 6074,
+        "selected_rows": 6074,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "SHE": 2027,
+          "STR": 4047
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL16FARRUU",
+      "face_sha256": "a0ee82a8703593f8d861b0dcec4dd2092d666f6b0421e9f67015a3e319d04be3",
+      "grade_sha256": "54275063391648bbba5e742b7d393179ce0715f3da62e39c1f089d1b28cfd0ae",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL16FARRUU.jsonl",
+        "sha256": "ca70cc1fd63dc18d35cd1e27e58510677d3fb90da9455098e7e46cc5d6298caf",
+        "bytes": 5407752,
+        "source_rows": 15071,
+        "selected_rows": 15071,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "FAR": 6369,
+          "RUU": 8702
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GASDZU",
+      "face_sha256": "b2eb0f362a03a4ff78c86727a8c866e5d0163e919ff3e9f94d0b5bcbbe300af4",
+      "grade_sha256": "32a2c122cfd1a3e3817925b0e11144e1262b5b1b174ccfb313d16857cba71f68",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19GASDZU.jsonl",
+        "sha256": "65134851e219053cb73415f982be0aa352d9079c0b1c2815273214c55bca3963",
+        "bytes": 953882,
+        "source_rows": 2655,
+        "selected_rows": 2655,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "DZU": 1223,
+          "GAS": 1432
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL19DROUGO",
+      "face_sha256": "0e647bd08734e3c7482cc2a9918996c349f8b6a3504b55873ff8b5c2c38329d5",
+      "grade_sha256": "73d82f241829a4da9f9c6d1980e69e4fd374cf51488d64a37b271ec49c7f4683",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19DROUGO.jsonl",
+        "sha256": "1a87c2fda6763669066a6b20c34492f7b5a71fcf6c1af3b5ae0e1fdcb9133c7c",
+        "bytes": 5198290,
+        "source_rows": 14473,
+        "selected_rows": 14473,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "DRO": 5400,
+          "UGO": 9073
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DOMSKA",
+      "face_sha256": "c00e7d1d464d6ab012c81101f3ead21ef06da0178c8275391a310430eab08f3e",
+      "grade_sha256": "fc1dc643dd7a2a4ba05cada55f097db3403bc3cee89564e7efbb4047cf03c59a",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL18DOMSKA.jsonl",
+        "sha256": "757e256411da89dec3e7705e47e759d34c105a1d339c00e3bf3929aa322b0f25",
+        "bytes": 2922681,
+        "source_rows": 8144,
+        "selected_rows": 8144,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "DOM": 3973,
+          "SKA": 4171
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL15VANDRO",
+      "face_sha256": "78a40844a4dea269b15404478d59b3cc4f292a8dceb5a896e4d7d3cad5caeed2",
+      "grade_sha256": "533b9a99812a611f5f6b0b5b411795cf560c57caf833520f646df3dd58e381cc",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL15VANDRO.jsonl",
+        "sha256": "f6de566baf25f73bde2270765b904e078b32be53646f7bb619b7e68fd46fbb28",
+        "bytes": 4220959,
+        "source_rows": 11757,
+        "selected_rows": 11757,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "DRO": 5460,
+          "VAN": 6297
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12OFNTIR",
+      "face_sha256": "f6a26e8c9a360df2a07393073e67b4030dc691e1aa3be28406664f620aff492f",
+      "grade_sha256": "b07f84868273069073a4b4b5d1e76b0425cc098aafe5bc03ebb6128b1eba8671",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12OFNTIR.jsonl",
+        "sha256": "e7b5781262f27bd6d8071f57c3ddc4b9c67b32325f6c7bc499b8e05d40ae1410",
+        "bytes": 503434,
+        "source_rows": 1402,
+        "selected_rows": 1402,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "OFN": 517,
+          "TIR": 885
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CORDAN",
+      "face_sha256": "e1a3369f9432e8228fc85a9fbed43801373eaf46973aa9bb78d8608c7efb4abe",
+      "grade_sha256": "947cb7c3816df6cf81c53b4ea2fe3b6b5af8bb9076c806d09611e7d5d4febc04",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12CORDAN.jsonl",
+        "sha256": "83ec8351aa2fb77b79cb7938926dbf37482e329e36d0bea5521eea608aa40a8b",
+        "bytes": 501739,
+        "source_rows": 1398,
+        "selected_rows": 1398,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "COR": 562,
+          "DAN": 836
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SLADAM",
+      "face_sha256": "17c745b044a54ba6d86b7c46f7b3fbceb565e4bd3e1c59be5500bf42983fe850",
+      "grade_sha256": "6dfb6fec2f98582c0bcc78fe5908acde3e097a185341d22a3bfb239a5a53367e",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12SLADAM.jsonl",
+        "sha256": "1e33bef6be5fd13e463821ed908e1e20f4e7cb0e25d00d7e61d28cd4fcc81e9f",
+        "bytes": 440321,
+        "source_rows": 1227,
+        "selected_rows": 1227,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "DAM": 468,
+          "SLA": 759
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CECOLI",
+      "face_sha256": "b11164501b45d0ce048687b95866a249d8fb91407a210ee2f0cbd6ad128bc3fe",
+      "grade_sha256": "467a6640c1497840236f494b41c9585757ae191a4ebbca978f9c8d41f73a59e1",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12CECOLI.jsonl",
+        "sha256": "1e33026f664fc1b6581bf4fe262b29a0d12b806dc0c489d0295a3ba09670e070",
+        "bytes": 518996,
+        "source_rows": 1447,
+        "selected_rows": 1447,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "CEC": 782,
+          "OLI": 665
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL18HIPGIU",
+      "face_sha256": "4e637823afb600d265733c05222d5d24db07da0ee80124b6ffc04b29eebf1982",
+      "grade_sha256": "80a3ce87ae739827e6bda8ddcd26e8f91e9fdc5d3d12c5115f4ab78f05253e0b",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL18HIPGIU.jsonl",
+        "sha256": "9e4e0f41fb88f2cad565c7f7e8cbb85c7d4607f817cc36c15320c3510c9ca13d",
+        "bytes": 421059,
+        "source_rows": 1175,
+        "selected_rows": 1175,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "GIU": 485,
+          "HIP": 690
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "face_sha256": "0592f9394c1e464e12c888e6bd999624c570eaf65a3632f28848a67dde839d2f",
+      "grade_sha256": "d96b4c4debfb20294f6a3e166358b63c5304f1e183e92160f4bec6a4892af097",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16KHOPRO.jsonl",
+        "sha256": "6c4e390250973553172fd49cc7d55fdce64bda35cf60fff65dd74ac43616248e",
+        "bytes": 236798,
+        "source_rows": 642,
+        "selected_rows": 642,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "KHO": 352,
+          "PRO": 290
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "face_sha256": "89000a2f6c7879df7ce4b74a2ae8584779fb044fd2e040fb6deb715a77690bb3",
+      "grade_sha256": "10e61d5e6e90745692e02b199e3b031fafbd1d600eb4789f5a8c5c7029746fb1",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL12ERJBOS.jsonl",
+        "sha256": "6650cd27befe99b694d8eb1391ddf3559df4b6e06ae84901a941f2ae7240020c",
+        "bytes": 2758854,
+        "source_rows": 7482,
+        "selected_rows": 7482,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BOS": 3871,
+          "ERJ": 3611
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "face_sha256": "f989dbdb0d98e1362abe05c5dc0e1c897e6ba6355f406c2c0695a8127e01c0a1",
+      "grade_sha256": "f6f5de1d77680ebe2ed6d1a832b00e777d01438cc26ab51c57e05682c6235083",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL13AVDFEI.jsonl",
+        "sha256": "3f27e5372bb47cc8b726181283281ec0ff77cc16f2d23578c43be6bfde9086e4",
+        "bytes": 375371,
+        "source_rows": 1018,
+        "selected_rows": 1018,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "AVD": 511,
+          "FEI": 507
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "face_sha256": "5bfeae983a97e742788144e00a4e1993d68603a48b0bae9be797f8694b91496c",
+      "grade_sha256": "296df0e6220d7b99a147af79bac5ce7704e2b644e769364d4a59fde5fc4a2b10",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16ZVOHRU.jsonl",
+        "sha256": "a35cb261bbe3c4fb5943bfb37ee781fa73a928a297cf2106bcfb12c567c8b479",
+        "bytes": 686469,
+        "source_rows": 1862,
+        "selected_rows": 1862,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "HRU": 942,
+          "ZVO": 920
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "face_sha256": "15a4513aa4e3d4945830d7f2c806adac4f45ab8727c9d6c823ad0d4cd260bac6",
+      "grade_sha256": "449006dd55beb69bc3d0b69500084f82bc19d7cf946f74ad6ae5cae7be48ad5e",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16GAOVAL.jsonl",
+        "sha256": "7e77c975675cdeec454bb5b74a6720f4c184978a22677e5dfb47a3846597b900",
+        "bytes": 1328355,
+        "source_rows": 3599,
+        "selected_rows": 3599,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "GAO": 1571,
+          "VAL": 2028
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "face_sha256": "b10708be439d1ae12f2efb73889635e702685a2d22afb1d97b32ea937c50ea2c",
+      "grade_sha256": "ff703e9bdeec0b79df27b18bd76ab0a6d6cb8f5d403fb6507e25489ebfbf1de9",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL13SELYAN.jsonl",
+        "sha256": "51c904bfc16f6d19a54e9486bea859e362504c47b1d8cf99c8f18316232ba58f",
+        "bytes": 1075701,
+        "source_rows": 2917,
+        "selected_rows": 2917,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "SEL": 1529,
+          "YAN": 1388
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+      "face_sha256": "a9a35efb61a28892937635fdf3c3590dcab9752d0866ea39803061743c957580",
+      "grade_sha256": "97684a138e2a90399ff42174f2a12f06f843fb2698febc715cbed28697dc6aa3",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL14KOSRUG.jsonl",
+        "sha256": "4c58aa94c1a4e025438eea6923f75a29923b33be8ac9b3fbdfecc2ea19c205e3",
+        "bytes": 233636,
+        "source_rows": 634,
+        "selected_rows": 634,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "KOS": 352,
+          "RUG": 282
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "face_sha256": "4a2b8dffa6953e564063503cc07965f02f998d1209e25f85da9b03049711190b",
+      "grade_sha256": "08bb353f8acd9564afac115c56e35799eac037d333f2821193ae0d04348d22eb",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL14RABRUS.jsonl",
+        "sha256": "ae3366d547c2ddfc75c0be9cffd948b71bcdc3af8e8726134c99b313a991e0e0",
+        "bytes": 169573,
+        "source_rows": 460,
+        "selected_rows": 460,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "RAB": 335,
+          "RUS": 125
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "face_sha256": "3a45e9754b065fdbd3118a8d54c8b4373f0bcf14fa072cb6ee37b3b26c485461",
+      "grade_sha256": "6379171d5c302c40e32f792b4d0bbe1ad2ac27231cdc613d5728323126e58008",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL15GRAPER.jsonl",
+        "sha256": "b681fd9965c0ed660cabbc9d5ed7c7e4d4e9a1ba91eb1bb438f8ac9007ae4786",
+        "bytes": 301067,
+        "source_rows": 817,
+        "selected_rows": 817,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "GRA": 276,
+          "PER": 541
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "face_sha256": "a8f597b4f75fe421f0f9952cadb8b6837e45d2a3515e0742d3e2ad34fb988c86",
+      "grade_sha256": "aab4b491e7b796d0253cd17fb2ab97b6d9d6cefdafa7eabc041a951d5903f194",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16BASRUS.jsonl",
+        "sha256": "249ff3c8c683947bcf56328bab190af20ad58d2f490330ec6f1568d876a316f0",
+        "bytes": 1314668,
+        "source_rows": 3562,
+        "selected_rows": 3562,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BAS": 2136,
+          "RUS": 1426
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+      "face_sha256": "ec834bacc43e23c1ac6706ecd5685e04b21f75a768dc2074e749c8e6301f6898",
+      "grade_sha256": "66bdc138e8892d69005b90f00c0d13d039dedbc9fe1a60100be6ae89fd1ff305",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL13RAMNOH.jsonl",
+        "sha256": "e1dfd2fcea128664bf71c21cbebdab6e64db842c0aba3dfb4bd4583b2c27aadc",
+        "bytes": 587999,
+        "source_rows": 1595,
+        "selected_rows": 1595,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "NOH": 729,
+          "RAM": 866
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "face_sha256": "f70da67722762401c831b4794bbb31616624f600538033c24b6d52d13234dad1",
+      "grade_sha256": "8d8e3c92fc46b977cd4288a439da66835dfff952ff2b605e4538ef18e3e8b3df",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL20MAZSPI.jsonl",
+        "sha256": "d40b02c2126d604dffa14b9d584dfaa3938e8b1edf0cd630444aa6be92e2d470",
+        "bytes": 14706465,
+        "source_rows": 39865,
+        "selected_rows": 39865,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "MAZ": 20119,
+          "SPI": 19746
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "face_sha256": "331094eae2a2669542f17ea3d6093436472589a8a8aa00668cb9fe8ea9476cb2",
+      "grade_sha256": "a9b7128848c0cdc44df3c158b6d113b92310fbd6b11f03d347c8ae05889f40fc",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16FEISAM.jsonl",
+        "sha256": "b0964faf629b023bfd4f2b68242a02e3344f3bdbb34fd8e36e8bde034c39ab35",
+        "bytes": 566048,
+        "source_rows": 1535,
+        "selected_rows": 1535,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "FEI": 658,
+          "SAM": 877
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "face_sha256": "47bd40bb530ef381e01c48f49a4194e4399df8577914b2d4e077d378735cda62",
+      "grade_sha256": "b1420d8e9c19c3109a8accbdf42c3a56ec4ed66ad268c3e76b44bde55c00b085",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL15ANDRIS.jsonl",
+        "sha256": "59373925c40586574b6a575cf09a3716dbe195b3850d9d9e8bea99abf8352ae5",
+        "bytes": 1973175,
+        "source_rows": 5352,
+        "selected_rows": 5352,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "AND": 3154,
+          "RIS": 2198
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+      "face_sha256": "72aebcd1b0ff09512823505dbc6c8d26fde1ee9398576409a40d36f84ab456dc",
+      "grade_sha256": "0b90b221925415a2aceedde50c8cdce334c885e0db81a8f6adcd793112036d67",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL18CIRTOT.jsonl",
+        "sha256": "811c76e39be886c7cc9405b42edab7b23cefd4e8ac0681916291356a785d0397",
+        "bytes": 2206,
+        "source_rows": 6,
+        "selected_rows": 6,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "CIR": 3,
+          "TOT": 3
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "face_sha256": "a3c0d44a70976924ee0b897d5213376a22efcdd39c0560a579a1cd852701b76c",
+      "grade_sha256": "6af0ea9619b194aa47b84f2b9ddbb830f90d928137a3cf9d809172089a597f52",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL13KNUKUR.jsonl",
+        "sha256": "09189c841db536812a638b8a4376be6133d8e640425791128883f386ac7e1a0e",
+        "bytes": 1101014,
+        "source_rows": 2986,
+        "selected_rows": 2986,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "KNU": 997,
+          "KUR": 1989
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "face_sha256": "09e5be8638a4ef459e37715b10876b3fbca2da4cc72d7cece3fad42ff777c68b",
+      "grade_sha256": "84a540c5663ae5e97b12e16b41a057341bc9dbe45ccca2e64a8da2dd1cbe9c5a",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL12BALHUA.jsonl",
+        "sha256": "314fee3fe322090716d73bfd322ffbd524685857e0513b0de86afe9fe86ed0bb",
+        "bytes": 355997,
+        "source_rows": 965,
+        "selected_rows": 965,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BAL": 596,
+          "HUA": 369
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13LEPIBR",
+      "face_sha256": "4110ff0b08e82e30927638f60a24b47bfa7db5f0e16190c284f4bd528873e108",
+      "grade_sha256": "6cf883461bcd6e9c51ec595f88d951852fdcb030f9f52823aebdc1590c7c42f2",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13LEPIBR.jsonl",
+        "sha256": "1e03e202a8977b7c887a9bb04f124a4199a321f4766ade400a60571f1799010b",
+        "bytes": 1137143,
+        "source_rows": 3168,
+        "selected_rows": 3168,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "IBR": 1332,
+          "LEP": 1836
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13GRAPAR",
+      "face_sha256": "3c4ae526b7978f9f806f16dc125ee4798400f4a0f7932b81b968d0f643b309b9",
+      "grade_sha256": "b9129bb250fc383870a6889a01491756f949efcc60f86bcb529e00a51cf7afd2",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13GRAPAR.jsonl",
+        "sha256": "30da699fc72a788e2f22d2a47f0a055479bffaffbef5554178448072b1e018de",
+        "bytes": 3201101,
+        "source_rows": 8917,
+        "selected_rows": 8917,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "GRA": 5776,
+          "PAR": 3141
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KUDKOR",
+      "face_sha256": "a70e7f54a5bbcf57603913d5df0e0ad38ab4eca468780760ce1e1e8f893acd54",
+      "grade_sha256": "0e1360e6565a748cd50d913334818aaeecaa6b0a03dc78fb13afaae05102bf1e",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL20KUDKOR.jsonl",
+        "sha256": "615edce21d7d744dbb2871a1566ca3672226eed74df0d8753fc476de072d6e4a",
+        "bytes": 57245,
+        "source_rows": 160,
+        "selected_rows": 160,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "KOR": 75,
+          "KUD": 85
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KRETOM",
+      "face_sha256": "e352a0ccc4dd7fa59be264f51c8527a44bdb2e8a63efb9821909c573a529a6c6",
+      "grade_sha256": "444bbbbf099169826517388abb06ff3c121ad859d0a5b9bd6085aee7e8304281",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13KRETOM.jsonl",
+        "sha256": "cebc2d758975346c8a266e59503ea832a693a188e2c428c82bf483d302bfcc2e",
+        "bytes": 465091,
+        "source_rows": 1296,
+        "selected_rows": 1296,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "KRE": 481,
+          "TOM": 815
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13QUERUS",
+      "face_sha256": "d10181cb61de5f6c3d88a7e6125eaedfaa94cbfba60b95b691e7ccf4684e1642",
+      "grade_sha256": "b3f0f93939c58ee0b4ef41262a4a8fd23b7409dfdd930891d860a76776670483",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13QUERUS.jsonl",
+        "sha256": "88bb2ad3f6b12d9226ffd7c01fdc235422286815cea1ca7a47d39b184376d1c8",
+        "bytes": 973573,
+        "source_rows": 2718,
+        "selected_rows": 2718,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "QUE": 1217,
+          "RUS": 1501
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13PRIGAR",
+      "face_sha256": "beb77fe1b9f0dc5b04143aee811875f45e4fefe889fe352aaac858cfed15d0d0",
+      "grade_sha256": "d19bb2e2f6928a576a1cea1dfccaa270b077d6e42d73a40250e8e29e026244a0",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13PRIGAR.jsonl",
+        "sha256": "fd64bea4338b66be3e896989e8dc0fa65bc03884d5bc8f17d006335032981a04",
+        "bytes": 677837,
+        "source_rows": 1890,
+        "selected_rows": 1890,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "GAR": 1381,
+          "PRI": 509
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16KORANN",
+      "face_sha256": "32276ac63c9488d4d7d2201ad136fcfb2554ae10ba62ebe30198acd6159a6f5e",
+      "grade_sha256": "71fe4e2433d453c94ba781b18597865fed5f500feeebefbd5b4d0e4bf93e1dad",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL16KORANN.jsonl",
+        "sha256": "cfa57872358f0b67e724e81a5db938ad25210f82996e5a75a636caf97498e007",
+        "bytes": 2082060,
+        "source_rows": 5801,
+        "selected_rows": 5801,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "ANN": 3694,
+          "KOR": 2107
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MORAKS",
+      "face_sha256": "23447faf296c6560ef9b6efb9bb15fdf99a623c28aac4e28a517e1e55d0fb635",
+      "grade_sha256": "647bfd7aaf245db103f93864e7d352562a6eb4516dd92f04499b76613a0feeee",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL18MORAKS.jsonl",
+        "sha256": "1e8b65aefdd9d2926db73176fa032e3901d695bb93e8e0068bb59d4c1a00db84",
+        "bytes": 890147,
+        "source_rows": 2480,
+        "selected_rows": 2480,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "AKS": 1293,
+          "MOR": 1187
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12AVASEI",
+      "face_sha256": "7f83d6f9743a87c9fb3efef595e2338f2a8f0e3a1e52ea62bb4e1fb4e7e29ed5",
+      "grade_sha256": "d1abb9f78c4c4870b4ce91d47c74d7bb7cb897a9073f9e099db73563d47e6396",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL12AVASEI.jsonl",
+        "sha256": "ba44e04d82d5d65c3bc515d2d7130b87667f591ed5e64b1bc342a5c79ae2115a",
+        "bytes": 169562,
+        "source_rows": 473,
+        "selected_rows": 473,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "AVA": 141,
+          "SEI": 332
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19GAOFRU",
+      "face_sha256": "0f4b6cd01320c5e53610c268e8b4bb3f57cc25dcffbc76cf29abd70975e3fd90",
+      "grade_sha256": "9ce29e4b065ca4196fa1c47a6f3a37d47104f9e2680c87b90b3c4fced64654d4",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL19GAOFRU.jsonl",
+        "sha256": "74f459595d2087be3d778b89e45496c3a5426f1114d3217d6992681942e9f216",
+        "bytes": 2343069,
+        "source_rows": 6542,
+        "selected_rows": 6542,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "FRU": 2851,
+          "GAO": 3691
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17PUTSHE",
+      "face_sha256": "ea2757ffb4ec57462bfb7e25570908f46109ed6a47d04870a81fc78e88bde3ac",
+      "grade_sha256": "f5820f9bded9e7a6f5b3fc7b1069e59fb907824d8d5e49e7598943402c095ea8",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL17PUTSHE.jsonl",
+        "sha256": "6366b0523f1718212b5b30dc919e0505bf6b2910da807cfff8084e9e0a575ad9",
+        "bytes": 5646902,
+        "source_rows": 15746,
+        "selected_rows": 15746,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "PUT": 8817,
+          "SHE": 6929
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19YASBAR",
+      "face_sha256": "1b95450fed8de2811732d981ef988e366bcef5ed7564ce837e81a4739ad5dc06",
+      "grade_sha256": "176a683fa5e4132cb59646c20e3a715c03c9d976b515139131add54aa061b2b3",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL19YASBAR.jsonl",
+        "sha256": "d09ae53ff333648e03536b34d0d2bfed57a189e3c9fafb24b0414cd3871a798d",
+        "bytes": 922820,
+        "source_rows": 2570,
+        "selected_rows": 2570,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BAR": 711,
+          "YAS": 1859
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KAWWAL",
+      "face_sha256": "7f2658951cbc2c9617a111f79260c196c2f202269c2c31111ac803bd5dc613fd",
+      "grade_sha256": "38c48621166e77592c1f173296b01666522586002f0e9ed20e74da57dce1e988",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13KAWWAL.jsonl",
+        "sha256": "71e1b0540043ed404f95aa7e8d5be79e8ef6c456021d7f57a5024e14a8c202b7",
+        "bytes": 836524,
+        "source_rows": 2329,
+        "selected_rows": 2329,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "KAW": 1333,
+          "WAL": 996
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14PUTLIU",
+      "face_sha256": "3dc68a07fa1ad638b6505fad593c2a9a4d0fe73a69fe6bb53d90134ae2c6e2f3",
+      "grade_sha256": "69d9b6cd686e2f83a42384c201b541334b3dac3b54c7b816e9c4256c1cf41068",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL14PUTLIU.jsonl",
+        "sha256": "a63bd995f16e5923178b1d8327a057494ec4fb15e789dd0631831c2830afd61b",
+        "bytes": 1622696,
+        "source_rows": 4526,
+        "selected_rows": 4526,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "LIU": 1889,
+          "PUT": 2637
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13MORBEJ",
+      "face_sha256": "5c6e55582830645dab4037ac7138df686b86fafb66da364d7470ce94ca8ea104",
+      "grade_sha256": "db7230d5ee0beff5a2099ad3a90a6d130fccf3e32bc9771504fe46cb9f6e35de",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13MORBEJ.jsonl",
+        "sha256": "3eb7ae0041200ad8182dbc9da8876d6a904e0f647545bb1f13c3bcc16897cb84",
+        "bytes": 1102286,
+        "source_rows": 3074,
+        "selected_rows": 3074,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BEJ": 1159,
+          "MOR": 1915
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PODSTU",
+      "face_sha256": "c4c8ddbff52493660894ae99019c74574c1033f0fe3550f22f68f036a693441f",
+      "grade_sha256": "162c1d28914a33609d8a8a5556de92f4164ae1ca6c4ddd6607752231f98ba812",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL20PODSTU.jsonl",
+        "sha256": "b748d215dfceeecc40852d2eee86dd34c50a6ffcc5844c29aa8245267ada1fde",
+        "bytes": 3870922,
+        "source_rows": 10784,
+        "selected_rows": 10784,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "POD": 4795,
+          "STU": 5989
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MICFRU",
+      "face_sha256": "3fc7af49fe043769c6d5e12eaaa41cfe13e181f22351095ee7cb6b59cafe217e",
+      "grade_sha256": "ca3c1ade7fd58521757ffc0bd7536a9d6f7e7325145227abc8cefe6b933a532c",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL18MICFRU.jsonl",
+        "sha256": "b6a8459c55dcb12d9aa37b841d3d493003637be789c376c75e67a989f4630f25",
+        "bytes": 538623,
+        "source_rows": 1504,
+        "selected_rows": 1504,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "FRU": 700,
+          "MIC": 804
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16VALSAS",
+      "face_sha256": "bae1e87a33fbce4b22f6b7f1b2d57a1e5b33d0711c914c45494c6000796c82fd",
+      "grade_sha256": "82dbe0bf79a7a16be811a414f702c76afe95b2552fb2a2416b0cdff0ffb2d3e8",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL16VALSAS.jsonl",
+        "sha256": "d1f73edc5c18c70761ea002e64c5f877919740f6cd8e89ce0fa713d46a4a651f",
+        "bytes": 565588,
+        "source_rows": 1575,
+        "selected_rows": 1575,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "SAS": 705,
+          "VAL": 870
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17UDVBAD",
+      "face_sha256": "be273aaaed6c9ebebd32563db56eae66718fce393a4ba6eae6dee1f488c9fc96",
+      "grade_sha256": "5ed48e6c1cf8267728110580f03574820cd25ee4bac2166b71786ac2864bfe1e",
+      "print_source": {
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL17UDVBAD.jsonl",
+        "sha256": "de3c54a6cb89825dba9330f9f578628fa81ae0d7b1f1ecaee0f43bf5f481549c",
+        "bytes": 3988558,
+        "source_rows": 11117,
+        "selected_rows": 11117,
+        "duplicate_receipt_rows": 0,
+        "invalid_selected_rows": 0,
+        "rule": "Existing fit-local/prints.jsonl: true_print=true, finite price/time, positive size, receipt_id or trade_id. Duplicate identities per ticker are counted once; conflicting duplicates fail. exchange_ts uses the existing replay Date.parse millisecond clock; equal timestamps retain file order. No book last, interpolation, or synthetic print.",
+        "leg_rows": {
+          "BAD": 4288,
+          "UDV": 6829
+        }
+      }
+    }
+  ],
+  "output": {
+    "path": "index.json",
+    "sha256": "7a6ecdc5b103dd30897099c563ad53ecda81ccb1e4ad375d8bd1ab34d85f95e6"
+  }
+}

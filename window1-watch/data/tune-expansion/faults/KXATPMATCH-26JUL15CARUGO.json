@@ -1,0 +1,237 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPMATCH-26JUL15CARUGO",
+  "category": "ATP_MAIN",
+  "provenance": {
+    "face_sha256": "a6da00ed5ad80cf2b596f4168e45ab5f28053e81957c365171e4391302ad0ccd",
+    "grade_sha256": "ff8bd0bdb2d659fb606378427d5b87b251544ae3a87675613996d34b264fbe28",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "e95349a52e47bec0a2a66f622f0e8952ff8514d314204707d5ad974ea20dfd91",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "532af5e6f895df1d9cb1d3ebd089b82d66bb7a552e84204023c0fabf94dd8492"
+  },
+  "known_span": true,
+  "classes": [
+    "A",
+    "B"
+  ],
+  "header": "UGO: A · bid below path + B · sentence far off",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 2,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "CAR": true,
+      "UGO": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "UGO",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A",
+        "B"
+      ],
+      "A": [
+        {
+          "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-1668",
+          "action": "PLACE",
+          "placement_epoch": 1784071568.00001,
+          "bid_cents": 37,
+          "recorded_floor_cents": 38,
+          "recorded_floor_epoch": 1784085980.8,
+          "floor_minus_placement_minutes": 240.2133331656456,
+          "Q_at_placement": 37,
+          "remaining_positive_print_floor": 38,
+          "later_positive_prints": 69,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+          "action": "PLACE",
+          "placement_epoch": 1784078743.584,
+          "bid_cents": 37,
+          "recorded_floor_cents": 38,
+          "recorded_floor_epoch": 1784085980.8,
+          "floor_minus_placement_minutes": 120.62026666402816,
+          "Q_at_placement": 37,
+          "remaining_positive_print_floor": 38,
+          "later_positive_prints": 62,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "14552e3b-943b-6a85-99ea-8e1246ee4f38",
+          "action": "PLACE",
+          "placement_epoch": 1784085980.847,
+          "bid_cents": 37,
+          "recorded_floor_cents": 38,
+          "recorded_floor_epoch": 1784085980.8,
+          "floor_minus_placement_minutes": -0.0007833321889241536,
+          "Q_at_placement": 37,
+          "remaining_positive_print_floor": 38,
+          "later_positive_prints": 55,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "16539f50-bdd1-442b-b396-1b05dc8c5bbf",
+          "action": "REPRICE",
+          "placement_epoch": 1784091453.645,
+          "bid_cents": 36,
+          "recorded_floor_cents": 38,
+          "recorded_floor_epoch": 1784085980.8,
+          "floor_minus_placement_minutes": -91.21408333381017,
+          "Q_at_placement": 36,
+          "remaining_positive_print_floor": 39,
+          "later_positive_prints": 34,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "ca0de9eb-2a77-609f-f2ac-71aea9342c8a",
+          "action": "PLACE",
+          "placement_epoch": 1784092422.186,
+          "bid_cents": 37,
+          "recorded_floor_cents": 38,
+          "recorded_floor_epoch": 1784085980.8,
+          "floor_minus_placement_minutes": -107.35643333594004,
+          "Q_at_placement": 37,
+          "remaining_positive_print_floor": 39,
+          "later_positive_prints": 32,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "7518d124-ac6d-7d15-8500-42baa0bf49c7",
+          "action": "PLACE",
+          "placement_epoch": 1784099204.256,
+          "bid_cents": 37,
+          "recorded_floor_cents": 38,
+          "recorded_floor_epoch": 1784085980.8,
+          "floor_minus_placement_minutes": -220.39093333482742,
+          "Q_at_placement": 37,
+          "remaining_positive_print_floor": 39,
+          "later_positive_prints": 28,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": {
+        "first_eligible_receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+        "epoch": 1784055330.000001,
+        "Q": 42,
+        "floor": 38,
+        "signed_error_cents": 4,
+        "layer": "FIRST-TICK-ONLY",
+        "member_count": 90,
+        "ess": 32.00752297168538,
+        "weight_sum": 3.2385636397436373,
+        "verification": "Member count, weight sum and ESS reproduced from pinned library using stored receipt state; not a new OS replay.",
+        "top_five": [
+          {
+            "event_id": "KXATPMATCH-26JUN22WALKYR",
+            "date": "2026-06-22",
+            "weight": 0.43213223568538395,
+            "weight_share": 0.1334333006096466,
+            "first_prices": {
+              "KYR": 63,
+              "WAL": 45
+            },
+            "first_epoch": 1782066486,
+            "bell_epoch": 1782142740
+          },
+          {
+            "event_id": "KXATPMATCH-26JUN14SONBAS",
+            "date": "2026-06-14",
+            "weight": 0.13429766184099243,
+            "weight_share": 0.04146827939179338,
+            "first_prices": {
+              "SON": 59,
+              "BAS": 44
+            },
+            "first_epoch": 1781365416,
+            "bell_epoch": 1781435520
+          },
+          {
+            "event_id": "KXATPMATCH-26JUN22BROHOL",
+            "date": "2026-06-22",
+            "weight": 0.11340799330349972,
+            "weight_share": 0.03501799128223308,
+            "first_prices": {
+              "HOL": 61,
+              "BRO": 41
+            },
+            "first_epoch": 1782064160.033142,
+            "bell_epoch": 1782136800
+          },
+          {
+            "event_id": "KXATPMATCH-26JUN17MANFER",
+            "date": "2026-06-17",
+            "weight": 0.09836334105443542,
+            "weight_share": 0.030372520659258006,
+            "first_prices": {
+              "MAN": 61,
+              "FER": 40
+            },
+            "first_epoch": 1781628255.347152,
+            "bell_epoch": 1781702700
+          },
+          {
+            "event_id": "KXATPMATCH-26JUN17TIEAUG",
+            "date": "2026-06-17",
+            "weight": 0.08742945401371537,
+            "weight_share": 0.026996367445364215,
+            "first_prices": {
+              "AUG": 61,
+              "TIE": 41
+            },
+            "first_epoch": 1781609376,
+            "bell_epoch": 1781703600
+          }
+        ],
+        "role_at_call": "CLIMBER",
+        "realized_role": "NOT_CALLABLE",
+        "role_at_call_right": false,
+        "grade_role_assessment": {
+          "called_role": "CLIMBER",
+          "realized_role": "NOT_CALLABLE",
+          "correct": false,
+          "first_recorded_receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+          "first_recorded_epoch": 1784055330.000001,
+          "first_bind_epoch": 1784055330.000001,
+          "final_stored_role": "NOT_CALLABLE",
+          "flip_count": 1,
+          "open_cents": 41,
+          "close_cents": 40,
+          "realized_drift_cents": -1,
+          "role_source": "layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)",
+          "realized_source": "corrected effective_row.legB_close_c - legB_open_postformation_c"
+        },
+        "stage_sha256": "9b5e8fe9dbd22920daa849b2da9f50b726e351deff62509fe15c7a7607c64c16",
+        "source": "Existing grade MICRO first_eligible_full_span; immutable receipt. Member attribution reconstructed with count/ESS/weight-sum parity."
+      },
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 78,
+      "unobserved_placements": []
+    }
+  ]
+}

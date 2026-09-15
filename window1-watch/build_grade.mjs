@@ -5,6 +5,8 @@ import zlib from "node:zlib";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { unpackFace } from "./face_encoding.mjs";
+import { readBidDetails } from "./bid_card_details.mjs";
+import {readJsonBytes,refreshGzipMirror} from './json_storage.mjs';
 import { readGradeRulers } from "./grade_rulers.mjs";
 import { readGradePrints } from "./grade_prints.mjs";
 import {
@@ -26,7 +28,7 @@ const json = (b) => JSON.parse(b);
 const encode = (o) => JSON.stringify(o, null, 2) + "\n";
 async function readJson(file, fallback) {
   try {
-    return json(await fs.readFile(file));
+    return json(readJsonBytes(file));
   } catch (e) {
     if (e.code === "ENOENT" && fallback !== undefined) return fallback;
     throw e;
@@ -34,8 +36,10 @@ async function readJson(file, fallback) {
 }
 async function writeJson(file, data) {
   await fs.mkdir(path.dirname(file), { recursive: true });
-  await fs.writeFile(file + ".tmp", encode(data));
+  const bytes=Buffer.from(encode(data));
+  await fs.writeFile(file + ".tmp", bytes);
   await fs.rename(file + ".tmp", file);
+  refreshGzipMirror(file,bytes);
 }
 async function citation(file, role, external = false) {
   const bytes = await fs.readFile(file);
@@ -259,7 +263,7 @@ export async function build(event, printInput) {
   const dataRoot = path.join(here, "data"),
     faceFile = path.join(dataRoot, event + ".face.json");
   const faceBytes = await fs.readFile(faceFile),
-    face = unpackFace(json(faceBytes));
+    face = readBidDetails(unpackFace(json(faceBytes)), dataRoot);
   if (face.provenance?.event_id !== event)
     throw new Error("Face event mismatch");
   if (!printInput) {

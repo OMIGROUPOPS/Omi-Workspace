@@ -1,0 +1,1935 @@
+{
+  "version": 1,
+  "event": "KXWTAMATCH-26JUL20KUDKOR",
+  "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+  "trace_sha256": "82bbfffa19d1d978028eef22b82831c339deb04cbde4d8f18b2fd02e0848b0cf",
+  "grades": [
+    {
+      "event": "KXWTAMATCH-26JUL20KUDKOR",
+      "status": "UNGRADABLE",
+      "timestamp": "2026-09-14T22:05:39.700Z",
+      "provenance": {
+        "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+        "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+        "trace_sha256": "82bbfffa19d1d978028eef22b82831c339deb04cbde4d8f18b2fd02e0848b0cf",
+        "trace_path": "C:\\tmp\\tune_expansion_20260914\\runs\\KXWTAMATCH-26JUL20KUDKOR\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "cohort": "TUNE_SAMPLE",
+        "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+        "face_sha256": "a1125a60b095683398439886b938ef80b8be650e04223024bf2c68282ee77139",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+      },
+      "SENTENCE": {
+        "receipts_total": 98,
+        "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL20KUDKOR.sentences.json"
+      },
+      "MACRO": {
+        "status": "STORE SILENT",
+        "reason": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      },
+      "MICRO": {
+        "status": "STORE SILENT",
+        "reason": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      },
+      "HANDS": {
+        "actions": [
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-1",
+            "timestamp_epoch": 1784448385.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-1",
+            "timestamp_epoch": 1784448385.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-9",
+            "timestamp_epoch": 1784448414.000003,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-9",
+            "timestamp_epoch": 1784448414.000003,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-11",
+            "timestamp_epoch": 1784448484.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-11",
+            "timestamp_epoch": 1784448484.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-15",
+            "timestamp_epoch": 1784448491.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-15",
+            "timestamp_epoch": 1784448491.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-22",
+            "timestamp_epoch": 1784448527.000002,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-22",
+            "timestamp_epoch": 1784448527.000002,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-19",
+            "timestamp_epoch": 1784448528.000002,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-19",
+            "timestamp_epoch": 1784448528.000002,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-26",
+            "timestamp_epoch": 1784448560.000003,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-26",
+            "timestamp_epoch": 1784448560.000003,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-39",
+            "timestamp_epoch": 1784448961.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-39",
+            "timestamp_epoch": 1784448961.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-40",
+            "timestamp_epoch": 1784448961.000002,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-40",
+            "timestamp_epoch": 1784448961.000002,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-56",
+            "timestamp_epoch": 1784448967.000013,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-56",
+            "timestamp_epoch": 1784448967.000013,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-50",
+            "timestamp_epoch": 1784448968.000003,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-50",
+            "timestamp_epoch": 1784448968.000003,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-62",
+            "timestamp_epoch": 1784448981.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-62",
+            "timestamp_epoch": 1784448981.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-64",
+            "timestamp_epoch": 1784448987.000002,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-64",
+            "timestamp_epoch": 1784448987.000002,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-71",
+            "timestamp_epoch": 1784449006.000003,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-71",
+            "timestamp_epoch": 1784449006.000003,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-73",
+            "timestamp_epoch": 1784449027.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-73",
+            "timestamp_epoch": 1784449027.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1d6ad4fa-a392-5cb8-f0c6-497d9a61620b",
+            "timestamp_epoch": 1784449356.473,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1d6ad4fa-a392-5cb8-f0c6-497d9a61620b",
+            "timestamp_epoch": 1784449356.473,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1ec33a09-091a-7408-fe9a-1fc6e7ebd547",
+            "timestamp_epoch": 1784449831.926,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1ec33a09-091a-7408-fe9a-1fc6e7ebd547",
+            "timestamp_epoch": 1784449831.926,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0700452f-66bb-4729-e9fd-d0c8d99fa087",
+            "timestamp_epoch": 1784450428.655,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0700452f-66bb-4729-e9fd-d0c8d99fa087",
+            "timestamp_epoch": 1784450428.655,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "7002e774-1d32-7420-bda6-eace5e510847",
+            "timestamp_epoch": 1784450438.065,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "7002e774-1d32-7420-bda6-eace5e510847",
+            "timestamp_epoch": 1784450438.065,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c9da8ad6-e7d5-429c-d54d-6ad6cf2166e3",
+            "timestamp_epoch": 1784451034.58,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c9da8ad6-e7d5-429c-d54d-6ad6cf2166e3",
+            "timestamp_epoch": 1784451034.58,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-113",
+            "timestamp_epoch": 1784452508.000003,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-113",
+            "timestamp_epoch": 1784452508.000003,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-120",
+            "timestamp_epoch": 1784453259.000004,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-120",
+            "timestamp_epoch": 1784453259.000004,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-125",
+            "timestamp_epoch": 1784453263.000005,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-125",
+            "timestamp_epoch": 1784453263.000005,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-134",
+            "timestamp_epoch": 1784453267.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-134",
+            "timestamp_epoch": 1784453267.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-137",
+            "timestamp_epoch": 1784453268.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-137",
+            "timestamp_epoch": 1784453268.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-148",
+            "timestamp_epoch": 1784453282.000007,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-148",
+            "timestamp_epoch": 1784453282.000007,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-187",
+            "timestamp_epoch": 1784453336.000002,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-187",
+            "timestamp_epoch": 1784453336.000002,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-199",
+            "timestamp_epoch": 1784453360.000003,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-199",
+            "timestamp_epoch": 1784453360.000003,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d7d1d4b0-825a-6e1c-5678-2c506e5b1db3",
+            "timestamp_epoch": 1784453376.927,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d7d1d4b0-825a-6e1c-5678-2c506e5b1db3",
+            "timestamp_epoch": 1784453376.927,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "9206d935-0eb6-5fff-730a-300fd4d0f7c2",
+            "timestamp_epoch": 1784455240.131,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "9206d935-0eb6-5fff-730a-300fd4d0f7c2",
+            "timestamp_epoch": 1784455240.131,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "9441b799-0f60-5354-4f80-a4003c186a1c",
+            "timestamp_epoch": 1784455240.131,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "9441b799-0f60-5354-4f80-a4003c186a1c",
+            "timestamp_epoch": 1784455240.131,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-567",
+            "timestamp_epoch": 1784459027.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-567",
+            "timestamp_epoch": 1784459027.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "22f71323-ab59-793c-c645-8c9295abeeb4",
+            "timestamp_epoch": 1784459969.34,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "22f71323-ab59-793c-c645-8c9295abeeb4",
+            "timestamp_epoch": 1784459969.34,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "30adffb4-a4a9-4234-352d-e15c54f91d00",
+            "timestamp_epoch": 1784459970.725,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "30adffb4-a4a9-4234-352d-e15c54f91d00",
+            "timestamp_epoch": 1784459970.725,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "92dce82d-cf29-4234-eda1-c5480cf524e8",
+            "timestamp_epoch": 1784459974.502,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "92dce82d-cf29-4234-eda1-c5480cf524e8",
+            "timestamp_epoch": 1784459974.502,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d5daf914-70ed-749c-a9d4-625af03f3a98",
+            "timestamp_epoch": 1784459976.156,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d5daf914-70ed-749c-a9d4-625af03f3a98",
+            "timestamp_epoch": 1784459976.156,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "6b181580-ef1d-75ac-6777-4e7a022b3e28",
+            "timestamp_epoch": 1784459977.632,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "6b181580-ef1d-75ac-6777-4e7a022b3e28",
+            "timestamp_epoch": 1784459977.632,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "7b9f7546-6308-4749-a394-f4fa5cfdf940",
+            "timestamp_epoch": 1784459979.247,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "7b9f7546-6308-4749-a394-f4fa5cfdf940",
+            "timestamp_epoch": 1784459979.247,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "abed2db0-da1c-4e95-b950-67a384101498",
+            "timestamp_epoch": 1784459980.825,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "abed2db0-da1c-4e95-b950-67a384101498",
+            "timestamp_epoch": 1784459980.825,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "489d551b-4334-62d5-85dc-6046128fd654",
+            "timestamp_epoch": 1784459982.259,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "489d551b-4334-62d5-85dc-6046128fd654",
+            "timestamp_epoch": 1784459982.259,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "dede6a16-32b4-63f9-6dd8-414e2714600c",
+            "timestamp_epoch": 1784460028.378,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "dede6a16-32b4-63f9-6dd8-414e2714600c",
+            "timestamp_epoch": 1784460028.378,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "70779407-ee9c-70c5-081f-588aefde8cc8",
+            "timestamp_epoch": 1784460030.668,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "70779407-ee9c-70c5-081f-588aefde8cc8",
+            "timestamp_epoch": 1784460030.668,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "ea425007-7740-69a9-7340-5b222e14f894",
+            "timestamp_epoch": 1784460032.532,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "ea425007-7740-69a9-7340-5b222e14f894",
+            "timestamp_epoch": 1784460032.532,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "ebe83020-3c50-5bad-74f0-2b2444d23794",
+            "timestamp_epoch": 1784460033.882,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "ebe83020-3c50-5bad-74f0-2b2444d23794",
+            "timestamp_epoch": 1784460033.882,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "15e38f6e-f36c-53d1-880d-c1680b6da24c",
+            "timestamp_epoch": 1784460035.375,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "15e38f6e-f36c-53d1-880d-c1680b6da24c",
+            "timestamp_epoch": 1784460035.375,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "84f4864a-2688-6779-8133-495e35a7e8b4",
+            "timestamp_epoch": 1784460036.974,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "84f4864a-2688-6779-8133-495e35a7e8b4",
+            "timestamp_epoch": 1784460036.974,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "7e24a134-fa0c-6041-8abd-8c29366b12c4",
+            "timestamp_epoch": 1784460038.269,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "7e24a134-fa0c-6041-8abd-8c29366b12c4",
+            "timestamp_epoch": 1784460038.269,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "209b46e8-0674-76c5-c343-6ba1f97a4a98",
+            "timestamp_epoch": 1784460039.784,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "209b46e8-0674-76c5-c343-6ba1f97a4a98",
+            "timestamp_epoch": 1784460039.784,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "ec60d898-b1a8-5b15-c59d-862bba91675c",
+            "timestamp_epoch": 1784460100.366,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "ec60d898-b1a8-5b15-c59d-862bba91675c",
+            "timestamp_epoch": 1784460100.366,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "aea8dc44-b548-6de5-a818-8697bf05e36c",
+            "timestamp_epoch": 1784460101.659,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "aea8dc44-b548-6de5-a818-8697bf05e36c",
+            "timestamp_epoch": 1784460101.659,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "52a0090b-4ff8-4d79-f31a-22b3ec015094",
+            "timestamp_epoch": 1784460148.366,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "52a0090b-4ff8-4d79-f31a-22b3ec015094",
+            "timestamp_epoch": 1784460148.366,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "94d6cc9b-2c3c-487d-0e1c-c022ef65f878",
+            "timestamp_epoch": 1784460150.135,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "94d6cc9b-2c3c-487d-0e1c-c022ef65f878",
+            "timestamp_epoch": 1784460150.135,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "02a1b0f9-4bbc-5e91-5068-790d0c219f34",
+            "timestamp_epoch": 1784460151.653,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "02a1b0f9-4bbc-5e91-5068-790d0c219f34",
+            "timestamp_epoch": 1784460151.653,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "6189d34b-7100-4441-7663-bca2adbc6f44",
+            "timestamp_epoch": 1784460153.023,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "6189d34b-7100-4441-7663-bca2adbc6f44",
+            "timestamp_epoch": 1784460153.023,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d4f8ed67-40dc-5fd1-9ba7-b2c040ef89a4",
+            "timestamp_epoch": 1784460154.593,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d4f8ed67-40dc-5fd1-9ba7-b2c040ef89a4",
+            "timestamp_epoch": 1784460154.593,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "a433139b-e0e8-7139-1edb-5e25b4b29820",
+            "timestamp_epoch": 1784460156.083,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "a433139b-e0e8-7139-1edb-5e25b4b29820",
+            "timestamp_epoch": 1784460156.083,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2dd97c34-7e7c-7fed-3358-aedea631b28c",
+            "timestamp_epoch": 1784460157.397,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2dd97c34-7e7c-7fed-3358-aedea631b28c",
+            "timestamp_epoch": 1784460157.397,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1d78d923-7454-5781-e7ff-04e8f0638554",
+            "timestamp_epoch": 1784460158.651,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1d78d923-7454-5781-e7ff-04e8f0638554",
+            "timestamp_epoch": 1784460158.651,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d59ffd21-ef6c-65e9-1f8e-3089fa4f179c",
+            "timestamp_epoch": 1784460208.583,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d59ffd21-ef6c-65e9-1f8e-3089fa4f179c",
+            "timestamp_epoch": 1784460208.583,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c2ed5446-1c50-63b9-5744-4af9d9d81194",
+            "timestamp_epoch": 1784460210.156,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c2ed5446-1c50-63b9-5744-4af9d9d81194",
+            "timestamp_epoch": 1784460210.156,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1339e113-c5e8-4be1-d7d1-5f9914e4f4cc",
+            "timestamp_epoch": 1784460211.624,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1339e113-c5e8-4be1-d7d1-5f9914e4f4cc",
+            "timestamp_epoch": 1784460211.624,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "faae0819-5728-77d9-5e0d-8db3844b6894",
+            "timestamp_epoch": 1784460212.807,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "faae0819-5728-77d9-5e0d-8db3844b6894",
+            "timestamp_epoch": 1784460212.807,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "aa27d738-b7f8-6181-b79e-98c86e615a20",
+            "timestamp_epoch": 1784460214.458,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "aa27d738-b7f8-6181-b79e-98c86e615a20",
+            "timestamp_epoch": 1784460214.458,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "199ae6e0-1dcc-4231-dc61-d847e4e5b194",
+            "timestamp_epoch": 1784460215.903,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "199ae6e0-1dcc-4231-dc61-d847e4e5b194",
+            "timestamp_epoch": 1784460215.903,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "7d13fc67-9394-5155-bae1-8cdd2563f8f4",
+            "timestamp_epoch": 1784460217.409,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "7d13fc67-9394-5155-bae1-8cdd2563f8f4",
+            "timestamp_epoch": 1784460217.409,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c12a2fb7-bbf0-4ab9-ad16-6a88f8e7c8b8",
+            "timestamp_epoch": 1784460218.62,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c12a2fb7-bbf0-4ab9-ad16-6a88f8e7c8b8",
+            "timestamp_epoch": 1784460218.62,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c9770748-75f8-7665-8153-25c90181d524",
+            "timestamp_epoch": 1784460268.321,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c9770748-75f8-7665-8153-25c90181d524",
+            "timestamp_epoch": 1784460268.321,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "adcb0c4c-6c04-41f9-fcf9-6f509e178e1c",
+            "timestamp_epoch": 1784460269.288,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "adcb0c4c-6c04-41f9-fcf9-6f509e178e1c",
+            "timestamp_epoch": 1784460269.288,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "12ad9859-e8b8-73d1-f310-51452e2b2b1c",
+            "timestamp_epoch": 1784460271.013,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "12ad9859-e8b8-73d1-f310-51452e2b2b1c",
+            "timestamp_epoch": 1784460271.013,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "8d732150-56e4-569d-3246-f51981c2820c",
+            "timestamp_epoch": 1784460275.168,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "8d732150-56e4-569d-3246-f51981c2820c",
+            "timestamp_epoch": 1784460275.168,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "88a57620-2724-6ca1-fb6f-fc7a3576ce84",
+            "timestamp_epoch": 1784460277.063,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "88a57620-2724-6ca1-fb6f-fc7a3576ce84",
+            "timestamp_epoch": 1784460277.063,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "41859276-6dbc-5cf9-7183-04554e212388",
+            "timestamp_epoch": 1784460279.112,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "41859276-6dbc-5cf9-7183-04554e212388",
+            "timestamp_epoch": 1784460279.112,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "34482710-37f4-62d5-809c-001a5a095038",
+            "timestamp_epoch": 1784460280.772,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "34482710-37f4-62d5-809c-001a5a095038",
+            "timestamp_epoch": 1784460280.772,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "66669f19-d4e0-57d9-1e79-48695379cea0",
+            "timestamp_epoch": 1784460282.237,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "66669f19-d4e0-57d9-1e79-48695379cea0",
+            "timestamp_epoch": 1784460282.237,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "de2cf286-e270-6b71-35f0-68246b602acc",
+            "timestamp_epoch": 1784460284.384,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "de2cf286-e270-6b71-35f0-68246b602acc",
+            "timestamp_epoch": 1784460284.384,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "141cf783-8601-66f9-fa96-c19ab748e473",
+            "timestamp_epoch": 1784460301.43,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "141cf783-8601-66f9-fa96-c19ab748e473",
+            "timestamp_epoch": 1784460301.43,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2b6c63ff-4955-6b2a-f96b-390c8ab81692",
+            "timestamp_epoch": 1784460301.43,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2b6c63ff-4955-6b2a-f96b-390c8ab81692",
+            "timestamp_epoch": 1784460301.43,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "5612dc8e-b0f8-6b62-dc2c-f39405efb7d3",
+            "timestamp_epoch": 1784460301.43,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "5612dc8e-b0f8-6b62-dc2c-f39405efb7d3",
+            "timestamp_epoch": 1784460301.43,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "59180c0d-55c8-6d66-ecca-6435fb093745",
+            "timestamp_epoch": 1784460301.43,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "59180c0d-55c8-6d66-ecca-6435fb093745",
+            "timestamp_epoch": 1784460301.43,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0ec1e076-26c8-6aae-e746-0e84d81fa7e1",
+            "timestamp_epoch": 1784460308.381,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "0ec1e076-26c8-6aae-e746-0e84d81fa7e1",
+            "timestamp_epoch": 1784460308.381,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "00932f9a-1638-4252-0a78-cf550b9124a9",
+            "timestamp_epoch": 1784460341.024,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "00932f9a-1638-4252-0a78-cf550b9124a9",
+            "timestamp_epoch": 1784460341.024,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d13c3474-95b7-4c44-2962-e60d79a719b2",
+            "timestamp_epoch": 1784460341.024,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "d13c3474-95b7-4c44-2962-e60d79a719b2",
+            "timestamp_epoch": 1784460341.024,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "da765cde-73db-463a-13f6-277ee4426594",
+            "timestamp_epoch": 1784460341.024,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "da765cde-73db-463a-13f6-277ee4426594",
+            "timestamp_epoch": 1784460341.024,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2a5c5a7f-1843-6e78-3b07-772336c3609e",
+            "timestamp_epoch": 1784460355.811,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "2a5c5a7f-1843-6e78-3b07-772336c3609e",
+            "timestamp_epoch": 1784460355.811,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4925c6ae-9f9f-61f4-d709-db2241bb9fce",
+            "timestamp_epoch": 1784460405.241,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "4925c6ae-9f9f-61f4-d709-db2241bb9fce",
+            "timestamp_epoch": 1784460405.241,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-991",
+            "timestamp_epoch": 1784460803.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-991",
+            "timestamp_epoch": 1784460803.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "b2ea545c-5883-4b9c-97d4-fab3490a6fd9",
+            "timestamp_epoch": 1784460808.486,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "b2ea545c-5883-4b9c-97d4-fab3490a6fd9",
+            "timestamp_epoch": 1784460808.486,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "01336183-eaa3-72b5-42d7-d190401febff",
+            "timestamp_epoch": 1784460975.906,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "01336183-eaa3-72b5-42d7-d190401febff",
+            "timestamp_epoch": 1784460975.906,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "77fbbb60-c319-72cd-59fc-de935e25d3e3",
+            "timestamp_epoch": 1784460975.906,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "77fbbb60-c319-72cd-59fc-de935e25d3e3",
+            "timestamp_epoch": 1784460975.906,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-925",
+            "timestamp_epoch": 1784461032.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-925",
+            "timestamp_epoch": 1784461032.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-932",
+            "timestamp_epoch": 1784461135.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-932",
+            "timestamp_epoch": 1784461135.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-936",
+            "timestamp_epoch": 1784461136.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-936",
+            "timestamp_epoch": 1784461136.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "bc4be9fa-fee8-4666-4a09-56fde714825e",
+            "timestamp_epoch": 1784461381.435,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "bc4be9fa-fee8-4666-4a09-56fde714825e",
+            "timestamp_epoch": 1784461381.435,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "05dfc6d1-8ba0-79c2-332d-e8b9e73dca32",
+            "timestamp_epoch": 1784461536.314,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "05dfc6d1-8ba0-79c2-332d-e8b9e73dca32",
+            "timestamp_epoch": 1784461536.314,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-1150",
+            "timestamp_epoch": 1784466946.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-1150",
+            "timestamp_epoch": 1784466946.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-978",
+            "timestamp_epoch": 1784476071.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-978",
+            "timestamp_epoch": 1784476071.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-978",
+            "timestamp_epoch": 1784476071.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KOR.csv.gz#row-978",
+            "timestamp_epoch": 1784476071.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-1154",
+            "timestamp_epoch": 1784485091.000001,
+            "leg": "KOR",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTAMATCH-26JUL20KUDKOR-KUD.csv.gz#row-1154",
+            "timestamp_epoch": 1784485091.000001,
+            "leg": "KUD",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          }
+        ],
+        "execution": {
+          "run_source": "V54_BOOK_VETO_ONLY_20260826",
+          "gradeable": false,
+          "completed": false,
+          "combined_entry_cents": null,
+          "delta_vs_100_cents": null,
+          "legs": {
+            "KOR": {
+              "credited": false,
+              "entry_cents": null,
+              "standing_target_cents": null,
+              "fill_receipt": null,
+              "fill_event_receipt": null,
+              "fill_timestamp_epoch": null,
+              "standing_license_basis": null,
+              "standing_license_receipt": null,
+              "standing_captured_rest_level_cents": null,
+              "standing_captured_rest_license_receipt": null
+            },
+            "KUD": {
+              "credited": false,
+              "entry_cents": null,
+              "standing_target_cents": null,
+              "fill_receipt": null,
+              "fill_event_receipt": null,
+              "fill_timestamp_epoch": null,
+              "standing_license_basis": null,
+              "standing_license_receipt": null,
+              "standing_captured_rest_level_cents": null,
+              "standing_captured_rest_license_receipt": null
+            }
+          }
+        }
+      },
+      "OUTCOME": {
+        "legs": {
+          "KOR": {
+            "filled": false,
+            "cents": null,
+            "valid_span_fill": "STORE SILENT",
+            "reason": "UNKNOWN"
+          },
+          "KUD": {
+            "filled": false,
+            "cents": null,
+            "valid_span_fill": "STORE SILENT",
+            "reason": "UNKNOWN"
+          }
+        },
+        "pair_completed": false,
+        "valid_pair_completed": "STORE SILENT",
+        "pair_sum": null,
+        "captured_cents": null,
+        "best_capturable_cents": null,
+        "capture_ratio": null
+      },
+      "LETTER": {
+        "letter": "STORE SILENT",
+        "governing_section": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      },
+      "display": {
+        "letter": "—",
+        "label": "UNGRADABLE",
+        "governing": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+        "ruler_line": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+        "sections": [
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          },
+          {
+            "name": "TRADE",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          },
+          {
+            "name": "PAIR",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          }
+        ],
+        "diagnostic_hover_lines": [
+          "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+        ]
+      },
+      "RULER_COLUMNS": {
+        "role": "RULER COMPARISON ONLY — NOT AN OS INPUT",
+        "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+        "selection": "ALL FILED CORRECTIONS IN LEDGER ORDER — effective grading ruler; original rows retained",
+        "original_table": {
+          "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "6229722392da3d21ef1b12372c17d33c2de04e46cb28a5797f8dd684b3519661",
+          "row_number": 744,
+          "row_csv": "26JUL20KUDKOR,KXWTAMATCH-26JUL20KUDKOR,WTA_MAIN,1784448385,1784448385,1784545200,1784545200.0,KOR,KUD,1784448987,67.5,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1784448968,33.5,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1784448987,,,,1784489491.0,,UNKNOWN,no evidence; not guessed,1784448987,,UNKNOWN,NEITHER_FOR_REASON,",
+          "values": {
+            "code": "26JUL20KUDKOR",
+            "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+            "category": "WTA_MAIN",
+            "recorder_open_epoch": "1784448385",
+            "w1_left_epoch": "1784448385",
+            "w1_right_epoch": "1784545200",
+            "scheduled_start_epoch": "1784545200.0",
+            "legA": "KOR",
+            "legB": "KUD",
+            "legA_formation_end_epoch": "1784448987",
+            "legA_open_postformation_c": "67.5",
+            "legA_floor_c": "UNKNOWN",
+            "legA_floor_epoch": "UNKNOWN",
+            "legA_close_c": "UNKNOWN",
+            "legA_close_epoch": "UNKNOWN",
+            "legA_contracts": "UNKNOWN",
+            "legA_premium_usd": "UNKNOWN",
+            "legA_journey": "UNKNOWN",
+            "legA_net_travel_c": "UNKNOWN",
+            "legA_us_first_post_epoch": "",
+            "legA_us_fill_c": "",
+            "legA_us_fill_epoch": "",
+            "legA_us_fill_stamp": "",
+            "legB_formation_end_epoch": "1784448968",
+            "legB_open_postformation_c": "33.5",
+            "legB_floor_c": "UNKNOWN",
+            "legB_floor_epoch": "UNKNOWN",
+            "legB_close_c": "UNKNOWN",
+            "legB_close_epoch": "UNKNOWN",
+            "legB_contracts": "UNKNOWN",
+            "legB_premium_usd": "UNKNOWN",
+            "legB_journey": "UNKNOWN",
+            "legB_net_travel_c": "UNKNOWN",
+            "legB_us_first_post_epoch": "",
+            "legB_us_fill_c": "",
+            "legB_us_fill_epoch": "",
+            "legB_us_fill_stamp": "",
+            "formation_end_game": "1784448987",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "",
+            "kalshi_close_time_epoch": "1784489491.0",
+            "bell_epoch": "",
+            "bell_source": "UNKNOWN",
+            "bell_precision": "no evidence; not guessed",
+            "span_start_epoch": "1784448987",
+            "span_end_epoch": "",
+            "verified_span": "UNKNOWN",
+            "pair_state": "NEITHER_FOR_REASON",
+            "locked_delta_valid_fills_c": ""
+          },
+          "status": "UNKNOWN",
+          "bell_epoch": null,
+          "bell_source": "UNKNOWN",
+          "span_start_epoch": 1784448987,
+          "span_end_epoch": null,
+          "legs": {
+            "KOR": {
+              "floor_cents": null,
+              "floor_epoch": null,
+              "close_cents": null,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "close_cents": "legA_close_c"
+              }
+            },
+            "KUD": {
+              "floor_cents": null,
+              "floor_epoch": null,
+              "close_cents": null,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "close_cents": "legB_close_c"
+              }
+            }
+          },
+          "floor_sum_cents": null,
+          "under_par_cents": null,
+          "campaign_ruler_columns": {},
+          "column_note": "Pinned CSV uses legA_floor_c / legB_floor_c, not a literal floor_cents column; absent campaign/ruler columns are not invented."
+        },
+        "correction_source": {
+          "commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+          "sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+        },
+        "restated_rows": [],
+        "effective_truth": {
+          "role": "RULER — NOT AN OS INPUT",
+          "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "6229722392da3d21ef1b12372c17d33c2de04e46cb28a5797f8dd684b3519661",
+          "row_number": 744,
+          "row_csv": "26JUL20KUDKOR,KXWTAMATCH-26JUL20KUDKOR,WTA_MAIN,1784448385,1784448385,1784545200,1784545200.0,KOR,KUD,1784448987,67.5,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1784448968,33.5,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1784448987,,,,1784489491.0,,UNKNOWN,no evidence; not guessed,1784448987,,UNKNOWN,NEITHER_FOR_REASON,",
+          "verified_span": "UNKNOWN",
+          "status": "STORE_SILENT",
+          "reason": "UNKNOWN",
+          "span_start_epoch": 1784448987,
+          "span_end_epoch": null,
+          "bell_epoch": null,
+          "bell_source": "UNKNOWN",
+          "table_bell_epoch": null,
+          "table_bell_source": "UNKNOWN",
+          "table_bell_delta_seconds": null,
+          "legs": {
+            "KOR": {
+              "status": "STORE_SILENT",
+              "reason": "UNKNOWN",
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "anchor_cents": "legA_open_postformation_c"
+              },
+              "anchor_cents": 67.5,
+              "floor_cents": null,
+              "floor_epoch": null,
+              "minutes_to_bell": null,
+              "line": "KOR: STORE SILENT — UNKNOWN",
+              "marker_label": null,
+              "chart_label": null,
+              "hover_note": null,
+              "markers": {}
+            },
+            "KUD": {
+              "status": "STORE_SILENT",
+              "reason": "UNKNOWN",
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "anchor_cents": "legB_open_postformation_c"
+              },
+              "anchor_cents": 33.5,
+              "floor_cents": null,
+              "floor_epoch": null,
+              "minutes_to_bell": null,
+              "line": "KUD: STORE SILENT — UNKNOWN",
+              "marker_label": null,
+              "chart_label": null,
+              "hover_note": null,
+              "markers": {}
+            }
+          },
+          "favorite_leg": "KOR",
+          "underdog_leg": "KUD",
+          "pair": {
+            "sum_cents": null,
+            "discount_cents": null,
+            "reason": "UNKNOWN",
+            "line": "best capturable = STORE SILENT — UNKNOWN",
+            "discount_line": "STORE SILENT",
+            "compact_line": "best capturable STORE SILENT — UNKNOWN"
+          },
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "effective_row": {
+            "code": "26JUL20KUDKOR",
+            "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+            "category": "WTA_MAIN",
+            "recorder_open_epoch": "1784448385",
+            "w1_left_epoch": "1784448385",
+            "w1_right_epoch": "1784545200",
+            "scheduled_start_epoch": "1784545200.0",
+            "legA": "KOR",
+            "legB": "KUD",
+            "legA_formation_end_epoch": "1784448987",
+            "legA_open_postformation_c": "67.5",
+            "legA_floor_c": "UNKNOWN",
+            "legA_floor_epoch": "UNKNOWN",
+            "legA_close_c": "UNKNOWN",
+            "legA_close_epoch": "UNKNOWN",
+            "legA_contracts": "UNKNOWN",
+            "legA_premium_usd": "UNKNOWN",
+            "legA_journey": "UNKNOWN",
+            "legA_net_travel_c": "UNKNOWN",
+            "legA_us_first_post_epoch": "",
+            "legA_us_fill_c": "",
+            "legA_us_fill_epoch": "",
+            "legA_us_fill_stamp": "",
+            "legB_formation_end_epoch": "1784448968",
+            "legB_open_postformation_c": "33.5",
+            "legB_floor_c": "UNKNOWN",
+            "legB_floor_epoch": "UNKNOWN",
+            "legB_close_c": "UNKNOWN",
+            "legB_close_epoch": "UNKNOWN",
+            "legB_contracts": "UNKNOWN",
+            "legB_premium_usd": "UNKNOWN",
+            "legB_journey": "UNKNOWN",
+            "legB_net_travel_c": "UNKNOWN",
+            "legB_us_first_post_epoch": "",
+            "legB_us_fill_c": "",
+            "legB_us_fill_epoch": "",
+            "legB_us_fill_stamp": "",
+            "formation_end_game": "1784448987",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "",
+            "kalshi_close_time_epoch": "1784489491.0",
+            "bell_epoch": "",
+            "bell_source": "UNKNOWN",
+            "bell_precision": "no evidence; not guessed",
+            "span_start_epoch": "1784448987",
+            "span_end_epoch": "",
+            "verified_span": "UNKNOWN",
+            "pair_state": "NEITHER_FOR_REASON",
+            "locked_delta_valid_fills_c": ""
+          },
+          "row_csv_role": "Original pinned row, before correction overlays"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "2a981951b3f4c78d97f00a2b5c83f1fae4bc0e56f60ef33a38e43151851e58c0",
+    "grade_sha256": "36d3bce0ced2036fa6cb9bee3695aef8deb47b4f75b37ba264d4f068276e8b59",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "889f49134e2afce697702ee165be5eecc7e5d4651b8d4727a28b1e309b344968",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "05123cd4e90c1f9140929134d96efb2fa097cbcf6f424b5821d49cc56ece8da8"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "OLI: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 2,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "LAS": true,
+      "OLI": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "OLI",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19OLILAS-LAS.csv.gz#row-335",
+          "action": "PLACE",
+          "placement_epoch": 1784424858.000001,
+          "bid_cents": 92,
+          "recorded_floor_cents": 94,
+          "recorded_floor_epoch": 1784415190.7,
+          "floor_minus_placement_minutes": -161.1216666817665,
+          "Q_at_placement": 92,
+          "remaining_positive_print_floor": 95,
+          "later_positive_prints": 8,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19OLILAS|ATLAS_GATE|1784425740",
+          "action": "REPRICE",
+          "placement_epoch": 1784425740,
+          "bid_cents": 91,
+          "recorded_floor_cents": 94,
+          "recorded_floor_epoch": 1784415190.7,
+          "floor_minus_placement_minutes": -175.82166666587193,
+          "Q_at_placement": 91,
+          "remaining_positive_print_floor": 95,
+          "later_positive_prints": 8,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "9294a40b-1ba4-5aae-45b8-86349452646f",
+          "action": "REPRICE",
+          "placement_epoch": 1784429384.069,
+          "bid_cents": 93,
+          "recorded_floor_cents": 94,
+          "recorded_floor_epoch": 1784415190.7,
+          "floor_minus_placement_minutes": -236.55614999930063,
+          "Q_at_placement": 93,
+          "remaining_positive_print_floor": 95,
+          "later_positive_prints": 7,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "d5d1c91b-bbb9-7dc3-934a-e8d4fd65b352",
+          "action": "REPRICE",
+          "placement_epoch": 1784432203.601,
+          "bid_cents": 94,
+          "recorded_floor_cents": 94,
+          "recorded_floor_epoch": 1784415190.7,
+          "floor_minus_placement_minutes": -283.54835000038145,
+          "Q_at_placement": 94,
+          "remaining_positive_print_floor": 95,
+          "later_positive_prints": 7,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19OLILAS-LAS.csv.gz#row-544",
+          "action": "REPRICE",
+          "placement_epoch": 1784435518.000002,
+          "bid_cents": 93,
+          "recorded_floor_cents": 94,
+          "recorded_floor_epoch": 1784415190.7,
+          "floor_minus_placement_minutes": -338.78833336432774,
+          "Q_at_placement": 93,
+          "remaining_positive_print_floor": 95,
+          "later_positive_prints": 7,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19OLILAS-LAS.csv.gz#row-626",
+          "action": "PLACE",
+          "placement_epoch": 1784441162.000001,
+          "bid_cents": 94,
+          "recorded_floor_cents": 94,
+          "recorded_floor_epoch": 1784415190.7,
+          "floor_minus_placement_minutes": -432.85500001509985,
+          "Q_at_placement": 94,
+          "remaining_positive_print_floor": 95,
+          "later_positive_prints": 6,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 15,
+      "unobserved_placements": []
+    }
+  ]
+}

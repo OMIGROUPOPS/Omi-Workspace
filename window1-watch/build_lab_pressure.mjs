@@ -5,6 +5,8 @@ import { dirname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gunzipSync } from 'node:zlib';
 import { packFace, unpackFace } from './face_encoding.mjs';
+import { readBidDetails } from './bid_card_details.mjs';
+import {refreshGzipMirror} from './json_storage.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const sha = value => createHash('sha256').update(value).digest('hex');
@@ -160,7 +162,7 @@ export function projectExecutions(face) {
 export function buildPressure(dataRoot, event) {
   if (!/^[A-Z0-9-]+$/.test(event)) throw new Error('Invalid pressure event');
   const bytes = readFileSync(resolve(dataRoot, `${event}.face.json`));
-  const face = unpackFace(JSON.parse(bytes)), rows = [], missing = [];
+  const face = readBidDetails(unpackFace(JSON.parse(bytes)), dataRoot), rows = [], missing = [];
   for (const receipt of face.os) {
     if (receipt.kind !== 'DECISION_STAGE') continue;
     const relative = `${event}.stages/${receipt.receipt_id}.json.gz`;
@@ -180,6 +182,7 @@ export function buildPressure(dataRoot, event) {
     missing_receipt_indices:missing, executions:projectExecutions(face), rows:encoded.os, dictionary:encoded.dictionary};
   const payload = JSON.stringify(result)+'\n';
   writeFileSync(resolve(dataRoot, `${event}.pressure.json`), payload);
+  refreshGzipMirror(resolve(dataRoot, `${event}.pressure.json`),Buffer.from(payload));
   return {event, rows:rows.length, missing:missing.length, bytes:Buffer.byteLength(payload), sha256:sha(payload)};
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

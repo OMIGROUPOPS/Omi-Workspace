@@ -1,0 +1,2767 @@
+{
+  "version": 1,
+  "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+  "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+  "trace_sha256": "4226af8572e5336a9eda96bcc76917c07791d99ae11f8599e366ab7a72d185ef",
+  "grades": [
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "status": "UNGRADABLE",
+      "timestamp": "2026-09-14T22:04:47.556Z",
+      "provenance": {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+        "os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+        "trace_sha256": "4226af8572e5336a9eda96bcc76917c07791d99ae11f8599e366ab7a72d185ef",
+        "trace_path": "C:\\tmp\\tune_expansion_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL14RABRUS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "cohort": "TUNE_SAMPLE",
+        "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+        "face_sha256": "70cfdae2dfff4644758946527eac4732365b95ee9118f3740c5984f29f59a42c",
+        "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+      },
+      "SENTENCE": {
+        "receipts_total": 150,
+        "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL14RABRUS.sentences.json"
+      },
+      "MACRO": {
+        "status": "STORE SILENT",
+        "reason": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      },
+      "MICRO": {
+        "status": "STORE SILENT",
+        "reason": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      },
+      "HANDS": {
+        "actions": [
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-1",
+            "timestamp_epoch": 1783985449.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-1",
+            "timestamp_epoch": 1783985449.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-2",
+            "timestamp_epoch": 1783985452.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-2",
+            "timestamp_epoch": 1783985452.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-3",
+            "timestamp_epoch": 1783985453.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-3",
+            "timestamp_epoch": 1783985453.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-8",
+            "timestamp_epoch": 1783985453.000006,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-8",
+            "timestamp_epoch": 1783985453.000006,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-29",
+            "timestamp_epoch": 1783985512.000006,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-29",
+            "timestamp_epoch": 1783985512.000006,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-30",
+            "timestamp_epoch": 1783985525.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-30",
+            "timestamp_epoch": 1783985525.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-31",
+            "timestamp_epoch": 1783985525.000002,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-31",
+            "timestamp_epoch": 1783985525.000002,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-34",
+            "timestamp_epoch": 1783985528.000002,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-34",
+            "timestamp_epoch": 1783985528.000002,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-35",
+            "timestamp_epoch": 1783985531.000002,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-35",
+            "timestamp_epoch": 1783985531.000002,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-39",
+            "timestamp_epoch": 1783985568.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-39",
+            "timestamp_epoch": 1783985568.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-44",
+            "timestamp_epoch": 1783985571.000002,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-44",
+            "timestamp_epoch": 1783985571.000002,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-50",
+            "timestamp_epoch": 1783985683.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-50",
+            "timestamp_epoch": 1783985683.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-126",
+            "timestamp_epoch": 1783985716.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-126",
+            "timestamp_epoch": 1783985716.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "a3a8969b-81bb-762f-492f-30c1aaf28407",
+            "timestamp_epoch": 1783985716.559,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "a3a8969b-81bb-762f-492f-30c1aaf28407",
+            "timestamp_epoch": 1783985716.559,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2a26a40d-99f3-4f1e-af78-4018a19fd742",
+            "timestamp_epoch": 1783985716.713,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2a26a40d-99f3-4f1e-af78-4018a19fd742",
+            "timestamp_epoch": 1783985716.713,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d0173d28-72e6-6d61-af62-7ce99e0c2ce6",
+            "timestamp_epoch": 1783986671.19,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d0173d28-72e6-6d61-af62-7ce99e0c2ce6",
+            "timestamp_epoch": 1783986671.19,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-310",
+            "timestamp_epoch": 1783987667.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-310",
+            "timestamp_epoch": 1783987667.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "a1f42538-c2fd-70a8-91d3-8dd5263c933c",
+            "timestamp_epoch": 1783995496.792,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "a1f42538-c2fd-70a8-91d3-8dd5263c933c",
+            "timestamp_epoch": 1783995496.792,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "cb50ec3a-4fa5-5b48-5532-e8ce39b76fbc",
+            "timestamp_epoch": 1783995510.668,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "cb50ec3a-4fa5-5b48-5532-e8ce39b76fbc",
+            "timestamp_epoch": 1783995510.668,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-493",
+            "timestamp_epoch": 1783996243.000004,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-493",
+            "timestamp_epoch": 1783996243.000004,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d25760a3-be01-55d4-66ea-401ec5647fb4",
+            "timestamp_epoch": 1783997507.606,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d25760a3-be01-55d4-66ea-401ec5647fb4",
+            "timestamp_epoch": 1783997507.606,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "b475e34a-334d-4828-e9f5-3bbf8d2f9608",
+            "timestamp_epoch": 1783997519.97,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "b475e34a-334d-4828-e9f5-3bbf8d2f9608",
+            "timestamp_epoch": 1783997519.97,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "fb788a05-a1c1-6514-82ca-94e4ee1acc6c",
+            "timestamp_epoch": 1783998170.255,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "fb788a05-a1c1-6514-82ca-94e4ee1acc6c",
+            "timestamp_epoch": 1783998170.255,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3512ed05-dd25-7a7c-f7da-92d9228fcb58",
+            "timestamp_epoch": 1784000199.329,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3512ed05-dd25-7a7c-f7da-92d9228fcb58",
+            "timestamp_epoch": 1784000199.329,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c8b873df-0873-5442-1167-8a356a70a261",
+            "timestamp_epoch": 1784000997.701,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c8b873df-0873-5442-1167-8a356a70a261",
+            "timestamp_epoch": 1784000997.701,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-730",
+            "timestamp_epoch": 1784006917.000006,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-730",
+            "timestamp_epoch": 1784006917.000006,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-757",
+            "timestamp_epoch": 1784017795.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-757",
+            "timestamp_epoch": 1784017795.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-1146",
+            "timestamp_epoch": 1784028635.000004,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-1146",
+            "timestamp_epoch": 1784028635.000004,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-3054",
+            "timestamp_epoch": 1784037906.000002,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-3054",
+            "timestamp_epoch": 1784037906.000002,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d5d81728-f5ab-4df6-811a-f1807f53bba1",
+            "timestamp_epoch": 1784037966.851,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d5d81728-f5ab-4df6-811a-f1807f53bba1",
+            "timestamp_epoch": 1784037966.851,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "f74691e0-3104-7b35-409d-464ab5745116",
+            "timestamp_epoch": 1784038022.517,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "f74691e0-3104-7b35-409d-464ab5745116",
+            "timestamp_epoch": 1784038022.517,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-3144",
+            "timestamp_epoch": 1784038023.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-3144",
+            "timestamp_epoch": 1784038023.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-3158",
+            "timestamp_epoch": 1784038023.000015,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-3158",
+            "timestamp_epoch": 1784038023.000015,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "b336f60c-a699-7aa6-e083-076d479bb1cf",
+            "timestamp_epoch": 1784038023.129,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "b336f60c-a699-7aa6-e083-076d479bb1cf",
+            "timestamp_epoch": 1784038023.129,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "914c8579-6688-5286-bd7a-bfb8caff66c0",
+            "timestamp_epoch": 1784039143.714,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "914c8579-6688-5286-bd7a-bfb8caff66c0",
+            "timestamp_epoch": 1784039143.714,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-3699",
+            "timestamp_epoch": 1784039423.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-3699",
+            "timestamp_epoch": 1784039423.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3e953dd0-470e-68f5-8c1f-cf3deeacf596",
+            "timestamp_epoch": 1784041381.349,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3e953dd0-470e-68f5-8c1f-cf3deeacf596",
+            "timestamp_epoch": 1784041381.349,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c30e2f63-1cc8-699e-8667-3b823375aba4",
+            "timestamp_epoch": 1784041381.349,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c30e2f63-1cc8-699e-8667-3b823375aba4",
+            "timestamp_epoch": 1784041381.349,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "5972477b-2293-41ac-b2f6-3c9d46afac75",
+            "timestamp_epoch": 1784043443.793,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "5972477b-2293-41ac-b2f6-3c9d46afac75",
+            "timestamp_epoch": 1784043443.793,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "b59f20c9-f14f-4112-99cb-ae7706e78349",
+            "timestamp_epoch": 1784043443.793,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "b59f20c9-f14f-4112-99cb-ae7706e78349",
+            "timestamp_epoch": 1784043443.793,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "bd935701-7d3a-4f48-b28a-3097adb18d32",
+            "timestamp_epoch": 1784043443.793,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "bd935701-7d3a-4f48-b28a-3097adb18d32",
+            "timestamp_epoch": 1784043443.793,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "f887fd2f-c382-4605-bd3e-b1cbbe55d376",
+            "timestamp_epoch": 1784043443.793,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "f887fd2f-c382-4605-bd3e-b1cbbe55d376",
+            "timestamp_epoch": 1784043443.793,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d6971705-4fd2-45ac-df77-c6decddd743a",
+            "timestamp_epoch": 1784043444.101,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d6971705-4fd2-45ac-df77-c6decddd743a",
+            "timestamp_epoch": 1784043444.101,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "85aea93b-e9a2-4a4c-df4a-28fd19f1cfde",
+            "timestamp_epoch": 1784043444.573,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "85aea93b-e9a2-4a4c-df4a-28fd19f1cfde",
+            "timestamp_epoch": 1784043444.573,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "27d785d0-0786-783c-d09d-9d22a1318e96",
+            "timestamp_epoch": 1784043444.833,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "27d785d0-0786-783c-d09d-9d22a1318e96",
+            "timestamp_epoch": 1784043444.833,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0daf7d4b-a126-53b8-8f84-52307535fd86",
+            "timestamp_epoch": 1784043447.418,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0daf7d4b-a126-53b8-8f84-52307535fd86",
+            "timestamp_epoch": 1784043447.418,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "10a112fb-e756-4bc4-c78f-31efe975edae",
+            "timestamp_epoch": 1784043447.427,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "10a112fb-e756-4bc4-c78f-31efe975edae",
+            "timestamp_epoch": 1784043447.427,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e932acf0-370c-4a6c-d5ed-f0b6559c05a8",
+            "timestamp_epoch": 1784043447.427,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e932acf0-370c-4a6c-d5ed-f0b6559c05a8",
+            "timestamp_epoch": 1784043447.427,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "f2a032e7-60f0-79a0-fd3c-f81a87dd5e78",
+            "timestamp_epoch": 1784043447.729,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "f2a032e7-60f0-79a0-fd3c-f81a87dd5e78",
+            "timestamp_epoch": 1784043447.729,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "763aae30-7076-7126-f773-8f308f3eddab",
+            "timestamp_epoch": 1784043447.741,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "763aae30-7076-7126-f773-8f308f3eddab",
+            "timestamp_epoch": 1784043447.741,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "673201a5-6266-5742-8838-11651d89943c",
+            "timestamp_epoch": 1784043538.07,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "673201a5-6266-5742-8838-11651d89943c",
+            "timestamp_epoch": 1784043538.07,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-4531",
+            "timestamp_epoch": 1784043549.000001,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-4531",
+            "timestamp_epoch": 1784043549.000001,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "580112a3-511e-463e-8907-a5ee87d2841c",
+            "timestamp_epoch": 1784043554.603,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "580112a3-511e-463e-8907-a5ee87d2841c",
+            "timestamp_epoch": 1784043554.603,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1109654c-74f7-593f-92dc-b7d6ba488bbd",
+            "timestamp_epoch": 1784043607.486,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1109654c-74f7-593f-92dc-b7d6ba488bbd",
+            "timestamp_epoch": 1784043607.486,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2905c04b-7e56-5fe2-b1ae-ba5df698a37c",
+            "timestamp_epoch": 1784043607.486,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2905c04b-7e56-5fe2-b1ae-ba5df698a37c",
+            "timestamp_epoch": 1784043607.486,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "689577be-dd84-529f-b244-2c00e761f4d8",
+            "timestamp_epoch": 1784043607.486,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "689577be-dd84-529f-b244-2c00e761f4d8",
+            "timestamp_epoch": 1784043607.486,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "97d6bb54-a294-4fdf-762c-11fe834324e6",
+            "timestamp_epoch": 1784043611.846,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "97d6bb54-a294-4fdf-762c-11fe834324e6",
+            "timestamp_epoch": 1784043611.846,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "42afb80b-7c9e-44e1-3958-32f65c4e5d6f",
+            "timestamp_epoch": 1784043622.042,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "42afb80b-7c9e-44e1-3958-32f65c4e5d6f",
+            "timestamp_epoch": 1784043622.042,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "ec2dbdb3-98a5-4c35-096b-a0ceac36659e",
+            "timestamp_epoch": 1784043622.042,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "ec2dbdb3-98a5-4c35-096b-a0ceac36659e",
+            "timestamp_epoch": 1784043622.042,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-4688",
+            "timestamp_epoch": 1784043636.000019,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RAB.csv.gz#row-4688",
+            "timestamp_epoch": 1784043636.000019,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "8ebdaa4c-d021-7511-0bb2-fe285605cb76",
+            "timestamp_epoch": 1784043717.258,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "8ebdaa4c-d021-7511-0bb2-fe285605cb76",
+            "timestamp_epoch": 1784043717.258,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "6d6d5b24-5db5-7009-9045-20c1af285fbe",
+            "timestamp_epoch": 1784043775.652,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "6d6d5b24-5db5-7009-9045-20c1af285fbe",
+            "timestamp_epoch": 1784043775.652,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "b273b41b-dee1-6929-11a9-ef10d9132762",
+            "timestamp_epoch": 1784044230.329,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "b273b41b-dee1-6929-11a9-ef10d9132762",
+            "timestamp_epoch": 1784044230.329,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3e668cda-ae86-79a9-cdf1-e37df19054aa",
+            "timestamp_epoch": 1784044348.252,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3e668cda-ae86-79a9-cdf1-e37df19054aa",
+            "timestamp_epoch": 1784044348.252,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4d8ac749-e033-7dea-de11-76735648c7b7",
+            "timestamp_epoch": 1784044348.252,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4d8ac749-e033-7dea-de11-76735648c7b7",
+            "timestamp_epoch": 1784044348.252,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c931bf88-139b-79e8-fdad-c5ffba641a2e",
+            "timestamp_epoch": 1784044348.252,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c931bf88-139b-79e8-fdad-c5ffba641a2e",
+            "timestamp_epoch": 1784044348.252,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "dff9c9a3-bec9-730d-f2ce-325b57fd09ce",
+            "timestamp_epoch": 1784044348.252,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "dff9c9a3-bec9-730d-f2ce-325b57fd09ce",
+            "timestamp_epoch": 1784044348.252,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-9442",
+            "timestamp_epoch": 1784044364.000008,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS.csv.gz#row-9442",
+            "timestamp_epoch": 1784044364.000008,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "5fe6a36c-b9c2-5de6-3363-11fda7e323b9",
+            "timestamp_epoch": 1784044405.134,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "5fe6a36c-b9c2-5de6-3363-11fda7e323b9",
+            "timestamp_epoch": 1784044405.134,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "17ee5325-e47e-6392-9e48-7d40522650f9",
+            "timestamp_epoch": 1784044406.171,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "17ee5325-e47e-6392-9e48-7d40522650f9",
+            "timestamp_epoch": 1784044406.171,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "53329e35-2a92-6f48-80e2-59bc8cbd2ef6",
+            "timestamp_epoch": 1784044406.171,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "53329e35-2a92-6f48-80e2-59bc8cbd2ef6",
+            "timestamp_epoch": 1784044406.171,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "6b99a657-705c-6c3c-932c-03423ebcba52",
+            "timestamp_epoch": 1784044406.171,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "6b99a657-705c-6c3c-932c-03423ebcba52",
+            "timestamp_epoch": 1784044406.171,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "bb5aa89e-bcb6-62b4-af7f-5afcbc1d7006",
+            "timestamp_epoch": 1784044406.171,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "bb5aa89e-bcb6-62b4-af7f-5afcbc1d7006",
+            "timestamp_epoch": 1784044406.171,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "1a707a9f-e5ad-7439-2c3d-200a01ced9f4",
+            "timestamp_epoch": 1784044437,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1a707a9f-e5ad-7439-2c3d-200a01ced9f4",
+            "timestamp_epoch": 1784044437,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+          },
+          {
+            "receipt": "15b78006-98c8-5459-855f-315d56c2de98",
+            "timestamp_epoch": 1784044486.578,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "15b78006-98c8-5459-855f-315d56c2de98",
+            "timestamp_epoch": 1784044486.578,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4238377d-9b79-5519-abc5-193864f380e2",
+            "timestamp_epoch": 1784044486.578,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4238377d-9b79-5519-abc5-193864f380e2",
+            "timestamp_epoch": 1784044486.578,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4d79a1ea-98c3-58ce-a9c6-9da2f998928d",
+            "timestamp_epoch": 1784044486.578,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4d79a1ea-98c3-58ce-a9c6-9da2f998928d",
+            "timestamp_epoch": 1784044486.578,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "046177cd-69d6-7829-1675-b2d397c1404c",
+            "timestamp_epoch": 1784044542.307,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "046177cd-69d6-7829-1675-b2d397c1404c",
+            "timestamp_epoch": 1784044542.307,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "8c82efd5-75a6-6c4e-9b33-a3cd354b3e70",
+            "timestamp_epoch": 1784044546.444,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "8c82efd5-75a6-6c4e-9b33-a3cd354b3e70",
+            "timestamp_epoch": 1784044546.444,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "9a783d81-0d04-5e88-017c-8efb7a828169",
+            "timestamp_epoch": 1784044637.585,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "9a783d81-0d04-5e88-017c-8efb7a828169",
+            "timestamp_epoch": 1784044637.585,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2d98d213-5985-5fc6-50a5-8c5872c74b52",
+            "timestamp_epoch": 1784044648.26,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2d98d213-5985-5fc6-50a5-8c5872c74b52",
+            "timestamp_epoch": 1784044648.26,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0bfe73ec-4871-567a-bde4-c883c8a0fae2",
+            "timestamp_epoch": 1784044648.891,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0bfe73ec-4871-567a-bde4-c883c8a0fae2",
+            "timestamp_epoch": 1784044648.891,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e1485adc-6f88-6b9d-df75-5d31d63925a8",
+            "timestamp_epoch": 1784044672.074,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e1485adc-6f88-6b9d-df75-5d31d63925a8",
+            "timestamp_epoch": 1784044672.074,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "dec3cb51-954a-46d1-aadb-c14258c54a47",
+            "timestamp_epoch": 1784044706.674,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "dec3cb51-954a-46d1-aadb-c14258c54a47",
+            "timestamp_epoch": 1784044706.674,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4f1d87b7-fece-75ed-ee70-d622447ef8df",
+            "timestamp_epoch": 1784044802.703,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4f1d87b7-fece-75ed-ee70-d622447ef8df",
+            "timestamp_epoch": 1784044802.703,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "34efa8da-94b1-6490-4ec7-f0bca9a964f2",
+            "timestamp_epoch": 1784044896.067,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "34efa8da-94b1-6490-4ec7-f0bca9a964f2",
+            "timestamp_epoch": 1784044896.067,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2fd128c4-8879-73d5-05ac-a81d24a383d4",
+            "timestamp_epoch": 1784044952.505,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2fd128c4-8879-73d5-05ac-a81d24a383d4",
+            "timestamp_epoch": 1784044952.505,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "67c41238-c05d-6bef-7ff2-d8eed7c1361c",
+            "timestamp_epoch": 1784044962.294,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "67c41238-c05d-6bef-7ff2-d8eed7c1361c",
+            "timestamp_epoch": 1784044962.294,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "99d6b0a9-d740-6901-78ed-2e464b5eea14",
+            "timestamp_epoch": 1784044962.294,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "99d6b0a9-d740-6901-78ed-2e464b5eea14",
+            "timestamp_epoch": 1784044962.294,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "bd314a55-ac41-6832-5d94-d4592a26d6b4",
+            "timestamp_epoch": 1784044962.294,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "bd314a55-ac41-6832-5d94-d4592a26d6b4",
+            "timestamp_epoch": 1784044962.294,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e2f25fe7-af1e-6d89-598b-f0933af29470",
+            "timestamp_epoch": 1784044962.294,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e2f25fe7-af1e-6d89-598b-f0933af29470",
+            "timestamp_epoch": 1784044962.294,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "effbe211-98f3-68f1-759e-06759bdc092e",
+            "timestamp_epoch": 1784044962.294,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "effbe211-98f3-68f1-759e-06759bdc092e",
+            "timestamp_epoch": 1784044962.294,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3ee994cd-4883-6b8e-0288-6a4e3a5d95f0",
+            "timestamp_epoch": 1784045046.533,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3ee994cd-4883-6b8e-0288-6a4e3a5d95f0",
+            "timestamp_epoch": 1784045046.533,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "a8907d9a-b3a1-46e4-5f75-1376e1ad5090",
+            "timestamp_epoch": 1784045057.486,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "a8907d9a-b3a1-46e4-5f75-1376e1ad5090",
+            "timestamp_epoch": 1784045057.486,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "aa00dd64-457d-4718-1e2f-04f696884ab8",
+            "timestamp_epoch": 1784045157.403,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "aa00dd64-457d-4718-1e2f-04f696884ab8",
+            "timestamp_epoch": 1784045157.403,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "33a51068-c8f9-53c8-d438-10bb2842f88c",
+            "timestamp_epoch": 1784045390.089,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "33a51068-c8f9-53c8-d438-10bb2842f88c",
+            "timestamp_epoch": 1784045390.089,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0e2a1358-d8dd-7245-7a1a-632af80901f2",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0e2a1358-d8dd-7245-7a1a-632af80901f2",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "12f3114a-2cfb-7192-6fad-65fca1d92f7d",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "12f3114a-2cfb-7192-6fad-65fca1d92f7d",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1eb09a94-876c-7b3e-6075-05ddda0ac83e",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1eb09a94-876c-7b3e-6075-05ddda0ac83e",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2dca00c8-f38e-7218-7ba7-59783d975357",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "2dca00c8-f38e-7218-7ba7-59783d975357",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3cb345b6-6082-7e28-5e40-c5579708d6af",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3cb345b6-6082-7e28-5e40-c5579708d6af",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "70c24933-a799-7470-5e6f-4d7073688b98",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "70c24933-a799-7470-5e6f-4d7073688b98",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "742e5ef7-8364-789c-707f-05f0ddd5a77e",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "742e5ef7-8364-789c-707f-05f0ddd5a77e",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "76ec648f-a664-7273-5073-6209c9bd8d46",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "76ec648f-a664-7273-5073-6209c9bd8d46",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "8bd962d3-47d4-78fb-4132-88bb31ae88b4",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "8bd962d3-47d4-78fb-4132-88bb31ae88b4",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "92976200-21fe-7ed9-5709-2d51d3291929",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "92976200-21fe-7ed9-5709-2d51d3291929",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "9634d420-6d46-7bac-4b63-2ffa0d68d6d0",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "9634d420-6d46-7bac-4b63-2ffa0d68d6d0",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "a00051de-9240-7f89-5d06-3e0b6e25b3f4",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "a00051de-9240-7f89-5d06-3e0b6e25b3f4",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c240b088-8e9c-7cfe-728c-6cc310ad788c",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c240b088-8e9c-7cfe-728c-6cc310ad788c",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c263b4f1-9515-70e1-72d0-d78cf386f655",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c263b4f1-9515-70e1-72d0-d78cf386f655",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d45e6cc6-d34d-7360-520c-1e3d1c30b3ec",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d45e6cc6-d34d-7360-520c-1e3d1c30b3ec",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "df2fc41e-d11b-74c2-55c8-87809792de4a",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "df2fc41e-d11b-74c2-55c8-87809792de4a",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e17eec4f-1c11-79bd-7baa-b6a564402989",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e17eec4f-1c11-79bd-7baa-b6a564402989",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e60c5577-a860-7055-7ffa-2a80fa1236d4",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e60c5577-a860-7055-7ffa-2a80fa1236d4",
+            "timestamp_epoch": 1784045409.826,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0a26bfec-a33a-69d9-0e22-24c686b7f101",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0a26bfec-a33a-69d9-0e22-24c686b7f101",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "290cec6a-6428-6d86-2bca-0c98eec938fe",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "290cec6a-6428-6d86-2bca-0c98eec938fe",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3bb50f93-8eee-6b4f-312a-a549663de615",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3bb50f93-8eee-6b4f-312a-a549663de615",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "5ca99ea7-246c-67fa-3c46-c62791523e15",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "5ca99ea7-246c-67fa-3c46-c62791523e15",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "9f91a481-a388-6889-2582-fbfea371a940",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "9f91a481-a388-6889-2582-fbfea371a940",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d47b8abc-e4de-61cc-311d-5c2bf0edcd8f",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "d47b8abc-e4de-61cc-311d-5c2bf0edcd8f",
+            "timestamp_epoch": 1784045423.608,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "19e9d51c-68f4-7b2f-66b8-dbb9b5f47c98",
+            "timestamp_epoch": 1784045457.377,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "19e9d51c-68f4-7b2f-66b8-dbb9b5f47c98",
+            "timestamp_epoch": 1784045457.377,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1bbc146d-f736-7531-7de0-4f9e819c71c1",
+            "timestamp_epoch": 1784045457.377,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1bbc146d-f736-7531-7de0-4f9e819c71c1",
+            "timestamp_epoch": 1784045457.377,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "f37f857a-9212-72f9-6a2f-c90039b52651",
+            "timestamp_epoch": 1784045457.377,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "f37f857a-9212-72f9-6a2f-c90039b52651",
+            "timestamp_epoch": 1784045457.377,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "21173e43-a02a-7221-7205-74aeaee820ab",
+            "timestamp_epoch": 1784045460.547,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "21173e43-a02a-7221-7205-74aeaee820ab",
+            "timestamp_epoch": 1784045460.547,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0dc70b32-a0e6-4787-d07c-5bc84ef320ae",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "0dc70b32-a0e6-4787-d07c-5bc84ef320ae",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4b9b1a70-a5a6-4ab6-d0ea-5fbafcc6d71d",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4b9b1a70-a5a6-4ab6-d0ea-5fbafcc6d71d",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "5955699e-d369-4a97-c5ae-fbadb90945ea",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "5955699e-d369-4a97-c5ae-fbadb90945ea",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "6efc9047-530c-4245-e237-2e16edca9a52",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "6efc9047-530c-4245-e237-2e16edca9a52",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "96a1f157-f829-46d7-f356-058c8e26c560",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "96a1f157-f829-46d7-f356-058c8e26c560",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "bbab4ac8-3fc9-41ac-fd23-e06753e44695",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "bbab4ac8-3fc9-41ac-fd23-e06753e44695",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "edd5b232-ca75-4765-f02c-fa220afa4ae3",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "edd5b232-ca75-4765-f02c-fa220afa4ae3",
+            "timestamp_epoch": 1784045474.674,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "8671557e-a49a-5816-675f-c562de282081",
+            "timestamp_epoch": 1784045497.194,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "8671557e-a49a-5816-675f-c562de282081",
+            "timestamp_epoch": 1784045497.194,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "203bb3e0-ce9b-7ddf-7987-7a80f3727e01",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "203bb3e0-ce9b-7ddf-7987-7a80f3727e01",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "44c77d57-aaa8-7929-42e5-5ebea77e5b54",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "44c77d57-aaa8-7929-42e5-5ebea77e5b54",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4532c0fb-b850-7bc8-5348-a0a6c1925a8e",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4532c0fb-b850-7bc8-5348-a0a6c1925a8e",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "57271ea3-f401-7ad7-6e77-572883b0f734",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "57271ea3-f401-7ad7-6e77-572883b0f734",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "73207b0c-4f42-7cc6-6908-9f157ea97f70",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "73207b0c-4f42-7cc6-6908-9f157ea97f70",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "b2184b6e-a89c-71a8-7ea3-6101c387bad0",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "b2184b6e-a89c-71a8-7ea3-6101c387bad0",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c37a4e62-07fe-70c6-5275-52eb7b679fdd",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c37a4e62-07fe-70c6-5275-52eb7b679fdd",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e6ea6783-8068-7904-705b-84b197c91195",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e6ea6783-8068-7904-705b-84b197c91195",
+            "timestamp_epoch": 1784045600.297,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4e7a760f-1929-76bc-7c36-adc18fae7d6e",
+            "timestamp_epoch": 1784045623.724,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "4e7a760f-1929-76bc-7c36-adc18fae7d6e",
+            "timestamp_epoch": 1784045623.724,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "38265745-3bda-41da-8187-f9bf2bb0775c",
+            "timestamp_epoch": 1784045677.07,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "38265745-3bda-41da-8187-f9bf2bb0775c",
+            "timestamp_epoch": 1784045677.07,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "74948366-00d6-5275-5240-40c96cef239a",
+            "timestamp_epoch": 1784045679.585,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "74948366-00d6-5275-5240-40c96cef239a",
+            "timestamp_epoch": 1784045679.585,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "93fb83b1-eac2-51c1-7483-76466894055c",
+            "timestamp_epoch": 1784045679.585,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "93fb83b1-eac2-51c1-7483-76466894055c",
+            "timestamp_epoch": 1784045679.585,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e63d4831-22f3-5e1c-5f1f-13d567586ac5",
+            "timestamp_epoch": 1784045679.585,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "e63d4831-22f3-5e1c-5f1f-13d567586ac5",
+            "timestamp_epoch": 1784045679.585,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3aa04152-f09a-62f3-6c8e-95b3afd54b12",
+            "timestamp_epoch": 1784045684.426,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "3aa04152-f09a-62f3-6c8e-95b3afd54b12",
+            "timestamp_epoch": 1784045684.426,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1f545445-8942-611d-e246-d443c1b94ab8",
+            "timestamp_epoch": 1784045704.107,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "1f545445-8942-611d-e246-d443c1b94ab8",
+            "timestamp_epoch": 1784045704.107,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c66dadef-0943-69f9-8841-d84f17fde900",
+            "timestamp_epoch": 1784045821.374,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "c66dadef-0943-69f9-8841-d84f17fde900",
+            "timestamp_epoch": 1784045821.374,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "eb545939-497a-6546-b61a-13a6e5a025e7",
+            "timestamp_epoch": 1784045821.374,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "eb545939-497a-6546-b61a-13a6e5a025e7",
+            "timestamp_epoch": 1784045821.374,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "92e7df63-1b4d-5aa0-717e-051c497e1a4f",
+            "timestamp_epoch": 1784046176.243,
+            "leg": "RAB",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          },
+          {
+            "receipt": "92e7df63-1b4d-5aa0-717e-051c497e1a4f",
+            "timestamp_epoch": 1784046176.243,
+            "leg": "RUS",
+            "action": "HOLD_REST",
+            "target_cents": null,
+            "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+          }
+        ],
+        "execution": {
+          "run_source": "V54_BOOK_VETO_ONLY_20260826",
+          "gradeable": false,
+          "completed": false,
+          "combined_entry_cents": null,
+          "delta_vs_100_cents": null,
+          "legs": {
+            "RAB": {
+              "credited": false,
+              "entry_cents": null,
+              "standing_target_cents": null,
+              "fill_receipt": null,
+              "fill_event_receipt": null,
+              "fill_timestamp_epoch": null,
+              "standing_license_basis": null,
+              "standing_license_receipt": null,
+              "standing_captured_rest_level_cents": null,
+              "standing_captured_rest_license_receipt": null
+            },
+            "RUS": {
+              "credited": false,
+              "entry_cents": null,
+              "standing_target_cents": null,
+              "fill_receipt": null,
+              "fill_event_receipt": null,
+              "fill_timestamp_epoch": null,
+              "standing_license_basis": null,
+              "standing_license_receipt": null,
+              "standing_captured_rest_level_cents": null,
+              "standing_captured_rest_license_receipt": null
+            }
+          }
+        }
+      },
+      "OUTCOME": {
+        "legs": {
+          "RAB": {
+            "filled": false,
+            "cents": null,
+            "valid_span_fill": "STORE SILENT",
+            "reason": "UNKNOWN"
+          },
+          "RUS": {
+            "filled": false,
+            "cents": null,
+            "valid_span_fill": "STORE SILENT",
+            "reason": "UNKNOWN"
+          }
+        },
+        "pair_completed": false,
+        "valid_pair_completed": "STORE SILENT",
+        "pair_sum": null,
+        "captured_cents": null,
+        "best_capturable_cents": null,
+        "capture_ratio": null
+      },
+      "LETTER": {
+        "letter": "STORE SILENT",
+        "governing_section": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      },
+      "display": {
+        "letter": "—",
+        "label": "UNGRADABLE",
+        "governing": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+        "ruler_line": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+        "sections": [
+          {
+            "name": "MACRO",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          },
+          {
+            "name": "MICRO",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          },
+          {
+            "name": "TRADE",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          },
+          {
+            "name": "PAIR",
+            "mark": "!",
+            "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+            "hover_lines": [
+              "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+            ]
+          }
+        ],
+        "diagnostic_hover_lines": [
+          "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+        ]
+      },
+      "RULER_COLUMNS": {
+        "role": "RULER COMPARISON ONLY — NOT AN OS INPUT",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+        "selection": "ALL FILED CORRECTIONS IN LEDGER ORDER — effective grading ruler; original rows retained",
+        "original_table": {
+          "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "3c0cba9aeb79ecb0798be1de34e4dc4f10c19cee07d723354989a251f7993fed",
+          "row_number": 345,
+          "row_csv": "26JUL14RABRUS,KXWTACHALLENGERMATCH-26JUL14RABRUS,WTA_CHALL,1783985449,1783985449,1784033898.084,1784038800.0,RAB,RUS,1783985525,7.5,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1783985525,92.5,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1783985525,,,,1784046971.0,,UNKNOWN,no evidence; not guessed,1783985525,,UNKNOWN,NEITHER_FOR_REASON,",
+          "values": {
+            "code": "26JUL14RABRUS",
+            "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+            "category": "WTA_CHALL",
+            "recorder_open_epoch": "1783985449",
+            "w1_left_epoch": "1783985449",
+            "w1_right_epoch": "1784033898.084",
+            "scheduled_start_epoch": "1784038800.0",
+            "legA": "RAB",
+            "legB": "RUS",
+            "legA_formation_end_epoch": "1783985525",
+            "legA_open_postformation_c": "7.5",
+            "legA_floor_c": "UNKNOWN",
+            "legA_floor_epoch": "UNKNOWN",
+            "legA_close_c": "UNKNOWN",
+            "legA_close_epoch": "UNKNOWN",
+            "legA_contracts": "UNKNOWN",
+            "legA_premium_usd": "UNKNOWN",
+            "legA_journey": "UNKNOWN",
+            "legA_net_travel_c": "UNKNOWN",
+            "legA_us_first_post_epoch": "",
+            "legA_us_fill_c": "",
+            "legA_us_fill_epoch": "",
+            "legA_us_fill_stamp": "",
+            "legB_formation_end_epoch": "1783985525",
+            "legB_open_postformation_c": "92.5",
+            "legB_floor_c": "UNKNOWN",
+            "legB_floor_epoch": "UNKNOWN",
+            "legB_close_c": "UNKNOWN",
+            "legB_close_epoch": "UNKNOWN",
+            "legB_contracts": "UNKNOWN",
+            "legB_premium_usd": "UNKNOWN",
+            "legB_journey": "UNKNOWN",
+            "legB_net_travel_c": "UNKNOWN",
+            "legB_us_first_post_epoch": "",
+            "legB_us_fill_c": "",
+            "legB_us_fill_epoch": "",
+            "legB_us_fill_stamp": "",
+            "formation_end_game": "1783985525",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "",
+            "kalshi_close_time_epoch": "1784046971.0",
+            "bell_epoch": "",
+            "bell_source": "UNKNOWN",
+            "bell_precision": "no evidence; not guessed",
+            "span_start_epoch": "1783985525",
+            "span_end_epoch": "",
+            "verified_span": "UNKNOWN",
+            "pair_state": "NEITHER_FOR_REASON",
+            "locked_delta_valid_fills_c": ""
+          },
+          "status": "UNKNOWN",
+          "bell_epoch": null,
+          "bell_source": "UNKNOWN",
+          "span_start_epoch": 1783985525,
+          "span_end_epoch": null,
+          "legs": {
+            "RAB": {
+              "floor_cents": null,
+              "floor_epoch": null,
+              "close_cents": null,
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "close_cents": "legA_close_c"
+              }
+            },
+            "RUS": {
+              "floor_cents": null,
+              "floor_epoch": null,
+              "close_cents": null,
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "close_cents": "legB_close_c"
+              }
+            }
+          },
+          "floor_sum_cents": null,
+          "under_par_cents": null,
+          "campaign_ruler_columns": {},
+          "column_note": "Pinned CSV uses legA_floor_c / legB_floor_c, not a literal floor_cents column; absent campaign/ruler columns are not invented."
+        },
+        "correction_source": {
+          "commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+          "sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+        },
+        "restated_rows": [],
+        "effective_truth": {
+          "role": "RULER — NOT AN OS INPUT",
+          "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "3c0cba9aeb79ecb0798be1de34e4dc4f10c19cee07d723354989a251f7993fed",
+          "row_number": 345,
+          "row_csv": "26JUL14RABRUS,KXWTACHALLENGERMATCH-26JUL14RABRUS,WTA_CHALL,1783985449,1783985449,1784033898.084,1784038800.0,RAB,RUS,1783985525,7.5,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1783985525,92.5,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,,,,,1783985525,,,,1784046971.0,,UNKNOWN,no evidence; not guessed,1783985525,,UNKNOWN,NEITHER_FOR_REASON,",
+          "verified_span": "UNKNOWN",
+          "status": "STORE_SILENT",
+          "reason": "UNKNOWN",
+          "span_start_epoch": 1783985525,
+          "span_end_epoch": null,
+          "bell_epoch": null,
+          "bell_source": "UNKNOWN",
+          "table_bell_epoch": null,
+          "table_bell_source": "UNKNOWN",
+          "table_bell_delta_seconds": null,
+          "legs": {
+            "RAB": {
+              "status": "STORE_SILENT",
+              "reason": "UNKNOWN",
+              "source_columns": {
+                "floor_cents": "legA_floor_c",
+                "floor_epoch": "legA_floor_epoch",
+                "anchor_cents": "legA_open_postformation_c"
+              },
+              "anchor_cents": 7.5,
+              "floor_cents": null,
+              "floor_epoch": null,
+              "minutes_to_bell": null,
+              "line": "RAB: STORE SILENT — UNKNOWN",
+              "marker_label": null,
+              "chart_label": null,
+              "hover_note": null,
+              "markers": {}
+            },
+            "RUS": {
+              "status": "STORE_SILENT",
+              "reason": "UNKNOWN",
+              "source_columns": {
+                "floor_cents": "legB_floor_c",
+                "floor_epoch": "legB_floor_epoch",
+                "anchor_cents": "legB_open_postformation_c"
+              },
+              "anchor_cents": 92.5,
+              "floor_cents": null,
+              "floor_epoch": null,
+              "minutes_to_bell": null,
+              "line": "RUS: STORE SILENT — UNKNOWN",
+              "marker_label": null,
+              "chart_label": null,
+              "hover_note": null,
+              "markers": {}
+            }
+          },
+          "favorite_leg": "RUS",
+          "underdog_leg": "RAB",
+          "pair": {
+            "sum_cents": null,
+            "discount_cents": null,
+            "reason": "UNKNOWN",
+            "line": "best capturable = STORE SILENT — UNKNOWN",
+            "discount_line": "STORE SILENT",
+            "compact_line": "best capturable STORE SILENT — UNKNOWN"
+          },
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "effective_row": {
+            "code": "26JUL14RABRUS",
+            "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+            "category": "WTA_CHALL",
+            "recorder_open_epoch": "1783985449",
+            "w1_left_epoch": "1783985449",
+            "w1_right_epoch": "1784033898.084",
+            "scheduled_start_epoch": "1784038800.0",
+            "legA": "RAB",
+            "legB": "RUS",
+            "legA_formation_end_epoch": "1783985525",
+            "legA_open_postformation_c": "7.5",
+            "legA_floor_c": "UNKNOWN",
+            "legA_floor_epoch": "UNKNOWN",
+            "legA_close_c": "UNKNOWN",
+            "legA_close_epoch": "UNKNOWN",
+            "legA_contracts": "UNKNOWN",
+            "legA_premium_usd": "UNKNOWN",
+            "legA_journey": "UNKNOWN",
+            "legA_net_travel_c": "UNKNOWN",
+            "legA_us_first_post_epoch": "",
+            "legA_us_fill_c": "",
+            "legA_us_fill_epoch": "",
+            "legA_us_fill_stamp": "",
+            "legB_formation_end_epoch": "1783985525",
+            "legB_open_postformation_c": "92.5",
+            "legB_floor_c": "UNKNOWN",
+            "legB_floor_epoch": "UNKNOWN",
+            "legB_close_c": "UNKNOWN",
+            "legB_close_epoch": "UNKNOWN",
+            "legB_contracts": "UNKNOWN",
+            "legB_premium_usd": "UNKNOWN",
+            "legB_journey": "UNKNOWN",
+            "legB_net_travel_c": "UNKNOWN",
+            "legB_us_first_post_epoch": "",
+            "legB_us_fill_c": "",
+            "legB_us_fill_epoch": "",
+            "legB_us_fill_stamp": "",
+            "formation_end_game": "1783985525",
+            "bell_machine_epoch": "",
+            "bell_observed_inplay_epoch": "",
+            "bell_tape_signature_epoch": "",
+            "kalshi_close_time_epoch": "1784046971.0",
+            "bell_epoch": "",
+            "bell_source": "UNKNOWN",
+            "bell_precision": "no evidence; not guessed",
+            "span_start_epoch": "1783985525",
+            "span_end_epoch": "",
+            "verified_span": "UNKNOWN",
+            "pair_state": "NEITHER_FOR_REASON",
+            "locked_delta_valid_fills_c": ""
+          },
+          "row_csv_role": "Original pinned row, before correction overlays"
+        }
+      }
+    }
+  ]
+}

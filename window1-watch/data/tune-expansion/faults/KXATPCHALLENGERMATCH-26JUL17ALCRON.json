@@ -1,0 +1,176 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "09f8cfe3281651e1a4117cb294c9b8ef59e63a5028a6f2cbc6eb55e98506d979",
+    "grade_sha256": "be3f110956d1a78a470eeb4576b20eb624b9cc0da32ce65565d1813a8550d8a2",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "281560e40d0508d00d62e5e382e9959c93980e95700f5233819d31bef6178721",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "b6f132351e8ee095c7e42d59b7c3ff3d3c72693099aa4c3301a92d4a0b0d2a37"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "ALC: A · bid below path | RON: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 0,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 0,
+    "legs": {
+      "ALC": false,
+      "RON": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "ALC",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+          "action": "PLACE",
+          "placement_epoch": 1784250482.327,
+          "bid_cents": 68,
+          "recorded_floor_cents": 70,
+          "recorded_floor_epoch": 1784249298.5,
+          "floor_minus_placement_minutes": -19.730449998378752,
+          "Q_at_placement": 68,
+          "remaining_positive_print_floor": 70,
+          "later_positive_prints": 39,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "e4ae31b8-2f26-5561-7831-4b15c5efbf68",
+          "action": "REPRICE",
+          "placement_epoch": 1784253871.798,
+          "bid_cents": 69,
+          "recorded_floor_cents": 70,
+          "recorded_floor_epoch": 1784249298.5,
+          "floor_minus_placement_minutes": -76.22163333495457,
+          "Q_at_placement": 69,
+          "remaining_positive_print_floor": 70,
+          "later_positive_prints": 35,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "8731e8fc-b6ce-7b27-645d-5794f3d492db",
+          "action": "REPRICE",
+          "placement_epoch": 1784254032.707,
+          "bid_cents": 68,
+          "recorded_floor_cents": 70,
+          "recorded_floor_epoch": 1784249298.5,
+          "floor_minus_placement_minutes": -78.9034500002861,
+          "Q_at_placement": 68,
+          "remaining_positive_print_floor": 70,
+          "later_positive_prints": 34,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "d66b660e-16a6-7117-5ccb-d6e85a1fffdf",
+          "action": "REPRICE",
+          "placement_epoch": 1784256042.036,
+          "bid_cents": 69,
+          "recorded_floor_cents": 70,
+          "recorded_floor_epoch": 1784249298.5,
+          "floor_minus_placement_minutes": -112.39226666688918,
+          "Q_at_placement": 69,
+          "remaining_positive_print_floor": 70,
+          "later_positive_prints": 33,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 40,
+      "unobserved_placements": []
+    },
+    {
+      "leg": "RON",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "e4ae31b8-2f26-5561-7831-4b15c5efbf68",
+          "action": "REPRICE",
+          "placement_epoch": 1784253871.798,
+          "bid_cents": 29,
+          "recorded_floor_cents": 30,
+          "recorded_floor_epoch": 1784257962,
+          "floor_minus_placement_minutes": 68.17003333171209,
+          "Q_at_placement": 29,
+          "remaining_positive_print_floor": 30,
+          "later_positive_prints": 6,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "37218df1-8871-601e-4613-8e054da99ac1",
+          "action": "REPRICE",
+          "placement_epoch": 1784257961.968,
+          "bid_cents": 28,
+          "recorded_floor_cents": 30,
+          "recorded_floor_epoch": 1784257962,
+          "floor_minus_placement_minutes": 0.0005333344141642253,
+          "Q_at_placement": 28,
+          "remaining_positive_print_floor": 31,
+          "later_positive_prints": 1,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "0617a910-b7d4-587b-cef3-efae19ce16e8",
+          "action": "REPRICE",
+          "placement_epoch": 1784262620.813,
+          "bid_cents": 29,
+          "recorded_floor_cents": 30,
+          "recorded_floor_epoch": 1784257962,
+          "floor_minus_placement_minutes": -77.64688333272935,
+          "Q_at_placement": 29,
+          "remaining_positive_print_floor": 31,
+          "later_positive_prints": 1,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 10,
+      "unobserved_placements": [
+        "6ea1f69a-55ac-5a3f-a6e1-35bdbb5605ec"
+      ]
+    }
+  ]
+}

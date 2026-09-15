@@ -1,0 +1,113 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "B",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · ARN NOT_CALLABLE → NOT_CALLABLE · GAL NOT_CALLABLE → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"ARN\":{\"called_role\":\"NOT_CALLABLE\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":true,\"first_recorded_receipt\":null,\"first_recorded_epoch\":null,\"first_bind_epoch\":null,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":39.5,\"close_cents\":40,\"realized_drift_cents\":0.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"GAL\":{\"called_role\":\"NOT_CALLABLE\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":true,\"first_recorded_receipt\":null,\"first_recorded_epoch\":null,\"first_bind_epoch\":null,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":60.5,\"close_cents\":62,\"realized_drift_cents\":1.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): ARN 0 · GAL 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "B · ARN Q 37 vs floor 39¢; range 36–38 · GAL Q 59 vs floor 60¢; range 58–61",
+      "hover_lines": [
+        "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"legs\":{\"ARN\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":37,\"q25\":36,\"q75\":38,\"floor_error_cents\":2,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"08e4fef9-d0a4-6e23-0ee9-4b03de41241d\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":39,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"GAL\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":59,\"q25\":58,\"q75\":61,\"floor_error_cents\":1,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"08e4fef9-d0a4-6e23-0ee9-4b03de41241d\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":60,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): ARN: 0.65¢ · GAL: 0.74¢ · ARN: first 373.39m; remaining MAE 29.66m · GAL: first 105.82m; remaining MAE 55.93m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "✓",
+      "line": "A · ARN 39¢ (+0¢; floor printed earlier) · GAL 60¢ (+0¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"ARN\":{\"filled\":true,\"cents\":39,\"vs_floor_cents\":0,\"fill_epoch\":1784532960.812,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784549220,\"span_start_epoch\":1784508493,\"span_end_epoch\":1784549220,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":39,\"floor_epoch\":1784508946.4,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":324.1206833322843,\"current_price_age_minutes\":129.6366333325704,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"GAL\":{\"filled\":true,\"cents\":60,\"vs_floor_cents\":0,\"fill_epoch\":1784526864.117,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784549220,\"span_start_epoch\":1784508493,\"span_end_epoch\":1784549220,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":60,\"floor_epoch\":1784526864.1,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":222.50910000006357,\"current_price_age_minutes\":126.2686166524887,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: GAL lineage 222.51m, current price 126.27m · ARN lineage 324.12m, current price 129.64m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "✓",
+      "line": "A · 99¢ pair · 1 of 1¢ captured",
+      "hover_lines": [
+        "PAIR: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":1,\"offered_cents\":1}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MICRO",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "leg_id": "GAL",
+      "entry_cents": 60,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 60,
+      "fill_timestamp_epoch": 1784526864.117,
+      "prior_standing_target_cents": 60,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL20GALARN-ARN.csv.gz#row-116",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "leg_id": "ARN",
+      "entry_cents": 39,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 39,
+      "fill_timestamp_epoch": 1784532960.812,
+      "prior_standing_target_cents": 39,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "7056ac94-108f-6c01-a59a-229d23361bc5",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 99,
+  "captured_cents": 1,
+  "offered_cents": 1,
+  "capture_ratio": 1,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "f12b22b14d19d67a2e289a64a743487867810a8c840b0bbe61e40ce5aea415ec",
+  "grade_sha256": "af79dbbcf47cb775d8251d3406498a1f3f2130f72d990f9af5477f8b5e2927de",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL20GALARN.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL20GALARN.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL20GALARN.sentences.json",
+  "fault": "MICRO: B · ARN Q 37 vs floor 39¢; range 36–38 · GAL Q 59 vs floor 60¢; range 58–61",
+  "fill_witnesses": [
+    {
+      "leg": "GAL",
+      "receipt": "8cfc8587-8fbf-59f6-3a4c-5dd6fac865a7",
+      "positive_size_witness": true,
+      "print_cents": 60,
+      "rest_cents": 60,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "ARN",
+      "receipt": "765f11ad-3f45-472a-8286-50492727e786",
+      "positive_size_witness": true,
+      "print_cents": 39,
+      "rest_cents": 39,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

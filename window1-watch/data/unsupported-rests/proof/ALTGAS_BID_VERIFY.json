@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "base": "https://omi-window1-watch-42rym9gn6-omi-groups-projects.vercel.app",
+  "event": "KXATPMATCH-26JUL12ALTGAS",
+  "gate": 240,
+  "count": 102,
+  "os": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+  "grade": "C",
+  "detail_requests": 1,
+  "preview_fetches": 0,
+  "js_errors": []
+}

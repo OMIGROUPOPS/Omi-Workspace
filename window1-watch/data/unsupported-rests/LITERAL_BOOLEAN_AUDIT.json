@@ -1,0 +1,19 @@
+{
+  "stage_A": "Only exact-level support/cancel logic, pre-print/BELL reviews, and corrected-bell metadata in engine/builder. Pool and price implementations unchanged.",
+  "no_new_numeric_policy_literals": true,
+  "added_numeric_tokens": {
+    "0": 1,
+    "7": 1
+  },
+  "removed_numeric_tokens": {
+    "0": 1,
+    "7": 1
+  },
+  "no_game_or_leg_ids_in_policy_diff": true,
+  "new_literal_boolean_lines": [
+    "  function evaluateStage({ trigger, receipt = null, legIds = null, compactUnchangedRearm = false, clockEpoch = null, restReviewLegIds = null }) {"
+  ],
+  "boolean_meaning": "Existing optional replay controls only; market claims are computed predicates. No asserted safety success.",
+  "functionable_sha256": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+  "diff_sha256": "f3e7d0252aaf44a0ef335a25985547a558969eeb5428f77752e378a60df4d3db"
+}

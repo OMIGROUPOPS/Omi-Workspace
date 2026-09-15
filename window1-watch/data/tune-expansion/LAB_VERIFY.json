@@ -1,0 +1,979 @@
+{
+  "status": "PASS",
+  "selected": 100,
+  "all_selected_available_in_picker": true,
+  "rows": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "f77282ff452e8a0e73f031880b845b9ac9b1bfc9f809769a4305ccadef429dbb",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 551,
+      "receipt_count": 88
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "ce717801163a365eb9ef85c3b447877e0bc915c549275608d2e0b7f6ea2c15c0",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 115,
+      "receipt_count": 75
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "4abaa80a6b53bcfd6a80364ee46cb024fc7a237de7728e09d6b0121c8df64638",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 245,
+      "receipt_count": 104
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "43407b528a733a7008ae01497605a292873781faa187fa69820d050571a0b1da",
+      "grade": "—",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 303,
+      "receipt_count": 63
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "1c2bc7e8fa8c06e516c51e7bfb9bede2d2c287361036e18b3f416675079daffb",
+      "grade": "—",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 175,
+      "receipt_count": 103
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "0554f4eaca489708b6c4e592a2111ef7958258d342d77138d5f47dd73a110209",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 38853,
+      "receipt_count": 85
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "status": "UNGRADABLE_VISIBLE"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "3605fbc19fe9b13b344d3574486ed23adbee65ae7ab73c9072dd3117b6ab1c83",
+      "grade": "C",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 367,
+      "receipt_count": 229
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "797c1c15fc2d3ec677ba59fcffff37848aacd20606fd9627a65c4a8db39dbf7a",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 117,
+      "receipt_count": 58
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "8379c9e3afb4cab27af0d0a360b679080fe6c5af62d61114a7f62f0946843d96",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 546,
+      "receipt_count": 100
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "f08087fba338ec2f56a50178bac06135e87a4b61f89ced05d4a96aaf4246f96f",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 285,
+      "receipt_count": 57
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "74614c6710809dede9dc62ed17028c0ab13608053d08ef04d11d7111e7c5171b",
+      "grade": "C",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 323,
+      "receipt_count": 69
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "6071fd41dc8bce55b11637e8a7abc4d1edc19d4343f8605e0a88153cd58ceb2e",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 359,
+      "receipt_count": 154
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "ec5667cd69cd8ba1d3e3713e422b88d1049db3c78e560890205f87b1e03c25a8",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 205,
+      "receipt_count": 90
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "901092ab95e92cf612f70ed5d7dba137f5e5a6198bbe207ef0753ebd7df6a69c",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 104,
+      "receipt_count": 62
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "207b2b59c33cab95bee27fdcf552bac86fcd479f200bfc38d1d8708e7eb06794",
+      "grade": "C",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 339,
+      "receipt_count": 70
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "27fdd29300c2000414e8fcc5d62e4ff33d1190439d511841c7ac0f09790bcb67",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 426,
+      "receipt_count": 125
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "c075ffc8f097a00f068f4f3183d402e6abc9b5df3262453e1dc164eaebd23d0b",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 126,
+      "receipt_count": 51
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "e826a3bcbb22431a29b8e35fe585ee1e8c0a6f56148bb6f56d6f371270581786",
+      "grade": "A",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 191,
+      "receipt_count": 112
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "0f187d11028bb35b941a8709e1f3468d4720d8b11b24446c95aa5c2318d7244d",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 158,
+      "receipt_count": 45
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "e2cd51e4adb0ce13334e291b670f0a015f9e269c2c1691fe6c3297dcd186bb32",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 189,
+      "receipt_count": 87
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "eb8892b6e9060445face7391ffa3ba32ae6322fb2ccf7321b4959c8f38adc5f6",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 124,
+      "receipt_count": 62
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "61514d1ac62681694830451487d9c9b94c9a2fa21c925a8188b539c51bf2e89e",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 472,
+      "receipt_count": 116
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "ff48437c8a121863916ea43a5cdd730f6eecd8a9378c55bf1cf22c3cfa4fbb6e",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 437,
+      "receipt_count": 181
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "9e864a3167790abd33b1ecfd283915479dc575d1917d1ab3e943f604f29f2158",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 229,
+      "receipt_count": 46
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "ddea98a52a9357455d9567f0423709bd3a807221a64c61e36f48769fc58e97d2",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 200,
+      "receipt_count": 70
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "f1d7bdc6565f789ea4779bb99b7ddbb812bcd9daa94cf83372e78a32a6279d95",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 1598,
+      "receipt_count": 102
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "585607e2b9f7adeaf8462fa3be37143686bf6d368c3c5720cb816dc10f5afb0b",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 567,
+      "receipt_count": 88
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "65d44ab9200e46f804d3de74a2f5c43a765e64ec8bfcca2887a383557dc04a59",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 236,
+      "receipt_count": 96
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "50d88950a3962753eff3f83163c5ec58ed9cc35437eb99c143c22c1d71e91879",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 177,
+      "receipt_count": 88
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "d40aeadd1c1ee21db1518a9761b35cb03ba9bce7d581c33d4397b6c0bd5150e3",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 706,
+      "receipt_count": 84
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "c5f48c6224c761755b0a6c74196a701e8bb9a7f6da53701342ceea7cd78a8ec6",
+      "grade": "B",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 91,
+      "receipt_count": 71
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "6f8f836978299f18b1b898bcd85be1c711636a9cee6fa2d1560bcab8639ba89a",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 268,
+      "receipt_count": 82
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "c5f31a44c9267f16dcb13fe6132d70d793d084b3d8a806813b9b3777171d3b4d",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 146,
+      "receipt_count": 50
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "e3446a0dc80ae1c1b9fe83398e20a181f6dbcbece1d468bbd81921a1d12bfea9",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 267,
+      "receipt_count": 172
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "e9fde9af80f2d7d739f98c6131dc0a6928669799c89f9443d22dba05b3a4c50e",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 3331,
+      "receipt_count": 1229
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "status": "UNGRADABLE_VISIBLE"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "61c7e61f35cffcfc30ae4a950649bec8885666fe6de4a8a4d411219d659525a9",
+      "grade": "C",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 1170,
+      "receipt_count": 144
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "c97d462733c2fed7abdadb514ec41acccde24c08331a7a1eff5f852cf5e9fa35",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 863,
+      "receipt_count": 97
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "e600d870786ec226bacfffb4194a6822b8c5f1a694fa46aa677107fe9c6064a1",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 212,
+      "receipt_count": 135
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "6ad27b90f4767fff279b0a2980d20b57d3c43c7a53cf98bee6bbcc52f7e691c6",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 389,
+      "receipt_count": 61
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "a2d0d1f5644762fa6c76b2f7fff865cd84cde0d9cdad75ebd29755e83af12a47",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 113,
+      "receipt_count": 78
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "721b567acb0ec00dbc089dbb49e629d35ef6b012aa09b724488e0eabf50b1aed",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 2090,
+      "receipt_count": 110
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "a305781f33efbcadc0d72a30481c4578aa6395fd5c0b417f65d4f109f26135a3",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 380,
+      "receipt_count": 81
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "077c690466ec19b66414038303c3e8e50cc268ad2def2a80c6e4e260ee7c025f",
+      "grade": "—",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 126,
+      "receipt_count": 82
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "cba8f16edd9cc654bf059a5604ad46037872edf0fb2945a7f2217d3c7ad1e5d2",
+      "grade": "—",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 220,
+      "receipt_count": 84
+    },
+    {
+      "event": "KXATPMATCH-26JUL12KOPPRI",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "be04ec34ff8a4ab82636a61b11ea65a6da22b3780673a05de103bafa6b8af5a0",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 2667,
+      "receipt_count": 266
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DEJGAU",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "7dd9ff3278bc2a656dae9dc0644b237573b07c044625139104a9c17d1e82fd20",
+      "grade": "C",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 248,
+      "receipt_count": 101
+    },
+    {
+      "event": "KXATPMATCH-26JUL19TSICOL",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "f6202e8d6a1055879778f54f21ae3765b8dfc57eb6abbe3196d3486872f5aad8",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 889,
+      "receipt_count": 102
+    },
+    {
+      "event": "KXATPMATCH-26JUL12BUDPEL",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "e0e632137f549e351da8589b42095f102d3688efda9de6dcc20242b1a18c5c8f",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 637,
+      "receipt_count": 58
+    },
+    {
+      "event": "KXATPMATCH-26JUL19NEUHAN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "2309b083aa5ec3406631b343e47df3b94cd4c5cc14d5c98817338d1e650218bb",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 2642,
+      "receipt_count": 155
+    },
+    {
+      "event": "KXATPMATCH-26JUL15PRADZU",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "b67e53e71ef398b0d821762d884388ec94e1e1c0a3cbbccbb6088d11d6b74297",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 280,
+      "receipt_count": 115
+    },
+    {
+      "event": "KXATPMATCH-26JUL15CARUGO",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "8ff56fe33708938cd094daea38dc4d7cda07ffe065491f5f68de32a778155223",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 182,
+      "receipt_count": 73
+    },
+    {
+      "event": "KXATPMATCH-26JUL19STRSHE",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "3f2cf8561de880fd220be0d3336a71986d0f8cb2e3c458d1c1387a7891e035c8",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 4933,
+      "receipt_count": 154
+    },
+    {
+      "event": "KXATPMATCH-26JUL16FARRUU",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "2ce5601888e3f71080e73ad96fbd525e2dee66c7e3fae4d3c416be6b0445d93d",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 580,
+      "receipt_count": 99
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GASDZU",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "28c4d2c011a3a7626353f0be0dd406e2ef1365d2eef345e3f25cdb5f54b2b3f7",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 579,
+      "receipt_count": 106
+    },
+    {
+      "event": "KXATPMATCH-26JUL19DROUGO",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "41d5f9e10396908235aa4153354be21dca1297c73589cad376d8a1a611853b7a",
+      "grade": "STORE SILENT",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 1989,
+      "receipt_count": 101
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DOMSKA",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "ae48a5b98805579acaa0611eb44d754a5c70b6e4220a88ed1a3dc8618104ddb5",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 526,
+      "receipt_count": 92
+    },
+    {
+      "event": "KXATPMATCH-26JUL15VANDRO",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "211a47f367939f4b3ae2476cfb0579dc9ab7456b5ff3b8a8457094b07f337c7d",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 593,
+      "receipt_count": 265
+    },
+    {
+      "event": "KXATPMATCH-26JUL12OFNTIR",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "e5e8c05934865be5cdd24b488daf3274ebb9dbf2b36f04300fa8669580e55741",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 783,
+      "receipt_count": 88
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CORDAN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "2fd9477519c0a8886bf3176d249f6ebce1f64866c9368a2b3ff9c3552f776d58",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 222,
+      "receipt_count": 127
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SLADAM",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "78bcc5c67d580e44f84cc12dc4bd511dd04376d758929aadeb744ba37d1531e7",
+      "grade": "A",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 447,
+      "receipt_count": 79
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CECOLI",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "8aa08f7297413edca50f354ae7b9faa16aba19ff67a63984c792da0bc9c2abeb",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 1741,
+      "receipt_count": 73
+    },
+    {
+      "event": "KXATPMATCH-26JUL18HIPGIU",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "e2ac35b2016ef012d77f145f8a8134b76955ea4470e6dcdd93aab1c7d0a5cc7a",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 140,
+      "receipt_count": 52
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "91011506957021271efa269c8feb2ab974e2ff08c28e5bbffcfd1abb5f60fd91",
+      "grade": "—",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 181,
+      "receipt_count": 96
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "0efdb7acb65d6badbb2b1b71ed971169b4a7083e9b43eb9908971a6b6c71c38b",
+      "grade": "C",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 1217,
+      "receipt_count": 122
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "b73de18eed1c79897b3fd49fd54ffd1e36f6eb15984eaad44df55e9481c0c358",
+      "grade": "—",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 255,
+      "receipt_count": 53
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "8a812f731c3a2865729dfa58ff95038f8b07033601903bd03727dc72d1694fcf",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 144,
+      "receipt_count": 81
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "1c3cd0b2edd21e53c8dfc8e8587ef365ccd3e9bb28ed160afb79cd1c98ed1682",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 137,
+      "receipt_count": 83
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "a7a35c10b67249f0d15645aac63b83838a98945265d82117f42a17cc6c590774",
+      "grade": "B",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 395,
+      "receipt_count": 102
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "8e57c043f8e739ffbdfb1f0ddb8529b320e47b6034d474fbca9ac551d6e9ea6f",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 349,
+      "receipt_count": 81
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "status": "UNGRADABLE_VISIBLE"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "266c9370f40898726415e1b8fd3dfda7c034311ab205f2319f028fc66d0ef3f5",
+      "grade": "C",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 138,
+      "receipt_count": 86
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "5e378b771b18987561f78a652459a858faefb3acdb7b99d7ca5939381e726cbb",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 160,
+      "receipt_count": 71
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "c5720e12486885bd26da55ebac5974c9ae280197dac8983d34603d64dd9238ea",
+      "grade": "—",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 268,
+      "receipt_count": 47
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "44fb7599e5a5ab7a3537af283bb9d8dc0c48c5f3bfdefbd6da4480a451a08ea5",
+      "grade": "—",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 152,
+      "receipt_count": 69
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "1b4100de7a034d21e000ea8c0486f2a4c32b7fbf10399f071c780903132c6ee5",
+      "grade": "—",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 168,
+      "receipt_count": 104
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "aea9f06ad80c9062e1611cebe478bda126fee7feba082a2fc59505e0fb3df247",
+      "grade": "C",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 162,
+      "receipt_count": 98
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "6d44df4eecc796a609054920c0f67bbd31d92bb6334383fddbdcda985366acd5",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 244,
+      "receipt_count": 49
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "d6ee7d8bbf62b3cbe2c27972c32f57966edb20d1928be4769e1d58ec7e8b43c3",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 4276,
+      "receipt_count": 143
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "status": "UNGRADABLE_VISIBLE"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13LEPIBR",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "251f839fb5681804e7a1996ff1dbdc24183de2a385369732b8019c380272634e",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 207,
+      "receipt_count": 101
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13GRAPAR",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "086c171aba7a9cbd6f35053475abb4abc3c894ff74953d603dae59eb88c88644",
+      "grade": "A",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 207,
+      "receipt_count": 131
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KUDKOR",
+      "status": "UNGRADABLE_VISIBLE"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KRETOM",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "e95e2e48f536adb6193f2838c7e43d17e5dbc05461a1ce547a798d6a7171bcc1",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 303,
+      "receipt_count": 93
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13QUERUS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "db15e9936d1e80ed6e472fd96c31fd8f197968519dbf346fcf73305f05a9f3bd",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 4513,
+      "receipt_count": 163
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13PRIGAR",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "995ac176b6490c27c72cc9bfeff627f6626b21df7f6ac731b2d3bcdd4cc9e638",
+      "grade": "B",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 396,
+      "receipt_count": 218
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16KORANN",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "08068d71ee3741e205c4d7f20ae82bc23dd8ba26fe61685604035b877aa4ceb5",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 317,
+      "receipt_count": 189
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MORAKS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "1b408f9f2d9fec9de560d7f76d30120a3462de374c2a3a48fd265a8ba38dbd88",
+      "grade": "C",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 480,
+      "receipt_count": 113
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12AVASEI",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "73315d8c3364c325f93ae916da93c0d9ef542d8b1e3e61ddf5356dbd05176618",
+      "grade": "—",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 195,
+      "receipt_count": 68
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19GAOFRU",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "14822771e4b791f2903d9a36e64ea62a65c08c307187d6bd76fca502c7b18331",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 785,
+      "receipt_count": 167
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17PUTSHE",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "a7ab27ce03b4e1b82153dda4587095514e4651434cc56f6c1f2509ede1739d5f",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 443,
+      "receipt_count": 183
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19YASBAR",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "2b5e94fad8f4398edafbbcbfb76278ec40adcfb9886edf6542c5585e0fd72591",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 687,
+      "receipt_count": 135
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KAWWAL",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "28968dd534e882a00913149893a5b717a9b10de34ef8eeefc1e9d75fe7f75abe",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 5028,
+      "receipt_count": 128
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14PUTLIU",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "a0746750ae682ea9263c8d45db6b2560f303c0bdf20710b840f135f167c64e8e",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 259,
+      "receipt_count": 142
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13MORBEJ",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "2f1b3201173d7c5b78fa6a5a2633c65aca6ad862d2873045a2e2618d768986dc",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 446,
+      "receipt_count": 163
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PODSTU",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "9aa9a0edd338bbc1a57a91d5084779f48d70bda8ebbf3837a657093bd5d82280",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 388,
+      "receipt_count": 85
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MICFRU",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "a7b338697bc576534766556ba0b25ce5b0db7d93134064976088b5f1a23ad5b7",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 374,
+      "receipt_count": 76
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16VALSAS",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "1165e195aaea19674b149c14291c957e9fee9a6b8b59e6b33fec85720178bd80",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 382,
+      "receipt_count": 59
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17UDVBAD",
+      "os": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+      "trace": "b22013815c23ac1543c47302bebf8ffeced502548f8097026c6608f836d65d3f",
+      "grade": "F",
+      "grade_status": "OK",
+      "oracle_status": "OK",
+      "frames": 250,
+      "receipt_count": 117
+    }
+  ],
+  "js_errors": [],
+  "base": "http://127.0.0.1:8080/"
+}

@@ -1,0 +1,108 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPMATCH-26JUL12OFNTIR",
+  "category": "ATP_MAIN",
+  "provenance": {
+    "face_sha256": "f6a26e8c9a360df2a07393073e67b4030dc691e1aa3be28406664f620aff492f",
+    "grade_sha256": "b07f84868273069073a4b4b5d1e76b0425cc098aafe5bc03ebb6128b1eba8671",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "f4e6837a88e3326b7749ae21ae470baece3fc8c78db961cc610073d006b2aa26",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "e7b5781262f27bd6d8071f57c3ddc4b9c67b32325f6c7bc499b8e05d40ae1410"
+  },
+  "known_span": true,
+  "classes": [
+    "A",
+    "D"
+  ],
+  "header": "OFN: A · bid below path + D · thin tape",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 6,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "OFN": false,
+      "TIR": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "OFN",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A",
+        "D"
+      ],
+      "A": [
+        {
+          "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+          "action": "PLACE",
+          "placement_epoch": 1783820925.000001,
+          "bid_cents": 40,
+          "recorded_floor_cents": 43,
+          "recorded_floor_epoch": 1783851684.1,
+          "floor_minus_placement_minutes": 512.6516666491826,
+          "Q_at_placement": 40,
+          "remaining_positive_print_floor": 43,
+          "later_positive_prints": 5,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-802",
+          "action": "REPRICE",
+          "placement_epoch": 1783831608.000002,
+          "bid_cents": 41,
+          "recorded_floor_cents": 43,
+          "recorded_floor_epoch": 1783851684.1,
+          "floor_minus_placement_minutes": 334.60166663328806,
+          "Q_at_placement": 41,
+          "remaining_positive_print_floor": 43,
+          "later_positive_prints": 3,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+          "action": "REPRICE",
+          "placement_epoch": 1783851686.000002,
+          "bid_cents": 39,
+          "recorded_floor_cents": 43,
+          "recorded_floor_epoch": 1783851684.1,
+          "floor_minus_placement_minutes": -0.03166670004526774,
+          "Q_at_placement": 39,
+          "remaining_positive_print_floor": 43,
+          "later_positive_prints": 1,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": {
+        "positive_prints": 6,
+        "N": 16,
+        "category": "ATP_MAIN"
+      },
+      "E": null,
+      "positive_prints": 6,
+      "unobserved_placements": [
+        "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1857",
+        "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1930",
+        "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-2031",
+        "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-2056"
+      ]
+    }
+  ]
+}

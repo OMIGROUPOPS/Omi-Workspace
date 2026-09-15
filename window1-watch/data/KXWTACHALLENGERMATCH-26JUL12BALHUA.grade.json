@@ -1,0 +1,2279 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+  "status": "UNGRADABLE",
+  "timestamp": "2026-09-15T19:03:14.964Z",
+  "provenance": {
+    "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "4e4f8752aa1bc83729b66bd7a5077adcb6ae8edfa8b85443ae4c2a07732b99ae",
+    "trace_path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL12BALHUA\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+    "cohort": "TUNE_SAMPLE",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "face_sha256": "09e5be8638a4ef459e37715b10876b3fbca2da4cc72d7cece3fad42ff777c68b",
+    "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "truth_corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294"
+  },
+  "SENTENCE": {
+    "receipts_total": 120,
+    "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL12BALHUA.sentences.json"
+  },
+  "MACRO": {
+    "status": "STORE SILENT",
+    "reason": "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+  },
+  "MICRO": {
+    "status": "STORE SILENT",
+    "reason": "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+  },
+  "HANDS": {
+    "actions": [
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1",
+        "timestamp_epoch": 1783856660.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1",
+        "timestamp_epoch": 1783856660.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-14",
+        "timestamp_epoch": 1783856793.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-14",
+        "timestamp_epoch": 1783856793.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-46",
+        "timestamp_epoch": 1783856845.000003,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-46",
+        "timestamp_epoch": 1783856845.000003,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-94",
+        "timestamp_epoch": 1783856980.00001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-94",
+        "timestamp_epoch": 1783856980.00001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-198",
+        "timestamp_epoch": 1783857159.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-198",
+        "timestamp_epoch": 1783857159.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-215",
+        "timestamp_epoch": 1783857205.000007,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-215",
+        "timestamp_epoch": 1783857205.000007,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-220",
+        "timestamp_epoch": 1783857208.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-220",
+        "timestamp_epoch": 1783857208.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-226",
+        "timestamp_epoch": 1783857208.000007,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-226",
+        "timestamp_epoch": 1783857208.000007,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-297",
+        "timestamp_epoch": 1783857224.00001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-297",
+        "timestamp_epoch": 1783857224.00001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-306",
+        "timestamp_epoch": 1783857224.000019,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-306",
+        "timestamp_epoch": 1783857224.000019,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "2f73b29a-8f95-4851-a046-62147d9b7665",
+        "timestamp_epoch": 1783857238.721,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "2f73b29a-8f95-4851-a046-62147d9b7665",
+        "timestamp_epoch": 1783857238.721,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-350",
+        "timestamp_epoch": 1783857246.000019,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-350",
+        "timestamp_epoch": 1783857246.000019,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-377",
+        "timestamp_epoch": 1783857246.000046,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-377",
+        "timestamp_epoch": 1783857246.000046,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-384",
+        "timestamp_epoch": 1783857246.000053,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-384",
+        "timestamp_epoch": 1783857246.000053,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "35ee60a0-bf0d-49c1-69a4-cbc8a3e1e2c9",
+        "timestamp_epoch": 1783857259.018,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "35ee60a0-bf0d-49c1-69a4-cbc8a3e1e2c9",
+        "timestamp_epoch": 1783857259.018,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1127",
+        "timestamp_epoch": 1783857380.000012,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1127",
+        "timestamp_epoch": 1783857380.000012,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "a78bbfae-10de-4fd4-dd2d-ed6edcf9a38a",
+        "timestamp_epoch": 1783857460.95,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "a78bbfae-10de-4fd4-dd2d-ed6edcf9a38a",
+        "timestamp_epoch": 1783857460.95,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1489",
+        "timestamp_epoch": 1783857480.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1489",
+        "timestamp_epoch": 1783857480.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "236d2c9c-fee1-456e-b9cc-fa9c1b78ed9a",
+        "timestamp_epoch": 1783857494.336,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "236d2c9c-fee1-456e-b9cc-fa9c1b78ed9a",
+        "timestamp_epoch": 1783857494.336,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "7c3c8832-c217-4a3b-b3d7-692a718fc60f",
+        "timestamp_epoch": 1783857494.336,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "7c3c8832-c217-4a3b-b3d7-692a718fc60f",
+        "timestamp_epoch": 1783857494.336,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "c30e12c3-2a31-4f2b-b9a6-c9b4ea3fe949",
+        "timestamp_epoch": 1783857494.336,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "c30e12c3-2a31-4f2b-b9a6-c9b4ea3fe949",
+        "timestamp_epoch": 1783857494.336,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "8946dfb6-0bd2-583f-86eb-2063bf683d9f",
+        "timestamp_epoch": 1783857511.643,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "8946dfb6-0bd2-583f-86eb-2063bf683d9f",
+        "timestamp_epoch": 1783857511.643,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1566",
+        "timestamp_epoch": 1783857512.000048,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1566",
+        "timestamp_epoch": 1783857512.000048,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-1554",
+        "timestamp_epoch": 1783857521.000003,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-1554",
+        "timestamp_epoch": 1783857521.000003,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1742",
+        "timestamp_epoch": 1783857540.000074,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1742",
+        "timestamp_epoch": 1783857540.000074,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "FORMATION_NOT_COMPLETE_NO_PLACEMENT"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1933",
+        "timestamp_epoch": 1783857591.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1933",
+        "timestamp_epoch": 1783857591.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1976",
+        "timestamp_epoch": 1783857625.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1976",
+        "timestamp_epoch": 1783857625.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1979",
+        "timestamp_epoch": 1783857638.000002,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1979",
+        "timestamp_epoch": 1783857638.000002,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1993",
+        "timestamp_epoch": 1783857676.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1993",
+        "timestamp_epoch": 1783857676.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-5347",
+        "timestamp_epoch": 1783857961.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-5347",
+        "timestamp_epoch": 1783857961.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c1d55447-2635-6f58-9d6f-7e7813eba477",
+        "timestamp_epoch": 1783858449.52,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c1d55447-2635-6f58-9d6f-7e7813eba477",
+        "timestamp_epoch": 1783858449.52,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "ae794d78-f0dd-5ac4-eb0d-eb55f50c6a27",
+        "timestamp_epoch": 1783858449.548,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "ae794d78-f0dd-5ac4-eb0d-eb55f50c6a27",
+        "timestamp_epoch": 1783858449.548,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-10553",
+        "timestamp_epoch": 1783858469.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-10553",
+        "timestamp_epoch": 1783858469.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "688fb225-6614-49e6-f6e2-facb762497bb",
+        "timestamp_epoch": 1783858492.661,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "688fb225-6614-49e6-f6e2-facb762497bb",
+        "timestamp_epoch": 1783858492.661,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "b4d02d5b-474a-4054-d2d5-a742103b2cde",
+        "timestamp_epoch": 1783858492.661,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "b4d02d5b-474a-4054-d2d5-a742103b2cde",
+        "timestamp_epoch": 1783858492.661,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6e504c08-92ad-5bb2-7325-ad3f9d23908c",
+        "timestamp_epoch": 1783858508.386,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6e504c08-92ad-5bb2-7325-ad3f9d23908c",
+        "timestamp_epoch": 1783858508.386,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "8975c26d-ef99-466e-4751-5877a739f19b",
+        "timestamp_epoch": 1783858538.093,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "8975c26d-ef99-466e-4751-5877a739f19b",
+        "timestamp_epoch": 1783858538.093,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "1ed1b04b-e47b-7515-0a56-f097238c796d",
+        "timestamp_epoch": 1783858564.138,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "1ed1b04b-e47b-7515-0a56-f097238c796d",
+        "timestamp_epoch": 1783858564.138,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-11516",
+        "timestamp_epoch": 1783858602.000004,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-11516",
+        "timestamp_epoch": 1783858602.000004,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-11599",
+        "timestamp_epoch": 1783858603.00001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-11599",
+        "timestamp_epoch": 1783858603.00001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-11671",
+        "timestamp_epoch": 1783858603.000082,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-11671",
+        "timestamp_epoch": 1783858603.000082,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-11709",
+        "timestamp_epoch": 1783858620.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-11709",
+        "timestamp_epoch": 1783858620.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "624c4782-7144-743b-01c1-886067e2ca38",
+        "timestamp_epoch": 1783858620.618,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "624c4782-7144-743b-01c1-886067e2ca38",
+        "timestamp_epoch": 1783858620.618,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-11767",
+        "timestamp_epoch": 1783858623.000019,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-11767",
+        "timestamp_epoch": 1783858623.000019,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "a5ee2594-b612-4ab5-fca6-9baad978b140",
+        "timestamp_epoch": 1783858631.347,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "a5ee2594-b612-4ab5-fca6-9baad978b140",
+        "timestamp_epoch": 1783858631.347,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-10379",
+        "timestamp_epoch": 1783858640.000002,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-10379",
+        "timestamp_epoch": 1783858640.000002,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "8f2e5910-37ab-7884-0f22-adc3a9a86746",
+        "timestamp_epoch": 1783858690.042,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "8f2e5910-37ab-7884-0f22-adc3a9a86746",
+        "timestamp_epoch": 1783858690.042,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "15e7fc90-bac2-7eee-35fa-98f6c3aa982f",
+        "timestamp_epoch": 1783858806.473,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "15e7fc90-bac2-7eee-35fa-98f6c3aa982f",
+        "timestamp_epoch": 1783858806.473,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "32585264-4593-736b-07e7-60dada4d7e67",
+        "timestamp_epoch": 1783858806.473,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "32585264-4593-736b-07e7-60dada4d7e67",
+        "timestamp_epoch": 1783858806.473,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "492cd252-358b-720e-1b32-ee829fb15466",
+        "timestamp_epoch": 1783858806.473,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "492cd252-358b-720e-1b32-ee829fb15466",
+        "timestamp_epoch": 1783858806.473,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "e3d2d206-1417-7439-1b5a-6c96821dc8f5",
+        "timestamp_epoch": 1783858806.473,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "e3d2d206-1417-7439-1b5a-6c96821dc8f5",
+        "timestamp_epoch": 1783858806.473,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-31524",
+        "timestamp_epoch": 1783860060.084027,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-31524",
+        "timestamp_epoch": 1783860060.084027,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "09adc992-01ab-4e36-6cb9-f8d35afc9ce4",
+        "timestamp_epoch": 1783860091.331,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "09adc992-01ab-4e36-6cb9-f8d35afc9ce4",
+        "timestamp_epoch": 1783860091.331,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "35196f3b-a622-43ba-6950-289af4687e5e",
+        "timestamp_epoch": 1783860091.331,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "35196f3b-a622-43ba-6950-289af4687e5e",
+        "timestamp_epoch": 1783860091.331,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "42ef4f2e-86bc-4371-7fc2-4be76112cdc8",
+        "timestamp_epoch": 1783860091.331,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "42ef4f2e-86bc-4371-7fc2-4be76112cdc8",
+        "timestamp_epoch": 1783860091.331,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "6412d768-8404-40f3-7b50-60656d4f02eb",
+        "timestamp_epoch": 1783860091.331,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6412d768-8404-40f3-7b50-60656d4f02eb",
+        "timestamp_epoch": 1783860091.331,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "ea04f2b7-47bc-403f-7456-7926c58272b4",
+        "timestamp_epoch": 1783860091.331,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "ea04f2b7-47bc-403f-7456-7926c58272b4",
+        "timestamp_epoch": 1783860091.331,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-31808",
+        "timestamp_epoch": 1783860091.331032,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-31808",
+        "timestamp_epoch": 1783860091.331032,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-31826",
+        "timestamp_epoch": 1783860091.3310502,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-31826",
+        "timestamp_epoch": 1783860091.3310502,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-35768",
+        "timestamp_epoch": 1783860744.000006,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-35768",
+        "timestamp_epoch": 1783860744.000006,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-36300",
+        "timestamp_epoch": 1783860796.000016,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-36300",
+        "timestamp_epoch": 1783860796.000016,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-36392",
+        "timestamp_epoch": 1783860841.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-36392",
+        "timestamp_epoch": 1783860841.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "3f2ab668-12c9-46bf-f575-2c980e3e2bb2",
+        "timestamp_epoch": 1783860887.803,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "3f2ab668-12c9-46bf-f575-2c980e3e2bb2",
+        "timestamp_epoch": 1783860887.803,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6f5d7d21-3c74-4be9-e38e-7add399479ac",
+        "timestamp_epoch": 1783860887.803,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6f5d7d21-3c74-4be9-e38e-7add399479ac",
+        "timestamp_epoch": 1783860887.803,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "a4b3fd84-b6a1-4454-cac6-2f0b26de9f5e",
+        "timestamp_epoch": 1783860887.803,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "a4b3fd84-b6a1-4454-cac6-2f0b26de9f5e",
+        "timestamp_epoch": 1783860887.803,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c61df6d3-6f50-4a08-f78c-970df92ec975",
+        "timestamp_epoch": 1783860887.803,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c61df6d3-6f50-4a08-f78c-970df92ec975",
+        "timestamp_epoch": 1783860887.803,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "dc087688-065c-4539-f8cf-0fad00bcde50",
+        "timestamp_epoch": 1783860887.803,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "dc087688-065c-4539-f8cf-0fad00bcde50",
+        "timestamp_epoch": 1783860887.803,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-36517",
+        "timestamp_epoch": 1783860891.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-36517",
+        "timestamp_epoch": 1783860891.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "00ed613d-eb12-7015-9875-4828333cfaa3",
+        "timestamp_epoch": 1783860914.09,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "00ed613d-eb12-7015-9875-4828333cfaa3",
+        "timestamp_epoch": 1783860914.09,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "fcc4b6d8-5df5-74a0-bd06-ab0ea49990b1",
+        "timestamp_epoch": 1783860914.09,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "fcc4b6d8-5df5-74a0-bd06-ab0ea49990b1",
+        "timestamp_epoch": 1783860914.09,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "0897d775-2887-50f7-11d3-451017cec3af",
+        "timestamp_epoch": 1783860940.825,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "0897d775-2887-50f7-11d3-451017cec3af",
+        "timestamp_epoch": 1783860940.825,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "7552611e-dcdf-5337-3909-a72c08497ed5",
+        "timestamp_epoch": 1783860940.825,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "7552611e-dcdf-5337-3909-a72c08497ed5",
+        "timestamp_epoch": 1783860940.825,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "fd224fdd-bc12-592d-01b2-f8efeb80d294",
+        "timestamp_epoch": 1783860940.825,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "fd224fdd-bc12-592d-01b2-f8efeb80d294",
+        "timestamp_epoch": 1783860940.825,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-36705",
+        "timestamp_epoch": 1783860942.000012,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-36705",
+        "timestamp_epoch": 1783860942.000012,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "07902266-75ef-773a-8629-4f54b19c98b0",
+        "timestamp_epoch": 1783860965.359,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "07902266-75ef-773a-8629-4f54b19c98b0",
+        "timestamp_epoch": 1783860965.359,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "10f7bc98-68ab-7970-83fb-fbae7e92938b",
+        "timestamp_epoch": 1783860967.957,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "10f7bc98-68ab-7970-83fb-fbae7e92938b",
+        "timestamp_epoch": 1783860967.957,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "3052c2a8-189c-7a59-ad39-cc4524e8564d",
+        "timestamp_epoch": 1783860967.957,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "3052c2a8-189c-7a59-ad39-cc4524e8564d",
+        "timestamp_epoch": 1783860967.957,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-36940",
+        "timestamp_epoch": 1783860982.000004,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-36940",
+        "timestamp_epoch": 1783860982.000004,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "b660eedf-d55c-4efd-3708-5561b1fa0ff6",
+        "timestamp_epoch": 1783861682.719,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "b660eedf-d55c-4efd-3708-5561b1fa0ff6",
+        "timestamp_epoch": 1783861682.719,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "2a582f90-4028-4625-7130-38cb5422b11a",
+        "timestamp_epoch": 1783861698.376,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "2a582f90-4028-4625-7130-38cb5422b11a",
+        "timestamp_epoch": 1783861698.376,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "9ea7997e-b44c-4437-794c-e6301e84cd61",
+        "timestamp_epoch": 1783861698.376,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "9ea7997e-b44c-4437-794c-e6301e84cd61",
+        "timestamp_epoch": 1783861698.376,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "19db0145-46ec-6afd-668f-e4d01f90eafb",
+        "timestamp_epoch": 1783861740.61,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "19db0145-46ec-6afd-668f-e4d01f90eafb",
+        "timestamp_epoch": 1783861740.61,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "7c4947c5-9f6e-6f7b-7395-55a57068a7c0",
+        "timestamp_epoch": 1783861740.61,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "7c4947c5-9f6e-6f7b-7395-55a57068a7c0",
+        "timestamp_epoch": 1783861740.61,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "bbb4f88f-e1b3-6285-5e24-30d476144b22",
+        "timestamp_epoch": 1783861740.61,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "bbb4f88f-e1b3-6285-5e24-30d476144b22",
+        "timestamp_epoch": 1783861740.61,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "de9b239d-c142-62f5-7e60-d21becb9d1e7",
+        "timestamp_epoch": 1783861740.61,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "de9b239d-c142-62f5-7e60-d21becb9d1e7",
+        "timestamp_epoch": 1783861740.61,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "1f342682-3a3c-5d71-9211-c54c27ad086b",
+        "timestamp_epoch": 1783861754.486,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "1f342682-3a3c-5d71-9211-c54c27ad086b",
+        "timestamp_epoch": 1783861754.486,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-44610",
+        "timestamp_epoch": 1783861900.000001,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-44610",
+        "timestamp_epoch": 1783861900.000001,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "1344a23b-006e-415f-91a3-158f780661f2",
+        "timestamp_epoch": 1783862091.012,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "1344a23b-006e-415f-91a3-158f780661f2",
+        "timestamp_epoch": 1783862091.012,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "58133f47-523a-45e4-fb3c-faa673f7b100",
+        "timestamp_epoch": 1783862098.661,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "58133f47-523a-45e4-fb3c-faa673f7b100",
+        "timestamp_epoch": 1783862098.661,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "cdb93763-92f2-410b-e6a9-0e96089168de",
+        "timestamp_epoch": 1783862098.661,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "cdb93763-92f2-410b-e6a9-0e96089168de",
+        "timestamp_epoch": 1783862098.661,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "021586f6-6360-778b-9ea9-3584f49f8868",
+        "timestamp_epoch": 1783862152.681,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "021586f6-6360-778b-9ea9-3584f49f8868",
+        "timestamp_epoch": 1783862152.681,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "294d9198-09c1-7f71-8a04-b6bb9632f920",
+        "timestamp_epoch": 1783862152.681,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "294d9198-09c1-7f71-8a04-b6bb9632f920",
+        "timestamp_epoch": 1783862152.681,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "60d8fbf0-9581-7292-8141-8f55c84f3aed",
+        "timestamp_epoch": 1783862152.681,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "60d8fbf0-9581-7292-8141-8f55c84f3aed",
+        "timestamp_epoch": 1783862152.681,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6a2e8c75-924a-779c-80bc-18e3c800cb24",
+        "timestamp_epoch": 1783862152.681,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6a2e8c75-924a-779c-80bc-18e3c800cb24",
+        "timestamp_epoch": 1783862152.681,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c42db51c-07d2-71d4-9774-008d11dbab24",
+        "timestamp_epoch": 1783862152.681,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c42db51c-07d2-71d4-9774-008d11dbab24",
+        "timestamp_epoch": 1783862152.681,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "59a38d00-0ac6-5108-3931-3983b07ee894",
+        "timestamp_epoch": 1783862583.873,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "59a38d00-0ac6-5108-3931-3983b07ee894",
+        "timestamp_epoch": 1783862583.873,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c0db6fb4-93e2-45c7-10f3-3d0f9dcb4d72",
+        "timestamp_epoch": 1783862655.647,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "c0db6fb4-93e2-45c7-10f3-3d0f9dcb4d72",
+        "timestamp_epoch": 1783862655.647,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "a733e378-69d6-5fc8-b020-15d0804e3dd4",
+        "timestamp_epoch": 1783862690.344,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "a733e378-69d6-5fc8-b020-15d0804e3dd4",
+        "timestamp_epoch": 1783862690.344,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "e127eba8-d75e-5dab-96c7-b19fb847fafe",
+        "timestamp_epoch": 1783862690.344,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "e127eba8-d75e-5dab-96c7-b19fb847fafe",
+        "timestamp_epoch": 1783862690.344,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-46340",
+        "timestamp_epoch": 1783862697.000014,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-46340",
+        "timestamp_epoch": 1783862697.000014,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      {
+        "receipt": "0a5a73f4-d1f9-7c1c-070a-1d3bf7818485",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "0a5a73f4-d1f9-7c1c-070a-1d3bf7818485",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "4935e51f-0fac-7472-1b75-fc5845f52982",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "4935e51f-0fac-7472-1b75-fc5845f52982",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "5be01e93-703a-79a9-2e94-0ee299f44230",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "5be01e93-703a-79a9-2e94-0ee299f44230",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "988362b5-5203-75bf-04dd-8f4fd5c8ba08",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "988362b5-5203-75bf-04dd-8f4fd5c8ba08",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "aa5d3673-de50-762c-2c25-6a60332c56e0",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "aa5d3673-de50-762c-2c25-6a60332c56e0",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "b1809eb3-3bd0-7c04-20ed-00e952ff7abf",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "b1809eb3-3bd0-7c04-20ed-00e952ff7abf",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "b1fff02b-f3dd-77e9-2c07-61859f8f3afc",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "b1fff02b-f3dd-77e9-2c07-61859f8f3afc",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "f8ff9290-51fb-7665-1725-bb6cda869847",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "f8ff9290-51fb-7665-1725-bb6cda869847",
+        "timestamp_epoch": 1783862793.528,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6b82c140-8f5d-5535-1a1a-87e73973352b",
+        "timestamp_epoch": 1783862807.9,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6b82c140-8f5d-5535-1a1a-87e73973352b",
+        "timestamp_epoch": 1783862807.9,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "7a0dfa6e-910b-5f52-1072-3fb917633916",
+        "timestamp_epoch": 1783862807.9,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "7a0dfa6e-910b-5f52-1072-3fb917633916",
+        "timestamp_epoch": 1783862807.9,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "e2cece74-da7b-5ce6-1b09-48331fa226fb",
+        "timestamp_epoch": 1783862807.9,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "e2cece74-da7b-5ce6-1b09-48331fa226fb",
+        "timestamp_epoch": 1783862807.9,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6a34e79d-6479-63a0-1a3b-931e2c6dacfd",
+        "timestamp_epoch": 1783863015.408,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "6a34e79d-6479-63a0-1a3b-931e2c6dacfd",
+        "timestamp_epoch": 1783863015.408,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "aa71d7b9-82c4-5075-9956-a921d909569e",
+        "timestamp_epoch": 1783863091.991,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "aa71d7b9-82c4-5075-9956-a921d909569e",
+        "timestamp_epoch": 1783863091.991,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "2d05a9ac-d009-776f-d2ae-b6c782e6b51f",
+        "timestamp_epoch": 1783863094.228,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "2d05a9ac-d009-776f-d2ae-b6c782e6b51f",
+        "timestamp_epoch": 1783863094.228,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "4af985d3-bfb2-798d-d4ea-849a761fdd2a",
+        "timestamp_epoch": 1783863094.228,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "4af985d3-bfb2-798d-d4ea-849a761fdd2a",
+        "timestamp_epoch": 1783863094.228,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "7b908aeb-528d-71eb-e142-2739928932b0",
+        "timestamp_epoch": 1783863094.228,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "7b908aeb-528d-71eb-e142-2739928932b0",
+        "timestamp_epoch": 1783863094.228,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "9a2a691f-38e0-7e15-d4f4-ab87f3cde575",
+        "timestamp_epoch": 1783863094.228,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "9a2a691f-38e0-7e15-d4f4-ab87f3cde575",
+        "timestamp_epoch": 1783863094.228,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "13f9f167-5e44-7506-576c-74aadc192a72",
+        "timestamp_epoch": 1783863206.878,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "13f9f167-5e44-7506-576c-74aadc192a72",
+        "timestamp_epoch": 1783863206.878,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "f22c6d36-1417-7bef-6801-88cab4ceeba7",
+        "timestamp_epoch": 1783863206.878,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "f22c6d36-1417-7bef-6801-88cab4ceeba7",
+        "timestamp_epoch": 1783863206.878,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "4c277d8a-b81c-5f46-a97b-b0339834e11a",
+        "timestamp_epoch": 1783863240.229,
+        "leg": "BAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      {
+        "receipt": "4c277d8a-b81c-5f46-a97b-b0339834e11a",
+        "timestamp_epoch": 1783863240.229,
+        "leg": "HUA",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      }
+    ],
+    "execution": {
+      "run_source": "V54_BOOK_VETO_ONLY_20260826",
+      "gradeable": false,
+      "completed": false,
+      "combined_entry_cents": null,
+      "delta_vs_100_cents": null,
+      "legs": {
+        "BAL": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null
+        },
+        "HUA": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": null,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null,
+          "standing_license_basis": null,
+          "standing_license_receipt": null,
+          "standing_captured_rest_level_cents": null,
+          "standing_captured_rest_license_receipt": null
+        }
+      }
+    }
+  },
+  "OUTCOME": {
+    "legs": {
+      "BAL": {
+        "filled": false,
+        "cents": null,
+        "valid_span_fill": "STORE SILENT",
+        "reason": "EMPTY (bell before formation end)"
+      },
+      "HUA": {
+        "filled": false,
+        "cents": null,
+        "valid_span_fill": "STORE SILENT",
+        "reason": "EMPTY (bell before formation end)"
+      }
+    },
+    "pair_completed": false,
+    "valid_pair_completed": "STORE SILENT",
+    "pair_sum": null,
+    "captured_cents": null,
+    "best_capturable_cents": null,
+    "capture_ratio": null
+  },
+  "LETTER": {
+    "letter": "STORE SILENT",
+    "governing_section": "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+  },
+  "display": {
+    "letter": "—",
+    "label": "UNGRADABLE",
+    "governing": "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+    "ruler_line": "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+    "sections": [
+      {
+        "name": "MACRO",
+        "mark": "!",
+        "line": "— · No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+        "hover_lines": [
+          "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+        ]
+      },
+      {
+        "name": "MICRO",
+        "mark": "!",
+        "line": "— · No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+        "hover_lines": [
+          "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+        ]
+      },
+      {
+        "name": "TRADE",
+        "mark": "!",
+        "line": "— · No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+        "hover_lines": [
+          "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+        ]
+      },
+      {
+        "name": "PAIR",
+        "mark": "!",
+        "line": "— · No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted.",
+        "hover_lines": [
+          "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+        ]
+      }
+    ],
+    "diagnostic_hover_lines": [
+      "No verified replay span: the filed bell is before formation ends. A floor, offer and performance grade cannot be asserted."
+    ]
+  },
+  "RULER_COLUMNS": {
+    "role": "RULER COMPARISON ONLY — NOT AN OS INPUT",
+    "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+    "selection": "ALL FILED CORRECTIONS IN LEDGER ORDER — effective grading ruler; original rows retained",
+    "original_table": {
+      "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "78a2f672512798e742548acfef1c9ae02aeba9a00948a93a635063c406a303a7",
+      "row_number": 9,
+      "row_csv": "26JUL12BALHUA,KXWTACHALLENGERMATCH-26JUL12BALHUA,WTA_CHALL,1783856660,1783856660,1783865100,1783865100.0,BAL,HUA,1783857540,20.0,,,,,,,,,1783857508,17,1783857770.0,POST_BELL_INVALID,1783857546,82.5,,,,,,,,,1783857509,78,1783857511.6,POST_BELL_INVALID,1783857546,,,1783857240.0,1783863657.0,1783857240.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783857546,1783857240.0,EMPTY (bell before formation end),COMPLETE_AT_DELTA,",
+      "values": {
+        "code": "26JUL12BALHUA",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+        "category": "WTA_CHALL",
+        "recorder_open_epoch": "1783856660",
+        "w1_left_epoch": "1783856660",
+        "w1_right_epoch": "1783865100",
+        "scheduled_start_epoch": "1783865100.0",
+        "legA": "BAL",
+        "legB": "HUA",
+        "legA_formation_end_epoch": "1783857540",
+        "legA_open_postformation_c": "20.0",
+        "legA_floor_c": "",
+        "legA_floor_epoch": "",
+        "legA_close_c": "",
+        "legA_close_epoch": "",
+        "legA_contracts": "",
+        "legA_premium_usd": "",
+        "legA_journey": "",
+        "legA_net_travel_c": "",
+        "legA_us_first_post_epoch": "1783857508",
+        "legA_us_fill_c": "17",
+        "legA_us_fill_epoch": "1783857770.0",
+        "legA_us_fill_stamp": "POST_BELL_INVALID",
+        "legB_formation_end_epoch": "1783857546",
+        "legB_open_postformation_c": "82.5",
+        "legB_floor_c": "",
+        "legB_floor_epoch": "",
+        "legB_close_c": "",
+        "legB_close_epoch": "",
+        "legB_contracts": "",
+        "legB_premium_usd": "",
+        "legB_journey": "",
+        "legB_net_travel_c": "",
+        "legB_us_first_post_epoch": "1783857509",
+        "legB_us_fill_c": "78",
+        "legB_us_fill_epoch": "1783857511.6",
+        "legB_us_fill_stamp": "POST_BELL_INVALID",
+        "formation_end_game": "1783857546",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783857240.0",
+        "kalshi_close_time_epoch": "1783863657.0",
+        "bell_epoch": "1783857240.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783857546",
+        "span_end_epoch": "1783857240.0",
+        "verified_span": "EMPTY (bell before formation end)",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": ""
+      },
+      "status": "EMPTY (bell before formation end)",
+      "bell_epoch": 1783857240,
+      "bell_source": "TAPE_INFERENCE",
+      "span_start_epoch": 1783857546,
+      "span_end_epoch": 1783857240,
+      "legs": {
+        "BAL": {
+          "floor_cents": null,
+          "floor_epoch": null,
+          "close_cents": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "close_cents": "legA_close_c"
+          }
+        },
+        "HUA": {
+          "floor_cents": null,
+          "floor_epoch": null,
+          "close_cents": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "close_cents": "legB_close_c"
+          }
+        }
+      },
+      "floor_sum_cents": null,
+      "under_par_cents": null,
+      "campaign_ruler_columns": {},
+      "column_note": "Pinned CSV uses legA_floor_c / legB_floor_c, not a literal floor_cents column; absent campaign/ruler columns are not invented."
+    },
+    "correction_source": {
+      "commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+      "sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+    },
+    "restated_rows": [],
+    "effective_truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "78a2f672512798e742548acfef1c9ae02aeba9a00948a93a635063c406a303a7",
+      "row_number": 9,
+      "row_csv": "26JUL12BALHUA,KXWTACHALLENGERMATCH-26JUL12BALHUA,WTA_CHALL,1783856660,1783856660,1783865100,1783865100.0,BAL,HUA,1783857540,20.0,,,,,,,,,1783857508,17,1783857770.0,POST_BELL_INVALID,1783857546,82.5,,,,,,,,,1783857509,78,1783857511.6,POST_BELL_INVALID,1783857546,,,1783857240.0,1783863657.0,1783857240.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783857546,1783857240.0,EMPTY (bell before formation end),COMPLETE_AT_DELTA,",
+      "verified_span": "EMPTY (bell before formation end)",
+      "status": "STORE_SILENT",
+      "reason": "EMPTY (bell before formation end)",
+      "span_start_epoch": 1783857546,
+      "span_end_epoch": 1783857240,
+      "bell_epoch": 1783857240,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1783857240,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BAL": {
+          "status": "STORE_SILENT",
+          "reason": "EMPTY (bell before formation end)",
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 20,
+          "floor_cents": null,
+          "floor_epoch": null,
+          "minutes_to_bell": null,
+          "line": "BAL: STORE SILENT — EMPTY (bell before formation end)",
+          "marker_label": null,
+          "chart_label": null,
+          "hover_note": null,
+          "markers": {}
+        },
+        "HUA": {
+          "status": "STORE_SILENT",
+          "reason": "EMPTY (bell before formation end)",
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 82.5,
+          "floor_cents": null,
+          "floor_epoch": null,
+          "minutes_to_bell": null,
+          "line": "HUA: STORE SILENT — EMPTY (bell before formation end)",
+          "marker_label": null,
+          "chart_label": null,
+          "hover_note": null,
+          "markers": {}
+        }
+      },
+      "favorite_leg": "HUA",
+      "underdog_leg": "BAL",
+      "pair": {
+        "sum_cents": null,
+        "discount_cents": null,
+        "reason": "EMPTY (bell before formation end)",
+        "line": "best capturable = STORE SILENT — EMPTY (bell before formation end)",
+        "discount_line": "STORE SILENT",
+        "compact_line": "best capturable STORE SILENT — EMPTY (bell before formation end)"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12BALHUA",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+        "category": "WTA_CHALL",
+        "recorder_open_epoch": "1783856660",
+        "w1_left_epoch": "1783856660",
+        "w1_right_epoch": "1783865100",
+        "scheduled_start_epoch": "1783865100.0",
+        "legA": "BAL",
+        "legB": "HUA",
+        "legA_formation_end_epoch": "1783857540",
+        "legA_open_postformation_c": "20.0",
+        "legA_floor_c": "",
+        "legA_floor_epoch": "",
+        "legA_close_c": "",
+        "legA_close_epoch": "",
+        "legA_contracts": "",
+        "legA_premium_usd": "",
+        "legA_journey": "",
+        "legA_net_travel_c": "",
+        "legA_us_first_post_epoch": "1783857508",
+        "legA_us_fill_c": "17",
+        "legA_us_fill_epoch": "1783857770.0",
+        "legA_us_fill_stamp": "POST_BELL_INVALID",
+        "legB_formation_end_epoch": "1783857546",
+        "legB_open_postformation_c": "82.5",
+        "legB_floor_c": "",
+        "legB_floor_epoch": "",
+        "legB_close_c": "",
+        "legB_close_epoch": "",
+        "legB_contracts": "",
+        "legB_premium_usd": "",
+        "legB_journey": "",
+        "legB_net_travel_c": "",
+        "legB_us_first_post_epoch": "1783857509",
+        "legB_us_fill_c": "78",
+        "legB_us_fill_epoch": "1783857511.6",
+        "legB_us_fill_stamp": "POST_BELL_INVALID",
+        "formation_end_game": "1783857546",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783857240.0",
+        "kalshi_close_time_epoch": "1783863657.0",
+        "bell_epoch": "1783857240.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783857546",
+        "span_end_epoch": "1783857240.0",
+        "verified_span": "EMPTY (bell before formation end)",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    }
+  }
+}

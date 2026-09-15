@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "selected": 0,
+  "all_selected_available_in_picker": false,
+  "rows": [],
+  "scoreboard": {
+    "status": "PASS",
+    "selected": 100,
+    "tours": [
+      {
+        "tour": "ATP_CHALL",
+        "expected": 46,
+        "visible": 46
+      },
+      {
+        "tour": "ATP_MAIN",
+        "expected": 18,
+        "visible": 18
+      },
+      {
+        "tour": "WTA_CHALL",
+        "expected": 17,
+        "visible": 17
+      },
+      {
+        "tour": "WTA_MAIN",
+        "expected": 19,
+        "visible": 19
+      }
+    ],
+    "url": "http://127.0.0.1:8080/?tab=scoreboard&collection=tune-expansion&event=KXATPMATCH-26JUL12ALTGAS"
+  },
+  "js_errors": [],
+  "base": "http://127.0.0.1:8080/"
+}

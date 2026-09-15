@@ -1,0 +1,116 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+  "category": "WTA_CHALL",
+  "status": "GRADED",
+  "letter": "NOT OFFERED",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · FEI CLIMBER → NOT_CALLABLE · SAM NOT_CALLABLE → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"FEI\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-267\",\"first_recorded_epoch\":1784156183.000001,\"first_bind_epoch\":1784156183,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":33.5,\"close_cents\":34,\"realized_drift_cents\":0.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"SAM\":{\"called_role\":\"NOT_CALLABLE\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":true,\"first_recorded_receipt\":null,\"first_recorded_epoch\":null,\"first_bind_epoch\":null,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":66.5,\"close_cents\":67,\"realized_drift_cents\":0.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): FEI 0 · SAM 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "B · FEI Q 31 vs floor 33¢; range 14–34 · SAM Q 65 vs floor 67¢; range 60–66",
+      "hover_lines": [
+        "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"legs\":{\"FEI\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":31,\"q25\":14,\"q75\":34,\"floor_error_cents\":2,\"band_width_cents\":20,\"band_contains_floor\":true,\"receipt\":\"a81812cd-9baf-60c8-7669-90b20f256213\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":33,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"SAM\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":65,\"q25\":60,\"q75\":66,\"floor_error_cents\":2,\"band_width_cents\":6,\"band_contains_floor\":false,\"receipt\":\"KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-267\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":67,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): FEI: 0.98¢ · SAM: 1.03¢ · FEI: first 293.77m; remaining MAE 33.19m · SAM: first 569.4m; remaining MAE 71.67m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "NOT OFFERED · FEI unfilled · SAM unfilled",
+      "hover_lines": [
+        "TRADE: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"valid_fills\":0,\"side_count\":2},\"legs\":{\"FEI\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":33,\"floor_epoch\":1784173705.8,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"SAM\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":67,\"floor_epoch\":1784155044.9,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: "
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "NOT OFFERED · Not offered — recorded floors sum to par or above",
+      "hover_lines": [
+        "PAIR: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":\"STORE SILENT\",\"offered_cents\":0}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "NOT OFFERED — corrected floor pair offers no discount",
+  "raw_engine_fills": [],
+  "raw_engine_completed": false,
+  "valid_fills": 0,
+  "completed": false,
+  "one_sided": false,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 0,
+  "capture_ratio": "STORE SILENT",
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "FEI",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-2250",
+        "timestamp_epoch": 1784197439.000002,
+        "leg": "FEI",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 33,
+      "reach_audit": {
+        "rest_intervals": 140,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "SAM",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-2250",
+        "timestamp_epoch": 1784197439.000002,
+        "leg": "SAM",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 67,
+      "reach_audit": {
+        "rest_intervals": 60,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "3f239156d5aa6a69f61443a4c2af7e55def03da633be13b3d82bc9d41bb88079",
+  "grade_sha256": "a9b7128848c0cdc44df3c158b6d113b92310fbd6b11f03d347c8ae05889f40fc",
+  "grade_url": "/data/KXWTACHALLENGERMATCH-26JUL16FEISAM.grade.json",
+  "face_url": "/data/KXWTACHALLENGERMATCH-26JUL16FEISAM.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL16FEISAM.sentences.json",
+  "fault": "FEI: No later positive-size print reached a standing bid before the corrected bell | SAM: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [],
+  "hard_failures": [],
+  "offer_issue": null
+}

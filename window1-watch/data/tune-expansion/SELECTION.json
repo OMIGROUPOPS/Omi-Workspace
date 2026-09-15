@@ -1,0 +1,1758 @@
+{
+  "schema": "TUNE_EXPANSION_SELECTION_V1",
+  "frozen_at": "2026-09-14T21:33:45.054Z",
+  "seed": "d992de6be916deb2eb3cf4ae546adf88306f102be1f12860eb23eafcc4716277",
+  "seed_source": "Node crypto.randomBytes(32), drawn once before replay or availability screening",
+  "method": "Proportional tour quotas by Hamilton largest remainder; tie category lexicographic. Within each tour take lowest SHA256(seed + newline + category + newline + event_id); no outcome, span, or tape-availability screening.",
+  "population": 804,
+  "selected_count": 100,
+  "unselected_count": 704,
+  "source": {
+    "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+    "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+    "correction_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+    "correction_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+    "correction_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+  },
+  "inputs": {
+    "window1_v54_dual_belief_os.js": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "build_window1_v54_dual_belief.js": "6136c8ca9cd2b6742f7a6235a27169cdc97b6b6543368a29d08f18c3185f5a8c"
+  },
+  "quotas": [
+    {
+      "category": "ATP_CHALL",
+      "population": 369,
+      "quota": 46,
+      "remainder": 720
+    },
+    {
+      "category": "ATP_MAIN",
+      "population": 147,
+      "quota": 18,
+      "remainder": 228
+    },
+    {
+      "category": "WTA_CHALL",
+      "population": 136,
+      "quota": 17,
+      "remainder": 736
+    },
+    {
+      "category": "WTA_MAIN",
+      "population": 152,
+      "quota": 19,
+      "remainder": 728
+    }
+  ],
+  "selected": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "category": "ATP_CHALL",
+      "row_sha256": "48de152aa157de78be472f05ee8ff71257ded6e749c1901b81b2a1f876c5d9b6",
+      "legs": [
+        "GRE",
+        "VAN"
+      ],
+      "draw_key": "0025b8d831af5c87ef5289afbb6da35f7d36a4020821b1334c009da7b60440d4"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "category": "ATP_CHALL",
+      "row_sha256": "e811a22e411dadeb8037c9dc6e213e28a451ade3e90422e7cd48cb1c1b40468e",
+      "legs": [
+        "AJD",
+        "ONC"
+      ],
+      "draw_key": "00ed5d8941a9e82499c5710af2e38ba4a7e1399a42b6504dfb9748f7826a839d"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "category": "ATP_CHALL",
+      "row_sha256": "ece4b14160d562c83202853800574e3eb42cf709469147d58472829d66c5ccf0",
+      "legs": [
+        "LAJ",
+        "YUN"
+      ],
+      "draw_key": "02911ba88866f8032b5c7e9d455581cae5280257d37e1867d957ecd28274f416"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "category": "ATP_CHALL",
+      "row_sha256": "14fc9bd7e0f3b6f78cc817f3c5040074e65e8d60170519885939d78d968e934b",
+      "legs": [
+        "SHE",
+        "WIN"
+      ],
+      "draw_key": "04c9077b288cace7879bb6b19cf6cb8f7f0f354dbbfe52c5f75d29a3263a2381"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "category": "ATP_CHALL",
+      "row_sha256": "68f779c6f34aa6f23ca31f18023dfd7941ee08fff67a97dd77fb7f3e8a27b560",
+      "legs": [
+        "BIT",
+        "DEM"
+      ],
+      "draw_key": "06d11de1205fc75ee30bda820eb8f0a91bcbffa1a98d692b81e3e6f1519fa34c"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "category": "ATP_CHALL",
+      "row_sha256": "39f2abaa762d66bd73ecb3abf25d5e4be38bd69075096f40a4f1451e9d7384d0",
+      "legs": [
+        "BAR",
+        "REI"
+      ],
+      "draw_key": "06d17ee4016b72a63b326c72aeaec93880e922965eb7fc3213037b22f37ff956"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "category": "ATP_CHALL",
+      "row_sha256": "26b952d875c2a20b2daac5ececedfcc30c42ae5484d657f9285351c1a9134478",
+      "legs": [
+        "SAL",
+        "VRB"
+      ],
+      "draw_key": "07839248f2b7d4e34ffbef030deaf294f9fc0de9733c05dfaa6aa66517aec14e"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "category": "ATP_CHALL",
+      "row_sha256": "13cc13479d99e0f443b52e5fce3706dd1edba1df81903fbbcb1e6c5af546461b",
+      "legs": [
+        "AHT",
+        "VIS"
+      ],
+      "draw_key": "0798b80c982e599c037b2adc6369a53870829d5a0eb2978d9875b541bff1ad6a"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "category": "ATP_CHALL",
+      "row_sha256": "a0b5a9e697de1540d3a98a67f3971bfdb4484ee098398b2e16f1499198d0ccd9",
+      "legs": [
+        "PAA",
+        "WES"
+      ],
+      "draw_key": "07dd2dc43fe3dcf84571b9e27869f76b47a5036205367a041eb8b92c0ad695dd"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "category": "ATP_CHALL",
+      "row_sha256": "df6ef7c00553ecf63c902c842f1c180ae221c5a5742634256ce224de43484202",
+      "legs": [
+        "GAN",
+        "ZIN"
+      ],
+      "draw_key": "08d7d866f2975ba379bd1f9f92eac4798a1741b2a397b5290ddd7281354749f9"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "category": "ATP_CHALL",
+      "row_sha256": "8583f83121f588ce886758cb00acc6d9e1f849e919103b03a7c09b7e625622a5",
+      "legs": [
+        "BER",
+        "JOH"
+      ],
+      "draw_key": "09714e3747b3d998a52913cd23549ecc39a7a66b221c819c13c8bd5d0f9375c9"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "category": "ATP_CHALL",
+      "row_sha256": "7d3d60517660a28a2ee4eb55e858cc9fc4c5fef004da1e221058ee0b2a3bb798",
+      "legs": [
+        "LAN",
+        "YIB"
+      ],
+      "draw_key": "099cfd9626ae14a310cad97d402d0c6007c9a5e930c356711af943cc1a37f176"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "category": "ATP_CHALL",
+      "row_sha256": "a14b857c8da52ee286f346afb7809714dbfff535bec8314d767eea33c566ecb2",
+      "legs": [
+        "IVA",
+        "ROD"
+      ],
+      "draw_key": "0a4bb5bebc3d503e07d39e4f6c12329895ed1291b01c5833ea61929836b39b83"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "category": "ATP_CHALL",
+      "row_sha256": "b847baab2cf85eb6ea9d6df4b838bb3bbb1a558ecbd5c8891ad7dff134b5ca5c",
+      "legs": [
+        "OLI",
+        "ZIE"
+      ],
+      "draw_key": "0a643abc1bfc026d37206dee44d1950964978c36d1e8cce72ced3134dcb1e3d8"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+      "category": "ATP_CHALL",
+      "row_sha256": "75e5658d328ced662c54706157303b0c7af5dfb3725a38a712e519a9b9e39e1e",
+      "legs": [
+        "CAL",
+        "KUM"
+      ],
+      "draw_key": "0aad43f02a34f22c6c2a24b5d117bce843d7bdd8b02e4ea6e00c326649ff12ef"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "category": "ATP_CHALL",
+      "row_sha256": "67f12f033d67bce9979769108ced8a05e4ac007f6a6526cbe89dc02278729190",
+      "legs": [
+        "BON",
+        "JUS"
+      ],
+      "draw_key": "0b49e8697ae17dca2f05f462614722e021ed9d4a670e89b2d6c240bbe33a6eea"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+      "category": "ATP_CHALL",
+      "row_sha256": "ba411ea43bb7eaa65db2146f634fbda557a8bad51d8ee9395c2b447e59216bcd",
+      "legs": [
+        "GRE",
+        "SAN"
+      ],
+      "draw_key": "0e14e52418efac593cc333493493ecff4d16e06f074096a5496c81e925c8111d"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+      "category": "ATP_CHALL",
+      "row_sha256": "a5872b6b7b1ab9af31acc8b683d066cf30edc97749c9e214c15762ae14f7a2fc",
+      "legs": [
+        "PIE",
+        "TAB"
+      ],
+      "draw_key": "0e896532c123cabc2a159fc8512c5bbd7eb2027351ca7f92260b1dbd00dd9063"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "category": "ATP_CHALL",
+      "row_sha256": "4f428cab754d74f92ae060a07718b508b7d05b4b8db95fd4a335290eacedb763",
+      "legs": [
+        "KUM",
+        "MEN"
+      ],
+      "draw_key": "0ea495d901fe220433c28bd47f0ccacf0f01cc0bf48a93c748e05ceb22c3eb08"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "category": "ATP_CHALL",
+      "row_sha256": "5774e8f2b5fc0a8e1ec55604e439dddf2809e749caee9a5bcaad55b634eb23c6",
+      "legs": [
+        "ARS",
+        "WIN"
+      ],
+      "draw_key": "0ed500e3e87d1235e57fb30871961c5771230da2464b2f15381a87a96b961984"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "category": "ATP_CHALL",
+      "row_sha256": "ad6195c2ba4b5d5dc730ed2521b36f6e397eb58ad6dd8bdf437c0608b9941f56",
+      "legs": [
+        "BIC",
+        "CAS"
+      ],
+      "draw_key": "0f2f91838d12b6ba4874aa901633f1027103507cccffa163caf3a9120dcd85b3"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "category": "ATP_CHALL",
+      "row_sha256": "c0a9dc18ea670ecfc05265bcd24bc76e7439d483c4884b2fb4c9c12a33a780e4",
+      "legs": [
+        "MAG",
+        "MAY"
+      ],
+      "draw_key": "0f45753a3da6ee34354a734e2b1e0abf7ebd6d6bfde4a47da3a03632ccf954bf"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "row_sha256": "281176da0781718819b76d78ab2ac9e892bebfd3326fd82cb922679a0cda74df",
+      "legs": [
+        "BIG",
+        "HUR"
+      ],
+      "draw_key": "0fba7714656f1250b0bf58cc39d2c349dae505e1ed3e133406ca647ff2677f15"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "category": "ATP_CHALL",
+      "row_sha256": "7dd7bee9e60ace43d22f3fd56d002c4426cdb08aded80afe30e225ff2f0d60b4",
+      "legs": [
+        "GAL",
+        "LLA"
+      ],
+      "draw_key": "1076ed95f07fb93126775fc72b08633581b91c9dc2fc9c41254c2183f87ddf16"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "category": "ATP_CHALL",
+      "row_sha256": "92eb9ca14b5cbbd7ba8f11a9710355c8866dadc3ab3840b76dfe8fa76be2a118",
+      "legs": [
+        "BIN",
+        "FUE"
+      ],
+      "draw_key": "119abbd01827dc880b71fbac20fb9b4681efcb6836627f0c3645b04502ba6f64"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "category": "ATP_CHALL",
+      "row_sha256": "0e589509c08542ed00bab83b0ab4544ac0441940d78b100a2d21df87d5d8141c",
+      "legs": [
+        "BRU",
+        "KRA"
+      ],
+      "draw_key": "11e3fa28a70e9ccaf3915701d169cdd2f68a75a35151fa0a93f3ddf19be636eb"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "category": "ATP_CHALL",
+      "row_sha256": "941dcefb1d7a7ecf5d93a60bd697ad9352e2d23dbeb7cf74aa9cbf4a4135018e",
+      "legs": [
+        "ALM",
+        "HER"
+      ],
+      "draw_key": "130afab2caac3477e62491b7ad0fc039cee0fae8858c101cdf023eabfe87ed2a"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "category": "ATP_CHALL",
+      "row_sha256": "a467d5afe584d9eb48249c3beb0441c34e76d8488492791079e0c3da06861adb",
+      "legs": [
+        "IMA",
+        "MCC"
+      ],
+      "draw_key": "13ecebb02d37929507780164fb9a89bfa5f69ac8285b2ff4bddb1c60ba8cd158"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "category": "ATP_CHALL",
+      "row_sha256": "211425b448cc5ef4d5821fc97d1838eeac6b2e64e64d33a611926a6013cdcb5f",
+      "legs": [
+        "ARN",
+        "POH"
+      ],
+      "draw_key": "15c4cf45af5c9353033ff4c1d22b0555ba858b777b9da8ca33abab7a03b924e2"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "category": "ATP_CHALL",
+      "row_sha256": "3c313a7fa0eef60607dac6ac232901b5613752931c6ecfc174c5bcc2539e5add",
+      "legs": [
+        "SIN",
+        "VAS"
+      ],
+      "draw_key": "17a3ce71c72302d98f3e7b7a10db260b06b277aed5b5dd82e51b45858e5445a8"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+      "category": "ATP_CHALL",
+      "row_sha256": "615ac30f3a8e82b93ceed797583724aa56b0fca4e653b81ec5630bc4db639b42",
+      "legs": [
+        "BOU",
+        "ZHA"
+      ],
+      "draw_key": "1822eee29b60728a910f640cc010b6098e6d2214155f5a87a9e9d080bc69ae4d"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "category": "ATP_CHALL",
+      "row_sha256": "313eb147197ebbeb981a581aa52f512b9ea46eab78fd2a2043e82cc298d4d778",
+      "legs": [
+        "ARN",
+        "GAL"
+      ],
+      "draw_key": "188793168a66de3f18339dd32db7a5a518ec2a8013eba6bd88f49dd09e2ea30b"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+      "category": "ATP_CHALL",
+      "row_sha256": "f4425636278bb3e5c22d26a78fff928846fe97e5e16cd8f1004febf9287203a1",
+      "legs": [
+        "CUI",
+        "FOR"
+      ],
+      "draw_key": "1898c4ab9bbf0cd8768715b4fc066cef5164d706dfc6bdc2f83ef2b3aa52ace0"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "category": "ATP_CHALL",
+      "row_sha256": "123bae7309c6af1b83c09e2114e8a424f6727d4d1db8c715e64c0ca208c6f962",
+      "legs": [
+        "BAL",
+        "NAP"
+      ],
+      "draw_key": "195d9c8bdb25421cfc4057e95068beb59bf84d3ec7b11a7aea2c40abc8614d39"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "category": "ATP_CHALL",
+      "row_sha256": "b650d6dc175b9f9d60164378d94dfd55e2da3af2ef8d7cfc2e43633a77dc4118",
+      "legs": [
+        "FEA",
+        "WAL"
+      ],
+      "draw_key": "19b3f436d3c4ea655b80e1e5bd53b5bda4122062383c55bf141d1c00d64bc4f4"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "category": "ATP_CHALL",
+      "row_sha256": "b68855b99823a597a79bce4f667d6a1540b24799154da2593fe72ebe8f651313",
+      "legs": [
+        "PAL",
+        "URS"
+      ],
+      "draw_key": "1e39b57f6c9b2d0d4040a0fe9ef89ee21e4c3834286e32c2670f431d6da3c23e"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "category": "ATP_CHALL",
+      "row_sha256": "4fea3a3c5ed67fa9ef5e4b567f269c21b09f034d0c337c82a04adc6f35af4677",
+      "legs": [
+        "SEL",
+        "WES"
+      ],
+      "draw_key": "1e5856eb84f34b43be7b3391457a90676c4efafeb56ec9e308367f2548010cfa"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "category": "ATP_CHALL",
+      "row_sha256": "28f3e2b7ff675b29ac83557ec41d0b41d7ecb22a67f1d072050065aa988ca5fd",
+      "legs": [
+        "ARS",
+        "RIC"
+      ],
+      "draw_key": "20070c4da2a7bd44dd413161dd9dee5b3b9cad64c57e847072db3187585568bc"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "category": "ATP_CHALL",
+      "row_sha256": "11fae84a6fb939718fecf2a158c39e261a08aad6360b5b2e84e142b58dabe3aa",
+      "legs": [
+        "YUN",
+        "ZHU"
+      ],
+      "draw_key": "20815a2921b3765cbd2ea7cee72c67c587a15c24453401b5dab61e09b04cef30"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "category": "ATP_CHALL",
+      "row_sha256": "38a8884b6e3da62e6f7a85394adc18567038743bea3b1f6f61ddef797511b5dd",
+      "legs": [
+        "LAS",
+        "OLI"
+      ],
+      "draw_key": "229987d6833fcf5f7a3a322c41aab75ad635c875905b27924de5969fbd5515d6"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "category": "ATP_CHALL",
+      "row_sha256": "a323af6644d180fe3a02ed9d6eed5c77765cd4767b4e139367ecbbc93d9d3829",
+      "legs": [
+        "BAL",
+        "PET"
+      ],
+      "draw_key": "2317b4af8d07397f36a060dea6724ca2d59ad195e6b34554e59809ae20cbe750"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+      "category": "ATP_CHALL",
+      "row_sha256": "0a132987a829edc1a6f0488da2ac4e095c34de957ed553f53d7daa19f2325a97",
+      "legs": [
+        "MAR",
+        "ROS"
+      ],
+      "draw_key": "259bf6af6bcdbf1b5525338ca4a719550b9357f91e28f0c9bee9ba4ce69ff7fe"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "category": "ATP_CHALL",
+      "row_sha256": "d270d77f97981297e5337e647ddd4e8db55ef15f0874c464cc247360e8981731",
+      "legs": [
+        "HOR",
+        "TRO"
+      ],
+      "draw_key": "25adebfca5375005963a61c331fa782d25ac5f99aaef8c5b378426782a861f47"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "category": "ATP_CHALL",
+      "row_sha256": "0df1b2c84355d76808579973ee26c76b4092529989851bb3108ebacab9dcd354",
+      "legs": [
+        "KOZ",
+        "ZHO"
+      ],
+      "draw_key": "264b44f58cabd5235fc05605a6adc402dd51c6c4618e65b49ef5219ba2f8d64c"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "category": "ATP_CHALL",
+      "row_sha256": "d5d9ef42dd8e8e09d6b3a6eb8b81b64973f8b5eec9a57333e2383852a58d67b4",
+      "legs": [
+        "ALC",
+        "RON"
+      ],
+      "draw_key": "27543ee53e83448c5c04cdfb76f193be3ccf9bdda0b29e91a8291e2a8449845e"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "category": "ATP_CHALL",
+      "row_sha256": "0c70e2ce07a45cfb18f46dae89b5609fa1a08da077a4a5238cf72a87dffa81de",
+      "legs": [
+        "BIN",
+        "GIL"
+      ],
+      "draw_key": "283de222baf70ceefe6bbcc05903258f746a4b93ff43f8582fb92af4de58eda5"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12KOPPRI",
+      "category": "ATP_MAIN",
+      "row_sha256": "a5597e6eaebf9994a3b018cbb58185501bb64930262972ea03755133f8bfb398",
+      "legs": [
+        "KOP",
+        "PRI"
+      ],
+      "draw_key": "0241c152b0e397609657fdee3d82c91dc354c6632c3bfb1fe48fed834944e629"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DEJGAU",
+      "category": "ATP_MAIN",
+      "row_sha256": "d9604d8dc783e6841f8884c63f7ba1de16ed22fa9a68069d6134d1db6941c726",
+      "legs": [
+        "DEJ",
+        "GAU"
+      ],
+      "draw_key": "02906d4ffa57dad60325511ea1f0a192f8a1b53ec23638789f6f9cb49fa23cd0"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19TSICOL",
+      "category": "ATP_MAIN",
+      "row_sha256": "60978af52cf14bfc31268bd9b191ce921ae8781ac1f51e16581a6422d00991c2",
+      "legs": [
+        "COL",
+        "TSI"
+      ],
+      "draw_key": "03d2f280c1da84495f1ba8db3efe557a2d04081f553f2e958d94716c600f67c4"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12BUDPEL",
+      "category": "ATP_MAIN",
+      "row_sha256": "029b4523d8f8745ca07190c90363a2ab3b272257b8e61f850ca14083acda21d5",
+      "legs": [
+        "BUD",
+        "PEL"
+      ],
+      "draw_key": "059fad33165b4c673aca0001d12b8467ec84bbef59552bc9d2f6455d32d636cb"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19NEUHAN",
+      "category": "ATP_MAIN",
+      "row_sha256": "eb46b28fec10962d1d8c3916d72502c107029654ee2e81381d1992040d1e35cb",
+      "legs": [
+        "HAN",
+        "NEU"
+      ],
+      "draw_key": "065696cd7b7cce5807b72ef2859934b8679f165d75ab1f4fb10f292b9c8fd7c7"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15PRADZU",
+      "category": "ATP_MAIN",
+      "row_sha256": "d08777bdced578713a0568af4b35f1d145e0f874639a491171223296ead13a4e",
+      "legs": [
+        "DZU",
+        "PRA"
+      ],
+      "draw_key": "06b1f2b078fc816e6334165d98cd01a2d3df62eb269634af3e27de4f97a700b6"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15CARUGO",
+      "category": "ATP_MAIN",
+      "row_sha256": "39759508e8334b8e1e7352fed0537fd86cd5429f507e096048279d678df655a4",
+      "legs": [
+        "CAR",
+        "UGO"
+      ],
+      "draw_key": "072cf29effa0c89e1feb634a400fe51bda674f1ca9a73ff976a9ad9f5ad600a6"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19STRSHE",
+      "category": "ATP_MAIN",
+      "row_sha256": "0ab39f32bc1d171b681538156b2d5732e3287af55240e27fb0aa8317076fe21c",
+      "legs": [
+        "SHE",
+        "STR"
+      ],
+      "draw_key": "099c65968acf61c1df76f90a00d266ff100a4ad7d68a3d3f9fae55c9f60d672f"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16FARRUU",
+      "category": "ATP_MAIN",
+      "row_sha256": "5b9434c6d589134e34905a48b5456298785b9c5a8cfde8bbf41eb24e0dd10145",
+      "legs": [
+        "FAR",
+        "RUU"
+      ],
+      "draw_key": "0a916b3a747800588172a109fad023b7b19fd59d4df4ae876328cfcd428d8a1e"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19GASDZU",
+      "category": "ATP_MAIN",
+      "row_sha256": "534e3c81ee7cd10be9c9de812d718ed9f562a96d02188c68e92780b93567ab4d",
+      "legs": [
+        "DZU",
+        "GAS"
+      ],
+      "draw_key": "100d370d6a599bee0c7ac15a2318be7833ca51101503d8c1acfa11f4b313a89f"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19DROUGO",
+      "category": "ATP_MAIN",
+      "row_sha256": "5ed9218ff03dd5b11c7abf9bdffbf0579939ee2357bb6e6d51ece413c310150d",
+      "legs": [
+        "DRO",
+        "UGO"
+      ],
+      "draw_key": "11396daf2e4a54b9ed2b2e09f1346092358e20958015e66ca3bdab858e669410"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "category": "ATP_MAIN",
+      "row_sha256": "8e5e90abd12ce43e306b099e42f973fd86bd7bf1f84c12f2d129a33a29540cd2",
+      "legs": [
+        "DOM",
+        "SKA"
+      ],
+      "draw_key": "11fb68a0cbbd23e1454fa91ce40d71c6a6a96b747702b14bdb9cfc3c10320aac"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15VANDRO",
+      "category": "ATP_MAIN",
+      "row_sha256": "c514ca72dd8759da42661a648cd98d9094db64aa479dcf30518fa7fd5c6bcbb6",
+      "legs": [
+        "DRO",
+        "VAN"
+      ],
+      "draw_key": "13dcdfcf36cae72ef94111cc8c780a0410b4a2898c1ef552e1224f49af5d82c1"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12OFNTIR",
+      "category": "ATP_MAIN",
+      "row_sha256": "61f753892a132fff58090595cdd70d222b3cce21f5ed798c62c2fa6ac524e570",
+      "legs": [
+        "OFN",
+        "TIR"
+      ],
+      "draw_key": "13e0e3f6f30f2d6cbc64e5c32b808ca7a163eac3832329319f465f10a68185f8"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CORDAN",
+      "category": "ATP_MAIN",
+      "row_sha256": "711071c23ed518f5adf7841086cdffee3e5218c7b7e0d708cfde4dcb98301205",
+      "legs": [
+        "COR",
+        "DAN"
+      ],
+      "draw_key": "175f9bf3a6b14e9fc895ecba9e16041393e96feb4c9b7807b9e6b6a19385ce6c"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SLADAM",
+      "category": "ATP_MAIN",
+      "row_sha256": "3fed1a8e3003f38052dce80e3392707578b1a78dda362f74682122ad5beb0135",
+      "legs": [
+        "DAM",
+        "SLA"
+      ],
+      "draw_key": "17bc8bf8ac8cca29bb55657fde7d2cdb8af8967a22159c0826e359ee034acb5b"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CECOLI",
+      "category": "ATP_MAIN",
+      "row_sha256": "0e00b30ea4cec4049a9dc5e9e622f1d915908a701e5c37234a15ba19c35aea87",
+      "legs": [
+        "CEC",
+        "OLI"
+      ],
+      "draw_key": "1abab946223298f380ed58f6ced5b9b851a8fb7d6a2f5eb5af108ac8d63c9a09"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18HIPGIU",
+      "category": "ATP_MAIN",
+      "row_sha256": "d41550c6f9f1ee3ed969a83d201ae1e1325a5dd8544458acabb9dd495b2b6b4e",
+      "legs": [
+        "GIU",
+        "HIP"
+      ],
+      "draw_key": "1e2e4df969f3638676b102ad2afbe8b337238da0b29e1d37068888076ae54eca"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "category": "WTA_CHALL",
+      "row_sha256": "a6d3bc5319ed3c7b8ac2b37294de4e7ad03f17233883b1a29d28b888b5b8729a",
+      "legs": [
+        "KHO",
+        "PRO"
+      ],
+      "draw_key": "034f220dc1c9028c90a58c79c4527ba2cf6a074afa32427aa9c8ffb3d8806dba"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "category": "WTA_CHALL",
+      "row_sha256": "be981a93f466499efaeeb86cfd5d6b62110ab0ee7dbc678daaf8c6da063665c5",
+      "legs": [
+        "BOS",
+        "ERJ"
+      ],
+      "draw_key": "03fe301b7c8c295d5905324e15c6ccb41020abb52c7a756d75a4b6c191307c74"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "category": "WTA_CHALL",
+      "row_sha256": "9d4927be8d99b45400e5096b2bb0deb8c0bf38d55763de5c9718f1021606a37c",
+      "legs": [
+        "AVD",
+        "FEI"
+      ],
+      "draw_key": "0568765f13c76c4f10856c3b81c79a9798d7c252e88fc1ca872770931e6c2518"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "category": "WTA_CHALL",
+      "row_sha256": "d6cf7d2b7eb5c74047d1af2354ea4c546ab69a08091992d679c132b1d4a96319",
+      "legs": [
+        "HRU",
+        "ZVO"
+      ],
+      "draw_key": "06a5a95bfbb3d1c461a1cc61261c80f89661cc65243aa07a1c5dd30e7c1de231"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "category": "WTA_CHALL",
+      "row_sha256": "58e873aed71429b10dbb28c5889873aadbe534eee29038d980366df69fbb273b",
+      "legs": [
+        "GAO",
+        "VAL"
+      ],
+      "draw_key": "07c828e9298b4dfd442814e045a335edcdebe069b21c76f1f0adef1725b10097"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "category": "WTA_CHALL",
+      "row_sha256": "126fdcdd50bd72fed44d88e27f01635312e475056baa11fa8624972228a3854f",
+      "legs": [
+        "SEL",
+        "YAN"
+      ],
+      "draw_key": "0accab9d26a3c10e83b702fb65b17b69ce97354f8acd0128c38a9ae9bc895210"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+      "category": "WTA_CHALL",
+      "row_sha256": "ccf5ce9b4f77b74f6c4957343239266519a6b0e4d93d6268ea930b6f7bbf3d73",
+      "legs": [
+        "KOS",
+        "RUG"
+      ],
+      "draw_key": "0aeb6c4068b26f18655031700d887087f25c4f30b31fc72138d2e07567f58784"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "category": "WTA_CHALL",
+      "row_sha256": "3c0cba9aeb79ecb0798be1de34e4dc4f10c19cee07d723354989a251f7993fed",
+      "legs": [
+        "RAB",
+        "RUS"
+      ],
+      "draw_key": "0ba781fd1b7275c4044a0a90066606c114b9aa87f46b9d712e977b36e9deb946"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "category": "WTA_CHALL",
+      "row_sha256": "2113e6eac0d91ebc2c28ce1a80a508f521150731281cfca5716ce59a207fe6ff",
+      "legs": [
+        "GRA",
+        "PER"
+      ],
+      "draw_key": "0e80a5455ee28c18d0e5e25a9ffacc0cfdf982b2c6a590d319cbc06976ed348d"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "category": "WTA_CHALL",
+      "row_sha256": "2219cd8710bb475bca2de5df680d2fb2a4c13c0922e1cb3553343fa08c9f9d3e",
+      "legs": [
+        "BAS",
+        "RUS"
+      ],
+      "draw_key": "0ef00601a9bac9a698dcf6d8896fea38b398cccf9a1d8abc542534c129913e66"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+      "category": "WTA_CHALL",
+      "row_sha256": "23a2c04ca1ec22e98639023ce6f63321f9d945f36d5c45d42b1876e2f05eca5c",
+      "legs": [
+        "NOH",
+        "RAM"
+      ],
+      "draw_key": "1650b69479cb0702a106e35d04255bbcf11925e7efac24c15da72360cfb26082"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "category": "WTA_CHALL",
+      "row_sha256": "8f2275c29a5e25c0e0afdcd94f9c901ea6f21d453642ee3ae6836ba5c56c3e82",
+      "legs": [
+        "MAZ",
+        "SPI"
+      ],
+      "draw_key": "1655ffb60c2b04c03232c8ee74bcbf8a25a42392ff528579a400fb62f962a442"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "category": "WTA_CHALL",
+      "row_sha256": "9ecaaa1e3615b749be0f2615032c65eb10b75a6b5612038ff5dc659f26e3f58a",
+      "legs": [
+        "FEI",
+        "SAM"
+      ],
+      "draw_key": "16f06ddc42bb6da8f4f0b43bd8b9e451852d3dde8ea7a4696b6e73266f7296a5"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "category": "WTA_CHALL",
+      "row_sha256": "067fa9e099899cabf505049b51f5cbe057fdc1c0e2b4f6792b62e42f3d340667",
+      "legs": [
+        "AND",
+        "RIS"
+      ],
+      "draw_key": "18e3dbb4728aa794eb9e165097c4b72a41bd2a246e3659dfd7a7d23568a1dc8c"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+      "category": "WTA_CHALL",
+      "row_sha256": "44ea29c96ff955a2044b5b08d56a6a73cbebe3f6c421f0905040f07e96557fcd",
+      "legs": [
+        "CIR",
+        "TOT"
+      ],
+      "draw_key": "19549abf7acf33b0290e363e186140365190093b49b30545d38f60bb121c36e6"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "category": "WTA_CHALL",
+      "row_sha256": "f7b687f022ffad05f8e8d25eadbb1c66f30098e1a5cae036b384ba12543312d9",
+      "legs": [
+        "KNU",
+        "KUR"
+      ],
+      "draw_key": "1e13a0b688aeef503a448345c8ce1908110a07eb09baf98cb4d35414f3b12301"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "category": "WTA_CHALL",
+      "row_sha256": "78a2f672512798e742548acfef1c9ae02aeba9a00948a93a635063c406a303a7",
+      "legs": [
+        "BAL",
+        "HUA"
+      ],
+      "draw_key": "20934053e914a72d22a09d339b6c13fdf5c515270caa2df4ac97984310201588"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13LEPIBR",
+      "category": "WTA_MAIN",
+      "row_sha256": "5fbffb0c8f9799b4e16d461e89fbb09f488544a18ad6d887fe57b0e03ee6bb30",
+      "legs": [
+        "IBR",
+        "LEP"
+      ],
+      "draw_key": "01552227998590f8c725a74449c345981afc01eaf4b84033b904b8714234907d"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+      "category": "WTA_MAIN",
+      "row_sha256": "a594d3ebcd5fd1bce77c3ea17de5dd328659a32c9ee8c6ecc6a28c0906c9444c",
+      "legs": [
+        "GRA",
+        "PAR"
+      ],
+      "draw_key": "016098bd88e700916190a92f2ed38e2210df8df636e3a6245cdd5c3d857e14ea"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "category": "WTA_MAIN",
+      "row_sha256": "6229722392da3d21ef1b12372c17d33c2de04e46cb28a5797f8dd684b3519661",
+      "legs": [
+        "KOR",
+        "KUD"
+      ],
+      "draw_key": "0177c2558fdf7c9676ab7a527c662ce9b0868dac7056070a28f0c8eb9c3e6ee1"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13KRETOM",
+      "category": "WTA_MAIN",
+      "row_sha256": "cce386422b99ac37c388a7d6dd387301a9eb18e3826e9b539f8f0e15f52607d3",
+      "legs": [
+        "KRE",
+        "TOM"
+      ],
+      "draw_key": "032b162d960653e83cdedeaf0d8c59596b16c85829a8c6beba62e383eaf33d38"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13QUERUS",
+      "category": "WTA_MAIN",
+      "row_sha256": "76e52865a8416061d8a02181ac24a1f6db6ad17189f046bc2a98bab65aef08ad",
+      "legs": [
+        "QUE",
+        "RUS"
+      ],
+      "draw_key": "042760badfdf90209d27179b2435567e604423b72e819714cbe0ac167c5e70b7"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+      "category": "WTA_MAIN",
+      "row_sha256": "9d6af59dd1b9d50302275069201b01f9c428e9a3e2f4fafd6d68c1fa5607729b",
+      "legs": [
+        "GAR",
+        "PRI"
+      ],
+      "draw_key": "07ef9fa48ae6135ea61d27fc6d29b5c8774afcfce4387221302561bc1d889b28"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16KORANN",
+      "category": "WTA_MAIN",
+      "row_sha256": "4a5af0ed96c9cb72cfb594af012e6a61b57e248d28c50b7727f5cb2f0306a5b2",
+      "legs": [
+        "ANN",
+        "KOR"
+      ],
+      "draw_key": "07f7d06e6d0d6f6d367b3dc84aee91b2e6168ecfb6ae6c05febbd6c69fb6d08f"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18MORAKS",
+      "category": "WTA_MAIN",
+      "row_sha256": "6a2afcf8c11ad441f3560d5e29bbb6ccf5e6ac6872af8fb96ba26c355063e220",
+      "legs": [
+        "AKS",
+        "MOR"
+      ],
+      "draw_key": "0b0c96e88a9894c1ff4b9759b97b8babb4fbfc8fd7bd987feff7461070dcc24e"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12AVASEI",
+      "category": "WTA_MAIN",
+      "row_sha256": "597d4eff5ebeb8b6945a3acd36b9c8484cda3c13dfc8f217cf32379d56071222",
+      "legs": [
+        "AVA",
+        "SEI"
+      ],
+      "draw_key": "0cc7f754fa4b5d0eb577904443c6aeacfa9cede0679261e3efd0a391fe06636b"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19GAOFRU",
+      "category": "WTA_MAIN",
+      "row_sha256": "175dc9dbaeacf9855688094a24486be38b2d4b08e6c68864dd65c24351999805",
+      "legs": [
+        "FRU",
+        "GAO"
+      ],
+      "draw_key": "16c7b0cf79eef69601d642500510fffdc88d1856d05f8339641d98cf39cf926f"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17PUTSHE",
+      "category": "WTA_MAIN",
+      "row_sha256": "71bbf5fb829b262ab77be2e7536bb02cd6d19f95ae77bcd5c5e8f3ae8c65663a",
+      "legs": [
+        "PUT",
+        "SHE"
+      ],
+      "draw_key": "174e44aa5bc27c1387c1b7225a69d1273084ae73a2eb275aebb0e614f586d5e4"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19YASBAR",
+      "category": "WTA_MAIN",
+      "row_sha256": "f803cb93f5f9071701f5ee3bd42354b376a5c496915b014a64cedfbb3b9cdf92",
+      "legs": [
+        "BAR",
+        "YAS"
+      ],
+      "draw_key": "1af6e23dc050dfc3129df62b2c21eceb8bd45b10e3b2aece9e06c590b5d45d8f"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13KAWWAL",
+      "category": "WTA_MAIN",
+      "row_sha256": "3ef2c194a1150679a4f8e59c8f513c72fbc953d371b34275fae07151df561f8f",
+      "legs": [
+        "KAW",
+        "WAL"
+      ],
+      "draw_key": "1b37d254b3da3e6f7216362ae069422324a1a61bf3727259cef8197f593130dd"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14PUTLIU",
+      "category": "WTA_MAIN",
+      "row_sha256": "f5d3d4e9c3cd2ff7cee6e0b56500549262be6d7704d8e65bcf84959b96b02566",
+      "legs": [
+        "LIU",
+        "PUT"
+      ],
+      "draw_key": "1b580f0c212295c794b72403c80d5f7935f4b9137eb909d71442777d16288326"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13MORBEJ",
+      "category": "WTA_MAIN",
+      "row_sha256": "35641d47b8907c5b92a6546ffcb60ad8eeb42ef937926bddba05131e054d5129",
+      "legs": [
+        "BEJ",
+        "MOR"
+      ],
+      "draw_key": "1c3708660443c0fe702e7132103d9162d2c5d3b3b32070f84688f346c3d35889"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PODSTU",
+      "category": "WTA_MAIN",
+      "row_sha256": "ce4d369d83eb03cd930ab84ce4fee89897197595436223b8ce358d0a491e3dfa",
+      "legs": [
+        "POD",
+        "STU"
+      ],
+      "draw_key": "1dae0f3c542cb6839d3e1363d0e504509558b0c782608460c683c7c276eb25f5"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18MICFRU",
+      "category": "WTA_MAIN",
+      "row_sha256": "0879d9df1e484292a9ab6fd232ed5a3825da3ca7961e5e18c376c30236d19175",
+      "legs": [
+        "FRU",
+        "MIC"
+      ],
+      "draw_key": "1dff77942eb232daf8cf3bb774b088844ae2379138e29d876f332c14053cb238"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16VALSAS",
+      "category": "WTA_MAIN",
+      "row_sha256": "c453e190e7f8d43d447293492cc6b21084f60ddcd2cf3f70ca5dd76091184a7e",
+      "legs": [
+        "SAS",
+        "VAL"
+      ],
+      "draw_key": "22c4b39845ba27764cbfc95ffc6b992c7d2577638bf616498b3ffcaba04fb4e5"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+      "category": "WTA_MAIN",
+      "row_sha256": "2a14aacef09cb438c19e6a518bc5210e4b430d2b04e2b7f6b3be85688b4972f5",
+      "legs": [
+        "BAD",
+        "UDV"
+      ],
+      "draw_key": "2336a47dda32231fca75dc260633e4c9a92c3b9724db7a6de2075414cf92e947"
+    }
+  ],
+  "unselected_event_ids": [
+    "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+    "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+    "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+    "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+    "KXATPCHALLENGERMATCH-26JUL12BARVIS",
+    "KXATPCHALLENGERMATCH-26JUL12BOOONC",
+    "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+    "KXATPCHALLENGERMATCH-26JUL12BOUVIT",
+    "KXATPCHALLENGERMATCH-26JUL12BROBAR",
+    "KXATPCHALLENGERMATCH-26JUL12BROGIU",
+    "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+    "KXATPCHALLENGERMATCH-26JUL12BRUGAD",
+    "KXATPCHALLENGERMATCH-26JUL12CALRAD",
+    "KXATPCHALLENGERMATCH-26JUL12CHAJON",
+    "KXATPCHALLENGERMATCH-26JUL12CHISEA",
+    "KXATPCHALLENGERMATCH-26JUL12CHOGAS",
+    "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+    "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+    "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+    "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+    "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+    "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+    "KXATPCHALLENGERMATCH-26JUL12ECHMUN",
+    "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+    "KXATPCHALLENGERMATCH-26JUL12FORPAM",
+    "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+    "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+    "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+    "KXATPCHALLENGERMATCH-26JUL12GIESHE",
+    "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+    "KXATPCHALLENGERMATCH-26JUL12GURDAL",
+    "KXATPCHALLENGERMATCH-26JUL12GUTCAM",
+    "KXATPCHALLENGERMATCH-26JUL12HECISO",
+    "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+    "KXATPCHALLENGERMATCH-26JUL12HOUJOR",
+    "KXATPCHALLENGERMATCH-26JUL12KARMAR",
+    "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+    "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+    "KXATPCHALLENGERMATCH-26JUL12KUZDE",
+    "KXATPCHALLENGERMATCH-26JUL12LAGTEP",
+    "KXATPCHALLENGERMATCH-26JUL12LANKOB",
+    "KXATPCHALLENGERMATCH-26JUL12LINMAL",
+    "KXATPCHALLENGERMATCH-26JUL12MARARS",
+    "KXATPCHALLENGERMATCH-26JUL12MARFOR",
+    "KXATPCHALLENGERMATCH-26JUL12MEJSOT",
+    "KXATPCHALLENGERMATCH-26JUL12MIYKUZ",
+    "KXATPCHALLENGERMATCH-26JUL12MOLDON",
+    "KXATPCHALLENGERMATCH-26JUL12MORPET",
+    "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+    "KXATPCHALLENGERMATCH-26JUL12PALMAR",
+    "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+    "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+    "KXATPCHALLENGERMATCH-26JUL12POLVIN",
+    "KXATPCHALLENGERMATCH-26JUL12PRIBAL",
+    "KXATPCHALLENGERMATCH-26JUL12RAFAGU",
+    "KXATPCHALLENGERMATCH-26JUL12RAIZHU",
+    "KXATPCHALLENGERMATCH-26JUL12RAQKUM",
+    "KXATPCHALLENGERMATCH-26JUL12ROUGAN",
+    "KXATPCHALLENGERMATCH-26JUL12SALARN",
+    "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+    "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+    "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+    "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+    "KXATPCHALLENGERMATCH-26JUL12VANCHO",
+    "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+    "KXATPCHALLENGERMATCH-26JUL12WINROB",
+    "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+    "KXATPCHALLENGERMATCH-26JUL12YIBMAL",
+    "KXATPCHALLENGERMATCH-26JUL12YOUDLI",
+    "KXATPCHALLENGERMATCH-26JUL13AGABAR",
+    "KXATPCHALLENGERMATCH-26JUL13ALVKUM",
+    "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+    "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+    "KXATPCHALLENGERMATCH-26JUL13BOUGAN",
+    "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+    "KXATPCHALLENGERMATCH-26JUL13DONWES",
+    "KXATPCHALLENGERMATCH-26JUL13FORHUA",
+    "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+    "KXATPCHALLENGERMATCH-26JUL13FORRAF",
+    "KXATPCHALLENGERMATCH-26JUL13GIUALM",
+    "KXATPCHALLENGERMATCH-26JUL13HOLWAT",
+    "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+    "KXATPCHALLENGERMATCH-26JUL13JONPET",
+    "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+    "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+    "KXATPCHALLENGERMATCH-26JUL13KRUMAR",
+    "KXATPCHALLENGERMATCH-26JUL13KUMLAG",
+    "KXATPCHALLENGERMATCH-26JUL13KUZNIJ",
+    "KXATPCHALLENGERMATCH-26JUL13LANSHE",
+    "KXATPCHALLENGERMATCH-26JUL13MONANG",
+    "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+    "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+    "KXATPCHALLENGERMATCH-26JUL13NOGBRO",
+    "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+    "KXATPCHALLENGERMATCH-26JUL13PALGON",
+    "KXATPCHALLENGERMATCH-26JUL13PERTOB",
+    "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+    "KXATPCHALLENGERMATCH-26JUL13PRICRI",
+    "KXATPCHALLENGERMATCH-26JUL13RADIVA",
+    "KXATPCHALLENGERMATCH-26JUL13REHJUS",
+    "KXATPCHALLENGERMATCH-26JUL13RODALK",
+    "KXATPCHALLENGERMATCH-26JUL13ROZISO",
+    "KXATPCHALLENGERMATCH-26JUL13SANLOP",
+    "KXATPCHALLENGERMATCH-26JUL13SHIHAR",
+    "KXATPCHALLENGERMATCH-26JUL13TABVIN",
+    "KXATPCHALLENGERMATCH-26JUL13TROGEO",
+    "KXATPCHALLENGERMATCH-26JUL13VILGAN",
+    "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+    "KXATPCHALLENGERMATCH-26JUL13WINKIR",
+    "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+    "KXATPCHALLENGERMATCH-26JUL13WONTUN",
+    "KXATPCHALLENGERMATCH-26JUL13YEVCAM",
+    "KXATPCHALLENGERMATCH-26JUL13YIBMAR",
+    "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+    "KXATPCHALLENGERMATCH-26JUL14ADDLEO",
+    "KXATPCHALLENGERMATCH-26JUL14ALCTAB",
+    "KXATPCHALLENGERMATCH-26JUL14ALMGRA",
+    "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+    "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+    "KXATPCHALLENGERMATCH-26JUL14BRUNIJ",
+    "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+    "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+    "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+    "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+    "KXATPCHALLENGERMATCH-26JUL14DALMAY",
+    "KXATPCHALLENGERMATCH-26JUL14DELXIL",
+    "KXATPCHALLENGERMATCH-26JUL14DENYEV",
+    "KXATPCHALLENGERMATCH-26JUL14DRATRO",
+    "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+    "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+    "KXATPCHALLENGERMATCH-26JUL14FUEPRI",
+    "KXATPCHALLENGERMATCH-26JUL14GALFOR",
+    "KXATPCHALLENGERMATCH-26JUL14GENPET",
+    "KXATPCHALLENGERMATCH-26JUL14GLIJOH",
+    "KXATPCHALLENGERMATCH-26JUL14GUIBON",
+    "KXATPCHALLENGERMATCH-26JUL14IVAGIU",
+    "KXATPCHALLENGERMATCH-26JUL14JONIVA",
+    "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+    "KXATPCHALLENGERMATCH-26JUL14KRATOR",
+    "KXATPCHALLENGERMATCH-26JUL14LAGSAN",
+    "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+    "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+    "KXATPCHALLENGERMATCH-26JUL14MARCAM",
+    "KXATPCHALLENGERMATCH-26JUL14MARMAY",
+    "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+    "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+    "KXATPCHALLENGERMATCH-26JUL14MRVCAN",
+    "KXATPCHALLENGERMATCH-26JUL14NAGCRE",
+    "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+    "KXATPCHALLENGERMATCH-26JUL14OUAFIC",
+    "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+    "KXATPCHALLENGERMATCH-26JUL14RONGIU",
+    "KXATPCHALLENGERMATCH-26JUL14ROZRIC",
+    "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+    "KXATPCHALLENGERMATCH-26JUL14SQUKUM",
+    "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+    "KXATPCHALLENGERMATCH-26JUL14SURECH",
+    "KXATPCHALLENGERMATCH-26JUL14UCHGAL",
+    "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+    "KXATPCHALLENGERMATCH-26JUL14VUKARS",
+    "KXATPCHALLENGERMATCH-26JUL15GENDE",
+    "KXATPCHALLENGERMATCH-26JUL15HOLMAY",
+    "KXATPCHALLENGERMATCH-26JUL15IVACRA",
+    "KXATPCHALLENGERMATCH-26JUL15LAJKRU",
+    "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+    "KXATPCHALLENGERMATCH-26JUL15NAPBAR",
+    "KXATPCHALLENGERMATCH-26JUL15NOGSUR",
+    "KXATPCHALLENGERMATCH-26JUL15RODINC",
+    "KXATPCHALLENGERMATCH-26JUL15ROMGAL",
+    "KXATPCHALLENGERMATCH-26JUL15SANERE",
+    "KXATPCHALLENGERMATCH-26JUL15SCHHOU",
+    "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+    "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+    "KXATPCHALLENGERMATCH-26JUL15WESCOP",
+    "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+    "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+    "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+    "KXATPCHALLENGERMATCH-26JUL15ZHOPER",
+    "KXATPCHALLENGERMATCH-26JUL15ZINGAL",
+    "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+    "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+    "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+    "KXATPCHALLENGERMATCH-26JUL16DELDAL",
+    "KXATPCHALLENGERMATCH-26JUL16DENBAR",
+    "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+    "KXATPCHALLENGERMATCH-26JUL16FUESEY",
+    "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+    "KXATPCHALLENGERMATCH-26JUL16IVAOUA",
+    "KXATPCHALLENGERMATCH-26JUL16KUMBRO",
+    "KXATPCHALLENGERMATCH-26JUL16MCCTOM",
+    "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+    "KXATPCHALLENGERMATCH-26JUL16PALALM",
+    "KXATPCHALLENGERMATCH-26JUL16RICGEA",
+    "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+    "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+    "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+    "KXATPCHALLENGERMATCH-26JUL17DELFUE",
+    "KXATPCHALLENGERMATCH-26JUL17DRAGEA",
+    "KXATPCHALLENGERMATCH-26JUL17FORTOM",
+    "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+    "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+    "KXATPCHALLENGERMATCH-26JUL17HOLBOU",
+    "KXATPCHALLENGERMATCH-26JUL17KUMBOO",
+    "KXATPCHALLENGERMATCH-26JUL17LAJNOG",
+    "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+    "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+    "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+    "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+    "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+    "KXATPCHALLENGERMATCH-26JUL17SANALM",
+    "KXATPCHALLENGERMATCH-26JUL17SEKCAS",
+    "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+    "KXATPCHALLENGERMATCH-26JUL17VUKGAL",
+    "KXATPCHALLENGERMATCH-26JUL17WONJOH",
+    "KXATPCHALLENGERMATCH-26JUL18ALCVIL",
+    "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+    "KXATPCHALLENGERMATCH-26JUL18DENCOP",
+    "KXATPCHALLENGERMATCH-26JUL18FUEBON",
+    "KXATPCHALLENGERMATCH-26JUL18GENKUM",
+    "KXATPCHALLENGERMATCH-26JUL18PERIVA",
+    "KXATPCHALLENGERMATCH-26JUL18RODSAN",
+    "KXATPCHALLENGERMATCH-26JUL18TOMJOH",
+    "KXATPCHALLENGERMATCH-26JUL18VUKHOL",
+    "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+    "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+    "KXATPCHALLENGERMATCH-26JUL19BANZHU",
+    "KXATPCHALLENGERMATCH-26JUL19BARLEO",
+    "KXATPCHALLENGERMATCH-26JUL19BARSTA",
+    "KXATPCHALLENGERMATCH-26JUL19BIAYOU",
+    "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+    "KXATPCHALLENGERMATCH-26JUL19BONALC",
+    "KXATPCHALLENGERMATCH-26JUL19CALTEP",
+    "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+    "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+    "KXATPCHALLENGERMATCH-26JUL19DEMMAG",
+    "KXATPCHALLENGERMATCH-26JUL19DENGEN",
+    "KXATPCHALLENGERMATCH-26JUL19DJOMAT",
+    "KXATPCHALLENGERMATCH-26JUL19DONTOP",
+    "KXATPCHALLENGERMATCH-26JUL19GIUDEV",
+    "KXATPCHALLENGERMATCH-26JUL19HERECH",
+    "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+    "KXATPCHALLENGERMATCH-26JUL19JOHGEO",
+    "KXATPCHALLENGERMATCH-26JUL19JONISO",
+    "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+    "KXATPCHALLENGERMATCH-26JUL19KOZVIT",
+    "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+    "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+    "KXATPCHALLENGERMATCH-26JUL19KUZOPI",
+    "KXATPCHALLENGERMATCH-26JUL19LANMAY",
+    "KXATPCHALLENGERMATCH-26JUL19MALMOR",
+    "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+    "KXATPCHALLENGERMATCH-26JUL19MARWAZ",
+    "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+    "KXATPCHALLENGERMATCH-26JUL19MILFAN",
+    "KXATPCHALLENGERMATCH-26JUL19MONTHO",
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+    "KXATPCHALLENGERMATCH-26JUL19PALMUN",
+    "KXATPCHALLENGERMATCH-26JUL19PAPROS",
+    "KXATPCHALLENGERMATCH-26JUL19PETALO",
+    "KXATPCHALLENGERMATCH-26JUL19PIENES",
+    "KXATPCHALLENGERMATCH-26JUL19POLSCH",
+    "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+    "KXATPCHALLENGERMATCH-26JUL19POUJAN",
+    "KXATPCHALLENGERMATCH-26JUL19REJWES",
+    "KXATPCHALLENGERMATCH-26JUL19RITGOM",
+    "KXATPCHALLENGERMATCH-26JUL19ROZSHE",
+    "KXATPCHALLENGERMATCH-26JUL19SINMAT",
+    "KXATPCHALLENGERMATCH-26JUL19SURPER",
+    "KXATPCHALLENGERMATCH-26JUL19TOKMIY",
+    "KXATPCHALLENGERMATCH-26JUL19TOMLAJ",
+    "KXATPCHALLENGERMATCH-26JUL19TORSEN",
+    "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+    "KXATPCHALLENGERMATCH-26JUL19VALCAS",
+    "KXATPCHALLENGERMATCH-26JUL19VANGOR",
+    "KXATPCHALLENGERMATCH-26JUL19VANRAD",
+    "KXATPCHALLENGERMATCH-26JUL19VARBOI",
+    "KXATPCHALLENGERMATCH-26JUL19VASTAB",
+    "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+    "KXATPCHALLENGERMATCH-26JUL19YEVSTR",
+    "KXATPCHALLENGERMATCH-26JUL19ZAMKIN",
+    "KXATPCHALLENGERMATCH-26JUL19ZAMPOL",
+    "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+    "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+    "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+    "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+    "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+    "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+    "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+    "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+    "KXATPCHALLENGERMATCH-26JUL20GIUHER",
+    "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+    "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+    "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+    "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+    "KXATPCHALLENGERMATCH-26JUL20JOHAGU",
+    "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+    "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+    "KXATPCHALLENGERMATCH-26JUL20KYMCLA",
+    "KXATPCHALLENGERMATCH-26JUL20MARBIT",
+    "KXATPCHALLENGERMATCH-26JUL20MILSHE",
+    "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+    "KXATPCHALLENGERMATCH-26JUL20MONNES",
+    "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+    "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+    "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+    "KXATPCHALLENGERMATCH-26JUL20PIRNAP",
+    "KXATPCHALLENGERMATCH-26JUL20POHWES",
+    "KXATPCHALLENGERMATCH-26JUL20POLBRU",
+    "KXATPCHALLENGERMATCH-26JUL20SEYKOL",
+    "KXATPCHALLENGERMATCH-26JUL20STAMAT",
+    "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+    "KXATPCHALLENGERMATCH-26JUL20TOKHUR",
+    "KXATPCHALLENGERMATCH-26JUL20TORSTR",
+    "KXATPCHALLENGERMATCH-26JUL20TROISO",
+    "KXATPCHALLENGERMATCH-26JUL20VALGOM",
+    "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+    "KXATPCHALLENGERMATCH-26JUL20VARDON",
+    "KXATPCHALLENGERMATCH-26JUL20VISNIK",
+    "KXATPCHALLENGERMATCH-26JUL20WATILA",
+    "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+    "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+    "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+    "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+    "KXATPMATCH-26JUL12ALTGAS",
+    "KXATPMATCH-26JUL12BORKOU",
+    "KXATPMATCH-26JUL12BUEMAR",
+    "KXATPMATCH-26JUL12CARSAN",
+    "KXATPMATCH-26JUL12CERKOL",
+    "KXATPMATCH-26JUL12CHOBAS",
+    "KXATPMATCH-26JUL12CINHEM",
+    "KXATPMATCH-26JUL12DAHBAE",
+    "KXATPMATCH-26JUL12DIEMON",
+    "KXATPMATCH-26JUL12DODCAR",
+    "KXATPMATCH-26JUL12DROBLO",
+    "KXATPMATCH-26JUL12DZUROC",
+    "KXATPMATCH-26JUL12FARWAW",
+    "KXATPMATCH-26JUL12FELKEC",
+    "KXATPMATCH-26JUL12GUEGOM",
+    "KXATPMATCH-26JUL12JACTRU",
+    "KXATPMATCH-26JUL12KRUFER",
+    "KXATPMATCH-26JUL12LAJVAN",
+    "KXATPMATCH-26JUL12MARHAN",
+    "KXATPMATCH-26JUL12MOLFAU",
+    "KXATPMATCH-26JUL12MOLROY",
+    "KXATPMATCH-26JUL12MULSHE",
+    "KXATPMATCH-26JUL12NEUTOP",
+    "KXATPMATCH-26JUL12PASKAS",
+    "KXATPMATCH-26JUL12PRASAI",
+    "KXATPMATCH-26JUL12REJMID",
+    "KXATPMATCH-26JUL12SESMER",
+    "KXATPMATCH-26JUL12SKASAC",
+    "KXATPMATCH-26JUL12SONSCH",
+    "KXATPMATCH-26JUL12STRMUN",
+    "KXATPMATCH-26JUL12SVRDIM",
+    "KXATPMATCH-26JUL12TABHUE",
+    "KXATPMATCH-26JUL12TSIBUS",
+    "KXATPMATCH-26JUL13COLSKA",
+    "KXATPMATCH-26JUL13FAUDAM",
+    "KXATPMATCH-26JUL13MARMID",
+    "KXATPMATCH-26JUL13PASKRU",
+    "KXATPMATCH-26JUL13SANDAN",
+    "KXATPMATCH-26JUL13TABROD",
+    "KXATPMATCH-26JUL14CECBUR",
+    "KXATPMATCH-26JUL14CINHAL",
+    "KXATPMATCH-26JUL14DIAMID",
+    "KXATPMATCH-26JUL14GOMMCD",
+    "KXATPMATCH-26JUL14KYMDIE",
+    "KXATPMATCH-26JUL14MARPRA",
+    "KXATPMATCH-26JUL14NEUPRA",
+    "KXATPMATCH-26JUL14RINTAB",
+    "KXATPMATCH-26JUL14TOPUGO",
+    "KXATPMATCH-26JUL14TRAKRU",
+    "KXATPMATCH-26JUL14VALDAM",
+    "KXATPMATCH-26JUL14VANDAN",
+    "KXATPMATCH-26JUL15ALTDAR",
+    "KXATPMATCH-26JUL15BASTIR",
+    "KXATPMATCH-26JUL15BORDIM",
+    "KXATPMATCH-26JUL15BUBHAL",
+    "KXATPMATCH-26JUL15CERKEC",
+    "KXATPMATCH-26JUL15COBBUR",
+    "KXATPMATCH-26JUL15COLSON",
+    "KXATPMATCH-26JUL15ETCMER",
+    "KXATPMATCH-26JUL15GOMARN",
+    "KXATPMATCH-26JUL15HANVAC",
+    "KXATPMATCH-26JUL15KYMTSI",
+    "KXATPMATCH-26JUL15PRIMOL",
+    "KXATPMATCH-26JUL15RUBPEL",
+    "KXATPMATCH-26JUL15TABMID",
+    "KXATPMATCH-26JUL15TRANAV",
+    "KXATPMATCH-26JUL15TRUDAV",
+    "KXATPMATCH-26JUL15VANVAL",
+    "KXATPMATCH-26JUL16BURUGO",
+    "KXATPMATCH-26JUL16DEJBAE",
+    "KXATPMATCH-26JUL16DZUARN",
+    "KXATPMATCH-26JUL16MERDRO",
+    "KXATPMATCH-26JUL16MOLDAV",
+    "KXATPMATCH-26JUL16SHESTR",
+    "KXATPMATCH-26JUL17BORDAR",
+    "KXATPMATCH-26JUL17BURMER",
+    "KXATPMATCH-26JUL17CERRUU",
+    "KXATPMATCH-26JUL17COLVAC",
+    "KXATPMATCH-26JUL17DZUMOL",
+    "KXATPMATCH-26JUL17HALSHE",
+    "KXATPMATCH-26JUL17RINTSI",
+    "KXATPMATCH-26JUL17RUBBAE",
+    "KXATPMATCH-26JUL17TABTIR",
+    "KXATPMATCH-26JUL17VALTRA",
+    "KXATPMATCH-26JUL18BUTTAB",
+    "KXATPMATCH-26JUL18CINMIC",
+    "KXATPMATCH-26JUL18COLCER",
+    "KXATPMATCH-26JUL18CORSAC",
+    "KXATPMATCH-26JUL18DANPRA",
+    "KXATPMATCH-26JUL18DELRIB",
+    "KXATPMATCH-26JUL18GAUTSE",
+    "KXATPMATCH-26JUL18HEIFEL",
+    "KXATPMATCH-26JUL18JACDA",
+    "KXATPMATCH-26JUL18KOPHER",
+    "KXATPMATCH-26JUL18LUZTSE",
+    "KXATPMATCH-26JUL18MARJOR",
+    "KXATPMATCH-26JUL18MERDZU",
+    "KXATPMATCH-26JUL18PELSIL",
+    "KXATPMATCH-26JUL18ROCBUE",
+    "KXATPMATCH-26JUL18RODCHE",
+    "KXATPMATCH-26JUL18RUBTAB",
+    "KXATPMATCH-26JUL18SHETSI",
+    "KXATPMATCH-26JUL18VALDAR",
+    "KXATPMATCH-26JUL18WALDJE",
+    "KXATPMATCH-26JUL19ALTCOL",
+    "KXATPMATCH-26JUL19BAEKEC",
+    "KXATPMATCH-26JUL19CERTRU",
+    "KXATPMATCH-26JUL19CHODEJ",
+    "KXATPMATCH-26JUL19CINGIU",
+    "KXATPMATCH-26JUL19DELDJE",
+    "KXATPMATCH-26JUL19FELKOP",
+    "KXATPMATCH-26JUL19FERVAN",
+    "KXATPMATCH-26JUL19GAUCAR",
+    "KXATPMATCH-26JUL19JACDAN",
+    "KXATPMATCH-26JUL19KOPBUS",
+    "KXATPMATCH-26JUL19LUZTAB",
+    "KXATPMATCH-26JUL19MARSKA",
+    "KXATPMATCH-26JUL19MOLOFN",
+    "KXATPMATCH-26JUL19MULNAV",
+    "KXATPMATCH-26JUL19PELBUE",
+    "KXATPMATCH-26JUL19RODSAC",
+    "KXATPMATCH-26JUL19RUBDAR",
+    "KXATPMATCH-26JUL19TORBAS",
+    "KXATPMATCH-26JUL19VANFAR",
+    "KXATPMATCH-26JUL19WAWBUR",
+    "KXATPMATCH-26JUL20DIACIN",
+    "KXATPMATCH-26JUL20DJECIN",
+    "KXATPMATCH-26JUL20ROCMAR",
+    "KXATPMATCH-26JUL20SCHROD",
+    "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+    "KXWTACHALLENGERMATCH-26JUL12BASABB",
+    "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+    "KXWTACHALLENGERMATCH-26JUL12CIRHUA",
+    "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+    "KXWTACHALLENGERMATCH-26JUL12HESKOT",
+    "KXWTACHALLENGERMATCH-26JUL12KHOVIG",
+    "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+    "KXWTACHALLENGERMATCH-26JUL12MAZGAN",
+    "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+    "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+    "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+    "KXWTACHALLENGERMATCH-26JUL12SAIETO",
+    "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+    "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+    "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
+    "KXWTACHALLENGERMATCH-26JUL12VOLMAR",
+    "KXWTACHALLENGERMATCH-26JUL12ZELFAL",
+    "KXWTACHALLENGERMATCH-26JUL13BAIPRO",
+    "KXWTACHALLENGERMATCH-26JUL13GASBAN",
+    "KXWTACHALLENGERMATCH-26JUL13GJOCHI",
+    "KXWTACHALLENGERMATCH-26JUL13GRABER",
+    "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+    "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+    "KXWTACHALLENGERMATCH-26JUL13KABPER",
+    "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+    "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+    "KXWTACHALLENGERMATCH-26JUL13LANMAL",
+    "KXWTACHALLENGERMATCH-26JUL13OKATAR",
+    "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+    "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+    "KXWTACHALLENGERMATCH-26JUL13PENTHA",
+    "KXWTACHALLENGERMATCH-26JUL13RADREN",
+    "KXWTACHALLENGERMATCH-26JUL13RINAST",
+    "KXWTACHALLENGERMATCH-26JUL13RISPOH",
+    "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+    "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+    "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+    "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+    "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+    "KXWTACHALLENGERMATCH-26JUL14BARKOL",
+    "KXWTACHALLENGERMATCH-26JUL14BASFRI",
+    "KXWTACHALLENGERMATCH-26JUL14BRAPIE",
+    "KXWTACHALLENGERMATCH-26JUL14CARVON",
+    "KXWTACHALLENGERMATCH-26JUL14COLPAL",
+    "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+    "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+    "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+    "KXWTACHALLENGERMATCH-26JUL14FRUGAO",
+    "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+    "KXWTACHALLENGERMATCH-26JUL14HRUBUY",
+    "KXWTACHALLENGERMATCH-26JUL14IATZVO",
+    "KXWTACHALLENGERMATCH-26JUL14KHONUG",
+    "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+    "KXWTACHALLENGERMATCH-26JUL14MAZBRO",
+    "KXWTACHALLENGERMATCH-26JUL14PACVED",
+    "KXWTACHALLENGERMATCH-26JUL14PIGSAM",
+    "KXWTACHALLENGERMATCH-26JUL14RIESEM",
+    "KXWTACHALLENGERMATCH-26JUL14SHUSHI",
+    "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+    "KXWTACHALLENGERMATCH-26JUL14TREGRA",
+    "KXWTACHALLENGERMATCH-26JUL14WOLVAN",
+    "KXWTACHALLENGERMATCH-26JUL14ZAKTKA",
+    "KXWTACHALLENGERMATCH-26JUL15ASTNOH",
+    "KXWTACHALLENGERMATCH-26JUL15CARPAL",
+    "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+    "KXWTACHALLENGERMATCH-26JUL15JONURG",
+    "KXWTACHALLENGERMATCH-26JUL15KNUTAR",
+    "KXWTACHALLENGERMATCH-26JUL15PENFAL",
+    "KXWTACHALLENGERMATCH-26JUL15RADCHI",
+    "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+    "KXWTACHALLENGERMATCH-26JUL15VANFAL",
+    "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+    "KXWTACHALLENGERMATCH-26JUL16BENKRA",
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+    "KXWTACHALLENGERMATCH-26JUL16HERVAN",
+    "KXWTACHALLENGERMATCH-26JUL16KOSBRO",
+    "KXWTACHALLENGERMATCH-26JUL16KOVRIE",
+    "KXWTACHALLENGERMATCH-26JUL16ZAKSHU",
+    "KXWTACHALLENGERMATCH-26JUL16ZANTRE",
+    "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+    "KXWTACHALLENGERMATCH-26JUL17BASCAR",
+    "KXWTACHALLENGERMATCH-26JUL17BRARIE",
+    "KXWTACHALLENGERMATCH-26JUL17CHIBRO",
+    "KXWTACHALLENGERMATCH-26JUL17ERJFEI",
+    "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+    "KXWTACHALLENGERMATCH-26JUL17JONNOH",
+    "KXWTACHALLENGERMATCH-26JUL17VALFAL",
+    "KXWTACHALLENGERMATCH-26JUL17VANTAN",
+    "KXWTACHALLENGERMATCH-26JUL17YANTRE",
+    "KXWTACHALLENGERMATCH-26JUL17ZAKPRO",
+    "KXWTACHALLENGERMATCH-26JUL17ZVOTAR",
+    "KXWTACHALLENGERMATCH-26JUL18BASBOE",
+    "KXWTACHALLENGERMATCH-26JUL18BASKRA",
+    "KXWTACHALLENGERMATCH-26JUL18BROBRA",
+    "KXWTACHALLENGERMATCH-26JUL18ERJGRA",
+    "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+    "KXWTACHALLENGERMATCH-26JUL18RENGIA",
+    "KXWTACHALLENGERMATCH-26JUL18SERBER",
+    "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+    "KXWTACHALLENGERMATCH-26JUL18TREJON",
+    "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+    "KXWTACHALLENGERMATCH-26JUL18VALTAR",
+    "KXWTACHALLENGERMATCH-26JUL18WEBHOD",
+    "KXWTACHALLENGERMATCH-26JUL18ZAKVAN",
+    "KXWTACHALLENGERMATCH-26JUL19BASSHI",
+    "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+    "KXWTACHALLENGERMATCH-26JUL19JONBRO",
+    "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+    "KXWTACHALLENGERMATCH-26JUL19RENTON",
+    "KXWTACHALLENGERMATCH-26JUL19SERTOT",
+    "KXWTACHALLENGERMATCH-26JUL19VANTAR",
+    "KXWTACHALLENGERMATCH-26JUL20FERREN",
+    "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+    "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+    "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+    "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+    "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+    "KXWTACHALLENGERMATCH-26JUL20URGYAN",
+    "KXWTAMATCH-26JUL12FETPIE",
+    "KXWTAMATCH-26JUL12GARPRI",
+    "KXWTAMATCH-26JUL12HERKAZ",
+    "KXWTAMATCH-26JUL12HIBTON",
+    "KXWTAMATCH-26JUL12HODYAS",
+    "KXWTAMATCH-26JUL12ITOMAN",
+    "KXWTAMATCH-26JUL12KOZIBR",
+    "KXWTAMATCH-26JUL12KULZAA",
+    "KXWTAMATCH-26JUL12LEPBUR",
+    "KXWTAMATCH-26JUL12LIUPOP",
+    "KXWTAMATCH-26JUL12MICKUL",
+    "KXWTAMATCH-26JUL12MORNEP",
+    "KXWTAMATCH-26JUL12OKAIPE",
+    "KXWTAMATCH-26JUL12PRIION",
+    "KXWTAMATCH-26JUL12ROMTOD",
+    "KXWTAMATCH-26JUL12TAGSIE",
+    "KXWTAMATCH-26JUL12WERAMA",
+    "KXWTAMATCH-26JUL13AMAHER",
+    "KXWTAMATCH-26JUL13ARAZID",
+    "KXWTAMATCH-26JUL13ARGTAG",
+    "KXWTAMATCH-26JUL13AVAFET",
+    "KXWTAMATCH-26JUL13BADKAL",
+    "KXWTAMATCH-26JUL13BLISAS",
+    "KXWTAMATCH-26JUL13BONSOR",
+    "KXWTAMATCH-26JUL13BURLEP",
+    "KXWTAMATCH-26JUL13BURPUT",
+    "KXWTAMATCH-26JUL13CHAJIM",
+    "KXWTAMATCH-26JUL13CRIJEA",
+    "KXWTAMATCH-26JUL13HODDAR",
+    "KXWTAMATCH-26JUL13ITOKOR",
+    "KXWTAMATCH-26JUL13KUDSAK",
+    "KXWTAMATCH-26JUL13LINHON",
+    "KXWTAMATCH-26JUL13LIUIPE",
+    "KXWTAMATCH-26JUL13MATMIC",
+    "KXWTAMATCH-26JUL13MONMAS",
+    "KXWTAMATCH-26JUL13PODMAR",
+    "KXWTAMATCH-26JUL13ROMKUL",
+    "KXWTAMATCH-26JUL13SAKTON",
+    "KXWTAMATCH-26JUL13SHEGAL",
+    "KXWTAMATCH-26JUL13TAUHIB",
+    "KXWTAMATCH-26JUL13TAUTOM",
+    "KXWTAMATCH-26JUL13TIMANN",
+    "KXWTAMATCH-26JUL13VALCOS",
+    "KXWTAMATCH-26JUL13ZHEBOU",
+    "KXWTAMATCH-26JUL14AMAJAC",
+    "KXWTAMATCH-26JUL14AVAUCH",
+    "KXWTAMATCH-26JUL14BULPRI",
+    "KXWTAMATCH-26JUL14OLIIPE",
+    "KXWTAMATCH-26JUL14PUTJEA",
+    "KXWTAMATCH-26JUL14SALIBR",
+    "KXWTAMATCH-26JUL14UDVROM",
+    "KXWTAMATCH-26JUL15AVAMAR",
+    "KXWTAMATCH-26JUL15BONZID",
+    "KXWTAMATCH-26JUL15BURJAC",
+    "KXWTAMATCH-26JUL15DARSAK",
+    "KXWTAMATCH-26JUL15HONPAR",
+    "KXWTAMATCH-26JUL15IBRBAD",
+    "KXWTAMATCH-26JUL15KREMON",
+    "KXWTAMATCH-26JUL15MICZHE",
+    "KXWTAMATCH-26JUL15OLIPRI",
+    "KXWTAMATCH-26JUL15PUTCHA",
+    "KXWTAMATCH-26JUL15SHEQUE",
+    "KXWTAMATCH-26JUL15TAGBEJ",
+    "KXWTAMATCH-26JUL16TAUTON",
+    "KXWTAMATCH-26JUL16UDVKAW",
+    "KXWTAMATCH-26JUL17KREZHE",
+    "KXWTAMATCH-26JUL17OLIBUR",
+    "KXWTAMATCH-26JUL17PARSAK",
+    "KXWTAMATCH-26JUL17TAUBEJ",
+    "KXWTAMATCH-26JUL17VALKOR",
+    "KXWTAMATCH-26JUL17ZIDMAR",
+    "KXWTAMATCH-26JUL18BADZID",
+    "KXWTAMATCH-26JUL18BANGAO",
+    "KXWTAMATCH-26JUL18BERSAI",
+    "KXWTAMATCH-26JUL18COSHIB",
+    "KXWTAMATCH-26JUL18HONTHA",
+    "KXWTAMATCH-26JUL18ITOKNU",
+    "KXWTAMATCH-26JUL18MASRYS",
+    "KXWTAMATCH-26JUL18OKALEE",
+    "KXWTAMATCH-26JUL18PALHON",
+    "KXWTAMATCH-26JUL18PODKRE",
+    "KXWTAMATCH-26JUL18SAKKOR",
+    "KXWTAMATCH-26JUL18SALZOL",
+    "KXWTAMATCH-26JUL18SHEOLI",
+    "KXWTAMATCH-26JUL18TAUKRE",
+    "KXWTAMATCH-26JUL19AVDNIE",
+    "KXWTAMATCH-26JUL19BRAVON",
+    "KXWTAMATCH-26JUL19COSAKS",
+    "KXWTAMATCH-26JUL19EIGCAR",
+    "KXWTAMATCH-26JUL19HONLEE",
+    "KXWTAMATCH-26JUL19JAKAVA",
+    "KXWTAMATCH-26JUL19KRESAK",
+    "KXWTAMATCH-26JUL19LEPPET",
+    "KXWTAMATCH-26JUL19MALZAA",
+    "KXWTAMATCH-26JUL19MONPIE",
+    "KXWTAMATCH-26JUL19PODSAI",
+    "KXWTAMATCH-26JUL19PRIMAR",
+    "KXWTAMATCH-26JUL19RUSKAZ",
+    "KXWTAMATCH-26JUL19RYSHON",
+    "KXWTAMATCH-26JUL19SALKNU",
+    "KXWTAMATCH-26JUL19SHEBAD",
+    "KXWTAMATCH-26JUL19STRPAQ",
+    "KXWTAMATCH-26JUL19VEDGAR",
+    "KXWTAMATCH-26JUL20AKSCOS",
+    "KXWTAMATCH-26JUL20BARYUA",
+    "KXWTAMATCH-26JUL20BLIBEJ",
+    "KXWTAMATCH-26JUL20BONUCH",
+    "KXWTAMATCH-26JUL20BOUBOU2",
+    "KXWTAMATCH-26JUL20FRUKRE",
+    "KXWTAMATCH-26JUL20GAOTAG",
+    "KXWTAMATCH-26JUL20KORJIM",
+    "KXWTAMATCH-26JUL20KOVTAR",
+    "KXWTAMATCH-26JUL20LEPAVA",
+    "KXWTAMATCH-26JUL20LYSVAL",
+    "KXWTAMATCH-26JUL20NIEMAL",
+    "KXWTAMATCH-26JUL20OKTDOD",
+    "KXWTAMATCH-26JUL20OLISCH",
+    "KXWTAMATCH-26JUL20PARHAV",
+    "KXWTAMATCH-26JUL20PARHON",
+    "KXWTAMATCH-26JUL20PIECAR",
+    "KXWTAMATCH-26JUL20PODLEE",
+    "KXWTAMATCH-26JUL20PRIBRA",
+    "KXWTAMATCH-26JUL20QUEKAL",
+    "KXWTAMATCH-26JUL20ROMERJ",
+    "KXWTAMATCH-26JUL20RUSPAQ",
+    "KXWTAMATCH-26JUL20RUZSAL",
+    "KXWTAMATCH-26JUL20SAMJOI",
+    "KXWTAMATCH-26JUL20SEISNI",
+    "KXWTAMATCH-26JUL20SEMKRA",
+    "KXWTAMATCH-26JUL20SORCHA",
+    "KXWTAMATCH-26JUL20STENOH",
+    "KXWTAMATCH-26JUL20TIMSAS",
+    "KXWTAMATCH-26JUL20VEDBAR"
+  ],
+  "scope": "Only selected identities may execute; no redraw or tuning. The other 704 are unrun by this order. This is not a claim that they were historically unseen."
+}

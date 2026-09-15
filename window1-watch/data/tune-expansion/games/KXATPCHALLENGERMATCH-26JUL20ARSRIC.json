@@ -1,0 +1,162 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · ARS CLIMBER → NOT_CALLABLE · RIC CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"ARS\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"fb002c22-fb61-41b5-7349-56bf5f3bd524\",\"first_recorded_epoch\":1784553841.903,\"first_bind_epoch\":1784553409.094,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":36,\"close_cents\":36,\"realized_drift_cents\":0,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"RIC\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"fb002c22-fb61-41b5-7349-56bf5f3bd524\",\"first_recorded_epoch\":1784553841.903,\"first_bind_epoch\":1784553841.903,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":61.5,\"close_cents\":66,\"realized_drift_cents\":4.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): ARS 0 · RIC 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "B · ARS Q 36 vs floor 36¢; range 34–37 · RIC Q 60 vs floor 62¢; range 60–62",
+      "hover_lines": [
+        "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"legs\":{\"ARS\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":36,\"q25\":34,\"q75\":37,\"floor_error_cents\":0,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"fb002c22-fb61-41b5-7349-56bf5f3bd524\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":36,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"RIC\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"B\",\"q50\":60,\"q25\":60,\"q75\":62,\"floor_error_cents\":2,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"fb002c22-fb61-41b5-7349-56bf5f3bd524\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":62,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): ARS: 1.62¢ · RIC: 3.98¢ · ARS: first 313.2m; remaining MAE 84.34m · RIC: first 563.5m; remaining MAE 191.84m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "F · ARS 35¢ (+-1¢; floor printed earlier) · RIC 64¢ (+2¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"valid_fills\":0,\"side_count\":2},\"legs\":{\"ARS\":{\"filled\":true,\"cents\":35,\"vs_floor_cents\":-1,\"fill_epoch\":1784590722.042,\"valid_span_fill\":false,\"revalidation\":{\"ruler_bell_epoch\":1784649840,\"span_start_epoch\":1784549210,\"span_end_epoch\":1784588700,\"at_or_after_span_start\":true,\"before_span_end\":false,\"before_bell\":true,\"correction_ids\":[]},\"reason\":\"FILL_OUTSIDE_VERIFIED_SPAN\",\"floor_cents\":36,\"floor_epoch\":1784576759.4,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":614.6689833323161,\"current_price_age_minutes\":120.57983333269755,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"RIC\":{\"filled\":true,\"cents\":64,\"vs_floor_cents\":2,\"fill_epoch\":1784596697.411,\"valid_span_fill\":false,\"revalidation\":{\"ruler_bell_epoch\":1784649840,\"span_start_epoch\":1784549210,\"span_end_epoch\":1784588700,\"at_or_after_span_start\":true,\"before_span_end\":false,\"before_bell\":true,\"correction_ids\":[]},\"reason\":\"FILL_OUTSIDE_VERIFIED_SPAN\",\"floor_cents\":62,\"floor_epoch\":1784562680.9,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":3.106849984327952,\"current_price_age_minutes\":3.106849984327952,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: ARS lineage 614.67m, current price 120.58m · RIC lineage 3.11m, current price 3.11m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · 99¢ pair · 0 of 2¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":0,\"offered_cents\":2}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "TRADE: fill outside corrected span/bell",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "leg_id": "ARS",
+      "entry_cents": 35,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 35,
+      "fill_timestamp_epoch": 1784590722.042,
+      "prior_standing_target_cents": 35,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "0ce0543e-89f3-587c-4b61-2f38d4f0f01d",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "leg_id": "RIC",
+      "entry_cents": 64,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 64,
+      "fill_timestamp_epoch": 1784596697.411,
+      "prior_standing_target_cents": 64,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL20ARSRIC-ARS.csv.gz#row-9467",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 0,
+  "completed": false,
+  "one_sided": false,
+  "pair_sum": 99,
+  "captured_cents": 0,
+  "offered_cents": 2,
+  "capture_ratio": 0,
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "ARS",
+      "reason": "FILL_OUTSIDE_VERIFIED_SPAN",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20ARSRIC|ATLAS_GATE|1784649540",
+        "timestamp_epoch": 1784649540,
+        "leg": "ARS",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "CREDITED_LEG_READ_ONLY"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 36,
+      "reach_audit": {
+        "rest_intervals": 11,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "RIC",
+      "reason": "FILL_OUTSIDE_VERIFIED_SPAN",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20ARSRIC|ATLAS_GATE|1784649540",
+        "timestamp_epoch": 1784649540,
+        "leg": "RIC",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "CREDITED_LEG_READ_ONLY"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 62,
+      "reach_audit": {
+        "rest_intervals": 13,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "f0b84a674a39cdef59327ad880159923f5b49e32b6fde79c7648cb1faf142f37",
+  "grade_sha256": "f55a3eba9607127481a2bbea9f930a431561f5e0219b39fa2e8c9b365ca48f2e",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL20ARSRIC.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL20ARSRIC.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL20ARSRIC.sentences.json",
+  "fault": "TRADE: fill outside corrected span/bell",
+  "fill_witnesses": [
+    {
+      "leg": "ARS",
+      "receipt": "f8f504a9-a4ed-6f61-ce9f-a78053414944",
+      "positive_size_witness": true,
+      "print_cents": 35,
+      "rest_cents": 35,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "RIC",
+      "receipt": "0bf9dbdc-b449-68bb-e1f9-f5077eca019e",
+      "positive_size_witness": true,
+      "print_cents": 64,
+      "rest_cents": 64,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [
+    "TRADE: fill outside corrected span/bell"
+  ],
+  "offer_issue": null
+}

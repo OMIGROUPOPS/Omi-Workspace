@@ -10,17 +10,19 @@ import { TuneHud } from './tune-scene';
 import { LabSide, LabBidLog } from './lab-panels';
 import { TuneReceipts } from './tune-receipts';
 import { ReceiptInspector } from './receipt-inspector';
+import type {FaultRecord} from './fault-taxonomy';
 import '../lab-reading.css';
 import '../lab-engine.css';
 
-export function LabReading({game,games,event,frame,receipt,receiptIndex,playing,inspected,onEvent,onFrame,onPlaying,onReceipt,onInspect,onCloseInspector,onImport}: {
+export function LabReading({game,fault,games,event,frame,receipt,receiptIndex,playing,inspected,onEvent,onFrame,onPlaying,onReceipt,onInspect,onCloseInspector,onImport}: {
+  fault?:FaultRecord|null;
   game:LoadedGame; games:Game[]; event:string|null; frame:number; receipt:Receipt|null; receiptIndex:number|null; playing:boolean; inspected:number|null;
   onEvent:(event:string)=>void; onFrame:(n:number)=>void; onPlaying:(p:boolean)=>void; onReceipt:(n:number)=>void;
   onInspect:(n:number)=>void; onCloseInspector:()=>void; onImport:(file:File)=>void;
 }) {
   const [details,setDetails]=useState(false), detailPanel=useRef<HTMLElement>(null);
   const now=game.frames[frame], axis=game.face.render.axis, checkpoint=game.face.render.checkpoints[now.checkpoint_index];
-  const outcome=game.grade?.OUTCOME;
+  const outcome=fault?.credit??game.grade?.OUTCOME;
   const pressure=pressureAt(game,now.minutesToBell,receiptIndex);
   useEffect(()=>{setDetails(false)},[event]);
   function inspect(index:number){setDetails(true);onInspect(index);requestAnimationFrame(()=>detailPanel.current?.scrollIntoView({block:'start',behavior:'smooth'}))}
@@ -43,7 +45,7 @@ export function LabReading({game,games,event,frame,receipt,receiptIndex,playing,
         <div className="engine-ruler" title={`Recorded floors · hindsight only\nTruth ${game.face.truth?.table_commit}\nRow ${game.face.truth?.row_sha256}`}><small>RECORDED FLOORS · KNOWN AFTERWARD</small><div>{game.face.legs.map(side=><span key={side} title={game.face.truth?.legs[side]?.line}>{side} <b>{cents(game.face.truth?.legs[side]?.floor_cents)}</b></span>)}</div><small>{plain(game.face.truth?.pair.compact_line)}</small></div>
         <div className="reading-result" title={`Final grade (known afterward)\n${game.grade?.display.governing??'No grade here'}\nOS ${game.face.provenance.os_sha256}\nTrace ${game.face.provenance.trace_sha256}`}>
           <span data-grade-letter className="reading-grade">{game.grade?.display.letter??'—'}</span>
-          <p><span>FINAL PAIR</span><br/><b>{!outcome?'No result':outcome.pair_completed&&outcome.pair_sum!=null?`${outcome.pair_sum}¢`:'Incomplete'}</b><br/><em>{outcome?.captured_cents??'—'} of {outcome?.best_capturable_cents??'—'}¢ captured</em></p>
+          <p><span>FINAL PAIR</span><br/><b>{!outcome?'No result':outcome.pair_completed&&outcome.pair_sum!=null?`${outcome.pair_sum}¢`:'Incomplete'}</b><br/><em>{outcome?.captured_cents??'—'} of {outcome?.best_capturable_cents??'—'}¢ captured</em>{fault?.credit.safety_excluded?<small>Safety fill excluded</small>:null}</p>
         </div>
         <button className="reading-details-button" aria-expanded={details} aria-controls="reading-details" onClick={()=>setDetails(v=>!v)}>Details {details?'−':'+'}</button>
       </header>
@@ -72,6 +74,7 @@ export function LabReading({game,games,event,frame,receipt,receiptIndex,playing,
       <label>Load a prepared replay <input type="file" accept=".json" onChange={e=>{const f=e.target.files?.[0];if(f)onImport(f)}}/></label>
       <p>Prepared library or tune replay only. This browser does not run the engine or place orders.</p>
       <TunePlayback game={game} frame={frame} receiptIndex={receiptIndex} playing={playing} onFrame={onFrame} onPlaying={onPlaying} onReceipt={onReceipt}/>
+      {fault?.credit.safety_excluded?<p className="terminal-fault">Original grade details below retain the replay's historical credit. The audited header and scoreboard exclude the safety-flagged fill.</p>:null}
       <div className="reading-details-grid"><div>{game.face.legs.map(side=><LabSide key={side} game={game} receipt={receipt} side={side}/>)}<LabBidLog game={game} receiptIndex={receiptIndex} onReceipt={inspect}/><TuneReceipts receipts={game.face.os} onInspect={inspect}/></div>
       <div><TuneHud game={game} receipt={receipt} bench={checkpoint?.bench??null}/><ReceiptInspector receipt={inspected==null?receipt:game.face.os[inspected]} onClose={onCloseInspector}/></div></div>
       <details><summary>Book lines, pool bands and sentence gap</summary>{game.face.legs.map(side=><TuneChart key={side} game={game} frame={frame} side={side} onReceipt={inspect}/>)}</details>

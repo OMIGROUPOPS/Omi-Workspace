@@ -1,0 +1,113 @@
+{
+  "event": "KXWTAMATCH-26JUL13QUERUS",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · QUE FALLER → FALLER · RUS CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"QUE\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL13QUERUS-QUE.csv.gz#row-472\",\"first_recorded_epoch\":1783864978.000001,\"first_bind_epoch\":1783864957.771,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":39,\"close_cents\":31,\"realized_drift_cents\":-8,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"RUS\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL13QUERUS-QUE.csv.gz#row-472\",\"first_recorded_epoch\":1783864978.000001,\"first_bind_epoch\":1783864977,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":56,\"close_cents\":69,\"realized_drift_cents\":13,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): QUE 0 · RUS 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · QUE Q 33 vs floor 29¢; range 31–34 · RUS Q 57 vs floor 68¢; range 56–58",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"QUE\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":33,\"q25\":31,\"q75\":34,\"floor_error_cents\":4,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXWTAMATCH-26JUL13QUERUS-QUE.csv.gz#row-472\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":29,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"RUS\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":57,\"q25\":56,\"q75\":58,\"floor_error_cents\":11,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXWTAMATCH-26JUL13QUERUS-QUE.csv.gz#row-472\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":68,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): QUE: 1.61¢ · RUS: 1.77¢ · QUE: first 1134.75m; remaining MAE 648.36m · RUS: first 974.79m; remaining MAE 477.56m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "✓",
+      "line": "B · QUE 29¢ (+0¢; floor printed earlier) · RUS 70¢ (+2¢)",
+      "hover_lines": [
+        "TRADE: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"QUE\":{\"filled\":true,\"cents\":29,\"vs_floor_cents\":0,\"fill_epoch\":1783945716.706,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784019960,\"span_start_epoch\":1783864956,\"span_end_epoch\":1784019960,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":29,\"floor_epoch\":1783914831.1,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":754.303183333079,\"current_price_age_minutes\":80.61176665226618,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"RUS\":{\"filled\":true,\"cents\":70,\"vs_floor_cents\":2,\"fill_epoch\":1783921492.677,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784019960,\"span_start_epoch\":1783864956,\"span_end_epoch\":1784019960,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":68,\"floor_epoch\":1783977211.9,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":212.91128300031025,\"current_price_age_minutes\":212.91128300031025,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: RUS lineage 212.91m, current price 212.91m · QUE lineage 754.3m, current price 80.61m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "C · 99¢ pair · 1 of 3¢ captured",
+      "hover_lines": [
+        "PAIR: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":0.3333333333333333,\"offered_cents\":3}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MICRO",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL13QUERUS",
+      "leg_id": "RUS",
+      "entry_cents": 70,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 70,
+      "fill_timestamp_epoch": 1783921492.677,
+      "prior_standing_target_cents": 70,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTAMATCH-26JUL13QUERUS-RUS.csv.gz#row-30608",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13QUERUS",
+      "leg_id": "QUE",
+      "entry_cents": 29,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 29,
+      "fill_timestamp_epoch": 1783945716.706,
+      "prior_standing_target_cents": 29,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTAMATCH-26JUL13QUERUS-RUS.csv.gz#row-47904",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 99,
+  "captured_cents": 1,
+  "offered_cents": 3,
+  "capture_ratio": 0.3333333333333333,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "8333bf117eb0f264ec50c3eed18240730c9b15a53350507e5248f4f8db875f01",
+  "grade_sha256": "b3f0f93939c58ee0b4ef41262a4a8fd23b7409dfdd930891d860a76776670483",
+  "grade_url": "/data/KXWTAMATCH-26JUL13QUERUS.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL13QUERUS.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL13QUERUS.sentences.json",
+  "fault": "MICRO: F · QUE Q 33 vs floor 29¢; range 31–34 · RUS Q 57 vs floor 68¢; range 56–58",
+  "fill_witnesses": [
+    {
+      "leg": "RUS",
+      "receipt": "f7090e25-2a49-6473-5103-9b4623921b05",
+      "positive_size_witness": true,
+      "print_cents": 70,
+      "rest_cents": 70,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "QUE",
+      "receipt": "ea5dc948-1952-4ca7-1757-a1b646a0a205",
+      "positive_size_witness": true,
+      "print_cents": 29,
+      "rest_cents": 29,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

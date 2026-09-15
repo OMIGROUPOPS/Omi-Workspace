@@ -1,0 +1,97 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "858a76612b7ca39f70c14a939fe45883587bcf83a6242c5caa95436566d2d0b9",
+    "grade_sha256": "03d01e7e2446b4b0bd50b1a8f0b69f4a6c33564b618133474d9e6d7b59452db6",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "84364a3fac084c3b3119ef2ccecd42bc53954efcdb4a98598d25c0cdb6b8771c",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "6f817fd46f01be0fb2637fd09eb4e69f48c608eaf3f090d5554572a7b49861aa"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "JOH: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 3,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "BER": true,
+      "JOH": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "JOH",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "781edbde-8f77-6024-bc7e-098c181ae8fd",
+          "action": "PLACE",
+          "placement_epoch": 1784026390.367,
+          "bid_cents": 47,
+          "recorded_floor_cents": 49,
+          "recorded_floor_epoch": 1784020173.5,
+          "floor_minus_placement_minutes": -103.61445000171662,
+          "Q_at_placement": 47,
+          "remaining_positive_print_floor": 51,
+          "later_positive_prints": 20,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "cd15dfc9-f9e6-79a5-a91c-6595b42fe7b6",
+          "action": "REPRICE",
+          "placement_epoch": 1784027559.725,
+          "bid_cents": 49,
+          "recorded_floor_cents": 49,
+          "recorded_floor_epoch": 1784020173.5,
+          "floor_minus_placement_minutes": -123.10374999841055,
+          "Q_at_placement": 49,
+          "remaining_positive_print_floor": 51,
+          "later_positive_prints": 19,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14JOHBER|ATLAS_GATE|1784048880",
+          "action": "REPRICE",
+          "placement_epoch": 1784048880,
+          "bid_cents": 50,
+          "recorded_floor_cents": 49,
+          "recorded_floor_epoch": 1784020173.5,
+          "floor_minus_placement_minutes": -478.44166666666666,
+          "Q_at_placement": 50,
+          "remaining_positive_print_floor": 51,
+          "later_positive_prints": 13,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 23,
+      "unobserved_placements": []
+    }
+  ]
+}

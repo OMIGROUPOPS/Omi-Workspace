@@ -1,0 +1,82 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXWTAMATCH-26JUL17UDVBAD",
+  "category": "WTA_MAIN",
+  "provenance": {
+    "face_sha256": "be273aaaed6c9ebebd32563db56eae66718fce393a4ba6eae6dee1f488c9fc96",
+    "grade_sha256": "5ed48e6c1cf8267728110580f03574820cd25ee4bac2166b71786ac2864bfe1e",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "64386b5bc3ff5b48bf2981c3f844020031483e95cdd2ce205a13b0f86cc14fef",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "de3c54a6cb89825dba9330f9f578628fa81ae0d7b1f1ecaee0f43bf5f481549c"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "BAD: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 8,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "BAD": false,
+      "UDV": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "BAD",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-98",
+          "action": "PLACE",
+          "placement_epoch": 1784234505.000001,
+          "bid_cents": 65,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1784234484.7,
+          "floor_minus_placement_minutes": -0.3383333484331767,
+          "Q_at_placement": 65,
+          "remaining_positive_print_floor": 66,
+          "later_positive_prints": 177,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "bdf9d554-bb2e-4af2-600f-f1dacea13369",
+          "action": "REPRICE",
+          "placement_epoch": 1784235099.791,
+          "bid_cents": 64,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1784234484.7,
+          "floor_minus_placement_minutes": -10.251516664028168,
+          "Q_at_placement": 64,
+          "remaining_positive_print_floor": 66,
+          "later_positive_prints": 165,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 178,
+      "unobserved_placements": []
+    }
+  ]
+}

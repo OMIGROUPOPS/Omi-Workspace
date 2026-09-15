@@ -1,0 +1,157 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "01592898e7c5fa4cfbb7b4f63ba1b73b4ea76ff12c5fe01cb30b7ac72a53ef06",
+    "grade_sha256": "3cdb1a9c0e9585959f6ab5e8ddbd2c047617025be8dffc05cd67ed62dd706dd8",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "ed39879d1fcd41cad3578cd38678af7370d6ab9da87830d2b08894f90d4c5bdc",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "9e55df40616ad4cafc26634ab862f26e40c28d6156fa46748c19a5e0a1f6a3c1"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "OLI: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 8,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "OLI": false,
+      "ZIE": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "OLI",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+          "action": "PLACE",
+          "placement_epoch": 1784504931.8,
+          "bid_cents": 73,
+          "recorded_floor_cents": 76,
+          "recorded_floor_epoch": 1784503606.1,
+          "floor_minus_placement_minutes": -22.09500000079473,
+          "Q_at_placement": 73,
+          "remaining_positive_print_floor": 77,
+          "later_positive_prints": 77,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-216",
+          "action": "REPRICE",
+          "placement_epoch": 1784508721.000001,
+          "bid_cents": 74,
+          "recorded_floor_cents": 76,
+          "recorded_floor_epoch": 1784503606.1,
+          "floor_minus_placement_minutes": -85.24833335081736,
+          "Q_at_placement": 74,
+          "remaining_positive_print_floor": 77,
+          "later_positive_prints": 77,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "b5d30978-00a0-7bf6-1595-c0453b61e75e",
+          "action": "REPRICE",
+          "placement_epoch": 1784509727.472,
+          "bid_cents": 75,
+          "recorded_floor_cents": 76,
+          "recorded_floor_epoch": 1784503606.1,
+          "floor_minus_placement_minutes": -102.02286666631699,
+          "Q_at_placement": 75,
+          "remaining_positive_print_floor": 77,
+          "later_positive_prints": 75,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "5a557272-dbc0-642d-1466-3e0b5b0228cb",
+          "action": "REPRICE",
+          "placement_epoch": 1784516587.153,
+          "bid_cents": 76,
+          "recorded_floor_cents": 76,
+          "recorded_floor_epoch": 1784503606.1,
+          "floor_minus_placement_minutes": -216.35088333686193,
+          "Q_at_placement": 76,
+          "remaining_positive_print_floor": 77,
+          "later_positive_prints": 67,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        },
+        {
+          "receipt": "c453f609-5960-56f9-0f7d-80c7535bea97",
+          "action": "REPRICE",
+          "placement_epoch": 1784518805.484,
+          "bid_cents": 75,
+          "recorded_floor_cents": 76,
+          "recorded_floor_epoch": 1784503606.1,
+          "floor_minus_placement_minutes": -253.32306666771572,
+          "Q_at_placement": 75,
+          "remaining_positive_print_floor": 77,
+          "later_positive_prints": 64,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "5368d601-73b8-5e05-d01a-80739e47e2b7",
+          "action": "REPRICE",
+          "placement_epoch": 1784520605.751,
+          "bid_cents": 76,
+          "recorded_floor_cents": 76,
+          "recorded_floor_epoch": 1784503606.1,
+          "floor_minus_placement_minutes": -283.32751666704814,
+          "Q_at_placement": 76,
+          "remaining_positive_print_floor": 77,
+          "later_positive_prints": 63,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-527",
+          "action": "REPRICE",
+          "placement_epoch": 1784521955.000011,
+          "bid_cents": 75,
+          "recorded_floor_cents": 76,
+          "recorded_floor_epoch": 1784503606.1,
+          "floor_minus_placement_minutes": -305.815000184377,
+          "Q_at_placement": 75,
+          "remaining_positive_print_floor": 81,
+          "later_positive_prints": 60,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 79,
+      "unobserved_placements": []
+    }
+  ]
+}

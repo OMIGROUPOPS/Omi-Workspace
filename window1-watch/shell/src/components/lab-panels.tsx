@@ -1,4 +1,5 @@
 import type { LoadedGame, Receipt } from '@/lib/tune-tape';
+import {FourLineCard} from './four-line-card';
 type Row = Record<string, any>;
 export const display = (v: unknown) => v == null ? 'STORE SILENT' : typeof v === 'number' && !Number.isInteger(v) ? v.toFixed(2) : String(v);
 export function Source({ value, field, game, bid = false }: { value: unknown; field: string; game: LoadedGame; bid?: boolean }) {
@@ -32,5 +33,5 @@ export function LabSide({ game, receipt, side }: { game: LoadedGame; receipt: Re
 }
 export function LabBidLog({game,receiptIndex,onReceipt}:{game:LoadedGame;receiptIndex:number|null;onReceipt:(n:number)=>void}) {
   const actions=[...game.face.render.bid_actions,...(game.face.render.supersessions??[])].filter(a=>receiptIndex!=null&&a.receipt_index<=receiptIndex).sort((a,b)=>b.receipt_index-a.receipt_index);
-  return <section aria-label="Bid actions and reasons"><h2>Bid actions / reasons / supersessions</h2><div className="terminal-log"><table><thead><tr><th>Side</th><th>Action</th><th>Reason</th><th>Receipt</th></tr></thead><tbody>{actions.map(a=><tr key={a.id}><td>{a.leg}</td><td className="terminal-bid"><button onClick={()=>onReceipt(a.receipt_index)} title={a.details_lines.join('\n')}>{a.card_lines[0]}</button></td><td title={a.details_lines.join('\n')}>{a.card_lines[1]}</td><td><Source value={a.receipt_index} field={`render.bid_actions ${a.id}`} game={game}/></td></tr>)}</tbody></table></div></section>;
+  return <section aria-label="Bid actions and reasons"><h2>Bid actions / reasons / supersessions</h2><div className="terminal-log"><table><thead><tr><th>Side</th><th>Action</th><th>Reason</th><th>Receipt</th></tr></thead><tbody>{actions.map(a=><tr key={a.id}><td>{a.leg}</td><td className="terminal-bid"><button onClick={()=>onReceipt(a.receipt_index)} title={a.details_lines.join('\n')}>{a.card_lines[0]}</button></td><td><FourLineCard action={a} lines={[a.card_lines[1]]} details={a.details_lines}/></td><td><Source value={a.receipt_index} field={`render.bid_actions ${a.id}`} game={game}/></td></tr>)}</tbody></table></div></section>;
 }

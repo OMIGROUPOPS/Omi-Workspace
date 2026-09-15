@@ -4,6 +4,8 @@ import { frameForReceipt, type Game, type LoadedGame } from "@/lib/tune-tape";
 import { LabReading } from "./lab-reading";
 import { DeskPanel } from "./desk-panel";
 import { ScoreboardPanel } from "./scoreboard-panel";
+import {FaultBanner,useFaultTaxonomy} from './fault-taxonomy';
+import {loadTimelineReceipt} from '@/lib/timeline-chunks';
 import "../tune-motion.css";
 import "../terminal.css";
 type Tab="lab"|"desk"|"scoreboard";
@@ -13,17 +15,30 @@ export function TuneTest() {
   const [games,setGames]=useState<Game[]>([]),[event,setEvent]=useState<string|null>(null),[game,setGame]=useState<LoadedGame|null>(null);
   const [tab,setTab]=useState<Tab>(()=>{const t=new URLSearchParams(location.search).get("tab");return t==="desk"||t==="scoreboard"?t:"lab"});
   const [error,setError]=useState<string|null>(null),[frame,setFrame]=useState(0),[playing,setPlaying]=useState(false),[inspected,setInspected]=useState<number|null>(null),[selectedReceipt,setSelectedReceipt]=useState<number|null>(null);
+  const fault=useFaultTaxonomy(games.find(g=>g.event===event));
   useEffect(()=>{const c=new AbortController();loadGameIndex(c.signal).then(i=>{setGames(i.games);setEvent(new URLSearchParams(location.search).get("event")??i.games.find(g=>g.event.endsWith("ALTGAS"))?.event??i.games[0]?.event??null)}).catch(e=>{if(e.name!=="AbortError")setError(String(e))});return()=>c.abort()},[]);
   useEffect(()=>{if(!event||!games.length)return;const c=new AbortController();setGame(null);setPlaying(false);setInspected(null);setSelectedReceipt(null);setError(null);const entry=games.find(g=>g.event===event);
     if(!entry){setError("Unknown stored event: "+event);return}
     loadTuneGame(entry.url,c.signal).then(g=>{setGame(g);const raw=new URLSearchParams(location.search).get("gate");const gate=raw==null?null:Number(raw);setFrame(g.face.render.checkpoints.find(p=>p.minutesToBell===gate)?.frame??g.face.render.play_start_frame);(window as unknown as {TUNE_DATA:LoadedGame}).TUNE_DATA=g;const u=new URL(location.href);u.searchParams.set("event",event);history.replaceState(null,"",u)}).catch(e=>{if(e.name!=="AbortError")setError(String(e))});return()=>c.abort();
   },[event,games]);
-  useEffect(()=>{if(!playing||!game||tab!=="lab")return;const timer=setTimeout(()=>{const index=selectedReceipt??game.frames[frame]?.receipt_index;const next=game.face.os.find(r=>index==null||r.index>index);if(next){setFrame(frameForReceipt(game.frames,next));setSelectedReceipt(next.index)}else{setPlaying(false);setFrame(game.frames.length-1)}},700);return()=>clearTimeout(timer)},[playing,game,frame,selectedReceipt,tab]);
+  useEffect(()=>{if(!playing||!game||tab!=="lab")return;const current=selectedReceipt??game.frames[frame]?.receipt_index;if(current!=null&&game.face.os[current]?.timeline_pending)return;const timer=setTimeout(()=>{const index=selectedReceipt??game.frames[frame]?.receipt_index;const next=game.face.os.find(r=>index==null||r.index>index);if(next){setFrame(frameForReceipt(game.frames,next));setSelectedReceipt(next.index)}else{setPlaying(false);setFrame(game.frames.length-1)}},700);return()=>clearTimeout(timer)},[playing,game,frame,selectedReceipt,tab]);
   const selectFrame=useCallback((n:number)=>{setFrame(n);setSelectedReceipt(null);setInspected(null)},[]);
   const inspect=useCallback((n:number)=>{setInspected(n);setPlaying(false)},[]);
   const closeInspector=useCallback(()=>setInspected(null),[]);
   const changeTab=(t:Tab)=>{setTab(t);setPlaying(false);const u=new URL(location.href);u.searchParams.set("tab",t);history.replaceState(null,"",u)};
-  const now=game?.frames[frame],receiptIndex=selectedReceipt??now?.receipt_index??null,receipt=game&&receiptIndex!=null?game.face.os[receiptIndex]:null;
+  const now=game?.frames[frame],receiptIndex=selectedReceipt??now?.receipt_index??null,rawReceipt=game&&receiptIndex!=null?game.face.os[receiptIndex]:null;
+  const receiptPending=rawReceipt?.timeline_pending===true,receipt=receiptPending?null:rawReceipt;
+  useEffect(()=>{
+    if(!game?.face.timeline)return;
+    const indices=[receiptIndex,inspected].filter((i):i is number=>i!=null&&game.face.os[i]?.timeline_pending===true);
+    if(!indices.length)return;
+    const c=new AbortController();
+    Promise.all(indices.map(i=>loadTimelineReceipt(game.face,i,c.signal))).then(()=>{
+      if(c.signal.aborted)return;
+      setGame(previous=>{if(previous?.face!==game.face)return previous;const updated={...previous};(window as unknown as {TUNE_DATA:LoadedGame}).TUNE_DATA=updated;return updated});
+    }).catch(e=>{if(e.name!=='AbortError'){setPlaying(false);setError(String(e))}});
+    return()=>c.abort();
+  },[game,receiptIndex,inspected]);
   useEffect(()=>{if(!game||!now)return;const u=new URL(location.href);const gate=game.face.render.checkpoints.find(c=>c.frame===frame);if(gate)u.searchParams.set("gate",String(gate.minutesToBell));else u.searchParams.delete("gate");history.replaceState(null,"",u)},[frame,game]);
   useEffect(()=>{const key=(e:KeyboardEvent)=>{if(e.ctrlKey||e.metaKey||e.altKey||(e.target instanceof HTMLElement&&e.target.closest("input,select,textarea,button,summary,[contenteditable]")))return;
     if(e.key==="/"){e.preventDefault();document.getElementById("load-game")?.focus()}
@@ -51,10 +66,12 @@ export function TuneTest() {
     <header className="terminal-header"><strong>WINDOW-1 WATCH</strong><nav aria-label="Terminal tabs">{(["lab","desk","scoreboard"] as Tab[]).map(t=><button key={t} aria-current={tab===t?"page":undefined} onClick={()=>changeTab(t)}>{t.toUpperCase()}</button>)}</nav><span className={tab==="desk"?"terminal-fault":"terminal-muted"}>{tab==="desk"?"PAPER / DISCONNECTED":"STORED REPLAY / NO ORDERS"}</span></header>
     {tab!=="lab"?<div className="terminal-tickers" aria-label="Game ticker strip">{games.map(g=><button key={g.event} title={g.event+" · OS "+g.os_sha} onClick={()=>{changeTab("lab");setEvent(g.event)}}>{g.event.split("-").at(-1)}</button>)}</div>:null}
     {tab==="lab"?<>
+      <FaultBanner fault={fault}/>
       {games.find(g=>g.event===event)?.url.startsWith("blob:")?<p className="terminal-muted">LOCAL PREPARED FACE / this file selection lasts until refresh; optional grade and oracle must match its hashes.</p>:null}
-      {error?<p role="alert" className="terminal-fault">No data here — {error}</p>:null}
+        {error?<><label>Load game <select id="load-game" aria-label="Load game" value={event??''} onChange={e=>setEvent(e.target.value)}>{games.map(g=><option key={g.event} value={g.event}>{g.event}</option>)}</select></label><p role="alert" className="terminal-fault">No data here — {error}</p></>:null}
       {!game&&!error?<p>Loading verified face/grade/oracle…</p>:null}
-      {game&&now?<LabReading game={game} games={games} event={event} frame={frame} receipt={receipt} receiptIndex={receiptIndex} playing={playing} inspected={inspected} onEvent={setEvent} onFrame={selectFrame} onPlaying={setPlaying} onReceipt={setSelectedReceipt} onInspect={inspect} onCloseInspector={closeInspector} onImport={file=>void importFace(file)}/>:null}
+      {receiptPending?<p role="status">Loading and verifying this part of the recorded timeline…</p>:null}
+      {game&&now&&!receiptPending?<LabReading game={game} fault={fault} games={games} event={event} frame={frame} receipt={receipt} receiptIndex={receiptIndex} playing={playing} inspected={inspected} onEvent={setEvent} onFrame={selectFrame} onPlaying={setPlaying} onReceipt={setSelectedReceipt} onInspect={inspect} onCloseInspector={closeInspector} onImport={file=>void importFace(file)}/>:null}
     </>:tab==="desk"?<DeskPanel/>:<ScoreboardPanel onGame={e=>{changeTab("lab");setEvent(e)}}/>}
     {tab!=="lab"?<footer>/ game search · [ ] switch game · G gate · Space play/pause · arrows receipt · Escape current inspector · LAB is research, not an order terminal</footer>:null}
   </main>;

@@ -80,7 +80,7 @@ export function BidActionMarkers({
                     right: point.display_progress > 0.6 ? "-12px" : "auto",
                   }}
                 >
-                  <FourLineCard lines={a.card_lines} details={a.details_lines} color={color} />
+                  <FourLineCard lines={a.card_lines} details={a.details_lines} action={a} color={color} />
                 </div>
               ) : null}
             </div>
@@ -110,6 +110,7 @@ export function BidActionMarkers({
                 key={hover.action.id}
                 lines={hover.action.card_lines}
                 details={hover.action.details_lines}
+                action={hover.action}
                 color={color}
               />
             </div>,

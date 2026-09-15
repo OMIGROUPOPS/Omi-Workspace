@@ -1,0 +1,113 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "C",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · BON FALLER → NOT_CALLABLE · JUS CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"BON\":{\"called_role\":\"FALLER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"f8075ac8-4380-4dd3-c150-519f4d7e056f\",\"first_recorded_epoch\":1784079973.644,\"first_bind_epoch\":1784079973.644,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":41,\"close_cents\":40,\"realized_drift_cents\":-1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"JUS\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"f8075ac8-4380-4dd3-c150-519f4d7e056f\",\"first_recorded_epoch\":1784079973.644,\"first_bind_epoch\":1784079973.644,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":58.5,\"close_cents\":62,\"realized_drift_cents\":3.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): BON 0 · JUS 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · BON Q 38 vs floor 39¢; range 37–39 · JUS Q 59 vs floor 59¢; range 56–60",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"BON\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":38,\"q25\":37,\"q75\":39,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"f8075ac8-4380-4dd3-c150-519f4d7e056f\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":39,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"JUS\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":59,\"q25\":56,\"q75\":60,\"floor_error_cents\":0,\"band_width_cents\":4,\"band_contains_floor\":true,\"receipt\":\"f8075ac8-4380-4dd3-c150-519f4d7e056f\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":59,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): BON: 0.62¢ · JUS: 0.22¢ · BON: first 162.11m; remaining MAE 59.47m · JUS: first 237.39m; remaining MAE 93.62m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "✓",
+      "line": "A · BON 39¢ (+0¢; floor printed earlier) · JUS 60¢ (+1¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"BON\":{\"filled\":true,\"cents\":39,\"vs_floor_cents\":0,\"fill_epoch\":1784086164.574,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784106660,\"span_start_epoch\":1784063548,\"span_end_epoch\":1784106239.626,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":39,\"floor_epoch\":1784079973.6,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":103.18216666380565,\"current_price_age_minutes\":18.40956666469574,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"JUS\":{\"filled\":true,\"cents\":60,\"vs_floor_cents\":1,\"fill_epoch\":1784102005.406,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784106660,\"span_start_epoch\":1784063548,\"span_end_epoch\":1784106239.626,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":59,\"floor_epoch\":1784072757,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":314.2567666331927,\"current_price_age_minutes\":314.2567666331927,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: BON lineage 103.18m, current price 18.41m · JUS lineage 314.26m, current price 314.26m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "✓",
+      "line": "B · 99¢ pair · 1 of 2¢ captured",
+      "hover_lines": [
+        "PAIR: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":0.5,\"offered_cents\":2}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MACRO",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "leg_id": "BON",
+      "entry_cents": 39,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 39,
+      "fill_timestamp_epoch": 1784086164.574,
+      "prior_standing_target_cents": 39,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784085060",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "leg_id": "JUS",
+      "entry_cents": 60,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 60,
+      "fill_timestamp_epoch": 1784102005.406,
+      "prior_standing_target_cents": 60,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1439",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 99,
+  "captured_cents": 1,
+  "offered_cents": 2,
+  "capture_ratio": 0.5,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "dc52b3875d922f1990eefcd1ad1d32d544030beeff41f7681e891caf8849d8f4",
+  "grade_sha256": "6a17c285a6dc9647bac7a15cb8f4a51a49a1adbc55a0153512ab750050505e2a",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL15BONJUS.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL15BONJUS.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL15BONJUS.sentences.json",
+  "fault": "MACRO: C · BON FALLER → NOT_CALLABLE · JUS CLIMBER → CLIMBER",
+  "fill_witnesses": [
+    {
+      "leg": "BON",
+      "receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e",
+      "positive_size_witness": true,
+      "print_cents": 39,
+      "rest_cents": 39,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "JUS",
+      "receipt": "20153339-df3b-6e75-fd2d-1725cfada2a2",
+      "positive_size_witness": true,
+      "print_cents": 60,
+      "rest_cents": 60,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

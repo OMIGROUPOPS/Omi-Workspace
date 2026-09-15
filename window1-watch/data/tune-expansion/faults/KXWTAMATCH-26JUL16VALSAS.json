@@ -1,0 +1,112 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXWTAMATCH-26JUL16VALSAS",
+  "category": "WTA_MAIN",
+  "provenance": {
+    "face_sha256": "bae1e87a33fbce4b22f6b7f1b2d57a1e5b33d0711c914c45494c6000796c82fd",
+    "grade_sha256": "82dbe0bf79a7a16be811a414f702c76afe95b2552fb2a2416b0cdff0ffb2d3e8",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "52527a16543424642d8791a67da669bed0d1d5239839680c73dc30714423a373",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "d1f73edc5c18c70761ea002e64c5f877919740f6cd8e89ce0fa713d46a4a651f"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "VAL: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 2,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "SAS": true,
+      "VAL": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "VAL",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "64e1cc33-400f-6788-27c4-f52f83079218",
+          "action": "PLACE",
+          "placement_epoch": 1784138928.051,
+          "bid_cents": 65,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1784140149.8,
+          "floor_minus_placement_minutes": 20.362483330567677,
+          "Q_at_placement": 65,
+          "remaining_positive_print_floor": 66,
+          "later_positive_prints": 86,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "c75d0f23-08f1-4c9f-52ce-5e6699576a06",
+          "action": "PLACE",
+          "placement_epoch": 1784142045.147,
+          "bid_cents": 65,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1784140149.8,
+          "floor_minus_placement_minutes": -31.589116668701173,
+          "Q_at_placement": 65,
+          "remaining_positive_print_floor": 66,
+          "later_positive_prints": 80,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXWTAMATCH-26JUL16VALSAS-SAS.csv.gz#row-348",
+          "action": "PLACE",
+          "placement_epoch": 1784148374.000001,
+          "bid_cents": 65,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1784140149.8,
+          "floor_minus_placement_minutes": -137.0700000166893,
+          "Q_at_placement": 65,
+          "remaining_positive_print_floor": 66,
+          "later_positive_prints": 73,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "a6bba807-d931-62b4-ffd9-ed65d3fb9a0e",
+          "action": "REPRICE",
+          "placement_epoch": 1784148794.561,
+          "bid_cents": 64,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1784140149.8,
+          "floor_minus_placement_minutes": -144.0793500026067,
+          "Q_at_placement": 64,
+          "remaining_positive_print_floor": 67,
+          "later_positive_prints": 72,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 88,
+      "unobserved_placements": []
+    }
+  ]
+}

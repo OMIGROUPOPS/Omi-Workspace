@@ -1,0 +1,131 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "d8de40812cc014925d2ae00dc0f2ed566879e9fea9ee601e7eb8e88e4fd2e8a3",
+    "grade_sha256": "c4ccd482cf600dbf526df696ed401efd5f6bc837ba1dda58784797e495e96e74",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "c1444e60dc71fe36033a80ad5b32d5c5d4bce03480bc8041a17501d696a943b3",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "ee020885a3e49036e4249ec658389252ac915682502eb827787ef554bd5d5093"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "IMA: A · bid below path | MCC: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 1,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 0,
+    "legs": {
+      "IMA": false,
+      "MCC": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "IMA",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "abc441c9-dd41-5936-2be3-3449b5e42f66",
+          "action": "PLACE",
+          "placement_epoch": 1784050102.139,
+          "bid_cents": 36,
+          "recorded_floor_cents": 37,
+          "recorded_floor_epoch": 1784050102.1,
+          "floor_minus_placement_minutes": -0.0006500005722045899,
+          "Q_at_placement": 36,
+          "remaining_positive_print_floor": 38,
+          "later_positive_prints": 5,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "ffbe8119-bfdf-74e8-f111-58d6f07ca12b",
+          "action": "REPRICE",
+          "placement_epoch": 1784057583.628,
+          "bid_cents": 37,
+          "recorded_floor_cents": 37,
+          "recorded_floor_epoch": 1784050102.1,
+          "floor_minus_placement_minutes": -124.69213333527247,
+          "Q_at_placement": 37,
+          "remaining_positive_print_floor": 38,
+          "later_positive_prints": 3,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 9,
+      "unobserved_placements": [
+        "1af34a8d-33db-6279-f6e0-690995f42eb6"
+      ]
+    },
+    {
+      "leg": "MCC",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "28dfd7be-f609-6d81-db85-4142b68d86d8",
+          "action": "REPRICE",
+          "placement_epoch": 1784043218.788,
+          "bid_cents": 61,
+          "recorded_floor_cents": 62,
+          "recorded_floor_epoch": 1784057583.5,
+          "floor_minus_placement_minutes": 239.41186666488647,
+          "Q_at_placement": 61,
+          "remaining_positive_print_floor": 62,
+          "later_positive_prints": 22,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "9eae1183-9a7e-404b-9c49-8a41c736d869",
+          "action": "REPRICE",
+          "placement_epoch": 1784053429.217,
+          "bid_cents": 61,
+          "recorded_floor_cents": 62,
+          "recorded_floor_epoch": 1784057583.5,
+          "floor_minus_placement_minutes": 69.23804999987284,
+          "Q_at_placement": 61,
+          "remaining_positive_print_floor": 62,
+          "later_positive_prints": 19,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 24,
+      "unobserved_placements": []
+    }
+  ]
+}

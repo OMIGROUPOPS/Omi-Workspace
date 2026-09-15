@@ -1,0 +1,290 @@
+{
+  "sha256": "cd81ad92d1b01218f2a8dd62312caa05450f970fb93efd379e8a9c469fbf92eb",
+  "summary": [
+    {
+      "category": "ALL",
+      "games": 100,
+      "failed_sides": 78,
+      "unknown_span_sides": 10,
+      "counts": {
+        "A": {
+          "games": 58,
+          "failed_sides": 65,
+          "unknown_span_sides": 0
+        },
+        "B": {
+          "games": 7,
+          "failed_sides": 7,
+          "unknown_span_sides": 0
+        },
+        "C": {
+          "games": 3,
+          "failed_sides": 3,
+          "unknown_span_sides": 0
+        },
+        "D": {
+          "games": 9,
+          "failed_sides": 10,
+          "unknown_span_sides": 0
+        },
+        "E": {
+          "games": 10,
+          "failed_sides": 6,
+          "unknown_span_sides": 10
+        }
+      },
+      "A_and_B": {
+        "same_failed_side": 5,
+        "same_game": 5
+      },
+      "A_first_offending_placement_distribution": {
+        "floor_before_only": 10,
+        "bid_too_deep_only": 17,
+        "both": 38,
+        "neither_or_unknown": 0
+      },
+      "A_any_placement": {
+        "floor_before": 58,
+        "bid_too_deep": 56,
+        "at_recorded_floor_after_it_passed": 20
+      },
+      "credit": {
+        "complete": 27,
+        "one_sided": 58,
+        "unfilled": 10,
+        "unknown": 5,
+        "offered_games": 83,
+        "captured_cents": 32,
+        "offered_cents": 361
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "games": 46,
+      "failed_sides": 38,
+      "unknown_span_sides": 4,
+      "counts": {
+        "A": {
+          "games": 25,
+          "failed_sides": 28,
+          "unknown_span_sides": 0
+        },
+        "B": {
+          "games": 3,
+          "failed_sides": 3,
+          "unknown_span_sides": 0
+        },
+        "C": {
+          "games": 2,
+          "failed_sides": 2,
+          "unknown_span_sides": 0
+        },
+        "D": {
+          "games": 6,
+          "failed_sides": 7,
+          "unknown_span_sides": 0
+        },
+        "E": {
+          "games": 5,
+          "failed_sides": 4,
+          "unknown_span_sides": 4
+        }
+      },
+      "A_and_B": {
+        "same_failed_side": 1,
+        "same_game": 1
+      },
+      "A_first_offending_placement_distribution": {
+        "floor_before_only": 5,
+        "bid_too_deep_only": 6,
+        "both": 17,
+        "neither_or_unknown": 0
+      },
+      "A_any_placement": {
+        "floor_before": 26,
+        "bid_too_deep": 23,
+        "at_recorded_floor_after_it_passed": 12
+      },
+      "credit": {
+        "complete": 11,
+        "one_sided": 28,
+        "unfilled": 5,
+        "unknown": 2,
+        "offered_games": 39,
+        "captured_cents": 11,
+        "offered_cents": 166
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "games": 18,
+      "failed_sides": 15,
+      "unknown_span_sides": 0,
+      "counts": {
+        "A": {
+          "games": 14,
+          "failed_sides": 15,
+          "unknown_span_sides": 0
+        },
+        "B": {
+          "games": 2,
+          "failed_sides": 2,
+          "unknown_span_sides": 0
+        },
+        "C": {
+          "games": 0,
+          "failed_sides": 0,
+          "unknown_span_sides": 0
+        },
+        "D": {
+          "games": 1,
+          "failed_sides": 1,
+          "unknown_span_sides": 0
+        },
+        "E": {
+          "games": 0,
+          "failed_sides": 0,
+          "unknown_span_sides": 0
+        }
+      },
+      "A_and_B": {
+        "same_failed_side": 2,
+        "same_game": 2
+      },
+      "A_first_offending_placement_distribution": {
+        "floor_before_only": 2,
+        "bid_too_deep_only": 4,
+        "both": 9,
+        "neither_or_unknown": 0
+      },
+      "A_any_placement": {
+        "floor_before": 15,
+        "bid_too_deep": 14,
+        "at_recorded_floor_after_it_passed": 4
+      },
+      "credit": {
+        "complete": 4,
+        "one_sided": 13,
+        "unfilled": 1,
+        "unknown": 0,
+        "offered_games": 17,
+        "captured_cents": 5,
+        "offered_cents": 95
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "games": 17,
+      "failed_sides": 14,
+      "unknown_span_sides": 4,
+      "counts": {
+        "A": {
+          "games": 9,
+          "failed_sides": 12,
+          "unknown_span_sides": 0
+        },
+        "B": {
+          "games": 1,
+          "failed_sides": 1,
+          "unknown_span_sides": 0
+        },
+        "C": {
+          "games": 1,
+          "failed_sides": 1,
+          "unknown_span_sides": 0
+        },
+        "D": {
+          "games": 1,
+          "failed_sides": 1,
+          "unknown_span_sides": 0
+        },
+        "E": {
+          "games": 3,
+          "failed_sides": 1,
+          "unknown_span_sides": 4
+        }
+      },
+      "A_and_B": {
+        "same_failed_side": 1,
+        "same_game": 1
+      },
+      "A_first_offending_placement_distribution": {
+        "floor_before_only": 2,
+        "bid_too_deep_only": 5,
+        "both": 5,
+        "neither_or_unknown": 0
+      },
+      "A_any_placement": {
+        "floor_before": 8,
+        "bid_too_deep": 10,
+        "at_recorded_floor_after_it_passed": 2
+      },
+      "credit": {
+        "complete": 5,
+        "one_sided": 6,
+        "unfilled": 4,
+        "unknown": 2,
+        "offered_games": 10,
+        "captured_cents": 5,
+        "offered_cents": 30
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "games": 19,
+      "failed_sides": 11,
+      "unknown_span_sides": 2,
+      "counts": {
+        "A": {
+          "games": 10,
+          "failed_sides": 10,
+          "unknown_span_sides": 0
+        },
+        "B": {
+          "games": 1,
+          "failed_sides": 1,
+          "unknown_span_sides": 0
+        },
+        "C": {
+          "games": 0,
+          "failed_sides": 0,
+          "unknown_span_sides": 0
+        },
+        "D": {
+          "games": 1,
+          "failed_sides": 1,
+          "unknown_span_sides": 0
+        },
+        "E": {
+          "games": 2,
+          "failed_sides": 1,
+          "unknown_span_sides": 2
+        }
+      },
+      "A_and_B": {
+        "same_failed_side": 1,
+        "same_game": 1
+      },
+      "A_first_offending_placement_distribution": {
+        "floor_before_only": 1,
+        "bid_too_deep_only": 2,
+        "both": 7,
+        "neither_or_unknown": 0
+      },
+      "A_any_placement": {
+        "floor_before": 9,
+        "bid_too_deep": 9,
+        "at_recorded_floor_after_it_passed": 2
+      },
+      "credit": {
+        "complete": 7,
+        "one_sided": 11,
+        "unfilled": 0,
+        "unknown": 1,
+        "offered_games": 17,
+        "captured_cents": 11,
+        "offered_cents": 70
+      }
+    }
+  ]
+}

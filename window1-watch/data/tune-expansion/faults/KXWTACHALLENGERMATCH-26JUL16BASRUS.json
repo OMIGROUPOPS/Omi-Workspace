@@ -1,0 +1,124 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+  "category": "WTA_CHALL",
+  "provenance": {
+    "face_sha256": "a8f597b4f75fe421f0f9952cadb8b6837e45d2a3515e0742d3e2ad34fb988c86",
+    "grade_sha256": "aab4b491e7b796d0253cd17fb2ab97b6d9d6cefdafa7eabc041a951d5903f194",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "565dd8b8fe25d3cfc81912848864bc95055dba18c29f8416fe27e11210b0d67f",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "249ff3c8c683947bcf56328bab190af20ad58d2f490330ec6f1568d876a316f0"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "BAS: A · bid below path | RUS: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 2,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 0,
+    "legs": {
+      "BAS": false,
+      "RUS": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "BAS",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+          "action": "PLACE",
+          "placement_epoch": 1784173216.000001,
+          "bid_cents": 67,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1784162687.1,
+          "floor_minus_placement_minutes": -175.4816666841507,
+          "Q_at_placement": 67,
+          "remaining_positive_print_floor": 69,
+          "later_positive_prints": 19,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS|ATLAS_GATE|1784176800",
+          "action": "REPRICE",
+          "placement_epoch": 1784176800,
+          "bid_cents": 68,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1784162687.1,
+          "floor_minus_placement_minutes": -235.21500000158946,
+          "Q_at_placement": 68,
+          "remaining_positive_print_floor": 69,
+          "later_positive_prints": 19,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 24,
+      "unobserved_placements": [
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1865",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1866",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1867",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1868",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1869",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1870",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1871",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1872",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1873"
+      ]
+    },
+    {
+      "leg": "RUS",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+          "action": "PLACE",
+          "placement_epoch": 1784173216.000001,
+          "bid_cents": 31,
+          "recorded_floor_cents": 32,
+          "recorded_floor_epoch": 1784171710.3,
+          "floor_minus_placement_minutes": -25.0950000166893,
+          "Q_at_placement": 31,
+          "remaining_positive_print_floor": 32,
+          "later_positive_prints": 13,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 14,
+      "unobserved_placements": []
+    }
+  ]
+}

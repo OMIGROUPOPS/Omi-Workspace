@@ -1,0 +1,97 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "0e54ba0178eecb6121db79704256803c4b751414cdd3cb82f5ec2116f5d4ebcd",
+    "grade_sha256": "4d0ac0b2083480c1bb72c87baac9c582d089ff75d9f13eb2608f67745c773084",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "28f0a5763cba838c9c627a3302a54310c0530a2f8de216874071807b44754025",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "c6c5fe93a9c728d85c2fb6cb0c4e19ab3dc4fb724e97e2e356a913a5a6d60595"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "TRO: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 7,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "HOR": true,
+      "TRO": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "TRO",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12TROHOR-HOR.csv.gz#row-293",
+          "action": "PLACE",
+          "placement_epoch": 1783837167.000002,
+          "bid_cents": 90,
+          "recorded_floor_cents": 90,
+          "recorded_floor_epoch": 1783836554,
+          "floor_minus_placement_minutes": -10.21666669845581,
+          "Q_at_placement": 90,
+          "remaining_positive_print_floor": 92,
+          "later_positive_prints": 33,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12TROHOR-TRO.csv.gz#row-4184",
+          "action": "REPRICE",
+          "placement_epoch": 1783838676.000002,
+          "bid_cents": 91,
+          "recorded_floor_cents": 90,
+          "recorded_floor_epoch": 1783836554,
+          "floor_minus_placement_minutes": -35.36666669845581,
+          "Q_at_placement": 91,
+          "remaining_positive_print_floor": 93,
+          "later_positive_prints": 32,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12TROHOR|ATLAS_GATE|1783855920",
+          "action": "REPRICE",
+          "placement_epoch": 1783855920,
+          "bid_cents": 92,
+          "recorded_floor_cents": 90,
+          "recorded_floor_epoch": 1783836554,
+          "floor_minus_placement_minutes": -322.76666666666665,
+          "Q_at_placement": 92,
+          "remaining_positive_print_floor": 94,
+          "later_positive_prints": 30,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 36,
+      "unobserved_placements": []
+    }
+  ]
+}

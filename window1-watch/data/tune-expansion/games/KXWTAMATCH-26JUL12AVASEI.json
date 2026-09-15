@@ -1,0 +1,116 @@
+{
+  "event": "KXWTAMATCH-26JUL12AVASEI",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "NOT OFFERED",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · AVA CLIMBER → CLIMBER · SEI FALLER → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"AVA\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"343136f4-944d-68dc-a088-87b20f10fd03\",\"first_recorded_epoch\":1783813657.637,\"first_bind_epoch\":1783813657.637,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":87.5,\"close_cents\":91,\"realized_drift_cents\":3.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"SEI\":{\"called_role\":\"FALLER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"343136f4-944d-68dc-a088-87b20f10fd03\",\"first_recorded_epoch\":1783813657.637,\"first_bind_epoch\":1783811853.618,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":13,\"close_cents\":12,\"realized_drift_cents\":-1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): AVA 0 · SEI 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · AVA Q 89 vs floor 89¢; range 88–89 · SEI Q 10 vs floor 11¢; range 9–10",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"AVA\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":89,\"q25\":88,\"q75\":89,\"floor_error_cents\":0,\"band_width_cents\":1,\"band_contains_floor\":true,\"receipt\":\"343136f4-944d-68dc-a088-87b20f10fd03\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":89,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"SEI\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"F\",\"q50\":10,\"q25\":9,\"q75\":10,\"floor_error_cents\":1,\"band_width_cents\":1,\"band_contains_floor\":false,\"receipt\":\"343136f4-944d-68dc-a088-87b20f10fd03\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":11,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): AVA: 0.28¢ · SEI: 0.68¢ · AVA: first 59.15m; remaining MAE 43.33m · SEI: first 279.68m; remaining MAE 56.7m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · AVA 89¢ (+0¢) · SEI unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"AVA\":{\"filled\":true,\"cents\":89,\"vs_floor_cents\":0,\"fill_epoch\":1783828974.987,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783853160,\"span_start_epoch\":1783809268,\"span_end_epoch\":1783851840,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":89,\"floor_epoch\":1783828975,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":255.2891666650772,\"current_price_age_minutes\":255.2891666650772,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"SEI\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":11,\"floor_epoch\":1783811853.6,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: AVA lineage 255.29m, current price 255.29m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "NOT OFFERED · Not offered — recorded floors sum to par or above",
+      "hover_lines": [
+        "PAIR: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":\"STORE SILENT\",\"offered_cents\":0}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "NOT OFFERED — corrected floor pair offers no discount",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL12AVASEI",
+      "leg_id": "AVA",
+      "entry_cents": 89,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 89,
+      "fill_timestamp_epoch": 1783828974.987,
+      "prior_standing_target_cents": 89,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 0,
+  "capture_ratio": "STORE SILENT",
+  "one_sided_reason": "SEI: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "SEI",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-3644",
+        "timestamp_epoch": 1783853117.000001,
+        "leg": "SEI",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 11,
+      "reach_audit": {
+        "rest_intervals": 2,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "ec4835a44db83c097ab7ed94849a47a4fd681af62c4639121678fb4878c34ebb",
+  "grade_sha256": "d1abb9f78c4c4870b4ce91d47c74d7bb7cb897a9073f9e099db73563d47e6396",
+  "grade_url": "/data/KXWTAMATCH-26JUL12AVASEI.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL12AVASEI.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL12AVASEI.sentences.json",
+  "fault": "SEI: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "AVA",
+      "receipt": "d5b45f38-c824-79f7-f045-28de804e2d99",
+      "positive_size_witness": true,
+      "print_cents": 89,
+      "rest_cents": 89,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

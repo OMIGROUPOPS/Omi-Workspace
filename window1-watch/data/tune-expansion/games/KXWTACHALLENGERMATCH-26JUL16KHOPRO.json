@@ -1,0 +1,129 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+  "category": "WTA_CHALL",
+  "status": "GRADED",
+  "letter": "NOT OFFERED",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · KHO CLIMBER → NOT_CALLABLE · PRO CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"KHO\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"087522ff-233c-6499-aea0-53b15baf509d\",\"first_recorded_epoch\":1784167131.058,\"first_bind_epoch\":1784167131.058,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":16.5,\"close_cents\":16,\"realized_drift_cents\":-0.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"PRO\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"087522ff-233c-6499-aea0-53b15baf509d\",\"first_recorded_epoch\":1784167131.058,\"first_bind_epoch\":1784165365.807,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":83,\"close_cents\":86,\"realized_drift_cents\":3,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): KHO 0 · PRO 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "C · KHO Q 15 vs floor 15¢; range 14–16 · PRO Q 82 vs floor 85¢; range 77–84",
+      "hover_lines": [
+        "MICRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"legs\":{\"KHO\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":15,\"q25\":14,\"q75\":16,\"floor_error_cents\":0,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"69f46aee-9738-6928-3965-112b17a64fea\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":15,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"PRO\":{\"letter\":\"C\",\"point_letter\":\"C\",\"range_letter\":\"F\",\"q50\":82,\"q25\":77,\"q75\":84,\"floor_error_cents\":3,\"band_width_cents\":7,\"band_contains_floor\":false,\"receipt\":\"087522ff-233c-6499-aea0-53b15baf509d\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":85,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): KHO: 0.69¢ · PRO: 1¢ · KHO: first 277.11m; remaining MAE 35.6m · PRO: first 256.29m; remaining MAE 9.36m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "NOT OFFERED · KHO unfilled · PRO unfilled",
+      "hover_lines": [
+        "TRADE: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"valid_fills\":0,\"side_count\":2},\"legs\":{\"KHO\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":15,\"floor_epoch\":1784203871.6,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"PRO\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":85,\"floor_epoch\":1784165365.8,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: "
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "NOT OFFERED · Not offered — recorded floors sum to par or above",
+      "hover_lines": [
+        "PAIR: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":\"STORE SILENT\",\"offered_cents\":0}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "NOT OFFERED — corrected floor pair offers no discount",
+  "raw_engine_fills": [],
+  "raw_engine_completed": false,
+  "valid_fills": 0,
+  "completed": false,
+  "one_sided": false,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 0,
+  "capture_ratio": "STORE SILENT",
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "KHO",
+      "reason": "No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+      "last_action": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16KHOPRO-PRO.csv.gz#row-3997",
+        "timestamp_epoch": 1784204339.000002,
+        "leg": "KHO",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 15,
+      "reach_audit": {
+        "rest_intervals": 384,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 1,
+        "first_boundary_crossing": {
+          "print": {
+            "epoch": 1784203871.573,
+            "price": 15,
+            "receipt": "1566c358-b2b5-75bb-1d2d-ddcb3a14574b",
+            "source_row": 338
+          },
+          "interval": {
+            "level": 15,
+            "start_epoch": 1784203871.573,
+            "start_receipt": "1566c358-b2b5-75bb-1d2d-ddcb3a14574b",
+            "end_epoch": 1784203871.573
+          }
+        },
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "PRO",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16KHOPRO-PRO.csv.gz#row-3997",
+        "timestamp_epoch": 1784204339.000002,
+        "leg": "PRO",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 85,
+      "reach_audit": {
+        "rest_intervals": 1263,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "51d1dcb47405275ed326c90b994041a202aa94cbf4520e7dc50cfc83de0863d8",
+  "grade_sha256": "d96b4c4debfb20294f6a3e166358b63c5304f1e183e92160f4bec6a4892af097",
+  "grade_url": "/data/KXWTACHALLENGERMATCH-26JUL16KHOPRO.grade.json",
+  "face_url": "/data/KXWTACHALLENGERMATCH-26JUL16KHOPRO.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL16KHOPRO.sentences.json",
+  "fault": "KHO: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review | PRO: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [],
+  "hard_failures": [],
+  "offer_issue": null
+}

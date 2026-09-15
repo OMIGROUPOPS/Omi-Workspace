@@ -29,3 +29,11 @@ __pycache__/
 /window1-watch/data/**/renewals*
 /window1-watch/data/**/*.accountability.json*
 /window1-watch/data/**/*.stages/
+
+# Oversized derived JSON stays local; exact lossless .json.gz is versioned.
+/window1-watch/data/KXATPCHALLENGERMATCH-26JUL12HERALM.grade.json
+/window1-watch/data/KXATPCHALLENGERMATCH-26JUL12HERALM.pressure.json
+/window1-watch/data/KXWTACHALLENGERMATCH-26JUL13AVDFEI.grade.json
+/window1-watch/data/KXWTACHALLENGERMATCH-26JUL13AVDFEI.pressure.json
+/window1-watch/data/grades/KXATPCHALLENGERMATCH-26JUL12HERALM/30b40a1a_a71f72f2.json
+/window1-watch/data/grades/KXWTACHALLENGERMATCH-26JUL13AVDFEI/30b40a1a_cd3b7fb2.json

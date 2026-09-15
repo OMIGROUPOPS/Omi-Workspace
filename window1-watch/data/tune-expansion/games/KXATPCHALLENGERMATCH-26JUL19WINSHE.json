@@ -1,0 +1,116 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "NOT OFFERED",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · SHE FALLER → FALLER · WIN CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"SHE\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL19WINSHE|ATLAS_GATE|1784463180\",\"first_recorded_epoch\":1784463180,\"first_bind_epoch\":1784463180,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":40,\"close_cents\":30,\"realized_drift_cents\":-10,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"WIN\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL19WINSHE|ATLAS_GATE|1784463180\",\"first_recorded_epoch\":1784463180,\"first_bind_epoch\":1784463117.123,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":60,\"close_cents\":71,\"realized_drift_cents\":11,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): SHE 0 · WIN 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · SHE Q 34 vs floor 30¢; range 33–35 · WIN Q 70 vs floor 70¢; range 68–71",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"SHE\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":34,\"q25\":33,\"q75\":35,\"floor_error_cents\":4,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL19WINSHE|ATLAS_GATE|1784463180\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":30,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"WIN\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":70,\"q25\":68,\"q75\":71,\"floor_error_cents\":0,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL19WINSHE|ATLAS_GATE|1784463180\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":70,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): SHE: 4.4¢ · WIN: 1.05¢ · SHE: first 169.74m; remaining MAE 22.12m · WIN: first 123.83m; remaining MAE 18.16m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "NOT OFFERED · SHE unfilled · WIN unfilled",
+      "hover_lines": [
+        "TRADE: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"valid_fills\":0,\"side_count\":2},\"legs\":{\"SHE\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":30,\"floor_epoch\":1784476508.5,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"WIN\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":70,\"floor_epoch\":1784475045.4,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: "
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "NOT OFFERED · Not offered — recorded floors sum to par or above",
+      "hover_lines": [
+        "PAIR: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":\"STORE SILENT\",\"offered_cents\":0}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "NOT OFFERED — corrected floor pair offers no discount",
+  "raw_engine_fills": [],
+  "raw_engine_completed": false,
+  "valid_fills": 0,
+  "completed": false,
+  "one_sided": false,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 0,
+  "capture_ratio": "STORE SILENT",
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "SHE",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19WINSHE-SHE.csv.gz#row-1388",
+        "timestamp_epoch": 1784477576.000001,
+        "leg": "SHE",
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "PULL_UNSUPPORTED"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 30,
+      "reach_audit": {
+        "rest_intervals": 69,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "WIN",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19WINSHE-SHE.csv.gz#row-1388",
+        "timestamp_epoch": 1784477576.000001,
+        "leg": "WIN",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 70,
+      "reach_audit": {
+        "rest_intervals": 214,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "fe8ca871d4ea0e9087eebdef35ecede33b51d1b6ace2c0faff4b81ceeee2cc15",
+  "grade_sha256": "2660efda14dee4f5b455716a1c1432962fb8ba2739632481a9bad469a07b7263",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL19WINSHE.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL19WINSHE.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL19WINSHE.sentences.json",
+  "fault": "SHE: No later positive-size print reached a standing bid before the corrected bell | WIN: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [],
+  "hard_failures": [],
+  "offer_issue": null
+}

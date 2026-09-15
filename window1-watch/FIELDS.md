@@ -1,5 +1,35 @@
 # Window-1 Watch face fields
 
+## Frozen-100 fault audit (hindsight, not an OS input)
+
+`data/tune-expansion/faults/<event>.json` binds the existing face, grade, trace,
+OS and selected-print hashes. No engine replay, fitting or grade rewrite.
+The LAB header reads `header`; the expandable audit reads `sides[].A/B/C/D/E`.
+Labels overlap and describe failed sides only. Completed pairs are not assumed
+to have accurate sentences. Unknown-span sides are E, not unfilled or thin.
+
+A: each actual PLACE/REPRICE inside the corrected span with at least one later
+positive print and no later print at/below that bid. All later prints through
+the corrected span/bell count, including after removal. Q at placement comes
+from the marker's stored sentence/assumption. `floor_minus_placement_minutes`
+is `(recorded floor epoch - placement epoch)/60`; negative means floor first.
+`A_first_offending_placement_distribution` uses the first qualifying action per
+failed side; before-floor and too-deep are also reported as overlapping flags.
+B: existing first eligible Q error strictly >3¢. Pool attribution is a read-only
+reconstruction from pinned library and stored receipt state, checked against
+the stored member count, weight sum and ESS. Tied member weights sort by ID.
+C: stored same-second fill or post-only/pre-formation violation. `credit`
+excludes that side, incomplete pairs get zero. Historical grades remain raw;
+LAB header/scoreboard use these stored audited credit values. Detail cards are
+explicitly labeled historical where safety exclusions differ.
+D: fewer than tour-specific N positive accepted prints in the corrected common
+span. N is inverse-CDF bottom decile of all known-span selected sides, zeros
+included: ATP_MAIN 16; ATP_CHALL 7; WTA_MAIN 22; WTA_CHALL 3. These are descriptive
+sample cutoffs, not trading thresholds or a learned model.
+E: other stored reason or missing evidence. Full definitions, every threshold
+input and source hashes are in `faults/RECEIPT.json` (local provenance).
+
+
 tape.<LEG>[].t <- CSV ts_et parsed as America/New_York, converted to epoch seconds, minus altgas.json bell.first_stage_epoch, divided by 3600
 tape.<LEG>[].bid <- CSV bid_1
 tape.<LEG>[].ask <- CSV ask_1
@@ -456,6 +486,10 @@ matches. The custody SHA256s, event row counts and tokens are in
 | PULL_REST | pulled the bid |
 | STAND_DOWN | pulled the bid |
 | FILL_EVENT | the standing bid filled |
+| PULL_UNSUPPORTED | pulled: no fresh sentence supports this exact bid with time left |
+| FRESH_SENTENCE_SUPPORTS_EXACT_REST | a fresh sentence supports this exact bid with time left |
+| NO_FRESH_RESOLVED_SENTENCE_WITH_DEADLINE_AHEAD | no renewed promise with a deadline ahead |
+| FRESH_SENTENCE_DOES_NOT_SUPPORT_EXACT_REST | the new promise does not support the standing price |
 <!-- plain-card-gloss:end -->
 
 ### Four-line templates and selection rules
@@ -557,7 +591,19 @@ named hand. RUNG and SEAT are explicitly not new Q/X authors.
 | PRICING_AUTHORITY_SILENT_* | SEAT | existing rest carried |
 | LOCKED_BOOK_* | HAND | execution veto |
 | NO_ACTION | HAND | no writer selected |
+| PULL_UNSUPPORTED | HAND | execution safety pull; not a new price author |
+| FRESH_SENTENCE_SUPPORTS_EXACT_REST | ORGAN | renewed exact level from the existing pool author |
 <!-- grade-writers:end -->
+
+### Unsupported rests and corrected replay bell
+
+`provenance.bell_source_used` and `provenance.bell_alignment` come from that run's hash-bound `FACE_RUN_PROVENANCE.json`. Alignment records original replay cutoff, corrected ruler bell, used bell, delta seconds, whether applied, and pinned table/correction sources. Only a later finite corrected bell extends replay. Unknown spans/bells stay unknown. The verified grading span is not extended: fills newly observed outside it remain uncredited.
+
+Full decision rows carry `derivation.rest_support`: immutable assumption ID and original Q/X, previous status, expired/superseded predicates, fresh sentence receipt/Q/X/status, active and proposed rest, original blocking reason, exact-level/replacement support, review-only and pull predicates, and reason. A fresh resolved sentence must be emitted at this receipt with its deadline ahead. An existing post-only, book or pair-cap block never alone licenses keeping an unsupported old bid.
+
+`PULL_UNSUPPORTED` is the cancellation reason and a separate accountability record, not a price author. The bid marker remains the existing CANCEL marker; its plain-English reason is in the table above. The renewal observer's existing `conduct_changed: false` means the renewal record itself performs no execution; actual cancellations are in the decision/action and `PULL_UNSUPPORTED` records. Full stage/renewal streams remain local, excluded from static deployment.
+
+Pre-print overdue reviews see previously observed state only. They may renew the exact existing level or cancel, never place/reprice to the incoming print. A print exactly at its deadline remains eligible under the existing fill path; a later print first encounters the overdue review. BELL reviews remove rests without a future deadline. Pricing, pool selection/weights, quantiles and safety checks remain the existing functions.
 
 Cascade glosses include the actual hyphenated `POOL_FIRST-TICK-ONLY` token and
 the requested `POOL_FIRST_TICK` alias; neither changes the OS token. Exact gloss
@@ -1210,3 +1256,131 @@ The engine panel, book/volume readouts and bid-setting-to-fill links have
 source hovers. Raw tokens and full lineage are disclosure-only. Replay,
 keyboard, game picker, existing inspector, oracle gap/grade/history remain
 available; DESK and SCOREBOARD are unchanged.
+# Tune expansion — 100-game frozen draw (2026-09-14)
+
+`data/tune-expansion/SELECTION.json` records the seed, proportional tour quotas,
+SHA-256 ranked selection, pinned 804-row truth source and correction source,
+native OS/builder/functionable hashes, and all 100 selected identities. Selection
+is frozen before tape availability or outcomes are examined; no replacement of
+unknown-span games. The other 704 are not executed by this order; this does not
+claim that they were historically unseen.
+
+`data/tune-expansion/SCOREBOARD.json` is a selected-only report, distinct from the
+all-loaded-game scoreboard. Every selected game remains in its denominators.
+Corrected-span completion and raw engine fills are separate; incomplete valid
+pairs capture zero. Unknown offer/clock is null, never zero. Per-offered-game
+capture divides captured cents among verified positive-offer games by their count;
+offer-weighted capture divides those cents by total verified offered cents.
+
+For a selected game with no lawful corrected span, `<event>.face.json` carries
+`availability.status = UNGRADABLE` and `availability.reason` from the corrected
+ruler. The LAB shows that reason and keeps its picker accessible. It does not
+invent a bell, timeline, floor, forecast, or performance letter. Its native replay
+and determinism receipts remain available, with the missing grade explicit.
+
+### Tune-loop determinism scope — Sep15 scheduling amendment
+
+`data/tune-expansion/TUNE_DETERMINISM_POLICY.json` (also copied beside the
+unsupported-rests receipt) freezes the ten-game sample, seed and selection rule.
+ALT/GAS is an additional named check, outside the selected100 denominator;
+GANZIN and eight seeded members of the frozen100 complete the sample. No outcome,
+tape availability or completed-pass status selects members.
+
+The scoreboard `scope` displays exactly `pass 1 + 10-game determinism sample`.
+`determinism` carries the sample seed, hash, per-game full digest comparisons and
+sample status. Every selected game has a complete replay artifact. Historical
+extra comparisons are preserved; `passes` reports actual independently completed
+passes. An untested game's `identical` / `all_byte_identical` is null, not true.
+Full-universe determinism is not inferred from the sample. This is tune-iteration
+evidence; final organ acceptance still requires all-game full two-pass proof.
+No grade cutoff, score, OS rule or trading input changes with this label.
+
+### Lossless on-demand bid-card details — Sep15 operator approval
+
+`bid_card_details` binds `/data/<event>.bid-details.json` by
+`schema = bid-card-details-v1`, `event`, `os_sha256`, `trace_sha256`,
+`sha256_uncompressed`, `bytes_uncompressed`, and `action_count`. The stored file
+is `<event>.bid-details.json.gz`; HTTP gzip preserves the hashed JSON bytes.
+Its `actions.bid_actions` and `actions.supersessions` contain the COMPLETE
+original chart action objects, in the same order, with every existing field.
+This includes immutable assumptions, renewal/supersession records, raw reasons,
+sentences, deadlines, books, original hover/detail lines and future extra keys.
+Source: the same trace/accountability rows as before; no synthetic renewals.
+
+The main face retains the marker geometry, original action IDs, side/kind,
+receipt index, minutes-to-bell, label and four-line card. Fill cards retain their
+fill object; supersession fronts retain their existing accountability projection.
+All omitted action fields remain in the hash-bound detail file, not discarded.
+The builder checks exact lossless reconstruction before writing. Main-face HTTP
+transfer stays below 2 MiB (gzip level9); uncompressed JSON is larger. The guard
+is unchanged. Bid detail is a separate, potentially larger on-demand transfer.
+
+Opening `details` fetches that game's detail file once per content hash,
+validates its SHA256, event, OS/trace binding and unique action count, then shows
+the original stored lines. Failed verification is visible, never replaced with
+unverified or fabricated data. Older inline faces remain supported. Grading,
+pressure, fault classification and reach audits hydrate and verify the full
+original objects before use; their rules are unchanged. Static publication
+allowlists these bound bid-card files only; full per-tick renewal streams, stage
+files, raw prints, and the remaining sealed games still stay out.
+
+### Large timelines and bounded bid-detail chunks — additional Sep15 approval
+
+For large action histories, `bid_card_details.schema = bid-card-details-v2`:
+`chunks[]` contains `group` (bid_actions/supersessions), inclusive `first/last`
+original array positions, `detail_url`, `sha256_uncompressed`, and
+`bytes_uncompressed`. Each file under `<event>.bid-details/` contains at most256
+complete ORIGINAL action objects and repeats event/OS/trace binding. These are
+storage chunk sizes, not market rules. `bid_detail_key = <group>:<position>` is
+a storage address, not a replacement for the original receipt/action ID. The
+client fetches the requested chunk, not the whole game, and caches the most
+recently inspected detail chunk. Version1 per-game files remain supported.
+
+When needed to satisfy the same 2MiB compressed main-face limit, `timeline`
+uses `schema = face-timeline-v1`, event/OS/trace binding and hash-verified
+`chunks[]` under `<event>.timeline/`. Each chunk retains up to512 complete OS
+receipt projections plus the complete marker previews for that receipt range.
+Timelines longer than512 receipts take this bounded path directly, avoiding a
+whole-timeline JSON preflight that can exceed the JavaScript string-size limit.
+`first/last` are original inclusive receipt-array positions; `url`, SHA256 and
+uncompressed byte count are explicit. The original full stage files remain
+separate and local. No receipt is removed, combined, rounded or resampled.
+
+The main timeline's `os` rows are column-encoded using `receipt_columns`, including
+each side's exact stored `legs.<side>.sentence.Q` so the entire historical call
+line and its chart extent remain unchanged before detail chunks load;
+`render.bid_actions` and `render.supersessions` use `marker_columns` (dotted
+paths restore nested marker coordinates). Client-only `timeline:<group>:<index>`
+IDs address unloaded previews; original IDs are retained in the chunks and
+restored on hydration. Preview cards, marker geometry and all chart ticks remain
+available. `tick_storage = columns` transposes the full `render.ticks` matrix:
+every original sample/value survives, in order. This is encoding, not sampling.
+
+The initial selected receipt chunk loads before its scene is shown. Play/scrub
+and inspector selection load further chunks on demand; playback waits at an
+unloaded chunk and the page explicitly says it is loading/verifying, rather than
+claiming missing observations. Loaded chunks stay available for that game.
+Grading and all local audits reconstruct the complete projections first.
+Both encodings are checked by exact round trip. Static packaging allowlists
+only descriptor-bound chunks and verifies source/hash bindings before upload.
+
+### Lossless gzip archives — operator approved Sep15
+
+Oversized derived grade/pressure JSON and grade-history buckets may be committed
+as `.json.gz`; their logical URLs remain `.json`. `json_storage.mjs` reads exact
+raw bytes or decompresses the archive when only gzip exists. Writers refresh an
+existing gzip mirror and create one above64MiB (repository file-size headroom,
+not a market cutoff). Raw local files are retained. SHA provenance continues to
+refer to the original uncompressed JSON bytes; archive receipts also record the
+gzip SHA. No grade, measurement, historical snapshot, or field is omitted.
+
+Static assets are gzip on disk and served with `Content-Encoding: gzip` at the
+original JSON routes. The deployment manifest records both representations and
+their hashes. The preserved `demo-baseline/` is the hash-verified previously
+published five-game bundle, not unrelated dirty worktree replays. JSON routing
+uses Vercel's documented rewrites and headers:
+https://vercel.com/docs/project-configuration/vercel-json
+
+`timeline.receipt_storage` and `timeline.marker_storage` may be `columns`:
+transpose the complete matrices back to rows before decoding their named
+columns. Every receipt, stored Q, card string and marker position is retained.

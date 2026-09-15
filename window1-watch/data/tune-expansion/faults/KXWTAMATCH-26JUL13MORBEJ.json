@@ -1,0 +1,67 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXWTAMATCH-26JUL13MORBEJ",
+  "category": "WTA_MAIN",
+  "provenance": {
+    "face_sha256": "5c6e55582830645dab4037ac7138df686b86fafb66da364d7470ce94ca8ea104",
+    "grade_sha256": "db7230d5ee0beff5a2099ad3a90a6d130fccf3e32bc9771504fe46cb9f6e35de",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "9dc7dbb5dbea76cf3b702e6ff0c5935df60285c09af9e85926412c1519434b43",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "3eb7ae0041200ad8182dbc9da8876d6a904e0f647545bb1f13c3bcc16897cb84"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "BEJ: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 6,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "BEJ": false,
+      "MOR": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "BEJ",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "KXWTAMATCH-26JUL13MORBEJ-BEJ.csv.gz#row-878",
+          "action": "PLACE",
+          "placement_epoch": 1783904154.000001,
+          "bid_cents": 82,
+          "recorded_floor_cents": 83,
+          "recorded_floor_epoch": 1783900750.6,
+          "floor_minus_placement_minutes": -56.72333335081736,
+          "Q_at_placement": 82,
+          "remaining_positive_print_floor": 83,
+          "later_positive_prints": 89,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 90,
+      "unobserved_placements": []
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "event": "KXWTAMATCH-26JUL20PODSTU",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · POD CLIMBER → CLIMBER · STU FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"POD\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL20PODSTU-POD.csv.gz#row-478\",\"first_recorded_epoch\":1784481761.00001,\"first_bind_epoch\":1784481081,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":65,\"close_cents\":77,\"realized_drift_cents\":12,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"STU\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL20PODSTU-POD.csv.gz#row-478\",\"first_recorded_epoch\":1784481761.00001,\"first_bind_epoch\":1784481025.03,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":35,\"close_cents\":24,\"realized_drift_cents\":-11,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): POD 0 · STU 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · POD Q 74 vs floor 69¢; range 73–75 · STU Q 21 vs floor 21¢; range 20–22",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"POD\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":74,\"q25\":73,\"q75\":75,\"floor_error_cents\":5,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXWTAMATCH-26JUL20PODSTU-POD.csv.gz#row-478\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":69,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"STU\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":21,\"q25\":20,\"q75\":22,\"floor_error_cents\":0,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"KXWTAMATCH-26JUL20PODSTU-POD.csv.gz#row-478\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":21,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): POD: 0.58¢ · STU: 0.69¢ · POD: first 489.57m; remaining MAE 337.73m · STU: first 3.19m; remaining MAE 224.16m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · POD 78¢ (+9¢; floor printed earlier) · STU 21¢ (+0¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"POD\":{\"filled\":true,\"cents\":78,\"vs_floor_cents\":9,\"fill_epoch\":1784533924.945,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784559000,\"span_start_epoch\":1784471894,\"span_end_epoch\":1784551860,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":69,\"floor_epoch\":1784473750.7,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":869.3990831653277,\"current_price_age_minutes\":285.2102333307266,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"STU\":{\"filled\":true,\"cents\":21,\"vs_floor_cents\":0,\"fill_epoch\":1784522147.303,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784559000,\"span_start_epoch\":1784471894,\"span_end_epoch\":1784551860,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":21,\"floor_epoch\":1784522147.3,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":673.105049832662,\"current_price_age_minutes\":88.91619999806086,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: STU lineage 673.11m, current price 88.92m · POD lineage 869.4m, current price 285.21m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "C · 99¢ pair · 1 of 10¢ captured",
+      "hover_lines": [
+        "PAIR: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":0.1,\"offered_cents\":10}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MICRO",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL20PODSTU",
+      "leg_id": "STU",
+      "entry_cents": 21,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 21,
+      "fill_timestamp_epoch": 1784522147.303,
+      "prior_standing_target_cents": 21,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "4a823bf7-7241-75c1-a51a-3e6d18764588",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PODSTU",
+      "leg_id": "POD",
+      "entry_cents": 78,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 78,
+      "fill_timestamp_epoch": 1784533924.945,
+      "prior_standing_target_cents": 78,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "4a823bf7-7241-75c1-a51a-3e6d18764588",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 99,
+  "captured_cents": 1,
+  "offered_cents": 10,
+  "capture_ratio": 0.1,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "9477ad56cfbc6c1fd29d1cf3a4e06e1de15dddb61af19b0f128bbf050fe1f8d6",
+  "grade_sha256": "162c1d28914a33609d8a8a5556de92f4164ae1ca6c4ddd6607752231f98ba812",
+  "grade_url": "/data/KXWTAMATCH-26JUL20PODSTU.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL20PODSTU.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL20PODSTU.sentences.json",
+  "fault": "MICRO: F · POD Q 74 vs floor 69¢; range 73–75 · STU Q 21 vs floor 21¢; range 20–22",
+  "fill_witnesses": [
+    {
+      "leg": "STU",
+      "receipt": "3a19942f-d909-685c-f2c4-cb1c84b4c2b6",
+      "positive_size_witness": true,
+      "print_cents": 21,
+      "rest_cents": 21,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "POD",
+      "receipt": "df5adfb7-4ddf-766f-ff5b-6a6a423a843e",
+      "positive_size_witness": true,
+      "print_cents": 78,
+      "rest_cents": 78,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

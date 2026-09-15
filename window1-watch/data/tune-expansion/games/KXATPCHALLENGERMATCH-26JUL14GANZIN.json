@@ -1,0 +1,116 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "F · GAN FALLER → NOT_CALLABLE · ZIN CLIMBER → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"correct_side_share\":0},\"legs\":{\"GAN\":{\"called_role\":\"FALLER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL14GANZIN|ATLAS_GATE|1784010300\",\"first_recorded_epoch\":1784010300,\"first_bind_epoch\":1784006995,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":31.5,\"close_cents\":31,\"realized_drift_cents\":-0.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"ZIN\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL14GANZIN|ATLAS_GATE|1784010300\",\"first_recorded_epoch\":1784010300,\"first_bind_epoch\":1784009111.459,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":68,\"close_cents\":69,\"realized_drift_cents\":1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): GAN 0 · ZIN 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · GAN Q 29 vs floor 17¢; range 28–31 · ZIN Q 72 vs floor 64¢; range 70–73",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"GAN\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":29,\"q25\":28,\"q75\":31,\"floor_error_cents\":12,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14GANZIN|ATLAS_GATE|1784010300\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":17,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"ZIN\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":72,\"q25\":70,\"q75\":73,\"floor_error_cents\":8,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14GANZIN|ATLAS_GATE|1784010300\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":64,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): GAN: 1¢ · ZIN: 8¢ · GAN: first 258.68m; remaining MAE 115.42m · ZIN: first 31m; remaining MAE 74.93m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · GAN unfilled · ZIN 72¢ (+8¢)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"GAN\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":17,\"floor_epoch\":1784006875.9,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"ZIN\":{\"filled\":true,\"cents\":72,\"vs_floor_cents\":8,\"fill_epoch\":1784017951.344,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784039100,\"span_start_epoch\":1784006875,\"span_end_epoch\":1784018044.373,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":64,\"floor_epoch\":1784017996,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":127.52240000168483,\"current_price_age_minutes\":127.52240000168483,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: ZIN lineage 127.52m, current price 127.52m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 19¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":19}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MACRO · MICRO · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "leg_id": "ZIN",
+      "entry_cents": 72,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 72,
+      "fill_timestamp_epoch": 1784017951.344,
+      "prior_standing_target_cents": 72,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14GANZIN|ATLAS_GATE|1784010300",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 19,
+  "capture_ratio": 0,
+  "one_sided_reason": "GAN: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "GAN",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14GANZIN-GAN.csv.gz#row-16660",
+        "timestamp_epoch": 1784039099.000077,
+        "leg": "GAN",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 17,
+      "reach_audit": {
+        "rest_intervals": 3519,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "e48f1586b658e16cf965011846a10f52d3a0fb41cc9b8abfcc847edb44868124",
+  "grade_sha256": "335b3aafb304dc63ceaabd9bb4b2f29cf91bfd4236395c92525366a9d9be5ec2",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL14GANZIN.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL14GANZIN.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL14GANZIN.sentences.json",
+  "fault": "GAN: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "ZIN",
+      "receipt": "829c700a-fc6b-7cd3-0833-f28ecfdaab03",
+      "positive_size_witness": true,
+      "print_cents": 72,
+      "rest_cents": 72,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

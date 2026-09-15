@@ -1,0 +1,94 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "6dd7242731d724553bdbfe67819fa6fc74bec574c1c4d8a5db45a653a6d10490",
+    "grade_sha256": "8ec6b1dac40b22f09f9e7ecd563ddffa6c7546f770b602826b237c012e2655f9",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "234920f138da4ccf098f252867dc5f2e5be1f49aec9d34f406328c34aecb787d",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "e00cbe8a9e0c19dc0e56e5208c216bb07d7c8c1c5db1a5dd7215122190b4d0eb"
+  },
+  "known_span": true,
+  "classes": [
+    "A",
+    "C"
+  ],
+  "header": "ONC: A · bid below path + C · safety failure",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 1,
+    "captured_cents": 0,
+    "best_capturable_cents": 1,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "AJD": true,
+      "ONC": false
+    },
+    "safety_excluded": true,
+    "note": "Safety-flagged fills excluded. Original grade retained unchanged."
+  },
+  "sides": [
+    {
+      "leg": "ONC",
+      "scope": "FAILED_SIDE",
+      "raw_filled": true,
+      "safe_filled": false,
+      "classes": [
+        "A",
+        "C"
+      ],
+      "A": [
+        {
+          "receipt": "0a58bfa0-83d0-5837-7c58-d1836e1ada1e",
+          "action": "REPRICE",
+          "placement_epoch": 1784517256.02,
+          "bid_cents": 67,
+          "recorded_floor_cents": 68,
+          "recorded_floor_epoch": 1784543855.2,
+          "floor_minus_placement_minutes": 443.3196666677793,
+          "Q_at_placement": 67,
+          "remaining_positive_print_floor": 68,
+          "later_positive_prints": 25,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "95f31894-0756-5938-f7e3-ab7484c71f78",
+          "action": "PLACE",
+          "placement_epoch": 1784543855.178,
+          "bid_cents": 68,
+          "recorded_floor_cents": 68,
+          "recorded_floor_epoch": 1784543855.2,
+          "floor_minus_placement_minutes": 0.000366667906443278,
+          "Q_at_placement": 68,
+          "remaining_positive_print_floor": 69,
+          "later_positive_prints": 11,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [
+        {
+          "receipt": "e8965dc2-30e3-51bb-e9e7-cd67df9db230",
+          "kind": "SAME_SECOND_FILL",
+          "fill_epoch": 1784543855.178,
+          "current_price_epoch": null,
+          "current_price_receipt": "95f31894-0756-5938-f7e3-ab7484c71f78",
+          "price_age_minutes": 0,
+          "lineage_age_minutes": 0
+        }
+      ],
+      "D": null,
+      "E": null,
+      "positive_prints": 31,
+      "unobserved_placements": []
+    }
+  ]
+}

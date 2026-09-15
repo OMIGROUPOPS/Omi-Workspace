@@ -1,0 +1,148 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXWTAMATCH-26JUL13KAWWAL",
+  "category": "WTA_MAIN",
+  "provenance": {
+    "face_sha256": "7f2658951cbc2c9617a111f79260c196c2f202269c2c31111ac803bd5dc613fd",
+    "grade_sha256": "38c48621166e77592c1f173296b01666522586002f0e9ed20e74da57dce1e988",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "065ce18ff3665929ebd85ae3f516cb3edc42e7a58a9249307e53d17439f69e29",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "71e1b0540043ed404f95aa7e8d5be79e8ef6c456021d7f57a5024e14a8c202b7"
+  },
+  "known_span": true,
+  "classes": [
+    "A",
+    "D"
+  ],
+  "header": "WAL: A · bid below path + D · thin tape",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 3,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "KAW": true,
+      "WAL": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "WAL",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A",
+        "D"
+      ],
+      "A": [
+        {
+          "receipt": "b010d314-de7a-57e0-2fed-607f4b748ee3",
+          "action": "PLACE",
+          "placement_epoch": 1783866675.847,
+          "bid_cents": 65,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1783865879.2,
+          "floor_minus_placement_minutes": -13.277449997266134,
+          "Q_at_placement": 65,
+          "remaining_positive_print_floor": 66,
+          "later_positive_prints": 11,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "3db4c1eb-61ae-6250-9eba-5866af2949b3",
+          "action": "REPRICE",
+          "placement_epoch": 1783869174.828,
+          "bid_cents": 64,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1783865879.2,
+          "floor_minus_placement_minutes": -54.92713333368302,
+          "Q_at_placement": 64,
+          "remaining_positive_print_floor": 68,
+          "later_positive_prints": 10,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "6479806c-63a5-5448-5496-d39e0bb57327",
+          "action": "REPRICE",
+          "placement_epoch": 1783869174.837,
+          "bid_cents": 66,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1783865879.2,
+          "floor_minus_placement_minutes": -54.927283330758414,
+          "Q_at_placement": 66,
+          "remaining_positive_print_floor": 69,
+          "later_positive_prints": 7,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        },
+        {
+          "receipt": "KXWTAMATCH-26JUL13KAWWAL-KAW.csv.gz#row-1517",
+          "action": "REPRICE",
+          "placement_epoch": 1783886583.000002,
+          "bid_cents": 64,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1783865879.2,
+          "floor_minus_placement_minutes": -345.0633333643278,
+          "Q_at_placement": 64,
+          "remaining_positive_print_floor": 69,
+          "later_positive_prints": 7,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "8970e266-0a97-484f-9a5f-10a3db4b5597",
+          "action": "REPRICE",
+          "placement_epoch": 1783888560.721,
+          "bid_cents": 65,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1783865879.2,
+          "floor_minus_placement_minutes": -378.0253499984741,
+          "Q_at_placement": 65,
+          "remaining_positive_print_floor": 69,
+          "later_positive_prints": 7,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXWTAMATCH-26JUL13KAWWAL-WAL.csv.gz#row-14738",
+          "action": "REPRICE",
+          "placement_epoch": 1783897429.000001,
+          "bid_cents": 66,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1783865879.2,
+          "floor_minus_placement_minutes": -525.8300000150998,
+          "Q_at_placement": 66,
+          "remaining_positive_print_floor": 69,
+          "later_positive_prints": 7,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": {
+        "positive_prints": 12,
+        "N": 22,
+        "category": "WTA_MAIN"
+      },
+      "E": null,
+      "positive_prints": 12,
+      "unobserved_placements": []
+    }
+  ]
+}

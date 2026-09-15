@@ -1,0 +1,113 @@
+{
+  "event": "KXATPMATCH-26JUL12BUDPEL",
+  "category": "ATP_MAIN",
+  "status": "GRADED",
+  "letter": "C",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · BUD FALLER → FALLER · PEL CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"BUD\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPMATCH-26JUL12BUDPEL-BUD.csv.gz#row-1312\",\"first_recorded_epoch\":1783853145.000001,\"first_bind_epoch\":1783850402.603,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":48,\"close_cents\":45,\"realized_drift_cents\":-3,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"PEL\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPMATCH-26JUL12BUDPEL-BUD.csv.gz#row-1312\",\"first_recorded_epoch\":1783853145.000001,\"first_bind_epoch\":1783850402.598,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":52,\"close_cents\":54,\"realized_drift_cents\":2,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): BUD 0 · PEL 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "B · BUD Q 45 vs floor 44¢; range 43–47 · PEL Q 51 vs floor 53¢; range 49–52",
+      "hover_lines": [
+        "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"legs\":{\"BUD\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":45,\"q25\":43,\"q75\":47,\"floor_error_cents\":1,\"band_width_cents\":4,\"band_contains_floor\":true,\"receipt\":\"KXATPMATCH-26JUL12BUDPEL-BUD.csv.gz#row-872\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":44,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"PEL\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":51,\"q25\":49,\"q75\":52,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"KXATPMATCH-26JUL12BUDPEL-BUD.csv.gz#row-872\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":53,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): BUD: 2.56¢ · PEL: 1.56¢ · BUD: first 3034.21m; remaining MAE 1459.28m · PEL: first 1041.29m; remaining MAE 683.65m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "✓",
+      "line": "A · BUD 45¢ (+1¢; floor printed earlier) · PEL 54¢ (+1¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"BUD\":{\"filled\":true,\"cents\":45,\"vs_floor_cents\":1,\"fill_epoch\":1783919161.433,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784020140,\"span_start_epoch\":1783790525,\"span_end_epoch\":1783919162.144,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":44,\"floor_epoch\":1783797054.5,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":1197.0238833347955,\"current_price_age_minutes\":160.96801666816074,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"PEL\":{\"filled\":true,\"cents\":54,\"vs_floor_cents\":1,\"fill_epoch\":1783869386.673,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784020140,\"span_start_epoch\":1783790525,\"span_end_epoch\":1783919162.144,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":53,\"floor_epoch\":1783833464.8,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":449.91121665239336,\"current_price_age_minutes\":270.69454998572667,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: PEL lineage 449.91m, current price 270.69m · BUD lineage 1197.02m, current price 160.97m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "C · 99¢ pair · 1 of 3¢ captured",
+      "hover_lines": [
+        "PAIR: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"pair_sum\":99,\"capture_ratio\":0.3333333333333333,\"offered_cents\":3}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPMATCH-26JUL12BUDPEL",
+      "leg_id": "PEL",
+      "entry_cents": 54,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 53,
+      "fill_timestamp_epoch": 1783869386.673,
+      "prior_standing_target_cents": 54,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPMATCH-26JUL12BUDPEL-BUD.csv.gz#row-1312",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12BUDPEL",
+      "leg_id": "BUD",
+      "entry_cents": 45,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 45,
+      "fill_timestamp_epoch": 1783919161.433,
+      "prior_standing_target_cents": 45,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "0b11194d-9d6b-69ec-7c52-4ad395662431",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 99,
+  "captured_cents": 1,
+  "offered_cents": 3,
+  "capture_ratio": 0.3333333333333333,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "6a1529fe4a1472d0b902624575b74523632f3df4ca7145cb557d96ade61f8a2d",
+  "grade_sha256": "87263fbb339cc2b75e0d66d382a2d58a96a7afbf653d832d2f91a2f56a1aa378",
+  "grade_url": "/data/KXATPMATCH-26JUL12BUDPEL.grade.json",
+  "face_url": "/data/KXATPMATCH-26JUL12BUDPEL.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPMATCH-26JUL12BUDPEL.sentences.json",
+  "fault": "PAIR: C · 99¢ pair · 1 of 3¢ captured",
+  "fill_witnesses": [
+    {
+      "leg": "PEL",
+      "receipt": "a73ca172-6c0f-7d12-7950-5f258c14684f",
+      "positive_size_witness": true,
+      "print_cents": 53,
+      "rest_cents": 54,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "BUD",
+      "receipt": "00f5454b-3659-6c87-0adb-155334281d88",
+      "positive_size_witness": true,
+      "print_cents": 45,
+      "rest_cents": 45,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

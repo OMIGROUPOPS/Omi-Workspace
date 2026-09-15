@@ -30,3 +30,8 @@
   .terminal.reading-terminal{padding:8px 12px}.reading-terminal .terminal-header{height:26px;font-size:9px}.reading-terminal .terminal-header nav{gap:14px}.reading-terminal .terminal-header>span{display:none}.reading-stage{height:calc(100svh - 42px);min-height:760px}
   .reading-game-header{height:44px;gap:10px}.reading-terminal .reading-game-label select{font-size:22px;width:147px}.reading-grade{font-size:34px}.reading-result{gap:7px}.reading-result p{font-size:10px}.reading-result p span{font-size:9px}.reading-terminal .reading-details-button{font-size:11px;margin-left:0;padding-right:0}.reading-sentence{gap:10px;min-height:48px;padding:4px 0;align-items:baseline}.reading-sentence strong{font-size:10px}.reading-terminal .reading-sentence h2{font-size:20px;line-height:1.15;max-width:320px}.reading-line-key{font-size:9px;gap:10px}.reading-transport{height:40px;gap:8px}.reading-transport-buttons{gap:0}.reading-transport-buttons button{font-size:11px;padding:4px;min-height:40px}.reading-timeline{margin:0 5px}.reading-time{font-size:16px}.reading-ruler-note{font-size:9px;height:12px;max-width:none}.reading-details-grid{grid-template-columns:1fr}.reading-tip{font-size:11px}.reading-tip .card-lines{font-size:11px}
 }
+.fault-audit { padding: 9px 0; border-bottom: 1px solid currentColor; font-size: 12px; }
+.fault-audit summary { cursor: pointer; }
+.fault-audit small { margin-right: 12px; opacity: .65; font: 10px monospace; }
+.fault-audit p { margin: 8px 0; max-width: 1100px; }
+.fault-audit a { text-decoration: underline; }

@@ -1,0 +1,959 @@
+{
+  "binding": {
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "inputs": {
+      "window1_v54_dual_belief_os.js": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+      "window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+      "build_window1_v54_dual_belief.js": "337a3fcbbddbb4dfc28df10213a1ce092cc7ed05885285754f96a1ebd62572f5"
+    },
+    "tick_library": {
+      "index": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS.jsonl.gz",
+        "sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+        "bytes": 86693550,
+        "rows": 15502
+      },
+      "materializer_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_RECEIPT.json",
+        "sha256": "533c3271d8734caa6f1ccd7dc36563a6726a4c540060d3a1b33cfa011596a282",
+        "bytes": 25283,
+        "rows": null
+      },
+      "print_counts": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS.jsonl.gz",
+        "sha256": "e6e8281c9a5a535f1a67da20ae50b688348c2ecb17f4f53189fd892e8e3bd96c",
+        "bytes": 9021278,
+        "rows": 1405183
+      },
+      "print_counts_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\data\\durable\\RANGE_OVERLAP_LIBRARY_TICKS_PRINT_COUNTS_RECEIPT.json",
+        "sha256": "89a1be15f323f96ef90556b08130722159cae69c26d33fe461c122894b67918b",
+        "bytes": 4681,
+        "rows": null
+      },
+      "bench_receipt": {
+        "path": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\tune_bench_v2_ticks\\ATP_MAIN\\TUNE_BENCH_RECEIPT.json",
+        "sha256": "03a2fb61a5e6c6396ab6b16efca0b256e6b44d76df8f7d7d10975c3ed10e5a8b",
+        "bytes": 33824,
+        "rows": null
+      }
+    },
+    "foundation": {
+      "index": {
+        "path": "C:\\tmp\\v54_altgas_extra_2dfb5b0a_20260902_run2\\FOUNDATION_LIBRARY.jsonl.gz",
+        "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+        "bytes": 2159635,
+        "rows": 9000
+      },
+      "materializer_receipt": {
+        "path": "C:\\tmp\\v54_altgas_extra_2dfb5b0a_20260902_run2\\FOUNDATION_LIBRARY_RECEIPT.json",
+        "sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5",
+        "bytes": 3558,
+        "rows": null
+      },
+      "source": {
+        "bytes": 406637058,
+        "external_custody_location": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+        "grain": "MINUTE",
+        "path": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+        "rows": 9330878,
+        "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4"
+      },
+      "spike_atlas": [
+        {
+          "bytes": 438587,
+          "category": "ATP_CHALL",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/atp_chall_spike_perN.parquet",
+          "rows": 5326,
+          "sha256": "e28faed5c8d19e9c09ab99a54c724b03bf38bc9c983fdf1956111a86bffa68db"
+        },
+        {
+          "bytes": 343312,
+          "category": "ATP_MAIN",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/atp_main_spike_perN.parquet",
+          "rows": 4137,
+          "sha256": "621c86340b90653e384720b1f10c4617f9fbd64d5f177cbfab0d2153c9ea960f"
+        },
+        {
+          "bytes": 86196,
+          "category": "WTA_CHALL",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/wta_chall_spike_perN.parquet",
+          "rows": 887,
+          "sha256": "ba2e5ef2b9e3a7df681d9e62e259bb583bab6b008326228c215069efc495640f"
+        },
+        {
+          "bytes": 306241,
+          "category": "WTA_MAIN",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/wta_main_spike_perN.parquet",
+          "rows": 3683,
+          "sha256": "299b52df87841dff0a065aba264b7b4311c834f80bd8bfee9f90f38ccbca7f98"
+        }
+      ],
+      "layer_license": {
+        "forbidden": [
+          "MICRO_MICRO",
+          "TICK_TIMING"
+        ],
+        "licensed": [
+          "MACRO",
+          "MICRO"
+        ]
+      },
+      "native_window_law": {
+        "excluded_method": "unknown",
+        "method_field": "match_start_method",
+        "minute_bucket_boundary": "minute_ts < match_start_ts",
+        "right_edge": "match_start_ts",
+        "rows_at_or_after_right_edge_excluded": true
+      },
+      "rows": 9000,
+      "replaced_games": 6142,
+      "added_games": 2858,
+      "coverage_before": {
+        "union_games": 12509,
+        "bounded_games": 698,
+        "unbounded_games": 11355,
+        "not_bounded_games": 11811
+      },
+      "coverage_after": {
+        "union_games": 15367,
+        "bounded_games": 9697,
+        "unbounded_games": 5265,
+        "not_bounded_games": 5670
+      }
+    },
+    "future_low": {
+      "index": {
+        "path": "C:\\tmp\\v54_altgas_extra_2dfb5b0a_20260902_run2\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+        "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201",
+        "bytes": 1668883,
+        "rows": 5260
+      },
+      "materializer_receipt": {
+        "path": "C:\\tmp\\v54_altgas_extra_2dfb5b0a_20260902_run2\\FUTURE_LOW_RETURN_LIBRARY_RECEIPT.json",
+        "sha256": "cfe59471d2df7fb9a5d18440099c4df1e5f2fed0cf351e9b4f9ede24739666e1",
+        "bytes": 1112,
+        "rows": null
+      },
+      "source": {
+        "bytes": 406637058,
+        "path": "tmp/per_minute_features.parquet",
+        "rows": 9330878,
+        "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4"
+      },
+      "output": {
+        "bounded_legs": 8386,
+        "by_category_legs": {
+          "ATP_CHALL": 3484,
+          "ATP_MAIN": 2427,
+          "WTA_CHALL": 487,
+          "WTA_MAIN": 1988
+        },
+        "bytes": 1668883,
+        "path": "C:\\Users\\omigr\\OMI-Workspace-codex-window1\\tmp\\v54-four-steps-ii\\FUTURE_LOW_RETURN_LIBRARY.jsonl.gz",
+        "path_points": 71649,
+        "rows": 5260,
+        "sha256": "a6ede383b96401c904ef7f2f761aa38c1900d6626b33dbfa0c87e830d7f41201"
+      },
+      "method": "EXACT_MINUTE_PATH_CHANGE_POINTS; NO_BUCKETS; NO_THRESHOLDS; NO_PLACEMENT_CONSTANTS; CURRENT_MINUTE_EXCLUDED_FROM_ITS_LABEL",
+      "layer_license": {
+        "grain": "MINUTE",
+        "licensed_layers": [
+          "MACRO",
+          "MICRO"
+        ],
+        "micro_micro_licensed": false
+      }
+    },
+    "ground_truth": {
+      "base_commit": "c0056976",
+      "base_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+      "base_sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "corrections_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+      "corrections_sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f",
+      "corrections_applied": [
+        "W1TT-C-001",
+        "W1TT-C-002"
+      ]
+    },
+    "target_prints": {
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\prints.jsonl",
+      "bytes": 1766090446,
+      "scanned_rows": 4836462,
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+    },
+    "lineage": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_walk5_repair_v6_20260821\\FULL_DECISION_TRACE_5.jsonl.gz",
+      "sha256": "5e3f809e2762167dca917d9ad7f0166390b7a9a11f2e707830a40a71ec60b67d",
+      "bytes": 102934439,
+      "rows": 133626
+    },
+    "diagnostic_resources": {
+      "path": "C:\\tmp\\v54_altgas_extra_2dfb5b0a_20260902_run2\\SOURCE_RECEIPTS.json",
+      "sha256": "c914a060f1082b183b5d90c61ded899938a0813d074b7dfd6e2ce98b349adba9",
+      "bytes": 55406,
+      "rows": null
+    },
+    "scope": "Native tick library, unchanged exported replayEvent; no edits or TARGETS mutation. Metadata roster read for selection, only selected tape rows execute. Historical diagnostic resource receipts reused, not a new remote census."
+  },
+  "selected_prints": {
+    "source": {
+      "path": "C:/Users/omigr/OMI-Window1-private/fit-local/prints.jsonl",
+      "bytes": 1766090446,
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+      "rows": 4836462
+    },
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "rule": "Exact original JSON lines for selected tickers only, preserving per-game file order. No values changed, no unselected outputs, no execution; source is read only.",
+    "outputs": [
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13GREVAN.jsonl",
+        "rows": 877,
+        "bytes": 323206,
+        "sha256": "fe084f5011e07b06092bbf85d2c86ccca3497b41c979db855e82cd76db99d9af"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20ONCAJD.jsonl",
+        "rows": 3449,
+        "bytes": 1271280,
+        "sha256": "e00cbe8a9e0c19dc0e56e5208c216bb07d7c8c1c5db1a5dd7215122190b4d0eb"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL18LAJYUN.jsonl",
+        "rows": 36778,
+        "bytes": 13571729,
+        "sha256": "1725c8c6f8d0dd1ff5017159476d5320599ddf0651b71177d31daeb73a512dd7"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19WINSHE.jsonl",
+        "rows": 3590,
+        "bytes": 1324851,
+        "sha256": "781bcba943b24d4d47a2c50da34e9de0a35cc274706069f0daa4333d34f861be"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19DEMBIT.jsonl",
+        "rows": 2779,
+        "bytes": 1024848,
+        "sha256": "0bc9a9246d0ee9fc3ca0a747700cad17759381f81cbda4ef297711a3f366b287"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12BARREI.jsonl",
+        "rows": 7059,
+        "bytes": 2604229,
+        "sha256": "d39ee7a4c84322e545f497750e5452954f4adc8901df062aa32276c8904d86c2"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19SALVRB.jsonl",
+        "rows": 1,
+        "bytes": 370,
+        "sha256": "60855c37fc8833d4f948f2288e68b53fcaaf9f51d67025e74a7d830bed2001cd"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19VISAHT.jsonl",
+        "rows": 3719,
+        "bytes": 1372058,
+        "sha256": "a7e525afc6286a0b80237140fa1e6e3e566e14797e2b4692a649cb0b966f1bbb"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12WESPAA.jsonl",
+        "rows": 1212,
+        "bytes": 446892,
+        "sha256": "a10303179dfec1f134369e842be7677a1e38f1eca4c0dcb5345af04aa95ce9ef"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14GANZIN.jsonl",
+        "rows": 10810,
+        "bytes": 3984660,
+        "sha256": "01686cf814ef56557493b380f74a08f1152d92fd6fc058c95f8c814dd4835815"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14JOHBER.jsonl",
+        "rows": 4020,
+        "bytes": 1482929,
+        "sha256": "6f817fd46f01be0fb2637fd09eb4e69f48c608eaf3f090d5554572a7b49861aa"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14LANYIB.jsonl",
+        "rows": 5466,
+        "bytes": 2016753,
+        "sha256": "2e83fbe7628b6299bcbaee30167fd4657d4fbd7d4e6b3b469244a6c6410456fa"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19RODIVA.jsonl",
+        "rows": 29222,
+        "bytes": 10781598,
+        "sha256": "b0bb78adc43227b92b9f784482cc57fa605ce0948e0a6cc0a179553a07111f8a"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20OLIZIE.jsonl",
+        "rows": 625,
+        "bytes": 230224,
+        "sha256": "9e55df40616ad4cafc26634ab862f26e40c28d6156fa46748c19a5e0a1f6a3c1"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20CALKUM.jsonl",
+        "rows": 2039,
+        "bytes": 751505,
+        "sha256": "4dbd8205652a2c1c90574c61cfecb2dd92d989f5782b3ea06cf5aaf3d1977eba"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL15BONJUS.jsonl",
+        "rows": 4903,
+        "bytes": 1807369,
+        "sha256": "25e8d524329718b9da0adf25cbf88876c124fa8beabef05d315826b2c160797b"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL16GRESAN.jsonl",
+        "rows": 5234,
+        "bytes": 1930625,
+        "sha256": "75d4d3678d2389768bf5de57b044f67b0fb851661dc2376371ce12fef7808d9a"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12PIETAB.jsonl",
+        "rows": 1894,
+        "bytes": 698207,
+        "sha256": "88950fb3b19898dcfc43c5e4a4e9b1c33c67fc41442ea4f406b710df3dfce7af"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19MENKUM.jsonl",
+        "rows": 614,
+        "bytes": 226127,
+        "sha256": "6545662230801df7d6f2756a3e12fe8f7e75dd66fe706ef533ef8a0a6a94530c"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20WINARS.jsonl",
+        "rows": 14799,
+        "bytes": 5460511,
+        "sha256": "598722fa04bc0348787afc224019903378d187b6f12254d76bfc8a567bd41737"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL16BICCAS.jsonl",
+        "rows": 10251,
+        "bytes": 3779179,
+        "sha256": "d3f90511186f91538008cad1584fdd3baec2464c2cf2f204ddb36d39af09e835"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20MAYMAG.jsonl",
+        "rows": 19784,
+        "bytes": 7300035,
+        "sha256": "55887538bb893c9ead5985f02412667a8c8b48f89e8838f77ae626ffab46e7f4"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19HURBIG.jsonl",
+        "rows": 17609,
+        "bytes": 6498084,
+        "sha256": "f0c41b0af637cc6aeacf84262286e9bee71ccc235614fd3e991b066af8063364"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20GALLLA.jsonl",
+        "rows": 1102,
+        "bytes": 406493,
+        "sha256": "b97f3499c889bd2784d6998a897bac5330cbda7d734f7bfbedfcdbe98670496e"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13BINFUE.jsonl",
+        "rows": 5660,
+        "bytes": 2087151,
+        "sha256": "21349e76722bb714823f380a09a0107e17f22aa7e5fab42feb57b55b5a41dd22"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19BRUKRA.jsonl",
+        "rows": 3807,
+        "bytes": 1404556,
+        "sha256": "7a298dc00fb6a017899c09be030af11d801457cd48ba290ad073f4c680f77362"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12HERALM.jsonl",
+        "rows": 13152,
+        "bytes": 4849018,
+        "sha256": "636b7ae64253124a6e0f30665e1ff74678f6a1a5a6dfa1496f3ff1d3bbec3065"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14IMAMCC.jsonl",
+        "rows": 9107,
+        "bytes": 3359994,
+        "sha256": "ee020885a3e49036e4249ec658389252ac915682502eb827787ef554bd5d5093"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19ARNPOH.jsonl",
+        "rows": 3719,
+        "bytes": 1371850,
+        "sha256": "b936432e9a62a25d1f666a7fede249e39c7b7cd85313349f1a7b010d592792d6"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20VASSIN.jsonl",
+        "rows": 4765,
+        "bytes": 1757872,
+        "sha256": "c7027e28cfefde10c4818297b8556715c0cc907d62f924e26666303020d90b4f"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13BOUZHA.jsonl",
+        "rows": 22764,
+        "bytes": 8398470,
+        "sha256": "3d136114252a21a977e236943562832612479164333792f4488ac75ae7b8efb0"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20GALARN.jsonl",
+        "rows": 4965,
+        "bytes": 1831947,
+        "sha256": "6b1a9a3c2b1772ffb685d0f570fcf965b460cb7fa908fc7c61ebfb90332a3fb1"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL16FORCUI.jsonl",
+        "rows": 16967,
+        "bytes": 6257306,
+        "sha256": "5cdffd6058d2856ad243b05b19a5e044a40a5e062e2106b171c006d6f9da3865"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13NAPBAL.jsonl",
+        "rows": 8486,
+        "bytes": 3128593,
+        "sha256": "7a9f377ce0ffdf2ab55d9cf971309801244d099a7f4def6a0961d46a2800dcb4"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12FEAWAL.jsonl",
+        "rows": 23997,
+        "bytes": 8848172,
+        "sha256": "c991fdbb547c121c7d5f7bc31f34b6fd993bc6c7fa3270f0041788b9375226f0"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14URSPAL.jsonl",
+        "rows": 910,
+        "bytes": 335263,
+        "sha256": "4a7529856f416cfc8969e284fd9d4bfc6926dbfddc469dc3472fa32135a62a4a"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12WESSEL.jsonl",
+        "rows": 46,
+        "bytes": 16987,
+        "sha256": "8a15bb92c97f54d6eeda4396eec30f307c2eb0fa215930067140ea19b294ca29"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20ARSRIC.jsonl",
+        "rows": 3612,
+        "bytes": 1331745,
+        "sha256": "864ce1b40c28443de38eb924a3b90c11eb3cddd1d8c471ecbc13c4be64066461"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14ZHUYUN.jsonl",
+        "rows": 36662,
+        "bytes": 13521517,
+        "sha256": "4fc1d84f3269fca28a71ed10a8976e5c1629ba920bab1b8d487dd0965e34385b"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19OLILAS.jsonl",
+        "rows": 1158,
+        "bytes": 426848,
+        "sha256": "05123cd4e90c1f9140929134d96efb2fa097cbcf6f424b5821d49cc56ece8da8"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12BALPET.jsonl",
+        "rows": 462,
+        "bytes": 170151,
+        "sha256": "104ad87dc245285511685ebb195618df830fbaed42a74c9c7b1b95ceea641e16"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20MARROS.jsonl",
+        "rows": 669,
+        "bytes": 246610,
+        "sha256": "bef72e0f9bd6879fdd091919d448b8878bad37f61a045e5f98018a3a3edff408"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12TROHOR.jsonl",
+        "rows": 1018,
+        "bytes": 374997,
+        "sha256": "c6c5fe93a9c728d85c2fb6cb0c4e19ab3dc4fb724e97e2e356a913a5a6d60595"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14ZHOKOZ.jsonl",
+        "rows": 8585,
+        "bytes": 3166891,
+        "sha256": "aa218fc030c5915b270500d5cb91d46245867432e27c2d50b4658fb7e1f8d160"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL17ALCRON.jsonl",
+        "rows": 533,
+        "bytes": 196583,
+        "sha256": "b6f132351e8ee095c7e42d59b7c3ff3d3c72693099aa4c3301a92d4a0b0d2a37"
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12BINGIL.jsonl",
+        "rows": 1778,
+        "bytes": 655361,
+        "sha256": "39f4f48f38f5785cb1b804a8ccc678d67acae0a898b8d434b4baba393576b8c3"
+      },
+      {
+        "event": "KXATPMATCH-26JUL12KOPPRI",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12KOPPRI.jsonl",
+        "rows": 4199,
+        "bytes": 1507515,
+        "sha256": "f1ee536bf28d2dd0e38ceb9d1cb8dc9626ca12787d8afe1003745a5ad3e7527c"
+      },
+      {
+        "event": "KXATPMATCH-26JUL12DEJGAU",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12DEJGAU.jsonl",
+        "rows": 8369,
+        "bytes": 3006258,
+        "sha256": "e15437427359491492a6d877efde945429ec430baddf0e5d672da762ae43194a"
+      },
+      {
+        "event": "KXATPMATCH-26JUL19TSICOL",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19TSICOL.jsonl",
+        "rows": 12770,
+        "bytes": 4580881,
+        "sha256": "a5b57701b54fe891edf0e4eaa3ea0f7d3353fc131a3f527b93ff6e14a2626d00"
+      },
+      {
+        "event": "KXATPMATCH-26JUL12BUDPEL",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12BUDPEL.jsonl",
+        "rows": 1136,
+        "bytes": 407750,
+        "sha256": "0a11ba5daaa0c0f68add07af1f3d0c02827bbddb48091dda12d11523bb69bdc4"
+      },
+      {
+        "event": "KXATPMATCH-26JUL19NEUHAN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19NEUHAN.jsonl",
+        "rows": 3294,
+        "bytes": 1182697,
+        "sha256": "0b5bd347629b1b020af03348c7bd69a28adf65977152975bb2827f86e1dcc342"
+      },
+      {
+        "event": "KXATPMATCH-26JUL15PRADZU",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL15PRADZU.jsonl",
+        "rows": 2663,
+        "bytes": 955148,
+        "sha256": "c56bb1e9e0070c14fb05f70a25c01ab5cb9a0a3e919b51ac23bd5e090a944c3f"
+      },
+      {
+        "event": "KXATPMATCH-26JUL15CARUGO",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL15CARUGO.jsonl",
+        "rows": 10939,
+        "bytes": 3927107,
+        "sha256": "532af5e6f895df1d9cb1d3ebd089b82d66bb7a552e84204023c0fabf94dd8492"
+      },
+      {
+        "event": "KXATPMATCH-26JUL19STRSHE",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19STRSHE.jsonl",
+        "rows": 6074,
+        "bytes": 2180938,
+        "sha256": "6ce729c69fd95670e0a3187f5aff0aaf54e5923251f1353545ad9900eeac4ed3"
+      },
+      {
+        "event": "KXATPMATCH-26JUL16FARRUU",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL16FARRUU.jsonl",
+        "rows": 15071,
+        "bytes": 5407752,
+        "sha256": "ca70cc1fd63dc18d35cd1e27e58510677d3fb90da9455098e7e46cc5d6298caf"
+      },
+      {
+        "event": "KXATPMATCH-26JUL19GASDZU",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19GASDZU.jsonl",
+        "rows": 2655,
+        "bytes": 953882,
+        "sha256": "65134851e219053cb73415f982be0aa352d9079c0b1c2815273214c55bca3963"
+      },
+      {
+        "event": "KXATPMATCH-26JUL19DROUGO",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19DROUGO.jsonl",
+        "rows": 14473,
+        "bytes": 5198290,
+        "sha256": "1a87c2fda6763669066a6b20c34492f7b5a71fcf6c1af3b5ae0e1fdcb9133c7c"
+      },
+      {
+        "event": "KXATPMATCH-26JUL18DOMSKA",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL18DOMSKA.jsonl",
+        "rows": 8144,
+        "bytes": 2922681,
+        "sha256": "757e256411da89dec3e7705e47e759d34c105a1d339c00e3bf3929aa322b0f25"
+      },
+      {
+        "event": "KXATPMATCH-26JUL15VANDRO",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL15VANDRO.jsonl",
+        "rows": 11757,
+        "bytes": 4220959,
+        "sha256": "f6de566baf25f73bde2270765b904e078b32be53646f7bb619b7e68fd46fbb28"
+      },
+      {
+        "event": "KXATPMATCH-26JUL12OFNTIR",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12OFNTIR.jsonl",
+        "rows": 1402,
+        "bytes": 503434,
+        "sha256": "e7b5781262f27bd6d8071f57c3ddc4b9c67b32325f6c7bc499b8e05d40ae1410"
+      },
+      {
+        "event": "KXATPMATCH-26JUL12CORDAN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12CORDAN.jsonl",
+        "rows": 1398,
+        "bytes": 501739,
+        "sha256": "83ec8351aa2fb77b79cb7938926dbf37482e329e36d0bea5521eea608aa40a8b"
+      },
+      {
+        "event": "KXATPMATCH-26JUL12SLADAM",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12SLADAM.jsonl",
+        "rows": 1227,
+        "bytes": 440321,
+        "sha256": "1e33bef6be5fd13e463821ed908e1e20f4e7cb0e25d00d7e61d28cd4fcc81e9f"
+      },
+      {
+        "event": "KXATPMATCH-26JUL12CECOLI",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12CECOLI.jsonl",
+        "rows": 1447,
+        "bytes": 518996,
+        "sha256": "1e33026f664fc1b6581bf4fe262b29a0d12b806dc0c489d0295a3ba09670e070"
+      },
+      {
+        "event": "KXATPMATCH-26JUL18HIPGIU",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL18HIPGIU.jsonl",
+        "rows": 1175,
+        "bytes": 421059,
+        "sha256": "9e4e0f41fb88f2cad565c7f7e8cbb85c7d4607f817cc36c15320c3510c9ca13d"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16KHOPRO.jsonl",
+        "rows": 642,
+        "bytes": 236798,
+        "sha256": "6c4e390250973553172fd49cc7d55fdce64bda35cf60fff65dd74ac43616248e"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL12ERJBOS.jsonl",
+        "rows": 7482,
+        "bytes": 2758854,
+        "sha256": "6650cd27befe99b694d8eb1391ddf3559df4b6e06ae84901a941f2ae7240020c"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL13AVDFEI.jsonl",
+        "rows": 1018,
+        "bytes": 375371,
+        "sha256": "3f27e5372bb47cc8b726181283281ec0ff77cc16f2d23578c43be6bfde9086e4"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16ZVOHRU.jsonl",
+        "rows": 1862,
+        "bytes": 686469,
+        "sha256": "a35cb261bbe3c4fb5943bfb37ee781fa73a928a297cf2106bcfb12c567c8b479"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16GAOVAL.jsonl",
+        "rows": 3599,
+        "bytes": 1328355,
+        "sha256": "7e77c975675cdeec454bb5b74a6720f4c184978a22677e5dfb47a3846597b900"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL13SELYAN.jsonl",
+        "rows": 2917,
+        "bytes": 1075701,
+        "sha256": "51c904bfc16f6d19a54e9486bea859e362504c47b1d8cf99c8f18316232ba58f"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL14KOSRUG.jsonl",
+        "rows": 634,
+        "bytes": 233636,
+        "sha256": "4c58aa94c1a4e025438eea6923f75a29923b33be8ac9b3fbdfecc2ea19c205e3"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL14RABRUS.jsonl",
+        "rows": 460,
+        "bytes": 169573,
+        "sha256": "ae3366d547c2ddfc75c0be9cffd948b71bcdc3af8e8726134c99b313a991e0e0"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL15GRAPER.jsonl",
+        "rows": 817,
+        "bytes": 301067,
+        "sha256": "b681fd9965c0ed660cabbc9d5ed7c7e4d4e9a1ba91eb1bb438f8ac9007ae4786"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16BASRUS.jsonl",
+        "rows": 3562,
+        "bytes": 1314668,
+        "sha256": "249ff3c8c683947bcf56328bab190af20ad58d2f490330ec6f1568d876a316f0"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL13RAMNOH.jsonl",
+        "rows": 1595,
+        "bytes": 587999,
+        "sha256": "e1dfd2fcea128664bf71c21cbebdab6e64db842c0aba3dfb4bd4583b2c27aadc"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL20MAZSPI.jsonl",
+        "rows": 39865,
+        "bytes": 14706465,
+        "sha256": "d40b02c2126d604dffa14b9d584dfaa3938e8b1edf0cd630444aa6be92e2d470"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16FEISAM.jsonl",
+        "rows": 1535,
+        "bytes": 566048,
+        "sha256": "b0964faf629b023bfd4f2b68242a02e3344f3bdbb34fd8e36e8bde034c39ab35"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL15ANDRIS.jsonl",
+        "rows": 5352,
+        "bytes": 1973175,
+        "sha256": "59373925c40586574b6a575cf09a3716dbe195b3850d9d9e8bea99abf8352ae5"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL18CIRTOT.jsonl",
+        "rows": 6,
+        "bytes": 2206,
+        "sha256": "811c76e39be886c7cc9405b42edab7b23cefd4e8ac0681916291356a785d0397"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL13KNUKUR.jsonl",
+        "rows": 2986,
+        "bytes": 1101014,
+        "sha256": "09189c841db536812a638b8a4376be6133d8e640425791128883f386ac7e1a0e"
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL12BALHUA.jsonl",
+        "rows": 965,
+        "bytes": 355997,
+        "sha256": "314fee3fe322090716d73bfd322ffbd524685857e0513b0de86afe9fe86ed0bb"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL13LEPIBR",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13LEPIBR.jsonl",
+        "rows": 3168,
+        "bytes": 1137143,
+        "sha256": "1e03e202a8977b7c887a9bb04f124a4199a321f4766ade400a60571f1799010b"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL13GRAPAR",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13GRAPAR.jsonl",
+        "rows": 8917,
+        "bytes": 3201101,
+        "sha256": "30da699fc72a788e2f22d2a47f0a055479bffaffbef5554178448072b1e018de"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL20KUDKOR",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL20KUDKOR.jsonl",
+        "rows": 160,
+        "bytes": 57245,
+        "sha256": "615edce21d7d744dbb2871a1566ca3672226eed74df0d8753fc476de072d6e4a"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL13KRETOM",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13KRETOM.jsonl",
+        "rows": 1296,
+        "bytes": 465091,
+        "sha256": "cebc2d758975346c8a266e59503ea832a693a188e2c428c82bf483d302bfcc2e"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL13QUERUS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13QUERUS.jsonl",
+        "rows": 2718,
+        "bytes": 973573,
+        "sha256": "88bb2ad3f6b12d9226ffd7c01fdc235422286815cea1ca7a47d39b184376d1c8"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL13PRIGAR",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13PRIGAR.jsonl",
+        "rows": 1890,
+        "bytes": 677837,
+        "sha256": "fd64bea4338b66be3e896989e8dc0fa65bc03884d5bc8f17d006335032981a04"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL16KORANN",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL16KORANN.jsonl",
+        "rows": 5801,
+        "bytes": 2082060,
+        "sha256": "cfa57872358f0b67e724e81a5db938ad25210f82996e5a75a636caf97498e007"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL18MORAKS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL18MORAKS.jsonl",
+        "rows": 2480,
+        "bytes": 890147,
+        "sha256": "1e8b65aefdd9d2926db73176fa032e3901d695bb93e8e0068bb59d4c1a00db84"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL12AVASEI",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL12AVASEI.jsonl",
+        "rows": 473,
+        "bytes": 169562,
+        "sha256": "ba44e04d82d5d65c3bc515d2d7130b87667f591ed5e64b1bc342a5c79ae2115a"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL19GAOFRU",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL19GAOFRU.jsonl",
+        "rows": 6542,
+        "bytes": 2343069,
+        "sha256": "74f459595d2087be3d778b89e45496c3a5426f1114d3217d6992681942e9f216"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL17PUTSHE",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL17PUTSHE.jsonl",
+        "rows": 15746,
+        "bytes": 5646902,
+        "sha256": "6366b0523f1718212b5b30dc919e0505bf6b2910da807cfff8084e9e0a575ad9"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL19YASBAR",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL19YASBAR.jsonl",
+        "rows": 2570,
+        "bytes": 922820,
+        "sha256": "d09ae53ff333648e03536b34d0d2bfed57a189e3c9fafb24b0414cd3871a798d"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL13KAWWAL",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13KAWWAL.jsonl",
+        "rows": 2329,
+        "bytes": 836524,
+        "sha256": "71e1b0540043ed404f95aa7e8d5be79e8ef6c456021d7f57a5024e14a8c202b7"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL14PUTLIU",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL14PUTLIU.jsonl",
+        "rows": 4526,
+        "bytes": 1622696,
+        "sha256": "a63bd995f16e5923178b1d8327a057494ec4fb15e789dd0631831c2830afd61b"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL13MORBEJ",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13MORBEJ.jsonl",
+        "rows": 3074,
+        "bytes": 1102286,
+        "sha256": "3eb7ae0041200ad8182dbc9da8876d6a904e0f647545bb1f13c3bcc16897cb84"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL20PODSTU",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL20PODSTU.jsonl",
+        "rows": 10784,
+        "bytes": 3870922,
+        "sha256": "b748d215dfceeecc40852d2eee86dd34c50a6ffcc5844c29aa8245267ada1fde"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL18MICFRU",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL18MICFRU.jsonl",
+        "rows": 1504,
+        "bytes": 538623,
+        "sha256": "b6a8459c55dcb12d9aa37b841d3d493003637be789c376c75e67a989f4630f25"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL16VALSAS",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL16VALSAS.jsonl",
+        "rows": 1575,
+        "bytes": 565588,
+        "sha256": "d1f73edc5c18c70761ea002e64c5f877919740f6cd8e89ce0fa713d46a4a651f"
+      },
+      {
+        "event": "KXWTAMATCH-26JUL17UDVBAD",
+        "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL17UDVBAD.jsonl",
+        "rows": 11117,
+        "bytes": 3988558,
+        "sha256": "de3c54a6cb89825dba9330f9f578628fa81ae0d7b1f1ecaee0f43bf5f481549c"
+      }
+    ]
+  },
+  "code": [
+    {
+      "name": "prepare.mjs",
+      "sha256": "9d3a497b46263d92d46e3973961abf7073d4d64690e13e13211d6358743324d6"
+    },
+    {
+      "name": "run.mjs",
+      "sha256": "107ab7f5c72eca5d4d5975289b50366c4bde8387d9c9a60cc26727acdeb9bb07"
+    },
+    {
+      "name": "build_faces.mjs",
+      "sha256": "be3975d44b62486104afa0af27bdb80ae9d5db6f734a2bcdfc600ae589e8c0fd"
+    },
+    {
+      "name": "finalize.mjs",
+      "sha256": "78d0cc6314cccfa0da2a217f25187526a7e785bc764fdcb81cc56ddad6510ec1"
+    },
+    {
+      "name": "test_support.cjs",
+      "sha256": "1d19001b955e09717fc421ced379b224ce830f1e35c0e805161169ecb1d1401d"
+    }
+  ],
+  "scope": "Authorized unsupported-rest conduct and corrected-bell replay of frozen 100; ALTGAS separately. No pool, price, selection, grading span or rubric change. Full traces remain local."
+}

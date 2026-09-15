@@ -1,0 +1,116 @@
+{
+  "event": "KXATPMATCH-26JUL15VANDRO",
+  "category": "ATP_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "F · DRO FALLER → CLIMBER · VAN CLIMBER → FALLER",
+      "hover_lines": [
+        "MACRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"correct_side_share\":0},\"legs\":{\"DRO\":{\"called_role\":\"FALLER\",\"realized_role\":\"CLIMBER\",\"correct\":false,\"first_recorded_receipt\":\"75828393-005b-4ee0-da37-f12fc4a8b342\",\"first_recorded_epoch\":1784097143.156,\"first_bind_epoch\":1784097143.156,\"final_stored_role\":\"CLIMBER\",\"flip_count\":1,\"open_cents\":54,\"close_cents\":59,\"realized_drift_cents\":5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"VAN\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"FALLER\",\"correct\":false,\"first_recorded_receipt\":\"9a4d1d83-9197-595f-2bbb-3633cb12445f\",\"first_recorded_epoch\":1784080278.239,\"first_bind_epoch\":1784080005.139,\"final_stored_role\":\"FALLER\",\"flip_count\":1,\"open_cents\":46,\"close_cents\":42,\"realized_drift_cents\":-4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): DRO 1 · VAN 1"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · DRO Q 53 vs floor 51¢; range 51–54 · VAN Q 46 vs floor 42¢; range 44–47",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"DRO\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"B\",\"q50\":53,\"q25\":51,\"q75\":54,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"9a4d1d83-9197-595f-2bbb-3633cb12445f\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":51,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"VAN\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":46,\"q25\":44,\"q75\":47,\"floor_error_cents\":4,\"band_width_cents\":3,\"band_contains_floor\":false,\"receipt\":\"9a4d1d83-9197-595f-2bbb-3633cb12445f\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":42,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): DRO: 1.84¢ · VAN: 2.12¢ · DRO: first 14.4m; remaining MAE 116.87m · VAN: first 609.04m; remaining MAE 286.85m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · DRO unfilled · VAN 50¢ (+8¢)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"DRO\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":51,\"floor_epoch\":1784097200.2,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"VAN\":{\"filled\":true,\"cents\":50,\"vs_floor_cents\":8,\"fill_epoch\":1784099289.989,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784140320,\"span_start_epoch\":1784068004,\"span_end_epoch\":1784137200,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":42,\"floor_epoch\":1784136560.6,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":18.80121666987737,\"current_price_age_minutes\":3.187416668732961,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: VAN lineage 18.8m, current price 3.19m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 7¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":7}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MACRO · MICRO · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPMATCH-26JUL15VANDRO",
+      "leg_id": "VAN",
+      "entry_cents": 50,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 48,
+      "fill_timestamp_epoch": 1784099289.989,
+      "prior_standing_target_cents": 50,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "aa67f802-abd2-61bf-b68c-9d71ddb4c5fc",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 7,
+  "capture_ratio": 0,
+  "one_sided_reason": "DRO: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "DRO",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPMATCH-26JUL15VANDRO-DRO.csv.gz#row-9159",
+        "timestamp_epoch": 1784140318.000012,
+        "leg": "DRO",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 51,
+      "reach_audit": {
+        "rest_intervals": 11,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "0ea755c2ff7a49b34213894f1a0c6548d5c1a8d711abfe9781ba2ec4c538b428",
+  "grade_sha256": "533b9a99812a611f5f6b0b5b411795cf560c57caf833520f646df3dd58e381cc",
+  "grade_url": "/data/KXATPMATCH-26JUL15VANDRO.grade.json",
+  "face_url": "/data/KXATPMATCH-26JUL15VANDRO.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPMATCH-26JUL15VANDRO.sentences.json",
+  "fault": "DRO: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "VAN",
+      "receipt": "60a44f13-c9e7-5cf4-42f7-9d222b423d81",
+      "positive_size_witness": true,
+      "print_cents": 48,
+      "rest_cents": 50,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

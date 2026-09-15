@@ -4,7 +4,14 @@
   "installCommand": "npm ci",
   "buildCommand": "npm run build:demo",
   "outputDirectory": "dist-demo",
+  "rewrites": [
+    {"source":"/data/:asset(.*).json","destination":"/data/:asset.json.gz"}
+  ],
   "headers": [
+    {
+      "source":"/data/:asset(.*).json",
+      "headers":[{"key":"Content-Type","value":"application/json; charset=utf-8"},{"key":"Content-Encoding","value":"gzip"}]
+    },
     {
       "source": "/data/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]

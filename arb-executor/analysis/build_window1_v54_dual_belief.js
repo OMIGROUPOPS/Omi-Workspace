@@ -887,7 +887,15 @@ function targetMeta(row) {
   const verifiedRightEdge = row.verified_span === "OK"
     ? [row.bell_epoch, row.span_end_epoch].filter(Number.isFinite).reduce((minimum, value) => Math.min(minimum, value), Number.POSITIVE_INFINITY)
     : null;
-  return { event_id: row.event_id, event_date: row.code.slice(0, 7), category: row.category, discovery_epoch: row.recorder_open_epoch, bell_epoch: Number.isFinite(verifiedRightEdge) ? verifiedRightEdge : null, span_end_epoch: Number.isFinite(row.span_end_epoch) ? row.span_end_epoch : null, bell_source: row.bell_source, leg_ids: legs, anchors_cents: { [row.legA]: Math.floor(row.legA_open_postformation_c), [row.legB]: Math.floor(row.legB_open_postformation_c) }, formation_end_epochs: { [row.legA]: row.legA_formation_end_epoch, [row.legB]: row.legB_formation_end_epoch }, truth_closes_cents: { [row.legA]: row.verified_span === "OK" ? row.legA_close_c : null, [row.legB]: row.verified_span === "OK" ? row.legB_close_c : null }, truth_fill_stamps: { [row.legA]: row.legA_us_fill_stamp ?? null, [row.legB]: row.legB_us_fill_stamp ?? null }, correction_receipt: row.correction_receipt ?? null };
+  const priorBell = Number.isFinite(verifiedRightEdge) ? verifiedRightEdge : null;
+  const alignBell = priorBell !== null && Number.isFinite(row.bell_epoch) && row.bell_epoch > priorBell;
+  const bell = alignBell ? row.bell_epoch : priorBell;
+  return { event_id: row.event_id, event_date: row.code.slice(0, 7), category: row.category, discovery_epoch: row.recorder_open_epoch, bell_epoch: bell, span_end_epoch: Number.isFinite(row.span_end_epoch) ? row.span_end_epoch : null, bell_source: row.bell_source,
+    bell_source_used: alignBell ? "CORRECTED_RULER:" + row.bell_source : row.bell_source,
+    bell_alignment: { original_bell_epoch: priorBell, corrected_ruler_bell_epoch: Number.isFinite(row.bell_epoch) ? row.bell_epoch : null, used_bell_epoch: bell,
+      delta_seconds: bell !== null && priorBell !== null ? bell - priorBell : null, applied: alignBell,
+      source: `${GROUND_TRUTH_COMMIT}:${GROUND_TRUTH_PATH}`, corrections_source: `${ANALYSIS_COMMIT}:${GROUND_TRUTH_CORRECTIONS_PATH}` },
+    leg_ids: legs, anchors_cents: { [row.legA]: Math.floor(row.legA_open_postformation_c), [row.legB]: Math.floor(row.legB_open_postformation_c) }, formation_end_epochs: { [row.legA]: row.legA_formation_end_epoch, [row.legB]: row.legB_formation_end_epoch }, truth_closes_cents: { [row.legA]: row.verified_span === "OK" ? row.legA_close_c : null, [row.legB]: row.verified_span === "OK" ? row.legB_close_c : null }, truth_fill_stamps: { [row.legA]: row.legA_us_fill_stamp ?? null, [row.legB]: row.legB_us_fill_stamp ?? null }, correction_receipt: row.correction_receipt ?? null };
 }
 
 function bindCorpusFloorTiming(corpusRows, truthRows) {
@@ -1187,7 +1195,7 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
     }
   }
   const epochs = [...epochSet].filter(Number.isFinite).sort((a, b) => a - b);
-  function evaluateStage({ trigger, receipt = null, legIds = null, compactUnchangedRearm = false, clockEpoch = null }) {
+  function evaluateStage({ trigger, receipt = null, legIds = null, compactUnchangedRearm = false, clockEpoch = null, restReviewLegIds = null }) {
     if (state.leg_ids.some((id) => !state.legs[id].rows.length)) return null;
     state.current_epoch = clockEpoch ?? Math.max(state.current_epoch, ...state.leg_ids.map((id) => state.legs[id].rows.at(-1).timestamp_epoch));
     state.receipt = receipt ?? `${state.event_id}|TURN|${state.current_epoch}`;
@@ -1195,7 +1203,7 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
     ensure(neighborhood.every((row) => row.event_id !== state.event_id), `leave-self-out failed ${state.event_id}`);
     const activeLegIds = legIds ?? (smokeOnly ? state.leg_ids : state.leg_ids.filter((id) => !state.positions[id].credited));
     const lineageByLeg = Object.fromEntries(state.leg_ids.map((legId) => [legId, lineageAt(lineage, state.event_id, legId, state.current_epoch)]));
-    const joint = os.deriveJointActions({ state, reads, neighborhood, lineageByLeg, resources });
+    const joint = os.deriveJointActions({ state, reads, neighborhood, lineageByLeg, resources, restReviewLegIds });
     const perLeg = joint.derivations.filter((row) => activeLegIds.includes(row.leg_id));
     let meaningfulRearmTransition = false;
     for (const derivation of perLeg) {
@@ -1311,6 +1319,12 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
       let fillHandoffReceipt = null;
       for (const row of instantRows) {
         lastConsumedReceipt = row.receipt;
+        // An overdue bid must be renewed or pulled before the incoming print
+        // can fill it. Review sees only previously observed rows; no new price
+        // may be posted/repriced in this pre-print exact-level review.
+        const expired = !smokeOnly ? os.expiredRestLegIds(state, row.timestamp_epoch) : [];
+        if (expired.length) evaluateStage({ trigger: "UNSUPPORTED_REST_REVIEW", receipt: row.receipt,
+          clockEpoch: row.timestamp_epoch, legIds: expired, restReviewLegIds: expired });
         const position = state.positions[row.leg_id];
         const priorTrueTradeLow = state.legs[row.leg_id].running_true_trade_low_cents;
         const floorPrintReceipt = row.kind === "PRINT"
@@ -1386,6 +1400,9 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
     const priorEpoch = state.current_epoch, priorReceipt = state.receipt;
     state.current_epoch = meta.bell_epoch; state.receipt = `${state.event_id}|BELL`;
     os.accountableRenewals(state, null, "BELL");
+    const resting = state.leg_ids.filter(id => !state.positions[id].credited && Number.isInteger(state.positions[id].standing_target_cents));
+    if (resting.length) evaluateStage({ trigger: "UNSUPPORTED_REST_REVIEW_AT_BELL", receipt: state.receipt,
+      clockEpoch: meta.bell_epoch, legIds: resting, restReviewLegIds: resting });
     state.current_epoch = priorEpoch; state.receipt = priorReceipt;
   }
   const credited = state.leg_ids.filter((id) => state.positions[id].credited), combined = credited.length === 2 ? credited.reduce((total, id) => total + state.positions[id].entry_cents, 0) : null;

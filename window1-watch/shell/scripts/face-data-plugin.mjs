@@ -22,7 +22,7 @@ export function faceDataPlugin() {
           return;
         }
         const compressed = file + ".gz",
-          chosen = fs.existsSync(compressed) ? compressed : file;
+          chosen = fs.existsSync(compressed) && (!fs.existsSync(file) || fs.statSync(compressed).mtimeMs >= fs.statSync(file).mtimeMs) ? compressed : file;
         if (!fs.existsSync(chosen)) return next();
         res.setHeader("Content-Type", "application/json; charset=utf-8");
         res.setHeader("Cache-Control", "no-cache");
@@ -31,4 +31,19 @@ export function faceDataPlugin() {
       });
     },
   };
+}
+
+// Preview the actual static publication, not the private local stage directory.
+export function compressedStaticPreview() {
+  return {name:'window1-watch:compressed-static-preview',configurePreviewServer(server){
+    const dist=path.resolve(server.config.root,server.config.build.outDir);
+    server.middlewares.use((req,res,next)=>{
+      let pathname;try{pathname=decodeURIComponent((req.url??'').split('?')[0])}catch{return next()}
+      if(!pathname.startsWith('/data/')||!pathname.endsWith('.json'))return next();
+      const file=path.resolve(dist,'.'+pathname+'.gz');
+      if(!file.startsWith(dist+path.sep)||!fs.existsSync(file))return next();
+      res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Content-Encoding','gzip');res.setHeader('Cache-Control','no-cache');
+      fs.createReadStream(file).pipe(res);
+    });
+  }};
 }

@@ -2,7 +2,9 @@
 export function packFace(face) {
   const counts=new Map();
   function count(value){if(value===null||value===undefined)return;const s=JSON.stringify(value);if(s.length>120)counts.set(s,(counts.get(s)??0)+1);if(typeof value==='object')for(const v of Object.values(value))count(v);}
-  count(face.os);
+  // The outer array is never dictionary-encoded (only its rows are). Counting
+  // its serialized string adds no reference and can exceed V8's string limit.
+  for(const row of face.os)count(row);
   const dictionary=[],indices=new Map();
   function encode(value){if(value===null||value===undefined)return value;const s=JSON.stringify(value);if(s.length>120&&counts.get(s)>1){if(!indices.has(s)){indices.set(s,dictionary.length);dictionary.push(value);}return {$ref:indices.get(s)};}if(Array.isArray(value))return value.map(encode);if(typeof value==='object')return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,encode(v)]));return value;}
   return {...face,os:face.os.map(encode),dictionary};

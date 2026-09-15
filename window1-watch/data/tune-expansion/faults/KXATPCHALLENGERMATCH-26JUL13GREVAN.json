@@ -1,0 +1,82 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "b8900dee28a131174dcf6a70026ab75bb1a7c71aff1e2578ed1e5a54840e8185",
+    "grade_sha256": "9e8b5373696a2917f7fbb8a5b4328780d15b54b42e4f3280cbda0c0ed678fb0d",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "1021c370b01bffb342ef657bc1c2582970436179337c0d805e07f2268ad45868",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "fe084f5011e07b06092bbf85d2c86ccca3497b41c979db855e82cd76db99d9af"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "GRE: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 4,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "GRE": false,
+      "VAN": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "GRE",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "d23dc441-690b-4178-bf1a-0d643d3b3227",
+          "action": "PLACE",
+          "placement_epoch": 1783932389.475,
+          "bid_cents": 64,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1783932375.3,
+          "floor_minus_placement_minutes": -0.2362499992052714,
+          "Q_at_placement": 64,
+          "remaining_positive_print_floor": 66,
+          "later_positive_prints": 38,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "f56875c8-5026-58c7-2e1b-0bc83f9595ba",
+          "action": "REPRICE",
+          "placement_epoch": 1783932398.643,
+          "bid_cents": 66,
+          "recorded_floor_cents": 66,
+          "recorded_floor_epoch": 1783932375.3,
+          "floor_minus_placement_minutes": -0.3890499989191691,
+          "Q_at_placement": 66,
+          "remaining_positive_print_floor": 69,
+          "later_positive_prints": 24,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 40,
+      "unobserved_placements": []
+    }
+  ]
+}

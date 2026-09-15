@@ -1,4 +1,6 @@
 // Selection and decoding only; prices, clocks, metrics and text are builder output.
+import type { BidDetailSource } from './bid-details';
+import {decodeTimelinePreview,loadTimelineReceipt,type Timeline} from './timeline-chunks';
 export const SILENT = "STORE SILENT";
 export type OracleLeg = {
   hud_line: string;
@@ -32,6 +34,7 @@ export type LegDisplay = {
   saw: string;
 };
 export type Receipt = {
+  timeline_pending?: boolean;
   index: number;
   t: number;
   minutesToBell: number;
@@ -109,6 +112,9 @@ export type Frame = {
   secondQ10: number | null;
 };
 export type BidAction = {
+  bid_detail_key?: string;
+  timeline_pending?: boolean;
+  bid_detail_source?: BidDetailSource;
   card_lines: string[];
   details_lines: string[];
   id: string;
@@ -135,6 +141,8 @@ export type BidAction = {
   };
 };
 export type FaceData = {
+  timeline?: Timeline;
+  bid_card_details?: BidDetailSource;
   oracle?: { role: string; status: string; reason: string | null; detail_url?: string;
     sha256_uncompressed?: string; legs: Record<string, OracleLeg> };
   version: number;
@@ -296,7 +304,9 @@ export async function loadTuneGame(url: string, signal?: AbortSignal): Promise<L
   const response = await fetch(url, { signal, cache: "no-cache" });
   if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
   const bytes = await response.arrayBuffer();
-  const face = JSON.parse(new TextDecoder().decode(bytes)) as FaceData;
+    const face = JSON.parse(new TextDecoder().decode(bytes)) as FaceData;
+    const availability = (face as FaceData & { availability?: { status: string; reason: string } }).availability;
+    if (availability?.status === "UNGRADABLE") throw new Error(availability.reason);
   const faceSha = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)))
     .map((n) => n.toString(16).padStart(2, "0"))
     .join("");
@@ -312,6 +322,17 @@ export async function loadTuneGame(url: string, signal?: AbortSignal): Promise<L
         : v;
     face.os = face.os.map((r) => decode(r) as Receipt);
   }
+  decodeTimelinePreview(face);
+  if (face.bid_card_details) {
+    const source = face.bid_card_details;
+    if (source.event !== face.provenance.event_id || source.os_sha256 !== face.provenance.os_sha256 || source.trace_sha256 !== face.provenance.trace_sha256)
+      throw new Error('Bid-detail face binding mismatch');
+    for (const action of [...face.render.bid_actions, ...(face.render.supersessions ?? [])]) {
+      action.bid_detail_source = source;
+      action.details_lines ??= [];
+      action.hover_lines ??= [];
+    }
+  }
   if (
     face.version !== 2 ||
     !face.render?.ticks?.length ||
@@ -324,6 +345,10 @@ export async function loadTuneGame(url: string, signal?: AbortSignal): Promise<L
         face.render.columns.map((key, index) => [key, row[index]]),
       ) as unknown as Frame,
   );
+  const requestedGate=Number(new URLSearchParams(location.search).get('gate'));
+  const initialFrame=face.render.checkpoints.find(c=>c.minutesToBell===requestedGate)?.frame??face.render.play_start_frame;
+  const initialReceipt=frames[initialFrame]?.receipt_index;
+  if(initialReceipt!=null)await loadTimelineReceipt(face,initialReceipt,signal);
   const optional = async <T>(path: string): Promise<T | null> => {
     const r = await fetch(path, { signal, cache: "no-cache" });
     if (r.status === 404) return null;

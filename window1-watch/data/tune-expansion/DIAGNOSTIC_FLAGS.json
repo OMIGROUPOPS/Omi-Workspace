@@ -1,0 +1,184 @@
+{
+  "scope": "Read-only findings; pinned replay, grade contract and rubric unchanged.",
+  "safety": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "category": "ATP_CHALL",
+      "flags": [
+        "HANDS: same-second fill"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 1
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "category": "ATP_CHALL",
+      "flags": [
+        "TRADE: fill outside corrected span/bell"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 0
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "category": "ATP_CHALL",
+      "flags": [
+        "TRADE: fill outside corrected span/bell"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 0
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+      "category": "ATP_CHALL",
+      "flags": [
+        "HANDS: same-second fill"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 0
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "category": "ATP_CHALL",
+      "flags": [
+        "TRADE: fill outside corrected span/bell"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 0
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "category": "ATP_CHALL",
+      "flags": [
+        "TRADE: fill outside corrected span/bell"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 0
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "category": "ATP_CHALL",
+      "flags": [
+        "HANDS: same-second fill"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 0
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "category": "ATP_CHALL",
+      "flags": [
+        "TRADE: fill outside corrected span/bell"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 0
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DEJGAU",
+      "category": "ATP_MAIN",
+      "flags": [
+        "TRADE: fill outside corrected span/bell"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 0
+    },
+    {
+      "event": "KXATPMATCH-26JUL19NEUHAN",
+      "category": "ATP_MAIN",
+      "flags": [
+        "TRADE: fill outside corrected span/bell"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 0
+    },
+    {
+      "event": "KXATPMATCH-26JUL12OFNTIR",
+      "category": "ATP_MAIN",
+      "flags": [
+        "TRADE: fill outside corrected span/bell"
+      ],
+      "grade": "F",
+      "reported_capture_cents": 0
+    }
+  ],
+  "missing_offer": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "grade": "F",
+      "reason": "MISSING VERIFIED FLOOR ON A SIDE",
+      "recorded_floors": {
+        "BAR": null,
+        "REI": 34
+      },
+      "original_row_floor_sum": null,
+      "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "grade": "STORE SILENT",
+      "reason": "UNKNOWN",
+      "recorded_floors": {
+        "SAL": null,
+        "VRB": null
+      },
+      "original_row_floor_sum": null,
+      "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "grade": "STORE SILENT",
+      "reason": "UNKNOWN",
+      "recorded_floors": {
+        "SEL": null,
+        "WES": null
+      },
+      "original_row_floor_sum": null,
+      "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+    },
+    {
+      "event": "KXATPMATCH-26JUL19DROUGO",
+      "grade": "STORE SILENT",
+      "reason": "FAVORITE/UNDERDOG NOT IDENTIFIABLE FROM TABLE OPENS",
+      "recorded_floors": {
+        "DRO": 45,
+        "UGO": 51
+      },
+      "original_row_floor_sum": 96,
+      "note": "Both recorded floors exist. Equal opening prices prevent the current grader from identifying favorite/underdog and adding the floors. No grader repair or denominator substitution in this run."
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "grade": "STORE SILENT",
+      "reason": "UNKNOWN",
+      "recorded_floors": {
+        "RAB": null,
+        "RUS": null
+      },
+      "original_row_floor_sum": null,
+      "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "grade": "STORE SILENT",
+      "reason": "EMPTY (bell before formation end)",
+      "recorded_floors": {
+        "BAL": null,
+        "HUA": null
+      },
+      "original_row_floor_sum": null,
+      "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KUDKOR",
+      "grade": "STORE SILENT",
+      "reason": "UNKNOWN",
+      "recorded_floors": {
+        "KOR": null,
+        "KUD": null
+      },
+      "original_row_floor_sum": null,
+      "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+    }
+  ],
+  "fill_witness_missing": []
+}

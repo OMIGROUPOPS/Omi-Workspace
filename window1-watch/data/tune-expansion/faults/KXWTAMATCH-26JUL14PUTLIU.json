@@ -1,0 +1,97 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXWTAMATCH-26JUL14PUTLIU",
+  "category": "WTA_MAIN",
+  "provenance": {
+    "face_sha256": "3dc68a07fa1ad638b6505fad593c2a9a4d0fe73a69fe6bb53d90134ae2c6e2f3",
+    "grade_sha256": "69d9b6cd686e2f83a42384c201b541334b3dac3b54c7b816e9c4256c1cf41068",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "38d112846e879b5bbf080b66a6d7ce1be06b01f9756d820e9585e9429914563c",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "a63bd995f16e5923178b1d8327a057494ec4fb15e789dd0631831c2830afd61b"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "PUT: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 7,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "LIU": true,
+      "PUT": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "PUT",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "f026a462-455d-4269-231e-25d2a8c46f82",
+          "action": "REPRICE",
+          "placement_epoch": 1783979582.334,
+          "bid_cents": 54,
+          "recorded_floor_cents": 55,
+          "recorded_floor_epoch": 1783990430,
+          "floor_minus_placement_minutes": 180.79443333148956,
+          "Q_at_placement": 54,
+          "remaining_positive_print_floor": 55,
+          "later_positive_prints": 620,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "1310132a-c241-4d90-d2b4-3483bba81790",
+          "action": "REPRICE",
+          "placement_epoch": 1783996566.966,
+          "bid_cents": 55,
+          "recorded_floor_cents": 55,
+          "recorded_floor_epoch": 1783990430,
+          "floor_minus_placement_minutes": -102.28276666800181,
+          "Q_at_placement": 55,
+          "remaining_positive_print_floor": 56,
+          "later_positive_prints": 607,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        },
+        {
+          "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-1688",
+          "action": "PLACE",
+          "placement_epoch": 1783998193.000001,
+          "bid_cents": 58,
+          "recorded_floor_cents": 55,
+          "recorded_floor_epoch": 1783990430,
+          "floor_minus_placement_minutes": -129.3833333492279,
+          "Q_at_placement": 58,
+          "remaining_positive_print_floor": 59,
+          "later_positive_prints": 513,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 623,
+      "unobserved_placements": []
+    }
+  ]
+}

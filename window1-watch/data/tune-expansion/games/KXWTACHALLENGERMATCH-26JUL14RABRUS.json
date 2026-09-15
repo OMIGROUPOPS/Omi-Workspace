@@ -1,0 +1,102 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+  "category": "WTA_CHALL",
+  "status": "UNGRADABLE",
+  "letter": "STORE SILENT",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "— · No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+      "hover_lines": [
+        "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted."
+      ]
+    }
+  ],
+  "governing": "No verified replay span in the corrected truth table. A floor, offer and performance grade cannot be asserted.",
+  "raw_engine_fills": [],
+  "raw_engine_completed": false,
+  "valid_fills": null,
+  "completed": null,
+  "one_sided": null,
+  "pair_sum": null,
+  "captured_cents": null,
+  "offered_cents": null,
+  "capture_ratio": null,
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "RAB",
+      "reason": "No verified span (UNKNOWN)",
+      "last_action": {
+        "receipt": "92e7df63-1b4d-5aa0-717e-051c497e1a4f",
+        "timestamp_epoch": 1784046176.243,
+        "leg": "RAB",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": null,
+      "reach_audit": null,
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "RUS",
+      "reason": "No verified span (UNKNOWN)",
+      "last_action": {
+        "receipt": "92e7df63-1b4d-5aa0-717e-051c497e1a4f",
+        "timestamp_epoch": 1784046176.243,
+        "leg": "RUS",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": null,
+      "reach_audit": null,
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "ce3aecaad8440991bacd917bef786f1281b7f4b2dc23b9c4b010d49532e83505",
+  "grade_sha256": "08bb353f8acd9564afac115c56e35799eac037d333f2821193ae0d04348d22eb",
+  "grade_url": "/data/KXWTACHALLENGERMATCH-26JUL14RABRUS.grade.json",
+  "face_url": "/data/KXWTACHALLENGERMATCH-26JUL14RABRUS.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL14RABRUS.sentences.json",
+  "fault": "No verified span: UNKNOWN",
+  "fill_witnesses": [],
+  "hard_failures": [],
+  "offer_issue": {
+    "reason": "UNKNOWN",
+    "recorded_floors": {
+      "RAB": null,
+      "RUS": null
+    },
+    "original_row_floor_sum": null,
+    "note": "Missing offer retained from the unchanged grade; no unavailable floor or span invented."
+  }
+}

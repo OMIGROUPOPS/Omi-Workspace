@@ -1,0 +1,32 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "d2f701765805991ed3c57785192bddee121a784430df3eccbd451fa8f6dfd1cd",
+    "grade_sha256": "6a17c285a6dc9647bac7a15cb8f4a51a49a1adbc55a0153512ab750050505e2a",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "dc52b3875d922f1990eefcd1ad1d32d544030beeff41f7681e891caf8849d8f4",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "25e8d524329718b9da0adf25cbf88876c124fa8beabef05d315826b2c160797b"
+  },
+  "known_span": true,
+  "classes": [],
+  "header": "Pair completed · no failed side",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 1,
+    "captured_cents": 1,
+    "best_capturable_cents": 2,
+    "pair_sum": 99,
+    "pair_completed": true,
+    "valid_fills": 2,
+    "legs": {
+      "BON": true,
+      "JUS": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": []
+}

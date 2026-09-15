@@ -1,0 +1,127 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPMATCH-26JUL15PRADZU",
+  "category": "ATP_MAIN",
+  "provenance": {
+    "face_sha256": "2b24d417929a62207737697a40b081acc4d72b42f814e35166cb7e904b149857",
+    "grade_sha256": "43e2b389ee9361133651aa1849652b3ed0b7c3ba34b5c090d3c48a79a89e296c",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "bc1ec225849327c382e9b0b1a5adbe0fc373ff71ffb5401d70909b73ae65c8ed",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "c56bb1e9e0070c14fb05f70a25c01ab5cb9a0a3e919b51ac23bd5e090a944c3f"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "PRA: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 4,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "DZU": true,
+      "PRA": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "PRA",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+          "action": "PLACE",
+          "placement_epoch": 1784075616.000001,
+          "bid_cents": 32,
+          "recorded_floor_cents": 34,
+          "recorded_floor_epoch": 1784075615.6,
+          "floor_minus_placement_minutes": -0.0066666841506958004,
+          "Q_at_placement": 32,
+          "remaining_positive_print_floor": 34,
+          "later_positive_prints": 67,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "6bf92faa-0f75-62e6-decc-cf46c3d14b99",
+          "action": "REPRICE",
+          "placement_epoch": 1784081143.646,
+          "bid_cents": 33,
+          "recorded_floor_cents": 34,
+          "recorded_floor_epoch": 1784075615.6,
+          "floor_minus_placement_minutes": -92.13410000006358,
+          "Q_at_placement": 33,
+          "remaining_positive_print_floor": 34,
+          "later_positive_prints": 64,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "6365639f-4d83-56c4-9afc-c9965cd4c93c",
+          "action": "REPRICE",
+          "placement_epoch": 1784086604.004,
+          "bid_cents": 32,
+          "recorded_floor_cents": 34,
+          "recorded_floor_epoch": 1784075615.6,
+          "floor_minus_placement_minutes": -183.1400666673978,
+          "Q_at_placement": 32,
+          "remaining_positive_print_floor": 35,
+          "later_positive_prints": 58,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857",
+          "action": "REPRICE",
+          "placement_epoch": 1784091078.000001,
+          "bid_cents": 34,
+          "recorded_floor_cents": 34,
+          "recorded_floor_epoch": 1784075615.6,
+          "floor_minus_placement_minutes": -257.7066666841507,
+          "Q_at_placement": 34,
+          "remaining_positive_print_floor": 35,
+          "later_positive_prints": 53,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        },
+        {
+          "receipt": "b79f327c-8dc5-533d-b413-0302d4e9aa8b",
+          "action": "PLACE",
+          "placement_epoch": 1784112150.352,
+          "bid_cents": 34,
+          "recorded_floor_cents": 34,
+          "recorded_floor_epoch": 1784075615.6,
+          "floor_minus_placement_minutes": -608.912533334891,
+          "Q_at_placement": 34,
+          "remaining_positive_print_floor": 35,
+          "later_positive_prints": 41,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 68,
+      "unobserved_placements": []
+    }
+  ]
+}

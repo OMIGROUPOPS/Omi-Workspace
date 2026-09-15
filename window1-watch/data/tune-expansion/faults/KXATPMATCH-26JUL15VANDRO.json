@@ -1,0 +1,112 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPMATCH-26JUL15VANDRO",
+  "category": "ATP_MAIN",
+  "provenance": {
+    "face_sha256": "78a40844a4dea269b15404478d59b3cc4f292a8dceb5a896e4d7d3cad5caeed2",
+    "grade_sha256": "533b9a99812a611f5f6b0b5b411795cf560c57caf833520f646df3dd58e381cc",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "0ea755c2ff7a49b34213894f1a0c6548d5c1a8d711abfe9781ba2ec4c538b428",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "f6de566baf25f73bde2270765b904e078b32be53646f7bb619b7e68fd46fbb28"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "DRO: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 7,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "DRO": false,
+      "VAN": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "DRO",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "75828393-005b-4ee0-da37-f12fc4a8b342",
+          "action": "REPRICE",
+          "placement_epoch": 1784097143.156,
+          "bid_cents": 50,
+          "recorded_floor_cents": 51,
+          "recorded_floor_epoch": 1784097200.2,
+          "floor_minus_placement_minutes": 0.9507333358128865,
+          "Q_at_placement": 50,
+          "remaining_positive_print_floor": 51,
+          "later_positive_prints": 127,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "61d3d1ac-9243-56c7-0747-d5cd52e6144f",
+          "action": "REPRICE",
+          "placement_epoch": 1784097200.207,
+          "bid_cents": 49,
+          "recorded_floor_cents": 51,
+          "recorded_floor_epoch": 1784097200.2,
+          "floor_minus_placement_minutes": -0.00011666615804036458,
+          "Q_at_placement": 49,
+          "remaining_positive_print_floor": 51,
+          "later_positive_prints": 126,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "df8490a3-9547-66e7-7f50-afbc5d22083a",
+          "action": "REPRICE",
+          "placement_epoch": 1784097501.914,
+          "bid_cents": 50,
+          "recorded_floor_cents": 51,
+          "recorded_floor_epoch": 1784097200.2,
+          "floor_minus_placement_minutes": -5.028566666444143,
+          "Q_at_placement": 50,
+          "remaining_positive_print_floor": 51,
+          "later_positive_prints": 125,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "aa67f802-abd2-61bf-b68c-9d71ddb4c5fc",
+          "action": "REPRICE",
+          "placement_epoch": 1784099098.744,
+          "bid_cents": 49,
+          "recorded_floor_cents": 51,
+          "recorded_floor_epoch": 1784097200.2,
+          "floor_minus_placement_minutes": -31.642399998505912,
+          "Q_at_placement": 49,
+          "remaining_positive_print_floor": 52,
+          "later_positive_prints": 120,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 178,
+      "unobserved_placements": []
+    }
+  ]
+}

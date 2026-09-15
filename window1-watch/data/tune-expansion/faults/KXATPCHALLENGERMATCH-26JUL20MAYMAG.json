@@ -1,0 +1,157 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "7895b6e1a5e65f813521162f7c9d0ed06168f3e7e241c298aa12af3588996e37",
+    "grade_sha256": "f5596757255e7b8c2de78e748e2e2e785050205a4a60a7fcb4a4b812291a89e9",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "18095193dee5b39ab98b5c4b2a187e6a2cf7e48d8337d0d8bbb778b1af8b3a2e",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "55887538bb893c9ead5985f02412667a8c8b48f89e8838f77ae626ffab46e7f4"
+  },
+  "known_span": true,
+  "classes": [
+    "A"
+  ],
+  "header": "MAG: A · bid below path",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 3,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "MAG": false,
+      "MAY": true
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "MAG",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "A"
+      ],
+      "A": [
+        {
+          "receipt": "bd83d310-285e-54d1-bcd1-47ebd0af3335",
+          "action": "REPRICE",
+          "placement_epoch": 1784517296.265,
+          "bid_cents": 30,
+          "recorded_floor_cents": 31,
+          "recorded_floor_epoch": 1784517313.4,
+          "floor_minus_placement_minutes": 0.2855833331743876,
+          "Q_at_placement": 30,
+          "remaining_positive_print_floor": 31,
+          "later_positive_prints": 48,
+          "floor_before_placement": false,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "d0c9bed8-7ad8-4f67-d3c4-c184dd3ca19b",
+          "action": "REPRICE",
+          "placement_epoch": 1784517313.447,
+          "bid_cents": 29,
+          "recorded_floor_cents": 31,
+          "recorded_floor_epoch": 1784517313.4,
+          "floor_minus_placement_minutes": -0.0007833321889241536,
+          "Q_at_placement": 29,
+          "remaining_positive_print_floor": 32,
+          "later_positive_prints": 47,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-347",
+          "action": "REPRICE",
+          "placement_epoch": 1784524911.000001,
+          "bid_cents": 30,
+          "recorded_floor_cents": 31,
+          "recorded_floor_epoch": 1784517313.4,
+          "floor_minus_placement_minutes": -126.62666668097178,
+          "Q_at_placement": 30,
+          "remaining_positive_print_floor": 32,
+          "later_positive_prints": 37,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": true,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG|ATLAS_GATE|1784534640",
+          "action": "REPRICE",
+          "placement_epoch": 1784534640,
+          "bid_cents": 31,
+          "recorded_floor_cents": 31,
+          "recorded_floor_epoch": 1784517313.4,
+          "floor_minus_placement_minutes": -288.7766666650772,
+          "Q_at_placement": 31,
+          "remaining_positive_print_floor": 32,
+          "later_positive_prints": 28,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": true
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-823",
+          "action": "REPRICE",
+          "placement_epoch": 1784546549.000001,
+          "bid_cents": 32,
+          "recorded_floor_cents": 31,
+          "recorded_floor_epoch": 1784517313.4,
+          "floor_minus_placement_minutes": -487.2600000143051,
+          "Q_at_placement": 32,
+          "remaining_positive_print_floor": 33,
+          "later_positive_prints": 24,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1315",
+          "action": "PLACE",
+          "placement_epoch": 1784553133.000001,
+          "bid_cents": 32,
+          "recorded_floor_cents": 31,
+          "recorded_floor_epoch": 1784517313.4,
+          "floor_minus_placement_minutes": -596.9933333476384,
+          "Q_at_placement": 32,
+          "remaining_positive_print_floor": 33,
+          "later_positive_prints": 21,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        },
+        {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-969",
+          "action": "PLACE",
+          "placement_epoch": 1784553257.000001,
+          "bid_cents": 32,
+          "recorded_floor_cents": 31,
+          "recorded_floor_epoch": 1784517313.4,
+          "floor_minus_placement_minutes": -599.0600000143052,
+          "Q_at_placement": 32,
+          "remaining_positive_print_floor": 33,
+          "later_positive_prints": 21,
+          "floor_before_placement": true,
+          "bid_below_recorded_floor": false,
+          "at_floor_after_it_passed": false
+        }
+      ],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": null,
+      "positive_prints": 57,
+      "unobserved_placements": []
+    }
+  ]
+}

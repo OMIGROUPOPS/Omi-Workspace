@@ -1,0 +1,142 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "F · ALM CLIMBER → FALLER · HER FALLER → CLIMBER",
+      "hover_lines": [
+        "MACRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"correct_side_share\":0},\"legs\":{\"ALM\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"FALLER\",\"correct\":false,\"first_recorded_receipt\":\"1bd4ec0e-673e-6d0a-8abe-99eee0a07c2f\",\"first_recorded_epoch\":1783874411.598,\"first_bind_epoch\":1783874395.441,\"final_stored_role\":\"FALLER\",\"flip_count\":1,\"open_cents\":69,\"close_cents\":54,\"realized_drift_cents\":-15,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"HER\":{\"called_role\":\"FALLER\",\"realized_role\":\"CLIMBER\",\"correct\":false,\"first_recorded_receipt\":\"0dc6ffb8-aecd-450a-5c6c-1645614f84bf\",\"first_recorded_epoch\":1783874493.728,\"first_bind_epoch\":1783874493.728,\"final_stored_role\":\"CLIMBER\",\"flip_count\":1,\"open_cents\":31,\"close_cents\":52,\"realized_drift_cents\":21,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): ALM 1 · HER 1"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · ALM Q 68 vs floor 51¢; range 67–68 · HER Q 30 vs floor 29¢; range 29–30",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"ALM\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":68,\"q25\":67,\"q75\":68,\"floor_error_cents\":17,\"band_width_cents\":1,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12HERALM-ALM.csv.gz#row-3385\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":51,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"HER\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":30,\"q25\":29,\"q75\":30,\"floor_error_cents\":1,\"band_width_cents\":1,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL12HERALM-ALM.csv.gz#row-3385\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":29,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): ALM: 10.26¢ · HER: 5.92¢ · ALM: first 22.35m; remaining MAE 11.88m · HER: first 1.96m; remaining MAE 4.72m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "F · ALM unfilled · HER unfilled",
+      "hover_lines": [
+        "TRADE: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"valid_fills\":0,\"side_count\":2},\"legs\":{\"ALM\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":51,\"floor_epoch\":1783875717.3,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"HER\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":29,\"floor_epoch\":1783874493.7,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: "
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 20¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":20}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MACRO · MICRO · TRADE · PAIR",
+  "raw_engine_fills": [],
+  "raw_engine_completed": false,
+  "valid_fills": 0,
+  "completed": false,
+  "one_sided": false,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 20,
+  "capture_ratio": 0,
+  "one_sided_reason": null,
+  "missing_sides": [
+    {
+      "leg": "ALM",
+      "reason": "No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12HERALM-HER.csv.gz#row-21196",
+        "timestamp_epoch": 1783875899.000022,
+        "leg": "ALM",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 51,
+      "reach_audit": {
+        "rest_intervals": 2935,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 8,
+        "first_boundary_crossing": {
+          "print": {
+            "epoch": 1783874429.494,
+            "price": 70,
+            "receipt": "931931c6-727a-7144-7e54-cf0289ef0fb0",
+            "source_row": 2886
+          },
+          "interval": {
+            "level": 70,
+            "start_epoch": 1783874429.494,
+            "start_receipt": "931931c6-727a-7144-7e54-cf0289ef0fb0",
+            "end_epoch": 1783874430.000001
+          }
+        },
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    },
+    {
+      "leg": "HER",
+      "reason": "No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12HERALM-HER.csv.gz#row-21196",
+        "timestamp_epoch": 1783875899.000022,
+        "leg": "HER",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 29,
+      "reach_audit": {
+        "rest_intervals": 9312,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 5,
+        "first_boundary_crossing": {
+          "print": {
+            "epoch": 1783874698.063,
+            "price": 44,
+            "receipt": "819fefaf-a7a1-7688-7d7b-4810ad2005b8",
+            "source_row": 13146
+          },
+          "interval": {
+            "level": 44,
+            "start_epoch": 1783874698.063,
+            "start_receipt": "819fefaf-a7a1-7688-7d7b-4810ad2005b8",
+            "end_epoch": 1783874699.000001
+          }
+        },
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "a71f72f21a10c45479654af4d0fefa40eaba2462d8a1eaa9d4089c13d3dbc30c",
+  "grade_sha256": "5f76869ee086867c441c323bd2503b696dc2a8252cb37fb83b2d6ef620e8f8b8",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL12HERALM.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL12HERALM.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL12HERALM.sentences.json",
+  "fault": "ALM: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review | HER: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+  "fill_witnesses": [],
+  "hard_failures": [],
+  "offer_issue": null
+}

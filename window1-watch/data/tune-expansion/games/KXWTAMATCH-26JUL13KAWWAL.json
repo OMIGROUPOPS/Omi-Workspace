@@ -1,0 +1,116 @@
+{
+  "event": "KXWTAMATCH-26JUL13KAWWAL",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · KAW FALLER → FALLER · WAL CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"KAW\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"b010d314-de7a-57e0-2fed-607f4b748ee3\",\"first_recorded_epoch\":1783866675.847,\"first_bind_epoch\":1783866648.204,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":37,\"close_cents\":31,\"realized_drift_cents\":-6,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"WAL\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"6479806c-63a5-5448-5496-d39e0bb57327\",\"first_recorded_epoch\":1783869174.837,\"first_bind_epoch\":1783869174.837,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":66,\"close_cents\":69,\"realized_drift_cents\":3,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): KAW 0 · WAL 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "B · KAW Q 33 vs floor 31¢; range 31–34 · WAL Q 65 vs floor 66¢; range 63–66",
+      "hover_lines": [
+        "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"legs\":{\"KAW\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"B\",\"q50\":33,\"q25\":31,\"q75\":34,\"floor_error_cents\":2,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"b010d314-de7a-57e0-2fed-607f4b748ee3\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":31,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"WAL\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":65,\"q25\":63,\"q75\":66,\"floor_error_cents\":1,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"b010d314-de7a-57e0-2fed-607f4b748ee3\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":66,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): KAW: 0.74¢ · WAL: 2.8¢ · KAW: first 704.56m; remaining MAE 905.48m · WAL: first 212.83m; remaining MAE 480.8m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · KAW 33¢ (+2¢) · WAL unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"KAW\":{\"filled\":true,\"cents\":33,\"vs_floor_cents\":2,\"fill_epoch\":1783874491.067,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784050380,\"span_start_epoch\":1783864828,\"span_end_epoch\":1783945758.672,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":31,\"floor_epoch\":1783945740.7,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":130.2536666671435,\"current_price_age_minutes\":130.2536666671435,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"WAL\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":66,\"floor_epoch\":1783865879.2,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: KAW lineage 130.25m, current price 130.25m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 3¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":3}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL13KAWWAL",
+      "leg_id": "KAW",
+      "entry_cents": 33,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 33,
+      "fill_timestamp_epoch": 1783874491.067,
+      "prior_standing_target_cents": 33,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "b010d314-de7a-57e0-2fed-607f4b748ee3",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 3,
+  "capture_ratio": 0,
+  "one_sided_reason": "WAL: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "WAL",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTAMATCH-26JUL13KAWWAL-WAL.csv.gz#row-22221",
+        "timestamp_epoch": 1784050376.000003,
+        "leg": "WAL",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 66,
+      "reach_audit": {
+        "rest_intervals": 12,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "065ce18ff3665929ebd85ae3f516cb3edc42e7a58a9249307e53d17439f69e29",
+  "grade_sha256": "38c48621166e77592c1f173296b01666522586002f0e9ed20e74da57dce1e988",
+  "grade_url": "/data/KXWTAMATCH-26JUL13KAWWAL.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL13KAWWAL.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL13KAWWAL.sentences.json",
+  "fault": "WAL: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "KAW",
+      "receipt": "fb9463d2-c25e-475b-7d2e-123144806c80",
+      "positive_size_witness": true,
+      "print_cents": 33,
+      "rest_cents": 33,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

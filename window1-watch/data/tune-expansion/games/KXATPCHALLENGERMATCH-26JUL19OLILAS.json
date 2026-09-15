@@ -1,0 +1,116 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · LAS FALLER → FALLER · OLI CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"LAS\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL19OLILAS-LAS.csv.gz#row-335\",\"first_recorded_epoch\":1784424858.000001,\"first_bind_epoch\":1784419031.984,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":11,\"close_cents\":5,\"realized_drift_cents\":-6,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"OLI\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL19OLILAS-LAS.csv.gz#row-335\",\"first_recorded_epoch\":1784424858.000001,\"first_bind_epoch\":1784424858.000001,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":89,\"close_cents\":97,\"realized_drift_cents\":8,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): LAS 0 · OLI 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "B · LAS Q 5 vs floor 4¢; range 4–6 · OLI Q 92 vs floor 94¢; range 90–94",
+      "hover_lines": [
+        "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"legs\":{\"LAS\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":5,\"q25\":4,\"q75\":6,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL19OLILAS-LAS.csv.gz#row-335\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":4,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"OLI\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"B\",\"q50\":92,\"q25\":90,\"q75\":94,\"floor_error_cents\":2,\"band_width_cents\":4,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL19OLILAS-LAS.csv.gz#row-335\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":94,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): LAS: 0.18¢ · OLI: 1.35¢ · LAS: first 52.98m; remaining MAE 90.68m · OLI: first 483.04m; remaining MAE 65.84m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · LAS 5¢ (+1¢) · OLI unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"LAS\":{\"filled\":true,\"cents\":5,\"vs_floor_cents\":1,\"fill_epoch\":1784448023.45,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784468940,\"span_start_epoch\":1784414200,\"span_end_epoch\":1784466180,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":4,\"floor_epoch\":1784461418.8,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":368.3074999849002,\"current_price_age_minutes\":208.42416663567226,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"OLI\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":94,\"floor_epoch\":1784415190.7,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: LAS lineage 368.31m, current price 208.42m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 2¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":2}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "leg_id": "LAS",
+      "entry_cents": 5,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 5,
+      "fill_timestamp_epoch": 1784448023.45,
+      "prior_standing_target_cents": 5,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL19OLILAS-LAS.csv.gz#row-544",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 2,
+  "capture_ratio": 0,
+  "one_sided_reason": "OLI: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "OLI",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19OLILAS-LAS.csv.gz#row-2532",
+        "timestamp_epoch": 1784468936.000003,
+        "leg": "OLI",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 94,
+      "reach_audit": {
+        "rest_intervals": 6,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "889f49134e2afce697702ee165be5eecc7e5d4651b8d4727a28b1e309b344968",
+  "grade_sha256": "36d3bce0ced2036fa6cb9bee3695aef8deb47b4f75b37ba264d4f068276e8b59",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL19OLILAS.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL19OLILAS.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL19OLILAS.sentences.json",
+  "fault": "OLI: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "LAS",
+      "receipt": "188c5cb4-0a51-7f1b-e2d1-ac0f91d86ee3",
+      "positive_size_witness": true,
+      "print_cents": 5,
+      "rest_cents": 5,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

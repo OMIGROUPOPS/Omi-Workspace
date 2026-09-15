@@ -1,0 +1,116 @@
+{
+  "event": "KXWTAMATCH-26JUL13MORBEJ",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · BEJ CLIMBER → CLIMBER · MOR FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"BEJ\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL13MORBEJ-MOR.csv.gz#row-835\",\"first_recorded_epoch\":1783901838.000001,\"first_bind_epoch\":1783901838.000001,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":77,\"close_cents\":89,\"realized_drift_cents\":12,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"MOR\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL13MORBEJ-MOR.csv.gz#row-835\",\"first_recorded_epoch\":1783901838.000001,\"first_bind_epoch\":1783901219.788,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":22.5,\"close_cents\":12,\"realized_drift_cents\":-10.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): BEJ 0 · MOR 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · BEJ Q 82 vs floor 83¢; range 81–83 · MOR Q 18 vs floor 11¢; range 16–18",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"BEJ\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":82,\"q25\":81,\"q75\":83,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"KXWTAMATCH-26JUL13MORBEJ-MOR.csv.gz#row-835\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":83,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"MOR\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":18,\"q25\":16,\"q75\":18,\"floor_error_cents\":7,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXWTAMATCH-26JUL13MORBEJ-MOR.csv.gz#row-835\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":11,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): BEJ: 0.64¢ · MOR: 1.34¢ · BEJ: first 421.39m; remaining MAE 158.32m · MOR: first 375.51m; remaining MAE 143.65m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · BEJ unfilled · MOR 17¢ (+6¢)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"BEJ\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":83,\"floor_epoch\":1783900750.6,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"MOR\":{\"filled\":true,\"cents\":17,\"vs_floor_cents\":6,\"fill_epoch\":1783918293.515,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783958340,\"span_start_epoch\":1783893943,\"span_end_epoch\":1783956720,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":11,\"floor_epoch\":1783942768.6,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":235.65858331918716,\"current_price_age_minutes\":55.191916636625926,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: MOR lineage 235.66m, current price 55.19m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 6¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":6}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MICRO · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL13MORBEJ",
+      "leg_id": "MOR",
+      "entry_cents": 17,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 15,
+      "fill_timestamp_epoch": 1783918293.515,
+      "prior_standing_target_cents": 17,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTAMATCH-26JUL13MORBEJ-MOR.csv.gz#row-1133",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 6,
+  "capture_ratio": 0,
+  "one_sided_reason": "BEJ: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "BEJ",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "ad6618b5-dacf-407b-2dfd-aa2be2007885",
+        "timestamp_epoch": 1783958339.759,
+        "leg": "BEJ",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 83,
+      "reach_audit": {
+        "rest_intervals": 1,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "9dc7dbb5dbea76cf3b702e6ff0c5935df60285c09af9e85926412c1519434b43",
+  "grade_sha256": "db7230d5ee0beff5a2099ad3a90a6d130fccf3e32bc9771504fe46cb9f6e35de",
+  "grade_url": "/data/KXWTAMATCH-26JUL13MORBEJ.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL13MORBEJ.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL13MORBEJ.sentences.json",
+  "fault": "BEJ: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "MOR",
+      "receipt": "01aa0abd-6378-5b6d-9fa1-1f095f9fd68d",
+      "positive_size_witness": true,
+      "print_cents": 15,
+      "rest_cents": 17,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

@@ -1,0 +1,64 @@
+{
+  "schema": "TUNE_FAULT_TAXONOMY_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+  "category": "ATP_CHALL",
+  "provenance": {
+    "face_sha256": "85fe1d6f033f56d7972af8813e9e242dd373def956ebe95d8a46f530ab95bbdd",
+    "grade_sha256": "deebf073dd49ae3d4687146a33005d24d61f62d9e787381bdb60c4eca15c2b0e",
+    "os_sha256": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "trace_sha256": "5f9fbe0a4e087e8f43875d7a6623b6769df16a481d79460ca58dd29a5a94868a",
+    "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+    "print_sha256": "bef72e0f9bd6879fdd091919d448b8878bad37f61a045e5f98018a3a3edff408"
+  },
+  "known_span": true,
+  "classes": [
+    "E"
+  ],
+  "header": "ROS: E · other / missing evidence",
+  "retrospective": true,
+  "credit": {
+    "raw_captured_cents": 0,
+    "captured_cents": 0,
+    "best_capturable_cents": 2,
+    "pair_sum": null,
+    "pair_completed": false,
+    "valid_fills": 1,
+    "legs": {
+      "MAR": true,
+      "ROS": false
+    },
+    "safety_excluded": false,
+    "note": "Corrected-span fill eligibility; queue priority unknown."
+  },
+  "sides": [
+    {
+      "leg": "ROS",
+      "scope": "FAILED_SIDE",
+      "raw_filled": false,
+      "safe_filled": false,
+      "classes": [
+        "E"
+      ],
+      "A": [],
+      "B": null,
+      "C": [],
+      "D": null,
+      "E": {
+        "reason": "No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+        "first_eligible_call_present": true,
+        "placements": 5,
+        "placements_without_later_positive_print": 0,
+        "last_action": {
+          "receipt": "1d0edfb0-1b1b-5f22-d532-20b6029a0ad0",
+          "timestamp_epoch": 1784545330.801,
+          "leg": "ROS",
+          "action": "HOLD_REST",
+          "target_cents": null,
+          "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+        }
+      },
+      "positive_prints": 13,
+      "unobserved_placements": []
+    }
+  ]
+}

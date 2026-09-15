@@ -1,0 +1,354 @@
+{
+  "source": "C:\\Users\\omigr\\omi-w1-face\\arb-executor\\analysis\\tune_bench_v2_ticks\\ATP_MAIN\\TUNE_BENCH_NAMED_CHECKS.json",
+  "source_commit": "c78259251d784b090961ace0d8f08e5c1af99796",
+  "source_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+  "label": "RULING RUN — TICK LIBRARY — CANDIDATE POOL SCOREBOARD",
+  "scope": "Face bench join only; no OS or tape change. Corrected clock uses causal stored-receipt rebasing; no new forecast.",
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "previous_bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "clock_status": "REBASED_STORED_RECEIPT_NOT_REFORECAST",
+      "clock_delta_seconds": 2440,
+      "checkpoints": [
+        {
+          "gate": 480,
+          "source_gate": 720,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 360,
+          "source_gate": 480,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 240,
+          "source_gate": 360,
+          "pool_accuracy": "60.35%"
+        },
+        {
+          "gate": 180,
+          "source_gate": 240,
+          "pool_accuracy": "10.63%"
+        },
+        {
+          "gate": 120,
+          "source_gate": 180,
+          "pool_accuracy": "9.06%"
+        },
+        {
+          "gate": 90,
+          "source_gate": 180,
+          "pool_accuracy": "9.06%"
+        },
+        {
+          "gate": 60,
+          "source_gate": 120,
+          "pool_accuracy": "4.90%"
+        },
+        {
+          "gate": 30,
+          "source_gate": 90,
+          "pool_accuracy": "79.54%"
+        },
+        {
+          "gate": 15,
+          "source_gate": 60,
+          "pool_accuracy": "80.77%"
+        },
+        {
+          "gate": 5,
+          "source_gate": 60,
+          "pool_accuracy": "80.77%"
+        }
+      ],
+      "grade_rebuild_required": false
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "previous_bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "clock_status": "ALIGNED",
+      "clock_delta_seconds": 0,
+      "checkpoints": [
+        {
+          "gate": 1080,
+          "source_gate": 1080,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 720,
+          "source_gate": 720,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 480,
+          "source_gate": 480,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 360,
+          "source_gate": 360,
+          "pool_accuracy": "3.28%"
+        },
+        {
+          "gate": 240,
+          "source_gate": 240,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 180,
+          "source_gate": 180,
+          "pool_accuracy": "63.65%"
+        },
+        {
+          "gate": 120,
+          "source_gate": 120,
+          "pool_accuracy": "48.26%"
+        },
+        {
+          "gate": 90,
+          "source_gate": 90,
+          "pool_accuracy": "54.72%"
+        },
+        {
+          "gate": 60,
+          "source_gate": 60,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 30,
+          "source_gate": 30,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 15,
+          "source_gate": 15,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 5,
+          "source_gate": 5,
+          "pool_accuracy": "—"
+        }
+      ],
+      "grade_rebuild_required": false
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "previous_bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "clock_status": "REBASED_STORED_RECEIPT_NOT_REFORECAST",
+      "clock_delta_seconds": 2853,
+      "checkpoints": [
+        {
+          "gate": 720,
+          "source_gate": 1080,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 480,
+          "source_gate": 720,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 360,
+          "source_gate": 480,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 240,
+          "source_gate": 360,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 180,
+          "source_gate": 240,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 120,
+          "source_gate": 180,
+          "pool_accuracy": "74.97%"
+        },
+        {
+          "gate": 90,
+          "source_gate": 180,
+          "pool_accuracy": "74.97%"
+        },
+        {
+          "gate": 60,
+          "source_gate": 120,
+          "pool_accuracy": "64.98%"
+        },
+        {
+          "gate": 30,
+          "source_gate": 90,
+          "pool_accuracy": "2.83%"
+        },
+        {
+          "gate": 15,
+          "source_gate": 90,
+          "pool_accuracy": "2.83%"
+        },
+        {
+          "gate": 5,
+          "source_gate": 60,
+          "pool_accuracy": "72.12%"
+        }
+      ],
+      "grade_rebuild_required": false
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "previous_bench_sha256": "12df2861b5298fe45c141cc84c7924b326fa0ee347faad391d4a35fa0d79d2f1",
+      "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "clock_status": "ALIGNED",
+      "clock_delta_seconds": 0,
+      "checkpoints": [
+        {
+          "gate": 2880,
+          "source_gate": 2880,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 2160,
+          "source_gate": 2160,
+          "pool_accuracy": "42.39%"
+        },
+        {
+          "gate": 1440,
+          "source_gate": 1440,
+          "pool_accuracy": "39.52%"
+        },
+        {
+          "gate": 1080,
+          "source_gate": 1080,
+          "pool_accuracy": "65.99%"
+        },
+        {
+          "gate": 720,
+          "source_gate": 720,
+          "pool_accuracy": "42.93%"
+        },
+        {
+          "gate": 480,
+          "source_gate": 480,
+          "pool_accuracy": "10.07%"
+        },
+        {
+          "gate": 360,
+          "source_gate": 360,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 240,
+          "source_gate": 240,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 180,
+          "source_gate": 180,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 120,
+          "source_gate": 120,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 90,
+          "source_gate": 90,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 60,
+          "source_gate": 60,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 30,
+          "source_gate": 30,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 15,
+          "source_gate": 15,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 5,
+          "source_gate": 5,
+          "pool_accuracy": "—"
+        }
+      ],
+      "grade_rebuild_required": true
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "previous_bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "bench_sha256": "d8cdb10f2d9234c032c5e409fa42a2a7dc5aa381ab89dc770e5ca1c571dee325",
+      "clock_status": "ALIGNED",
+      "clock_delta_seconds": 0,
+      "checkpoints": [
+        {
+          "gate": 720,
+          "source_gate": 720,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 480,
+          "source_gate": 480,
+          "pool_accuracy": "STORE SILENT"
+        },
+        {
+          "gate": 360,
+          "source_gate": 360,
+          "pool_accuracy": "65.83%"
+        },
+        {
+          "gate": 240,
+          "source_gate": 240,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 180,
+          "source_gate": 180,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 120,
+          "source_gate": 120,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 90,
+          "source_gate": 90,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 60,
+          "source_gate": 60,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 30,
+          "source_gate": 30,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 15,
+          "source_gate": 15,
+          "pool_accuracy": "—"
+        },
+        {
+          "gate": 5,
+          "source_gate": 5,
+          "pool_accuracy": "—"
+        }
+      ],
+      "grade_rebuild_required": false
+    }
+  ]
+}

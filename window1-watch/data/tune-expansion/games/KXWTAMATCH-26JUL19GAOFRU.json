@@ -1,0 +1,116 @@
+{
+  "event": "KXWTAMATCH-26JUL19GAOFRU",
+  "category": "WTA_MAIN",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "F · FRU CLIMBER → NOT_CALLABLE · GAO CLIMBER → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"correct_side_share\":0},\"legs\":{\"FRU\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"20cdcd95-a674-4b72-3cf7-b073d853dd7e\",\"first_recorded_epoch\":1784392967.138,\"first_bind_epoch\":1784392782.64,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":49.5,\"close_cents\":49,\"realized_drift_cents\":-0.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"GAO\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199\",\"first_recorded_epoch\":1784384355.000004,\"first_bind_epoch\":1784381427.737,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":1,\"open_cents\":53,\"close_cents\":53,\"realized_drift_cents\":0,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): FRU 0 · GAO 1"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · FRU Q 48 vs floor 49¢; range 46–49 · GAO Q 54 vs floor 50¢; range 53–55",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"FRU\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":48,\"q25\":46,\"q75\":49,\"floor_error_cents\":1,\"band_width_cents\":3,\"band_contains_floor\":true,\"receipt\":\"KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":49,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"GAO\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":54,\"q25\":53,\"q75\":55,\"floor_error_cents\":4,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":50,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): FRU: 0.99¢ · GAO: 0.75¢ · FRU: first 545.01m; remaining MAE 47.11m · GAO: first 150m; remaining MAE 66.15m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · FRU unfilled · GAO 50¢ (+0¢)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"FRU\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":49,\"floor_epoch\":1784381170.4,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"GAO\":{\"filled\":true,\"cents\":50,\"vs_floor_cents\":0,\"fill_epoch\":1784410217.959,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784451600,\"span_start_epoch\":1784379742,\"span_end_epoch\":1784451600,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":50,\"floor_epoch\":1784410218,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":328.3832000017166,\"current_price_age_minutes\":36.11815000375112,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: GAO lineage 328.38m, current price 36.12m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 1¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":1}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MACRO · MICRO · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTAMATCH-26JUL19GAOFRU",
+      "leg_id": "GAO",
+      "entry_cents": 50,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 50,
+      "fill_timestamp_epoch": 1784410217.959,
+      "prior_standing_target_cents": 50,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "ab11bda6-47db-7291-45b7-6be7aab21e04",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 1,
+  "capture_ratio": 0,
+  "one_sided_reason": "FRU: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "FRU",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+        "timestamp_epoch": 1784451599.000006,
+        "leg": "FRU",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 49,
+      "reach_audit": {
+        "rest_intervals": 4,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "e91dff76c57fa04a61ff274957d8edd3f70cc36d61d1628800d4239aa1dbe2aa",
+  "grade_sha256": "9ce29e4b065ca4196fa1c47a6f3a37d47104f9e2680c87b90b3c4fced64654d4",
+  "grade_url": "/data/KXWTAMATCH-26JUL19GAOFRU.grade.json",
+  "face_url": "/data/KXWTAMATCH-26JUL19GAOFRU.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTAMATCH-26JUL19GAOFRU.sentences.json",
+  "fault": "FRU: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "GAO",
+      "receipt": "f43c6ab9-6983-51cd-7d8e-e0364628e1e8",
+      "positive_size_witness": true,
+      "print_cents": 50,
+      "rest_cents": 50,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

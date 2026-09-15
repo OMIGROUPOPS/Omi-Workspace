@@ -1,0 +1,116 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · KUM CLIMBER → CLIMBER · MEN FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"KUM\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181\",\"first_recorded_epoch\":1784437464.000005,\"first_bind_epoch\":1784437461.615,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":90,\"close_cents\":95,\"realized_drift_cents\":5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"MEN\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181\",\"first_recorded_epoch\":1784437464.000005,\"first_bind_epoch\":1784437461.417,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":10,\"close_cents\":6,\"realized_drift_cents\":-4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): KUM 0 · MEN 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · KUM Q 94 vs floor 94¢; range 90–95 · MEN Q 4 vs floor 5¢; range 2–4",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"KUM\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"C\",\"q50\":94,\"q25\":90,\"q75\":95,\"floor_error_cents\":0,\"band_width_cents\":5,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":94,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"MEN\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"F\",\"q50\":4,\"q25\":2,\"q75\":4,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":5,\"floor_already_observed_at_call\":true,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): KUM: 0.4¢ · MEN: 1.37¢ · KUM: first 192.15m; remaining MAE 100.78m · MEN: first 244.11m; remaining MAE 126.74m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · KUM unfilled · MEN 8¢ (+3¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"KUM\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":94,\"floor_epoch\":1784459651.3,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"MEN\":{\"filled\":true,\"cents\":8,\"vs_floor_cents\":3,\"fill_epoch\":1784453253.531,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784463060,\"span_start_epoch\":1784435532,\"span_end_epoch\":1784463060,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":5,\"floor_epoch\":1784437461.4,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":true,\"order_lineage_age_minutes\":3.97551664908727,\"current_price_age_minutes\":3.97551664908727,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: MEN lineage 3.98m, current price 3.98m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 1¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":1}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "leg_id": "MEN",
+      "entry_cents": 8,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 8,
+      "fill_timestamp_epoch": 1784453253.531,
+      "prior_standing_target_cents": 8,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1497",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 1,
+  "capture_ratio": 0,
+  "one_sided_reason": "KUM: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "KUM",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+        "timestamp_epoch": 1784463037.000002,
+        "leg": "KUM",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 94,
+      "reach_audit": {
+        "rest_intervals": 3,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "54948bc913b1f4af3eb6c5d2c0f400971b04c84c1a4b10bfb13e1755e2e51a83",
+  "grade_sha256": "2115f0836f0d93a27e681960624e39a6452911376175e3102f9e15753cfe6ad2",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL19MENKUM.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL19MENKUM.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL19MENKUM.sentences.json",
+  "fault": "KUM: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "MEN",
+      "receipt": "8bbfa8f3-5736-6947-6d92-4663635eb33f",
+      "positive_size_witness": true,
+      "print_cents": 8,
+      "rest_cents": 8,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

@@ -1,0 +1,116 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+  "category": "WTA_CHALL",
+  "status": "GRADED",
+  "letter": "NOT OFFERED",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · MAZ NOT_CALLABLE → NOT_CALLABLE · SPI CLIMBER → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"MAZ\":{\"called_role\":\"NOT_CALLABLE\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":true,\"first_recorded_receipt\":null,\"first_recorded_epoch\":null,\"first_bind_epoch\":null,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":67,\"close_cents\":68,\"realized_drift_cents\":1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"SPI\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"3d2ab274-b779-584b-f9fa-2f5c7c0de474\",\"first_recorded_epoch\":1784547003.484,\"first_bind_epoch\":1784547003.484,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":0,\"open_cents\":33,\"close_cents\":33,\"realized_drift_cents\":0,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): MAZ 0 · SPI 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "B · MAZ Q 66 vs floor 67¢; range 65–67 · SPI Q 31 vs floor 33¢; range 14–34",
+      "hover_lines": [
+        "MICRO: B · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"B\",\"legs\":{\"MAZ\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":66,\"q25\":65,\"q75\":67,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"3d2ab274-b779-584b-f9fa-2f5c7c0de474\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":67,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"SPI\":{\"letter\":\"B\",\"point_letter\":\"B\",\"range_letter\":\"F\",\"q50\":31,\"q25\":14,\"q75\":34,\"floor_error_cents\":2,\"band_width_cents\":20,\"band_contains_floor\":true,\"receipt\":\"3d2ab274-b779-584b-f9fa-2f5c7c0de474\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":33,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): MAZ: 1.2¢ · SPI: 0.33¢ · MAZ: first 201.27m; remaining MAE 76.53m · SPI: first 388.91m; remaining MAE 87.37m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · MAZ unfilled · SPI 33¢ (+0¢; floor printed earlier)",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"MAZ\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":67,\"floor_epoch\":1784548498.3,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"SPI\":{\"filled\":true,\"cents\":33,\"vs_floor_cents\":0,\"fill_epoch\":1784566731.15,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784579580,\"span_start_epoch\":1784532285,\"span_end_epoch\":1784573640,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":33,\"floor_epoch\":1784550137.5,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":328.7944333354632,\"current_price_age_minutes\":228.7737166682879,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: SPI lineage 328.79m, current price 228.77m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "NOT OFFERED · Not offered — recorded floors sum to par or above",
+      "hover_lines": [
+        "PAIR: NOT OFFERED · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"NOT OFFERED\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":\"STORE SILENT\",\"offered_cents\":0}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "NOT OFFERED — corrected floor pair offers no discount",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "leg_id": "SPI",
+      "entry_cents": 33,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 33,
+      "fill_timestamp_epoch": 1784566731.15,
+      "prior_standing_target_cents": 33,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "967a0bbe-ace0-4e55-adef-edbe2830ca98",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 0,
+  "capture_ratio": "STORE SILENT",
+  "one_sided_reason": "MAZ: No later positive-size print reached a standing bid before the corrected bell",
+  "missing_sides": [
+    {
+      "leg": "MAZ",
+      "reason": "No later positive-size print reached a standing bid before the corrected bell",
+      "last_action": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL20MAZSPI-MAZ.csv.gz#row-7239",
+        "timestamp_epoch": 1784579577.000012,
+        "leg": "MAZ",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 67,
+      "reach_audit": {
+        "rest_intervals": 496,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "4a169b51d54a8b83913fb37da6766e944c27a6f14ae29b75d22d40bfd54e7db1",
+  "grade_sha256": "8d8e3c92fc46b977cd4288a439da66835dfff952ff2b605e4538ef18e3e8b3df",
+  "grade_url": "/data/KXWTACHALLENGERMATCH-26JUL20MAZSPI.grade.json",
+  "face_url": "/data/KXWTACHALLENGERMATCH-26JUL20MAZSPI.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL20MAZSPI.sentences.json",
+  "fault": "MAZ: No later positive-size print reached a standing bid before the corrected bell",
+  "fill_witnesses": [
+    {
+      "leg": "SPI",
+      "receipt": "5225a43b-efa2-5443-a806-7b1ec7a0b3bc",
+      "positive_size_witness": true,
+      "print_cents": 33,
+      "rest_cents": 33,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

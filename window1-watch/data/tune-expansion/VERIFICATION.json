@@ -1,0 +1,1801 @@
+{
+  "status": "PASS",
+  "scope": "TUNE_ITERATION_ONLY",
+  "label": "pass 1 + 10-game determinism sample",
+  "selected": 100,
+  "executed": 100,
+  "passes": 154,
+  "determinism_sample": {
+    "label": "pass 1 + 10-game determinism sample",
+    "policy_sha256": "2569fa71544e8b86029d6abf30a0d0c5231a44937abdfe5f0ad9180df2e89010",
+    "seed": "589f41bec8e34da939ed6664a7db9e65a25c9b8a6ac86c7119caaceddab5656c",
+    "sample_size": 10,
+    "status": "PASS",
+    "games": [
+      {
+        "event": "KXATPMATCH-26JUL12ALTGAS",
+        "decision_sha256": "18eb860c346fbf7e70420d49293de0408a22fcf46d0ea0e35e29efe022b12805",
+        "trace_sha256": "40921fb26e25e6875478910980b366781198676e7620a5c7bc97938d294707e9",
+        "passes": 2,
+        "identical": true
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+        "decision_sha256": "97159152f656b58db61ad4eec3c13fe4023e134469b9c2ab5d6075c1b8586b86",
+        "trace_sha256": "e48f1586b658e16cf965011846a10f52d3a0fb41cc9b8abfcc847edb44868124",
+        "passes": 2,
+        "identical": true
+      },
+      {
+        "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+        "decision_sha256": "8c7fedd48b0656a7c7039f8ae47b9d1f1fed76b633af4fe8d3375431f951e701",
+        "trace_sha256": "1e69ae3f238ac2b946efa8a30505f589a212702d18b0a1efb3dce6add973eb4a",
+        "passes": 2,
+        "identical": true
+      },
+      {
+        "event": "KXWTAMATCH-26JUL20PODSTU",
+        "decision_sha256": "d26bf814a246bd7a1aa70ac8bcbee8e64cb76ae537b2f142fd5f14c59b802369",
+        "trace_sha256": "9477ad56cfbc6c1fd29d1cf3a4e06e1de15dddb61af19b0f128bbf050fe1f8d6",
+        "passes": 2,
+        "identical": true
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+        "decision_sha256": "5a2e990b9c0d36a0412c0ff87e38390f2d51dddb84ebc9bbd08db57d3c885179",
+        "trace_sha256": "84364a3fac084c3b3119ef2ccecd42bc53954efcdb4a98598d25c0cdb6b8771c",
+        "passes": 2,
+        "identical": true
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "decision_sha256": "8cd4c197bd1c3e723d064744bc3b907db819fd27671f4312a9e69ed211f45dcb",
+        "trace_sha256": "8015f6b2df60c1b5dd41613f566f75d50ab2ea7306b5cedc2cb7efb3ae5379a1",
+        "passes": 2,
+        "identical": true
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+        "decision_sha256": "7ff0c34e63d0a553e04c4c68b0947926d08d73e74a9448da1d5a572de63f073a",
+        "trace_sha256": "8a3882d90dc688fe5672a48cf8577d36ec32d8da40d44e2429c4d2b02ac60288",
+        "passes": 2,
+        "identical": true
+      },
+      {
+        "event": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+        "decision_sha256": "450030af51471ede6f20283ca7f353bf5b71db655e8ba5f8b2fd1e6a53a668b5",
+        "trace_sha256": "5f9fbe0a4e087e8f43875d7a6623b6769df16a481d79460ca58dd29a5a94868a",
+        "passes": 2,
+        "identical": true
+      },
+      {
+        "event": "KXATPMATCH-26JUL12KOPPRI",
+        "decision_sha256": "8aa08358966859ef4253e3ba46693c2be973fc2c537c9b13dc4a06a32e7e7882",
+        "trace_sha256": "d8c9704e39d713a815e9ea51dbf06c2fe764fde96ad1efd423be96d7eabccfe2",
+        "passes": 2,
+        "identical": true
+      },
+      {
+        "event": "KXATPMATCH-26JUL12BUDPEL",
+        "decision_sha256": "79d179adf19fb98b61c8fcd8ce3696a2313b7b56638b71e41f9e0a94d74e5892",
+        "trace_sha256": "6a1529fe4a1472d0b902624575b74523632f3df4ca7145cb557d96ade61f8a2d",
+        "passes": 2,
+        "identical": true
+      }
+    ],
+    "full_universe_determinism": "NOT_ESTABLISHED_BY_SAMPLE"
+  },
+  "full_universe_determinism": false,
+  "organ_final_record_acceptance": "PENDING_FULL_UNIVERSE_TWO_PASS",
+  "other_selected_population_executed": 0,
+  "inputs": {
+    "window1_v54_dual_belief_os.js": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74",
+    "build_window1_v54_dual_belief.js": "337a3fcbbddbb4dfc28df10213a1ce092cc7ed05885285754f96a1ebd62572f5"
+  },
+  "rubric_sha256": "3b29277e397f425742a83750c7588c1bbfc2c98ae2c217ec73f1ee7a3038ada9",
+  "grade_contract_sha256": "16364f6b1798336c95eb699e8cfe6006422ca55efbc1d92d06ca605f82a70ba3",
+  "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL13GREVAN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "1021c370b01bffb342ef657bc1c2582970436179337c0d805e07f2268ad45868",
+        "bytes": 766927,
+        "rows": null
+      },
+      "trace_rows": 18624,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "b52e00eb06d19b56828be95f79692c802f0fbd41ae3e159510e81c666aec7b2c",
+      "identical": true,
+      "face_sha256": "b8900dee28a131174dcf6a70026ab75bb1a7c71aff1e2578ed1e5a54840e8185",
+      "grade_sha256": "9e8b5373696a2917f7fbb8a5b4328780d15b54b42e4f3280cbda0c0ed678fb0d",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL20ONCAJD\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "234920f138da4ccf098f252867dc5f2e5be1f49aec9d34f406328c34aecb787d",
+        "bytes": 469969,
+        "rows": null
+      },
+      "trace_rows": 3236,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "1827cbeb1a26a4196cad3cc343baa635c1e7afe9f08397dd251176f7dec7e32b",
+      "identical": true,
+      "face_sha256": "6dd7242731d724553bdbfe67819fa6fc74bec574c1c4d8a5db45a653a6d10490",
+      "grade_sha256": "8ec6b1dac40b22f09f9e7ecd563ddffa6c7546f770b602826b237c012e2655f9",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL18LAJYUN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "aeb3015a48a9be30440f13a65d34fd0a5ed43f048a4fff84342b340f953d9b83",
+        "bytes": 1012562,
+        "rows": null
+      },
+      "trace_rows": 18419,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "5b28a43d96d341144e3b93cc1f2fb361dd30e0db8eaf69227548dfb6d630c357",
+      "identical": true,
+      "face_sha256": "b91eda9ec61f9f3b7468152ead4f12210731ce4465340c70fe6c6450503ac115",
+      "grade_sha256": "de5ae7e53145e992e06095670a2d24799598731cd6ff3709aec10a11dacdc091",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19WINSHE\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "fe8ca871d4ea0e9087eebdef35ecede33b51d1b6ace2c0faff4b81ceeee2cc15",
+        "bytes": 4893103,
+        "rows": null
+      },
+      "trace_rows": 3680,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "b3a047d0826e27b44b16dd8662dc1d8d1a1e168a9cce6115939152ebfe9b0d72",
+      "identical": true,
+      "face_sha256": "97ced5d7cdccde4ae378fdcd7d4149a8883af16732f8a46227491e519e21dd84",
+      "grade_sha256": "2660efda14dee4f5b455716a1c1432962fb8ba2739632481a9bad469a07b7263",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19DEMBIT\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "c1bcab598960739d9722e3a317df3502280b22da5c9ed5375dc697b81bc85f4c",
+        "bytes": 398155,
+        "rows": null
+      },
+      "trace_rows": 1352,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "99855d6ed753fbaf088e363797dae3e4666a5a7c09342efb2571a9506731a929",
+      "identical": true,
+      "face_sha256": "34636ae4a177db4b7b5068169319957c61e4037fc5eff94239f070256c363595",
+      "grade_sha256": "d56475685dd289f4929ff4defe84eb89af0f1ce48d374201ffe272b597b27e3f",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL12BARREI\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "837ca62d7553506c6758ead0eba48501bf64592384160051d7bd7fea52866c2f",
+        "bytes": 1426207,
+        "rows": null
+      },
+      "trace_rows": 53674,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "42a5c7bbf318f1dab65992fd1c0c6ac6953ff2a87c4197803370329c2a42457c",
+      "identical": true,
+      "face_sha256": "76a42cd69e4528e8a3cbe1e8e38f05cafd5d3004cfcad45404b6a80e09076105",
+      "grade_sha256": "6c645b1b438b62165c1855c5e3e7011a78bd0e7c953d59df26d5ec8bf0831d10",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19SALVRB\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "14520911aac4ce152a03f1afa935a7775c97b1628bc3df212e8743883e6950de",
+        "bytes": 64479,
+        "rows": null
+      },
+      "trace_rows": 24,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "dded746a5e108ffde25033be46553ee5d4dd011e2ceecef7829229bf4ad23117",
+      "identical": true,
+      "face_sha256": "7c907417317050a0c3d6bed2ef10df59e045257af376f6f433754403f12d7569",
+      "grade_sha256": "9dfeac258f06ae6e14af67e51acf4b1b2656d93f6f6f148774ae455b4a1a71a3",
+      "status": "UNGRADABLE"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19VISAHT\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "3b000c216d324727fd9de6fe67ad61ecffb591cf792f469396c91c5188dd52df",
+        "bytes": 10018449,
+        "rows": null
+      },
+      "trace_rows": 9932,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "9041f06c52c462acfddad3966bc946a86972bd02a65561cd67a12e23270152cd",
+      "identical": true,
+      "face_sha256": "3815e0a86cb4481144f9a361e7911612c2a504c8231bacdb5f0d707be464048c",
+      "grade_sha256": "71150477ffcf7c7d98bc3c4a6cd3969add2e68ba2ca3df7cafde7b6b9b94af95",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL12WESPAA\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "0be4776f35cfd7003069131a529e11aeda2b5c229263aa5ce5252f38a78a9129",
+        "bytes": 2525559,
+        "rows": null
+      },
+      "trace_rows": 1400,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "b4ac4494186405f6b8895c57cca018fa2d3eddd244658d2f645116a99a825a50",
+      "identical": true,
+      "face_sha256": "a42fa0f08a7cfc83ae0ebaab51333f1bbf919d0ce7e87b730dea8e76a98f24db",
+      "grade_sha256": "653f081aca8a57b13735c1641ea6d440d8a463542a49dc98cdbae7e4c8239c7a",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL14GANZIN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "e48f1586b658e16cf965011846a10f52d3a0fb41cc9b8abfcc847edb44868124",
+        "bytes": 48088169,
+        "rows": null
+      },
+      "trace_rows": 38410,
+      "passes": 2,
+      "sample_member": true,
+      "decision_sha256": "97159152f656b58db61ad4eec3c13fe4023e134469b9c2ab5d6075c1b8586b86",
+      "identical": true,
+      "face_sha256": "584e278a9d8d4ce465f1ddf2f0f28cfc6bca92e5dd1d296efe55aa0585a5e5d1",
+      "grade_sha256": "335b3aafb304dc63ceaabd9bb4b2f29cf91bfd4236395c92525366a9d9be5ec2",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL14JOHBER\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "84364a3fac084c3b3119ef2ccecd42bc53954efcdb4a98598d25c0cdb6b8771c",
+        "bytes": 684028,
+        "rows": null
+      },
+      "trace_rows": 17213,
+      "passes": 2,
+      "sample_member": true,
+      "decision_sha256": "5a2e990b9c0d36a0412c0ff87e38390f2d51dddb84ebc9bbd08db57d3c885179",
+      "identical": true,
+      "face_sha256": "858a76612b7ca39f70c14a939fe45883587bcf83a6242c5caa95436566d2d0b9",
+      "grade_sha256": "03d01e7e2446b4b0bd50b1a8f0b69f4a6c33564b618133474d9e6d7b59452db6",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL14LANYIB\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "1c6b22ce62521377e0172c184abfed444c4b6d69cbc16b534716739aa360a86e",
+        "bytes": 9947240,
+        "rows": null
+      },
+      "trace_rows": 48619,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "79e8d001c0389c072b734e9d8c3e2f93c1845bdd048b02696eb39cd94bef211f",
+      "identical": true,
+      "face_sha256": "ff0f8fdb9159d0601817ccb77149d730f490716b53414b8de0134f92ec457ce9",
+      "grade_sha256": "7d6237577082f6be004110b4af0a6973b136b0495ba4b2cbcd2582f332f5c61d",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19RODIVA\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "5c947a8b4b5d74fff55054170442d1f59ff294797b87dfd5a91914928a9d8add",
+        "bytes": 737972,
+        "rows": null
+      },
+      "trace_rows": 4301,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "78920974d356d016ddd36bc85796b10b50b6e1d7eec7e57d344b27a06e5f7544",
+      "identical": true,
+      "face_sha256": "4cc40478f3dd007e63c60754d84bcb158009c9f8c1dfe1969d08aeaa7fa21654",
+      "grade_sha256": "14f6bc0953c6d063b4d8c7735fcffef5c257489bfaf4b05b69d561c3baf49d1a",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL20OLIZIE\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "ed39879d1fcd41cad3578cd38678af7370d6ab9da87830d2b08894f90d4c5bdc",
+        "bytes": 540096,
+        "rows": null
+      },
+      "trace_rows": 7316,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "9cf0cc3f263b3ba6b6ee5235fddcabee15085a771d5070816dcda97b95d50cce",
+      "identical": true,
+      "face_sha256": "01592898e7c5fa4cfbb7b4f63ba1b73b4ea76ff12c5fe01cb30b7ac72a53ef06",
+      "grade_sha256": "3cdb1a9c0e9585959f6ab5e8ddbd2c047617025be8dffc05cd67ed62dd706dd8",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL20CALKUM\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "68e8e107e277f9d667a5fd7577a5be4f6f84643f5a913f37b11a3e128a5c3ded",
+        "bytes": 342473,
+        "rows": null
+      },
+      "trace_rows": 605,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "f6ce47a6f304c9931e945dbdfa8cf7240cd9b47754a1c17e8b646f0e67571579",
+      "identical": true,
+      "face_sha256": "8d19c948a6e01fe2edc17214bd3209a37c184bcd0fb146611c1454865670b94c",
+      "grade_sha256": "71a6f27081f2b83081d3fb22b46cf971cc66210a4f24b0a2a0ad78ee41f84d17",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL15BONJUS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "dc52b3875d922f1990eefcd1ad1d32d544030beeff41f7681e891caf8849d8f4",
+        "bytes": 421989,
+        "rows": null
+      },
+      "trace_rows": 3234,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "c61ec89639e85dfe9717ca6b4393ea8cdad4e9f275e038fc78cb7f4790031f7d",
+      "identical": true,
+      "face_sha256": "d2f701765805991ed3c57785192bddee121a784430df3eccbd451fa8f6dfd1cd",
+      "grade_sha256": "6a17c285a6dc9647bac7a15cb8f4a51a49a1adbc55a0153512ab750050505e2a",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL16GRESAN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "d98018c13edb169f8c136252a1fd904961909935a6b2d50fe11417527d8db08b",
+        "bytes": 2281276,
+        "rows": null
+      },
+      "trace_rows": 19466,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "43770819418c4a844ff6d9c6bdf884e576c999f9e56ca7ac2b608a76d581e5ee",
+      "identical": true,
+      "face_sha256": "e3ba61dc432d65395e655884dd3296d27d25a86ca9dc21c7cc25f660fe367768",
+      "grade_sha256": "e5c828019047d655b86fcd562f0ccc1cc92d69fad793b5e291ebe81e4bb295e6",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL12PIETAB\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "23b1211a24e21c664bcf48707ac2f95fd5fb24783da6dc690a20a11664b547cf",
+        "bytes": 780454,
+        "rows": null
+      },
+      "trace_rows": 1969,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "2effe026776f46fae8c198a9f14033f9cd45e7ab0d8759b0b3d74e889eff36fe",
+      "identical": true,
+      "face_sha256": "0267d503e315dbee158983221afa16bdc1476ba41b34a759bb76ff814e98e554",
+      "grade_sha256": "8122a84d7b6789c7cf06abcf9e71bfb6eb71de193d629156f86fc369dd52f06c",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19MENKUM\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "54948bc913b1f4af3eb6c5d2c0f400971b04c84c1a4b10bfb13e1755e2e51a83",
+        "bytes": 514247,
+        "rows": null
+      },
+      "trace_rows": 1996,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "b3044b31fcb2ede47770d25c7b35ea9f0d9a693e36047774cc9421d80b888dbc",
+      "identical": true,
+      "face_sha256": "1d0ab6fe00fbe8befcebe795ef5415cf0abbabdcf2da0d447ec7a008e44a493c",
+      "grade_sha256": "2115f0836f0d93a27e681960624e39a6452911376175e3102f9e15753cfe6ad2",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL20WINARS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "f12629465f279b505ce751970f2c0315fd91c4f4ac42129847f6aab08f906c9c",
+        "bytes": 279403,
+        "rows": null
+      },
+      "trace_rows": 1985,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "bd1a9c4aa67bd1828eb6807ef83a52e7f169989a8efb12f1c7af522ae1bc6cf6",
+      "identical": true,
+      "face_sha256": "28b110342f75a86f86295cd4fe4ebf6939f17969865b3cd13f588bb5d8df7161",
+      "grade_sha256": "fc34c2e07b1c029db8ef54f4704fdc915d009f20b8376a2531c9e0ec6e691981",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL16BICCAS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "8a3882d90dc688fe5672a48cf8577d36ec32d8da40d44e2429c4d2b02ac60288",
+        "bytes": 8870191,
+        "rows": null
+      },
+      "trace_rows": 59558,
+      "passes": 2,
+      "sample_member": true,
+      "decision_sha256": "7ff0c34e63d0a553e04c4c68b0947926d08d73e74a9448da1d5a572de63f073a",
+      "identical": true,
+      "face_sha256": "ad3b2a52ceff540d430445d4d96c0af52a23e38bbd3b1d4581426ff8182f93bd",
+      "grade_sha256": "fbfd38b7931c4c585b7d9bcbef25ed23ea89d942c3fad56209129b34f74e88dc",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL20MAYMAG\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "18095193dee5b39ab98b5c4b2a187e6a2cf7e48d8337d0d8bbb778b1af8b3a2e",
+        "bytes": 443079,
+        "rows": null
+      },
+      "trace_rows": 2890,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "9352fccd9f3f366966a802d14c4dd2d5bd3e2bfd5e287491daf2b2f333043531",
+      "identical": true,
+      "face_sha256": "7895b6e1a5e65f813521162f7c9d0ed06168f3e7e241c298aa12af3588996e37",
+      "grade_sha256": "f5596757255e7b8c2de78e748e2e2e785050205a4a60a7fcb4a4b812291a89e9",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19HURBIG\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "1264d340877ceec8dbc325dedf08a0b4d2a2c6b2359f77078d83a4edd20c6a97",
+        "bytes": 1104565,
+        "rows": null
+      },
+      "trace_rows": 27382,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "3bb36bf5933daaaef65252d14556868118e77d6ecb064a3827964b2b1aa0fdc9",
+      "identical": true,
+      "face_sha256": "b07cfbd1a3b8ca0142b9539e8ad74ee0e61fa77ccc73537822cafa1ea46a67de",
+      "grade_sha256": "e881e07dda1013c8d96432fedacc16a85cd5bf6d46a727d7e53fb45eeca8e1f6",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL20GALLLA\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "dcd5a2b7e2862b40bc655a6440a458bccd76487566f228dd14fcefb857eb50c9",
+        "bytes": 842305,
+        "rows": null
+      },
+      "trace_rows": 3618,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "f8098d69759b86ab27f4100e85ebbc5d29d6a6c56035b0640ec5e55c606672ba",
+      "identical": true,
+      "face_sha256": "0803cf27f74ea62455a177e00e908265975ed4a58bdddbc394b58e38330ac8b9",
+      "grade_sha256": "b9e3ebe5f987e11edaaf63afe49457fd83b41c5e2f2f43cab6fe6a0085609494",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL13BINFUE\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "7cbfe637dfb8c875a794f7f80617947789416c038b9f5167969fd7f8940041d0",
+        "bytes": 239936,
+        "rows": null
+      },
+      "trace_rows": 113,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "66e506554f23352cb1b3604c05d9090a951b07ee1252c8ebed23c57af53045a6",
+      "identical": true,
+      "face_sha256": "0bf972605cba81f9760b60eb58bd2a263b29486730c0ff4647fc57661783f7bf",
+      "grade_sha256": "7783accc5b291ccccc4f1bd42906ece6b12dd0d223a8e2dc226fd4b79bafe127",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19BRUKRA\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "9c9a46be48f1eba954cbd98712fbedec265bbe5d7fe87a1453831d4a70af1e0e",
+        "bytes": 858204,
+        "rows": null
+      },
+      "trace_rows": 3939,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "5193199416fe36be0fb81c2417876b5ec0537b911edfa063a8be58c28033e82e",
+      "identical": true,
+      "face_sha256": "93dfecbcfafc222064e7664ac8e43e162f7e596e5acfb490e3ef82b18b886978",
+      "grade_sha256": "000a31c6a1673ffe5e27f31f2aa77fa8096bef85a2ef328de989e80f8ca0365d",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL12HERALM\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "a71f72f21a10c45479654af4d0fefa40eaba2462d8a1eaa9d4089c13d3dbc30c",
+        "bytes": 188481027,
+        "rows": null
+      },
+      "trace_rows": 107576,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "fab8e2c978faf8f74d8f7977e906a0b416f69454e4e008356297ac841e9987c7",
+      "identical": true,
+      "face_sha256": "910e273c2414b862bfe6cbeec13c917636028753eb06bb90ecc08d0e2f88f33f",
+      "grade_sha256": "5f76869ee086867c441c323bd2503b696dc2a8252cb37fb83b2d6ef620e8f8b8",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL14IMAMCC\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "c1444e60dc71fe36033a80ad5b32d5c5d4bce03480bc8041a17501d696a943b3",
+        "bytes": 1005755,
+        "rows": null
+      },
+      "trace_rows": 19932,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "482881cb30372571b5e102f0a7f5a42fab4d6064c0e9bff699bb9cd0030a7783",
+      "identical": true,
+      "face_sha256": "d8de40812cc014925d2ae00dc0f2ed566879e9fea9ee601e7eb8e88e4fd2e8a3",
+      "grade_sha256": "c4ccd482cf600dbf526df696ed401efd5f6bc837ba1dda58784797e495e96e74",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19ARNPOH\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "75909951d24625032d09aa2a57e602019a4cee83ab9963993c93e043916f4116",
+        "bytes": 12562053,
+        "rows": null
+      },
+      "trace_rows": 10911,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "9fa9d2dffed37043988581ac03c7481d17e198521f07fc6437c100ab77116e58",
+      "identical": true,
+      "face_sha256": "a8073a23a729745a21d8103d8dc8fd51d834880a4fc00a08b2b99b3283c5bce6",
+      "grade_sha256": "9d509418e3155a2c0f0f1e6147ebe1388181091715b0eb48dc84f77be2633d53",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL20VASSIN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "059bb6284ab327cf2a2462244e0e68976088d3e3e1703efd000245c23410e5ed",
+        "bytes": 605399,
+        "rows": null
+      },
+      "trace_rows": 3602,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "180bb77719fb1f8f71f8a0f0e5d87689e3dae28802f7958b653028f34a683141",
+      "identical": true,
+      "face_sha256": "bd3ea8b94a3796e2c6b34fe5a4301a33de6fcc826956313b43e730eae9b97153",
+      "grade_sha256": "c716351c7480663c4a9ca5fe6bc66d7af8a1a3cccd5e0cba3bcab688f39f7b7f",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL13BOUZHA\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "c7c1514c0bc753320d6bf728b4e70561bf670172fe2632722bf615a004160aea",
+        "bytes": 5131907,
+        "rows": null
+      },
+      "trace_rows": 72244,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "c0836c7fa165cb586a201057ab833e0219a373ebf331bffb28662ce0b09f874f",
+      "identical": true,
+      "face_sha256": "9012ec9378bba6759a64f1b39565dc3c5554345d1167e4ba74262fdd0f9c2661",
+      "grade_sha256": "d5dc56b49c80ee31678555cbab280b180013518e00409314b91f59ab423f86ce",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL20GALARN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "f12b22b14d19d67a2e289a64a743487867810a8c840b0bbe61e40ce5aea415ec",
+        "bytes": 449118,
+        "rows": null
+      },
+      "trace_rows": 1747,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "9d931abc18b33b0abc8629cb3e7faa692cabab67f65d63352684c3d9aa3637b3",
+      "identical": true,
+      "face_sha256": "11bee82bdc35d48a1808c4776a546c45f0964d7e8ff58df7098c82b9d67bc9a7",
+      "grade_sha256": "af79dbbcf47cb775d8251d3406498a1f3f2130f72d990f9af5477f8b5e2927de",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL16FORCUI\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "2c22e9390ac29d865df1e43e6348cd153191eb198eee9843f04ba9bbc9c2b917",
+        "bytes": 661766,
+        "rows": null
+      },
+      "trace_rows": 15535,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "f5e939c569e49782150cd42f9e6d936e21d0e94962d5a2ca93f1f9498b53f024",
+      "identical": true,
+      "face_sha256": "2659374d25d97ac3f5ddf6f833b9f5f0768cdf8274c57fa76da73159bdeb6679",
+      "grade_sha256": "fa4f4af69304ae8fc1a9d0b24a528a263642b355afcafe9207082f1839b3a846",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL13NAPBAL\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "3a065e05fc00e1faab455f582465d971774ffa5b267120f040ff78eb9749d6d0",
+        "bytes": 831501,
+        "rows": null
+      },
+      "trace_rows": 23941,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "12f9548ed31a97e90fc9b593c9c64263d0dd33b45b8cfbcfc479659860f2cab1",
+      "identical": true,
+      "face_sha256": "95c40d2adf5ab006aac8e2795f56248cbb7d6d4efd0b1d5b74e97fd1bc11972b",
+      "grade_sha256": "33de6fd681875d489d7cffb25868e595e26e6b1006e316bdca0bb49e07f57a28",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL12FEAWAL\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "0267399d710e1a32a90e724cb564b0e2bfc3b7577d7a26549c1a731541e6a692",
+        "bytes": 247951,
+        "rows": null
+      },
+      "trace_rows": 172,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "a839c5d6aee2e0488fe387d80b05b7df5a363f1446d06be8764a2d4bbc6890eb",
+      "identical": true,
+      "face_sha256": "4d67204a6ffd699768404c5eb3ffd11992ec71470b166fcdc4a0646338711bed",
+      "grade_sha256": "6d958572c95a6414513a85edbc9bb99a4d70b3df5a3f3b11a59f27340fe7971a",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL14URSPAL\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "8015f6b2df60c1b5dd41613f566f75d50ab2ea7306b5cedc2cb7efb3ae5379a1",
+        "bytes": 11101226,
+        "rows": null
+      },
+      "trace_rows": 36408,
+      "passes": 2,
+      "sample_member": true,
+      "decision_sha256": "8cd4c197bd1c3e723d064744bc3b907db819fd27671f4312a9e69ed211f45dcb",
+      "identical": true,
+      "face_sha256": "e0cc88efb7b536be4ec2ff04f7519dcb48a2959ec88e86efafecc24ad303a845",
+      "grade_sha256": "581ef5efcbd4dce153b74b30be5e2d721865c10eb5f6bae6ebe481eaf31e5b5c",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL12WESSEL\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "eefc8333de6ecba0a9c168061a08d41693b93143ade12dcda034fcf63432933e",
+        "bytes": 121427,
+        "rows": null
+      },
+      "trace_rows": 56,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "cb2aa002fbe41af730b68a9a810e4347bfa894c6d00b3b17bc47cb646207ea66",
+      "identical": true,
+      "face_sha256": "ff2fc36d1792dacc6db9ef25a75d1cec1c79ec116dd0ba91d87818362c22a436",
+      "grade_sha256": "7ae72d14d1ccfc821bbd8a23d7974c290ff445d5be19e8a3fe93a67ab79d25c5",
+      "status": "UNGRADABLE"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL20ARSRIC\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "f0b84a674a39cdef59327ad880159923f5b49e32b6fde79c7648cb1faf142f37",
+        "bytes": 1405715,
+        "rows": null
+      },
+      "trace_rows": 31675,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "ef76a2188acfa530647e8715be44a0d1664d32f4b3ca15987212f0c148018e67",
+      "identical": true,
+      "face_sha256": "33a48deebaa1b347b275edca056e75c0f2181bac5d73c51cc996e0a70b000360",
+      "grade_sha256": "f55a3eba9607127481a2bbea9f930a431561f5e0219b39fa2e8c9b365ca48f2e",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL14ZHUYUN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "794b53a5652c769f4fb45a09b88f28cc1b651f636cfee6cd6589dd8b32531f0a",
+        "bytes": 13363927,
+        "rows": null
+      },
+      "trace_rows": 27799,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "33859d12a4f8e33ef615b9d202fff4a6fc5dc94845728815b807547e2cea4ecb",
+      "identical": true,
+      "face_sha256": "3c48cc3c6cb6daa9bbcf7c2fc7ba496368d6c2774591ab8226e8d34aa15db903",
+      "grade_sha256": "1f71401176fa530dfb5e5405360c1c248e4d38c6158efa18e811b7b9c2ebe640",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL19OLILAS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "889f49134e2afce697702ee165be5eecc7e5d4651b8d4727a28b1e309b344968",
+        "bytes": 794134,
+        "rows": null
+      },
+      "trace_rows": 4478,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "9aef86ccdbbca35d2b8122a63c6f5933b639031b84fc13e4b57206eb99a3bee4",
+      "identical": true,
+      "face_sha256": "2a981951b3f4c78d97f00a2b5c83f1fae4bc0e56f60ef33a38e43151851e58c0",
+      "grade_sha256": "36d3bce0ced2036fa6cb9bee3695aef8deb47b4f75b37ba264d4f068276e8b59",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL12BALPET\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "28f7447bd0de6a711b2215055b8fd85d37775e1365b2f6b5df98c1529f579efd",
+        "bytes": 272689,
+        "rows": null
+      },
+      "trace_rows": 549,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "f3550e45394561cbf22ebb10ae35364b976bb539835f34288cf71d48ee18e3b7",
+      "identical": true,
+      "face_sha256": "3b82dcbf93bba6c245650e69e70baf43bc2852c49abb7374f664351c7c4b2b1d",
+      "grade_sha256": "ceed8710abf240cc3d6e1199b22573eb1d27f2e5a8e040a3910d0cb2a4a10ef6",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL20MARROS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "5f9fbe0a4e087e8f43875d7a6623b6769df16a481d79460ca58dd29a5a94868a",
+        "bytes": 467252,
+        "rows": null
+      },
+      "trace_rows": 1080,
+      "passes": 2,
+      "sample_member": true,
+      "decision_sha256": "450030af51471ede6f20283ca7f353bf5b71db655e8ba5f8b2fd1e6a53a668b5",
+      "identical": true,
+      "face_sha256": "85fe1d6f033f56d7972af8813e9e242dd373def956ebe95d8a46f530ab95bbdd",
+      "grade_sha256": "deebf073dd49ae3d4687146a33005d24d61f62d9e787381bdb60c4eca15c2b0e",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL12TROHOR\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "28f0a5763cba838c9c627a3302a54310c0530a2f8de216874071807b44754025",
+        "bytes": 713603,
+        "rows": null
+      },
+      "trace_rows": 13649,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "bf351463a22224fb545d092dbc7f891798c82604ed54d0097fe23d5bc32e74f7",
+      "identical": true,
+      "face_sha256": "0e54ba0178eecb6121db79704256803c4b751414cdd3cb82f5ec2116f5d4ebcd",
+      "grade_sha256": "4d0ac0b2083480c1bb72c87baac9c582d089ff75d9f13eb2608f67745c773084",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL14ZHOKOZ\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "4b3ec232fefbe2a4dff4a772144e5e0c83b2f01f6e64edbb27a0e48b241cd267",
+        "bytes": 19453481,
+        "rows": null
+      },
+      "trace_rows": 26753,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "5b9202a13b9847972fb2ab02d2dfa0391bd874f9ac1618651ffc378b5ebe09a8",
+      "identical": true,
+      "face_sha256": "6a3436b3eb736f69a20d8a6265563824ad9b7c05f6fc9687f2cd3f55b69735d2",
+      "grade_sha256": "878b61b487128c026e0e6740f885dd71acb3c8b6d91b2a0606ba0c3551cf1b6d",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL17ALCRON\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "281560e40d0508d00d62e5e382e9959c93980e95700f5233819d31bef6178721",
+        "bytes": 715451,
+        "rows": null
+      },
+      "trace_rows": 6225,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "974c904cf80c8d99d76ffcf1fc372ad489837f23b71314660edca0d36794986f",
+      "identical": null,
+      "face_sha256": "09f8cfe3281651e1a4117cb294c9b8ef59e63a5028a6f2cbc6eb55e98506d979",
+      "grade_sha256": "be3f110956d1a78a470eeb4576b20eb624b9cc0da32ce65565d1813a8550d8a2",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPCHALLENGERMATCH-26JUL12BINGIL\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "f1ac2f3cfc408301a98332fb19cc5b2bb0c5677c14d78fe8fe959e00e4ad1d7e",
+        "bytes": 44107540,
+        "rows": null
+      },
+      "trace_rows": 20603,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "d7f04926bdb685ebfee9ee7063c1839d4fe1a10e13c8e69b96325c40ccfb7933",
+      "identical": true,
+      "face_sha256": "2ebf35d69c12796b85e64a43aa20eb2f143d3abcfe01209283d25376a51b1cb6",
+      "grade_sha256": "d034564c70693fb3e359f2877bca78a7c53640338b13480700c7f495d8f599b6",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12KOPPRI",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL12KOPPRI\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "d8c9704e39d713a815e9ea51dbf06c2fe764fde96ad1efd423be96d7eabccfe2",
+        "bytes": 1043374,
+        "rows": null
+      },
+      "trace_rows": 6971,
+      "passes": 2,
+      "sample_member": true,
+      "decision_sha256": "8aa08358966859ef4253e3ba46693c2be973fc2c537c9b13dc4a06a32e7e7882",
+      "identical": true,
+      "face_sha256": "dc86fb09321d2771f43b11eab5105feb9438cf0da5b2f0d15fedd97a6887327f",
+      "grade_sha256": "cd2a080f5e9d94bdd7a5c6e21856b6a99e913400d6e6058d689dc624181ef17c",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DEJGAU",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL12DEJGAU\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "700adc43f1f094e4c8d63cd1a153c9dc2bf548cf8a1e4d443bd011e1658c802f",
+        "bytes": 1220956,
+        "rows": null
+      },
+      "trace_rows": 9035,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "fd24395a088d655a3a27b619d766904488787f4492be432dcc4ca6ddccf08239",
+      "identical": true,
+      "face_sha256": "585f0f56059ea25ff0eb7cf7f56a55d36759ec7dc6d7865e90477d30f3ef5e8d",
+      "grade_sha256": "a5f75177d0f25002189ba319c6b2286e486ae4b8d892f044f197d7a1ca49a715",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19TSICOL",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL19TSICOL\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "35884855c5d2574ed44adc1ee7b408f2d5fd6dce1f67e5515cf8ac0529e28e4c",
+        "bytes": 1186480,
+        "rows": null
+      },
+      "trace_rows": 45932,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "0994aca12cf6e658461767d9a589ddd3035b80e1cdfbbeb5171196108b0fe492",
+      "identical": null,
+      "face_sha256": "52fa6fb677de607497260064f7124d347714889ffa28ee9c24e87817960b3d99",
+      "grade_sha256": "447d6f23780cf5a9d4836abbf23c85e7d1c0199d0405f85a9aab907d1453aed8",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12BUDPEL",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL12BUDPEL\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "6a1529fe4a1472d0b902624575b74523632f3df4ca7145cb557d96ade61f8a2d",
+        "bytes": 628820,
+        "rows": null
+      },
+      "trace_rows": 4981,
+      "passes": 2,
+      "sample_member": true,
+      "decision_sha256": "79d179adf19fb98b61c8fcd8ce3696a2313b7b56638b71e41f9e0a94d74e5892",
+      "identical": true,
+      "face_sha256": "32ecc8beaafab55bb395590fa727b7adbe6da71597a90e3ec7b41a9949634d00",
+      "grade_sha256": "87263fbb339cc2b75e0d66d382a2d58a96a7afbf653d832d2f91a2f56a1aa378",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19NEUHAN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL19NEUHAN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "0f2d8896e0feec0d650f0a79f0d1e592f0347e99ed4fd1cbf3ba3799f3659944",
+        "bytes": 2232054,
+        "rows": null
+      },
+      "trace_rows": 70874,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "2076af5a027101e139a57375fbd4ce32f32df48f8cb7f7d88fb09028fab062f4",
+      "identical": null,
+      "face_sha256": "bc10d59d2c3784eb5f56e90b3f9b80809c99f0ad5f304105c396eec807d79ac5",
+      "grade_sha256": "12081c3cb76e8b3eae9c953a022781af19c43b03a9c0a55cbd139c05ab07c576",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15PRADZU",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL15PRADZU\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "bc1ec225849327c382e9b0b1a5adbe0fc373ff71ffb5401d70909b73ae65c8ed",
+        "bytes": 838867,
+        "rows": null
+      },
+      "trace_rows": 13864,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "9459dbf997ae92476bcc2b59e38584a6310dd7b574cfdb2d7a91caec1605782f",
+      "identical": true,
+      "face_sha256": "2b24d417929a62207737697a40b081acc4d72b42f814e35166cb7e904b149857",
+      "grade_sha256": "43e2b389ee9361133651aa1849652b3ed0b7c3ba34b5c090d3c48a79a89e296c",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15CARUGO",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL15CARUGO\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "e95349a52e47bec0a2a66f622f0e8952ff8514d314204707d5ad974ea20dfd91",
+        "bytes": 508369,
+        "rows": null
+      },
+      "trace_rows": 6319,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "f702bff976be76bf4d5539e5930d37ff0964376aeee35cee6d8cfaf0c00dbd0a",
+      "identical": null,
+      "face_sha256": "a6da00ed5ad80cf2b596f4168e45ab5f28053e81957c365171e4391302ad0ccd",
+      "grade_sha256": "ff8bd0bdb2d659fb606378427d5b87b251544ae3a87675613996d34b264fbe28",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19STRSHE",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL19STRSHE\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "50424da0f843daacfe3099b6e2167078647f62747c685527b0df1e0fabfbdbb8",
+        "bytes": 3319987,
+        "rows": null
+      },
+      "trace_rows": 147059,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "08db85073eb5304807d1004be523a1cc893f7944c962bca46d71f91a23397cc7",
+      "identical": true,
+      "face_sha256": "92ec35d6c88e5fc672e0175eb4592c8b2e9be6382071d938729c75b36763a441",
+      "grade_sha256": "ce031ce01272b36638b0b8837b576a37a59c2101bfd4c680cdd6951ab89d8c9f",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL16FARRUU",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL16FARRUU\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "29d4ec7231e932e3a6e2a8230f6db1dbb991a3855dbb60baa665f1155411ee1b",
+        "bytes": 1199428,
+        "rows": null
+      },
+      "trace_rows": 32568,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "29e8ddeefb69d22c94f23d422aa5c56096f4bb387e030d9167e530614dbbe6ea",
+      "identical": null,
+      "face_sha256": "a0ee82a8703593f8d861b0dcec4dd2092d666f6b0421e9f67015a3e319d04be3",
+      "grade_sha256": "54275063391648bbba5e742b7d393179ce0715f3da62e39c1f089d1b28cfd0ae",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GASDZU",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL19GASDZU\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "9a4e8cc60bfd05587c4e295c8d2344f4156ed254c749b9bc498f6d372ed9d727",
+        "bytes": 1687050,
+        "rows": null
+      },
+      "trace_rows": 29064,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "c10770814410e98d000bd29b67c47a54fb70d639626369d5930a240b289e2d0c",
+      "identical": true,
+      "face_sha256": "b2eb0f362a03a4ff78c86727a8c866e5d0163e919ff3e9f94d0b5bcbbe300af4",
+      "grade_sha256": "32a2c122cfd1a3e3817925b0e11144e1262b5b1b174ccfb313d16857cba71f68",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19DROUGO",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL19DROUGO\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "53731e948a0eb97d138a69915d792ca34069db595e011412707c69d2943bef74",
+        "bytes": 1429975,
+        "rows": null
+      },
+      "trace_rows": 39982,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "fabe84f24c3ee7f2392b6161069361ddfa778d19c13dc677b94f7c1923320bb5",
+      "identical": null,
+      "face_sha256": "0e647bd08734e3c7482cc2a9918996c349f8b6a3504b55873ff8b5c2c38329d5",
+      "grade_sha256": "73d82f241829a4da9f9c6d1980e69e4fd374cf51488d64a37b271ec49c7f4683",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DOMSKA",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL18DOMSKA\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "4c3be96d6958141214d4f47f6ab5b05c98b7ab3d436fcc075e67fb977eafedfc",
+        "bytes": 1044148,
+        "rows": null
+      },
+      "trace_rows": 32040,
+      "passes": 2,
+      "sample_member": false,
+      "decision_sha256": "0980ccbe1e56c54cf88bc70d36a9fd8f8ab856b199f612d7a47c094f7985461d",
+      "identical": true,
+      "face_sha256": "c00e7d1d464d6ab012c81101f3ead21ef06da0178c8275391a310430eab08f3e",
+      "grade_sha256": "fc1dc643dd7a2a4ba05cada55f097db3403bc3cee89564e7efbb4047cf03c59a",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15VANDRO",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL15VANDRO\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "0ea755c2ff7a49b34213894f1a0c6548d5c1a8d711abfe9781ba2ec4c538b428",
+        "bytes": 1368059,
+        "rows": null
+      },
+      "trace_rows": 17069,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "6cf5616d971fd6a79471764c2fe1464c5d58de1f820384230dce81f8fa2f0dbc",
+      "identical": null,
+      "face_sha256": "78a40844a4dea269b15404478d59b3cc4f292a8dceb5a896e4d7d3cad5caeed2",
+      "grade_sha256": "533b9a99812a611f5f6b0b5b411795cf560c57caf833520f646df3dd58e381cc",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12OFNTIR",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL12OFNTIR\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "f4e6837a88e3326b7749ae21ae470baece3fc8c78db961cc610073d006b2aa26",
+        "bytes": 749913,
+        "rows": null
+      },
+      "trace_rows": 12903,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "23868390b29137acc8eff5c38bc1412fca515cef11d5c4f4c8d00a0af078ceee",
+      "identical": null,
+      "face_sha256": "f6a26e8c9a360df2a07393073e67b4030dc691e1aa3be28406664f620aff492f",
+      "grade_sha256": "b07f84868273069073a4b4b5d1e76b0425cc098aafe5bc03ebb6128b1eba8671",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CORDAN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL12CORDAN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "f7971ea42fa8462a3c998c64da7fcae837ac45da0f17043ae443a4249a3e3e51",
+        "bytes": 1154146,
+        "rows": null
+      },
+      "trace_rows": 20955,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "feb2463abefe0d1b348676cdefa87611bb15b8c32e834680b1c10b8a6cb1524a",
+      "identical": null,
+      "face_sha256": "e1a3369f9432e8228fc85a9fbed43801373eaf46973aa9bb78d8608c7efb4abe",
+      "grade_sha256": "947cb7c3816df6cf81c53b4ea2fe3b6b5af8bb9076c806d09611e7d5d4febc04",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SLADAM",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL12SLADAM\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "41b3d2f364d14bfa7a530aa2c42d709c2e946e88933152b0fca056f2f6bb79ec",
+        "bytes": 392101,
+        "rows": null
+      },
+      "trace_rows": 2048,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "881f1e33a958d0840f5b4e36b4a7c50250a26437287e6f30a85781ef195da3a6",
+      "identical": null,
+      "face_sha256": "17c745b044a54ba6d86b7c46f7b3fbceb565e4bd3e1c59be5500bf42983fe850",
+      "grade_sha256": "6dfb6fec2f98582c0bcc78fe5908acde3e097a185341d22a3bfb239a5a53367e",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CECOLI",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL12CECOLI\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "92d8b820612d81e3ffdabaafdb9ba9b9e9144e3261d384754234ec3a76916052",
+        "bytes": 510257,
+        "rows": null
+      },
+      "trace_rows": 1842,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "8614a5e131148500e4d91ed2f581635200af4219403fc10023a2f71c999947d2",
+      "identical": null,
+      "face_sha256": "b11164501b45d0ce048687b95866a249d8fb91407a210ee2f0cbd6ad128bc3fe",
+      "grade_sha256": "467a6640c1497840236f494b41c9585757ae191a4ebbca978f9c8d41f73a59e1",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18HIPGIU",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXATPMATCH-26JUL18HIPGIU\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "8a37cfe31d187801723319e170748ca94a1e2c6c476dc90fdc3613437cde88af",
+        "bytes": 428396,
+        "rows": null
+      },
+      "trace_rows": 6539,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "7d5b6e762f9587c33320d1e297bd4bfbc4a6d87996886548a17587a2ae248392",
+      "identical": null,
+      "face_sha256": "4e637823afb600d265733c05222d5d24db07da0ee80124b6ffc04b29eebf1982",
+      "grade_sha256": "80a3ce87ae739827e6bda8ddcd26e8f91e9fdc5d3d12c5115f4ab78f05253e0b",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL16KHOPRO\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "51d1dcb47405275ed326c90b994041a202aa94cbf4520e7dc50cfc83de0863d8",
+        "bytes": 26567893,
+        "rows": null
+      },
+      "trace_rows": 19221,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "c39b7b451d81c51b339145067b6dd31cdbc39375328f877deb05beac717cd0f3",
+      "identical": null,
+      "face_sha256": "0592f9394c1e464e12c888e6bd999624c570eaf65a3632f28848a67dde839d2f",
+      "grade_sha256": "d96b4c4debfb20294f6a3e166358b63c5304f1e183e92160f4bec6a4892af097",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL12ERJBOS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "3a8d20bbe411b5c95504c166b58926023a3e1867d51dd7011948f56d46c2542a",
+        "bytes": 4096569,
+        "rows": null
+      },
+      "trace_rows": 258400,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "bc57015041740c422c41e27ac41e97774a2152b91dd0d46b3ec4251c9edbc178",
+      "identical": null,
+      "face_sha256": "89000a2f6c7879df7ce4b74a2ae8584779fb044fd2e040fb6deb715a77690bb3",
+      "grade_sha256": "10e61d5e6e90745692e02b199e3b031fafbd1d600eb4789f5a8c5c7029746fb1",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL13AVDFEI\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "cd3b7fb2beee41d9cc26beecbcbafeec6dff362161709a033eb89ffe7b5883c9",
+        "bytes": 432917241,
+        "rows": null
+      },
+      "trace_rows": 283435,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "706414eb796956cd68e6e92f5a69cc54d09c85de21c0adff8996ad584e1d9715",
+      "identical": null,
+      "face_sha256": "f989dbdb0d98e1362abe05c5dc0e1c897e6ba6355f406c2c0695a8127e01c0a1",
+      "grade_sha256": "f6f5de1d77680ebe2ed6d1a832b00e777d01438cc26ab51c57e05682c6235083",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL16ZVOHRU\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "0a7cfb85495bf0b0aa326a2d0dbd81371ad54a84ee462a6006f2b9e725d9764d",
+        "bytes": 433758,
+        "rows": null
+      },
+      "trace_rows": 3718,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "7edd46e3ae71708f8d387440874e0980d6c9a93f8ab7eff0388bcffc4cc988c3",
+      "identical": null,
+      "face_sha256": "5bfeae983a97e742788144e00a4e1993d68603a48b0bae9be797f8694b91496c",
+      "grade_sha256": "296df0e6220d7b99a147af79bac5ce7704e2b644e769364d4a59fde5fc4a2b10",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL16GAOVAL\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "06f20c7439417f0ec3cab414a412bd047b015ec1f59e27d756201ae69d53467c",
+        "bytes": 8476270,
+        "rows": null
+      },
+      "trace_rows": 9349,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "aa35401ee91ede82b3cc3d8fc4d305efa288103a368cfa5670206d74a15c0d76",
+      "identical": null,
+      "face_sha256": "15a4513aa4e3d4945830d7f2c806adac4f45ab8727c9d6c823ad0d4cd260bac6",
+      "grade_sha256": "449006dd55beb69bc3d0b69500084f82bc19d7cf946f74ad6ae5cae7be48ad5e",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL13SELYAN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "8d5a46027f2ba6551468c8b9ecf0bfb3bb5fe7b78fd983ae4e7727adbc339c37",
+        "bytes": 5141824,
+        "rows": null
+      },
+      "trace_rows": 24175,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "19506989a9301b105fd10ad2fbe5d14647da6ea9ca690e9d40bded7eea15e131",
+      "identical": null,
+      "face_sha256": "b10708be439d1ae12f2efb73889635e702685a2d22afb1d97b32ea937c50ea2c",
+      "grade_sha256": "ff703e9bdeec0b79df27b18bd76ab0a6d6cb8f5d403fb6507e25489ebfbf1de9",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL14KOSRUG\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "e432bcb6ed8da1b4380229e1f130f75ef08dbaeba643e6e22a559f4fa8a90242",
+        "bytes": 29538131,
+        "rows": null
+      },
+      "trace_rows": 23378,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "af427ba686768519104a94fe58a246bfbdb480f6315cbba65e793053c9394ba5",
+      "identical": null,
+      "face_sha256": "a9a35efb61a28892937635fdf3c3590dcab9752d0866ea39803061743c957580",
+      "grade_sha256": "97684a138e2a90399ff42174f2a12f06f843fb2698febc715cbed28697dc6aa3",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL14RABRUS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "ce3aecaad8440991bacd917bef786f1281b7f4b2dc23b9c4b010d49532e83505",
+        "bytes": 404543,
+        "rows": null
+      },
+      "trace_rows": 271,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "20b0accbafe30c03cc3dca7f9cb07a765c092cdfab18814ed4bde2dbcc8c4a4a",
+      "identical": null,
+      "face_sha256": "4a2b8dffa6953e564063503cc07965f02f998d1209e25f85da9b03049711190b",
+      "grade_sha256": "08bb353f8acd9564afac115c56e35799eac037d333f2821193ae0d04348d22eb",
+      "status": "UNGRADABLE"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL15GRAPER\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "055f34241f4e47cfe5480af1f39389ee76964020eba5f1b72d368439c31142c7",
+        "bytes": 1097306,
+        "rows": null
+      },
+      "trace_rows": 7137,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "34ae88459d5ff6c408b83b53ddb0d77353ccd3c96a7332b7928511d46c797f35",
+      "identical": null,
+      "face_sha256": "3a45e9754b065fdbd3118a8d54c8b4373f0bcf14fa072cb6ee37b3b26c485461",
+      "grade_sha256": "6379171d5c302c40e32f792b4d0bbe1ad2ac27231cdc613d5728323126e58008",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL16BASRUS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "565dd8b8fe25d3cfc81912848864bc95055dba18c29f8416fe27e11210b0d67f",
+        "bytes": 16524659,
+        "rows": null
+      },
+      "trace_rows": 12369,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "4022b586efffba6b4e7c805e17e30249de91f0c195fb6956a30965a00c58733f",
+      "identical": null,
+      "face_sha256": "a8f597b4f75fe421f0f9952cadb8b6837e45d2a3515e0742d3e2ad34fb988c86",
+      "grade_sha256": "aab4b491e7b796d0253cd17fb2ab97b6d9d6cefdafa7eabc041a951d5903f194",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL13RAMNOH\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "1e69ae3f238ac2b946efa8a30505f589a212702d18b0a1efb3dce6add973eb4a",
+        "bytes": 2360091,
+        "rows": null
+      },
+      "trace_rows": 22611,
+      "passes": 2,
+      "sample_member": true,
+      "decision_sha256": "8c7fedd48b0656a7c7039f8ae47b9d1f1fed76b633af4fe8d3375431f951e701",
+      "identical": true,
+      "face_sha256": "ec834bacc43e23c1ac6706ecd5685e04b21f75a768dc2074e749c8e6301f6898",
+      "grade_sha256": "66bdc138e8892d69005b90f00c0d13d039dedbc9fe1a60100be6ae89fd1ff305",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL20MAZSPI\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "4a169b51d54a8b83913fb37da6766e944c27a6f14ae29b75d22d40bfd54e7db1",
+        "bytes": 8135672,
+        "rows": null
+      },
+      "trace_rows": 24098,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "39c7a670ca78a725e630095d90fea9fef6259ded02ad0c4d48eae8f9dd173f29",
+      "identical": null,
+      "face_sha256": "f70da67722762401c831b4794bbb31616624f600538033c24b6d52d13234dad1",
+      "grade_sha256": "8d8e3c92fc46b977cd4288a439da66835dfff952ff2b605e4538ef18e3e8b3df",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL16FEISAM\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "3f239156d5aa6a69f61443a4c2af7e55def03da633be13b3d82bc9d41bb88079",
+        "bytes": 3748494,
+        "rows": null
+      },
+      "trace_rows": 6394,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "52e92ece45a281e6dacb9a67bb0d3c0c75af79120463d3b4fd8bc03de8fc63f0",
+      "identical": null,
+      "face_sha256": "331094eae2a2669542f17ea3d6093436472589a8a8aa00668cb9fe8ea9476cb2",
+      "grade_sha256": "a9b7128848c0cdc44df3c158b6d113b92310fbd6b11f03d347c8ae05889f40fc",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL15ANDRIS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "c9bc64af9287a4f7f7b398d68edd6ca2b04bfb3ee8eeb8ef321113819b89e1e3",
+        "bytes": 6964369,
+        "rows": null
+      },
+      "trace_rows": 6787,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "e9f4a3262a8801316d488dfc6ef8855955db887ce28196ea94fdab79120fcd1b",
+      "identical": null,
+      "face_sha256": "47bd40bb530ef381e01c48f49a4194e4399df8577914b2d4e077d378735cda62",
+      "grade_sha256": "b1420d8e9c19c3109a8accbdf42c3a56ec4ed66ad268c3e76b44bde55c00b085",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL18CIRTOT\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "d45b3265510d83eef595006e0c2397da57ab70fdaa93b503d3b3954d85a3f2f1",
+        "bytes": 336181,
+        "rows": null
+      },
+      "trace_rows": 6205,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "0d32bcf31e753dd8b6812c8034f96a9bd9394f223d4facfc1807abfa5a7571f0",
+      "identical": null,
+      "face_sha256": "72aebcd1b0ff09512823505dbc6c8d26fde1ee9398576409a40d36f84ab456dc",
+      "grade_sha256": "0b90b221925415a2aceedde50c8cdce334c885e0db81a8f6adcd793112036d67",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL13KNUKUR\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "2a366e93e834f4894ef7596d41b335967315b1d1c9277e064c5ebb5ebf848270",
+        "bytes": 1077510,
+        "rows": null
+      },
+      "trace_rows": 31165,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "9b5870ff85227e7178557efe0eca152d179fe6c9f5c8ce2d8e42f8d61b19c520",
+      "identical": null,
+      "face_sha256": "a3c0d44a70976924ee0b897d5213376a22efcdd39c0560a579a1cd852701b76c",
+      "grade_sha256": "6af0ea9619b194aa47b84f2b9ddbb830f90d928137a3cf9d809172089a597f52",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTACHALLENGERMATCH-26JUL12BALHUA\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "4e4f8752aa1bc83729b66bd7a5077adcb6ae8edfa8b85443ae4c2a07732b99ae",
+        "bytes": 355147,
+        "rows": null
+      },
+      "trace_rows": 198,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "d916723c743c8f94bd828db2192fd0009764815d3f994c4806eed5a5c1c02a5e",
+      "identical": null,
+      "face_sha256": "09e5be8638a4ef459e37715b10876b3fbca2da4cc72d7cece3fad42ff777c68b",
+      "grade_sha256": "84a540c5663ae5e97b12e16b41a057341bc9dbe45ccca2e64a8da2dd1cbe9c5a",
+      "status": "UNGRADABLE"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13LEPIBR",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL13LEPIBR\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "4551a1a8eb7993c30cd07372a321a8edcc4ed057c42f2d404908bf6a46c4e18c",
+        "bytes": 948564,
+        "rows": null
+      },
+      "trace_rows": 14761,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "813a8c873b200f92e0bb0237448f8311300238b27105e02dc7e148c7e644f670",
+      "identical": null,
+      "face_sha256": "4110ff0b08e82e30927638f60a24b47bfa7db5f0e16190c284f4bd528873e108",
+      "grade_sha256": "6cf883461bcd6e9c51ec595f88d951852fdcb030f9f52823aebdc1590c7c42f2",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13GRAPAR",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL13GRAPAR\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "d51e6a1e8f0049f8223addf2233433ea633032e5a72b251fc835cc2edaacc2a1",
+        "bytes": 484871,
+        "rows": null
+      },
+      "trace_rows": 593,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "6009612ba320d70802a8ef0dc19a18934bd40f4f774301770cbc49199b83f9d3",
+      "identical": null,
+      "face_sha256": "3c4ae526b7978f9f806f16dc125ee4798400f4a0f7932b81b968d0f643b309b9",
+      "grade_sha256": "b9129bb250fc383870a6889a01491756f949efcc60f86bcb529e00a51cf7afd2",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KUDKOR",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL20KUDKOR\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "ad6754a640a6fd90dc1cdd97b1cc8f871244ffadc7118ff9c047f10e0f085067",
+        "bytes": 194523,
+        "rows": null
+      },
+      "trace_rows": 163,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "f8ee5147a7c3f7d79fe8e9e07370a0490369c6de0ebcbd9f3274eb07a7deea8b",
+      "identical": null,
+      "face_sha256": "a70e7f54a5bbcf57603913d5df0e0ad38ab4eca468780760ce1e1e8f893acd54",
+      "grade_sha256": "0e1360e6565a748cd50d913334818aaeecaa6b0a03dc78fb13afaae05102bf1e",
+      "status": "UNGRADABLE"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KRETOM",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL13KRETOM\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "5a7b630db5656c950612010eefff0384f2bca1d8d16c4457d02adbbd3d2b8b3c",
+        "bytes": 794561,
+        "rows": null
+      },
+      "trace_rows": 16369,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "a5320b02dc3c6ed18ffa7489b40e004dc7d33fbdd647d95836c0fecf77a16f88",
+      "identical": null,
+      "face_sha256": "e352a0ccc4dd7fa59be264f51c8527a44bdb2e8a63efb9821909c573a529a6c6",
+      "grade_sha256": "444bbbbf099169826517388abb06ff3c121ad859d0a5b9bd6085aee7e8304281",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13QUERUS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL13QUERUS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "8333bf117eb0f264ec50c3eed18240730c9b15a53350507e5248f4f8db875f01",
+        "bytes": 2222624,
+        "rows": null
+      },
+      "trace_rows": 102046,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "ea51226b41fc3aa6c8401a37d0d562e411de8a91900d65ad4baac99fcffd2e3d",
+      "identical": null,
+      "face_sha256": "d10181cb61de5f6c3d88a7e6125eaedfaa94cbfba60b95b691e7ccf4684e1642",
+      "grade_sha256": "b3f0f93939c58ee0b4ef41262a4a8fd23b7409dfdd930891d860a76776670483",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13PRIGAR",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL13PRIGAR\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "664869fa696b291892ac01d0424292414b49c329af999df0fb804913f8ef86f0",
+        "bytes": 725793,
+        "rows": null
+      },
+      "trace_rows": 5618,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "6bbbe226ec833c40f31feeee36ace31c90c971a1f4c52adb2b0409fe0653eb48",
+      "identical": null,
+      "face_sha256": "beb77fe1b9f0dc5b04143aee811875f45e4fefe889fe352aaac858cfed15d0d0",
+      "grade_sha256": "d19bb2e2f6928a576a1cea1dfccaa270b077d6e42d73a40250e8e29e026244a0",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16KORANN",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL16KORANN\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "569ba876b10fe3f328ffc0b7f70c47dcc4f9b5e24d3a6342537d9e3f5d42b61d",
+        "bytes": 1305629,
+        "rows": null
+      },
+      "trace_rows": 23135,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "624f9982f4c7b7782e6170c5a855a56bfaf629cbd6589f9bb7d15ae2ae5b540b",
+      "identical": null,
+      "face_sha256": "32276ac63c9488d4d7d2201ad136fcfb2554ae10ba62ebe30198acd6159a6f5e",
+      "grade_sha256": "71fe4e2433d453c94ba781b18597865fed5f500feeebefbd5b4d0e4bf93e1dad",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MORAKS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL18MORAKS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "ff582d86c7d1b7405b3368d5ba37cae8aeac8b56b8d86dd48094a51ad7d8e301",
+        "bytes": 659438,
+        "rows": null
+      },
+      "trace_rows": 7860,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "fcffda5a19a7ec4859279087034a6802a48b8cc17866654fa9044f03b6c83234",
+      "identical": null,
+      "face_sha256": "23447faf296c6560ef9b6efb9bb15fdf99a623c28aac4e28a517e1e55d0fb635",
+      "grade_sha256": "647bfd7aaf245db103f93864e7d352562a6eb4516dd92f04499b76613a0feeee",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12AVASEI",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL12AVASEI\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "ec4835a44db83c097ab7ed94849a47a4fd681af62c4639121678fb4878c34ebb",
+        "bytes": 449319,
+        "rows": null
+      },
+      "trace_rows": 8104,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "1dec3f5ff4240d801354a462b9964c6b6f2b08c334d741dcd1806bb5f4bbb5b5",
+      "identical": null,
+      "face_sha256": "7f83d6f9743a87c9fb3efef595e2338f2a8f0e3a1e52ea62bb4e1fb4e7e29ed5",
+      "grade_sha256": "d1abb9f78c4c4870b4ce91d47c74d7bb7cb897a9073f9e099db73563d47e6396",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19GAOFRU",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL19GAOFRU\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "e91dff76c57fa04a61ff274957d8edd3f70cc36d61d1628800d4239aa1dbe2aa",
+        "bytes": 1108602,
+        "rows": null
+      },
+      "trace_rows": 19584,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "a1561e487ac4e43503c76dc5282149dcbc8235c94db2d18a90c088a908f9a4db",
+      "identical": null,
+      "face_sha256": "0f4b6cd01320c5e53610c268e8b4bb3f57cc25dcffbc76cf29abd70975e3fd90",
+      "grade_sha256": "9ce29e4b065ca4196fa1c47a6f3a37d47104f9e2680c87b90b3c4fced64654d4",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17PUTSHE",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL17PUTSHE\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "a513b46ea23a3c79a583b510a6f88097cba3a28df39865d492e4ff58d8bd2e77",
+        "bytes": 961957,
+        "rows": null
+      },
+      "trace_rows": 10924,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "fe7897491bb9c53f925c78ca5932737f33d0a1ad62facc5ccc1b14dab6d16cd0",
+      "identical": null,
+      "face_sha256": "ea2757ffb4ec57462bfb7e25570908f46109ed6a47d04870a81fc78e88bde3ac",
+      "grade_sha256": "f5820f9bded9e7a6f5b3fc7b1069e59fb907824d8d5e49e7598943402c095ea8",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19YASBAR",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL19YASBAR\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "3c33c481c3577ec9588ca3b36fc07504abb684c2789d12a425d6c7408d606a87",
+        "bytes": 651524,
+        "rows": null
+      },
+      "trace_rows": 7223,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "5232bcdce3ba5170a0a240ef2a8304ef205d32f2d7451a5dd25f9146fd51a51b",
+      "identical": null,
+      "face_sha256": "1b95450fed8de2811732d981ef988e366bcef5ed7564ce837e81a4739ad5dc06",
+      "grade_sha256": "176a683fa5e4132cb59646c20e3a715c03c9d976b515139131add54aa061b2b3",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KAWWAL",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL13KAWWAL\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "065ce18ff3665929ebd85ae3f516cb3edc42e7a58a9249307e53d17439f69e29",
+        "bytes": 1002903,
+        "rows": null
+      },
+      "trace_rows": 16405,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "a1459ed8a93e1d8af6eeca3b5438dd51c9505455aa4fc0220cb47e71a8d5b42d",
+      "identical": null,
+      "face_sha256": "7f2658951cbc2c9617a111f79260c196c2f202269c2c31111ac803bd5dc613fd",
+      "grade_sha256": "38c48621166e77592c1f173296b01666522586002f0e9ed20e74da57dce1e988",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14PUTLIU",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL14PUTLIU\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "38d112846e879b5bbf080b66a6d7ce1be06b01f9756d820e9585e9429914563c",
+        "bytes": 1065017,
+        "rows": null
+      },
+      "trace_rows": 26863,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "1773a3b5a6dbdfe1f2b004bbd02c0a39c8a5d228cdbd56aed6e88cab1a5e7e7c",
+      "identical": null,
+      "face_sha256": "3dc68a07fa1ad638b6505fad593c2a9a4d0fe73a69fe6bb53d90134ae2c6e2f3",
+      "grade_sha256": "69d9b6cd686e2f83a42384c201b541334b3dac3b54c7b816e9c4256c1cf41068",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13MORBEJ",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL13MORBEJ\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "9dc7dbb5dbea76cf3b702e6ff0c5935df60285c09af9e85926412c1519434b43",
+        "bytes": 892115,
+        "rows": null
+      },
+      "trace_rows": 17724,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "24dae2a47191f510bca1df76b94208a9b1414ad1b33a7ede2ffff3a19b493bae",
+      "identical": null,
+      "face_sha256": "5c6e55582830645dab4037ac7138df686b86fafb66da364d7470ce94ca8ea104",
+      "grade_sha256": "db7230d5ee0beff5a2099ad3a90a6d130fccf3e32bc9771504fe46cb9f6e35de",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PODSTU",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL20PODSTU\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "9477ad56cfbc6c1fd29d1cf3a4e06e1de15dddb61af19b0f128bbf050fe1f8d6",
+        "bytes": 679633,
+        "rows": null
+      },
+      "trace_rows": 13013,
+      "passes": 2,
+      "sample_member": true,
+      "decision_sha256": "d26bf814a246bd7a1aa70ac8bcbee8e64cb76ae537b2f142fd5f14c59b802369",
+      "identical": true,
+      "face_sha256": "c4c8ddbff52493660894ae99019c74574c1033f0fe3550f22f68f036a693441f",
+      "grade_sha256": "162c1d28914a33609d8a8a5556de92f4164ae1ca6c4ddd6607752231f98ba812",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MICFRU",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL18MICFRU\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "0ae8fefb539fd5d9219360f7d6074dcaaff5bfad688240142e172f80522a7c53",
+        "bytes": 357149,
+        "rows": null
+      },
+      "trace_rows": 2309,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "828161526138df08ed63ac47bfb4d62d78765e52314cb99225006fdfdb581032",
+      "identical": null,
+      "face_sha256": "3fc7af49fe043769c6d5e12eaaa41cfe13e181f22351095ee7cb6b59cafe217e",
+      "grade_sha256": "ca3c1ade7fd58521757ffc0bd7536a9d6f7e7325145227abc8cefe6b933a532c",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16VALSAS",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL16VALSAS\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "52527a16543424642d8791a67da669bed0d1d5239839680c73dc30714423a373",
+        "bytes": 544662,
+        "rows": null
+      },
+      "trace_rows": 9411,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "c1876a054277b11094433807e561a1e39b0d790c89611eec02f7fab828d6c835",
+      "identical": null,
+      "face_sha256": "bae1e87a33fbce4b22f6b7f1b2d57a1e5b33d0711c914c45494c6000796c82fd",
+      "grade_sha256": "82dbe0bf79a7a16be811a414f702c76afe95b2552fb2a2416b0cdff0ffb2d3e8",
+      "status": "GRADED"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17UDVBAD",
+      "trace": {
+        "path": "C:\\tmp\\unsupported_rests_20260914\\runs\\KXWTAMATCH-26JUL17UDVBAD\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+        "sha256": "64386b5bc3ff5b48bf2981c3f844020031483e95cdd2ce205a13b0f86cc14fef",
+        "bytes": 782508,
+        "rows": null
+      },
+      "trace_rows": 11152,
+      "passes": 1,
+      "sample_member": false,
+      "decision_sha256": "4e88cd20ed299c49da78c72553577933fbdd29d6d99de39a59a33fec485dea40",
+      "identical": null,
+      "face_sha256": "be273aaaed6c9ebebd32563db56eae66718fce393a4ba6eae6dee1f488c9fc96",
+      "grade_sha256": "5ed48e6c1cf8267728110580f03574820cd25ee4bac2166b71786ac2864bfe1e",
+      "status": "GRADED"
+    }
+  ]
+}

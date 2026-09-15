@@ -20,7 +20,7 @@ export function readingSentence(sentence?: Sentence) {
   return `Believes ${cents(sentence.Q)} by ${bellTime(sentence.X)} to the bell.`;
 }
 export function sentenceFor(receipt: Receipt | null, side: string): Sentence | undefined {
-  return (receipt?.legs[side] as { sentence?: Sentence } | undefined)?.sentence;
+  return (receipt?.legs?.[side] as { sentence?: Sentence } | undefined)?.sentence;
 }
 export type ReadingAction = BidAction & {
   marker_cents?: number | null;

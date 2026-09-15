@@ -1,0 +1,113 @@
+{
+  "event": "KXATPMATCH-26JUL12SLADAM",
+  "category": "ATP_MAIN",
+  "status": "GRADED",
+  "letter": "A",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · DAM CLIMBER → CLIMBER · SLA FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"DAM\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748\",\"first_recorded_epoch\":1783801991.000005,\"first_bind_epoch\":1783801991.000005,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":79.5,\"close_cents\":86,\"realized_drift_cents\":6.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"SLA\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748\",\"first_recorded_epoch\":1783801991.000005,\"first_bind_epoch\":1783801989.204,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":20,\"close_cents\":16,\"realized_drift_cents\":-4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): DAM 0 · SLA 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · DAM Q 83 vs floor 83¢; range 81–83 · SLA Q 15 vs floor 15¢; range 14–16",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"DAM\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":83,\"q25\":81,\"q75\":83,\"floor_error_cents\":0,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":83,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"SLA\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":15,\"q25\":14,\"q75\":16,\"floor_error_cents\":0,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":15,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): DAM: 1.24¢ · SLA: 1.31¢ · DAM: first 250.93m; remaining MAE 90.75m · SLA: first 312.35m; remaining MAE 158.38m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "✓",
+      "line": "A · DAM 83¢ (+0¢; floor printed earlier) · SLA 15¢ (+0¢)",
+      "hover_lines": [
+        "TRADE: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"valid_fills\":2,\"side_count\":2},\"legs\":{\"DAM\":{\"filled\":true,\"cents\":83,\"vs_floor_cents\":0,\"fill_epoch\":1783828355.342,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783867080,\"span_start_epoch\":1783796334,\"span_end_epoch\":1783860540,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":83,\"floor_epoch\":1783828355.3,\"floor_printed_before_fill\":true,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":438.92733333508176,\"current_price_age_minutes\":438.92733333508176,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"SLA\":{\"filled\":true,\"cents\":15,\"vs_floor_cents\":0,\"fill_epoch\":1783811831.07,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783867080,\"span_start_epoch\":1783796334,\"span_end_epoch\":1783860540,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":15,\"floor_epoch\":1783811831.1,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":6.651166649659475,\"current_price_age_minutes\":6.651166649659475,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: SLA lineage 6.65m, current price 6.65m · DAM lineage 438.93m, current price 438.93m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "✓",
+      "line": "A · 98¢ pair · 2 of 2¢ captured",
+      "hover_lines": [
+        "PAIR: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"pair_sum\":98,\"capture_ratio\":1,\"offered_cents\":2}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MACRO · MICRO · TRADE · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPMATCH-26JUL12SLADAM",
+      "leg_id": "SLA",
+      "entry_cents": 15,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 15,
+      "fill_timestamp_epoch": 1783811831.07,
+      "prior_standing_target_cents": 15,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SLADAM",
+      "leg_id": "DAM",
+      "entry_cents": 83,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 83,
+      "fill_timestamp_epoch": 1783828355.342,
+      "prior_standing_target_cents": 83,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": true,
+  "valid_fills": 2,
+  "completed": true,
+  "one_sided": false,
+  "pair_sum": 98,
+  "captured_cents": 2,
+  "offered_cents": 2,
+  "capture_ratio": 1,
+  "one_sided_reason": null,
+  "missing_sides": [],
+  "trace_sha256": "41b3d2f364d14bfa7a530aa2c42d709c2e946e88933152b0fca056f2f6bb79ec",
+  "grade_sha256": "6dfb6fec2f98582c0bcc78fe5908acde3e097a185341d22a3bfb239a5a53367e",
+  "grade_url": "/data/KXATPMATCH-26JUL12SLADAM.grade.json",
+  "face_url": "/data/KXATPMATCH-26JUL12SLADAM.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPMATCH-26JUL12SLADAM.sentences.json",
+  "fault": "MACRO: A · DAM CLIMBER → CLIMBER · SLA FALLER → FALLER | MICRO: A · DAM Q 83 vs floor 83¢; range 81–83 · SLA Q 15 vs floor 15¢; range 14–16 | TRADE: A · DAM 83¢ (+0¢; floor printed earlier) · SLA 15¢ (+0¢) | PAIR: A · 98¢ pair · 2 of 2¢ captured",
+  "fill_witnesses": [
+    {
+      "leg": "SLA",
+      "receipt": "63711fc7-2454-4756-17fd-e99818063a85",
+      "positive_size_witness": true,
+      "print_cents": 15,
+      "rest_cents": 15,
+      "at_or_below_rest": true
+    },
+    {
+      "leg": "DAM",
+      "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282",
+      "positive_size_witness": true,
+      "print_cents": 83,
+      "rest_cents": 83,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

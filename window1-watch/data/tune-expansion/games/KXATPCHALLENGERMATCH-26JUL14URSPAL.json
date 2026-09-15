@@ -1,0 +1,116 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · PAL CLIMBER → CLIMBER · URS CLIMBER → NOT_CALLABLE",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"PAL\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053\",\"first_recorded_epoch\":1784021162.00001,\"first_bind_epoch\":1784021161.637,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":38,\"close_cents\":41,\"realized_drift_cents\":3,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"URS\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053\",\"first_recorded_epoch\":1784021162.00001,\"first_bind_epoch\":1784021162,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":1,\"open_cents\":62,\"close_cents\":61,\"realized_drift_cents\":-1,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): PAL 0 · URS 1"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "!",
+      "line": "F · PAL Q 39 vs floor 39¢; range 38–39 · URS Q 63 vs floor 57¢; range 61–63",
+      "hover_lines": [
+        "MICRO: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"legs\":{\"PAL\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":39,\"q25\":38,\"q75\":39,\"floor_error_cents\":0,\"band_width_cents\":1,\"band_contains_floor\":true,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":39,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"URS\":{\"letter\":\"F\",\"point_letter\":\"F\",\"range_letter\":\"F\",\"q50\":63,\"q25\":61,\"q75\":63,\"floor_error_cents\":6,\"band_width_cents\":2,\"band_contains_floor\":false,\"receipt\":\"KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-1053\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":57,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): PAL: 3.66¢ · URS: 4.51¢ · PAL: first 220.11m; remaining MAE 179.16m · URS: first 50.56m; remaining MAE 21.49m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · PAL 43¢ (+4¢) · URS unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"PAL\":{\"filled\":true,\"cents\":43,\"vs_floor_cents\":4,\"fill_epoch\":1784035631.709,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784042247,\"span_start_epoch\":1784001495,\"span_end_epoch\":1784042247,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[\"W1TT-C-002\"]},\"reason\":null,\"floor_cents\":39,\"floor_epoch\":1784042066.596,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":189.5118166009585,\"current_price_age_minutes\":189.5118166009585,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"URS\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":57,\"floor_epoch\":1784032697.601,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: PAL lineage 189.51m, current price 189.51m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 4¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":4}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "MICRO · PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "entry_cents": 43,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 43,
+      "fill_timestamp_epoch": 1784035631.709,
+      "prior_standing_target_cents": 43,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-2902",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 4,
+  "capture_ratio": 0,
+  "one_sided_reason": "URS: No resting bid; final decision HOLD_REST (PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE)",
+  "missing_sides": [
+    {
+      "leg": "URS",
+      "reason": "No resting bid; final decision HOLD_REST (PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE)",
+      "last_action": {
+        "receipt": "e1755de3-3eef-626b-12e5-7bd0bd895cd6",
+        "timestamp_epoch": 1784042108.538,
+        "leg": "URS",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 57,
+      "reach_audit": {
+        "rest_intervals": 0,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 0,
+        "first_boundary_crossing": null,
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "8015f6b2df60c1b5dd41613f566f75d50ab2ea7306b5cedc2cb7efb3ae5379a1",
+  "grade_sha256": "581ef5efcbd4dce153b74b30be5e2d721865c10eb5f6bae6ebe481eaf31e5b5c",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL14URSPAL.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL14URSPAL.sentences.json",
+  "fault": "URS: No resting bid; final decision HOLD_REST (PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE)",
+  "fill_witnesses": [
+    {
+      "leg": "PAL",
+      "receipt": "c0a9b9a6-2191-5e33-f09e-2e92e56d313c",
+      "positive_size_witness": true,
+      "print_cents": 43,
+      "rest_cents": 43,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

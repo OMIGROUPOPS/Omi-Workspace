@@ -1,0 +1,129 @@
+{
+  "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+  "category": "WTA_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "✓",
+      "line": "A · SEL CLIMBER → CLIMBER · YAN FALLER → FALLER",
+      "hover_lines": [
+        "MACRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"metrics\":{\"correct_side_share\":1},\"legs\":{\"SEL\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"1cc44d0a-bc28-6cd8-f838-e043140f10b3\",\"first_recorded_epoch\":1783931307.416,\"first_bind_epoch\":1783931307.416,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":57,\"close_cents\":62,\"realized_drift_cents\":5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"YAN\":{\"called_role\":\"FALLER\",\"realized_role\":\"FALLER\",\"correct\":true,\"first_recorded_receipt\":\"c27dc0df-340c-63cb-3611-f38e7af0d8d6\",\"first_recorded_epoch\":1783941034.182,\"first_bind_epoch\":1783941034.182,\"final_stored_role\":\"FALLER\",\"flip_count\":0,\"open_cents\":43,\"close_cents\":39,\"realized_drift_cents\":-4,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): SEL 0 · YAN 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · SEL Q 58 vs floor 59¢; range 53–59 · YAN Q 40 vs floor 39¢; range 39–41",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"SEL\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"C\",\"q50\":58,\"q25\":53,\"q75\":59,\"floor_error_cents\":1,\"band_width_cents\":6,\"band_contains_floor\":true,\"receipt\":\"1cc44d0a-bc28-6cd8-f838-e043140f10b3\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":59,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"YAN\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":40,\"q25\":39,\"q75\":41,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"1cc44d0a-bc28-6cd8-f838-e043140f10b3\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":39,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): SEL: 0.94¢ · YAN: 0.73¢ · SEL: first 14.75m; remaining MAE 20.68m · YAN: first 76.41m; remaining MAE 157.01m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · SEL 60¢ (+1¢) · YAN unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"SEL\":{\"filled\":true,\"cents\":60,\"vs_floor_cents\":1,\"fill_epoch\":1783948951.283,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1783962240,\"span_start_epoch\":1783913061,\"span_end_epoch\":1783957680,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":59,\"floor_epoch\":1783948951.3,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":14.471383317311604,\"current_price_age_minutes\":2.721383317311605,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"YAN\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":39,\"floor_epoch\":1783954375.6,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: SEL lineage 14.47m, current price 2.72m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 2¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":2}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "leg_id": "SEL",
+      "entry_cents": 60,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 59,
+      "fill_timestamp_epoch": 1783948951.283,
+      "prior_standing_target_cents": 60,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-SEL.csv.gz#row-2834",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 2,
+  "capture_ratio": 0,
+  "one_sided_reason": "YAN: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+  "missing_sides": [
+    {
+      "leg": "YAN",
+      "reason": "No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+      "last_action": {
+        "receipt": "9decafd9-b2ac-6ece-a2e7-770fa60765b4",
+        "timestamp_epoch": 1783962238.399,
+        "leg": "YAN",
+        "action": "HOLD_REST",
+        "target_cents": null,
+        "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 39,
+      "reach_audit": {
+        "rest_intervals": 279,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 2,
+        "first_boundary_crossing": {
+          "print": {
+            "epoch": 1783956697.701,
+            "price": 39,
+            "receipt": "61f08211-4450-4bc1-dbfa-37a7e8412d25",
+            "source_row": 2911
+          },
+          "interval": {
+            "level": 39,
+            "start_epoch": 1783956686.000002,
+            "start_receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-SEL.csv.gz#row-6190",
+            "end_epoch": 1783956697.701
+          }
+        },
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "8d5a46027f2ba6551468c8b9ecf0bfb3bb5fe7b78fd983ae4e7727adbc339c37",
+  "grade_sha256": "ff703e9bdeec0b79df27b18bd76ab0a6d6cb8f5d403fb6507e25489ebfbf1de9",
+  "grade_url": "/data/KXWTACHALLENGERMATCH-26JUL13SELYAN.grade.json",
+  "face_url": "/data/KXWTACHALLENGERMATCH-26JUL13SELYAN.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXWTACHALLENGERMATCH-26JUL13SELYAN.sentences.json",
+  "fault": "YAN: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+  "fill_witnesses": [
+    {
+      "leg": "SEL",
+      "receipt": "4253a384-49ac-49d4-9f10-2aa41ef8f931",
+      "positive_size_witness": true,
+      "print_cents": 59,
+      "rest_cents": 60,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

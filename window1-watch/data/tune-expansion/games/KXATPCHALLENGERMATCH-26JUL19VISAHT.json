@@ -1,0 +1,129 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+  "category": "ATP_CHALL",
+  "status": "GRADED",
+  "letter": "F",
+  "section_lines": [
+    {
+      "name": "MACRO",
+      "mark": "!",
+      "line": "C · AHT FALLER → NOT_CALLABLE · VIS CLIMBER → CLIMBER",
+      "hover_lines": [
+        "MACRO: C · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"C\",\"metrics\":{\"correct_side_share\":0.5},\"legs\":{\"AHT\":{\"called_role\":\"FALLER\",\"realized_role\":\"NOT_CALLABLE\",\"correct\":false,\"first_recorded_receipt\":\"1f415397-09da-4811-23c8-c1e59af4c904\",\"first_recorded_epoch\":1784423671.698,\"first_bind_epoch\":1784422872.327,\"final_stored_role\":\"NOT_CALLABLE\",\"flip_count\":1,\"open_cents\":8.5,\"close_cents\":7,\"realized_drift_cents\":-1.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legA_close_c - legA_open_postformation_c\"},\"VIS\":{\"called_role\":\"CLIMBER\",\"realized_role\":\"CLIMBER\",\"correct\":true,\"first_recorded_receipt\":\"1f415397-09da-4811-23c8-c1e59af4c904\",\"first_recorded_epoch\":1784423671.698,\"first_bind_epoch\":1784423671.698,\"final_stored_role\":\"CLIMBER\",\"flip_count\":0,\"open_cents\":91.5,\"close_cents\":94,\"realized_drift_cents\":2.5,\"role_source\":\"layers.macro.context.pool_cascade.sides[leg].roles (or belief.pool_cascade.roles)\",\"realized_source\":\"corrected effective_row.legB_close_c - legB_open_postformation_c\"}}}",
+        "Flips (diagnostic): AHT 1 · VIS 0"
+      ]
+    },
+    {
+      "name": "MICRO",
+      "mark": "✓",
+      "line": "A · AHT Q 5 vs floor 4¢; range 3–5 · VIS Q 93 vs floor 92¢; range 91–95",
+      "hover_lines": [
+        "MICRO: A · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"A\",\"legs\":{\"AHT\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":5,\"q25\":3,\"q75\":5,\"floor_error_cents\":1,\"band_width_cents\":2,\"band_contains_floor\":true,\"receipt\":\"1f415397-09da-4811-23c8-c1e59af4c904\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":4,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"},\"VIS\":{\"letter\":\"A\",\"point_letter\":\"A\",\"range_letter\":\"B\",\"q50\":93,\"q25\":91,\"q75\":95,\"floor_error_cents\":1,\"band_width_cents\":4,\"band_contains_floor\":true,\"receipt\":\"1f415397-09da-4811-23c8-c1e59af4c904\",\"source\":\"pricing_authority.true_conditioning.quantiles.q25/q75.level_cents\",\"target_floor_cents\":92,\"floor_already_observed_at_call\":false,\"reason\":\"FIRST_CALL_POINT_ERROR\"}}}",
+        "Oracle mean gap (diagnostic): AHT: 1.4¢ · VIS: 2.91¢ · AHT: first 429.83m; remaining MAE 45.87m · VIS: first 506.14m; remaining MAE 73.91m"
+      ]
+    },
+    {
+      "name": "TRADE",
+      "mark": "!",
+      "line": "D · AHT 4¢ (+0¢) · VIS unfilled",
+      "hover_lines": [
+        "TRADE: D · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"D\",\"metrics\":{\"valid_fills\":1,\"side_count\":2},\"legs\":{\"AHT\":{\"filled\":true,\"cents\":4,\"vs_floor_cents\":0,\"fill_epoch\":1784449461.173,\"valid_span_fill\":true,\"revalidation\":{\"ruler_bell_epoch\":1784473920,\"span_start_epoch\":1784418579,\"span_end_epoch\":1784472102.014,\"at_or_after_span_start\":true,\"before_span_end\":true,\"before_bell\":true,\"correction_ids\":[]},\"reason\":null,\"floor_cents\":4,\"floor_epoch\":1784449461.2,\"floor_printed_before_fill\":false,\"floor_printed_before_order\":false,\"order_lineage_age_minutes\":114.18621665239334,\"current_price_age_minutes\":114.18621665239334,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"},\"VIS\":{\"filled\":false,\"cents\":null,\"vs_floor_cents\":null,\"fill_epoch\":null,\"valid_span_fill\":false,\"revalidation\":null,\"reason\":null,\"floor_cents\":92,\"floor_epoch\":1784469389.4,\"floor_printed_before_fill\":null,\"floor_printed_before_order\":\"STORE SILENT\",\"order_lineage_age_minutes\":null,\"current_price_age_minutes\":null,\"note\":\"Full-span floor premium retained even if floor already printed; queue/earlier maker fill is not assumed\"}}}",
+        "Ages: AHT lineage 114.19m, current price 114.19m"
+      ]
+    },
+    {
+      "name": "PAIR",
+      "mark": "!",
+      "line": "F · STORE SILENT¢ pair · 0 of 4¢ captured",
+      "hover_lines": [
+        "PAIR: F · OPERATOR STANDARD v1 — preliminary tune test; not Gate-1 certification",
+        "{\"letter\":\"F\",\"metrics\":{\"pair_sum\":null,\"capture_ratio\":0,\"offered_cents\":4}}",
+        "Worst of MACRO, MICRO, TRADE and PAIR; hard safety/named failures override. No uplift for capture: PAIR already counts it."
+      ]
+    }
+  ],
+  "governing": "PAIR",
+  "raw_engine_fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "leg_id": "AHT",
+      "entry_cents": 4,
+      "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+      "triggering_print_price_cents": 4,
+      "fill_timestamp_epoch": 1784449461.173,
+      "prior_standing_target_cents": 4,
+      "standing_license_basis": "PRICING_AUTHORITY_TARGET_EXECUTED",
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL19VISAHT-VIS.csv.gz#row-694",
+      "print_at_or_below_rest": true,
+      "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+    }
+  ],
+  "raw_engine_completed": false,
+  "valid_fills": 1,
+  "completed": false,
+  "one_sided": true,
+  "pair_sum": null,
+  "captured_cents": 0,
+  "offered_cents": 4,
+  "capture_ratio": 0,
+  "one_sided_reason": "VIS: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+  "missing_sides": [
+    {
+      "leg": "VIS",
+      "reason": "No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+      "last_action": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19VISAHT-AHT.csv.gz#row-3386",
+        "timestamp_epoch": 1784473919.000006,
+        "leg": "VIS",
+        "action": "CANCEL_REST",
+        "target_cents": null,
+        "reason": "PULL_UNSUPPORTED"
+      },
+      "final_rest_cents": null,
+      "recorded_floor_cents": 92,
+      "reach_audit": {
+        "rest_intervals": 572,
+        "strictly_interior_crossings": 0,
+        "first_interior_crossing": null,
+        "same_timestamp_boundary_crossings": 16,
+        "first_boundary_crossing": {
+          "print": {
+            "epoch": 1784467079.436,
+            "price": 95,
+            "receipt": "dfd2f940-8169-53c9-d118-10b5f8bc2308",
+            "source_row": 3688
+          },
+          "interval": {
+            "level": 95,
+            "start_epoch": 1784467079.436,
+            "start_receipt": "dfd2f940-8169-53c9-d118-10b5f8bc2308",
+            "end_epoch": 1784467085.71
+          }
+        },
+        "rule": "Read-only diagnostic: positive-size accepted grade prints at/below a recorded resting level, strictly after action time and before next action/corrected bell. Equal action timestamps are unresolved here, never credited. Exact replay and grade remain authoritative."
+      },
+      "scope": "Stored execution plus explicit read-only crossing diagnostic; no invented intent or queue priority."
+    }
+  ],
+  "trace_sha256": "3b000c216d324727fd9de6fe67ad61ecffb591cf792f469396c91c5188dd52df",
+  "grade_sha256": "71150477ffcf7c7d98bc3c4a6cd3969add2e68ba2ca3df7cafde7b6b9b94af95",
+  "grade_url": "/data/KXATPCHALLENGERMATCH-26JUL19VISAHT.grade.json",
+  "face_url": "/data/KXATPCHALLENGERMATCH-26JUL19VISAHT.face.json",
+  "sentences_url": "/data/tune-expansion/games/KXATPCHALLENGERMATCH-26JUL19VISAHT.sentences.json",
+  "fault": "VIS: No strictly later crossing inside a rest interval; crossing at an action timestamp needs receipt-order review",
+  "fill_witnesses": [
+    {
+      "leg": "AHT",
+      "receipt": "83d9ffb8-3525-4a65-8027-e3ac96e81d80",
+      "positive_size_witness": true,
+      "print_cents": 4,
+      "rest_cents": 4,
+      "at_or_below_rest": true
+    }
+  ],
+  "hard_failures": [],
+  "offer_issue": null
+}

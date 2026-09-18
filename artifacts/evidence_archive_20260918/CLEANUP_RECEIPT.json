@@ -1,0 +1,72 @@
+{
+  "status": "COMPLETE",
+  "manifest_commit": "f1aa0ae7d5f4c66754ee8b0605a312211ff086fb",
+  "started": "2026-09-18T22:07:20.3227478Z",
+  "free_before": 30700417024,
+  "directories": [
+    {
+      "root": "C:\\tmp\\omi-trades-truth-harmonization-20260811",
+      "files_removed": 5412,
+      "logical_bytes_removed": 4275435712,
+      "free_before": 30701318144,
+      "free_after": 34988318720,
+      "retained_files": 13,
+      "manifest_kept": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\ARCHIVE_MANIFEST.json",
+      "completed": "2026-09-18T22:07:50.9361012Z"
+    },
+    {
+      "root": "C:\\tmp\\omi-v49-evidenced-standing-20260810",
+      "files_removed": 5403,
+      "logical_bytes_removed": 4275420927,
+      "free_before": 34961080320,
+      "free_after": 39248621568,
+      "retained_files": 13,
+      "manifest_kept": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\ARCHIVE_MANIFEST.json",
+      "completed": "2026-09-18T22:08:19.9760386Z"
+    },
+    {
+      "root": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811",
+      "files_removed": 5464,
+      "logical_bytes_removed": 4313746490,
+      "free_before": 39068237824,
+      "free_after": 43364220928,
+      "retained_files": 13,
+      "manifest_kept": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\ARCHIVE_MANIFEST.json",
+      "completed": "2026-09-18T22:08:50.4653409Z"
+    },
+    {
+      "root": "C:\\tmp\\omi-v50-first-fill-price-discipline",
+      "files_removed": 5405,
+      "logical_bytes_removed": 4353570029,
+      "free_before": 43361075200,
+      "free_after": 47713124352,
+      "retained_files": 13,
+      "manifest_kept": "C:\\tmp\\omi-v50-first-fill-price-discipline\\ARCHIVE_MANIFEST.json",
+      "completed": "2026-09-18T22:09:19.4709900Z"
+    },
+    {
+      "root": "C:\\tmp\\omi-v51-continuity-standing-20260812",
+      "files_removed": 5491,
+      "logical_bytes_removed": 4327571479,
+      "free_before": 47710851072,
+      "free_after": 52036984832,
+      "retained_files": 13,
+      "manifest_kept": "C:\\tmp\\omi-v51-continuity-standing-20260812\\ARCHIVE_MANIFEST.json",
+      "completed": "2026-09-18T22:09:48.4452476Z"
+    },
+    {
+      "root": "C:\\tmp\\omi-v52-judgment-gate-20260812",
+      "files_removed": 9042,
+      "logical_bytes_removed": 17040814748,
+      "free_before": 51824377856,
+      "free_after": 68858925056,
+      "retained_files": 13,
+      "manifest_kept": "C:\\tmp\\omi-v52-judgment-gate-20260812\\ARCHIVE_MANIFEST.json",
+      "completed": "2026-09-18T22:11:08.0980198Z"
+    }
+  ],
+  "logical_bytes_removed": 38586559385,
+  "recovery": "Remote-byte SHA256 verified private Spaces archive; uncited source on origin. Credentials, unresolved receipts and protected traces kept.",
+  "completed": "2026-09-18T22:11:08.1001527Z",
+  "free_after": 68858925056
+}

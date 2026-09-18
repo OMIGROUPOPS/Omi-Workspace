@@ -51,11 +51,26 @@ try{
     assert.equal(mark,signed(grade.close_delta_grade?.score_cents??close.filled_leg_close_delta_cents));
     assert.notEqual(mark,'N/A');assert.notEqual(header,'N/A');
     if(!grade.LETTER.hard_failures?.length)assert.equal(header,mark);
+    // The address bar names the landmark, and leaving it clears the name.
+    assert.equal(new URL(page.url()).searchParams.get('jump'),'bell');
+    await page.getByRole('button',{name:'Previous receipt'}).click();
+    await page.waitForFunction(()=>!new URL(location.href).searchParams.has('jump'));
+    assert.equal(await page.locator('[data-bell-outcome]').count(),0);
+    // A pasted ?jump=bell link opens at the bell with the same card.
+    await page.goto(`${base}/?tab=lab&event=${event}&jump=bell`);
+    await page.locator('[data-jump="bell"][aria-current="true"]').waitFor({timeout:90000});
+    assert.equal(await card.locator('[data-bell-grade] b').innerText(),mark);
+    assert.equal(new URL(page.url()).searchParams.get('jump'),'bell');
     await card.scrollIntoViewIfNeeded();
     await page.screenshot({path:`${output}/${short}-bell.png`,fullPage:true});
     await card.screenshot({path:`${output}/${short}-bell-card.png`});
     report.push({event,timings_ms:timings,first_bid_tables:bidTables,bell:{legs,pair,mark,header,builder_written_grade:grade.close_delta_grade!=null}});
   }
+  // The link is honoured once: choosing another game starts that game normally.
+  await page.locator('#load-game').selectOption('KXATPMATCH-26JUL12ALTGAS');
+  await page.locator('[data-jump="bell"][aria-current="false"]').waitFor({timeout:90000});
+  assert.equal(await page.locator('[data-bell-outcome]').count(),0,'Switching games must not re-jump');
+  assert.equal(new URL(page.url()).searchParams.has('jump'),false);
   assert.deepEqual(errors,[]);
   fs.writeFileSync(`${output}/REPORT.json`,JSON.stringify({base,report},null,1));
   console.log(JSON.stringify(report.map(r=>({event:r.event,timings_ms:r.timings_ms,bell:r.bell})),null,1));

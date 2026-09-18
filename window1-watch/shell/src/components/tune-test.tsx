@@ -6,12 +6,14 @@ import { DeskPanel } from "./desk-panel";
 import { ScoreboardPanel } from "./scoreboard-panel";
 import {FaultBanner,useFaultTaxonomy} from './fault-taxonomy';
 import {loadTimelineReceipt} from '@/lib/timeline-chunks';
-import {preloadJumpTargets} from '@/lib/jump-targets';
+import {preloadJumpTargets,jumpIndex,jumpIdAt} from '@/lib/jump-targets';
 import "../tune-motion.css";
 import "../terminal.css";
 type Tab="lab"|"desk"|"scoreboard";
 export function TuneTest() {
   const importedUrls=useRef<string[]>([]);
+  // ?jump= is honoured once, for the game the link opened; switching games never re-jumps.
+  const linkedJump=useRef(new URLSearchParams(location.search).get("jump"));
   useEffect(()=>()=>importedUrls.current.forEach(url=>URL.revokeObjectURL(url)),[]);
   const [games,setGames]=useState<Game[]>([]),[event,setEvent]=useState<string|null>(null),[game,setGame]=useState<LoadedGame|null>(null);
   const [tab,setTab]=useState<Tab>(()=>{const t=new URLSearchParams(location.search).get("tab");return t==="desk"||t==="scoreboard"?t:"lab"});
@@ -48,6 +50,18 @@ export function TuneTest() {
     void preloadJumpTargets(face,c.signal).then(loaded=>{if(loaded&&!c.signal.aborted)setGame(previous=>{if(previous?.face!==face)return previous;const updated={...previous};(window as unknown as {TUNE_DATA:LoadedGame}).TUNE_DATA=updated;return updated})});
     return()=>c.abort();
   },[face]);
+  useEffect(()=>{
+    if(!game||!face||linkedJump.current==null)return;
+    const index=jumpIndex(face,linkedJump.current);linkedJump.current=null;
+    if(index==null)return;
+    setFrame(frameForReceipt(game.frames,face.os[index]));setSelectedReceipt(index);setInspected(null);setPlaying(false);
+  },[face]);
+  useEffect(()=>{
+    if(!face||linkedJump.current!=null)return;
+    const u=new URL(location.href),id=jumpIdAt(face,selectedReceipt??game?.frames[frame]?.receipt_index??null);
+    if(id)u.searchParams.set("jump",id);else u.searchParams.delete("jump");
+    history.replaceState(null,"",u);
+  },[face,frame,selectedReceipt]);
   useEffect(()=>{if(!game||!now)return;const u=new URL(location.href);const gate=game.face.render.checkpoints.find(c=>c.frame===frame);if(gate)u.searchParams.set("gate",String(gate.minutesToBell));else u.searchParams.delete("gate");history.replaceState(null,"",u)},[frame,game]);
   useEffect(()=>{const key=(e:KeyboardEvent)=>{if(e.ctrlKey||e.metaKey||e.altKey||(e.target instanceof HTMLElement&&e.target.closest("input,select,textarea,button,summary,[contenteditable]")))return;
     if(e.key==="/"){e.preventDefault();document.getElementById("load-game")?.focus()}

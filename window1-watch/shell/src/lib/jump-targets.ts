@@ -19,3 +19,15 @@ export function preloadJumpTargets(face:FaceData, signal?:AbortSignal):Promise<b
   if(!indices.length)return Promise.resolve(false);
   return Promise.all(indices.map(i=>loadTimelineReceipt(face,i,signal))).then(()=>true,()=>false);
 }
+// Address-bar form of a landmark: ?jump=bell | first-fill | first-bid.
+const JUMP_KEYS = {'first-bid':'firstBid','first-fill':'firstFill','bell':'bell'} as const;
+export type JumpId = keyof typeof JUMP_KEYS;
+export function jumpIndex(face:FaceData, id:string|null):number|null {
+  return id!=null&&Object.hasOwn(JUMP_KEYS,id) ? jumpTargets(face)[JUMP_KEYS[id as JumpId]] : null;
+}
+// The landmark a receipt is, if any. The bell wins a tie so a copied link says what the reader sees.
+export function jumpIdAt(face:FaceData, index:number|null):JumpId|null {
+  if(index==null)return null;
+  const targets=jumpTargets(face);
+  return (['bell','first-fill','first-bid'] as const).find(id=>targets[JUMP_KEYS[id]]===index)??null;
+}

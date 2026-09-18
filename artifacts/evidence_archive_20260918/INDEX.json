@@ -1,0 +1,568 @@
+{
+  "schema": "VERIFIED_SPACES_ARCHIVE_INDEX_V1",
+  "at": "2026-09-18T22:05:23.702Z",
+  "repository_head_before": "1c88f2b063d1c4334dd6f257ecb4f8c17707897e",
+  "audit": {
+    "receipt_objects": 3792,
+    "receipt_bytes": 7727342065,
+    "summary_sha256": "31e65adf5766d5de871b38adf0e32cd3c4ff7d3eacc3cf6653dac9b9fe065dbe",
+    "receipt_set_sha256": "74e0d1bf37c27e1e838c84e12e0d13b26878e94fe332908235630540d571f8b2",
+    "errors": []
+  },
+  "remote": "Private DO Spaces omi-tick-archive/evidence/<directory>; SHA256 verified by downloading remote bytes, never ETag",
+  "status": "VERIFIED_REMOTE_AND_LOCAL; manifest commit required before cleanup",
+  "directories": [
+    {
+      "directory": "C:/tmp/omi-trades-truth-harmonization-20260811",
+      "head": "ef24779a011af1404b65e707086e43815a98f66f",
+      "branch": "codex/window1-trades-truth-admission-harmonization-20260811",
+      "manifest_path": "artifacts/evidence_archive_20260918/omi-trades-truth-harmonization-20260811/ARCHIVE_MANIFEST.json",
+      "manifest_sha256": "d3398e15cce53acc8bb458c2884a58cab7414984053857771d9bdf128392af37",
+      "archived_files": 4336,
+      "archived_bytes": 4230137664,
+      "retained": [
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\tmp\\per_cell_verification.py",
+          "size": 24658,
+          "sha256": "75c1c64c5b2dd5ead0507632e950c3bb85c94c34e7fc4756cfb6dcd8fc660546",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\docs\\screenshots\\daysheet-live-panel\\proof_popover_no_receipt.png",
+          "size": 54834,
+          "sha256": "20010a665f7c3ec55711ecef3b99a91ce0f912ce454528b979405a03cd6aaa7d",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\docs\\screenshots\\daysheet-live-panel\\proof_popover_with_receipt.png",
+          "size": 54894,
+          "sha256": "1e6ad384f5c15f3aff72e1949e3cf1315370a01615f637fc5901af7e978d428e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\backend\\.env",
+          "size": 350,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\arb-executor-v2\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\arb-executor-v2\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\arb-executor\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\arb-executor\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\arb-executor\\position_report.py",
+          "size": 23269,
+          "sha256": "a12490157619023bef85443c50b5741eb978908b39b5669c7664f5dee539787b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\arb-executor\\tests\\test_window1_recovery_manifest.py",
+          "size": 6547,
+          "sha256": "a537e81c56cf4c78d43c274101168dc4537aa13daeb8dc3b1af44d872c6b6957",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\arb-executor\\tests\\test_window1_replay_receipt_correction.py",
+          "size": 3261,
+          "sha256": "0dd98903922c3be8d79f01f894e4f43329e8a818082fd50a24d9830c4245bca1",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\arb-executor\\tests\\test_window1_spaces_manifest.py",
+          "size": 1021,
+          "sha256": "bce0912c5f83237f89fde6c9a573eb920567086bd4266708c9242030d56c1b5b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-trades-truth-harmonization-20260811\\arb-executor\\tests\\test_window1_start_ledger.py",
+          "size": 9464,
+          "sha256": "18ee20031d9849eab3af264cbb39f97c953d34ee160592bad38367e824ff36e3",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        }
+      ],
+      "deletion_files": 5411,
+      "deletion_bytes": 4275435620
+    },
+    {
+      "directory": "C:/tmp/omi-v49-evidenced-standing-20260810",
+      "head": "4f3e9f35eb60fc45b6cf04bb55e525ebce4875db",
+      "branch": "codex/window1-v49-evidenced-level-standing-20260810",
+      "manifest_path": "artifacts/evidence_archive_20260918/omi-v49-evidenced-standing-20260810/ARCHIVE_MANIFEST.json",
+      "manifest_sha256": "f455349458738f6c22768bacda31dca2ed3ecadcbf4a667c8a658738a2238834",
+      "archived_files": 4327,
+      "archived_bytes": 4230122883,
+      "retained": [
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\tmp\\per_cell_verification.py",
+          "size": 24658,
+          "sha256": "75c1c64c5b2dd5ead0507632e950c3bb85c94c34e7fc4756cfb6dcd8fc660546",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\docs\\screenshots\\daysheet-live-panel\\proof_popover_no_receipt.png",
+          "size": 54834,
+          "sha256": "20010a665f7c3ec55711ecef3b99a91ce0f912ce454528b979405a03cd6aaa7d",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\docs\\screenshots\\daysheet-live-panel\\proof_popover_with_receipt.png",
+          "size": 54894,
+          "sha256": "1e6ad384f5c15f3aff72e1949e3cf1315370a01615f637fc5901af7e978d428e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\backend\\.env",
+          "size": 350,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\arb-executor-v2\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\arb-executor-v2\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\arb-executor\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\arb-executor\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\arb-executor\\position_report.py",
+          "size": 23269,
+          "sha256": "a12490157619023bef85443c50b5741eb978908b39b5669c7664f5dee539787b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\arb-executor\\tests\\test_window1_recovery_manifest.py",
+          "size": 6547,
+          "sha256": "a537e81c56cf4c78d43c274101168dc4537aa13daeb8dc3b1af44d872c6b6957",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\arb-executor\\tests\\test_window1_replay_receipt_correction.py",
+          "size": 3261,
+          "sha256": "0dd98903922c3be8d79f01f894e4f43329e8a818082fd50a24d9830c4245bca1",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\arb-executor\\tests\\test_window1_spaces_manifest.py",
+          "size": 1021,
+          "sha256": "bce0912c5f83237f89fde6c9a573eb920567086bd4266708c9242030d56c1b5b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49-evidenced-standing-20260810\\arb-executor\\tests\\test_window1_start_ledger.py",
+          "size": 9464,
+          "sha256": "18ee20031d9849eab3af264cbb39f97c953d34ee160592bad38367e824ff36e3",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        }
+      ],
+      "deletion_files": 5402,
+      "deletion_bytes": 4275420839
+    },
+    {
+      "directory": "C:/tmp/omi-v49b-faithful-stand-at-p-20260811",
+      "head": "f730fad138bef2d19dc3712999ca9467404a1ca1",
+      "branch": "codex/window1-v49b-machine-anchored-floor-20260812",
+      "manifest_path": "artifacts/evidence_archive_20260918/omi-v49b-faithful-stand-at-p-20260811/ARCHIVE_MANIFEST.json",
+      "manifest_sha256": "876105b879c7298780bad199ef635fd66c0c5005d7f00b867f1b7d1d34fd427d",
+      "archived_files": 4386,
+      "archived_bytes": 4268443751,
+      "retained": [
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\tmp\\per_cell_verification.py",
+          "size": 24658,
+          "sha256": "75c1c64c5b2dd5ead0507632e950c3bb85c94c34e7fc4756cfb6dcd8fc660546",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\docs\\screenshots\\daysheet-live-panel\\proof_popover_no_receipt.png",
+          "size": 54834,
+          "sha256": "20010a665f7c3ec55711ecef3b99a91ce0f912ce454528b979405a03cd6aaa7d",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\docs\\screenshots\\daysheet-live-panel\\proof_popover_with_receipt.png",
+          "size": 54894,
+          "sha256": "1e6ad384f5c15f3aff72e1949e3cf1315370a01615f637fc5901af7e978d428e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\backend\\.env",
+          "size": 350,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\arb-executor-v2\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\arb-executor-v2\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\arb-executor\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\arb-executor\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\arb-executor\\position_report.py",
+          "size": 23269,
+          "sha256": "a12490157619023bef85443c50b5741eb978908b39b5669c7664f5dee539787b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\arb-executor\\tests\\test_window1_recovery_manifest.py",
+          "size": 6547,
+          "sha256": "a537e81c56cf4c78d43c274101168dc4537aa13daeb8dc3b1af44d872c6b6957",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\arb-executor\\tests\\test_window1_replay_receipt_correction.py",
+          "size": 3261,
+          "sha256": "0dd98903922c3be8d79f01f894e4f43329e8a818082fd50a24d9830c4245bca1",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\arb-executor\\tests\\test_window1_spaces_manifest.py",
+          "size": 1021,
+          "sha256": "bce0912c5f83237f89fde6c9a573eb920567086bd4266708c9242030d56c1b5b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v49b-faithful-stand-at-p-20260811\\arb-executor\\tests\\test_window1_start_ledger.py",
+          "size": 9464,
+          "sha256": "18ee20031d9849eab3af264cbb39f97c953d34ee160592bad38367e824ff36e3",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        }
+      ],
+      "deletion_files": 5463,
+      "deletion_bytes": 4313746400
+    },
+    {
+      "directory": "C:/tmp/omi-v50-first-fill-price-discipline",
+      "head": "745d7d2ca4c5680847128ad3fe420b1ef5b61feb",
+      "branch": "codex/window1-v50-first-fill-price-discipline",
+      "manifest_path": "artifacts/evidence_archive_20260918/omi-v50-first-fill-price-discipline/ARCHIVE_MANIFEST.json",
+      "manifest_sha256": "39adfd0537572acd0e202f0b94722800eedd21482682228716b10173d0f1b968",
+      "archived_files": 4330,
+      "archived_bytes": 4308278809,
+      "retained": [
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\tmp\\per_cell_verification.py",
+          "size": 24658,
+          "sha256": "75c1c64c5b2dd5ead0507632e950c3bb85c94c34e7fc4756cfb6dcd8fc660546",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\docs\\screenshots\\daysheet-live-panel\\proof_popover_no_receipt.png",
+          "size": 54834,
+          "sha256": "20010a665f7c3ec55711ecef3b99a91ce0f912ce454528b979405a03cd6aaa7d",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\docs\\screenshots\\daysheet-live-panel\\proof_popover_with_receipt.png",
+          "size": 54894,
+          "sha256": "1e6ad384f5c15f3aff72e1949e3cf1315370a01615f637fc5901af7e978d428e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\backend\\.env",
+          "size": 350,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\arb-executor-v2\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\arb-executor-v2\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\arb-executor\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\arb-executor\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\arb-executor\\position_report.py",
+          "size": 23269,
+          "sha256": "a12490157619023bef85443c50b5741eb978908b39b5669c7664f5dee539787b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\arb-executor\\tests\\test_window1_recovery_manifest.py",
+          "size": 6547,
+          "sha256": "a537e81c56cf4c78d43c274101168dc4537aa13daeb8dc3b1af44d872c6b6957",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\arb-executor\\tests\\test_window1_replay_receipt_correction.py",
+          "size": 3261,
+          "sha256": "0dd98903922c3be8d79f01f894e4f43329e8a818082fd50a24d9830c4245bca1",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\arb-executor\\tests\\test_window1_spaces_manifest.py",
+          "size": 1021,
+          "sha256": "bce0912c5f83237f89fde6c9a573eb920567086bd4266708c9242030d56c1b5b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v50-first-fill-price-discipline\\arb-executor\\tests\\test_window1_start_ledger.py",
+          "size": 9464,
+          "sha256": "18ee20031d9849eab3af264cbb39f97c953d34ee160592bad38367e824ff36e3",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        }
+      ],
+      "deletion_files": 5404,
+      "deletion_bytes": 4353569941
+    },
+    {
+      "directory": "C:/tmp/omi-v51-continuity-standing-20260812",
+      "head": "69754968f50d18e5257593c7dc015bac32a4ec0e",
+      "branch": "codex/window1-v51-continuity-of-standing-20260812",
+      "manifest_path": "artifacts/evidence_archive_20260918/omi-v51-continuity-standing-20260812/ARCHIVE_MANIFEST.json",
+      "manifest_sha256": "b3cb8c968b890656e3ed4a7c66015acebaf9c8395b9ec41143452be0cef65f32",
+      "archived_files": 4413,
+      "archived_bytes": 4282268572,
+      "retained": [
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\tmp\\per_cell_verification.py",
+          "size": 24658,
+          "sha256": "75c1c64c5b2dd5ead0507632e950c3bb85c94c34e7fc4756cfb6dcd8fc660546",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\docs\\screenshots\\daysheet-live-panel\\proof_popover_no_receipt.png",
+          "size": 54834,
+          "sha256": "20010a665f7c3ec55711ecef3b99a91ce0f912ce454528b979405a03cd6aaa7d",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\docs\\screenshots\\daysheet-live-panel\\proof_popover_with_receipt.png",
+          "size": 54894,
+          "sha256": "1e6ad384f5c15f3aff72e1949e3cf1315370a01615f637fc5901af7e978d428e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\backend\\.env",
+          "size": 350,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\arb-executor-v2\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\arb-executor-v2\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\arb-executor\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\arb-executor\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\arb-executor\\position_report.py",
+          "size": 23269,
+          "sha256": "a12490157619023bef85443c50b5741eb978908b39b5669c7664f5dee539787b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\arb-executor\\tests\\test_window1_recovery_manifest.py",
+          "size": 6547,
+          "sha256": "a537e81c56cf4c78d43c274101168dc4537aa13daeb8dc3b1af44d872c6b6957",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\arb-executor\\tests\\test_window1_replay_receipt_correction.py",
+          "size": 3261,
+          "sha256": "0dd98903922c3be8d79f01f894e4f43329e8a818082fd50a24d9830c4245bca1",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\arb-executor\\tests\\test_window1_spaces_manifest.py",
+          "size": 1021,
+          "sha256": "bce0912c5f83237f89fde6c9a573eb920567086bd4266708c9242030d56c1b5b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v51-continuity-standing-20260812\\arb-executor\\tests\\test_window1_start_ledger.py",
+          "size": 9464,
+          "sha256": "18ee20031d9849eab3af264cbb39f97c953d34ee160592bad38367e824ff36e3",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        }
+      ],
+      "deletion_files": 5490,
+      "deletion_bytes": 4327571390
+    },
+    {
+      "directory": "C:/tmp/omi-v52-judgment-gate-20260812",
+      "head": "16895d3f8eb5d903e77ecd6461d36030b7bf9dee",
+      "branch": "codex/window1-v52s-joint-budget-yield-priority-20260819",
+      "manifest_path": "artifacts/evidence_archive_20260918/omi-v52-judgment-gate-20260812/ARCHIVE_MANIFEST.json",
+      "manifest_sha256": "10dd3d9e8dbffa619c2d80f6599137fe97965436175d99a0c4e8ff999807c96e",
+      "archived_files": 7943,
+      "archived_bytes": 16995448497,
+      "retained": [
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\tmp\\per_cell_verification.py",
+          "size": 24658,
+          "sha256": "75c1c64c5b2dd5ead0507632e950c3bb85c94c34e7fc4756cfb6dcd8fc660546",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\docs\\screenshots\\daysheet-live-panel\\proof_popover_no_receipt.png",
+          "size": 54834,
+          "sha256": "20010a665f7c3ec55711ecef3b99a91ce0f912ce454528b979405a03cd6aaa7d",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\docs\\screenshots\\daysheet-live-panel\\proof_popover_with_receipt.png",
+          "size": 54894,
+          "sha256": "1e6ad384f5c15f3aff72e1949e3cf1315370a01615f637fc5901af7e978d428e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\backend\\.env",
+          "size": 350,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\arb-executor-v2\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\arb-executor-v2\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\arb-executor\\.env.example",
+          "size": 236,
+          "sha256": null,
+          "reason": "CREDENTIAL_UNTOUCHED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\arb-executor\\cash_ledger.py",
+          "size": 11691,
+          "sha256": "b6f4ebeb923b8b5f55911657a7135a082485fd91fb4beb0f7df90e18dba5ef6e",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\arb-executor\\position_report.py",
+          "size": 23269,
+          "sha256": "a12490157619023bef85443c50b5741eb978908b39b5669c7664f5dee539787b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\arb-executor\\tests\\test_window1_recovery_manifest.py",
+          "size": 6547,
+          "sha256": "a537e81c56cf4c78d43c274101168dc4537aa13daeb8dc3b1af44d872c6b6957",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\arb-executor\\tests\\test_window1_replay_receipt_correction.py",
+          "size": 3261,
+          "sha256": "0dd98903922c3be8d79f01f894e4f43329e8a818082fd50a24d9830c4245bca1",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\arb-executor\\tests\\test_window1_spaces_manifest.py",
+          "size": 1021,
+          "sha256": "bce0912c5f83237f89fde6c9a573eb920567086bd4266708c9242030d56c1b5b",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        },
+        {
+          "path": "C:\\tmp\\omi-v52-judgment-gate-20260812\\arb-executor\\tests\\test_window1_start_ledger.py",
+          "size": 9464,
+          "sha256": "18ee20031d9849eab3af264cbb39f97c953d34ee160592bad38367e824ff36e3",
+          "reason": "UNRESOLVED_CITATION_RETAINED"
+        }
+      ],
+      "deletion_files": 9041,
+      "deletion_bytes": 17040814665
+    }
+  ],
+  "totals": {
+    "archived_files": 29735,
+    "archived_bytes": 38314700176,
+    "eligible_local_bytes": 38586558855
+  },
+  "excluded": "Protected traces, current handoff/time-surface inputs, dirty/no-HEAD roots, credentials and unresolved receipt-like files remain local. No raw evidence committed to Git."
+}

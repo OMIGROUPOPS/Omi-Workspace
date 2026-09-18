@@ -8,6 +8,7 @@ import { packFace, unpackFace } from './face_encoding.mjs';
 import { readBidDetails } from './bid_card_details.mjs';
 import {refreshGzipMirror} from './json_storage.mjs';
 import {handoffDisplay} from './handoff_display.mjs';
+import {riserBidChoices} from './bid_choices.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const sha = value => createHash('sha256').update(value).digest('hex');
@@ -65,6 +66,7 @@ export function projectStage(face, receipt, detail, sourceSha) {
     const sidePool = pool?.sides?.[side], selected = sidePool?.layers?.[sidePool.selected_layer];
     const belief = row.layers?.micro?.context?.beliefs?.[side];
     const handoff = handoffDisplay(belief), h = belief?.handoff;
+    const bidChoices = riserBidChoices(belief?.entry_license, values.book_bid.value, values.book_ask.value);
     const handoffBand = h?.destination_kind === 'W1_CLOSE' ? h.close_band : h?.floor_band;
     const q = h ? h.destination_cents : selected?.floors?.q50?.level_cents, count = h ? h.member_count : selected?.member_count;
     const author = finite(q) && finite(count) ? `${number(q)}¢ · pool of ${number(count)} games` : absent;
@@ -76,6 +78,7 @@ export function projectStage(face, receipt, detail, sourceSha) {
     return [side, {values,
       display:{
         ...(handoff ? {handoff} : {}),
+        ...(bidChoices ? {bid_choices:bidChoices} : {}),
         book: values.book_bid.value === null || values.book_ask.value === null ? absent : `${money(values.book_bid.value)} / ${money(values.book_ask.value)}`,
         spread:money(spread), bid_depth_fraction:depthTotal>0?values.bid_depth.value/depthTotal:null,
         q:money(q), q_cents:finite(q)?q:null, deadline:tMinus(x),

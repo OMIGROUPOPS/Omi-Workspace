@@ -6,6 +6,7 @@ import { DeskPanel } from "./desk-panel";
 import { ScoreboardPanel } from "./scoreboard-panel";
 import {FaultBanner,useFaultTaxonomy} from './fault-taxonomy';
 import {loadTimelineReceipt} from '@/lib/timeline-chunks';
+import {preloadJumpTargets} from '@/lib/jump-targets';
 import "../tune-motion.css";
 import "../terminal.css";
 type Tab="lab"|"desk"|"scoreboard";
@@ -39,6 +40,14 @@ export function TuneTest() {
     }).catch(e=>{if(e.name!=='AbortError'){setPlaying(false);setError(String(e))}});
     return()=>c.abort();
   },[game,receiptIndex,inspected]);
+  const face=game?.face;
+  useEffect(()=>{
+    if(!face?.timeline)return;
+    const c=new AbortController();
+    // First bid, first fill and bell chunks are verified ahead of the click.
+    void preloadJumpTargets(face,c.signal).then(loaded=>{if(loaded&&!c.signal.aborted)setGame(previous=>{if(previous?.face!==face)return previous;const updated={...previous};(window as unknown as {TUNE_DATA:LoadedGame}).TUNE_DATA=updated;return updated})});
+    return()=>c.abort();
+  },[face]);
   useEffect(()=>{if(!game||!now)return;const u=new URL(location.href);const gate=game.face.render.checkpoints.find(c=>c.frame===frame);if(gate)u.searchParams.set("gate",String(gate.minutesToBell));else u.searchParams.delete("gate");history.replaceState(null,"",u)},[frame,game]);
   useEffect(()=>{const key=(e:KeyboardEvent)=>{if(e.ctrlKey||e.metaKey||e.altKey||(e.target instanceof HTMLElement&&e.target.closest("input,select,textarea,button,summary,[contenteditable]")))return;
     if(e.key==="/"){e.preventDefault();document.getElementById("load-game")?.focus()}

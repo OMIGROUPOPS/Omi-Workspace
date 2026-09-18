@@ -1,4 +1,5 @@
 import type { LoadedGame, PressureRow } from '@/lib/tune-tape';
+import { RiserBidChoices } from './bid-choices';
 const none='no data here';
 export function pressureAt(game:LoadedGame,minutes:number,index:number|null) {
   return game.pressure?.rows.slice().reverse().find(r=>r.minutes_to_bell>=minutes&&index!=null&&r.receipt_index<=index);
@@ -16,6 +17,7 @@ export function SideReadings({game,side,row,index,onReceipt}:{game:LoadedGame;si
       <span><small>Bid-setting call</small><b>{order?.q??none}</b></span><span className="engine-secured-arrow">→</span><span><small>{order?.status??'No bid yet'}</small><b>{order?.value??'none'}</b></span>
     </button>
     <div className="engine-side-clock">{order?.status==='Filled'?<>Trade {order.print} · {order.clock}<br/>{order.floor_line}</>:order?.clock??'No bid placed at this point'}</div>
+    {d?.bid_choices?<RiserBidChoices side={side} choices={d.bid_choices} provenance={field=>source(row,field)}/>:null}
     {d?.handoff?.level_table?<section className="engine-reach-table" data-reach-table={side} aria-label={`${side} bid choices`}>
       <header>BID CHOICES · REACH BEFORE BELL</header>
       <table><thead><tr><th>Level</th><th>Reach</th><th>Discount</th><th>Expected</th><th>Choice</th></tr></thead><tbody>{d.handoff.level_table.map(r=><tr key={r.level} data-licensed={r.licensed} title={source(row,r.source)}><td>{r.level}</td><td>{r.reach}</td><td>{r.discount}</td><td>{r.expected}</td><td>{r.choice}</td></tr>)}</tbody></table>

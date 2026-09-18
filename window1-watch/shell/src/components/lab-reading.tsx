@@ -12,6 +12,9 @@ import { TuneReceipts } from './tune-receipts';
 import { ReceiptInspector } from './receipt-inspector';
 import type {FaultRecord} from './fault-taxonomy';
 import { LayerReview } from './layer-review';
+import { BellOutcome } from './bell-outcome';
+import { jumpTargets } from '@/lib/jump-targets';
+import { headlineGrade } from '@/lib/close-delta';
 import '../lab-reading.css';
 import '../lab-engine.css';
 
@@ -31,6 +34,8 @@ export function LabReading({game,fault,games,event,frame,receipt,receiptIndex,pl
     const next=direction>0?game.face.os.find(r=>receiptIndex==null||r.index>receiptIndex):[...game.face.os].reverse().find(r=>receiptIndex!=null&&r.index<receiptIndex);
     if(next){onFrame(frameForReceipt(game.frames,next));onReceipt(next.index)}onPlaying(false);
   }
+  const targets=jumpTargets(game.face), headline=headlineGrade(game.grade);
+  function land(index:number|null){if(index==null)return;onFrame(frameForReceipt(game.frames,game.face.os[index]));onReceipt(index);onPlaying(false)}
   function seek(minutes:number){
     const next=game.frames.findIndex((r,i)=>i>=game.face.render.play_start_frame&&r.minutesToBell<=minutes);
     onFrame(next<0?game.frames.length-1:next);onPlaying(false);
@@ -45,7 +50,7 @@ export function LabReading({game,fault,games,event,frame,receipt,receiptIndex,pl
         <label className="reading-game-label"><span className="sr-only">Game</span><select id="load-game" aria-label="Load game" value={event??''} onChange={e=>onEvent(e.target.value)}>{games.map(g=><option key={g.event} value={g.event}>{g.event===event?game.face.legs.join(' vs '):g.event.split('-').at(-1)?.slice(7)}</option>)}</select></label>
         <div className="engine-ruler" title={`Recorded floors · hindsight only\nTruth ${game.face.truth?.table_commit}\nRow ${game.face.truth?.row_sha256}`}><small>RECORDED FLOORS · KNOWN AFTERWARD</small><div>{game.face.legs.map(side=><span key={side} title={game.face.truth?.legs[side]?.line}>{side} <b>{cents(game.face.truth?.legs[side]?.floor_cents)}</b></span>)}</div><small>{plain(game.face.truth?.pair.compact_line)}</small></div>
         <div className="reading-result" title={`Final grade (known afterward)\n${game.grade?.display.governing??'No grade here'}\nOS ${game.face.provenance.os_sha256}\nTrace ${game.face.provenance.trace_sha256}`}>
-          <span data-grade-letter className="reading-grade">{game.grade?.display.letter??'—'}</span>
+          <span data-grade-letter data-close-delta={headline!==(game.grade?.display.letter??'—')||game.grade?.close_delta_grade!=null} className="reading-grade">{headline}</span>
           {game.grade?.handoff_close_result?<p data-close-delta-grade><span>W1 CLOSE-DELTA GRADE</span><br/><b>{game.grade.handoff_close_result.pair_fill_sum_cents!=null?`${game.grade.handoff_close_result.pair_fill_sum_cents}¢ cost`:'Pair incomplete'}</b><br/><em>vs {game.grade.handoff_close_result.pair_close_sum_cents??'—'}¢ closes</em><br/><small>{game.grade.close_delta_grade?.status}</small></p>:<p><span>FINAL PAIR</span><br/><b>{!outcome?'No result':outcome.pair_completed&&outcome.pair_sum!=null?`${outcome.pair_sum}¢`:'Incomplete'}</b><br/><em>{outcome?.captured_cents??'—'} of {outcome?.best_capturable_cents??'—'}¢ captured</em>{fault?.credit.safety_excluded?<small>Safety fill excluded</small>:null}</p>}
         </div>
         <button className="reading-details-button" aria-expanded={details} aria-controls="reading-details" onClick={()=>setDetails(v=>!v)}>Details {details?'−':'+'}</button>
@@ -58,6 +63,7 @@ export function LabReading({game,fault,games,event,frame,receipt,receiptIndex,pl
       <LabPressure game={game} row={pressure}/>
       <div className="reading-transport">
         <div className="reading-transport-buttons"><button aria-label="Previous receipt" onClick={()=>jump(-1)}>Prev</button><button disabled={now.pre_first_tick} onClick={()=>onPlaying(!playing)}>{playing?'Pause':'Play'}</button><button aria-label="Next receipt" onClick={()=>jump(1)}>Next</button></div>
+        <div className="reading-jump-buttons" role="group" aria-label="Jump to a landmark receipt">{([['first-bid','First bid',targets.firstBid,'No bid was placed in this replay'],['first-fill','First fill',targets.firstFill,'No fill in this replay'],['bell','Bell',targets.bell,'No receipts']] as const).map(([id,label,index,empty])=><button key={id} data-jump={id} disabled={index==null} aria-current={index!=null&&receiptIndex===index} title={index==null?empty:`${label} · receipt ${index} · ${replayClock(game.face.os[index].minutesToBell)}`} onClick={()=>land(index)}>{label}</button>)}</div>
         <div className="reading-timeline">
           <div className="reading-timeline-track" aria-hidden="true"/>
           {markers.map(m=><button key={m.id} data-timeline-event={m.id} className={`reading-timeline-mark ${m.fill?'is-fill':'is-floor'}`} style={{left:`${m.progress*100}%`}} title={m.label} aria-label={m.label} onClick={()=>{if(m.receipt_index!=null){onFrame(frameForReceipt(game.frames,game.face.os[m.receipt_index]));onReceipt(m.receipt_index);onPlaying(false)}else seek(m.minutes)}}><span/></button>)}
@@ -66,6 +72,7 @@ export function LabReading({game,fault,games,event,frame,receipt,receiptIndex,pl
         </div>
         <span className="reading-time" title={`${now.minutesToBell} minutes to bell · stored tape clock`}>{replayClock(now.minutesToBell)}</span>
       </div>
+      {targets.bell!=null&&receiptIndex===targets.bell?<BellOutcome key={game.face.provenance.event_id} game={game}/>:null}
       <p className="reading-ruler-note" title={`OS ${game.face.provenance.os_sha256}\nTrace ${game.face.provenance.trace_sha256}`}>{game.face.grade_applicability?.line??'Floor, perfect sentence & final grade: hindsight, not machine inputs.'} <span>OS {game.face.provenance.os_sha256?.slice(0,8)} · trace {game.face.provenance.trace_sha256?.slice(0,8)}</span></p>
       {game.grade?.handoff_close_result?<p className="reading-ruler-note" data-handoff-close-result title={`${game.grade.handoff_close_result.role}\n${JSON.stringify(game.grade.handoff_close_result.provenance)}`}>{game.grade.handoff_close_result.line}</p>:null}
       {game.face.provenance.event_id?<LayerReview event={game.face.provenance.event_id} chartTrace={game.face.provenance.trace_sha256}/>:null}
